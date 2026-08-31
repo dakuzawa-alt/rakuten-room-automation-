@@ -100,6 +100,56 @@
         "room",
         "threads"
       ]
+    },
+    {
+      "itemCode": "bathroom:10003467",
+      "itemName": "tower 洗濯機横マグネット折り畳み棚",
+      "date": "2026-08-31",
+      "slot": "night",
+      "channels": [
+        "room",
+        "threads"
+      ]
+    },
+    {
+      "itemCode": "rcmdki:10404976",
+      "itemName": "iwaki 耐熱ガラス保存容器 7点セット",
+      "date": "2026-08-31",
+      "slot": "night",
+      "channels": [
+        "room",
+        "threads"
+      ]
+    },
+    {
+      "itemCode": "enetroom:10180645",
+      "itemName": "アイリスオーヤマ 電気圧力鍋 4L",
+      "date": "2026-08-31",
+      "slot": "night",
+      "channels": [
+        "room",
+        "threads"
+      ]
+    },
+    {
+      "itemCode": "natural-living:10017170",
+      "itemName": "ベビービョルン 抱っこ紐 ONE KAI Air",
+      "date": "2026-08-31",
+      "slot": "night",
+      "channels": [
+        "room",
+        "threads"
+      ]
+    },
+    {
+      "itemCode": "eleking:10033912",
+      "itemName": "アイリスオーヤマ 布団乾燥機 カラリエ",
+      "date": "2026-08-31",
+      "slot": "night",
+      "channels": [
+        "room",
+        "threads"
+      ]
     }
   ]
 }

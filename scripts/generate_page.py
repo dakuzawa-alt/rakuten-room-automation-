@@ -175,6 +175,13 @@ CARD_TEMPLATE = """<div class="card">
     </div>
     <textarea id="threads-{idx}" readonly>{threads_caption}</textarea>
   </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>X用</span>
+      <button class="copy-btn" onclick="copyText(this, 'x-{idx}')" type="button">コピー</button>
+    </div>
+    <textarea id="x-{idx}" readonly>{x_caption}</textarea>
+  </div>
 </div>"""
 
 SCRIPT = """<script>
@@ -225,6 +232,7 @@ def main():
             idx=idx,
             room_caption=html.escape(cap.get("roomCaption", "")),
             threads_caption=html.escape(cap.get("threadsCaption", "")),
+            x_caption=html.escape(cap.get("xCaption", "")),
         ))
 
     page = TEMPLATE.format(
