@@ -1,4 +1,105 @@
 {
   "note": "過去に選定・投稿した商品のitemCodeを記録し、重複選定を防ぐための台帳。運用開始時点では空。既存3,021件の過去投稿とは突合していないため、初期は重複が発生する可能性がある(既知の制約)。",
-  "posted": []
+  "posted": [
+    {
+      "itemCode": "westream:10008867",
+      "itemName": "KINTO ウォーターボトル 950ml WATER BOTTLE",
+      "date": "2026-08-31",
+      "slot": "morning",
+      "channels": [
+        "room",
+        "threads"
+      ]
+    },
+    {
+      "itemCode": "plywood:10013837",
+      "itemName": "BALMUDA The Pot KPT03JP 電気ケトル",
+      "date": "2026-08-31",
+      "slot": "morning",
+      "channels": [
+        "room",
+        "threads"
+      ]
+    },
+    {
+      "itemCode": "seastar:10061727",
+      "itemName": "BabySmile メルシーポット ボンジュールセット S-504 電動鼻水吸引器",
+      "date": "2026-08-31",
+      "slot": "morning",
+      "channels": [
+        "room",
+        "threads"
+      ]
+    },
+    {
+      "itemCode": "roomy:10001338",
+      "itemName": "オムニウッティ 20L ふた付き 万能バケツ",
+      "date": "2026-08-31",
+      "slot": "morning",
+      "channels": [
+        "room",
+        "threads"
+      ]
+    },
+    {
+      "itemCode": "k-lalala:10437355",
+      "itemName": "リセスタイル テーブルワゴン キャスター付き",
+      "date": "2026-08-31",
+      "slot": "morning",
+      "channels": [
+        "room",
+        "threads"
+      ]
+    },
+    {
+      "itemCode": "roomy:10015813",
+      "itemName": "tower 洗濯機横マグネット折り畳み棚",
+      "date": "2026-08-31",
+      "slot": "test2",
+      "channels": [
+        "room",
+        "threads"
+      ]
+    },
+    {
+      "itemCode": "pigeon-shop:10002137",
+      "itemName": "電動鼻吸い器 シュポット",
+      "date": "2026-08-31",
+      "slot": "test2",
+      "channels": [
+        "room",
+        "threads"
+      ]
+    },
+    {
+      "itemCode": "blueair:10000207",
+      "itemName": "ブルーエア Blue Max 3250 空気清浄機",
+      "date": "2026-08-31",
+      "slot": "test2",
+      "channels": [
+        "room",
+        "threads"
+      ]
+    },
+    {
+      "itemCode": "e-kitchen:10096368",
+      "itemName": "iwaki 保存容器 7点セット",
+      "date": "2026-08-31",
+      "slot": "test2",
+      "channels": [
+        "room",
+        "threads"
+      ]
+    },
+    {
+      "itemCode": "ueno-mono:10000006",
+      "itemName": "吸龍 SUIRYU ハンディクリーナー",
+      "date": "2026-08-31",
+      "slot": "test2",
+      "channels": [
+        "room",
+        "threads"
+      ]
+    }
+  ]
 }
