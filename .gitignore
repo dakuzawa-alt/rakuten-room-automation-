@@ -2,3 +2,5 @@ config/credentials.json
 output/*.html
 __pycache__/
 *.pyc
+scripts/run_morning.bat
+scripts/run_night.bat
