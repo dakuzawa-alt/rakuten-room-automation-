@@ -150,6 +150,61 @@
         "room",
         "threads"
       ]
+    },
+    {
+      "itemCode": "sukoyakakomachi:10000004",
+      "itemName": "特価セット 微酸性次亜塩素酸水 除菌スプレー アクアルファ 高濃度 800ppm+200ppmスプレーセット",
+      "date": "2026-09-01",
+      "slot": "morning",
+      "channels": [
+        "room",
+        "threads",
+        "x"
+      ]
+    },
+    {
+      "itemCode": "i-love-baby:10086596",
+      "itemName": "10mois ディモワ mamamanma マママンマ プレートセット ベビー食器",
+      "date": "2026-09-01",
+      "slot": "morning",
+      "channels": [
+        "room",
+        "threads",
+        "x"
+      ]
+    },
+    {
+      "itemCode": "iwaki-kitchenshop:10002082",
+      "itemName": "iwaki イワキ 耐熱ガラス保存容器 7点セット パック&レンジ",
+      "date": "2026-09-01",
+      "slot": "morning",
+      "channels": [
+        "room",
+        "threads",
+        "x"
+      ]
+    },
+    {
+      "itemCode": "roomy:10001182",
+      "itemName": "オムニウッティ 10L ふた付き バケツ",
+      "date": "2026-09-01",
+      "slot": "morning",
+      "channels": [
+        "room",
+        "threads",
+        "x"
+      ]
+    },
+    {
+      "itemCode": "enetroom:10016624",
+      "itemName": "アイリスオーヤマ 突っ張り室内物干し MW-W260N 2段 伸縮",
+      "date": "2026-09-01",
+      "slot": "morning",
+      "channels": [
+        "room",
+        "threads",
+        "x"
+      ]
     }
   ]
 }
