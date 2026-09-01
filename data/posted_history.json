@@ -205,6 +205,41 @@
         "threads",
         "x"
       ]
+    },
+    {
+      "itemCode": "ryohinseikatsukan:10000113",
+      "itemName": "Levoit core200S 卓上空気清浄機",
+      "date": "2026-09-01",
+      "slot": "special_wonderfulday",
+      "channels": ["room"]
+    },
+    {
+      "itemCode": "roomy:10015675",
+      "itemName": "tower ランドリーワゴン+バスケット",
+      "date": "2026-09-01",
+      "slot": "special_wonderfulday",
+      "channels": ["room", "threads", "x"]
+    },
+    {
+      "itemCode": "mamachi:10003757",
+      "itemName": "tower 分別ダストワゴン",
+      "date": "2026-09-01",
+      "slot": "special_wonderfulday",
+      "channels": ["room"]
+    },
+    {
+      "itemCode": "auc-seiishop:10000278",
+      "itemName": "マザーズバッグ リュック",
+      "date": "2026-09-01",
+      "slot": "special_wonderfulday",
+      "channels": ["room"]
+    },
+    {
+      "itemCode": "dondon:10004901",
+      "itemName": "電気ケトル 1L 保温タイプ",
+      "date": "2026-09-01",
+      "slot": "special_wonderfulday",
+      "channels": ["room"]
     }
   ]
 }
