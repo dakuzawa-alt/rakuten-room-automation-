@@ -2,6 +2,13 @@
 """
 選定商品+投稿文から、スマホで見やすい一覧HTMLページを生成する。
 
+captions JSONの構造(copywriterが出力):
+{
+  "products": [ {itemCode, itemName, price, roomCaption}, ... 5件 ],
+  "featured": {itemCode, itemName, reason, threadsCaption, xCaption},
+  "dailyLifePosts": ["投稿文1", ... 5個]
+}
+
 使い方:
     python generate_page.py --selected ../output/selected_2026-08-31_morning.json \
                              --captions ../output/captions_2026-08-31_morning.json \
@@ -74,10 +81,16 @@ header.top .count {{
   background: var(--chip-bg); color: var(--ink-soft); font-size: 0.78rem; font-weight: 600;
   padding: 5px 10px; border-radius: 999px; white-space: nowrap;
 }}
+h2.section-title {{ font-size: 0.95rem; font-weight: 700; margin: 24px 0 12px; }}
 .cards {{ display: flex; flex-direction: column; gap: 16px; margin-top: 18px; }}
 .card {{
   background: var(--surface); border: 1px solid var(--border); border-radius: 16px;
   padding: 16px; display: flex; flex-direction: column; gap: 12px;
+}}
+.card.featured {{ border-color: var(--accent); border-width: 2px; }}
+.featured-badge {{
+  align-self: flex-start; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.03em;
+  color: var(--accent-ink); background: var(--accent); padding: 3px 9px; border-radius: 999px;
 }}
 .card-head {{ display: flex; gap: 12px; }}
 .card-head img {{
@@ -103,6 +116,7 @@ header.top .count {{
   padding: 12px; font-weight: 700; font-size: 0.92rem; text-decoration: none;
 }}
 .btn-open:active {{ opacity: 0.85; }}
+.reason {{ font-size: 0.8rem; color: var(--ink-soft); }}
 .caption-box {{ border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }}
 .caption-head {{
   display: flex; align-items: center; justify-content: space-between;
@@ -121,6 +135,7 @@ textarea {{
   width: 100%; display: block; border: none; padding: 10px; font-size: 0.85rem; line-height: 1.55;
   resize: vertical; min-height: 108px; font-family: inherit; background: var(--surface); color: var(--ink);
 }}
+textarea.short {{ min-height: 60px; }}
 textarea:focus-visible {{ outline: 2px solid var(--accent); outline-offset: -2px; }}
 footer.note {{ margin-top: 22px; font-size: 0.76rem; color: var(--ink-soft); text-align: center; line-height: 1.6; }}
 @media (prefers-reduced-motion: no-preference) {{
@@ -137,20 +152,29 @@ footer.note {{ margin-top: 22px; font-size: 0.76rem; color: var(--ink-soft); tex
   </div>
   <span class="count">{count}件</span>
 </header>
+
+<h2 class="section-title">📦 商品(ROOM用、全{count}件)</h2>
 <div class="cards">
 {cards}
 </div>
-<footer class="note">商品ページを確認し、投稿文をコピーして手動で投稿してください。<br>価格・レビューは選定時点の実データです。</footer>
+
+<h2 class="section-title">💬 今日のあるある投稿ネタ(商品リンクなし)</h2>
+<div class="cards">
+{daily_cards}
+</div>
+
+<footer class="note">商品ページを確認し、投稿文をコピーして手動で投稿してください。<br>Threads/Xの商品紹介は1日1件・あるある投稿と織り交ぜてスパム判定を避けてください。<br>価格・レビューは選定時点の実データです。</footer>
 </div>
 {script}
 </body>
 </html>
 """
 
-CARD_TEMPLATE = """<div class="card">
+CARD_TEMPLATE = """<div class="card{featured_class}">
   <div class="card-head">
     <img src="{image_url}" alt="{name_esc}" loading="lazy">
     <div class="info">
+      {featured_badge}
       <span class="genre-chip">{genre_esc}</span>
       <div class="name">{name_esc}</div>
       <div class="meta-row">
@@ -168,19 +192,32 @@ CARD_TEMPLATE = """<div class="card">
     </div>
     <textarea id="room-{idx}" readonly>{room_caption}</textarea>
   </div>
+{featured_captions}</div>"""
+
+FEATURED_CAPTIONS_TEMPLATE = """  <p class="reason">🔥 今日のピックアップ理由: {reason_esc}</p>
   <div class="caption-box">
     <div class="caption-head">
       <span>Threads用</span>
-      <button class="copy-btn" onclick="copyText(this, 'threads-{idx}')" type="button">コピー</button>
+      <button class="copy-btn" onclick="copyText(this, 'threads-0')" type="button">コピー</button>
     </div>
-    <textarea id="threads-{idx}" readonly>{threads_caption}</textarea>
+    <textarea id="threads-0" readonly>{threads_caption}</textarea>
   </div>
   <div class="caption-box">
     <div class="caption-head">
       <span>X用</span>
-      <button class="copy-btn" onclick="copyText(this, 'x-{idx}')" type="button">コピー</button>
+      <button class="copy-btn" onclick="copyText(this, 'x-0')" type="button">コピー</button>
     </div>
-    <textarea id="x-{idx}" readonly>{x_caption}</textarea>
+    <textarea id="x-0" readonly>{x_caption}</textarea>
+  </div>
+"""
+
+DAILY_CARD_TEMPLATE = """<div class="card">
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>あるある投稿 #{num}</span>
+      <button class="copy-btn" onclick="copyText(this, 'daily-{idx}')" type="button">コピー</button>
+    </div>
+    <textarea id="daily-{idx}" class="short" readonly>{text}</textarea>
   </div>
 </div>"""
 
@@ -214,13 +251,28 @@ def main():
     args = parser.parse_args()
 
     selected = json.load(open(args.selected, encoding="utf-8"))
-    captions = json.load(open(args.captions, encoding="utf-8"))
-    cap_by_code = {c["itemCode"]: c for c in captions}
+    caption_data = json.load(open(args.captions, encoding="utf-8"))
+    products_cap = caption_data.get("products", [])
+    featured = caption_data.get("featured", {})
+    daily_posts = caption_data.get("dailyLifePosts", [])
+
+    cap_by_code = {c["itemCode"]: c for c in products_cap}
+    featured_code = featured.get("itemCode")
 
     cards_html = []
     for idx, item in enumerate(selected):
         cap = cap_by_code.get(item["itemCode"], {})
+        is_featured = item["itemCode"] == featured_code
+        featured_captions = ""
+        if is_featured:
+            featured_captions = FEATURED_CAPTIONS_TEMPLATE.format(
+                reason_esc=html.escape(featured.get("reason", "")),
+                threads_caption=html.escape(featured.get("threadsCaption", "")),
+                x_caption=html.escape(featured.get("xCaption", "")),
+            )
         cards_html.append(CARD_TEMPLATE.format(
+            featured_class=" featured" if is_featured else "",
+            featured_badge='<span class="featured-badge">🔥 本日のThreads/Xピックアップ</span>' if is_featured else "",
             image_url=item.get("imageUrl", ""),
             name_esc=html.escape(item["itemName"]),
             genre_esc=html.escape(item.get("genreGroup", "")),
@@ -231,14 +283,22 @@ def main():
             aff_url=item["affiliateUrl"],
             idx=idx,
             room_caption=html.escape(cap.get("roomCaption", "")),
-            threads_caption=html.escape(cap.get("threadsCaption", "")),
-            x_caption=html.escape(cap.get("xCaption", "")),
+            featured_captions=featured_captions,
+        ))
+
+    daily_cards_html = []
+    for idx, text in enumerate(daily_posts):
+        daily_cards_html.append(DAILY_CARD_TEMPLATE.format(
+            num=idx + 1,
+            idx=idx,
+            text=html.escape(text),
         ))
 
     page = TEMPLATE.format(
         label=html.escape(args.label),
         count=len(selected),
         cards="\n".join(cards_html),
+        daily_cards="\n".join(daily_cards_html) if daily_cards_html else "<p style='color:var(--ink-soft);font-size:0.85rem;'>今回は日常投稿ネタが生成されませんでした。</p>",
         script=SCRIPT,
     )
 
