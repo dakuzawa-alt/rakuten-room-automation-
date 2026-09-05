@@ -9,6 +9,7 @@
 import argparse
 import json
 import random
+import re
 import sys
 import time
 import urllib.parse
@@ -63,6 +64,66 @@ def _plain_product_url(item):
     return item.get("itemUrl") or ""
 
 
+
+# 商品タイプ語(これが2件以上すでに投稿されていたら、そのカテゴリは飽和とみなす)
+_TYPE_WORDS = [
+    "ロボット掃除機", "ハンディクリーナー", "コードレス掃除機", "スティック掃除機", "電気ケトル",
+    "電気圧力鍋", "衣類スチーマー", "スチームアイロン", "食洗機ラック", "サーキュレーター",
+    "布団乾燥機", "空気清浄機", "加湿器", "除湿機", "ブレンダー", "ミキサー", "炊飯器",
+    "保存容器", "ゴミ箱", "分別", "水切りラック", "米びつ", "弁当箱", "水筒", "マイボトル",
+    "収納ボックス", "収納ケース", "収納ワゴン", "ハンガーラック", "チェスト", "カラーボックス",
+    "突っ張り棒", "突っ張り棚", "ハンガー", "シューズラック", "絵本ラック", "おもちゃ収納",
+    "抱っこ紐", "ヒップシート", "ベビーカー", "鼻吸い器", "鼻水吸引", "離乳食", "ベビー食器",
+    "歯固め", "ベビーゲート", "ベビーサークル", "おむつ", "ベビーモニター", "豆いす", "踏み台",
+    "保冷シート", "ファンシート", "抱っこ紐 冷", "蚊取り", "虫除け", "室内物干し", "部屋干し",
+    "簡易トイレ", "防災", "モバイルバッテリー", "ランタン", "電気毛布", "ルームシューズ",
+    "こたつ", "湯たんぽ", "換気扇フィルター", "レンジフード", "電動歯ブラシ", "シェーバー",
+    "ドライヤー", "マットレス", "ジョイントマット", "枕", "三輪車", "バランスバイク",
+]
+
+
+def _name_tokens(name):
+    """商品名から「ブランドらしい識別トークン」を抽出する。
+    カタカナ4文字以上の連続、英数字3文字以上の語(型番・ブランド)を拾う。"""
+    toks = set()
+    for m in re.findall(r"[ァ-ヴー]{4,}", name):
+        toks.add(m)
+    for m in re.findall(r"[A-Za-z0-9][A-Za-z0-9+-]{2,}", name):
+        toks.add(m.lower())
+    # ノイズになりやすい一般カタカナ語を除外
+    for junk in ("セット", "シリーズ", "サイズ", "カラー", "レビュー", "クーポン", "ポイント",
+                 "プレゼント", "ランキング", "スーパー", "タイプ", "コンパクト", "おしゃれ",
+                 "ホワイト", "ブラック", "グレー", "ナチュラル", "ブラウン"):
+        toks.discard(junk)
+    return toks
+
+
+def build_name_filters(history):
+    """投稿履歴から (ブランドトークン集合, タイプ語→件数) を作る。"""
+    brand_tokens = set()
+    type_counts = {}
+    for p in history.get("posted", []):
+        nm = p.get("itemName", "")
+        brand_tokens |= _name_tokens(nm)
+        for t in _TYPE_WORDS:
+            if t in nm:
+                type_counts[t] = type_counts.get(t, 0) + 1
+    return brand_tokens, type_counts
+
+
+def is_name_duplicate(item, brand_tokens, type_counts):
+    """itemCodeは新しいが、実質すでに投稿済みの商品/カテゴリなら True。"""
+    nm = item.get("itemName", "")
+    # 1) 投稿済みブランド/型番トークンと一致 → 同一商品の別ショップ・型違いとみなす
+    if _name_tokens(nm) & brand_tokens:
+        return True
+    # 2) すでに2件以上投稿済みのタイプ語を含む → カテゴリ飽和
+    for t, c in type_counts.items():
+        if c >= 2 and t in nm:
+            return True
+    return False
+
+
 def score_item(item):
     review_count = item.get("reviewCount", 0)
     review_avg = item.get("reviewAverage", 0)
@@ -89,6 +150,7 @@ def main():
     kw_cfg = load_json(BASE_DIR / "config" / "keywords.json")
     history = load_json(BASE_DIR / "data" / "posted_history.json")
     posted_codes = {p["itemCode"] for p in history.get("posted", [])}
+    brand_tokens, type_counts = build_name_filters(history)
 
     price_min = kw_cfg["price_range"]["min"]
     price_max = kw_cfg["price_range"]["max"]
@@ -122,6 +184,8 @@ def main():
             item = wrapped["Item"]
             code = item.get("itemCode")
             if not code or code in posted_codes or code in candidates:
+                continue
+            if is_name_duplicate(item, brand_tokens, type_counts):
                 continue
             if item.get("reviewAverage", 0) < min_avg:
                 continue

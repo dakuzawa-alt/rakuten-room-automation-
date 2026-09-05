@@ -440,6 +440,100 @@
       "channels": [
         "room"
       ]
+    },
+    {
+      "itemCode": "honestyshop:10000108",
+      "itemName": "サーモス 名入れ ケータイマグ 500ml (敬老の日)",
+      "date": "2026-09-05",
+      "slot": "night",
+      "channels": [
+        "room",
+        "threads",
+        "x"
+      ]
+    },
+    {
+      "itemCode": "trade-abc:10012328",
+      "itemName": "ステンレス強力突っ張り棒 35-150cm",
+      "date": "2026-09-05",
+      "slot": "night",
+      "channels": [
+        "room"
+      ]
+    },
+    {
+      "itemCode": "kurashikenkou:10001650",
+      "itemName": "収納チェスト 3段 引き出し ローラー付き 幅54",
+      "date": "2026-09-05",
+      "slot": "night",
+      "channels": [
+        "room"
+      ]
+    },
+    {
+      "itemCode": "alamode:10022851",
+      "itemName": "ヤマソロ 食洗機ラック 伸縮 シンク上",
+      "date": "2026-09-05",
+      "slot": "night",
+      "channels": [
+        "room"
+      ]
+    },
+    {
+      "itemCode": "kodomo-futon:10003622",
+      "itemName": "背中 保冷シート ベビーカー/リュック",
+      "date": "2026-09-05",
+      "slot": "night",
+      "channels": [
+        "room"
+      ]
+    },
+    {
+      "itemCode": "luckybabygoods:10000606",
+      "itemName": "ポルバン アドバンス ヒップシート",
+      "date": "2026-09-06",
+      "slot": "morning",
+      "channels": [
+        "room",
+        "threads",
+        "x"
+      ]
+    },
+    {
+      "itemCode": "switchbot:10000237",
+      "itemName": "SwitchBot 空気清浄機Table 25畳",
+      "date": "2026-09-06",
+      "slot": "morning",
+      "channels": [
+        "room"
+      ]
+    },
+    {
+      "itemCode": "e-kurashi:10001202",
+      "itemName": "山善 収納ワゴン キャスター付き",
+      "date": "2026-09-06",
+      "slot": "morning",
+      "channels": [
+        "room"
+      ]
+    },
+    {
+      "itemCode": "monogallery:10003120",
+      "itemName": "山崎実業 ゴミ袋ホルダー ルーチェ LUCE",
+      "date": "2026-09-06",
+      "slot": "morning",
+      "channels": [
+        "room"
+      ]
+    },
+    {
+      "itemCode": "donumshop:10000001",
+      "itemName": "シャープ互換 空気清浄機フィルター 5点セット",
+      "date": "2026-09-06",
+      "slot": "morning",
+      "channels": [
+        "room"
+      ]
     }
   ]
 }
