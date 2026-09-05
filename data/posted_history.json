@@ -211,35 +211,188 @@
       "itemName": "Levoit core200S 卓上空気清浄機",
       "date": "2026-09-01",
       "slot": "special_wonderfulday",
-      "channels": ["room"]
+      "channels": [
+        "room"
+      ]
     },
     {
       "itemCode": "roomy:10015675",
       "itemName": "tower ランドリーワゴン+バスケット",
       "date": "2026-09-01",
       "slot": "special_wonderfulday",
-      "channels": ["room", "threads", "x"]
+      "channels": [
+        "room",
+        "threads",
+        "x"
+      ]
     },
     {
       "itemCode": "mamachi:10003757",
       "itemName": "tower 分別ダストワゴン",
       "date": "2026-09-01",
       "slot": "special_wonderfulday",
-      "channels": ["room"]
+      "channels": [
+        "room"
+      ]
     },
     {
       "itemCode": "auc-seiishop:10000278",
       "itemName": "マザーズバッグ リュック",
       "date": "2026-09-01",
       "slot": "special_wonderfulday",
-      "channels": ["room"]
+      "channels": [
+        "room"
+      ]
     },
     {
       "itemCode": "dondon:10004901",
       "itemName": "電気ケトル 1L 保温タイプ",
       "date": "2026-09-01",
       "slot": "special_wonderfulday",
-      "channels": ["room"]
+      "channels": [
+        "room"
+      ]
+    },
+    {
+      "itemCode": "kadenrand:10022684",
+      "itemName": "アイリスオーヤマ サーキュレーター WOOZOO PCF-MKM15N",
+      "date": "2026-09-03",
+      "slot": "morning",
+      "channels": [
+        "room"
+      ]
+    },
+    {
+      "itemCode": "rack-kan:10004496",
+      "itemName": "カラーボックス 3段 アイリスオーヤマ CX-3",
+      "date": "2026-09-03",
+      "slot": "morning",
+      "channels": [
+        "room",
+        "threads",
+        "x"
+      ]
+    },
+    {
+      "itemCode": "isuke-shop:10000163",
+      "itemName": "ウォールシェルフ 壁掛け棚 奥行20cm 賃貸OK",
+      "date": "2026-09-03",
+      "slot": "morning",
+      "channels": [
+        "room"
+      ]
+    },
+    {
+      "itemCode": "airricobaby:10000001",
+      "itemName": "エアリコ 抱っこ紐 日本製 クロス抱っこ紐",
+      "date": "2026-09-03",
+      "slot": "morning",
+      "channels": [
+        "room"
+      ]
+    },
+    {
+      "itemCode": "plywood:10018034",
+      "itemName": "Re・De Pot リデポット 電気圧力鍋 2L EPC01A-20",
+      "date": "2026-09-03",
+      "slot": "morning",
+      "channels": [
+        "room"
+      ]
+    },
+    {
+      "itemCode": "roomy:10016490",
+      "itemName": "±0 スタイルスチーマー XRS-D010",
+      "date": "2026-09-04",
+      "slot": "morning",
+      "channels": [
+        "room",
+        "threads",
+        "x"
+      ]
+    },
+    {
+      "itemCode": "risu-onlineshop:10002285",
+      "itemName": "RISUトランクカーゴ TC-70",
+      "date": "2026-09-04",
+      "slot": "morning",
+      "channels": [
+        "room"
+      ]
+    },
+    {
+      "itemCode": "poled-japan:10000016",
+      "itemName": "エアラブ5 ファン付きベビーカーシート airluv5",
+      "date": "2026-09-04",
+      "slot": "morning",
+      "channels": [
+        "room"
+      ]
+    },
+    {
+      "itemCode": "monogallery:10004976",
+      "itemName": "SOLOW ペダルオープン分別ゴミ箱",
+      "date": "2026-09-04",
+      "slot": "morning",
+      "channels": [
+        "room"
+      ]
+    },
+    {
+      "itemCode": "plywood:10020179",
+      "itemName": "KINCHO×braaa カノクス カラビナ型電池式蚊取り",
+      "date": "2026-09-04",
+      "slot": "morning",
+      "channels": [
+        "room"
+      ]
+    },
+    {
+      "itemCode": "airrobo:10000001",
+      "itemName": "AIRROBO P20 ロボット掃除機",
+      "date": "2026-09-05",
+      "slot": "morning",
+      "channels": [
+        "room"
+      ]
+    },
+    {
+      "itemCode": "rack-kan:10005085",
+      "itemName": "アイリスオーヤマ 押入れ収納ラック 2個セット SOR-370",
+      "date": "2026-09-05",
+      "slot": "morning",
+      "channels": [
+        "room"
+      ]
+    },
+    {
+      "itemCode": "shinbido:10003609",
+      "itemName": "三日月シルエットハンガー 50本セット",
+      "date": "2026-09-05",
+      "slot": "morning",
+      "channels": [
+        "room"
+      ]
+    },
+    {
+      "itemCode": "calmisence:10000000",
+      "itemName": "ヒップシート コペルタ",
+      "date": "2026-09-05",
+      "slot": "morning",
+      "channels": [
+        "room",
+        "threads",
+        "x"
+      ]
+    },
+    {
+      "itemCode": "good-item:10001553",
+      "itemName": "ルンバ互換メンテナンスセット",
+      "date": "2026-09-05",
+      "slot": "morning",
+      "channels": [
+        "room"
+      ]
     }
   ]
 }

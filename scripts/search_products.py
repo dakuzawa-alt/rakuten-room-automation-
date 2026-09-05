@@ -44,6 +44,25 @@ def call_api(creds, keyword, hits=30):
         return None
 
 
+def _plain_product_url(item):
+    """楽天ROOMへの投稿・共有に使う素の商品ページURL(item.rakuten.co.jp/...)。
+    APIのaffiliateUrlはhb.afl.rakuten.co.jpの転送URLで、スマホで開けない/商品URLに
+    見えない問題があるため、pc=パラメータから素のURLを取り出す。取れなければ
+    itemUrlをそのまま返す。"""
+    for key in ("itemUrl", "affiliateUrl"):
+        val = item.get(key) or ""
+        if val.startswith("https://item.rakuten.co.jp/") or val.startswith("http://item.rakuten.co.jp/"):
+            return val
+        try:
+            qs = urllib.parse.parse_qs(urllib.parse.urlparse(val).query)
+            pc = qs.get("pc", [""])[0]
+            if pc.startswith("http"):
+                return pc
+        except Exception:
+            pass
+    return item.get("itemUrl") or ""
+
+
 def score_item(item):
     review_count = item.get("reviewCount", 0)
     review_avg = item.get("reviewAverage", 0)
@@ -151,6 +170,7 @@ def main():
             "reviewAverage": item.get("reviewAverage"),
             "itemUrl": item.get("itemUrl"),
             "affiliateUrl": item.get("affiliateUrl"),
+            "productUrl": _plain_product_url(item),
             "imageUrl": (item.get("mediumImageUrls") or [{}])[0].get("imageUrl", ""),
             "shopName": item.get("shopName"),
             "matchedKeyword": item.get("_matchedKeyword"),

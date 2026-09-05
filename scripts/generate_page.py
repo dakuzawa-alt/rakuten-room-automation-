@@ -18,7 +18,25 @@ captions JSONの構造(copywriterが出力):
 import argparse
 import html
 import json
+import urllib.parse
 from pathlib import Path
+
+
+def product_url_of(item):
+    """素の楽天商品ページURL(item.rakuten.co.jp/...)を返す。
+    selectedに productUrl があればそれを、無ければ affiliateUrl の pc= から復元する。"""
+    direct = item.get("productUrl")
+    if direct:
+        return direct
+    aff = item.get("affiliateUrl") or item.get("itemUrl") or ""
+    try:
+        qs = urllib.parse.parse_qs(urllib.parse.urlparse(aff).query)
+        pc = qs.get("pc", [""])[0]
+        if pc.startswith("http"):
+            return pc
+    except Exception:
+        pass
+    return aff
 
 TEMPLATE = """<!doctype html>
 <html lang="ja">
@@ -116,6 +134,15 @@ h2.section-title {{ font-size: 0.95rem; font-weight: 700; margin: 24px 0 12px; }
   padding: 12px; font-weight: 700; font-size: 0.92rem; text-decoration: none;
 }}
 .btn-open:active {{ opacity: 0.85; }}
+.url-row {{
+  display: flex; align-items: center; gap: 8px;
+  background: var(--chip-bg); border-radius: 9px; padding: 8px 10px;
+}}
+.url-row a {{
+  flex: 1; min-width: 0; font-size: 0.76rem; color: var(--accent);
+  word-break: break-all; line-height: 1.45; text-decoration: none;
+}}
+.url-row a:active {{ text-decoration: underline; }}
 .reason {{ font-size: 0.8rem; color: var(--ink-soft); }}
 .caption-box {{ border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }}
 .caption-head {{
@@ -185,6 +212,10 @@ CARD_TEMPLATE = """<div class="card{featured_class}">
     </div>
   </div>
   <a class="btn-open" href="{aff_url}" target="_blank" rel="noopener">商品ページを開く ↗</a>
+  <div class="url-row">
+    <a href="{product_url}" target="_blank" rel="noopener">{product_url}</a>
+    <button class="copy-btn" onclick="copyPlain(this, '{product_url}')" type="button">URLコピー</button>
+  </div>
   <div class="caption-box">
     <div class="caption-head">
       <span>楽天ROOM用</span>
@@ -222,15 +253,26 @@ DAILY_CARD_TEMPLATE = """<div class="card">
 </div>"""
 
 SCRIPT = """<script>
+function flash(btn) {
+  const original = btn.textContent;
+  btn.textContent = 'コピーしました';
+  btn.classList.add('copied');
+  setTimeout(() => { btn.textContent = original; btn.classList.remove('copied'); }, 1500);
+}
 function copyText(btn, id) {
   const el = document.getElementById(id);
   el.select();
   el.setSelectionRange(0, 999999);
-  navigator.clipboard.writeText(el.value).then(() => {
-    const original = btn.textContent;
-    btn.textContent = 'コピーしました';
-    btn.classList.add('copied');
-    setTimeout(() => { btn.textContent = original; btn.classList.remove('copied'); }, 1500);
+  navigator.clipboard.writeText(el.value).then(() => flash(btn)).catch(() => {
+    try { document.execCommand('copy'); flash(btn); } catch (e) {}
+  });
+}
+function copyPlain(btn, text) {
+  navigator.clipboard.writeText(text).then(() => flash(btn)).catch(() => {
+    const t = document.createElement('textarea');
+    t.value = text; document.body.appendChild(t); t.select();
+    try { document.execCommand('copy'); flash(btn); } catch (e) {}
+    document.body.removeChild(t);
   });
 }
 </script>"""
@@ -281,6 +323,7 @@ def main():
             review_avg=item["reviewAverage"],
             stars=star_string(item["reviewAverage"]),
             aff_url=item["affiliateUrl"],
+            product_url=html.escape(product_url_of(item), quote=True),
             idx=idx,
             room_caption=html.escape(cap.get("roomCaption", "")),
             featured_captions=featured_captions,
