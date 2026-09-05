@@ -52,56 +52,6 @@
       ]
     },
     {
-      "itemCode": "roomy:10015813",
-      "itemName": "tower 洗濯機横マグネット折り畳み棚",
-      "date": "2026-08-31",
-      "slot": "test2",
-      "channels": [
-        "room",
-        "threads"
-      ]
-    },
-    {
-      "itemCode": "pigeon-shop:10002137",
-      "itemName": "電動鼻吸い器 シュポット",
-      "date": "2026-08-31",
-      "slot": "test2",
-      "channels": [
-        "room",
-        "threads"
-      ]
-    },
-    {
-      "itemCode": "blueair:10000207",
-      "itemName": "ブルーエア Blue Max 3250 空気清浄機",
-      "date": "2026-08-31",
-      "slot": "test2",
-      "channels": [
-        "room",
-        "threads"
-      ]
-    },
-    {
-      "itemCode": "e-kitchen:10096368",
-      "itemName": "iwaki 保存容器 7点セット",
-      "date": "2026-08-31",
-      "slot": "test2",
-      "channels": [
-        "room",
-        "threads"
-      ]
-    },
-    {
-      "itemCode": "ueno-mono:10000006",
-      "itemName": "吸龍 SUIRYU ハンディクリーナー",
-      "date": "2026-08-31",
-      "slot": "test2",
-      "channels": [
-        "room",
-        "threads"
-      ]
-    },
-    {
       "itemCode": "bathroom:10003467",
       "itemName": "tower 洗濯機横マグネット折り畳み棚",
       "date": "2026-08-31",
@@ -146,6 +96,56 @@
       "itemName": "アイリスオーヤマ 布団乾燥機 カラリエ",
       "date": "2026-08-31",
       "slot": "night",
+      "channels": [
+        "room",
+        "threads"
+      ]
+    },
+    {
+      "itemCode": "roomy:10015813",
+      "itemName": "tower 洗濯機横マグネット折り畳み棚",
+      "date": "2026-08-31",
+      "slot": "test2",
+      "channels": [
+        "room",
+        "threads"
+      ]
+    },
+    {
+      "itemCode": "pigeon-shop:10002137",
+      "itemName": "電動鼻吸い器 シュポット",
+      "date": "2026-08-31",
+      "slot": "test2",
+      "channels": [
+        "room",
+        "threads"
+      ]
+    },
+    {
+      "itemCode": "blueair:10000207",
+      "itemName": "ブルーエア Blue Max 3250 空気清浄機",
+      "date": "2026-08-31",
+      "slot": "test2",
+      "channels": [
+        "room",
+        "threads"
+      ]
+    },
+    {
+      "itemCode": "e-kitchen:10096368",
+      "itemName": "iwaki 保存容器 7点セット",
+      "date": "2026-08-31",
+      "slot": "test2",
+      "channels": [
+        "room",
+        "threads"
+      ]
+    },
+    {
+      "itemCode": "ueno-mono:10000006",
+      "itemName": "吸龍 SUIRYU ハンディクリーナー",
+      "date": "2026-08-31",
+      "slot": "test2",
       "channels": [
         "room",
         "threads"
@@ -343,6 +343,53 @@
       "itemName": "KINCHO×braaa カノクス カラビナ型電池式蚊取り",
       "date": "2026-09-04",
       "slot": "morning",
+      "channels": [
+        "room"
+      ]
+    },
+    {
+      "itemCode": "babys:10003111",
+      "itemName": "e.x.p.japon バギーフック 2個入り",
+      "date": "2026-09-04",
+      "slot": "night",
+      "channels": [
+        "room",
+        "threads",
+        "x"
+      ]
+    },
+    {
+      "itemCode": "konnybaby:10000037",
+      "itemName": "コニー Konny スタイ 360ローリング",
+      "date": "2026-09-04",
+      "slot": "night",
+      "channels": [
+        "room"
+      ]
+    },
+    {
+      "itemCode": "plywood:10010178",
+      "itemName": "ビタントニオ マイボトルブレンダー VBL-70",
+      "date": "2026-09-04",
+      "slot": "night",
+      "channels": [
+        "room"
+      ]
+    },
+    {
+      "itemCode": "e-rack:10003762",
+      "itemName": "ドウシシャ ハンガーラック 棚付き キャスター付",
+      "date": "2026-09-04",
+      "slot": "night",
+      "channels": [
+        "room"
+      ]
+    },
+    {
+      "itemCode": "exception5251:10000379",
+      "itemName": "収納ボックス 5面開閉 折りたたみ キャスター付",
+      "date": "2026-09-04",
+      "slot": "night",
       "channels": [
         "room"
       ]
