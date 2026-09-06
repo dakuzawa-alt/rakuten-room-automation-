@@ -111,13 +111,29 @@ def build_name_filters(history):
     return brand_tokens, type_counts
 
 
+# すでに何度も投稿していて新規性が薄いタイプ語(1件でも投稿済みなら除外する)
+_HARD_BLOCK = [
+    "空気清浄機", "ヒップシート", "抱っこ紐", "収納ワゴン", "ゴミ箱", "分別",
+    "電気ケトル", "電気圧力鍋", "ロボット掃除機", "ハンディクリーナー",
+    "コードレス掃除機", "布団乾燥機", "サーキュレーター", "衣類スチーマー",
+    "スチームアイロン", "鼻吸い器", "鼻水吸引", "保存容器", "室内物干し",
+    "部屋干し", "マイボトル", "水筒", "ハンガーラック", "カラーボックス",
+    "突っ張り棒", "食洗機ラック", "換気扇フィルター", "ジョイントマット",
+    "マットレス", "簡易トイレ", "三輪車",
+]
+
+
 def is_name_duplicate(item, brand_tokens, type_counts):
     """itemCodeは新しいが、実質すでに投稿済みの商品/カテゴリなら True。"""
     nm = item.get("itemName", "")
     # 1) 投稿済みブランド/型番トークンと一致 → 同一商品の別ショップ・型違いとみなす
     if _name_tokens(nm) & brand_tokens:
         return True
-    # 2) すでに2件以上投稿済みのタイプ語を含む → カテゴリ飽和
+    # 2) 飽和カテゴリ: 1件でも投稿済みのタイプ語
+    for t in _HARD_BLOCK:
+        if t in nm and type_counts.get(t, 0) >= 1:
+            return True
+    # 3) その他のタイプ語も2件以上投稿済みなら除外
     for t, c in type_counts.items():
         if c >= 2 and t in nm:
             return True
