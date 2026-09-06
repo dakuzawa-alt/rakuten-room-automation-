@@ -4,3 +4,4 @@ __pycache__/
 *.pyc
 scripts/run_morning.bat
 scripts/run_night.bat
+logs/
