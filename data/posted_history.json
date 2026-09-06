@@ -534,6 +534,53 @@
       "channels": [
         "room"
       ]
+    },
+    {
+      "itemCode": "secupcs:10000025",
+      "itemName": "セキュベビー ベビーモニター Wi-Fi不要 5インチ",
+      "date": "2026-09-06",
+      "slot": "night",
+      "channels": [
+        "room",
+        "threads",
+        "x"
+      ]
+    },
+    {
+      "itemCode": "hismileshop:10000005",
+      "itemName": "ヨーグルトメーカー 温度調節 タイマー 1L",
+      "date": "2026-09-06",
+      "slot": "night",
+      "channels": [
+        "room"
+      ]
+    },
+    {
+      "itemCode": "hirakata-g:10000184",
+      "itemName": "耐震ジェルマット 転倒防止 4x20cm 2枚",
+      "date": "2026-09-06",
+      "slot": "night",
+      "channels": [
+        "room"
+      ]
+    },
+    {
+      "itemCode": "shimoyama-onlineshop:10001088",
+      "itemName": "シンク下伸縮棚 2段 幅46-73.5cm",
+      "date": "2026-09-06",
+      "slot": "night",
+      "channels": [
+        "room"
+      ]
+    },
+    {
+      "itemCode": "sa-shop:10000015",
+      "itemName": "ReOra 音波式電動歯ブラシ 充電式 家族用",
+      "date": "2026-09-06",
+      "slot": "night",
+      "channels": [
+        "room"
+      ]
     }
   ]
 }
