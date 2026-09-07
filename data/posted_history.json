@@ -581,6 +581,53 @@
       "channels": [
         "room"
       ]
+    },
+    {
+      "itemCode": "next-online:10000180",
+      "itemName": "洗濯機かさ上げ台 ふんばるゾウ 4個セット",
+      "date": "2026-09-07",
+      "slot": "morning",
+      "channels": [
+        "room",
+        "threads",
+        "x"
+      ]
+    },
+    {
+      "itemCode": "tabtab:10003266",
+      "itemName": "モバイルバッテリー 大容量 20000mAh ケーブル内蔵",
+      "date": "2026-09-07",
+      "slot": "morning",
+      "channels": [
+        "room"
+      ]
+    },
+    {
+      "itemCode": "high-high:10000174",
+      "itemName": "ベビーゲート 階段上 突っ張り ワイド",
+      "date": "2026-09-07",
+      "slot": "morning",
+      "channels": [
+        "room"
+      ]
+    },
+    {
+      "itemCode": "mikirona:10000085",
+      "itemName": "高速ドライヤー 速乾 大風量 2億マイナスイオン",
+      "date": "2026-09-07",
+      "slot": "morning",
+      "channels": [
+        "room"
+      ]
+    },
+    {
+      "itemCode": "halindustry:10000008",
+      "itemName": "ハルの消臭剤 消臭ビーズ 詰め替え用 4kg 無香料",
+      "date": "2026-09-07",
+      "slot": "morning",
+      "channels": [
+        "room"
+      ]
     }
   ]
 }
