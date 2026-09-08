@@ -628,6 +628,100 @@
       "channels": [
         "room"
       ]
+    },
+    {
+      "itemCode": "life-inc:10003940",
+      "itemName": "テスコム 毛玉クリーナー 毛だまトレタ パワフル",
+      "date": "2026-09-07",
+      "slot": "night",
+      "channels": [
+        "room",
+        "threads",
+        "x"
+      ]
+    },
+    {
+      "itemCode": "i-office1:10039597",
+      "itemName": "除湿シート 快眠ドライプラス シングル センサー付",
+      "date": "2026-09-07",
+      "slot": "night",
+      "channels": [
+        "room"
+      ]
+    },
+    {
+      "itemCode": "woodypuddy:10001340",
+      "itemName": "ウッディプッディ はじめてのつみき リング10",
+      "date": "2026-09-07",
+      "slot": "night",
+      "channels": [
+        "room"
+      ]
+    },
+    {
+      "itemCode": "mamachi:10001514",
+      "itemName": "風呂イス HAYUR バスシリーズ 高さ選択",
+      "date": "2026-09-07",
+      "slot": "night",
+      "channels": [
+        "room"
+      ]
+    },
+    {
+      "itemCode": "next-online:10000215",
+      "itemName": "透明キッチンマット 拭ける 防カビ L字対応",
+      "date": "2026-09-07",
+      "slot": "night",
+      "channels": [
+        "room"
+      ]
+    },
+    {
+      "itemCode": "noone:10002025",
+      "itemName": "こたつ布団 省スペース リバーシブル",
+      "date": "2026-09-08",
+      "slot": "morning",
+      "channels": [
+        "room"
+      ]
+    },
+    {
+      "itemCode": "jyonetsubatake:10000342",
+      "itemName": "保存水 5年 2L×6 長期保存水",
+      "date": "2026-09-08",
+      "slot": "morning",
+      "channels": [
+        "room"
+      ]
+    },
+    {
+      "itemCode": "latuna:10000000",
+      "itemName": "ラチュナ 水切りラック シンク上 折りたたみ",
+      "date": "2026-09-08",
+      "slot": "morning",
+      "channels": [
+        "room",
+        "threads",
+        "x"
+      ]
+    },
+    {
+      "itemCode": "importshopaqua:10000488",
+      "itemName": "ミクニ 卓上加湿器 ミスティガーデン2nd 気化式",
+      "date": "2026-09-08",
+      "slot": "morning",
+      "channels": [
+        "room"
+      ]
+    },
+    {
+      "itemCode": "coyoli:10000493",
+      "itemName": "吸水ヘアドライキャップ 2枚 大人/子ども",
+      "date": "2026-09-08",
+      "slot": "morning",
+      "channels": [
+        "room"
+      ]
     }
   ]
 }
