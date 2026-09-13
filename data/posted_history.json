@@ -722,6 +722,53 @@
       "channels": [
         "room"
       ]
+    },
+    {
+      "itemCode": "apricot-r:10020314",
+      "itemName": "マーナ 傷がつきにくい滑りにくいまな板 TPU 抗菌 食洗機対応",
+      "date": "2026-09-13",
+      "slot": "night",
+      "channels": [
+        "room",
+        "threads",
+        "x"
+      ]
+    },
+    {
+      "itemCode": "rcmdki:10415527",
+      "itemName": "タイガー魔法瓶 マイコン炊飯器 5.5合 黒遠赤厚釜 エコ炊き",
+      "date": "2026-09-13",
+      "slot": "night",
+      "channels": [
+        "room"
+      ]
+    },
+    {
+      "itemCode": "lifejoy-shop:10000093",
+      "itemName": "ライフジョイ 電気ひざ掛け 日本製 洗える ダニ退治 温度調節",
+      "date": "2026-09-13",
+      "slot": "night",
+      "channels": [
+        "room"
+      ]
+    },
+    {
+      "itemCode": "k-power:10000072",
+      "itemName": "N-FORCE LEDランタン 充電式 1000ルーメン 連続30時間",
+      "date": "2026-09-13",
+      "slot": "night",
+      "channels": [
+        "room"
+      ]
+    },
+    {
+      "itemCode": "netbaby:10004441",
+      "itemName": "リッチェル ふかふかベビーチェアK 抗菌",
+      "date": "2026-09-13",
+      "slot": "night",
+      "channels": [
+        "room"
+      ]
     }
   ]
 }
