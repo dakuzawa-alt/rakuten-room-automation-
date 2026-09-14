@@ -724,6 +724,194 @@
       ]
     },
     {
+      "itemCode": "gift-bmcjapan:10000035",
+      "itemName": "シリコンビブ お食事エプロン 2枚セット",
+      "date": "2026-09-09",
+      "slot": "morning",
+      "channels": [
+        "room"
+      ]
+    },
+    {
+      "itemCode": "hommalab:10000013",
+      "itemName": "窓ガラスフィルム 台風対策 目隠し",
+      "date": "2026-09-09",
+      "slot": "morning",
+      "channels": [
+        "room"
+      ]
+    },
+    {
+      "itemCode": "smile-hg:10001277",
+      "itemName": "押入れフリーラック 2台入り 伸縮",
+      "date": "2026-09-09",
+      "slot": "morning",
+      "channels": [
+        "room"
+      ]
+    },
+    {
+      "itemCode": "marketjapan:10001147",
+      "itemName": "排気口カバー 60cm ステンレス",
+      "date": "2026-09-09",
+      "slot": "morning",
+      "channels": [
+        "room",
+        "threads",
+        "x"
+      ]
+    },
+    {
+      "itemCode": "yoitas:10000018",
+      "itemName": "Yoitas 除湿機セット 無電源",
+      "date": "2026-09-09",
+      "slot": "morning",
+      "channels": [
+        "room"
+      ]
+    },
+    {
+      "itemCode": "orange-baby:10004728",
+      "itemName": "ベビーレーベル ステップアップ食器セットC 13点",
+      "date": "2026-09-09",
+      "slot": "night",
+      "channels": [
+        "room",
+        "threads",
+        "x"
+      ]
+    },
+    {
+      "itemCode": "air-rhizome:10010357",
+      "itemName": "レンジ台 レンジボード 幅61.5cm",
+      "date": "2026-09-09",
+      "slot": "night",
+      "channels": [
+        "room"
+      ]
+    },
+    {
+      "itemCode": "roomy:10013226",
+      "itemName": "山崎実業 バッグ収納スタンド 2個組",
+      "date": "2026-09-09",
+      "slot": "night",
+      "channels": [
+        "room"
+      ]
+    },
+    {
+      "itemCode": "aquavinus:10029447",
+      "itemName": "次亜塩素酸水 生成タブレット 600ppm",
+      "date": "2026-09-09",
+      "slot": "night",
+      "channels": [
+        "room"
+      ]
+    },
+    {
+      "itemCode": "plaisiureux:10000063",
+      "itemName": "おむつストッカー 助産師監修",
+      "date": "2026-09-09",
+      "slot": "night",
+      "channels": [
+        "room"
+      ]
+    },
+    {
+      "itemCode": "gajumarunoki:10001100",
+      "itemName": "エドインター ファーストリトルシェフ 名入れ",
+      "date": "2026-09-10",
+      "slot": "morning",
+      "channels": [
+        "room",
+        "threads",
+        "x"
+      ]
+    },
+    {
+      "itemCode": "kaguno1:10030152",
+      "itemName": "絵本ラック 幅83cm",
+      "date": "2026-09-10",
+      "slot": "morning",
+      "channels": [
+        "room"
+      ]
+    },
+    {
+      "itemCode": "thrive-store:10009980",
+      "itemName": "結露とり 窓の結露対策 日本製",
+      "date": "2026-09-10",
+      "slot": "morning",
+      "channels": [
+        "room"
+      ]
+    },
+    {
+      "itemCode": "auc-epsomsalt:10000002",
+      "itemName": "エプソムソルト 2.2kg 無香料",
+      "date": "2026-09-10",
+      "slot": "morning",
+      "channels": [
+        "room"
+      ]
+    },
+    {
+      "itemCode": "ienolabo:10000230",
+      "itemName": "炭八ミニ 湿気取り 消臭",
+      "date": "2026-09-10",
+      "slot": "morning",
+      "channels": [
+        "room"
+      ]
+    },
+    {
+      "itemCode": "importshopaqua:10011192",
+      "itemName": "UtaU ブレッドケース 引き出し式",
+      "date": "2026-09-10",
+      "slot": "night",
+      "channels": [
+        "room"
+      ]
+    },
+    {
+      "itemCode": "auc-risecreation:10005178",
+      "itemName": "プレイマット 折りたたみ 防音防水",
+      "date": "2026-09-10",
+      "slot": "night",
+      "channels": [
+        "room",
+        "threads",
+        "x"
+      ]
+    },
+    {
+      "itemCode": "smartiv:10000031",
+      "itemName": "ハンディスチームクリーナー 高温スチーム",
+      "date": "2026-09-10",
+      "slot": "night",
+      "channels": [
+        "room"
+      ]
+    },
+    {
+      "itemCode": "si-k-shops:10000009",
+      "itemName": "ぬいぐるみ収納 ウォールポケット",
+      "date": "2026-09-10",
+      "slot": "night",
+      "channels": [
+        "room"
+      ]
+    },
+    {
+      "itemCode": "e-kurashi:10016213",
+      "itemName": "隙間収納ストッカー 幅18cm",
+      "date": "2026-09-10",
+      "slot": "night",
+      "channels": [
+        "room"
+      ]
+    },
+    {
       "itemCode": "apricot-r:10020314",
       "itemName": "マーナ 傷がつきにくい滑りにくいまな板 TPU 抗菌 食洗機対応",
       "date": "2026-09-13",
