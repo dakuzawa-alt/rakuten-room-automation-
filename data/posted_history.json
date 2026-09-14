@@ -769,6 +769,53 @@
       "channels": [
         "room"
       ]
+    },
+    {
+      "itemCode": "mollif:10011434",
+      "itemName": "クラフタースツール L 踏み台 折りたたみ",
+      "date": "2026-09-14",
+      "slot": "night",
+      "channels": [
+        "room"
+      ]
+    },
+    {
+      "itemCode": "santaku:10000053",
+      "itemName": "ハンディファン 冷却プレート 199段階風量",
+      "date": "2026-09-14",
+      "slot": "night",
+      "channels": [
+        "room"
+      ]
+    },
+    {
+      "itemCode": "mizuomoi:10000004",
+      "itemName": "水想い ラベルレス ミネラルウォーター 2L×9本",
+      "date": "2026-09-14",
+      "slot": "night",
+      "channels": [
+        "room"
+      ]
+    },
+    {
+      "itemCode": "urushi9emon:10001056",
+      "itemName": "天然杉 曲げわっぱ弁当箱",
+      "date": "2026-09-14",
+      "slot": "night",
+      "channels": [
+        "room"
+      ]
+    },
+    {
+      "itemCode": "cholylife:10000085",
+      "itemName": "電気シェーバー 4Dフローティング IPX7防水",
+      "date": "2026-09-14",
+      "slot": "night",
+      "channels": [
+        "room",
+        "threads",
+        "x"
+      ]
     }
   ]
 }
