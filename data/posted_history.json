@@ -1004,6 +1004,53 @@
         "threads",
         "x"
       ]
+    },
+    {
+      "itemCode": "roomy:10015522",
+      "itemName": "レコルト ホットプレート ホームバーベキュー RBQ-1",
+      "date": "2026-09-15",
+      "slot": "morning",
+      "channels": [
+        "room"
+      ]
+    },
+    {
+      "itemCode": "orange-baby:10010415",
+      "itemName": "アップリカ はじめてのお風呂から使えるバスチェア",
+      "date": "2026-09-15",
+      "slot": "morning",
+      "channels": [
+        "room"
+      ]
+    },
+    {
+      "itemCode": "chakasho-dina:10000586",
+      "itemName": "シリコンマット シンクマット 大判 30x40cm",
+      "date": "2026-09-15",
+      "slot": "morning",
+      "channels": [
+        "room"
+      ]
+    },
+    {
+      "itemCode": "gaoye:10000017",
+      "itemName": "KLOUDIC 小型除湿機 ペルチェ式 750mlタンク",
+      "date": "2026-09-15",
+      "slot": "morning",
+      "channels": [
+        "room",
+        "threads",
+        "x"
+      ]
+    },
+    {
+      "itemCode": "air-rhizome:10001991",
+      "itemName": "マガジンラック VOLCANO 木製スリム",
+      "date": "2026-09-15",
+      "slot": "morning",
+      "channels": [
+        "room"
+      ]
     }
   ]
 }
