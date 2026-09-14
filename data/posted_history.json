@@ -912,6 +912,241 @@
       ]
     },
     {
+      "itemCode": "hangyo:10001233",
+      "itemName": "伸縮ボトルカバー 大きめ 0.8L/1L",
+      "date": "2026-09-11",
+      "slot": "morning",
+      "channels": [
+        "room"
+      ]
+    },
+    {
+      "itemCode": "mamababy:10156411",
+      "itemName": "チャイルドシート 新基準R129適合",
+      "date": "2026-09-11",
+      "slot": "morning",
+      "channels": [
+        "room",
+        "threads",
+        "x"
+      ]
+    },
+    {
+      "itemCode": "kaihyaku:10007085",
+      "itemName": "アズマ 浴室清掃4点セット 磁石収納",
+      "date": "2026-09-11",
+      "slot": "morning",
+      "channels": [
+        "room"
+      ]
+    },
+    {
+      "itemCode": "living-market-1st:10000136",
+      "itemName": "お米保存袋 真空パック 脱酸素剤付",
+      "date": "2026-09-11",
+      "slot": "morning",
+      "channels": [
+        "room"
+      ]
+    },
+    {
+      "itemCode": "dencho:10000490",
+      "itemName": "カシミヤ ミニマフラー 差し込み式",
+      "date": "2026-09-11",
+      "slot": "morning",
+      "channels": [
+        "room"
+      ]
+    },
+    {
+      "itemCode": "aroma-room:10001064",
+      "itemName": "ランチバッグ 保冷 大容量",
+      "date": "2026-09-11",
+      "slot": "night",
+      "channels": [
+        "room"
+      ]
+    },
+    {
+      "itemCode": "asvel:10002965",
+      "itemName": "アスベル 保温弁当箱 3段 大容量",
+      "date": "2026-09-11",
+      "slot": "night",
+      "channels": [
+        "room"
+      ]
+    },
+    {
+      "itemCode": "office31:10032699",
+      "itemName": "マグネット収納ラック A4ヨコ型",
+      "date": "2026-09-11",
+      "slot": "night",
+      "channels": [
+        "room"
+      ]
+    },
+    {
+      "itemCode": "yukaiya:10001149",
+      "itemName": "テレビ転倒防止ベルト 防災士監修",
+      "date": "2026-09-11",
+      "slot": "night",
+      "channels": [
+        "room",
+        "threads",
+        "x"
+      ]
+    },
+    {
+      "itemCode": "roomy:10015933",
+      "itemName": "山崎実業 フローリングワイパースタンド",
+      "date": "2026-09-11",
+      "slot": "night",
+      "channels": [
+        "room"
+      ]
+    },
+    {
+      "itemCode": "magchan:10000084",
+      "itemName": "洗たくマグちゃん マグネシウム",
+      "date": "2026-09-12",
+      "slot": "morning",
+      "channels": [
+        "room",
+        "threads",
+        "x"
+      ]
+    },
+    {
+      "itemCode": "arisana:10003320",
+      "itemName": "ネックウォーマー キッズ ケーブルニット",
+      "date": "2026-09-12",
+      "slot": "morning",
+      "channels": [
+        "room"
+      ]
+    },
+    {
+      "itemCode": "rinkydink:10002791",
+      "itemName": "メイソンジャー BALL 480ml 6本セット",
+      "date": "2026-09-12",
+      "slot": "morning",
+      "channels": [
+        "room"
+      ]
+    },
+    {
+      "itemCode": "kurashi-nexus:10000064",
+      "itemName": "ドキュメントファイル A4 書類ケース",
+      "date": "2026-09-12",
+      "slot": "morning",
+      "channels": [
+        "room"
+      ]
+    },
+    {
+      "itemCode": "lecdirect:10002634",
+      "itemName": "激落ちくん ホコリ取り トレループ",
+      "date": "2026-09-12",
+      "slot": "morning",
+      "channels": [
+        "room"
+      ]
+    },
+    {
+      "itemCode": "3rwebshop:10009456",
+      "itemName": "ポータブル衣類乾燥機 コンパクト",
+      "date": "2026-09-12",
+      "slot": "night",
+      "channels": [
+        "room"
+      ]
+    },
+    {
+      "itemCode": "takara-jiang:10034614",
+      "itemName": "アコーディオン式ファイルスタンド A4",
+      "date": "2026-09-12",
+      "slot": "night",
+      "channels": [
+        "room"
+      ]
+    },
+    {
+      "itemCode": "sanesufitting:10001566",
+      "itemName": "ランドリーラック 棚2段 突っ張り",
+      "date": "2026-09-12",
+      "slot": "night",
+      "channels": [
+        "room",
+        "threads",
+        "x"
+      ]
+    },
+    {
+      "itemCode": "mommys-kids:10009354",
+      "itemName": "チャイルドシート インナークッション",
+      "date": "2026-09-12",
+      "slot": "night",
+      "channels": [
+        "room"
+      ]
+    },
+    {
+      "itemCode": "e-kitchenstyle:10000371",
+      "itemName": "富士ホーロー 両手鍋 深型22cm",
+      "date": "2026-09-12",
+      "slot": "night",
+      "channels": [
+        "room"
+      ]
+    },
+    {
+      "itemCode": "ogisoshop:10001504",
+      "itemName": "キッズ おやつ皿 強化磁器 9cm",
+      "date": "2026-09-13",
+      "slot": "morning",
+      "channels": [
+        "room"
+      ]
+    },
+    {
+      "itemCode": "yamayuu:10018194",
+      "itemName": "プリズメイト サラダチキンメーカー",
+      "date": "2026-09-13",
+      "slot": "morning",
+      "channels": [
+        "room"
+      ]
+    },
+    {
+      "itemCode": "life-inc:10007264",
+      "itemName": "つっぱり棚 伸縮タイプ",
+      "date": "2026-09-13",
+      "slot": "morning",
+      "channels": [
+        "room"
+      ]
+    },
+    {
+      "itemCode": "netbaby:10003303",
+      "itemName": "日本育児 ミュージカルキッズランドDX II",
+      "date": "2026-09-13",
+      "slot": "morning",
+      "channels": [
+        "room",
+        "threads",
+        "x"
+      ]
+    },
+    {
+      "itemCode": "office31:10000965",
+      "itemName": "セマック ドキュメントスタンド A4",
+      "date": "2026-09-13",
+      "slot": "morning",
+      "channels": [
+        "room"
+      ]
+    },
+    {
       "itemCode": "apricot-r:10020314",
       "itemName": "マーナ 傷がつきにくい滑りにくいまな板 TPU 抗菌 食洗機対応",
       "date": "2026-09-13",
