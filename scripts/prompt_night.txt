@@ -1,13 +1,17 @@
-CLAUDE.mdの指示に従い、本日「夜」の分の商品選定〜投稿文生成〜一覧ページ作成〜Artifact公開〜PushNotification通知までを実行してください。
+CLAUDE.mdの指示に従い、本日「夜」の分の商品選定〜投稿文生成〜一覧ページ作成〜通知までを実行してください。
 
 必須事項:
 1. 商品情報は必ず scripts/search_products.py 経由で楽天市場APIの実データを使うこと。AIの知識から商品名・価格・レビュー数を生成することは厳禁。
 2. data/posted_history.json と照合し、itemCodeだけでなく「ブランド名+商品タイプ」でも実質重複を除外すること。
-3. 投稿文は docs/style_guide.md のルールを厳守すること(文字数・絵文字・冒頭フック・NGワード・PR表記)。
+3. 投稿文は docs/style_guide.md のルールを厳守すること(文字数・絵文字・冒頭フック・NGワード・PR表記・あるある投稿の具体性ルール)。
 4. 一覧ページは scripts/generate_page.py で output/page_YYYY-MM-DD_night.html として生成すること。
-5. 生成した一覧ページを必ず Artifact ツールで公開すること(favicon: 🛍️、タイトルに日付と「夜」を含める。descriptionには選定ジャンルの傾向を一言で)。
+5. **Artifactツールは使わないこと**(headless実行では利用できないツールのため、呼び出しても失敗するか無視される)。一覧ページはローカルファイル(output/以下)として生成し、git commit・pushするところまでで完了とする。
 6. data/posted_history.json を更新し、git commit して origin の main ブランチへ push すること。
-7. PushNotification で完了を通知し、メッセージには公開した Artifact の URL を必ず含めること。
+7. PushNotificationで完了を通知すること。通知メッセージには以下を必ず含める(200文字以内、URLは含めない):
+   - 選定した5商品の名前(20文字程度に短縮したもの)と価格
+   - Threads/X掲載(featured)に選んだ商品名
+   - 「一覧はPCのRakutenRoom自動化/outputフォルダで確認」の一言
+   例: 「🛍️夜の選定完了: マグちゃん(1,210円)/ネックウォーマー(1,580円)/他3件。Threads掲載はマグちゃん。一覧はPCのoutputフォルダで確認してください。」
 
 エラー時の対応:
 楽天APIへの接続が失敗する、品質基準を満たす候補が5件集まらない等で続行できない場合は、基準を緩めたり商品情報を捏造したりせず、直ちに中断し、失敗した理由(エラーメッセージを含む)を PushNotification で通知して終了してください。
