@@ -71,7 +71,7 @@
 | 1 | ~~9/15夜テスト実行のPushNotificationが実際に届いたか確認~~ → 届かなかったことを確認済み(2026-09-16)。配線バグ修正前の実行だったためと推定 | 完了 |
 | 2 | 旧タスク `RakutenROOM_Morning`/`RakutenROOM_Night` をタスクスケジューラGUIで無効化 | ユーザー |
 | 3 | ~~「簡易トイレ」重複素通り事例の原因調査~~ → 調査済み、誤検知と判明(2026-09-16、3-6参照)。対応不要 | 完了 |
-| 4 | GitHub Pages化するか改めて検討（Proプラン契約 or リポジトリPublic化とのトレードオフ） | ユーザーの意向次第 |
+| 4 | ~~GitHub Pages化するか改めて検討~~ → 完了(2026-09-16)。ユーザーが無料の方法(リポジトリPublic化)を選択。GitHub Pages有効化済み、固定URL https://dakuzawa-alt.github.io/rakuten-room-automation-/ 。`prompt_morning.txt`/`prompt_night.txt`に「docs/index.htmlへコピー」ステップを追加済み。次回自動実行で反映されるか要確認 | 完了 |
 | 5 | 自動実行が今後も安定するか、1週間程度は`logs/run_history.log`と`output/`の日付欠けを定期チェック推奨 | 次セッション |
 | 6 | 修正後の設定で動く次回の自動実行後、PushNotificationが実際に届くか確認。届かなければヘッドレス実行でのツール可否を疑い代替の通知手段を検討 | ユーザー→報告 |
 

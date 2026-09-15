@@ -47,9 +47,13 @@
    - 選ばれた1件のみ:Threads投稿文・X投稿文(コピーボタン付き、選定理由も表示)
    - あるある系日常投稿5個(コピーボタン付き、商品情報なし)
 5. data/posted_history.json を更新する(qa-checkerが実施)
-6. PushNotificationツールで「本日分の商品選定ができました」と通知する
-   (一覧ページのファイルパス、またはURLをメッセージに含める)
+6. 生成した output/page_YYYY-MM-DD_slot.html を docs/index.html にも上書きコピーする
+   (GitHub Pages公開元が docs/ に設定済みで、https://dakuzawa-alt.github.io/rakuten-room-automation-/ が常に最新版になる)
+7. PushNotificationツールで「本日分の商品選定ができました」と通知する
+   (固定URL https://dakuzawa-alt.github.io/rakuten-room-automation-/ をメッセージに含める)
 ```
+
+**2026-09-16追記**: リポジトリはユーザーの合意のもとPublicに変更済み(GitHub Pages有効化のため、Proプラン加入の代わりに無料の方法を選択)。`docs/index.html`が公開ページの実体であり、`config/credentials.json`はgitignore対象で公開されていないことを確認済み。
 
 ## 運用ルール
 
