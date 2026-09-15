@@ -1,0 +1,41 @@
+{
+  "passed": true,
+  "checks": [
+    {
+      "name": "文字数チェック",
+      "passed": true,
+      "detail": "ROOM全5件(336/335/357/377/359文字)、Threads(201文字)、X(137文字)、あるある系日常投稿5個(79/66/56/87/92文字)すべて上限以内"
+    },
+    {
+      "name": "NGワードチェック",
+      "passed": true,
+      "detail": "「治る」「効く」「絶対」「100%」「奇跡」いずれも全文中に含まれなかった"
+    },
+    {
+      "name": "URL混入チェック",
+      "passed": true,
+      "detail": "ROOM文・Threads文・X文・日常投稿いずれにもhttp://・https://で始まるURLが含まれなかった"
+    },
+    {
+      "name": "PR表記チェック",
+      "passed": true,
+      "detail": "Threads文に#PRおよび#楽天アフィリエイト含む、X文に#PRおよび#楽天アフィリエイト含む"
+    },
+    {
+      "name": "重複チェック",
+      "passed": true,
+      "detail": "今回の5件(e-kit:10042824 / oralb-braun:10000051 / osharecafe:10029941 / maxshare:10060548 / ks-towel:10000342)はいずれもposted_historyに未登録。類似商品確認: maxshare:10060548(レンジ上ラック)と過去のalamode:10022851(食洗機ラック)・gekiyasukaguya:10024011(スパイスラック)は用途・設置場所が異なる別商品と判定"
+    },
+    {
+      "name": "絵文字チェック",
+      "passed": true,
+      "detail": "全5件とも3個以上の絵文字あり(7/3/3/3/6個)、冒頭1文にも全件1個以上あり"
+    },
+    {
+      "name": "あるある系チェック",
+      "passed": true,
+      "detail": "日常投稿5個すべてに商品名・商品URL・アフィリエイトリンク・PR表記の混入なし"
+    }
+  ],
+  "failedItems": []
+}

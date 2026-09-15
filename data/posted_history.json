@@ -1333,6 +1333,41 @@
       "channels": [
         "room"
       ]
+    },
+    {
+      "itemCode": "e-kit:10042824",
+      "itemName": "キッチンドレインネオ 2",
+      "date": "2026-09-15",
+      "slot": "night",
+      "channels": ["room", "threads", "x"]
+    },
+    {
+      "itemCode": "oralb-braun:10000051",
+      "itemName": "ブラウン オーラルB iO2 電動歯ブラシ",
+      "date": "2026-09-15",
+      "slot": "night",
+      "channels": ["room"]
+    },
+    {
+      "itemCode": "osharecafe:10029941",
+      "itemName": "ピーピースルーF 600g 業務用排水管洗浄剤",
+      "date": "2026-09-15",
+      "slot": "night",
+      "channels": ["room"]
+    },
+    {
+      "itemCode": "maxshare:10060548",
+      "itemName": "レンジ上ラック キッチンラック 伸縮 幅40〜65cm",
+      "date": "2026-09-15",
+      "slot": "night",
+      "channels": ["room"]
+    },
+    {
+      "itemCode": "ks-towel:10000342",
+      "itemName": "泉州タオル 白フェイスタオル 30枚詰め合わせ",
+      "date": "2026-09-15",
+      "slot": "night",
+      "channels": ["room"]
     }
   ]
 }
