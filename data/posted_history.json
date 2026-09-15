@@ -1286,6 +1286,53 @@
       "channels": [
         "room"
       ]
+    },
+    {
+      "itemCode": "la-kurasu:10000124",
+      "itemName": "髪の毛トリトリeasyネット 4枚入×10袋",
+      "date": "2026-09-15",
+      "slot": "night",
+      "channels": [
+        "room"
+      ]
+    },
+    {
+      "itemCode": "hiromifashionhouse:10005004",
+      "itemName": "簡易トイレ 非常用 防災士監修 15年保存",
+      "date": "2026-09-15",
+      "slot": "night",
+      "channels": [
+        "room",
+        "threads",
+        "x"
+      ]
+    },
+    {
+      "itemCode": "gekiyasukaguya:10024011",
+      "itemName": "スパイスラック 木製2段 伸縮 幅40〜75cm",
+      "date": "2026-09-15",
+      "slot": "night",
+      "channels": [
+        "room"
+      ]
+    },
+    {
+      "itemCode": "junsendo-shop:10000037",
+      "itemName": "カビ取り将軍 泡ジェルスプレー 450g",
+      "date": "2026-09-15",
+      "slot": "night",
+      "channels": [
+        "room"
+      ]
+    },
+    {
+      "itemCode": "mottole-shop:10000060",
+      "itemName": "mottole 上部給水加湿器 2.5L MTL-H001",
+      "date": "2026-09-15",
+      "slot": "night",
+      "channels": [
+        "room"
+      ]
     }
   ]
 }
