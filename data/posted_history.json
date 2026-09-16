@@ -1474,6 +1474,53 @@
       "channels": [
         "room"
       ]
+    },
+    {
+      "itemCode": "irisplaza-r:10138130",
+      "itemName": "アイリスオーヤマ IH炊飯器 3合/5合 2年保証 RC-IL30/RC-IL50",
+      "date": "2026-09-17",
+      "slot": "morning",
+      "channels": [
+        "room",
+        "threads",
+        "x"
+      ]
+    },
+    {
+      "itemCode": "smile-hg:10007551",
+      "itemName": "突ぱり耐震ポール L [2本入] REQ-50",
+      "date": "2026-09-17",
+      "slot": "morning",
+      "channels": [
+        "room"
+      ]
+    },
+    {
+      "itemCode": "hirakata-g:10000142",
+      "itemName": "防振マット 5x5cm 4枚入 硬度5種類",
+      "date": "2026-09-17",
+      "slot": "morning",
+      "channels": [
+        "room"
+      ]
+    },
+    {
+      "itemCode": "double-oo:10001204",
+      "itemName": "レコードラック ディスプレイラック 木製2段 フラップ扉付き",
+      "date": "2026-09-17",
+      "slot": "morning",
+      "channels": [
+        "room"
+      ]
+    },
+    {
+      "itemCode": "auc-qualial:10026958",
+      "itemName": "前後2列スライド式本棚 幅60/90/120 Libra",
+      "date": "2026-09-17",
+      "slot": "morning",
+      "channels": [
+        "room"
+      ]
     }
   ]
 }
