@@ -1339,70 +1339,141 @@
       "itemName": "キッチンドレインネオ 2",
       "date": "2026-09-15",
       "slot": "night",
-      "channels": ["room", "threads", "x"]
+      "channels": [
+        "room",
+        "threads",
+        "x"
+      ]
     },
     {
       "itemCode": "oralb-braun:10000051",
       "itemName": "ブラウン オーラルB iO2 電動歯ブラシ",
       "date": "2026-09-15",
       "slot": "night",
-      "channels": ["room"]
+      "channels": [
+        "room"
+      ]
     },
     {
       "itemCode": "osharecafe:10029941",
       "itemName": "ピーピースルーF 600g 業務用排水管洗浄剤",
       "date": "2026-09-15",
       "slot": "night",
-      "channels": ["room"]
+      "channels": [
+        "room"
+      ]
     },
     {
       "itemCode": "maxshare:10060548",
       "itemName": "レンジ上ラック キッチンラック 伸縮 幅40〜65cm",
       "date": "2026-09-15",
       "slot": "night",
-      "channels": ["room"]
+      "channels": [
+        "room"
+      ]
     },
     {
       "itemCode": "ks-towel:10000342",
       "itemName": "泉州タオル 白フェイスタオル 30枚詰め合わせ",
       "date": "2026-09-15",
       "slot": "night",
-      "channels": ["room"]
+      "channels": [
+        "room"
+      ]
     },
     {
       "itemCode": "mecu:10000739",
       "itemName": "tak ベビー食器セット キッズディッシュ 4点セット 日本製",
       "date": "2026-09-16",
       "slot": "morning",
-      "channels": ["room"]
+      "channels": [
+        "room"
+      ]
     },
     {
       "itemCode": "sweet-sanjo:10000009",
       "itemName": "燕三条 水切りラック シンク上 スリム 2個タイプ 日本製",
       "date": "2026-09-16",
       "slot": "morning",
-      "channels": ["room"]
+      "channels": [
+        "room"
+      ]
     },
     {
       "itemCode": "bruno-official:10000295",
       "itemName": "BRUNO マルチスティックブレンダー2 BOE140",
       "date": "2026-09-16",
       "slot": "morning",
-      "channels": ["room", "threads", "x"]
+      "channels": [
+        "room",
+        "threads",
+        "x"
+      ]
     },
     {
       "itemCode": "myhome:10001444",
       "itemName": "天然木 おもちゃ収納ラック 絵本棚兼用 ワイドタイプ",
       "date": "2026-09-16",
       "slot": "morning",
-      "channels": ["room"]
+      "channels": [
+        "room"
+      ]
     },
     {
       "itemCode": "coconial:10002689",
       "itemName": "KOIZUMI ヘアドライヤー KHD-9240 大風量 速乾",
       "date": "2026-09-16",
       "slot": "morning",
-      "channels": ["room"]
+      "channels": [
+        "room"
+      ]
+    },
+    {
+      "itemCode": "woodypuddy:10000296",
+      "itemName": "ウッディプッディ はじめてのおままごと サラダセット 木箱入り",
+      "date": "2026-09-17",
+      "slot": "morning",
+      "channels": [
+        "room"
+      ]
+    },
+    {
+      "itemCode": "roomy:10015521",
+      "itemName": "燕三条 ステンレス引っ掛けオモチャバスケット",
+      "date": "2026-09-17",
+      "slot": "morning",
+      "channels": [
+        "room"
+      ]
+    },
+    {
+      "itemCode": "tsunagu-marche:10000001",
+      "itemName": "EmperorTamarin 低温調理器 1200W 自立式 IPX7防水",
+      "date": "2026-09-17",
+      "slot": "morning",
+      "channels": [
+        "room"
+      ]
+    },
+    {
+      "itemCode": "drip-pod:10000253",
+      "itemName": "UCC ドリップポッド DP3 スターターセット",
+      "date": "2026-09-17",
+      "slot": "morning",
+      "channels": [
+        "room",
+        "threads",
+        "x"
+      ]
+    },
+    {
+      "itemCode": "daiya:10001030",
+      "itemName": "ダイヤ 大きくふくらむ洗濯ネット 70cm 布団用",
+      "date": "2026-09-17",
+      "slot": "morning",
+      "channels": [
+        "room"
+      ]
     }
   ]
 }
