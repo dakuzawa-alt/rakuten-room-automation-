@@ -1,0 +1,57 @@
+{
+  "status": "pass",
+  "date": "2026-09-16",
+  "slot": "morning",
+  "checks": {
+    "char_count": {
+      "products[0].roomCaption (mecu:10000739)": {"count": 275, "limit": 400, "status": "OK"},
+      "products[1].roomCaption (sweet-sanjo:10000009)": {"count": 276, "limit": 400, "status": "OK"},
+      "products[2].roomCaption (bruno-official:10000295)": {"count": 290, "limit": 400, "status": "OK"},
+      "products[3].roomCaption (myhome:10001444)": {"count": 319, "limit": 400, "status": "OK"},
+      "products[4].roomCaption (coconial:10002689)": {"count": 292, "limit": 400, "status": "OK"},
+      "featured.threadsCaption": {"count": 245, "limit": 400, "status": "OK"},
+      "featured.xCaption": {"count": 150, "limit": 280, "status": "OK"},
+      "dailyLifePosts[0]": {"count": 84, "limit": 150, "status": "OK"},
+      "dailyLifePosts[1]": {"count": 73, "limit": 150, "status": "OK"},
+      "dailyLifePosts[2]": {"count": 68, "limit": 150, "status": "OK"},
+      "dailyLifePosts[3]": {"count": 85, "limit": 150, "status": "OK"},
+      "dailyLifePosts[4]": {"count": 10, "limit": 150, "status": "OK"}
+    },
+    "url_check": "OK",
+    "ng_words": "OK",
+    "pr_check": {
+      "threadsCaption": "OK",
+      "xCaption": "OK"
+    },
+    "emoji_check": {
+      "status": "OK",
+      "note": "初回スクリプトでbrunno-official:10000295が2個と誤判定されたが、⏱️(U+23F1)がv1正規表現の範囲外だったための誤検出。v2カウントでは🥣+⏱️+✨=3種類(4コードポイント)を確認。全5件とも3個以上OK",
+      "detail": {
+        "mecu:10000739": "🍼+✨+👶=3個 OK",
+        "sweet-sanjo:10000009": "💡+🍳+✅=3個 OK",
+        "bruno-official:10000295": "🥣+⏱️+✨=3種類(v2=4個) OK",
+        "myhome:10001444": "📚+🧸+🏠=3個 OK",
+        "coconial:10002689": "💨+✨+🛁=3個 OK"
+      }
+    },
+    "duplicate_check": "OK",
+    "same_product_check": {
+      "status": "OK",
+      "note": "水切りラック・ベビー食器・ブレンダー・絵本棚・ドライヤーの類似カテゴリで過去投稿あり。いずれも別ブランド・別商品種別であり実質同一商品には該当しない"
+    },
+    "numeric_check": {
+      "status": "OK",
+      "note": "coconial:10002689の「800件超えてる」は実値843件に対して事実として正確。スクリプトが「800」を件数として誤抽出したが表現として適切",
+      "detail": {
+        "mecu:10000739": "価格5280円・レビュー383件・星4.72 すべて一致",
+        "sweet-sanjo:10000009": "レビュー802件・星4.67 一致(価格は本文未明示)",
+        "bruno-official:10000295": "価格7700円 一致(レビュー1738件・星4.59は本文未明示)",
+        "myhome:10001444": "価格5380円・レビュー493件・星4.23 すべて一致",
+        "coconial:10002689": "価格6080円 一致。「800件超えてる」=実値843件で正確"
+      }
+    },
+    "daily_health_check": "OK",
+    "affiliate_url_check": "OK"
+  },
+  "issues": []
+}

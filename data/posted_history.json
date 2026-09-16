@@ -1368,6 +1368,41 @@
       "date": "2026-09-15",
       "slot": "night",
       "channels": ["room"]
+    },
+    {
+      "itemCode": "mecu:10000739",
+      "itemName": "tak ベビー食器セット キッズディッシュ 4点セット 日本製",
+      "date": "2026-09-16",
+      "slot": "morning",
+      "channels": ["room"]
+    },
+    {
+      "itemCode": "sweet-sanjo:10000009",
+      "itemName": "燕三条 水切りラック シンク上 スリム 2個タイプ 日本製",
+      "date": "2026-09-16",
+      "slot": "morning",
+      "channels": ["room"]
+    },
+    {
+      "itemCode": "bruno-official:10000295",
+      "itemName": "BRUNO マルチスティックブレンダー2 BOE140",
+      "date": "2026-09-16",
+      "slot": "morning",
+      "channels": ["room", "threads", "x"]
+    },
+    {
+      "itemCode": "myhome:10001444",
+      "itemName": "天然木 おもちゃ収納ラック 絵本棚兼用 ワイドタイプ",
+      "date": "2026-09-16",
+      "slot": "morning",
+      "channels": ["room"]
+    },
+    {
+      "itemCode": "coconial:10002689",
+      "itemName": "KOIZUMI ヘアドライヤー KHD-9240 大風量 速乾",
+      "date": "2026-09-16",
+      "slot": "morning",
+      "channels": ["room"]
     }
   ]
 }
