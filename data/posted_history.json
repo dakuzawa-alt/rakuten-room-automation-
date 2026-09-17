@@ -1568,6 +1568,53 @@
         "threads",
         "x"
       ]
+    },
+    {
+      "itemCode": "drink-partner:10000297",
+      "itemName": "コカ・コーラ い・ろ・は・す よりどり 選べる 515ml〜540ml ペットボトル 24本入り×2ケース",
+      "date": "2026-09-18",
+      "slot": "morning",
+      "channels": [
+        "room"
+      ]
+    },
+    {
+      "itemCode": "dondon:10001566",
+      "itemName": "脚付きマットレスベッド ボンネルコイル 厚さ15cm",
+      "date": "2026-09-18",
+      "slot": "morning",
+      "channels": [
+        "room"
+      ]
+    },
+    {
+      "itemCode": "kirara-pla:10000281",
+      "itemName": "米びつ5kg 計量カップ付 蝶プラ工業製造",
+      "date": "2026-09-18",
+      "slot": "morning",
+      "channels": [
+        "room"
+      ]
+    },
+    {
+      "itemCode": "stampskids:10008259",
+      "itemName": "枕カバー MOKU TUBE モクチューブ コンテックス 今治 日本製",
+      "date": "2026-09-18",
+      "slot": "morning",
+      "channels": [
+        "room"
+      ]
+    },
+    {
+      "itemCode": "monange-kyoto:10000075",
+      "itemName": "gg* oekaki house おえかきハウス 木製 知育玩具 1歳 2歳 3歳 4歳",
+      "date": "2026-09-18",
+      "slot": "morning",
+      "channels": [
+        "room",
+        "threads",
+        "x"
+      ]
     }
   ]
 }

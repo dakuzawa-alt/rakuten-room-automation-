@@ -1,0 +1,116 @@
+{
+  "date": "2026-09-18",
+  "slot": "morning",
+  "overall": "PASS",
+  "checks": {
+    "room_char_count": {
+      "result": "PASS",
+      "detail": {
+        "drink-partner:10000297": "326文字 / 400文字以内",
+        "dondon:10001566": "347文字 / 400文字以内",
+        "kirara-pla:10000281": "310文字 / 400文字以内",
+        "stampskids:10008259": "315文字 / 400文字以内",
+        "monange-kyoto:10000075": "291文字 / 400文字以内"
+      }
+    },
+    "threads_char_count": {
+      "result": "PASS",
+      "detail": "monange-kyoto:10000075 266文字 / 400文字以内"
+    },
+    "x_char_count": {
+      "result": "PASS",
+      "detail": "monange-kyoto:10000075 168文字 / 280文字以内"
+    },
+    "daily_posts_char_count": {
+      "result": "PASS",
+      "detail": {
+        "投稿1": "77文字",
+        "投稿2": "102文字",
+        "投稿3": "86文字",
+        "投稿4": "102文字",
+        "投稿5": "78文字"
+      }
+    },
+    "ng_words": {
+      "result": "PASS",
+      "detail": "NGワード検出なし(チェック対象: 治る/効く/絶対/100%/奇跡/必ず/確実/完治/治療/医療)"
+    },
+    "pr_notation": {
+      "result": "PASS",
+      "detail": {
+        "threads": "#PR あり",
+        "x": "#楽天アフィリエイト あり"
+      }
+    },
+    "url_in_copy": {
+      "result": "PASS",
+      "detail": "全投稿文にURLなし"
+    },
+    "duplicate_check": {
+      "result": "PASS",
+      "detail": "5件全て posted_history.json に未登録"
+    },
+    "emoji_check": {
+      "result": "PASS",
+      "detail": {
+        "drink-partner:10000297": "総4個 / 冒頭1個以上",
+        "dondon:10001566": "総3個 / 冒頭1個以上",
+        "kirara-pla:10000281": "総3個 / 冒頭1個以上",
+        "stampskids:10008259": "総3個 / 冒頭1個以上",
+        "monange-kyoto:10000075": "総3個 / 冒頭1個以上"
+      }
+    },
+    "numeric_consistency": {
+      "result": "PASS",
+      "detail": {
+        "drink-partner:10000297": "4,980円・1,615件・星4.78 一致",
+        "dondon:10001566": "価格記載なし(許容) レビュー12,384件・星4.43 一致",
+        "kirara-pla:10000281": "2,500円・486件・星4.63 一致",
+        "stampskids:10008259": "2,332円(一致) / レビュー・星は記載省略(許容)",
+        "monange-kyoto:10000075": "価格は投稿文で別途言及なし・976件・星4.41 一致"
+      }
+    },
+    "daily_posts_health": {
+      "result": "PASS",
+      "detail": "商品リンク・PR表記なし / 投稿2・3の「昨日」は習慣的描写および直接話法引用であり捏造断定には該当しない"
+    }
+  },
+  "history_update": {
+    "updated": true,
+    "entries_added": 5,
+    "items": [
+      {
+        "itemCode": "drink-partner:10000297",
+        "channels": [
+          "room"
+        ]
+      },
+      {
+        "itemCode": "dondon:10001566",
+        "channels": [
+          "room"
+        ]
+      },
+      {
+        "itemCode": "kirara-pla:10000281",
+        "channels": [
+          "room"
+        ]
+      },
+      {
+        "itemCode": "stampskids:10008259",
+        "channels": [
+          "room"
+        ]
+      },
+      {
+        "itemCode": "monange-kyoto:10000075",
+        "channels": [
+          "room",
+          "threads",
+          "x"
+        ]
+      }
+    ]
+  }
+}

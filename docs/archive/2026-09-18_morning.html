@@ -1,0 +1,449 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>9/18 朝の選定 - 楽天ROOM投稿リスト</title>
+<style>
+:root {
+  --bg: #f6f3ee;
+  --surface: #ffffff;
+  --ink: #23211d;
+  --ink-soft: #6b6459;
+  --accent: #a8382c;
+  --accent-ink: #fff6f2;
+  --good: #3f7d58;
+  --border: #e4ddd2;
+  --chip-bg: #efe8db;
+  color-scheme: light dark;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #16140f;
+    --surface: #211f1a;
+    --ink: #ece7dc;
+    --ink-soft: #a89e8d;
+    --accent: #e0685a;
+    --accent-ink: #1c0f0c;
+    --good: #6fb98a;
+    --border: #35322a;
+    --chip-bg: #2a2721;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #16140f; --surface: #211f1a; --ink: #ece7dc; --ink-soft: #a89e8d;
+  --accent: #e0685a; --accent-ink: #1c0f0c; --good: #6fb98a; --border: #35322a; --chip-bg: #2a2721;
+}
+:root[data-theme="light"] {
+  --bg: #f6f3ee; --surface: #ffffff; --ink: #23211d; --ink-soft: #6b6459;
+  --accent: #a8382c; --accent-ink: #fff6f2; --good: #3f7d58; --border: #e4ddd2; --chip-bg: #efe8db;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0; background: var(--bg); color: var(--ink);
+  font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Yu Gothic Medium", "Noto Sans JP", sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+.wrap { max-width: 640px; margin: 0 auto; padding: 0 16px 40px; }
+header.top {
+  position: sticky; top: 0; z-index: 5; background: var(--bg);
+  padding: 18px 16px 12px; border-bottom: 1px solid var(--border);
+  display: flex; align-items: baseline; justify-content: space-between; gap: 12px;
+}
+header.top .eyebrow {
+  font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-soft);
+  font-weight: 600; margin: 0 0 2px;
+}
+header.top h1 { font-size: 1.25rem; margin: 0; font-weight: 700; letter-spacing: -0.01em; }
+header.top .count {
+  background: var(--chip-bg); color: var(--ink-soft); font-size: 0.78rem; font-weight: 600;
+  padding: 5px 10px; border-radius: 999px; white-space: nowrap;
+}
+h2.section-title { font-size: 0.95rem; font-weight: 700; margin: 24px 0 12px; }
+.cards { display: flex; flex-direction: column; gap: 16px; margin-top: 18px; }
+.card {
+  background: var(--surface); border: 1px solid var(--border); border-radius: 16px;
+  padding: 16px; display: flex; flex-direction: column; gap: 12px;
+}
+.card.featured { border-color: var(--accent); border-width: 2px; }
+.featured-badge {
+  align-self: flex-start; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.03em;
+  color: var(--accent-ink); background: var(--accent); padding: 3px 9px; border-radius: 999px;
+}
+.card-head { display: flex; gap: 12px; }
+.card-head img {
+  width: 76px; height: 76px; object-fit: cover; border-radius: 10px;
+  border: 1px solid var(--border); background: var(--chip-bg); flex-shrink: 0;
+}
+.card-head .info { min-width: 0; flex: 1; display: flex; flex-direction: column; gap: 4px; }
+.genre-chip {
+  align-self: flex-start; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.03em;
+  color: var(--accent); background: color-mix(in srgb, var(--accent) 12%, transparent);
+  padding: 2px 8px; border-radius: 999px;
+}
+.name {
+  font-weight: 600; font-size: 0.94rem; line-height: 1.4;
+  display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
+}
+.meta-row { display: flex; align-items: baseline; gap: 8px; font-size: 0.82rem; color: var(--ink-soft); }
+.price { font-variant-numeric: tabular-nums; color: var(--ink); font-weight: 700; font-size: 1.05rem; }
+.stars { letter-spacing: -1px; color: var(--accent); }
+.btn-open {
+  display: flex; align-items: center; justify-content: center; gap: 6px;
+  background: var(--accent); color: var(--accent-ink); border: none; border-radius: 11px;
+  padding: 12px; font-weight: 700; font-size: 0.92rem; text-decoration: none;
+}
+.btn-open:active { opacity: 0.85; }
+.url-row {
+  display: flex; align-items: center; gap: 8px;
+  background: var(--chip-bg); border-radius: 9px; padding: 8px 10px;
+}
+.url-row a {
+  flex: 1; min-width: 0; font-size: 0.76rem; color: var(--accent);
+  word-break: break-all; line-height: 1.45; text-decoration: none;
+}
+.url-row a:active { text-decoration: underline; }
+.reason { font-size: 0.8rem; color: var(--ink-soft); }
+.caption-box { border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }
+.caption-head {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 8px 10px; background: var(--chip-bg);
+}
+.caption-head span {
+  font-size: 0.7rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-soft);
+}
+.copy-btn {
+  background: var(--surface); border: 1px solid var(--border); color: var(--ink);
+  border-radius: 7px; padding: 5px 11px; font-size: 0.76rem; font-weight: 600; cursor: pointer;
+}
+.copy-btn:focus-visible, .btn-open:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.copy-btn.copied { background: var(--good); border-color: var(--good); color: #fff; }
+textarea {
+  width: 100%; display: block; border: none; padding: 10px; font-size: 0.85rem; line-height: 1.55;
+  resize: vertical; min-height: 108px; font-family: inherit; background: var(--surface); color: var(--ink);
+}
+textarea.short { min-height: 60px; }
+textarea:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
+footer.note { margin-top: 22px; font-size: 0.76rem; color: var(--ink-soft); text-align: center; line-height: 1.6; }
+@media (prefers-reduced-motion: no-preference) {
+  .copy-btn { transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease; }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <div>
+    <p class="eyebrow">楽天ROOM 投稿リスト</p>
+    <h1>9/18 朝の選定</h1>
+  </div>
+  <span class="count">5件</span>
+</header>
+
+<h2 class="section-title">📦 商品(ROOM用、全5件)</h2>
+<div class="cards">
+<div class="card">
+  <div class="card-head">
+    <img src="https://thumbnail.image.rakuten.co.jp/@0_mall/drink-partner/cabinet/rakuten_ban/pointup_icon/irohasu5p_2.jpg?_ex=128x128" alt="コカ・コーラ い・ろ・は・す よりどり 選べる 515ml〜540ml ペットボトル 24本入り×2ケース" loading="lazy">
+    <div class="info">
+      
+      <span class="genre-chip">防災・備蓄</span>
+      <div class="name">コカ・コーラ い・ろ・は・す よりどり 選べる 515ml〜540ml ペットボトル 24本入り×2ケース</div>
+      <div class="meta-row">
+        <span class="price">¥4,980</span>
+        <span class="stars">★★★★★</span>
+        <span>4.78(1615件)</span>
+      </div>
+    </div>
+  </div>
+  <a class="btn-open" href="https://item.rakuten.co.jp/drink-partner/irohasu5p_2/" target="_blank" rel="noopener">商品ページを開く ↗</a>
+  <div class="url-row">
+    <a href="https://item.rakuten.co.jp/drink-partner/irohasu5p_2/" target="_blank" rel="noopener">https://item.rakuten.co.jp/drink-partner/irohasu5p_2/</a>
+    <button class="copy-btn" onclick="copyPlain(this, 'https://item.rakuten.co.jp/drink-partner/irohasu5p_2/')" type="button">URLコピー</button>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>楽天ROOM用</span>
+      <button class="copy-btn" onclick="copyText(this, 'room-0')" type="button">コピー</button>
+    </div>
+    <textarea id="room-0" readonly>💧1本約104円で天然水48本ストックできちゃいます。
+
+備蓄ってハードル高く感じるけど、いろはすなら普段飲みと兼ねられるので無理なく続けられますよ。🫙
+
+515〜540mlが2ケース48本で4,980円。よりどり選べるのでフレーバーを組み合わせれば子どもも飽きずに飲んでくれます🍵
+
+防災の目安は「1人あたり3日分3リットル」なので、家族3人でも48本あれば余裕を持って備えられます。
+
+レビューは1,615件・星4.78。この評価の高さは安心感ありますね☑️
+
+箱買いの唯一の欠点は保管スペースが要ること。置き場所だけ先に確認しておくのがおすすめです。
+
+#いろはす #天然水 #防災備蓄 #備蓄 #水の備蓄 #育児パパ #共働き家庭 #楽天購入品</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="card-head">
+    <img src="https://thumbnail.image.rakuten.co.jp/@0_mall/dondon/cabinet/mh009_3.jpg?_ex=128x128" alt="脚付きマットレス ベッド シングルベッド ロール 脚付きマットレスベッド 一体型 体圧分散 セミシングル セミダブル ダブル ボンネルコイル マットレス 厚さ15cm" loading="lazy">
+    <div class="info">
+      
+      <span class="genre-chip">寝具・インテリア</span>
+      <div class="name">脚付きマットレス ベッド シングルベッド ロール 脚付きマットレスベッド 一体型 体圧分散 セミシングル セミダブル ダブル ボンネルコイル マットレス 厚さ15cm</div>
+      <div class="meta-row">
+        <span class="price">¥9,480</span>
+        <span class="stars">★★★★☆</span>
+        <span>4.43(12384件)</span>
+      </div>
+    </div>
+  </div>
+  <a class="btn-open" href="https://item.rakuten.co.jp/dondon/mh-001/" target="_blank" rel="noopener">商品ページを開く ↗</a>
+  <div class="url-row">
+    <a href="https://item.rakuten.co.jp/dondon/mh-001/" target="_blank" rel="noopener">https://item.rakuten.co.jp/dondon/mh-001/</a>
+    <button class="copy-btn" onclick="copyPlain(this, 'https://item.rakuten.co.jp/dondon/mh-001/')" type="button">URLコピー</button>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>楽天ROOM用</span>
+      <button class="copy-btn" onclick="copyText(this, 'room-1')" type="button">コピー</button>
+    </div>
+    <textarea id="room-1" readonly>🛏ベッドフレームなしで届いてすぐ使えるの、引越し直後にかなり助かった。
+
+コンパクトに届くのに開封したらちゃんとしたマットレスで、ボンネルコイル入りで体が沈みすぎない。厚さ15cmあるから床の硬さも気にならないし、脚付きだから下に収納ボックスが入るのが地味に便利です🗃
+
+シングル・セミダブル・ダブルとサイズ展開があって、我が家は子どもが来たときに使えるセミシングルを選びました。
+
+レビュー12,384件・星4.43。これだけ積み上がってるのは実際に使い続けてる人が多い証拠だと思う。
+
+ロール梱包から出して広げるだけで組み立て不要。忙しい時期の新生活に本当におすすめですよ🙌
+
+#脚付きマットレス #ベッド #ボンネルコイル #寝具 #シングルベッド #育児パパ #共働き家庭 #楽天購入品</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="card-head">
+    <img src="https://thumbnail.image.rakuten.co.jp/@0_mall/kirara-pla/cabinet/komebitukun/imgrc0108088168.jpg?_ex=128x128" alt="【送料無料】米びつ5kg 計量カップ付 キッチン収納 自社(蝶プラ工業)製造" loading="lazy">
+    <div class="info">
+      
+      <span class="genre-chip">キッチン雑貨</span>
+      <div class="name">【送料無料】米びつ5kg 計量カップ付 キッチン収納 自社(蝶プラ工業)製造</div>
+      <div class="meta-row">
+        <span class="price">¥2,500</span>
+        <span class="stars">★★★★★</span>
+        <span>4.63(486件)</span>
+      </div>
+    </div>
+  </div>
+  <a class="btn-open" href="https://item.rakuten.co.jp/kirara-pla/10000267/" target="_blank" rel="noopener">商品ページを開く ↗</a>
+  <div class="url-row">
+    <a href="https://item.rakuten.co.jp/kirara-pla/10000267/" target="_blank" rel="noopener">https://item.rakuten.co.jp/kirara-pla/10000267/</a>
+    <button class="copy-btn" onclick="copyPlain(this, 'https://item.rakuten.co.jp/kirara-pla/10000267/')" type="button">URLコピー</button>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>楽天ROOM用</span>
+      <button class="copy-btn" onclick="copyText(this, 'room-2')" type="button">コピー</button>
+    </div>
+    <textarea id="room-2" readonly>🍚お米の計量、毎回ビニール袋から直接すくってて地味にストレスだった。
+
+米びつに変えてから計量カップ付きで1合ずつ正確に出せるし、袋が倒れてこぼれる事故もゼロになりました☑️
+
+5kg対応で蝶プラ工業の自社製造品。国内樹脂成形メーカーとして長年実績があるので品質は信頼できます。
+
+2,500円送料無料なのが正直コスパいい。100円ショップのより断然しっかりしてるのにこの価格。レビューは486件・星4.63と、地味なキッチングッズとしては高評価です🙆
+
+省スペース設計なので冷蔵庫横のすき間にも収まりますよ。
+
+#米びつ #キッチン収納 #キッチン雑貨 #お米収納 #蝶プラ工業 #育児パパ #共働き家庭 #楽天購入品</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="card-head">
+    <img src="https://thumbnail.image.rakuten.co.jp/@0_mall/stampskids/cabinet/kontex/mokutube.jpg?_ex=128x128" alt="枕カバー MOKU TUBE モクチューブ コンテックス 今治 日本製 綿 タオル地 のびのび 子供 まくらカバー" loading="lazy">
+    <div class="info">
+      
+      <span class="genre-chip">寝具・日用品</span>
+      <div class="name">枕カバー MOKU TUBE モクチューブ コンテックス 今治 日本製 綿 タオル地 のびのび 子供 まくらカバー</div>
+      <div class="meta-row">
+        <span class="price">¥2,332</span>
+        <span class="stars">★★★★★</span>
+        <span>4.53(130件)</span>
+      </div>
+    </div>
+  </div>
+  <a class="btn-open" href="https://item.rakuten.co.jp/stampskids/kontex-moku-tube/" target="_blank" rel="noopener">商品ページを開く ↗</a>
+  <div class="url-row">
+    <a href="https://item.rakuten.co.jp/stampskids/kontex-moku-tube/" target="_blank" rel="noopener">https://item.rakuten.co.jp/stampskids/kontex-moku-tube/</a>
+    <button class="copy-btn" onclick="copyPlain(this, 'https://item.rakuten.co.jp/stampskids/kontex-moku-tube/')" type="button">URLコピー</button>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>楽天ROOM用</span>
+      <button class="copy-btn" onclick="copyText(this, 'room-3')" type="button">コピー</button>
+    </div>
+    <textarea id="room-3" readonly>🌙子どもの枕カバー、実は素材選びが一番大事だって気づいたの遅かった。
+
+肌が薄いデリケートな子どもの顔が毎晩8時間触れるものなのに、安いポリエステルを使ってた。今治タオル地のカバーに変えてから、朝起きたときの顔の赤みが明らかに減った😲
+
+MOKU TUBEは筒型で頭を入れるだけ。ズレにくいし子どもが自分でセットできる。今治産・日本製のオール綿で、コンテックスのメーカー品。洗っても柔らかさが続くのがいい。
+
+2,332円で洗い替えも含めて2枚揃えやすい価格帯です✨
+
+素材にこだわりたいけど予算も気になるという方に特におすすめ。
+
+#今治タオル #枕カバー #子ども寝具 #今治 #日本製 #育児パパ #共働き家庭 #楽天購入品</textarea>
+  </div>
+</div>
+<div class="card featured">
+  <div class="card-head">
+    <img src="https://thumbnail.image.rakuten.co.jp/@0_gold/monange-kyoto/assets/oekakihouse/img/oekaki_750x750.jpg?_ex=128x128" alt="gg* oekaki house おえかきハウス 木製 知育玩具 1歳 2歳 3歳 4歳" loading="lazy">
+    <div class="info">
+      <span class="featured-badge">🔥 本日のThreads/Xピックアップ</span>
+      <span class="genre-chip">育児グッズ・知育玩具</span>
+      <div class="name">gg* oekaki house おえかきハウス 木製 知育玩具 1歳 2歳 3歳 4歳</div>
+      <div class="meta-row">
+        <span class="price">¥10,450</span>
+        <span class="stars">★★★★☆</span>
+        <span>4.41(976件)</span>
+      </div>
+    </div>
+  </div>
+  <a class="btn-open" href="https://item.rakuten.co.jp/monange-kyoto/1716-1005-1/" target="_blank" rel="noopener">商品ページを開く ↗</a>
+  <div class="url-row">
+    <a href="https://item.rakuten.co.jp/monange-kyoto/1716-1005-1/" target="_blank" rel="noopener">https://item.rakuten.co.jp/monange-kyoto/1716-1005-1/</a>
+    <button class="copy-btn" onclick="copyPlain(this, 'https://item.rakuten.co.jp/monange-kyoto/1716-1005-1/')" type="button">URLコピー</button>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>楽天ROOM用</span>
+      <button class="copy-btn" onclick="copyText(this, 'room-4')" type="button">コピー</button>
+    </div>
+    <textarea id="room-4" readonly>🎨知育玩具を買うとき「すぐ飽きるかも」が心配で安いものを選んでたら、逆に損してた話。
+
+おえかきハウスは木製の家型ボードに描いて消せる仕様で、1歳から4歳まで長く遊べる。gg*のシンプルなデザインが部屋に置いても馴染むし、おもちゃっぽさが出ないのが気に入ってる🏠
+
+薄いシートタイプのおえかきボードを以前買ったことあるけど、安定感がなくてすぐ飽きた。木製はその点まったく違う。
+
+976件レビューで星4.41。対象年齢が広い分だけ長く使えるし、兄弟がいれば使い回しも利きますよ✨
+
+#知育玩具 #おえかきハウス #木製おもちゃ #1歳 #2歳 #育児パパ #共働き家庭 #楽天購入品</textarea>
+  </div>
+  <p class="reason">🔥 今日のピックアップ理由: 1〜4歳向け木製知育玩具という「育児パパ×共働き家庭」ペルソナに直結するジャンルで、10,450円という価格の意外性(安いシートタイプとの比較でむしろコスパが良いという逆転)が刺さりやすく、エンゲージメントを取りやすいと判断した</p>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>Threads用</span>
+      <button class="copy-btn" onclick="copyText(this, 'threads-0')" type="button">コピー</button>
+    </div>
+    <textarea id="threads-0" readonly>木製おえかきおもちゃ、10,450円は最初ちょっと迷った
+
+1歳から4歳まで使えるって聞いて試してみたんだけど、描いて消してまた描く、それだけで30分は一人で遊んでくれる。
+
+前に安いシートタイプを買ったことがあって、あれは1週間で飽きた。木製は安定感がまるで違う、床に置いても倒れない。
+
+gg*っていうブランドも知らなかったけど、部屋に置いたとき「おもちゃ感が出ない」のがかなりよかった。インテリアとして浮かない。
+
+兄弟がいれば長男が飽きたら次男に渡せるし、長期で見たらコスパ悪くないと思う。
+
+#育児パパ #知育玩具 #PR</textarea>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>X用</span>
+      <button class="copy-btn" onclick="copyText(this, 'x-0')" type="button">コピー</button>
+    </div>
+    <textarea id="x-0" readonly>木製おえかきハウス、10,450円はちょっと迷ったけど
+
+1歳〜4歳対応で、描いて消してまた描く。それだけで30分は一人で遊んでくれる。前に安いシートタイプ買ったとき1週間で飽きたから、木製の安定感は別物だと分かった。
+
+インテリアに浮かないデザインで、兄弟に使い回せるのも地味にデカい。
+
+#育児パパ #知育玩具 #楽天アフィリエイト</textarea>
+  </div>
+</div>
+</div>
+
+<h2 class="section-title">💬 今日のあるある投稿ネタ(商品リンクなし)</h2>
+<div class="cards">
+<div class="card">
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>あるある投稿 #1</span>
+      <button class="copy-btn" onclick="copyText(this, 'daily-0')" type="button">コピー</button>
+    </div>
+    <textarea id="daily-0" class="short" readonly>寝かしつけ成功→そっと布団に置く→泣く、を何回繰り返すんだろう。背中スイッチの感度、うちの子は特に高い気がする。むしろ床に置いたほうが寝てた説まで出てきた</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>あるある投稿 #2</span>
+      <button class="copy-btn" onclick="copyText(this, 'daily-1')" type="button">コピー</button>
+    </div>
+    <textarea id="daily-1" class="short" readonly>子の朝ごはんをちゃんと作ってから、自分の分は昨日のおかずの残りと白米だけって毎回気づく。
+あと子どもって食べかけを「いらない」って言ってそのまま残すじゃないですか。
+親の朝食はそういうのの集合体になってる</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>あるある投稿 #3</span>
+      <button class="copy-btn" onclick="copyText(this, 'daily-2')" type="button">コピー</button>
+    </div>
+    <textarea id="daily-2" class="short" readonly>夜泣き対応、妻は「昨日3回起きた」って言える。自分は起きたかどうかすら覚えてない。
+このログ精度の差は何なのか。起きてないのか、起きてたけど忘れてるのか、それすら分からない</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>あるある投稿 #4</span>
+      <button class="copy-btn" onclick="copyText(this, 'daily-3')" type="button">コピー</button>
+    </div>
+    <textarea id="daily-3" class="short" readonly>子どもにイライラするとき、だいたい原因が同じ
+
+・自分が腹減ってる
+・睡眠3〜4時間しか取れてない
+・仕事のことが頭の端に残ってる
+
+子じゃなくて自分の問題だった、というのを何度気づいても次の日また忘れる</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>あるある投稿 #5</span>
+      <button class="copy-btn" onclick="copyText(this, 'daily-4')" type="button">コピー</button>
+    </div>
+    <textarea id="daily-4" class="short" readonly>かわいい寝顔の写真、よく見たら背景にオムツのゴミ袋と脱ぎっぱなしの服と積み上がった哺乳瓶が写り込んでた。
+このフォルダに「映える」が一枚もない #共働き家庭</textarea>
+  </div>
+</div>
+</div>
+
+<footer class="note">商品ページを確認し、投稿文をコピーして手動で投稿してください。<br>Threads/Xの商品紹介は1日1件・あるある投稿と織り交ぜてスパム判定を避けてください。<br>価格・レビューは選定時点の実データです。</footer>
+</div>
+<script>
+function flash(btn) {
+  const original = btn.textContent;
+  btn.textContent = 'コピーしました';
+  btn.classList.add('copied');
+  setTimeout(() => { btn.textContent = original; btn.classList.remove('copied'); }, 1500);
+}
+function copyText(btn, id) {
+  const el = document.getElementById(id);
+  el.select();
+  el.setSelectionRange(0, 999999);
+  navigator.clipboard.writeText(el.value).then(() => flash(btn)).catch(() => {
+    try { document.execCommand('copy'); flash(btn); } catch (e) {}
+  });
+}
+function copyPlain(btn, text) {
+  navigator.clipboard.writeText(text).then(() => flash(btn)).catch(() => {
+    const t = document.createElement('textarea');
+    t.value = text; document.body.appendChild(t); t.select();
+    try { document.execCommand('copy'); flash(btn); } catch (e) {}
+    document.body.removeChild(t);
+  });
+}
+</script>
+</body>
+</html>
