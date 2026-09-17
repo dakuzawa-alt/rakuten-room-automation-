@@ -1,0 +1,406 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>9/7 夜の選定 - 楽天ROOM投稿リスト</title>
+<style>
+:root {
+  --bg: #f6f3ee;
+  --surface: #ffffff;
+  --ink: #23211d;
+  --ink-soft: #6b6459;
+  --accent: #a8382c;
+  --accent-ink: #fff6f2;
+  --good: #3f7d58;
+  --border: #e4ddd2;
+  --chip-bg: #efe8db;
+  color-scheme: light dark;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #16140f;
+    --surface: #211f1a;
+    --ink: #ece7dc;
+    --ink-soft: #a89e8d;
+    --accent: #e0685a;
+    --accent-ink: #1c0f0c;
+    --good: #6fb98a;
+    --border: #35322a;
+    --chip-bg: #2a2721;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #16140f; --surface: #211f1a; --ink: #ece7dc; --ink-soft: #a89e8d;
+  --accent: #e0685a; --accent-ink: #1c0f0c; --good: #6fb98a; --border: #35322a; --chip-bg: #2a2721;
+}
+:root[data-theme="light"] {
+  --bg: #f6f3ee; --surface: #ffffff; --ink: #23211d; --ink-soft: #6b6459;
+  --accent: #a8382c; --accent-ink: #fff6f2; --good: #3f7d58; --border: #e4ddd2; --chip-bg: #efe8db;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0; background: var(--bg); color: var(--ink);
+  font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Yu Gothic Medium", "Noto Sans JP", sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+.wrap { max-width: 640px; margin: 0 auto; padding: 0 16px 40px; }
+header.top {
+  position: sticky; top: 0; z-index: 5; background: var(--bg);
+  padding: 18px 16px 12px; border-bottom: 1px solid var(--border);
+  display: flex; align-items: baseline; justify-content: space-between; gap: 12px;
+}
+header.top .eyebrow {
+  font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-soft);
+  font-weight: 600; margin: 0 0 2px;
+}
+header.top h1 { font-size: 1.25rem; margin: 0; font-weight: 700; letter-spacing: -0.01em; }
+header.top .count {
+  background: var(--chip-bg); color: var(--ink-soft); font-size: 0.78rem; font-weight: 600;
+  padding: 5px 10px; border-radius: 999px; white-space: nowrap;
+}
+h2.section-title { font-size: 0.95rem; font-weight: 700; margin: 24px 0 12px; }
+.cards { display: flex; flex-direction: column; gap: 16px; margin-top: 18px; }
+.card {
+  background: var(--surface); border: 1px solid var(--border); border-radius: 16px;
+  padding: 16px; display: flex; flex-direction: column; gap: 12px;
+}
+.card.featured { border-color: var(--accent); border-width: 2px; }
+.featured-badge {
+  align-self: flex-start; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.03em;
+  color: var(--accent-ink); background: var(--accent); padding: 3px 9px; border-radius: 999px;
+}
+.card-head { display: flex; gap: 12px; }
+.card-head img {
+  width: 76px; height: 76px; object-fit: cover; border-radius: 10px;
+  border: 1px solid var(--border); background: var(--chip-bg); flex-shrink: 0;
+}
+.card-head .info { min-width: 0; flex: 1; display: flex; flex-direction: column; gap: 4px; }
+.genre-chip {
+  align-self: flex-start; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.03em;
+  color: var(--accent); background: color-mix(in srgb, var(--accent) 12%, transparent);
+  padding: 2px 8px; border-radius: 999px;
+}
+.name {
+  font-weight: 600; font-size: 0.94rem; line-height: 1.4;
+  display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
+}
+.meta-row { display: flex; align-items: baseline; gap: 8px; font-size: 0.82rem; color: var(--ink-soft); }
+.price { font-variant-numeric: tabular-nums; color: var(--ink); font-weight: 700; font-size: 1.05rem; }
+.stars { letter-spacing: -1px; color: var(--accent); }
+.btn-open {
+  display: flex; align-items: center; justify-content: center; gap: 6px;
+  background: var(--accent); color: var(--accent-ink); border: none; border-radius: 11px;
+  padding: 12px; font-weight: 700; font-size: 0.92rem; text-decoration: none;
+}
+.btn-open:active { opacity: 0.85; }
+.url-row {
+  display: flex; align-items: center; gap: 8px;
+  background: var(--chip-bg); border-radius: 9px; padding: 8px 10px;
+}
+.url-row a {
+  flex: 1; min-width: 0; font-size: 0.76rem; color: var(--accent);
+  word-break: break-all; line-height: 1.45; text-decoration: none;
+}
+.url-row a:active { text-decoration: underline; }
+.reason { font-size: 0.8rem; color: var(--ink-soft); }
+.caption-box { border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }
+.caption-head {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 8px 10px; background: var(--chip-bg);
+}
+.caption-head span {
+  font-size: 0.7rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-soft);
+}
+.copy-btn {
+  background: var(--surface); border: 1px solid var(--border); color: var(--ink);
+  border-radius: 7px; padding: 5px 11px; font-size: 0.76rem; font-weight: 600; cursor: pointer;
+}
+.copy-btn:focus-visible, .btn-open:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.copy-btn.copied { background: var(--good); border-color: var(--good); color: #fff; }
+textarea {
+  width: 100%; display: block; border: none; padding: 10px; font-size: 0.85rem; line-height: 1.55;
+  resize: vertical; min-height: 108px; font-family: inherit; background: var(--surface); color: var(--ink);
+}
+textarea.short { min-height: 60px; }
+textarea:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
+footer.note { margin-top: 22px; font-size: 0.76rem; color: var(--ink-soft); text-align: center; line-height: 1.6; }
+@media (prefers-reduced-motion: no-preference) {
+  .copy-btn { transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease; }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <div>
+    <p class="eyebrow">楽天ROOM 投稿リスト</p>
+    <h1>9/7 夜の選定</h1>
+  </div>
+  <span class="count">5件</span>
+</header>
+
+<h2 class="section-title">📦 商品(ROOM用、全5件)</h2>
+<div class="cards">
+<div class="card featured">
+  <div class="card-head">
+    <img src="https://thumbnail.image.rakuten.co.jp/@0_mall/life-inc/cabinet/01_kaden3/tkd50a_350n.jpg?_ex=128x128" alt="【 送料無料 】毛玉クリーナー 毛だまトレタ パワフルタイプ TKD50A-W【 テスコム TESCOM 毛玉取り 毛玉取り器 毛玉取り機　毛だまクリーナー けだまとり 電動 】" loading="lazy">
+    <div class="info">
+      <span class="featured-badge">🔥 本日のThreads/Xピックアップ</span>
+      <span class="genre-chip">掃除洗濯</span>
+      <div class="name">【 送料無料 】毛玉クリーナー 毛だまトレタ パワフルタイプ TKD50A-W【 テスコム TESCOM 毛玉取り 毛玉取り器 毛玉取り機　毛だまクリーナー けだまとり 電動 】</div>
+      <div class="meta-row">
+        <span class="price">¥3,190</span>
+        <span class="stars">★★★★★</span>
+        <span>4.58(8174件)</span>
+      </div>
+    </div>
+  </div>
+  <a class="btn-open" href="https://hb.afl.rakuten.co.jp/hgc/g00qvs5n.dg4fi115.g00qvs5n.dg4fj55b/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Flife-inc%2F101102-1025-0003%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Flife-inc%2Fi%2F10003940%2F&rafcid=wsc_i_is_852e9d1a-8f83-49dc-bc9e-cf56a98e669a" target="_blank" rel="noopener">商品ページを開く ↗</a>
+  <div class="url-row">
+    <a href="https://item.rakuten.co.jp/life-inc/101102-1025-0003/" target="_blank" rel="noopener">https://item.rakuten.co.jp/life-inc/101102-1025-0003/</a>
+    <button class="copy-btn" onclick="copyPlain(this, 'https://item.rakuten.co.jp/life-inc/101102-1025-0003/')" type="button">URLコピー</button>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>楽天ROOM用</span>
+      <button class="copy-btn" onclick="copyText(this, 'room-0')" type="button">コピー</button>
+    </div>
+    <textarea id="room-0" readonly>🧥衣替えで長袖を出したら、袖口も脇も毛玉だらけでげんなりした人へ。
+テスコムの毛玉クリーナー「毛だまトレタ」は、51mmの大型カッターと6枚刃で、大量の衣類を一気にケアできます。コンセント式なので途中で止まらず、ニットやスウェット、毛布まで一往復でごっそり取れます。着たまま使えるアタッチメント付きなので、出かける直前の「あ、毛玉」にもその場で対応できます。
+レビュー8,174件・★4.58という件数が、扱いやすさを裏づけています。
+注意点は、生地を強く押し当てると薄手のものは傷めることがあるので、軽く滑らせるように使うこと。
+3,190円で、去年の服をもう一度おろせる状態に戻しませんか?
+#毛玉クリーナー #毛玉取り #衣替え #テスコム #時短家事 #共働き家庭 #育児パパ #楽天ROOM</textarea>
+  </div>
+  <p class="reason">🔥 今日のピックアップ理由: 衣替えのこの時期に直結し、3,190円で「去年の服が毛玉だらけ」という誰もが経験する場面を解決できる。レビュー8,174件・★4.58と実績も5件で最も厚い。</p>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>Threads用</span>
+      <button class="copy-btn" onclick="copyText(this, 'threads-0')" type="button">コピー</button>
+    </div>
+    <textarea id="threads-0" readonly>衣替えで長袖出したら、袖と脇が毛玉だらけで一瞬たじろいだ。
+毛だまトレタ、51mmの大型カッターで一往復ごっそり取れる。コンセント式だから途中で弱くならないし、ニットもスウェットも毛布もいける。着たまま使えるアタッチメント付きで、出かける直前の「あっ毛玉」にも対応できる。
+レビュー8,174件・★4.58で3,190円。去年の服がもう一回おろせる状態に戻る。
+強く押し付けると薄手は傷むから、軽く滑らせるのがコツ。
+#PR #毛玉クリーナー #衣替え #テスコム #共働き家庭 #育児パパ</textarea>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>X用</span>
+      <button class="copy-btn" onclick="copyText(this, 'x-0')" type="button">コピー</button>
+    </div>
+    <textarea id="x-0" readonly>衣替えで出した長袖が毛玉だらけだったので毛玉クリーナー稼働。
+毛だまトレタは51mm大型カッターで一往復ごっそり。コンセント式で弱くならない。着たまま使えるアタッチメント付き。
+レビュー8,174件・★4.58で3,190円。去年の服が復活する。
+#PR #毛玉クリーナー #衣替え #育児パパ</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="card-head">
+    <img src="https://thumbnail.image.rakuten.co.jp/@0_mall/i-office1/cabinet/ich3/13000001.jpg?_ex=128x128" alt="＼10%OFFセール中★11日1:59まで！／ 除湿シート シングル 除湿マット 吸湿シート センサー付き 快眠ドライプラス TEIJINベルオアシス シングル 布団 ベッドで使える 吸湿シート 防ダニ 調湿マット 湿気取りマット 送料無料 byおすすめ" loading="lazy">
+    <div class="info">
+      
+      <span class="genre-chip">季節もの</span>
+      <div class="name">＼10%OFFセール中★11日1:59まで！／ 除湿シート シングル 除湿マット 吸湿シート センサー付き 快眠ドライプラス TEIJINベルオアシス シングル 布団 ベッドで使える 吸湿シート 防ダニ 調湿マット 湿気取りマット 送料無料 byおすすめ</div>
+      <div class="meta-row">
+        <span class="price">¥4,941</span>
+        <span class="stars">★★★★★</span>
+        <span>4.56(2875件)</span>
+      </div>
+    </div>
+  </div>
+  <a class="btn-open" href="https://hb.afl.rakuten.co.jp/hgc/g00puz8n.dg4fi075.g00puz8n.dg4fj4f3/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fi-office1%2F13000001%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fi-office1%2Fi%2F10039597%2F&rafcid=wsc_i_is_852e9d1a-8f83-49dc-bc9e-cf56a98e669a" target="_blank" rel="noopener">商品ページを開く ↗</a>
+  <div class="url-row">
+    <a href="https://item.rakuten.co.jp/i-office1/13000001/" target="_blank" rel="noopener">https://item.rakuten.co.jp/i-office1/13000001/</a>
+    <button class="copy-btn" onclick="copyPlain(this, 'https://item.rakuten.co.jp/i-office1/13000001/')" type="button">URLコピー</button>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>楽天ROOM用</span>
+      <button class="copy-btn" onclick="copyText(this, 'room-1')" type="button">コピー</button>
+    </div>
+    <textarea id="room-1" readonly>🛏朝、敷布団の裏がしっとりしている季節になってきました。
+この除湿シートは、テイジンのベルオアシスを使った吸湿タイプ。敷布団やマットレスの下に敷いておくだけで、寝ている間の汗を吸ってカビやダニの原因を減らします。湿気がたまるとサインが出るセンサー付きで、干すタイミングが目で分かります。天日に干せば繰り返し使えるので、ランニングコストがかかりません。
+レビュー2,875件・★4.56という評価が、寝具の湿気対策として支持されていることを示しています。
+注意点は、吸湿量には限界があるので、サインが出たら早めに干すこと。梅雨や冬の結露時期はこまめな確認が必要です。
+4,941円で、布団を上げられない日の湿気を受け止めませんか?
+#除湿シート #除湿マット #湿気対策 #寝具 #カビ対策 #共働き家庭 #育児パパ #楽天ROOM</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="card-head">
+    <img src="https://thumbnail.image.rakuten.co.jp/@0_mall/woodypuddy/cabinet/item/thum/g03-2037_m.jpg?_ex=128x128" alt="【特典付き】はじめてのつみき リング10 RING10(リングテン) 知育玩具 1歳 木のおもちゃ 積み木 【 ウッディプッディ WOODYPUDDY 1歳半 2歳 3歳 紐通し 木製 ベビー 赤ちゃん つみき 紐とおし 知育 子供 幼児 クリスマス プレゼント 】" loading="lazy">
+    <div class="info">
+      
+      <span class="genre-chip">育児グッズ</span>
+      <div class="name">【特典付き】はじめてのつみき リング10 RING10(リングテン) 知育玩具 1歳 木のおもちゃ 積み木 【 ウッディプッディ WOODYPUDDY 1歳半 2歳 3歳 紐通し 木製 ベビー 赤ちゃん つみき 紐とおし 知育 子供 幼児 クリスマス プレゼント 】</div>
+      <div class="meta-row">
+        <span class="price">¥5,280</span>
+        <span class="stars">★★★★★</span>
+        <span>4.53(2139件)</span>
+      </div>
+    </div>
+  </div>
+  <a class="btn-open" href="https://hb.afl.rakuten.co.jp/hgc/g00q63xn.dg4fi334.g00q63xn.dg4fjdee/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fwoodypuddy%2Fg03-1171%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fwoodypuddy%2Fi%2F10001340%2F&rafcid=wsc_i_is_852e9d1a-8f83-49dc-bc9e-cf56a98e669a" target="_blank" rel="noopener">商品ページを開く ↗</a>
+  <div class="url-row">
+    <a href="https://item.rakuten.co.jp/woodypuddy/g03-1171/" target="_blank" rel="noopener">https://item.rakuten.co.jp/woodypuddy/g03-1171/</a>
+    <button class="copy-btn" onclick="copyPlain(this, 'https://item.rakuten.co.jp/woodypuddy/g03-1171/')" type="button">URLコピー</button>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>楽天ROOM用</span>
+      <button class="copy-btn" onclick="copyText(this, 'room-2')" type="button">コピー</button>
+    </div>
+    <textarea id="room-2" readonly>🧸1歳の誕生日、何を贈るか毎年悩みます。長く遊べるものがいい。
+ウッディプッディの「はじめてのつみき リング10」は、リング50個と積み木、ソーイング紐がセットになった木のおもちゃ。最初は積んで崩すだけ、慣れたら色分け、さらに紐通しと、1歳半から4歳頃まで遊び方が広がっていきます。角が丸く仕上げてあり、口に入れても安心な塗料が使われています。
+レビュー2,139件・★4.53という評価が、出産祝い・誕生日の定番であることを示しています。
+注意点は、リングが小さめなので、下の子が0歳のうちは誤飲に注意して大人が見ている場面で使うこと。
+5,280円で、何年か使えるおもちゃを一つ選びませんか?
+#つみき #知育玩具 #木のおもちゃ #ウッディプッディ #1歳 #出産祝い #育児パパ #楽天ROOM</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="card-head">
+    <img src="https://thumbnail.image.rakuten.co.jp/@0_mall/mamachi/cabinet/065a/065a-013skud1mama.jpg?_ex=128x128" alt="【全36種】風呂イス おしゃれ 高さ19cm～40cm 手おけ 湯おけ セット バスルーム お風呂用品 椅子 北欧 半身浴 背もたれ カビ防止 ヌメリ お手入れ簡単 バスタイム 快適グッズ バス用品 座りやすい 収納( richell リッチェル HAYUR bath series ハユール バスシリーズ )" loading="lazy">
+    <div class="info">
+      
+      <span class="genre-chip">掃除洗濯</span>
+      <div class="name">【全36種】風呂イス おしゃれ 高さ19cm～40cm 手おけ 湯おけ セット バスルーム お風呂用品 椅子 北欧 半身浴 背もたれ カビ防止 ヌメリ お手入れ簡単 バスタイム 快適グッズ バス用品 座りやすい 収納( richell リッチェル HAYUR bath series ハユール バスシリーズ )</div>
+      <div class="meta-row">
+        <span class="price">¥2,200</span>
+        <span class="stars">★★★★★</span>
+        <span>4.54(2284件)</span>
+      </div>
+    </div>
+  </div>
+  <a class="btn-open" href="https://hb.afl.rakuten.co.jp/hgc/g00r6yzn.dg4ficac.g00r6yzn.dg4fj3a1/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fmamachi%2F065a-013%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fmamachi%2Fi%2F10001514%2F&rafcid=wsc_i_is_852e9d1a-8f83-49dc-bc9e-cf56a98e669a" target="_blank" rel="noopener">商品ページを開く ↗</a>
+  <div class="url-row">
+    <a href="https://item.rakuten.co.jp/mamachi/065a-013/" target="_blank" rel="noopener">https://item.rakuten.co.jp/mamachi/065a-013/</a>
+    <button class="copy-btn" onclick="copyPlain(this, 'https://item.rakuten.co.jp/mamachi/065a-013/')" type="button">URLコピー</button>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>楽天ROOM用</span>
+      <button class="copy-btn" onclick="copyText(this, 'room-3')" type="button">コピー</button>
+    </div>
+    <textarea id="room-3" readonly>🛁お風呂の椅子と洗面器、いつの間にかヌメって黒ずんでいませんか。
+ママチーの風呂イス「ハユール」は、腰かけと手おけがそろうバスシリーズ。高さが19〜40cmから選べるので、子どもを洗うときは低め、自分が使うときは高めと使い分けられます。凹凸が少ないデザインで水切れがよく、カビやヌメリが付きにくいのが日々の掃除をラクにします。
+レビュー2,284件・★4.54という評価が、使い勝手の良さを裏づけています。
+注意点は、サイズ展開が多いので、浴室のスペースと座ったときの膝の角度を考えて高さを選ぶこと。
+2,200円で、黒ずんだ風呂グッズを入れ替えませんか?
+#風呂イス #バスグッズ #お風呂用品 #カビ対策 #バスタイム #共働き家庭 #育児パパ #楽天ROOM</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="card-head">
+    <img src="https://thumbnail.image.rakuten.co.jp/@0_mall/next-online/cabinet/06938766/09640027/km_sum.jpg?_ex=128x128" alt="＼L型タイプ新登場！／ 透明 撥水 拭ける キッチンマット 厚さ1.5mm 防カビ 防水 透明マット L字 L型 270 240 180 120 90 60 45 キッチン マット クリア 床暖房対応 フロアマット 床保護マット 保護シート 滑り止め 滑らない 耐熱 フローリング 新生活" loading="lazy">
+    <div class="info">
+      
+      <span class="genre-chip">キッチン雑貨</span>
+      <div class="name">＼L型タイプ新登場！／ 透明 撥水 拭ける キッチンマット 厚さ1.5mm 防カビ 防水 透明マット L字 L型 270 240 180 120 90 60 45 キッチン マット クリア 床暖房対応 フロアマット 床保護マット 保護シート 滑り止め 滑らない 耐熱 フローリング 新生活</div>
+      <div class="meta-row">
+        <span class="price">¥1,980</span>
+        <span class="stars">★★★★★</span>
+        <span>4.62(4778件)</span>
+      </div>
+    </div>
+  </div>
+  <a class="btn-open" href="https://hb.afl.rakuten.co.jp/hgc/g00tfbhn.dg4fi2f0.g00tfbhn.dg4fj9e7/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fnext-online%2F10000304%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fnext-online%2Fi%2F10000215%2F&rafcid=wsc_i_is_852e9d1a-8f83-49dc-bc9e-cf56a98e669a" target="_blank" rel="noopener">商品ページを開く ↗</a>
+  <div class="url-row">
+    <a href="https://item.rakuten.co.jp/next-online/10000304/" target="_blank" rel="noopener">https://item.rakuten.co.jp/next-online/10000304/</a>
+    <button class="copy-btn" onclick="copyPlain(this, 'https://item.rakuten.co.jp/next-online/10000304/')" type="button">URLコピー</button>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>楽天ROOM用</span>
+      <button class="copy-btn" onclick="copyText(this, 'room-4')" type="button">コピー</button>
+    </div>
+    <textarea id="room-4" readonly>🍳キッチンの床、油はねと水はねで気づけばベタベタ。布のマットは洗うのが面倒でした。
+Nextオンラインの透明キッチンマットは、厚さ1.5mmの防カビ素材。透明なので床のデザインを隠さず、拭くだけで掃除が終わります。L字タイプもあるので、シンクとコンロが直角のキッチンにも隙間なく敷けます。高耐久素材で、椅子を引いても破れにくい作りです。
+レビュー4,778件・★4.62という件数が、拭ける手軽さの評価を示しています。
+注意点は、床暖房の上で使う場合は対応の可否を確認すること。設置前に床とマットの間のホコリを取っておくとズレにくくなります。
+1,980円で、キッチンの床掃除を「拭くだけ」に変えませんか?
+#キッチンマット #透明マット #拭けるマット #掃除の時短 #防カビ #共働き家庭 #育児パパ #楽天ROOM</textarea>
+  </div>
+</div>
+</div>
+
+<h2 class="section-title">💬 今日のあるある投稿ネタ(商品リンクなし)</h2>
+<div class="cards">
+<div class="card">
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>あるある投稿 #1</span>
+      <button class="copy-btn" onclick="copyText(this, 'daily-0')" type="button">コピー</button>
+    </div>
+    <textarea id="daily-0" class="short" readonly>衣替えって、しまうのは一瞬なのに出すのに一日かかる</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>あるある投稿 #2</span>
+      <button class="copy-btn" onclick="copyText(this, 'daily-1')" type="button">コピー</button>
+    </div>
+    <textarea id="daily-1" class="short" readonly>子どもの「見て見て」に全部本気で反応してたら仕事の集中が続かない。適度に流す罪悪感と戦ってる</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>あるある投稿 #3</span>
+      <button class="copy-btn" onclick="copyText(this, 'daily-2')" type="button">コピー</button>
+    </div>
+    <textarea id="daily-2" class="short" readonly>夜、洗い物を明日の自分に託して寝る。明日の自分はいつも被害者</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>あるある投稿 #4</span>
+      <button class="copy-btn" onclick="copyText(this, 'daily-3')" type="button">コピー</button>
+    </div>
+    <textarea id="daily-3" class="short" readonly>休日の朝、子どもより早く起きて静かにコーヒー飲む15分のために早寝してる節がある☕
+#育児パパ</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>あるある投稿 #5</span>
+      <button class="copy-btn" onclick="copyText(this, 'daily-4')" type="button">コピー</button>
+    </div>
+    <textarea id="daily-4" class="short" readonly>保育園の送り、時間ギリギリなのに靴を左右逆に履こうとするのはなぜなんだ</textarea>
+  </div>
+</div>
+</div>
+
+<footer class="note">商品ページを確認し、投稿文をコピーして手動で投稿してください。<br>Threads/Xの商品紹介は1日1件・あるある投稿と織り交ぜてスパム判定を避けてください。<br>価格・レビューは選定時点の実データです。</footer>
+</div>
+<script>
+function flash(btn) {
+  const original = btn.textContent;
+  btn.textContent = 'コピーしました';
+  btn.classList.add('copied');
+  setTimeout(() => { btn.textContent = original; btn.classList.remove('copied'); }, 1500);
+}
+function copyText(btn, id) {
+  const el = document.getElementById(id);
+  el.select();
+  el.setSelectionRange(0, 999999);
+  navigator.clipboard.writeText(el.value).then(() => flash(btn)).catch(() => {
+    try { document.execCommand('copy'); flash(btn); } catch (e) {}
+  });
+}
+function copyPlain(btn, text) {
+  navigator.clipboard.writeText(text).then(() => flash(btn)).catch(() => {
+    const t = document.createElement('textarea');
+    t.value = text; document.body.appendChild(t); t.select();
+    try { document.execCommand('copy'); flash(btn); } catch (e) {}
+    document.body.removeChild(t);
+  });
+}
+</script>
+</body>
+</html>

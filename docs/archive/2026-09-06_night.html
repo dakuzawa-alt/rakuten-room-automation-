@@ -1,0 +1,406 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>9/6 夜の選定 - 楽天ROOM投稿リスト</title>
+<style>
+:root {
+  --bg: #f6f3ee;
+  --surface: #ffffff;
+  --ink: #23211d;
+  --ink-soft: #6b6459;
+  --accent: #a8382c;
+  --accent-ink: #fff6f2;
+  --good: #3f7d58;
+  --border: #e4ddd2;
+  --chip-bg: #efe8db;
+  color-scheme: light dark;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #16140f;
+    --surface: #211f1a;
+    --ink: #ece7dc;
+    --ink-soft: #a89e8d;
+    --accent: #e0685a;
+    --accent-ink: #1c0f0c;
+    --good: #6fb98a;
+    --border: #35322a;
+    --chip-bg: #2a2721;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #16140f; --surface: #211f1a; --ink: #ece7dc; --ink-soft: #a89e8d;
+  --accent: #e0685a; --accent-ink: #1c0f0c; --good: #6fb98a; --border: #35322a; --chip-bg: #2a2721;
+}
+:root[data-theme="light"] {
+  --bg: #f6f3ee; --surface: #ffffff; --ink: #23211d; --ink-soft: #6b6459;
+  --accent: #a8382c; --accent-ink: #fff6f2; --good: #3f7d58; --border: #e4ddd2; --chip-bg: #efe8db;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0; background: var(--bg); color: var(--ink);
+  font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Yu Gothic Medium", "Noto Sans JP", sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+.wrap { max-width: 640px; margin: 0 auto; padding: 0 16px 40px; }
+header.top {
+  position: sticky; top: 0; z-index: 5; background: var(--bg);
+  padding: 18px 16px 12px; border-bottom: 1px solid var(--border);
+  display: flex; align-items: baseline; justify-content: space-between; gap: 12px;
+}
+header.top .eyebrow {
+  font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-soft);
+  font-weight: 600; margin: 0 0 2px;
+}
+header.top h1 { font-size: 1.25rem; margin: 0; font-weight: 700; letter-spacing: -0.01em; }
+header.top .count {
+  background: var(--chip-bg); color: var(--ink-soft); font-size: 0.78rem; font-weight: 600;
+  padding: 5px 10px; border-radius: 999px; white-space: nowrap;
+}
+h2.section-title { font-size: 0.95rem; font-weight: 700; margin: 24px 0 12px; }
+.cards { display: flex; flex-direction: column; gap: 16px; margin-top: 18px; }
+.card {
+  background: var(--surface); border: 1px solid var(--border); border-radius: 16px;
+  padding: 16px; display: flex; flex-direction: column; gap: 12px;
+}
+.card.featured { border-color: var(--accent); border-width: 2px; }
+.featured-badge {
+  align-self: flex-start; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.03em;
+  color: var(--accent-ink); background: var(--accent); padding: 3px 9px; border-radius: 999px;
+}
+.card-head { display: flex; gap: 12px; }
+.card-head img {
+  width: 76px; height: 76px; object-fit: cover; border-radius: 10px;
+  border: 1px solid var(--border); background: var(--chip-bg); flex-shrink: 0;
+}
+.card-head .info { min-width: 0; flex: 1; display: flex; flex-direction: column; gap: 4px; }
+.genre-chip {
+  align-self: flex-start; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.03em;
+  color: var(--accent); background: color-mix(in srgb, var(--accent) 12%, transparent);
+  padding: 2px 8px; border-radius: 999px;
+}
+.name {
+  font-weight: 600; font-size: 0.94rem; line-height: 1.4;
+  display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
+}
+.meta-row { display: flex; align-items: baseline; gap: 8px; font-size: 0.82rem; color: var(--ink-soft); }
+.price { font-variant-numeric: tabular-nums; color: var(--ink); font-weight: 700; font-size: 1.05rem; }
+.stars { letter-spacing: -1px; color: var(--accent); }
+.btn-open {
+  display: flex; align-items: center; justify-content: center; gap: 6px;
+  background: var(--accent); color: var(--accent-ink); border: none; border-radius: 11px;
+  padding: 12px; font-weight: 700; font-size: 0.92rem; text-decoration: none;
+}
+.btn-open:active { opacity: 0.85; }
+.url-row {
+  display: flex; align-items: center; gap: 8px;
+  background: var(--chip-bg); border-radius: 9px; padding: 8px 10px;
+}
+.url-row a {
+  flex: 1; min-width: 0; font-size: 0.76rem; color: var(--accent);
+  word-break: break-all; line-height: 1.45; text-decoration: none;
+}
+.url-row a:active { text-decoration: underline; }
+.reason { font-size: 0.8rem; color: var(--ink-soft); }
+.caption-box { border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }
+.caption-head {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 8px 10px; background: var(--chip-bg);
+}
+.caption-head span {
+  font-size: 0.7rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-soft);
+}
+.copy-btn {
+  background: var(--surface); border: 1px solid var(--border); color: var(--ink);
+  border-radius: 7px; padding: 5px 11px; font-size: 0.76rem; font-weight: 600; cursor: pointer;
+}
+.copy-btn:focus-visible, .btn-open:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.copy-btn.copied { background: var(--good); border-color: var(--good); color: #fff; }
+textarea {
+  width: 100%; display: block; border: none; padding: 10px; font-size: 0.85rem; line-height: 1.55;
+  resize: vertical; min-height: 108px; font-family: inherit; background: var(--surface); color: var(--ink);
+}
+textarea.short { min-height: 60px; }
+textarea:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
+footer.note { margin-top: 22px; font-size: 0.76rem; color: var(--ink-soft); text-align: center; line-height: 1.6; }
+@media (prefers-reduced-motion: no-preference) {
+  .copy-btn { transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease; }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <div>
+    <p class="eyebrow">楽天ROOM 投稿リスト</p>
+    <h1>9/6 夜の選定</h1>
+  </div>
+  <span class="count">5件</span>
+</header>
+
+<h2 class="section-title">📦 商品(ROOM用、全5件)</h2>
+<div class="cards">
+<div class="card featured">
+  <div class="card-head">
+    <img src="https://thumbnail.image.rakuten.co.jp/@0_mall/secupcs/cabinet/1st-img/red/xbtb.jpg?_ex=128x128" alt="今だけ 最大10％OFF【 ベビー評価雑誌LDK 2年連続受賞 】届いてすぐ使える ベビーモニター モニター付き wifi不要 スマホ連動 デュアルタイプ 赤ちゃん 育児 ベビーカメラ 見守りカメラ 温度 音声 会話 暗視 出産祝い ギフト XB53K TB53K【 SecuSTATION セキュベビー 】" loading="lazy">
+    <div class="info">
+      <span class="featured-badge">🔥 本日のThreads/Xピックアップ</span>
+      <span class="genre-chip">育児グッズ</span>
+      <div class="name">今だけ 最大10％OFF【 ベビー評価雑誌LDK 2年連続受賞 】届いてすぐ使える ベビーモニター モニター付き wifi不要 スマホ連動 デュアルタイプ 赤ちゃん 育児 ベビーカメラ 見守りカメラ 温度 音声 会話 暗視 出産祝い ギフト XB53K TB53K【 SecuSTATION セキュベビー 】</div>
+      <div class="meta-row">
+        <span class="price">¥11,609</span>
+        <span class="stars">★★★★★</span>
+        <span>4.52(7917件)</span>
+      </div>
+    </div>
+  </div>
+  <a class="btn-open" href="https://hb.afl.rakuten.co.jp/hgc/g00rvm0n.dg4fi473.g00rvm0n.dg4fj2c4/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fsecupcs%2F001-533%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fsecupcs%2Fi%2F10000025%2F&rafcid=wsc_i_is_852e9d1a-8f83-49dc-bc9e-cf56a98e669a" target="_blank" rel="noopener">商品ページを開く ↗</a>
+  <div class="url-row">
+    <a href="https://item.rakuten.co.jp/secupcs/001-533/" target="_blank" rel="noopener">https://item.rakuten.co.jp/secupcs/001-533/</a>
+    <button class="copy-btn" onclick="copyPlain(this, 'https://item.rakuten.co.jp/secupcs/001-533/')" type="button">URLコピー</button>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>楽天ROOM用</span>
+      <button class="copy-btn" onclick="copyText(this, 'room-0')" type="button">コピー</button>
+    </div>
+    <textarea id="room-0" readonly>👶寝室で寝ている子どもの様子、リビングから何度も見に行っていませんか。
+このベビーモニターは、Wi-Fi不要でカメラとモニターがセットになったタイプ。設定はほぼ不要で、電源を入れればすぐに映ります。5インチ画面で表情まで見え、マイク・スピーカー付きなので声かけもできます。暗い部屋でも映る暗視モードと、動きや音に反応する通知機能つき。スマホからも確認できるので、寝かしつけ後に自分の時間を取り戻せました。
+レビュー7,917件・★4.52という評価が、多くの家庭で頼られている証拠です。
+注意点は、microSDは別売りで最大128GB・Class10以上が必要なこと。録画も使うなら先に用意してください。
+11,609円で、見に行く回数を減らしませんか?
+#ベビーモニター #見守りカメラ #wifi不要 #育児グッズ #夜泣き対策 #共働き家庭 #育児パパ #楽天ROOM</textarea>
+  </div>
+  <p class="reason">🔥 今日のピックアップ理由: 11,609円で「寝室を何度も見に行く」という夜の育児の負担に直結し、レビュー7,917件・★4.52と5件の中で実績が突出しているため。</p>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>Threads用</span>
+      <button class="copy-btn" onclick="copyText(this, 'threads-0')" type="button">コピー</button>
+    </div>
+    <textarea id="threads-0" readonly>寝かしつけたあと、子どもが息してるか気になってリビングから何度も見に行くやつ、しばらくやってた。
+ベビーモニター入れたら回数が激減した。Wi-Fi不要でカメラとモニターがセット、電源入れたらすぐ映る。暗視で夜も見えるし、動きや音で通知も来る。声かけもできる。
+11,609円。レビュー7,917件・★4.52。
+microSDは別売りだから、録画も使うなら先に用意しとくといい👶
+#PR #ベビーモニター #見守りカメラ #育児パパ #共働き家庭</textarea>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>X用</span>
+      <button class="copy-btn" onclick="copyText(this, 'x-0')" type="button">コピー</button>
+    </div>
+    <textarea id="x-0" readonly>寝かしつけ後に子どもが息してるか気になって何度も見に行くやつ、ベビーモニターで回数激減した。
+Wi-Fi不要でカメラとモニターがセット、電源入れたらすぐ映る。暗視・通知・声かけ対応。
+11,609円、レビュー7,917件★4.52。microSDは別売り👶
+#PR #ベビーモニター #育児パパ</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="card-head">
+    <img src="https://thumbnail.image.rakuten.co.jp/@0_mall/hismileshop/cabinet/07366153/1.jpg?_ex=128x128" alt="ヨーグルトメーカー 25〜69℃ 温度調節 1〜99時間タイマー設定 コンパクト ヨーグルト 作る 甘酒 麹 温泉卵 メーカー カスピ海 甘酒メーカー 低温 調理 鶏ハム カスピ海ヨーグルトメーカー 低温調理器 ギリシャヨーグルト 専用容器 計量カップ スプーン 牛乳パック 蓋 セット" loading="lazy">
+    <div class="info">
+      
+      <span class="genre-chip">時短家電</span>
+      <div class="name">ヨーグルトメーカー 25〜69℃ 温度調節 1〜99時間タイマー設定 コンパクト ヨーグルト 作る 甘酒 麹 温泉卵 メーカー カスピ海 甘酒メーカー 低温 調理 鶏ハム カスピ海ヨーグルトメーカー 低温調理器 ギリシャヨーグルト 専用容器 計量カップ スプーン 牛乳パック 蓋 セット</div>
+      <div class="meta-row">
+        <span class="price">¥4,480</span>
+        <span class="stars">★★★★★</span>
+        <span>4.79(175件)</span>
+      </div>
+    </div>
+  </div>
+  <a class="btn-open" href="https://hb.afl.rakuten.co.jp/hgc/g00tgxfn.dg4fi9dd.g00tgxfn.dg4fj541/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fhismileshop%2F0005%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fhismileshop%2Fi%2F10000005%2F&rafcid=wsc_i_is_852e9d1a-8f83-49dc-bc9e-cf56a98e669a" target="_blank" rel="noopener">商品ページを開く ↗</a>
+  <div class="url-row">
+    <a href="https://item.rakuten.co.jp/hismileshop/0005/" target="_blank" rel="noopener">https://item.rakuten.co.jp/hismileshop/0005/</a>
+    <button class="copy-btn" onclick="copyPlain(this, 'https://item.rakuten.co.jp/hismileshop/0005/')" type="button">URLコピー</button>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>楽天ROOM用</span>
+      <button class="copy-btn" onclick="copyText(this, 'room-1')" type="button">コピー</button>
+    </div>
+    <textarea id="room-1" readonly>🥛毎朝ヨーグルトを買っていて、けっこう重いし切らすと困る、という人へ。
+このヨーグルトメーカーは、牛乳パックにそのまま種菌を入れてセットするだけ。1000mlパック対応で、専用容器を洗う手間もありません。25〜69℃の1℃刻み＋1〜99時間タイマーで、ヨーグルトのほか甘酒、塩麹、温泉卵、鶏ハムまで作れます。市販品より1回あたりのコストが下がるので、家族で食べる家庭ほど差が出ます。
+レビュー175件・★4.79と、件数はこれからですが評価は高めです。
+注意点は、発酵には数時間かかるので、寝る前に仕込んで朝に取り出す使い方が基本になること。
+4,480円で、朝のヨーグルトを切らさない仕組みにしませんか?
+#ヨーグルトメーカー #甘酒メーカー #発酵食品 #作り置き #時短家事 #共働き家庭 #育児パパ #楽天ROOM</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="card-head">
+    <img src="https://thumbnail.image.rakuten.co.jp/@0_mall/hirakata-g/cabinet/shohin/ntg40200t5.jpg?_ex=128x128" alt="10%OFF★楽天1位 耐震マット 転倒防止 強力 取付け簡単 安心感が得られる 新生活 家具転倒防止★4x20cm-t5mm 2枚 耐震 ジェル 地震 転倒 防止 対応 震度7 マット 対策 グッズ 防振マット 防音マット 地震対策グッズ 耐震グッズ 耐震ジェル テレビ転倒防止 冷蔵庫" loading="lazy">
+    <div class="info">
+      
+      <span class="genre-chip">防災 安全</span>
+      <div class="name">10%OFF★楽天1位 耐震マット 転倒防止 強力 取付け簡単 安心感が得られる 新生活 家具転倒防止★4x20cm-t5mm 2枚 耐震 ジェル 地震 転倒 防止 対応 震度7 マット 対策 グッズ 防振マット 防音マット 地震対策グッズ 耐震グッズ 耐震ジェル テレビ転倒防止 冷蔵庫</div>
+      <div class="meta-row">
+        <span class="price">¥2,570</span>
+        <span class="stars">★★★★★</span>
+        <span>4.64(160件)</span>
+      </div>
+    </div>
+  </div>
+  <a class="btn-open" href="https://hb.afl.rakuten.co.jp/hgc/g00rzw4n.dg4fi3c7.g00rzw4n.dg4fj1f4/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fhirakata-g%2F60800000%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fhirakata-g%2Fi%2F10000184%2F&rafcid=wsc_i_is_852e9d1a-8f83-49dc-bc9e-cf56a98e669a" target="_blank" rel="noopener">商品ページを開く ↗</a>
+  <div class="url-row">
+    <a href="https://item.rakuten.co.jp/hirakata-g/60800000/" target="_blank" rel="noopener">https://item.rakuten.co.jp/hirakata-g/60800000/</a>
+    <button class="copy-btn" onclick="copyPlain(this, 'https://item.rakuten.co.jp/hirakata-g/60800000/')" type="button">URLコピー</button>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>楽天ROOM用</span>
+      <button class="copy-btn" onclick="copyText(this, 'room-2')" type="button">コピー</button>
+    </div>
+    <textarea id="room-2" readonly>🔩地震のたびに「あの棚、倒れたら子どもの上だ」と思いながら、対策を先延ばしにしていませんか。
+この耐震ジェルマットは、家具や家電の底面に貼るだけ。4×20cmが2枚入りで、震度7までの揺れに対応するとされています。ネジも工具も不要で、賃貸でも壁や家具を傷つけません。透明なので貼っても目立たず、テレビ台やレンジ、本棚の四隅に使えます。
+レビュー160件・★4.64と、件数は控えめですが評価は安定しています。
+注意点は、耐荷重が決まっているので、重い家具ほど枚数を増やして四隅に分散させること。ホコリの上には貼れないので設置面を拭いてから使ってください。
+2,570円で、後回しにしていた対策をひとつ済ませませんか?
+#耐震マット #転倒防止 #地震対策 #防災 #賃貸OK #共働き家庭 #育児パパ #楽天ROOM</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="card-head">
+    <img src="https://thumbnail.image.rakuten.co.jp/@0_mall/shimoyama-onlineshop/cabinet/07076225/imgrc0077763498.jpg?_ex=128x128" alt="全国送料無料 レビュー特典 伸縮タイプ シンク下伸縮棚 2段 キッチンラック伸縮棚 棚 シンク下 収納 キッチン収納 組立式 シンク下収納 キッチン収納 流し台下 ラック 洗面台下 収納 シンク下収納ラック" loading="lazy">
+    <div class="info">
+      
+      <span class="genre-chip">収納整理</span>
+      <div class="name">全国送料無料 レビュー特典 伸縮タイプ シンク下伸縮棚 2段 キッチンラック伸縮棚 棚 シンク下 収納 キッチン収納 組立式 シンク下収納 キッチン収納 流し台下 ラック 洗面台下 収納 シンク下収納ラック</div>
+      <div class="meta-row">
+        <span class="price">¥2,180</span>
+        <span class="stars">★★★★★</span>
+        <span>4.61(588件)</span>
+      </div>
+    </div>
+  </div>
+  <a class="btn-open" href="https://hb.afl.rakuten.co.jp/hgc/g00ssg5n.dg4fi30e.g00ssg5n.dg4fje27/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fshimoyama-onlineshop%2F1908pm003%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fshimoyama-onlineshop%2Fi%2F10001088%2F&rafcid=wsc_i_is_852e9d1a-8f83-49dc-bc9e-cf56a98e669a" target="_blank" rel="noopener">商品ページを開く ↗</a>
+  <div class="url-row">
+    <a href="https://item.rakuten.co.jp/shimoyama-onlineshop/1908pm003/" target="_blank" rel="noopener">https://item.rakuten.co.jp/shimoyama-onlineshop/1908pm003/</a>
+    <button class="copy-btn" onclick="copyPlain(this, 'https://item.rakuten.co.jp/shimoyama-onlineshop/1908pm003/')" type="button">URLコピー</button>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>楽天ROOM用</span>
+      <button class="copy-btn" onclick="copyText(this, 'room-3')" type="button">コピー</button>
+    </div>
+    <textarea id="room-3" readonly>🚰シンク下の収納、排水管をよけながら物を積んで、奥が完全に死んでいませんか。
+この伸縮棚は、幅46〜73.5cmまで調整でき、排水管を避けて2段の棚をつくれます。棚板の位置も動かせるので、背の高いボトルや調味料ストックに合わせられます。組立式ですが工具は不要で、スチール＋樹脂コーティングでサビにくい作りです。上下各4kgまで載せられます。
+レビュー588件・★4.61という評価が、扱いやすさを裏づけています。
+注意点は、シンク下の内寸(幅・奥行き・高さ)と排水管の位置を必ず採寸してから選ぶこと。
+2,180円で、死んでいた空間を2段ぶん取り戻しませんか?
+#シンク下収納 #伸縮棚 #キッチン収納 #デッドスペース活用 #共働き家庭 #育児パパ #楽天ROOM</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="card-head">
+    <img src="https://thumbnail.image.rakuten.co.jp/@0_mall/sa-shop/cabinet/item/06113006/top_20211130.jpg?_ex=128x128" alt="ReOra 旧アドワン 電動歯ブラシ 音波式歯ブラシ 充電式 除菌器 ホワイトニング 子供用 こども用 家族 はみがき はぶらし 振動 電動歯ぶらし デンタルケア 防水 安価 ハブラシ やわらかめ タイマー セット 大人用　スタンド 専用ケース 矯正 白 宅配便" loading="lazy">
+    <div class="info">
+      
+      <span class="genre-chip">身だしなみ</span>
+      <div class="name">ReOra 旧アドワン 電動歯ブラシ 音波式歯ブラシ 充電式 除菌器 ホワイトニング 子供用 こども用 家族 はみがき はぶらし 振動 電動歯ぶらし デンタルケア 防水 安価 ハブラシ やわらかめ タイマー セット 大人用　スタンド 専用ケース 矯正 白 宅配便</div>
+      <div class="meta-row">
+        <span class="price">¥5,990</span>
+        <span class="stars">★★★★★</span>
+        <span>4.52(5402件)</span>
+      </div>
+    </div>
+  </div>
+  <a class="btn-open" href="https://hb.afl.rakuten.co.jp/hgc/g00scaon.dg4fi57d.g00scaon.dg4fjcdf/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fsa-shop%2F4589530571144%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fsa-shop%2Fi%2F10000015%2F&rafcid=wsc_i_is_852e9d1a-8f83-49dc-bc9e-cf56a98e669a" target="_blank" rel="noopener">商品ページを開く ↗</a>
+  <div class="url-row">
+    <a href="https://item.rakuten.co.jp/sa-shop/4589530571144/" target="_blank" rel="noopener">https://item.rakuten.co.jp/sa-shop/4589530571144/</a>
+    <button class="copy-btn" onclick="copyPlain(this, 'https://item.rakuten.co.jp/sa-shop/4589530571144/')" type="button">URLコピー</button>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>楽天ROOM用</span>
+      <button class="copy-btn" onclick="copyText(this, 'room-4')" type="button">コピー</button>
+    </div>
+    <textarea id="room-4" readonly>🦷手磨きだと磨き残しが多いと歯科で言われて、電動に替えることにしました。
+このReOra(旧アドワン)の音波式電動歯ブラシは、充電式で家族で使える価格帯。替えブラシの種類が豊富で、大人用とやわらかめの子ども用を1本の本体で使い分けられます。防水なので浴室でも使え、ブラシ除菌器も付いています。高価格帯の機種にこだわらなければ、電動デビューにちょうどいい一台です。
+レビュー5,402件・★4.52という件数が、この価格帯での定番であることを示しています。
+注意点は、替えブラシは消耗品なので、ランニングコストを含めて考えること。
+5,990円で、家族の歯磨きをまとめてアップデートしませんか?
+#電動歯ブラシ #音波式歯ブラシ #デンタルケア #家族で共用 #身だしなみ #育児パパ #楽天ROOM</textarea>
+  </div>
+</div>
+</div>
+
+<h2 class="section-title">💬 今日のあるある投稿ネタ(商品リンクなし)</h2>
+<div class="cards">
+<div class="card">
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>あるある投稿 #1</span>
+      <button class="copy-btn" onclick="copyText(this, 'daily-0')" type="button">コピー</button>
+    </div>
+    <textarea id="daily-0" class="short" readonly>22時、やっと座れた。もう何もしたくない</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>あるある投稿 #2</span>
+      <button class="copy-btn" onclick="copyText(this, 'daily-1')" type="button">コピー</button>
+    </div>
+    <textarea id="daily-1" class="short" readonly>子どもが「これ何?」を一日中言ってくる時期、こっちの語彙力が試されてる</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>あるある投稿 #3</span>
+      <button class="copy-btn" onclick="copyText(this, 'daily-2')" type="button">コピー</button>
+    </div>
+    <textarea id="daily-2" class="short" readonly>週末に作り置きしようと意気込むけど、結局子どもの相手で半分も終わらないまま日曜の夜になる🍳
+#共働き家庭</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>あるある投稿 #4</span>
+      <button class="copy-btn" onclick="copyText(this, 'daily-3')" type="button">コピー</button>
+    </div>
+    <textarea id="daily-3" class="short" readonly>保育園の連絡帳、毎朝「変わりありません」しか書くことがない日々が一番平和なんだと最近わかってきた</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>あるある投稿 #5</span>
+      <button class="copy-btn" onclick="copyText(this, 'daily-4')" type="button">コピー</button>
+    </div>
+    <textarea id="daily-4" class="short" readonly>子どもを寝かせるために暗い部屋で15分。自分が寝落ちする確率がかなり高い</textarea>
+  </div>
+</div>
+</div>
+
+<footer class="note">商品ページを確認し、投稿文をコピーして手動で投稿してください。<br>Threads/Xの商品紹介は1日1件・あるある投稿と織り交ぜてスパム判定を避けてください。<br>価格・レビューは選定時点の実データです。</footer>
+</div>
+<script>
+function flash(btn) {
+  const original = btn.textContent;
+  btn.textContent = 'コピーしました';
+  btn.classList.add('copied');
+  setTimeout(() => { btn.textContent = original; btn.classList.remove('copied'); }, 1500);
+}
+function copyText(btn, id) {
+  const el = document.getElementById(id);
+  el.select();
+  el.setSelectionRange(0, 999999);
+  navigator.clipboard.writeText(el.value).then(() => flash(btn)).catch(() => {
+    try { document.execCommand('copy'); flash(btn); } catch (e) {}
+  });
+}
+function copyPlain(btn, text) {
+  navigator.clipboard.writeText(text).then(() => flash(btn)).catch(() => {
+    const t = document.createElement('textarea');
+    t.value = text; document.body.appendChild(t); t.select();
+    try { document.execCommand('copy'); flash(btn); } catch (e) {}
+    document.body.removeChild(t);
+  });
+}
+</script>
+</body>
+</html>

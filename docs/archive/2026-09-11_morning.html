@@ -1,0 +1,406 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>9/11 朝の選定 - 楽天ROOM投稿リスト</title>
+<style>
+:root {
+  --bg: #f6f3ee;
+  --surface: #ffffff;
+  --ink: #23211d;
+  --ink-soft: #6b6459;
+  --accent: #a8382c;
+  --accent-ink: #fff6f2;
+  --good: #3f7d58;
+  --border: #e4ddd2;
+  --chip-bg: #efe8db;
+  color-scheme: light dark;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #16140f;
+    --surface: #211f1a;
+    --ink: #ece7dc;
+    --ink-soft: #a89e8d;
+    --accent: #e0685a;
+    --accent-ink: #1c0f0c;
+    --good: #6fb98a;
+    --border: #35322a;
+    --chip-bg: #2a2721;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #16140f; --surface: #211f1a; --ink: #ece7dc; --ink-soft: #a89e8d;
+  --accent: #e0685a; --accent-ink: #1c0f0c; --good: #6fb98a; --border: #35322a; --chip-bg: #2a2721;
+}
+:root[data-theme="light"] {
+  --bg: #f6f3ee; --surface: #ffffff; --ink: #23211d; --ink-soft: #6b6459;
+  --accent: #a8382c; --accent-ink: #fff6f2; --good: #3f7d58; --border: #e4ddd2; --chip-bg: #efe8db;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0; background: var(--bg); color: var(--ink);
+  font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Yu Gothic Medium", "Noto Sans JP", sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+.wrap { max-width: 640px; margin: 0 auto; padding: 0 16px 40px; }
+header.top {
+  position: sticky; top: 0; z-index: 5; background: var(--bg);
+  padding: 18px 16px 12px; border-bottom: 1px solid var(--border);
+  display: flex; align-items: baseline; justify-content: space-between; gap: 12px;
+}
+header.top .eyebrow {
+  font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-soft);
+  font-weight: 600; margin: 0 0 2px;
+}
+header.top h1 { font-size: 1.25rem; margin: 0; font-weight: 700; letter-spacing: -0.01em; }
+header.top .count {
+  background: var(--chip-bg); color: var(--ink-soft); font-size: 0.78rem; font-weight: 600;
+  padding: 5px 10px; border-radius: 999px; white-space: nowrap;
+}
+h2.section-title { font-size: 0.95rem; font-weight: 700; margin: 24px 0 12px; }
+.cards { display: flex; flex-direction: column; gap: 16px; margin-top: 18px; }
+.card {
+  background: var(--surface); border: 1px solid var(--border); border-radius: 16px;
+  padding: 16px; display: flex; flex-direction: column; gap: 12px;
+}
+.card.featured { border-color: var(--accent); border-width: 2px; }
+.featured-badge {
+  align-self: flex-start; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.03em;
+  color: var(--accent-ink); background: var(--accent); padding: 3px 9px; border-radius: 999px;
+}
+.card-head { display: flex; gap: 12px; }
+.card-head img {
+  width: 76px; height: 76px; object-fit: cover; border-radius: 10px;
+  border: 1px solid var(--border); background: var(--chip-bg); flex-shrink: 0;
+}
+.card-head .info { min-width: 0; flex: 1; display: flex; flex-direction: column; gap: 4px; }
+.genre-chip {
+  align-self: flex-start; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.03em;
+  color: var(--accent); background: color-mix(in srgb, var(--accent) 12%, transparent);
+  padding: 2px 8px; border-radius: 999px;
+}
+.name {
+  font-weight: 600; font-size: 0.94rem; line-height: 1.4;
+  display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
+}
+.meta-row { display: flex; align-items: baseline; gap: 8px; font-size: 0.82rem; color: var(--ink-soft); }
+.price { font-variant-numeric: tabular-nums; color: var(--ink); font-weight: 700; font-size: 1.05rem; }
+.stars { letter-spacing: -1px; color: var(--accent); }
+.btn-open {
+  display: flex; align-items: center; justify-content: center; gap: 6px;
+  background: var(--accent); color: var(--accent-ink); border: none; border-radius: 11px;
+  padding: 12px; font-weight: 700; font-size: 0.92rem; text-decoration: none;
+}
+.btn-open:active { opacity: 0.85; }
+.url-row {
+  display: flex; align-items: center; gap: 8px;
+  background: var(--chip-bg); border-radius: 9px; padding: 8px 10px;
+}
+.url-row a {
+  flex: 1; min-width: 0; font-size: 0.76rem; color: var(--accent);
+  word-break: break-all; line-height: 1.45; text-decoration: none;
+}
+.url-row a:active { text-decoration: underline; }
+.reason { font-size: 0.8rem; color: var(--ink-soft); }
+.caption-box { border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }
+.caption-head {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 8px 10px; background: var(--chip-bg);
+}
+.caption-head span {
+  font-size: 0.7rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-soft);
+}
+.copy-btn {
+  background: var(--surface); border: 1px solid var(--border); color: var(--ink);
+  border-radius: 7px; padding: 5px 11px; font-size: 0.76rem; font-weight: 600; cursor: pointer;
+}
+.copy-btn:focus-visible, .btn-open:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.copy-btn.copied { background: var(--good); border-color: var(--good); color: #fff; }
+textarea {
+  width: 100%; display: block; border: none; padding: 10px; font-size: 0.85rem; line-height: 1.55;
+  resize: vertical; min-height: 108px; font-family: inherit; background: var(--surface); color: var(--ink);
+}
+textarea.short { min-height: 60px; }
+textarea:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
+footer.note { margin-top: 22px; font-size: 0.76rem; color: var(--ink-soft); text-align: center; line-height: 1.6; }
+@media (prefers-reduced-motion: no-preference) {
+  .copy-btn { transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease; }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <div>
+    <p class="eyebrow">楽天ROOM 投稿リスト</p>
+    <h1>9/11 朝の選定</h1>
+  </div>
+  <span class="count">5件</span>
+</header>
+
+<h2 class="section-title">📦 商品(ROOM用、全5件)</h2>
+<div class="cards">
+<div class="card">
+  <div class="card-head">
+    <img src="https://shop.r10s.jp/hangyo/cabinet/2022/compass1655260812.jpg" alt="水筒カバー 大きめ 0.8L 1L ボトルカバー ペットボトルカバー 水筒ケース 持ち運び 通勤 通学 子供 大人 おしゃれ かわいい キャンプ レジャー ペットボトルカバー保冷" loading="lazy">
+    <div class="info">
+      
+      <span class="genre-chip">キッチン雑貨</span>
+      <div class="name">水筒カバー 大きめ 0.8L 1L ボトルカバー ペットボトルカバー 水筒ケース 持ち運び 通勤 通学 子供 大人 おしゃれ かわいい キャンプ レジャー ペットボトルカバー保冷</div>
+      <div class="meta-row">
+        <span class="price">¥1,190</span>
+        <span class="stars">★★★★☆</span>
+        <span>4.31(557件)</span>
+      </div>
+    </div>
+  </div>
+  <a class="btn-open" href="https://item.rakuten.co.jp/hangyo/10001233/" target="_blank" rel="noopener">商品ページを開く ↗</a>
+  <div class="url-row">
+    <a href="https://item.rakuten.co.jp/hangyo/10001233/" target="_blank" rel="noopener">https://item.rakuten.co.jp/hangyo/10001233/</a>
+    <button class="copy-btn" onclick="copyPlain(this, 'https://item.rakuten.co.jp/hangyo/10001233/')" type="button">URLコピー</button>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>楽天ROOM用</span>
+      <button class="copy-btn" onclick="copyText(this, 'room-0')" type="button">コピー</button>
+    </div>
+    <textarea id="room-0" readonly>🚰水筒を持ち歩くと、結露でカバンの中がびしょ濡れになっていませんか。
+このボトルカバーは伸縮性のあるゴム製で、サーモス・タイガー・象印などの主要な水筒にフィットします。保温・保冷効果もあり、結露や水滴がつきにくいので、カバンに入れたときの安心感が違います👜。0.8L・1Lサイズに対応し、大人用にも子ども用にも使えます。
+レビュー557件・★4.31という評価が、通勤・通学・レジャーでの使いやすさを示しています。
+注意点は、手持ちの水筒の口径・形状に合うか、購入前にサイズを確認すること。
+1,190円で、水筒まわりの結露ストレスをなくしませんか?
+#水筒カバー #ボトルカバー #水筒ケース #お出かけグッズ #キャンプ #共働き家庭 #育児パパ #楽天ROOM</textarea>
+  </div>
+</div>
+<div class="card featured">
+  <div class="card-head">
+    <img src="https://shop.r10s.jp/mamababy/cabinet/tenposupport06/12820999/enet_7259975.jpg" alt="《新基準R129適合》チャイルドシート 1歳3か月から4歳頃 ジュニアシート 3歳から11歳頃 小学生 シートベルト式 5点式シートベルト キッズシート 車 ヘッドレスト 8段階" loading="lazy">
+    <div class="info">
+      <span class="featured-badge">🔥 本日のThreads/Xピックアップ</span>
+      <span class="genre-chip">育児グッズ</span>
+      <div class="name">《新基準R129適合》チャイルドシート 1歳3か月から4歳頃 ジュニアシート 3歳から11歳頃 小学生 シートベルト式 5点式シートベルト キッズシート 車 ヘッドレスト 8段階</div>
+      <div class="meta-row">
+        <span class="price">¥9,980</span>
+        <span class="stars">★★★★☆</span>
+        <span>4.35(428件)</span>
+      </div>
+    </div>
+  </div>
+  <a class="btn-open" href="https://item.rakuten.co.jp/mamababy/7133266/" target="_blank" rel="noopener">商品ページを開く ↗</a>
+  <div class="url-row">
+    <a href="https://item.rakuten.co.jp/mamababy/7133266/" target="_blank" rel="noopener">https://item.rakuten.co.jp/mamababy/7133266/</a>
+    <button class="copy-btn" onclick="copyPlain(this, 'https://item.rakuten.co.jp/mamababy/7133266/')" type="button">URLコピー</button>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>楽天ROOM用</span>
+      <button class="copy-btn" onclick="copyText(this, 'room-1')" type="button">コピー</button>
+    </div>
+    <textarea id="room-1" readonly>🚗子どもの成長に合わせて、そろそろジュニアシートへの切り替えを考えていませんか。
+このチャイルドシートは新基準R129に適合し、1歳3か月から11歳頃まで幅広く使えるタイプ。ヘッドレストは8段階、シートベルトは「カチッ」とはめるだけの5点式で、しっかり固定できます🚙。本体が軽量なので、女性でも持ち運びや車への取り付けがしやすい設計です。
+レビュー428件・★4.35という評価が、長く使える設計への支持を示しています。
+注意点は、車種によって設置可能なシートベルトの形状が異なるので、購入前に対応可否を確認すること。
+9,980円で、成長に合わせて長く使えるシートに切り替えませんか?
+#チャイルドシート #ジュニアシート #新基準R129 #カーシート #安全対策 #育児パパ #楽天ROOM</textarea>
+  </div>
+  <p class="reason">🔥 今日のピックアップ理由: 新基準R129適合という安全性の裏付けと、1歳3か月から11歳頃まで長く使える網羅性の高さが、子どものいる家庭全般に刺さるため。レビュー428件・★4.35と実績も十分。</p>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>Threads用</span>
+      <button class="copy-btn" onclick="copyText(this, 'threads-0')" type="button">コピー</button>
+    </div>
+    <textarea id="threads-0" readonly>子どもの成長に合わせてチャイルドシート替えるタイミング、地味に悩む。
+これは新基準R129適合で、1歳3か月から11歳頃まで対応。ヘッドレスト8段階、シートベルトは5点式で「カチッ」とはめるだけ🚗。軽量だから一人での取り付けも楽。
+レビュー428件・★4.35で9,980円。長く使える前提だと納得の価格。
+車種によってシートベルトの形状違うから、対応可否だけ先に確認して。
+#PR #チャイルドシート #ジュニアシート #育児パパ #共働き家庭</textarea>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>X用</span>
+      <button class="copy-btn" onclick="copyText(this, 'x-0')" type="button">コピー</button>
+    </div>
+    <textarea id="x-0" readonly>子どもの成長でチャイルドシート替えるタイミング悩んでたけど、新基準R129適合のこれに決めた。
+1歳3か月〜11歳頃まで対応、5点式で装着も楽🚗
+レビュー428件・★4.35で9,980円。
+#PR #チャイルドシート #育児パパ</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="card-head">
+    <img src="https://shop.r10s.jp/kaihyaku/cabinet/catalog_set/imgrc0190710708.jpg" alt="アズマ公式 smart 浴室 清掃 4点セット 磁石収納 お風呂掃除セット ミドル伸縮柄 浴槽洗いFM・水切りワイパー・床洗い・床洗いスペア 柄付き スポンジ 浴室掃除 アズマ工" loading="lazy">
+    <div class="info">
+      
+      <span class="genre-chip">掃除洗濯</span>
+      <div class="name">アズマ公式 smart 浴室 清掃 4点セット 磁石収納 お風呂掃除セット ミドル伸縮柄 浴槽洗いFM・水切りワイパー・床洗い・床洗いスペア 柄付き スポンジ 浴室掃除 アズマ工</div>
+      <div class="meta-row">
+        <span class="price">¥3,800</span>
+        <span class="stars">★★★★★</span>
+        <span>4.61(664件)</span>
+      </div>
+    </div>
+  </div>
+  <a class="btn-open" href="https://item.rakuten.co.jp/kaihyaku/smart4setb/" target="_blank" rel="noopener">商品ページを開く ↗</a>
+  <div class="url-row">
+    <a href="https://item.rakuten.co.jp/kaihyaku/smart4setb/" target="_blank" rel="noopener">https://item.rakuten.co.jp/kaihyaku/smart4setb/</a>
+    <button class="copy-btn" onclick="copyPlain(this, 'https://item.rakuten.co.jp/kaihyaku/smart4setb/')" type="button">URLコピー</button>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>楽天ROOM用</span>
+      <button class="copy-btn" onclick="copyText(this, 'room-2')" type="button">コピー</button>
+    </div>
+    <textarea id="room-2" readonly>🛁お風呂掃除の道具、あちこちに散らばって収納場所に困っていませんか。
+このアズマ公式の浴室清掃4点セットは、浴槽洗い・水切りワイパー・床洗い・床洗いスペアがセットになったタイプ。柄が伸縮するミドルタイプで、腰をかがめずに床や浴槽を洗えます🧽。磁石で壁面に収納できるので、道具がバラバラにならずまとまります。
+レビュー664件・★4.61という評価が、掃除のしやすさと収納性の両立を示しています。
+注意点は、磁石収納する壁面が金属製かどうかを事前に確認すること。
+3,800円で、お風呂掃除の道具をひとまとめにしませんか?
+#お風呂掃除 #浴室掃除セット #磁石収納 #掃除グッズ #掃除の時短 #共働き家庭 #育児パパ #楽天ROOM</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="card-head">
+    <img src="https://shop.r10s.jp/living-market-1st/cabinet/10852970/0.jpg" alt="お米 保存袋 5-10kg袋用 2枚入 米ガードミニ 極厚 脱酸素剤付属 真空パック 無酸素 アルミ製 長期保存 酸化防止 防虫" loading="lazy">
+    <div class="info">
+      
+      <span class="genre-chip">キッチン雑貨</span>
+      <div class="name">お米 保存袋 5-10kg袋用 2枚入 米ガードミニ 極厚 脱酸素剤付属 真空パック 無酸素 アルミ製 長期保存 酸化防止 防虫</div>
+      <div class="meta-row">
+        <span class="price">¥3,780</span>
+        <span class="stars">★★★★★</span>
+        <span>4.51(526件)</span>
+      </div>
+    </div>
+  </div>
+  <a class="btn-open" href="https://item.rakuten.co.jp/living-market-1st/syouhin132/" target="_blank" rel="noopener">商品ページを開く ↗</a>
+  <div class="url-row">
+    <a href="https://item.rakuten.co.jp/living-market-1st/syouhin132/" target="_blank" rel="noopener">https://item.rakuten.co.jp/living-market-1st/syouhin132/</a>
+    <button class="copy-btn" onclick="copyPlain(this, 'https://item.rakuten.co.jp/living-market-1st/syouhin132/')" type="button">URLコピー</button>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>楽天ROOM用</span>
+      <button class="copy-btn" onclick="copyText(this, 'room-3')" type="button">コピー</button>
+    </div>
+    <textarea id="room-3" readonly>🌾お米、袋のまま常温保存していて虫がわいた経験はありませんか。
+この米保存袋は、アルミ含む6層構造で真空パックにできるタイプ。脱酸素剤が付属しているので、酸化と虫の侵入を防ぎながら長期保存できます🍚。極厚素材で穴が開きにくく、5〜10kg分のお米をまとめて保存できます。
+レビュー526件・★4.51という評価が、累計販売数4万個突破という実績とあわせて信頼度を示しています。
+注意点は、スライダー(ジッパー)をしっかり閉じないと密閉効果が落ちること。
+3,780円で、お米の保存を「なんとなく」から「ちゃんと」に変えませんか?
+#お米保存袋 #真空パック #防虫対策 #長期保存 #キッチン雑貨 #共働き家庭 #育児パパ #楽天ROOM</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="card-head">
+    <img src="https://shop.r10s.jp/dencho/cabinet/08992708/1-16688_main03.jpg" alt="デンチョウ これぞ上質 差し込み ミニ マフラー ネックウォーマー カシミヤ100%" loading="lazy">
+    <div class="info">
+      
+      <span class="genre-chip">季節もの</span>
+      <div class="name">デンチョウ これぞ上質 差し込み ミニ マフラー ネックウォーマー カシミヤ100%</div>
+      <div class="meta-row">
+        <span class="price">¥4,990</span>
+        <span class="stars">★★★★★</span>
+        <span>4.82(342件)</span>
+      </div>
+    </div>
+  </div>
+  <a class="btn-open" href="https://item.rakuten.co.jp/dencho/1-16688/" target="_blank" rel="noopener">商品ページを開く ↗</a>
+  <div class="url-row">
+    <a href="https://item.rakuten.co.jp/dencho/1-16688/" target="_blank" rel="noopener">https://item.rakuten.co.jp/dencho/1-16688/</a>
+    <button class="copy-btn" onclick="copyPlain(this, 'https://item.rakuten.co.jp/dencho/1-16688/')" type="button">URLコピー</button>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>楽天ROOM用</span>
+      <button class="copy-btn" onclick="copyText(this, 'room-4')" type="button">コピー</button>
+    </div>
+    <textarea id="room-4" readonly>🧣自分用のマフラー、何年も同じものを使い回していませんか。
+この上質なカシミヤ素材のミニマフラーは、新潟の自社工房で作られた国産ニット。差し込みタイプで着脱が簡単なので、忙しい朝でもさっと巻けます🧶。短めの60cm前後で、コートの襟元にすっきり収まるサイズ感です。
+レビュー342件・★4.82という高評価が、上質な仕上がりへの満足度を示しています。
+注意点は、ニット製品なので引っかけに注意し、手洗いで丁寧に扱うこと。
+4,990円で、今年の冬は自分用の一枚を新調しませんか?
+#カシミヤマフラー #ミニマフラー #国産ニット #冬支度 #防寒 #育児パパ #楽天ROOM</textarea>
+  </div>
+</div>
+</div>
+
+<h2 class="section-title">💬 今日のあるある投稿ネタ(商品リンクなし)</h2>
+<div class="cards">
+<div class="card">
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>あるある投稿 #1</span>
+      <button class="copy-btn" onclick="copyText(this, 'daily-0')" type="button">コピー</button>
+    </div>
+    <textarea id="daily-0" class="short" readonly>水筒を洗うタイミング、朝出がけに気づいて焦る</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>あるある投稿 #2</span>
+      <button class="copy-btn" onclick="copyText(this, 'daily-1')" type="button">コピー</button>
+    </div>
+    <textarea id="daily-1" class="short" readonly>チャイルドシートの取り付け、毎回説明書を見返す自信のなさ</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>あるある投稿 #3</span>
+      <button class="copy-btn" onclick="copyText(this, 'daily-2')" type="button">コピー</button>
+    </div>
+    <textarea id="daily-2" class="short" readonly>お風呂掃除の道具、気づいたら床に転がってる</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>あるある投稿 #4</span>
+      <button class="copy-btn" onclick="copyText(this, 'daily-3')" type="button">コピー</button>
+    </div>
+    <textarea id="daily-3" class="short" readonly>お米、切らしそうで切らさない絶妙なラインをいつも攻めてる</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>あるある投稿 #5</span>
+      <button class="copy-btn" onclick="copyText(this, 'daily-4')" type="button">コピー</button>
+    </div>
+    <textarea id="daily-4" class="short" readonly>マフラー、去年買ったやつをどこにしまったか毎年思い出せない🧣
+#育児パパ</textarea>
+  </div>
+</div>
+</div>
+
+<footer class="note">商品ページを確認し、投稿文をコピーして手動で投稿してください。<br>Threads/Xの商品紹介は1日1件・あるある投稿と織り交ぜてスパム判定を避けてください。<br>価格・レビューは選定時点の実データです。</footer>
+</div>
+<script>
+function flash(btn) {
+  const original = btn.textContent;
+  btn.textContent = 'コピーしました';
+  btn.classList.add('copied');
+  setTimeout(() => { btn.textContent = original; btn.classList.remove('copied'); }, 1500);
+}
+function copyText(btn, id) {
+  const el = document.getElementById(id);
+  el.select();
+  el.setSelectionRange(0, 999999);
+  navigator.clipboard.writeText(el.value).then(() => flash(btn)).catch(() => {
+    try { document.execCommand('copy'); flash(btn); } catch (e) {}
+  });
+}
+function copyPlain(btn, text) {
+  navigator.clipboard.writeText(text).then(() => flash(btn)).catch(() => {
+    const t = document.createElement('textarea');
+    t.value = text; document.body.appendChild(t); t.select();
+    try { document.execCommand('copy'); flash(btn); } catch (e) {}
+    document.body.removeChild(t);
+  });
+}
+</script>
+</body>
+</html>

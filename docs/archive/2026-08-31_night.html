@@ -1,0 +1,326 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>8/31 夜の選定 - 楽天ROOM投稿リスト</title>
+<style>
+:root {
+  --bg: #f6f3ee;
+  --surface: #ffffff;
+  --ink: #23211d;
+  --ink-soft: #6b6459;
+  --accent: #a8382c;
+  --accent-ink: #fff6f2;
+  --good: #3f7d58;
+  --border: #e4ddd2;
+  --chip-bg: #efe8db;
+  color-scheme: light dark;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #16140f;
+    --surface: #211f1a;
+    --ink: #ece7dc;
+    --ink-soft: #a89e8d;
+    --accent: #e0685a;
+    --accent-ink: #1c0f0c;
+    --good: #6fb98a;
+    --border: #35322a;
+    --chip-bg: #2a2721;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #16140f; --surface: #211f1a; --ink: #ece7dc; --ink-soft: #a89e8d;
+  --accent: #e0685a; --accent-ink: #1c0f0c; --good: #6fb98a; --border: #35322a; --chip-bg: #2a2721;
+}
+:root[data-theme="light"] {
+  --bg: #f6f3ee; --surface: #ffffff; --ink: #23211d; --ink-soft: #6b6459;
+  --accent: #a8382c; --accent-ink: #fff6f2; --good: #3f7d58; --border: #e4ddd2; --chip-bg: #efe8db;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0; background: var(--bg); color: var(--ink);
+  font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Yu Gothic Medium", "Noto Sans JP", sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+.wrap { max-width: 640px; margin: 0 auto; padding: 0 16px 40px; }
+header.top {
+  position: sticky; top: 0; z-index: 5; background: var(--bg);
+  padding: 18px 16px 12px; border-bottom: 1px solid var(--border);
+  display: flex; align-items: baseline; justify-content: space-between; gap: 12px;
+}
+header.top .eyebrow {
+  font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-soft);
+  font-weight: 600; margin: 0 0 2px;
+}
+header.top h1 { font-size: 1.25rem; margin: 0; font-weight: 700; letter-spacing: -0.01em; }
+header.top .count {
+  background: var(--chip-bg); color: var(--ink-soft); font-size: 0.78rem; font-weight: 600;
+  padding: 5px 10px; border-radius: 999px; white-space: nowrap;
+}
+.cards { display: flex; flex-direction: column; gap: 16px; margin-top: 18px; }
+.card {
+  background: var(--surface); border: 1px solid var(--border); border-radius: 16px;
+  padding: 16px; display: flex; flex-direction: column; gap: 12px;
+}
+.card-head { display: flex; gap: 12px; }
+.card-head img {
+  width: 76px; height: 76px; object-fit: cover; border-radius: 10px;
+  border: 1px solid var(--border); background: var(--chip-bg); flex-shrink: 0;
+}
+.card-head .info { min-width: 0; flex: 1; display: flex; flex-direction: column; gap: 4px; }
+.genre-chip {
+  align-self: flex-start; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.03em;
+  color: var(--accent); background: color-mix(in srgb, var(--accent) 12%, transparent);
+  padding: 2px 8px; border-radius: 999px;
+}
+.name {
+  font-weight: 600; font-size: 0.94rem; line-height: 1.4;
+  display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
+}
+.meta-row { display: flex; align-items: baseline; gap: 8px; font-size: 0.82rem; color: var(--ink-soft); }
+.price { font-variant-numeric: tabular-nums; color: var(--ink); font-weight: 700; font-size: 1.05rem; }
+.stars { letter-spacing: -1px; color: var(--accent); }
+.btn-open {
+  display: flex; align-items: center; justify-content: center; gap: 6px;
+  background: var(--accent); color: var(--accent-ink); border: none; border-radius: 11px;
+  padding: 12px; font-weight: 700; font-size: 0.92rem; text-decoration: none;
+}
+.btn-open:active { opacity: 0.85; }
+.caption-box { border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }
+.caption-head {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 8px 10px; background: var(--chip-bg);
+}
+.caption-head span {
+  font-size: 0.7rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-soft);
+}
+.copy-btn {
+  background: var(--surface); border: 1px solid var(--border); color: var(--ink);
+  border-radius: 7px; padding: 5px 11px; font-size: 0.76rem; font-weight: 600; cursor: pointer;
+}
+.copy-btn:focus-visible, .btn-open:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.copy-btn.copied { background: var(--good); border-color: var(--good); color: #fff; }
+textarea {
+  width: 100%; display: block; border: none; padding: 10px; font-size: 0.85rem; line-height: 1.55;
+  resize: vertical; min-height: 108px; font-family: inherit; background: var(--surface); color: var(--ink);
+}
+textarea:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
+footer.note { margin-top: 22px; font-size: 0.76rem; color: var(--ink-soft); text-align: center; line-height: 1.6; }
+@media (prefers-reduced-motion: no-preference) {
+  .copy-btn { transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease; }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <div>
+    <p class="eyebrow">楽天ROOM 投稿リスト</p>
+    <h1>8/31 夜の選定</h1>
+  </div>
+  <span class="count">5件</span>
+</header>
+<div class="cards">
+<div class="card">
+  <div class="card-head">
+    <img src="https://thumbnail.image.rakuten.co.jp/@0_mall/bathroom/cabinet/0001/ss02/yj-10019_sam01b.jpg?_ex=128x128" alt="tower 洗濯機横マグネット折り畳み棚" loading="lazy">
+    <div class="info">
+      <span class="genre-chip">収納整理</span>
+      <div class="name">tower 洗濯機横マグネット折り畳み棚</div>
+      <div class="meta-row">
+        <span class="price">¥3,850</span>
+        <span class="stars">★★★★★</span>
+        <span>4.75(6724件)</span>
+      </div>
+    </div>
+  </div>
+  <a class="btn-open" href="https://hb.afl.rakuten.co.jp/hgc/g00s670n.dg4fi1a0.g00s670n.dg4fjd6d/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fbathroom%2Fyj-5096%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fbathroom%2Fi%2F10003467%2F&rafcid=wsc_i_is_852e9d1a-8f83-49dc-bc9e-cf56a98e669a" target="_blank" rel="noopener">商品ページを開く ↗</a>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>楽天ROOM用</span>
+      <button class="copy-btn" onclick="copyText(this, 'room-0')" type="button">コピー</button>
+    </div>
+    <textarea id="room-0" readonly>🧺洗濯機の横、あの数センチの隙間を持て余してませんか?
+tower洗濯機横マグネット折り畳み棚は、マグネットで貼るだけで棚が生まれる収納アイテム。使わないときは折りたためるので、通路をふさぎません。洗剤の詰め替え、干す前の一時置き、乾いた洗濯物の仮置きと、動線がぐっとラクになりますよ。
+レビュー6,724件・★4.75という数字が、使い勝手の良さを物語っています。
+注意点は、マグネットが付く素材の洗濯機かどうか、購入前に確認しておくこと。
+3,850円で洗面所の渋滞、解消してみませんか?
+#tower #山崎実業 #ランドリー収納 #洗面所収納 #時短家事 #共働き家庭 #育児パパ #楽天ROOM</textarea>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>Threads用</span>
+      <button class="copy-btn" onclick="copyText(this, 'threads-0')" type="button">コピー</button>
+    </div>
+    <textarea id="threads-0" readonly>洗濯機の横の隙間、あそこ完全にデッドスペースだと思ってたわ。
+towerのマグネット折り畳み棚、貼るだけで棚になる。洗剤置いても、干す前の洗濯物の一時置きにしてもいい。使わないときは畳めるから邪魔にならないのが偉い。
+レビュー6,724件・★4.75。3,850円で洗面所の動線が変わるなら安い。
+#tower #山崎実業 #ランドリー収納 #共働き家庭 #育児パパ #PR #楽天アフィリエイト</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="card-head">
+    <img src="https://thumbnail.image.rakuten.co.jp/@0_mall/rcmdki/cabinet/nf14/nf-pc-prn7.jpg?_ex=128x128" alt="iwaki 耐熱ガラス保存容器 7点セット" loading="lazy">
+    <div class="info">
+      <span class="genre-chip">キッチン雑貨</span>
+      <div class="name">iwaki 耐熱ガラス保存容器 7点セット</div>
+      <div class="meta-row">
+        <span class="price">¥3,899</span>
+        <span class="stars">★★★★★</span>
+        <span>4.78(1349件)</span>
+      </div>
+    </div>
+  </div>
+  <a class="btn-open" href="https://hb.afl.rakuten.co.jp/hgc/g00so8dn.dg4fibad.g00so8dn.dg4fj6f8/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Frcmdki%2Fnf-pc-prn7%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Frcmdki%2Fi%2F10404976%2F&rafcid=wsc_i_is_852e9d1a-8f83-49dc-bc9e-cf56a98e669a" target="_blank" rel="noopener">商品ページを開く ↗</a>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>楽天ROOM用</span>
+      <button class="copy-btn" onclick="copyText(this, 'room-1')" type="button">コピー</button>
+    </div>
+    <textarea id="room-1" readonly>🍱作り置きした料理を、別の器に移し替えるのが地味に面倒だった。
+iwakiの耐熱ガラス保存容器7点セットに変えてから、その一手間が消えた。冷蔵庫から出してフタを外し、そのままレンジへ。洗い物も減るし、ガラスだから匂いも色も移りにくい。中身が透けて見えるので「これ何だっけ」がなくなったのも地味に大きい。
+レビュー1,349件・★4.78。3,899円で7点そろうのはお得だと思う。
+選ぶときは、冷凍まで使うなら容量違いを組み合わせるのがおすすめ。
+#iwaki #イワキ #保存容器 #作り置き #時短家事 #共働き家庭 #育児パパ #楽天ROOM</textarea>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>Threads用</span>
+      <button class="copy-btn" onclick="copyText(this, 'threads-1')" type="button">コピー</button>
+    </div>
+    <textarea id="threads-1" readonly>作り置き民、保存容器をガラスに変えるだけで生活変わるからマジで。
+iwakiの7点セット、フタ外してそのままレンジ行ける。移し替えの一手間が消えるのがデカい。匂い移りしないし、中身見えるから冷蔵庫の奥で化石にならない。
+レビュー1,349件・★4.78で3,899円。7点でこの値段はちょっとおかしい。
+#iwaki #保存容器 #作り置き #共働き家庭 #育児パパ #PR #楽天アフィリエイト</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="card-head">
+    <img src="https://thumbnail.image.rakuten.co.jp/@0_mall/enetroom/cabinet/11006609/516976_ranking.jpg?_ex=128x128" alt="アイリスオーヤマ 電気圧力鍋 4L" loading="lazy">
+    <div class="info">
+      <span class="genre-chip">時短家電</span>
+      <div class="name">アイリスオーヤマ 電気圧力鍋 4L</div>
+      <div class="meta-row">
+        <span class="price">¥18,480</span>
+        <span class="stars">★★★★★</span>
+        <span>4.59(1382件)</span>
+      </div>
+    </div>
+  </div>
+  <a class="btn-open" href="https://hb.afl.rakuten.co.jp/hgc/g00prken.dg4fie93.g00prken.dg4fj892/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fenetroom%2F516976%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fenetroom%2Fi%2F10180645%2F&rafcid=wsc_i_is_852e9d1a-8f83-49dc-bc9e-cf56a98e669a" target="_blank" rel="noopener">商品ページを開く ↗</a>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>楽天ROOM用</span>
+      <button class="copy-btn" onclick="copyText(this, 'room-2')" type="button">コピー</button>
+    </div>
+    <textarea id="room-2" readonly>⏰帰宅してから夕飯まで、毎日バタバタしていませんか?
+アイリスオーヤマの電気圧力鍋4Lは、材料を入れてボタンを押せば、あとは待つだけの自動調理器。カレーや角煮はもちろん、炊飯4合、低温調理、グリル鍋としても使えます。4Lの大容量なので、作り置きや週末のまとめ調理にも向いていますよ。
+レビュー1,382件・★4.59という評価が、日々の食卓を支えている証拠です。
+注意点は、本体がそれなりに大きいので置き場所を先に決めておくこと。
+18,480円で、夕方の30分を取り戻しませんか?
+#電気圧力鍋 #アイリスオーヤマ #ほったらかし調理 #作り置き #時短家事 #共働き家庭 #育児パパ #楽天ROOM</textarea>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>Threads用</span>
+      <button class="copy-btn" onclick="copyText(this, 'threads-2')" type="button">コピー</button>
+    </div>
+    <textarea id="threads-2" readonly>夕方の「これから作るのか…」って絶望感、電気圧力鍋で消えるよ。
+アイリスオーヤマの4Lは、材料入れてボタン押したら放置でいい。その間に子どもの相手ができるのが本当にデカい。炊飯も低温調理もグリル鍋もいける。
+レビュー1,382件・★4.59。18,480円は安くないけど、夕方の30分が毎日返ってくると思えば。
+#電気圧力鍋 #アイリスオーヤマ #ほったらかし調理 #共働き家庭 #育児パパ #PR #楽天アフィリエイト</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="card-head">
+    <img src="https://thumbnail.image.rakuten.co.jp/@0_mall/natural-living/cabinet/spr/8/2/825556240309_2.jpg?_ex=128x128" alt="ベビービョルン 抱っこ紐 ONE KAI Air" loading="lazy">
+    <div class="info">
+      <span class="genre-chip">育児グッズ</span>
+      <div class="name">ベビービョルン 抱っこ紐 ONE KAI Air</div>
+      <div class="meta-row">
+        <span class="price">¥19,800</span>
+        <span class="stars">★★★★★</span>
+        <span>4.69(3262件)</span>
+      </div>
+    </div>
+  </div>
+  <a class="btn-open" href="https://hb.afl.rakuten.co.jp/hgc/g00qcnfn.dg4fi611.g00qcnfn.dg4fjb8b/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fnatural-living%2Fu959649%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fnatural-living%2Fi%2F10017170%2F&rafcid=wsc_i_is_852e9d1a-8f83-49dc-bc9e-cf56a98e669a" target="_blank" rel="noopener">商品ページを開く ↗</a>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>楽天ROOM用</span>
+      <button class="copy-btn" onclick="copyText(this, 'room-3')" type="button">コピー</button>
+    </div>
+    <textarea id="room-3" readonly>👶新生児の頃、抱っこ紐の装着に手こずって玄関で汗だくになってた。
+ベビービョルンの抱っこ紐ONE KAI Airに替えてから、そこが変わった。カチッと留めるだけで装着でき、新生児から使えるうえに対面・前向き・腰抱き・おんぶと成長に合わせて4通り。メッシュ素材なので、蒸れやすい季節も親子どちらもラクだった。
+レビュー3,262件・★4.69、19,800円。長く使えるので1年あたりで考えると納得感がある。
+選ぶときは、パパとママで共用するならサイズ調整のしやすさを見ておくといい。
+#ベビービョルン #抱っこ紐 #新生児 #育児グッズ #共働き家庭 #育児パパ #楽天ROOM</textarea>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>Threads用</span>
+      <button class="copy-btn" onclick="copyText(this, 'threads-3')" type="button">コピー</button>
+    </div>
+    <textarea id="threads-3" readonly>抱っこ紐、装着に手間取ってる間に子どもがギャン泣きするのが一番きつい。
+ベビービョルンのONE KAI Airはカチッと留めるだけ。新生児から使えて、対面・前向き・腰抱き・おんぶの4通り。メッシュだから夏場の背中の蒸れが全然違う。
+レビュー3,262件・★4.69。19,800円だけど数年使うやつだからね。
+#ベビービョルン #抱っこ紐 #育児グッズ #育児パパ #PR #楽天アフィリエイト</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="card-head">
+    <img src="https://thumbnail.image.rakuten.co.jp/@0_mall/eleking/cabinet/wh23/imgrc0118394307.jpg?_ex=128x128" alt="アイリスオーヤマ 布団乾燥機 カラリエ" loading="lazy">
+    <div class="info">
+      <span class="genre-chip">季節もの</span>
+      <div class="name">アイリスオーヤマ 布団乾燥機 カラリエ</div>
+      <div class="meta-row">
+        <span class="price">¥8,980</span>
+        <span class="stars">★★★★☆</span>
+        <span>4.47(3511件)</span>
+      </div>
+    </div>
+  </div>
+  <a class="btn-open" href="https://hb.afl.rakuten.co.jp/hgc/g00rqktn.dg4fi509.g00rqktn.dg4fj92f/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Feleking%2F273121%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Feleking%2Fi%2F10033912%2F&rafcid=wsc_i_is_852e9d1a-8f83-49dc-bc9e-cf56a98e669a" target="_blank" rel="noopener">商品ページを開く ↗</a>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>楽天ROOM用</span>
+      <button class="copy-btn" onclick="copyText(this, 'room-4')" type="button">コピー</button>
+    </div>
+    <textarea id="room-4" readonly>☔部屋干しの生乾き、扇風機を当てて粘っていませんか?
+アイリスオーヤマの布団乾燥機カラリエは、マット不要でノズルを差し込むだけ。布団を温めるだけでなく、靴の乾燥や衣類の部屋干しにも使えるので、梅雨も花粉の季節も出番があります。コンパクトなので出しっぱなしにならないのも助かりますよ。
+レビュー3,511件・★4.47という数字が、多くの家庭で使われている証拠です。
+注意点は、ダニ対策モードは運転時間が長めなので、外出前に回すのがおすすめ。
+8,980円で、寝室の湿気対策を一台にまとめませんか?
+#布団乾燥機 #カラリエ #アイリスオーヤマ #部屋干し #梅雨対策 #共働き家庭 #育児パパ #楽天ROOM</textarea>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>Threads用</span>
+      <button class="copy-btn" onclick="copyText(this, 'threads-4')" type="button">コピー</button>
+    </div>
+    <textarea id="threads-4" readonly>布団乾燥機、冬のあったか布団のためだけの家電だと思ってたら大間違いだった。
+カラリエはマット不要でノズル差すだけ。部屋干しの生乾き対策にも、濡れた靴の乾燥にも使える。子どもが長靴びしょ濡れで帰ってきた日に本気で助かるやつ。
+レビュー3,511件・★4.47で8,980円。年中出番あるから一台あっていい。
+#布団乾燥機 #カラリエ #部屋干し #共働き家庭 #育児パパ #PR #楽天アフィリエイト</textarea>
+  </div>
+</div>
+</div>
+<footer class="note">商品ページを確認し、投稿文をコピーして手動で投稿してください。<br>価格・レビューは選定時点の実データです。</footer>
+</div>
+<script>
+function copyText(btn, id) {
+  const el = document.getElementById(id);
+  el.select();
+  el.setSelectionRange(0, 999999);
+  navigator.clipboard.writeText(el.value).then(() => {
+    const original = btn.textContent;
+    btn.textContent = 'コピーしました';
+    btn.classList.add('copied');
+    setTimeout(() => { btn.textContent = original; btn.classList.remove('copied'); }, 1500);
+  });
+}
+</script>
+</body>
+</html>

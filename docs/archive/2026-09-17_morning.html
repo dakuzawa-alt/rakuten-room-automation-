@@ -1,0 +1,437 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>9/17 朝の選定 - 楽天ROOM投稿リスト</title>
+<style>
+:root {
+  --bg: #f6f3ee;
+  --surface: #ffffff;
+  --ink: #23211d;
+  --ink-soft: #6b6459;
+  --accent: #a8382c;
+  --accent-ink: #fff6f2;
+  --good: #3f7d58;
+  --border: #e4ddd2;
+  --chip-bg: #efe8db;
+  color-scheme: light dark;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #16140f;
+    --surface: #211f1a;
+    --ink: #ece7dc;
+    --ink-soft: #a89e8d;
+    --accent: #e0685a;
+    --accent-ink: #1c0f0c;
+    --good: #6fb98a;
+    --border: #35322a;
+    --chip-bg: #2a2721;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #16140f; --surface: #211f1a; --ink: #ece7dc; --ink-soft: #a89e8d;
+  --accent: #e0685a; --accent-ink: #1c0f0c; --good: #6fb98a; --border: #35322a; --chip-bg: #2a2721;
+}
+:root[data-theme="light"] {
+  --bg: #f6f3ee; --surface: #ffffff; --ink: #23211d; --ink-soft: #6b6459;
+  --accent: #a8382c; --accent-ink: #fff6f2; --good: #3f7d58; --border: #e4ddd2; --chip-bg: #efe8db;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0; background: var(--bg); color: var(--ink);
+  font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Yu Gothic Medium", "Noto Sans JP", sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+.wrap { max-width: 640px; margin: 0 auto; padding: 0 16px 40px; }
+header.top {
+  position: sticky; top: 0; z-index: 5; background: var(--bg);
+  padding: 18px 16px 12px; border-bottom: 1px solid var(--border);
+  display: flex; align-items: baseline; justify-content: space-between; gap: 12px;
+}
+header.top .eyebrow {
+  font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-soft);
+  font-weight: 600; margin: 0 0 2px;
+}
+header.top h1 { font-size: 1.25rem; margin: 0; font-weight: 700; letter-spacing: -0.01em; }
+header.top .count {
+  background: var(--chip-bg); color: var(--ink-soft); font-size: 0.78rem; font-weight: 600;
+  padding: 5px 10px; border-radius: 999px; white-space: nowrap;
+}
+h2.section-title { font-size: 0.95rem; font-weight: 700; margin: 24px 0 12px; }
+.cards { display: flex; flex-direction: column; gap: 16px; margin-top: 18px; }
+.card {
+  background: var(--surface); border: 1px solid var(--border); border-radius: 16px;
+  padding: 16px; display: flex; flex-direction: column; gap: 12px;
+}
+.card.featured { border-color: var(--accent); border-width: 2px; }
+.featured-badge {
+  align-self: flex-start; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.03em;
+  color: var(--accent-ink); background: var(--accent); padding: 3px 9px; border-radius: 999px;
+}
+.card-head { display: flex; gap: 12px; }
+.card-head img {
+  width: 76px; height: 76px; object-fit: cover; border-radius: 10px;
+  border: 1px solid var(--border); background: var(--chip-bg); flex-shrink: 0;
+}
+.card-head .info { min-width: 0; flex: 1; display: flex; flex-direction: column; gap: 4px; }
+.genre-chip {
+  align-self: flex-start; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.03em;
+  color: var(--accent); background: color-mix(in srgb, var(--accent) 12%, transparent);
+  padding: 2px 8px; border-radius: 999px;
+}
+.name {
+  font-weight: 600; font-size: 0.94rem; line-height: 1.4;
+  display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
+}
+.meta-row { display: flex; align-items: baseline; gap: 8px; font-size: 0.82rem; color: var(--ink-soft); }
+.price { font-variant-numeric: tabular-nums; color: var(--ink); font-weight: 700; font-size: 1.05rem; }
+.stars { letter-spacing: -1px; color: var(--accent); }
+.btn-open {
+  display: flex; align-items: center; justify-content: center; gap: 6px;
+  background: var(--accent); color: var(--accent-ink); border: none; border-radius: 11px;
+  padding: 12px; font-weight: 700; font-size: 0.92rem; text-decoration: none;
+}
+.btn-open:active { opacity: 0.85; }
+.url-row {
+  display: flex; align-items: center; gap: 8px;
+  background: var(--chip-bg); border-radius: 9px; padding: 8px 10px;
+}
+.url-row a {
+  flex: 1; min-width: 0; font-size: 0.76rem; color: var(--accent);
+  word-break: break-all; line-height: 1.45; text-decoration: none;
+}
+.url-row a:active { text-decoration: underline; }
+.reason { font-size: 0.8rem; color: var(--ink-soft); }
+.caption-box { border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }
+.caption-head {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 8px 10px; background: var(--chip-bg);
+}
+.caption-head span {
+  font-size: 0.7rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-soft);
+}
+.copy-btn {
+  background: var(--surface); border: 1px solid var(--border); color: var(--ink);
+  border-radius: 7px; padding: 5px 11px; font-size: 0.76rem; font-weight: 600; cursor: pointer;
+}
+.copy-btn:focus-visible, .btn-open:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.copy-btn.copied { background: var(--good); border-color: var(--good); color: #fff; }
+textarea {
+  width: 100%; display: block; border: none; padding: 10px; font-size: 0.85rem; line-height: 1.55;
+  resize: vertical; min-height: 108px; font-family: inherit; background: var(--surface); color: var(--ink);
+}
+textarea.short { min-height: 60px; }
+textarea:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
+footer.note { margin-top: 22px; font-size: 0.76rem; color: var(--ink-soft); text-align: center; line-height: 1.6; }
+@media (prefers-reduced-motion: no-preference) {
+  .copy-btn { transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease; }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <div>
+    <p class="eyebrow">楽天ROOM 投稿リスト</p>
+    <h1>9/17 朝の選定</h1>
+  </div>
+  <span class="count">5件</span>
+</header>
+
+<h2 class="section-title">📦 商品(ROOM用、全5件)</h2>
+<div class="cards">
+<div class="card featured">
+  <div class="card-head">
+    <img src="https://thumbnail.image.rakuten.co.jp/@0_mall/irisplaza-r/cabinet/10172579/12541977/imgrc0117628162.jpg?_ex=128x128" alt="アイリスオーヤマ IH炊飯器 3合/5合 2年保証 RC-IL30/RC-IL50" loading="lazy">
+    <div class="info">
+      <span class="featured-badge">🔥 本日のThreads/Xピックアップ</span>
+      <span class="genre-chip">時短家電</span>
+      <div class="name">アイリスオーヤマ IH炊飯器 3合/5合 2年保証 RC-IL30/RC-IL50</div>
+      <div class="meta-row">
+        <span class="price">¥10,800</span>
+        <span class="stars">★★★★☆</span>
+        <span>4.25(669件)</span>
+      </div>
+    </div>
+  </div>
+  <a class="btn-open" href="https://hb.afl.rakuten.co.jp/hgc/g00t3ztn.dg4fied7.g00t3ztn.dg4fj14e/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Firisplaza-r%2F517435%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Firisplaza-r%2Fi%2F10138130%2F&rafcid=wsc_i_is_852e9d1a-8f83-49dc-bc9e-cf56a98e669a" target="_blank" rel="noopener">商品ページを開く ↗</a>
+  <div class="url-row">
+    <a href="https://item.rakuten.co.jp/irisplaza-r/517435/" target="_blank" rel="noopener">https://item.rakuten.co.jp/irisplaza-r/517435/</a>
+    <button class="copy-btn" onclick="copyPlain(this, 'https://item.rakuten.co.jp/irisplaza-r/517435/')" type="button">URLコピー</button>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>楽天ROOM用</span>
+      <button class="copy-btn" onclick="copyText(this, 'room-0')" type="button">コピー</button>
+    </div>
+    <textarea id="room-0" readonly>🍚帰宅したら米が生のままだった夜が、2ヶ月で3回あった。
+
+タイマーセットを忘れ続けるのが嫌になって、炊飯器ごと変えた。アイリスオーヤマのIH炊飯器(3合・5合)は10,800円で2年保証つき。IHだから熱が均一に通って早炊きでもちゃんとおいしい🙌
+
+朝に米を研いでタイマーをセットしておけば、夜には炊けてる。それだけのことで帰宅後のストレスがひとつ消えた。
+
+レビュー669件・★4.25。値段と保証期間のバランスで選ぶなら現実的な選択肢だと思う💡
+
+3合タイプは家族3人以上だと毎食炊く必要あり。4人家族なら5合を選ぶほうが無難。
+
+#IH炊飯器 #アイリスオーヤマ #時短家電 #炊飯器 #共働き家庭 #育児パパ #楽天ROOM #家電</textarea>
+  </div>
+  <p class="reason">🔥 今日のピックアップ理由: 「帰宅したら米が生のまま」という共働き家庭なら誰もが経験する具体的な失敗場面と、10,800円・2年保証という価格の意外性の組み合わせが5件中最も悩み解決度が高く、フォロワーへの共感訴求力が強いと判断した。</p>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>Threads用</span>
+      <button class="copy-btn" onclick="copyText(this, 'threads-0')" type="button">コピー</button>
+    </div>
+    <textarea id="threads-0" readonly>炊飯タイマーのセット忘れ、帰宅したら米が生のままってやつ何回やったかな。
+
+10,800円で2年保証つきのIH炊飯器に変えてから、朝にセットして夜に炊けてるが定着した🍚 IHだから早炊きでも子どもが普通に食べてくれるレベルで炊ける。
+
+この価格帯で2年保証はまずない。安い炊飯器にしてまた1年で壊れるループを抜けたくて選んだのが正直なところ。
+
+アイリスオーヤマ RC-IL30（3合）/RC-IL50（5合）。
+
+#PR #楽天アフィリエイト #時短家電 #共働き家庭 #育児パパ</textarea>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>X用</span>
+      <button class="copy-btn" onclick="copyText(this, 'x-0')" type="button">コピー</button>
+    </div>
+    <textarea id="x-0" readonly>帰宅したら米が生のまま、年に3回くらいやってた。
+
+IH炊飯器10,800円・2年保証に変えてから朝セット→夜に炊けてる生活になった🍚 早炊きでもちゃんとおいしいのが一番よかった。
+
+アイリスオーヤマ RC-IL30/IL50。
+
+#PR #楽天アフィリエイト #時短家電 #共働き家庭</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="card-head">
+    <img src="https://thumbnail.image.rakuten.co.jp/@0_mall/smile-hg/cabinet/heian/4977612135504.jpg?_ex=128x128" alt="突ぱり耐震ポール L [2本入] REQ-50" loading="lazy">
+    <div class="info">
+      
+      <span class="genre-chip">防災 安全</span>
+      <div class="name">突ぱり耐震ポール L [2本入] REQ-50</div>
+      <div class="meta-row">
+        <span class="price">¥3,300</span>
+        <span class="stars">★★★★☆</span>
+        <span>4.24(190件)</span>
+      </div>
+    </div>
+  </div>
+  <a class="btn-open" href="https://hb.afl.rakuten.co.jp/hgc/g00q28un.dg4fi86d.g00q28un.dg4fj8b0/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fsmile-hg%2F721035%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fsmile-hg%2Fi%2F10007551%2F&rafcid=wsc_i_is_852e9d1a-8f83-49dc-bc9e-cf56a98e669a" target="_blank" rel="noopener">商品ページを開く ↗</a>
+  <div class="url-row">
+    <a href="https://item.rakuten.co.jp/smile-hg/721035/" target="_blank" rel="noopener">https://item.rakuten.co.jp/smile-hg/721035/</a>
+    <button class="copy-btn" onclick="copyPlain(this, 'https://item.rakuten.co.jp/smile-hg/721035/')" type="button">URLコピー</button>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>楽天ROOM用</span>
+      <button class="copy-btn" onclick="copyText(this, 'room-1')" type="button">コピー</button>
+    </div>
+    <textarea id="room-1" readonly>⚠️家具が子どもの方向に倒れるシナリオ、考えたことありますか。
+
+3,300円・2本入りの突ぱり耐震ポール。天井と家具の間に突っ張るだけで固定できる仕組みで、工具不要・賃貸でも使える。本棚1台に両端それぞれに設置できる枚数が揃ってる点が実用的💪
+
+設置は慣れれば15分かからない。費用対効果で言うと、家具転倒による二次被害が起きてからでは遅い。子どもが近くで寝てる部屋に背の高い家具がある家ほど先に動いてほしい。
+
+レビューは190件で評価が安定してる📊 「設置してから安心感が変わった」という声が目立つ。
+
+防災対策、後回しにしがちだけど3,300円なら動きやすい。
+
+#耐震ポール #防災 #家具転倒防止 #地震対策 #防災グッズ #共働き家庭 #育児パパ #楽天ROOM</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="card-head">
+    <img src="https://thumbnail.image.rakuten.co.jp/@0_mall/hirakata-g/cabinet/shohin/ns50t104.jpg?_ex=128x128" alt="防振マット 5x5cm 4枚入 硬度5種類" loading="lazy">
+    <div class="info">
+      
+      <span class="genre-chip">防災 安全</span>
+      <div class="name">防振マット 5x5cm 4枚入 硬度5種類</div>
+      <div class="meta-row">
+        <span class="price">¥2,500</span>
+        <span class="stars">★★★★☆</span>
+        <span>4.3(109件)</span>
+      </div>
+    </div>
+  </div>
+  <a class="btn-open" href="https://hb.afl.rakuten.co.jp/hgc/g00rzw4n.dg4fi3c7.g00rzw4n.dg4fj1f4/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fhirakata-g%2F77644000%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fhirakata-g%2Fi%2F10000142%2F&rafcid=wsc_i_is_852e9d1a-8f83-49dc-bc9e-cf56a98e669a" target="_blank" rel="noopener">商品ページを開く ↗</a>
+  <div class="url-row">
+    <a href="https://item.rakuten.co.jp/hirakata-g/77644000/" target="_blank" rel="noopener">https://item.rakuten.co.jp/hirakata-g/77644000/</a>
+    <button class="copy-btn" onclick="copyPlain(this, 'https://item.rakuten.co.jp/hirakata-g/77644000/')" type="button">URLコピー</button>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>楽天ROOM用</span>
+      <button class="copy-btn" onclick="copyText(this, 'room-2')" type="button">コピー</button>
+    </div>
+    <textarea id="room-2" readonly>🛡️テレビが子どもの方向に倒れてきたとき用の対策、意外と後回しにしてた。
+
+防振マット(5×5cm・4枚入)を家電の下に敷いた。置いて乗せるだけで工具不要、2,500円で家具4脚分の底面をカバーできる。突っ張り棒が使えない低めの家具や、テレビ台・冷蔵庫の下に使うのが実際の用途として多い🙌
+
+硬度が5種類から選べるのがポイントで、重い冷蔵庫には硬めを、軽めの棚には柔らかめを選ぶのが口コミでも定番の使い方。
+
+耐震ポールと組み合わせると死角がなくなる。どっちかだけで安心しないのがコツ💡
+
+レビューは109件・★4.30。低予算で対策を増やすならこれは試しやすい。
+
+#防振マット #耐震マット #防災 #地震対策 #家具転倒防止 #共働き家庭 #育児パパ #楽天ROOM</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="card-head">
+    <img src="https://thumbnail.image.rakuten.co.jp/@0_mall/double-oo/cabinet/2f-07/image/07-007-sp1-rank.jpg?_ex=128x128" alt="レコードラック ディスプレイラック 木製2段 フラップ扉付き" loading="lazy">
+    <div class="info">
+      
+      <span class="genre-chip">収納整理</span>
+      <div class="name">レコードラック ディスプレイラック 木製2段 フラップ扉付き</div>
+      <div class="meta-row">
+        <span class="price">¥17,990</span>
+        <span class="stars">★★★★☆</span>
+        <span>4.26(549件)</span>
+      </div>
+    </div>
+  </div>
+  <a class="btn-open" href="https://hb.afl.rakuten.co.jp/hgc/g00riyjn.dg4fi5cd.g00riyjn.dg4fj0ca/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fdouble-oo%2F07-007%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fdouble-oo%2Fi%2F10001204%2F&rafcid=wsc_i_is_852e9d1a-8f83-49dc-bc9e-cf56a98e669a" target="_blank" rel="noopener">商品ページを開く ↗</a>
+  <div class="url-row">
+    <a href="https://item.rakuten.co.jp/double-oo/07-007/" target="_blank" rel="noopener">https://item.rakuten.co.jp/double-oo/07-007/</a>
+    <button class="copy-btn" onclick="copyPlain(this, 'https://item.rakuten.co.jp/double-oo/07-007/')" type="button">URLコピー</button>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>楽天ROOM用</span>
+      <button class="copy-btn" onclick="copyText(this, 'room-3')" type="button">コピー</button>
+    </div>
+    <textarea id="room-3" readonly>🎵LP盤をしまいながら飾れるラックって、探すと本当に少ない。
+
+木製2段・フラップ扉付きのレコードラック(17,990円)。扉を開けるとレコードやCDが縦置きで整理できて、閉めると木目のシンプルな家具として部屋に馴染む。見せると隠すが1台で完結する構造🪵
+
+子どもがいる部屋でも扉があることで中身をいじられにくく、飾り棚として置けるのが地味に助かってる。
+
+レビュー549件・★4.26。「想像より質感が良かった」という声が繰り返し見られた💡
+
+2万円以下でここまで木製感の出るインテリア家具は少ない。置くサイズの確認だけ事前にしっかりやっておくのが購入前の唯一の注意点📏
+
+#レコードラック #ディスプレイラック #収納 #インテリア #木製家具 #共働き家庭 #育児パパ #楽天ROOM</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="card-head">
+    <img src="https://thumbnail.image.rakuten.co.jp/@0_mall/auc-qualial/cabinet/bookrack/q0453.jpg?_ex=128x128" alt="前後2列スライド式本棚 幅60/90/120 Libra" loading="lazy">
+    <div class="info">
+      
+      <span class="genre-chip">収納整理</span>
+      <div class="name">前後2列スライド式本棚 幅60/90/120 Libra</div>
+      <div class="meta-row">
+        <span class="price">¥6,990</span>
+        <span class="stars">★★★★☆</span>
+        <span>4.23(119件)</span>
+      </div>
+    </div>
+  </div>
+  <a class="btn-open" href="https://hb.afl.rakuten.co.jp/hgc/g00qg8sn.dg4fib87.g00qg8sn.dg4fjc94/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fauc-qualial%2Fq0453%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fauc-qualial%2Fi%2F10026958%2F&rafcid=wsc_i_is_852e9d1a-8f83-49dc-bc9e-cf56a98e669a" target="_blank" rel="noopener">商品ページを開く ↗</a>
+  <div class="url-row">
+    <a href="https://item.rakuten.co.jp/auc-qualial/q0453/" target="_blank" rel="noopener">https://item.rakuten.co.jp/auc-qualial/q0453/</a>
+    <button class="copy-btn" onclick="copyPlain(this, 'https://item.rakuten.co.jp/auc-qualial/q0453/')" type="button">URLコピー</button>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>楽天ROOM用</span>
+      <button class="copy-btn" onclick="copyText(this, 'room-4')" type="button">コピー</button>
+    </div>
+    <textarea id="room-4" readonly>📚本棚がもう1台必要だと思ってたんだけど、置くスペースがなくて詰んでた。
+
+そこで見つけた前後2列スライド式の本棚、6,990円。前列と後列が独立したレールでスライドするから、奥の本にもアクセスできる。本棚1台で実質2列分の収納量が確保できる仕組み🙌
+
+幅60・90・120の3サイズから選べるので壁面に合わせやすい。子どもの絵本・図鑑は年々増えていくから、最初から余裕のあるサイズを選ぶのが後悔しないコツ。
+
+奥の列には使用頻度の低い本を、前列には普段使いの本を入れる運用がレビューでも定番の使い方らしい📖
+
+設置前に棚の奥行きと置き場所の奥行きを確認しておくのを忘れずに。
+
+#スライド本棚 #前後2列 #本棚 #収納 #収納術 #共働き家庭 #育児パパ #楽天ROOM</textarea>
+  </div>
+</div>
+</div>
+
+<h2 class="section-title">💬 今日のあるある投稿ネタ(商品リンクなし)</h2>
+<div class="cards">
+<div class="card">
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>あるある投稿 #1</span>
+      <button class="copy-btn" onclick="copyText(this, 'daily-0')" type="button">コピー</button>
+    </div>
+    <textarea id="daily-0" class="short" readonly>子どもが机の上のもの全部床に落として「できた！」って顔してる。対処法が浮かばない。</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>あるある投稿 #2</span>
+      <button class="copy-btn" onclick="copyText(this, 'daily-1')" type="button">コピー</button>
+    </div>
+    <textarea id="daily-1" class="short" readonly>風呂上がりに子どもにパジャマを着せて、自分が着替える前に抱っこをせがまれて、気づいたら自分だけまだ半裸のまま20分経ってた🥲</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>あるある投稿 #3</span>
+      <button class="copy-btn" onclick="copyText(this, 'daily-2')" type="button">コピー</button>
+    </div>
+    <textarea id="daily-2" class="short" readonly>夜泣きで何回起きたか朝に聞くと、夫の答えが「1〜2回だったと思う」。俺の記憶だと4回なんだけど。この差はなんだ。 #育児パパ</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>あるある投稿 #4</span>
+      <button class="copy-btn" onclick="copyText(this, 'daily-3')" type="button">コピー</button>
+    </div>
+    <textarea id="daily-3" class="short" readonly>子どもが寝た後に録画してたやつ見ようとしたら、気づいたら朝6時。ドラマ1秒も見てない。</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>あるある投稿 #5</span>
+      <button class="copy-btn" onclick="copyText(this, 'daily-4')" type="button">コピー</button>
+    </div>
+    <textarea id="daily-4" class="short" readonly>保育園のお迎えで駐輪場に着いたら、よその子に名前呼ばれた。うちの子はそっちのお父さんに走って飛びついてた。お互いしばらく無言だった😂 #共働き家庭</textarea>
+  </div>
+</div>
+</div>
+
+<footer class="note">商品ページを確認し、投稿文をコピーして手動で投稿してください。<br>Threads/Xの商品紹介は1日1件・あるある投稿と織り交ぜてスパム判定を避けてください。<br>価格・レビューは選定時点の実データです。</footer>
+</div>
+<script>
+function flash(btn) {
+  const original = btn.textContent;
+  btn.textContent = 'コピーしました';
+  btn.classList.add('copied');
+  setTimeout(() => { btn.textContent = original; btn.classList.remove('copied'); }, 1500);
+}
+function copyText(btn, id) {
+  const el = document.getElementById(id);
+  el.select();
+  el.setSelectionRange(0, 999999);
+  navigator.clipboard.writeText(el.value).then(() => flash(btn)).catch(() => {
+    try { document.execCommand('copy'); flash(btn); } catch (e) {}
+  });
+}
+function copyPlain(btn, text) {
+  navigator.clipboard.writeText(text).then(() => flash(btn)).catch(() => {
+    const t = document.createElement('textarea');
+    t.value = text; document.body.appendChild(t); t.select();
+    try { document.execCommand('copy'); flash(btn); } catch (e) {}
+    document.body.removeChild(t);
+  });
+}
+</script>
+</body>
+</html>

@@ -47,13 +47,16 @@
    - 選ばれた1件のみ:Threads投稿文・X投稿文(コピーボタン付き、選定理由も表示)
    - あるある系日常投稿5個(コピーボタン付き、商品情報なし)
 5. data/posted_history.json を更新する(qa-checkerが実施)
-6. 生成した output/page_YYYY-MM-DD_slot.html を docs/index.html にも上書きコピーする
-   (GitHub Pages公開元が docs/ に設定済みで、https://dakuzawa-alt.github.io/rakuten-room-automation-/ が常に最新版になる)
+6. 生成した output/page_YYYY-MM-DD_slot.html を docs/archive/YYYY-MM-DD_slot.html にコピーし、
+   `python scripts/build_archive_index.py` を実行して docs/index.html(日付ごとに選べる一覧メニュー)を再生成する
+   (GitHub Pages公開元が docs/ に設定済み。メニュー: https://dakuzawa-alt.github.io/rakuten-room-automation-/ 、
+    個別ページ: https://dakuzawa-alt.github.io/rakuten-room-automation-/archive/YYYY-MM-DD_slot.html )
 7. PushNotificationツールで「本日分の商品選定ができました」と通知する
-   (固定URL https://dakuzawa-alt.github.io/rakuten-room-automation-/ をメッセージに含める)
+   (本日分の直接URL https://dakuzawa-alt.github.io/rakuten-room-automation-/archive/YYYY-MM-DD_slot.html をメッセージに含める)
 ```
 
-**2026-09-16追記**: リポジトリはユーザーの合意のもとPublicに変更済み(GitHub Pages有効化のため、Proプラン加入の代わりに無料の方法を選択)。`docs/index.html`が公開ページの実体であり、`config/credentials.json`はgitignore対象で公開されていないことを確認済み。
+**2026-09-16追記**: リポジトリはユーザーの合意のもとPublicに変更済み(GitHub Pages有効化のため、Proプラン加入の代わりに無料の方法を選択)。`config/credentials.json`はgitignore対象で公開されていないことを確認済み。
+**2026-09-17追記**: 当初`docs/index.html`を毎回上書きする方式だったため過去分が見られない問題が発覚。`docs/archive/`に日付ごとのファイルを蓄積し、`docs/index.html`は`scripts/build_archive_index.py`が生成する一覧メニューに変更した。
 
 ## 運用ルール
 

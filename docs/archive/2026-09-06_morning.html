@@ -1,0 +1,406 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>9/6 朝の選定 - 楽天ROOM投稿リスト</title>
+<style>
+:root {
+  --bg: #f6f3ee;
+  --surface: #ffffff;
+  --ink: #23211d;
+  --ink-soft: #6b6459;
+  --accent: #a8382c;
+  --accent-ink: #fff6f2;
+  --good: #3f7d58;
+  --border: #e4ddd2;
+  --chip-bg: #efe8db;
+  color-scheme: light dark;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #16140f;
+    --surface: #211f1a;
+    --ink: #ece7dc;
+    --ink-soft: #a89e8d;
+    --accent: #e0685a;
+    --accent-ink: #1c0f0c;
+    --good: #6fb98a;
+    --border: #35322a;
+    --chip-bg: #2a2721;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #16140f; --surface: #211f1a; --ink: #ece7dc; --ink-soft: #a89e8d;
+  --accent: #e0685a; --accent-ink: #1c0f0c; --good: #6fb98a; --border: #35322a; --chip-bg: #2a2721;
+}
+:root[data-theme="light"] {
+  --bg: #f6f3ee; --surface: #ffffff; --ink: #23211d; --ink-soft: #6b6459;
+  --accent: #a8382c; --accent-ink: #fff6f2; --good: #3f7d58; --border: #e4ddd2; --chip-bg: #efe8db;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0; background: var(--bg); color: var(--ink);
+  font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Yu Gothic Medium", "Noto Sans JP", sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+.wrap { max-width: 640px; margin: 0 auto; padding: 0 16px 40px; }
+header.top {
+  position: sticky; top: 0; z-index: 5; background: var(--bg);
+  padding: 18px 16px 12px; border-bottom: 1px solid var(--border);
+  display: flex; align-items: baseline; justify-content: space-between; gap: 12px;
+}
+header.top .eyebrow {
+  font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-soft);
+  font-weight: 600; margin: 0 0 2px;
+}
+header.top h1 { font-size: 1.25rem; margin: 0; font-weight: 700; letter-spacing: -0.01em; }
+header.top .count {
+  background: var(--chip-bg); color: var(--ink-soft); font-size: 0.78rem; font-weight: 600;
+  padding: 5px 10px; border-radius: 999px; white-space: nowrap;
+}
+h2.section-title { font-size: 0.95rem; font-weight: 700; margin: 24px 0 12px; }
+.cards { display: flex; flex-direction: column; gap: 16px; margin-top: 18px; }
+.card {
+  background: var(--surface); border: 1px solid var(--border); border-radius: 16px;
+  padding: 16px; display: flex; flex-direction: column; gap: 12px;
+}
+.card.featured { border-color: var(--accent); border-width: 2px; }
+.featured-badge {
+  align-self: flex-start; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.03em;
+  color: var(--accent-ink); background: var(--accent); padding: 3px 9px; border-radius: 999px;
+}
+.card-head { display: flex; gap: 12px; }
+.card-head img {
+  width: 76px; height: 76px; object-fit: cover; border-radius: 10px;
+  border: 1px solid var(--border); background: var(--chip-bg); flex-shrink: 0;
+}
+.card-head .info { min-width: 0; flex: 1; display: flex; flex-direction: column; gap: 4px; }
+.genre-chip {
+  align-self: flex-start; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.03em;
+  color: var(--accent); background: color-mix(in srgb, var(--accent) 12%, transparent);
+  padding: 2px 8px; border-radius: 999px;
+}
+.name {
+  font-weight: 600; font-size: 0.94rem; line-height: 1.4;
+  display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
+}
+.meta-row { display: flex; align-items: baseline; gap: 8px; font-size: 0.82rem; color: var(--ink-soft); }
+.price { font-variant-numeric: tabular-nums; color: var(--ink); font-weight: 700; font-size: 1.05rem; }
+.stars { letter-spacing: -1px; color: var(--accent); }
+.btn-open {
+  display: flex; align-items: center; justify-content: center; gap: 6px;
+  background: var(--accent); color: var(--accent-ink); border: none; border-radius: 11px;
+  padding: 12px; font-weight: 700; font-size: 0.92rem; text-decoration: none;
+}
+.btn-open:active { opacity: 0.85; }
+.url-row {
+  display: flex; align-items: center; gap: 8px;
+  background: var(--chip-bg); border-radius: 9px; padding: 8px 10px;
+}
+.url-row a {
+  flex: 1; min-width: 0; font-size: 0.76rem; color: var(--accent);
+  word-break: break-all; line-height: 1.45; text-decoration: none;
+}
+.url-row a:active { text-decoration: underline; }
+.reason { font-size: 0.8rem; color: var(--ink-soft); }
+.caption-box { border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }
+.caption-head {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 8px 10px; background: var(--chip-bg);
+}
+.caption-head span {
+  font-size: 0.7rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-soft);
+}
+.copy-btn {
+  background: var(--surface); border: 1px solid var(--border); color: var(--ink);
+  border-radius: 7px; padding: 5px 11px; font-size: 0.76rem; font-weight: 600; cursor: pointer;
+}
+.copy-btn:focus-visible, .btn-open:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.copy-btn.copied { background: var(--good); border-color: var(--good); color: #fff; }
+textarea {
+  width: 100%; display: block; border: none; padding: 10px; font-size: 0.85rem; line-height: 1.55;
+  resize: vertical; min-height: 108px; font-family: inherit; background: var(--surface); color: var(--ink);
+}
+textarea.short { min-height: 60px; }
+textarea:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
+footer.note { margin-top: 22px; font-size: 0.76rem; color: var(--ink-soft); text-align: center; line-height: 1.6; }
+@media (prefers-reduced-motion: no-preference) {
+  .copy-btn { transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease; }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <div>
+    <p class="eyebrow">楽天ROOM 投稿リスト</p>
+    <h1>9/6 朝の選定</h1>
+  </div>
+  <span class="count">5件</span>
+</header>
+
+<h2 class="section-title">📦 商品(ROOM用、全5件)</h2>
+<div class="cards">
+<div class="card featured">
+  <div class="card-head">
+    <img src="https://thumbnail.image.rakuten.co.jp/@0_mall/e-kit/cabinet/description/ek-dcb3/ek-dcb3_1_sale.jpg?_ex=128x128" alt="【最大700円OFF】 [圧倒的高評価] まな板 かまぼこ型 丸 グレージュ 黒 半月 まないた おしゃれ 食洗機対応 ゴム 丸いまな板 エラストマー 抗菌 滑らない カッティングボード 丸型 D型 丸まな板 円形 半円 かまぼこ 耐熱 薄型 軽量 [S/M/L ブラック/グレージュ] [CICADA]" loading="lazy">
+    <div class="info">
+      <span class="featured-badge">🔥 本日のThreads/Xピックアップ</span>
+      <span class="genre-chip">キッチン雑貨</span>
+      <div class="name">【最大700円OFF】 [圧倒的高評価] まな板 かまぼこ型 丸 グレージュ 黒 半月 まないた おしゃれ 食洗機対応 ゴム 丸いまな板 エラストマー 抗菌 滑らない カッティングボード 丸型 D型 丸まな板 円形 半円 かまぼこ 耐熱 薄型 軽量 [S/M/L ブラック/グレージュ] [CICADA]</div>
+      <div class="meta-row">
+        <span class="price">¥1,580</span>
+        <span class="stars">★★★★★</span>
+        <span>4.71(6713件)</span>
+      </div>
+    </div>
+  </div>
+  <a class="btn-open" href="https://hb.afl.rakuten.co.jp/hgc/g00sw2cn.dg4fi2c3.g00sw2cn.dg4fjbad/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fe-kit%2Fek-dcb%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fe-kit%2Fi%2F10042755%2F&rafcid=wsc_i_is_852e9d1a-8f83-49dc-bc9e-cf56a98e669a" target="_blank" rel="noopener">商品ページを開く ↗</a>
+  <div class="url-row">
+    <a href="https://item.rakuten.co.jp/e-kit/ek-dcb/" target="_blank" rel="noopener">https://item.rakuten.co.jp/e-kit/ek-dcb/</a>
+    <button class="copy-btn" onclick="copyPlain(this, 'https://item.rakuten.co.jp/e-kit/ek-dcb/')" type="button">URLコピー</button>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>楽天ROOM用</span>
+      <button class="copy-btn" onclick="copyText(this, 'room-0')" type="button">コピー</button>
+    </div>
+    <textarea id="room-0" readonly>🔪毎日使うまな板、そういえば何年替えていないか思い出せますか。
+このかまぼこ型の丸まな板は、エラストマー素材で軽くて薄く、食洗機に入れられます。手前で切って奥に食材を置ける形なので、狭いキッチンでも作業がまとまります。まな板ごと持ち上げて鍋に投入しやすく、洗い物のあいだの一時置き皿にもなります。木のまな板のような黒ずみやカビの心配がないのが、共働き家庭には合っています。
+レビュー6,713件・★4.71という数字が、扱いやすさを裏づけています。
+注意点は、熱いフライパンを直に乗せると変形すること。鍋敷き代わりには使わないでください。
+1,580円で、まな板だけ新しくしませんか?
+#まな板 #丸まな板 #食洗機対応 #キッチン雑貨 #時短家事 #共働き家庭 #育児パパ #楽天ROOM</textarea>
+  </div>
+  <p class="reason">🔥 今日のピックアップ理由: 1,580円という手頃さとレビュー6,713件・★4.71という圧倒的実績のギャップが強く、毎日使う定番品の買い替え提案として誰にでも刺さるため。</p>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>Threads用</span>
+      <button class="copy-btn" onclick="copyText(this, 'threads-0')" type="button">コピー</button>
+    </div>
+    <textarea id="threads-0" readonly>まな板、何年替えてないか思い出せない人。うちもそうだった。
+丸いエラストマーのやつに替えたら、食洗機にそのまま入るし、木みたいに黒ずまない。手前で切って奥に置ける形だから狭いキッチンでも作業がまとまる。まな板ごと鍋に投入できるのも地味に効く。
+レビュー6,713件・★4.71で1,580円。毎日触るものだから、ここ替えると満足度高い。
+熱いフライパン直置きだけは変形するから注意🔪
+#まな板 #丸まな板 #キッチン雑貨 #育児パパ #共働き家庭 #PR #楽天アフィリエイト</textarea>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>X用</span>
+      <button class="copy-btn" onclick="copyText(this, 'x-0')" type="button">コピー</button>
+    </div>
+    <textarea id="x-0" readonly>まな板を丸いエラストマーのやつに替えたら、食洗機にそのまま入るし木みたいに黒ずまない。
+手前で切って奥に置ける形で狭いキッチンでも作業がまとまる。
+レビュー6,713件・★4.71で1,580円。毎日触るものだから満足度高い🔪
+#まな板 #キッチン雑貨 #育児パパ #PR #楽天アフィリエイト</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="card-head">
+    <img src="https://thumbnail.image.rakuten.co.jp/@0_mall/riccado/cabinet/cg430/cg400_th_flag2.jpg?_ex=128x128" alt="＼楽天SS!!／【挽きたて1杯で上質な時間を】 電動コーヒーミル コードレス 臼式 コニカル式 電動 コーヒーミル 電動 コーヒーグラインダー USB 充電式 水洗い可能 Coffee grinder コーヒー 電動ミル 珈琲ミル 小型 コンパクト 【エスプレッソ対応/39段階粒度調整/1年保証】" loading="lazy">
+    <div class="info">
+      
+      <span class="genre-chip">時短家電</span>
+      <div class="name">＼楽天SS!!／【挽きたて1杯で上質な時間を】 電動コーヒーミル コードレス 臼式 コニカル式 電動 コーヒーミル 電動 コーヒーグラインダー USB 充電式 水洗い可能 Coffee grinder コーヒー 電動ミル 珈琲ミル 小型 コンパクト 【エスプレッソ対応/39段階粒度調整/1年保証】</div>
+      <div class="meta-row">
+        <span class="price">¥3,799</span>
+        <span class="stars">★★★★★</span>
+        <span>4.68(1527件)</span>
+      </div>
+    </div>
+  </div>
+  <a class="btn-open" href="https://hb.afl.rakuten.co.jp/hgc/g00s9ptn.dg4fi9bb.g00s9ptn.dg4fj3e7/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Friccado%2F1014%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Friccado%2Fi%2F10000389%2F&rafcid=wsc_i_is_852e9d1a-8f83-49dc-bc9e-cf56a98e669a" target="_blank" rel="noopener">商品ページを開く ↗</a>
+  <div class="url-row">
+    <a href="https://item.rakuten.co.jp/riccado/1014/" target="_blank" rel="noopener">https://item.rakuten.co.jp/riccado/1014/</a>
+    <button class="copy-btn" onclick="copyPlain(this, 'https://item.rakuten.co.jp/riccado/1014/')" type="button">URLコピー</button>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>楽天ROOM用</span>
+      <button class="copy-btn" onclick="copyText(this, 'room-1')" type="button">コピー</button>
+    </div>
+    <textarea id="room-1" readonly>☕朝のコーヒー、豆から挽きたいけど手回しミルは面倒でやめた、という人へ。
+このコードレス電動ミルは、USB充電式で置き場所を選ばず、ボタンひとつで挽けます。臼式なので粒度が均一で、39段階の調整でエスプレッソからフレンチプレスまで対応します。パーツは水洗いできるので、油が残りにくく手入れが続きます。
+レビュー1,527件・★4.68という評価が、日々使われている証拠です。
+注意点は、一度に挽ける量が少なめなので、大人数分をまとめて挽く用途には向かないこと。
+3,799円で、朝の一杯を淹れたてに変えませんか?
+#電動コーヒーミル #コーヒーグラインダー #朝コーヒー #おうちカフェ #時短家事 #育児パパ #楽天ROOM</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="card-head">
+    <img src="https://thumbnail.image.rakuten.co.jp/@0_mall/kiroran/cabinet/13763966/26dl-10.jpg?_ex=128x128" alt="【楽天スーパーセール開催中！エントリーで全商品ポイント最大10倍！9/11 01:59迄！】【FULNG お風呂 ヘアキャッチャー】お風呂 排水溝 排水口 カバー ゴミ受け ユニットバス用 掃除簡単 排水口ネット 排水溝ネット はいすいこう ネット 極排水 送料無料 [実用新案出願済み]" loading="lazy">
+    <div class="info">
+      
+      <span class="genre-chip">掃除洗濯</span>
+      <div class="name">【楽天スーパーセール開催中！エントリーで全商品ポイント最大10倍！9/11 01:59迄！】【FULNG お風呂 ヘアキャッチャー】お風呂 排水溝 排水口 カバー ゴミ受け ユニットバス用 掃除簡単 排水口ネット 排水溝ネット はいすいこう ネット 極排水 送料無料 [実用新案出願済み]</div>
+      <div class="meta-row">
+        <span class="price">¥1,960</span>
+        <span class="stars">★★★★★</span>
+        <span>4.67(5343件)</span>
+      </div>
+    </div>
+  </div>
+  <a class="btn-open" href="https://hb.afl.rakuten.co.jp/hgc/g00ufk6n.dg4fi55b.g00ufk6n.dg4fj0e5/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fkiroran%2Fdl%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fkiroran%2Fi%2F10000196%2F&rafcid=wsc_i_is_852e9d1a-8f83-49dc-bc9e-cf56a98e669a" target="_blank" rel="noopener">商品ページを開く ↗</a>
+  <div class="url-row">
+    <a href="https://item.rakuten.co.jp/kiroran/dl/" target="_blank" rel="noopener">https://item.rakuten.co.jp/kiroran/dl/</a>
+    <button class="copy-btn" onclick="copyPlain(this, 'https://item.rakuten.co.jp/kiroran/dl/')" type="button">URLコピー</button>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>楽天ROOM用</span>
+      <button class="copy-btn" onclick="copyText(this, 'room-2')" type="button">コピー</button>
+    </div>
+    <textarea id="room-2" readonly>🛁お風呂の排水口の掃除、見て見ぬふりをして週末に回していませんか。
+このヘアキャッチャーは、ユニットバスの排水口にかぶせるだけ。髪の毛やゴミをまとめて受けてくれるので、たまったらつまんで捨てるだけになります。ぬめりが付きにくい形状で、外して丸洗いも簡単です。純正のフタを外してこれに替えるだけで、排水口まわりの掃除頻度がぐっと下がりました。
+レビュー5,343件・★4.67という件数が、多くの家庭で使われている証拠です。
+注意点は、排水口の口径に合うか購入前に必ず測ること。合わないと浮いてしまいます。
+1,960円で、風呂掃除の一工程を減らしませんか?
+#ヘアキャッチャー #お風呂掃除 #排水口 #掃除の時短 #名もなき家事 #共働き家庭 #育児パパ #楽天ROOM</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="card-head">
+    <img src="https://thumbnail.image.rakuten.co.jp/@0_mall/crescent-mix/cabinet/01353888/08424063/11519223/24mtnslp01.jpg?_ex=128x128" alt="【SS先着10%OFFクーポン】 ムートン スリッパ 【楽天3冠獲得】 ルームシューズ 高級 本革 あったか 冬 暖かい あたたかい 本物 室内 レザー 冷え対策 北欧 かわいい おしゃれ リアルファー 来客用 天然素材 レディース メンズ 子供 キッズ もこもこ ニュージーランド産" loading="lazy">
+    <div class="info">
+      
+      <span class="genre-chip">季節もの</span>
+      <div class="name">【SS先着10%OFFクーポン】 ムートン スリッパ 【楽天3冠獲得】 ルームシューズ 高級 本革 あったか 冬 暖かい あたたかい 本物 室内 レザー 冷え対策 北欧 かわいい おしゃれ リアルファー 来客用 天然素材 レディース メンズ 子供 キッズ もこもこ ニュージーランド産</div>
+      <div class="meta-row">
+        <span class="price">¥3,580</span>
+        <span class="stars">★★★★★</span>
+        <span>4.59(5785件)</span>
+      </div>
+    </div>
+  </div>
+  <a class="btn-open" href="https://hb.afl.rakuten.co.jp/hgc/g00qv4tn.dg4fi9b6.g00qv4tn.dg4fj3de/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fcrescent-mix%2Fmouton_slippers%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fcrescent-mix%2Fi%2F10000118%2F&rafcid=wsc_i_is_852e9d1a-8f83-49dc-bc9e-cf56a98e669a" target="_blank" rel="noopener">商品ページを開く ↗</a>
+  <div class="url-row">
+    <a href="https://item.rakuten.co.jp/crescent-mix/mouton_slippers/" target="_blank" rel="noopener">https://item.rakuten.co.jp/crescent-mix/mouton_slippers/</a>
+    <button class="copy-btn" onclick="copyPlain(this, 'https://item.rakuten.co.jp/crescent-mix/mouton_slippers/')" type="button">URLコピー</button>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>楽天ROOM用</span>
+      <button class="copy-btn" onclick="copyText(this, 'room-3')" type="button">コピー</button>
+    </div>
+    <textarea id="room-3" readonly>🥿夜、フローリングの冷たさで足元から体が冷える季節になってきました。
+このムートンスリッパは、表地が本革スエードで、羊毛の保温層が足を包みます。履き始めは少しきつめでも、使ううちに足になじんでフィットします。S〜LLまでサイズがあるので、家族分をそろえて色分けするのもいいです。底がしっかりしているので、ゴミ出しくらいならそのまま出られます。
+レビュー5,785件・★4.59という評価が、毎年の買い替え需要を裏づけています。
+注意点は、本革なので水濡れに弱いこと。洗面所やキッチンの水はねには別のものを使ってください。
+3,580円で、足元から寒さ対策を始めませんか?
+#ムートンスリッパ #ルームシューズ #冷え対策 #秋支度 #本革 #育児パパ #楽天ROOM</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="card-head">
+    <img src="https://thumbnail.image.rakuten.co.jp/@0_mall/cloud-nine/cabinet/13721441/imgrc0118467238.jpg?_ex=128x128" alt="＼スーパーセール ポイント最大31.5倍／高評価★4.62【楽天1位＆6冠受賞】パナソニック 鼻毛カッター メンズ 日本製 エチケットカッター パナソニック 鼻毛 眉毛 髭 耳毛に使える 男性 鼻毛カッター パナソニック メンズ 耳毛カッター 男性用 鼻毛カッター 電池式 ERGN12" loading="lazy">
+    <div class="info">
+      
+      <span class="genre-chip">身だしなみ</span>
+      <div class="name">＼スーパーセール ポイント最大31.5倍／高評価★4.62【楽天1位＆6冠受賞】パナソニック 鼻毛カッター メンズ 日本製 エチケットカッター パナソニック 鼻毛 眉毛 髭 耳毛に使える 男性 鼻毛カッター パナソニック メンズ 耳毛カッター 男性用 鼻毛カッター 電池式 ERGN12</div>
+      <div class="meta-row">
+        <span class="price">¥2,380</span>
+        <span class="stars">★★★★★</span>
+        <span>4.62(2352件)</span>
+      </div>
+    </div>
+  </div>
+  <a class="btn-open" href="https://hb.afl.rakuten.co.jp/hgc/g00tvyon.dg4fi7f9.g00tvyon.dg4fj406/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fcloud-nine%2F2593-001117%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fcloud-nine%2Fi%2F10000710%2F&rafcid=wsc_i_is_852e9d1a-8f83-49dc-bc9e-cf56a98e669a" target="_blank" rel="noopener">商品ページを開く ↗</a>
+  <div class="url-row">
+    <a href="https://item.rakuten.co.jp/cloud-nine/2593-001117/" target="_blank" rel="noopener">https://item.rakuten.co.jp/cloud-nine/2593-001117/</a>
+    <button class="copy-btn" onclick="copyPlain(this, 'https://item.rakuten.co.jp/cloud-nine/2593-001117/')" type="button">URLコピー</button>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>楽天ROOM用</span>
+      <button class="copy-btn" onclick="copyText(this, 'room-4')" type="button">コピー</button>
+    </div>
+    <textarea id="room-4" readonly>🪞子どもに「パパ鼻毛出てる」と言われて、朝の身だしなみを見直しました。
+パナソニックの鼻毛カッターは、デュアルエッジ刃で鼻毛だけをとらえて肌を傷つけにくい設計。眉毛や耳毛、ヒゲの細かい部分にも使えます。水洗いできるので清潔を保ちやすく、電池式でサッと使えます。日本製で、この価格帯の定番として長く売れているモデルです。
+レビュー2,352件・★4.62という数字が、実用品としての信頼を示しています。
+注意点は、替え刃の設定がないので、切れ味が落ちたら本体ごと買い替える前提であること。
+2,380円で、朝のひと手間を家に一台置きませんか?
+#鼻毛カッター #エチケットカッター #パナソニック #身だしなみ #パパの日常 #育児パパ #楽天ROOM</textarea>
+  </div>
+</div>
+</div>
+
+<h2 class="section-title">💬 今日のあるある投稿ネタ(商品リンクなし)</h2>
+<div class="cards">
+<div class="card">
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>あるある投稿 #1</span>
+      <button class="copy-btn" onclick="copyText(this, 'daily-0')" type="button">コピー</button>
+    </div>
+    <textarea id="daily-0" class="short" readonly>コーヒー淹れてる3分だけが自分の時間</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>あるある投稿 #2</span>
+      <button class="copy-btn" onclick="copyText(this, 'daily-1')" type="button">コピー</button>
+    </div>
+    <textarea id="daily-1" class="short" readonly>子どもに「早くして」と言いながら、自分が一番出発に手間取ってる朝がある</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>あるある投稿 #3</span>
+      <button class="copy-btn" onclick="copyText(this, 'daily-2')" type="button">コピー</button>
+    </div>
+    <textarea id="daily-2" class="short" readonly>洗濯物、乾いてるのは分かってるけど取り込むのが今日じゃない気がする日</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>あるある投稿 #4</span>
+      <button class="copy-btn" onclick="copyText(this, 'daily-3')" type="button">コピー</button>
+    </div>
+    <textarea id="daily-3" class="short" readonly>夕方の公園で「あと5分」を7回くらい言う。毎回言ってる🌇
+#育児あるある</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>あるある投稿 #5</span>
+      <button class="copy-btn" onclick="copyText(this, 'daily-4')" type="button">コピー</button>
+    </div>
+    <textarea id="daily-4" class="short" readonly>子どもが昼寝しないと1日が長い。子どもが昼寝すると自分も動けない。詰み</textarea>
+  </div>
+</div>
+</div>
+
+<footer class="note">商品ページを確認し、投稿文をコピーして手動で投稿してください。<br>Threads/Xの商品紹介は1日1件・あるある投稿と織り交ぜてスパム判定を避けてください。<br>価格・レビューは選定時点の実データです。</footer>
+</div>
+<script>
+function flash(btn) {
+  const original = btn.textContent;
+  btn.textContent = 'コピーしました';
+  btn.classList.add('copied');
+  setTimeout(() => { btn.textContent = original; btn.classList.remove('copied'); }, 1500);
+}
+function copyText(btn, id) {
+  const el = document.getElementById(id);
+  el.select();
+  el.setSelectionRange(0, 999999);
+  navigator.clipboard.writeText(el.value).then(() => flash(btn)).catch(() => {
+    try { document.execCommand('copy'); flash(btn); } catch (e) {}
+  });
+}
+function copyPlain(btn, text) {
+  navigator.clipboard.writeText(text).then(() => flash(btn)).catch(() => {
+    const t = document.createElement('textarea');
+    t.value = text; document.body.appendChild(t); t.select();
+    try { document.execCommand('copy'); flash(btn); } catch (e) {}
+    document.body.removeChild(t);
+  });
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,387 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🛍️</text></svg>">
+<title>9/15 朝の選定 - 楽天ROOM投稿リスト</title>
+<style>
+:root {
+  --bg: #f6f3ee;
+  --surface: #ffffff;
+  --ink: #23211d;
+  --ink-soft: #6b6459;
+  --accent: #a8382c;
+  --accent-ink: #fff6f2;
+  --good: #3f7d58;
+  --border: #e4ddd2;
+  --chip-bg: #efe8db;
+  color-scheme: light dark;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #16140f;
+    --surface: #211f1a;
+    --ink: #ece7dc;
+    --ink-soft: #a89e8d;
+    --accent: #e0685a;
+    --accent-ink: #1c0f0c;
+    --good: #6fb98a;
+    --border: #35322a;
+    --chip-bg: #2a2721;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #16140f; --surface: #211f1a; --ink: #ece7dc; --ink-soft: #a89e8d;
+  --accent: #e0685a; --accent-ink: #1c0f0c; --good: #6fb98a; --border: #35322a; --chip-bg: #2a2721;
+}
+:root[data-theme="light"] {
+  --bg: #f6f3ee; --surface: #ffffff; --ink: #23211d; --ink-soft: #6b6459;
+  --accent: #a8382c; --accent-ink: #fff6f2; --good: #3f7d58; --border: #e4ddd2; --chip-bg: #efe8db;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0; background: var(--bg); color: var(--ink);
+  font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Yu Gothic Medium", "Noto Sans JP", sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+.wrap { max-width: 640px; margin: 0 auto; padding: 0 16px 40px; }
+header.top {
+  position: sticky; top: 0; z-index: 5; background: var(--bg);
+  padding: 18px 16px 12px; border-bottom: 1px solid var(--border);
+  display: flex; align-items: baseline; justify-content: space-between; gap: 12px;
+}
+header.top .eyebrow {
+  font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-soft);
+  font-weight: 600; margin: 0 0 2px;
+}
+header.top h1 { font-size: 1.25rem; margin: 0; font-weight: 700; letter-spacing: -0.01em; }
+header.top .count {
+  background: var(--chip-bg); color: var(--ink-soft); font-size: 0.78rem; font-weight: 600;
+  padding: 5px 10px; border-radius: 999px; white-space: nowrap;
+}
+h2.section-title { font-size: 0.95rem; font-weight: 700; margin: 24px 0 12px; }
+.cards { display: flex; flex-direction: column; gap: 16px; margin-top: 18px; }
+.card {
+  background: var(--surface); border: 1px solid var(--border); border-radius: 16px;
+  padding: 16px; display: flex; flex-direction: column; gap: 12px;
+}
+.card.featured { border-color: var(--accent); border-width: 2px; }
+.featured-badge {
+  align-self: flex-start; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.03em;
+  color: var(--accent-ink); background: var(--accent); padding: 3px 9px; border-radius: 999px;
+}
+.card-head { display: flex; gap: 12px; }
+.card-head img {
+  width: 76px; height: 76px; object-fit: cover; border-radius: 10px;
+  border: 1px solid var(--border); background: var(--chip-bg); flex-shrink: 0;
+}
+.card-head .info { min-width: 0; flex: 1; display: flex; flex-direction: column; gap: 4px; }
+.genre-chip {
+  align-self: flex-start; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.03em;
+  color: var(--accent); background: color-mix(in srgb, var(--accent) 12%, transparent);
+  padding: 2px 8px; border-radius: 999px;
+}
+.name {
+  font-weight: 600; font-size: 0.94rem; line-height: 1.4;
+  display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
+}
+.meta-row { display: flex; align-items: baseline; gap: 8px; font-size: 0.82rem; color: var(--ink-soft); }
+.price { font-variant-numeric: tabular-nums; color: var(--ink); font-weight: 700; font-size: 1.05rem; }
+.stars { letter-spacing: -1px; color: var(--accent); }
+.btn-open {
+  display: flex; align-items: center; justify-content: center; gap: 6px;
+  background: var(--accent); color: var(--accent-ink); border: none; border-radius: 11px;
+  padding: 12px; font-weight: 700; font-size: 0.92rem; text-decoration: none;
+}
+.btn-open:active { opacity: 0.85; }
+.url-row {
+  display: flex; align-items: center; gap: 8px;
+  background: var(--chip-bg); border-radius: 9px; padding: 8px 10px;
+}
+.url-row a {
+  flex: 1; min-width: 0; font-size: 0.76rem; color: var(--accent);
+  word-break: break-all; line-height: 1.45; text-decoration: none;
+}
+.url-row a:active { text-decoration: underline; }
+.reason { font-size: 0.8rem; color: var(--ink-soft); }
+.caption-box { border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }
+.caption-head {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 8px 10px; background: var(--chip-bg);
+}
+.caption-head span {
+  font-size: 0.7rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-soft);
+}
+.copy-btn {
+  background: var(--surface); border: 1px solid var(--border); color: var(--ink);
+  border-radius: 7px; padding: 5px 11px; font-size: 0.76rem; font-weight: 600; cursor: pointer;
+}
+.copy-btn:focus-visible, .btn-open:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.copy-btn.copied { background: var(--good); border-color: var(--good); color: #fff; }
+textarea {
+  width: 100%; display: block; border: none; padding: 10px; font-size: 0.85rem; line-height: 1.55;
+  resize: vertical; min-height: 108px; font-family: inherit; background: var(--surface); color: var(--ink);
+}
+textarea.short { min-height: 60px; }
+textarea:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
+footer.note { margin-top: 22px; font-size: 0.76rem; color: var(--ink-soft); text-align: center; line-height: 1.6; }
+@media (prefers-reduced-motion: no-preference) {
+  .copy-btn { transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease; }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <div>
+    <p class="eyebrow">楽天ROOM 投稿リスト</p>
+    <h1>9/15 朝の選定</h1>
+  </div>
+  <span class="count">5件</span>
+</header>
+
+<h2 class="section-title">📦 商品(ROOM用、全5件)</h2>
+<div class="cards">
+<div class="card">
+  <div class="card-head">
+    <img src="https://thumbnail.image.rakuten.co.jp/@0_mall/roomy/cabinet/500cart_all/500cart_11g/sale-3/win2006-jw03c-1_gt02.jpg?_ex=128x128" alt="レコルト ホットプレート ホームバーベキュー RBQ-1" loading="lazy">
+    <div class="info">
+      <span class="genre-chip">時短家電</span>
+      <div class="name">レコルト ホットプレート ホームバーベキュー RBQ-1</div>
+      <div class="meta-row">
+        <span class="price">¥5,770</span>
+        <span class="stars">★★★★★</span>
+        <span>4.48(146件)</span>
+      </div>
+    </div>
+  </div>
+  <a class="btn-open" href="https://hb.afl.rakuten.co.jp/hgc/g00qb0ln.dg4fi96c.g00qb0ln.dg4fj480/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Froomy%2Fwin16sep27e01%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Froomy%2Fi%2F10015522%2F&rafcid=wsc_i_is_852e9d1a-8f83-49dc-bc9e-cf56a98e669a" target="_blank" rel="noopener">商品ページを開く ↗</a>
+  <div class="url-row">
+    <a href="https://item.rakuten.co.jp/roomy/win16sep27e01/" target="_blank" rel="noopener">https://item.rakuten.co.jp/roomy/win16sep27e01/</a>
+    <button class="copy-btn" onclick="copyPlain(this, 'https://item.rakuten.co.jp/roomy/win16sep27e01/')" type="button">URLコピー</button>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>楽天ROOM用</span>
+      <button class="copy-btn" onclick="copyText(this, 'room-0')" type="button">コピー</button>
+    </div>
+    <textarea id="room-0" readonly>🍖5,770円で、家の中でバーベキューができちゃうんですよ。共働きで外食も面倒な週末、室内でワイワイできるのって地味に大きいんです。コンパクトで収納も楽。網の上でお肉も野菜もそのまま焼けるし、テーブルを囲む雰囲気が子どもも喜ぶ🎉レビュー146件・星4.48と実績もしっかりあります。注意点は煙が少し出るので換気は必須。でもこの価格でこのクオリティ、正直かなり高コスパだと思いますよ。週末の献立で悩んだときにおすすめです✨
+#ホットプレート #室内バーベキュー #レコルト #時短家電 #育児パパ #共働き家庭 #週末ごはん #楽天ROOM</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="card-head">
+    <img src="https://thumbnail.image.rakuten.co.jp/@0_mall/orange-baby/cabinet/aprica/4969220915937x.jpg?_ex=128x128" alt="アップリカ はじめてのお風呂から使えるバスチェア" loading="lazy">
+    <div class="info">
+      <span class="genre-chip">育児グッズ</span>
+      <div class="name">アップリカ はじめてのお風呂から使えるバスチェア</div>
+      <div class="meta-row">
+        <span class="price">¥4,200</span>
+        <span class="stars">★★★★☆</span>
+        <span>4.34(798件)</span>
+      </div>
+    </div>
+  </div>
+  <a class="btn-open" href="https://hb.afl.rakuten.co.jp/hgc/g00pqpln.dg4fid7a.g00pqpln.dg4fj7e7/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Forange-baby%2F4969220915920%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Forange-baby%2Fi%2F10010415%2F&rafcid=wsc_i_is_852e9d1a-8f83-49dc-bc9e-cf56a98e669a" target="_blank" rel="noopener">商品ページを開く ↗</a>
+  <div class="url-row">
+    <a href="https://item.rakuten.co.jp/orange-baby/4969220915920/" target="_blank" rel="noopener">https://item.rakuten.co.jp/orange-baby/4969220915920/</a>
+    <button class="copy-btn" onclick="copyPlain(this, 'https://item.rakuten.co.jp/orange-baby/4969220915920/')" type="button">URLコピー</button>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>楽天ROOM用</span>
+      <button class="copy-btn" onclick="copyText(this, 'room-1')" type="button">コピー</button>
+    </div>
+    <textarea id="room-1" readonly>👶赤ちゃんをお風呂に入れながら、自分も洗えない問題、ほんとどうにかしたかった。バスチェアがあれば寝かせておける安心感がまるで違う✨アップリカなら新生児から使えるので、はじめてのお風呂からずっと現役で使い続けられます。4,200円でこの安心感は買いだと思う。レビュー798件って積み重ねも信頼できる。選ぶなら首がすわる前から使えるタイプを。あとから買い替えずに済みます🛁
+#バスチェア #アップリカ #育児パパ #新生児 #ワンオペ育児 #共働き家庭 #お風呂育児 #赤ちゃんグッズ</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="card-head">
+    <img src="https://thumbnail.image.rakuten.co.jp/@0_mall/chakasho-dina/cabinet/13519419/imgrc0138921582.jpg?_ex=128x128" alt="シリコンマット シンクマット 大判 30x40cm" loading="lazy">
+    <div class="info">
+      <span class="genre-chip">キッチン雑貨</span>
+      <div class="name">シリコンマット シンクマット 大判 30x40cm</div>
+      <div class="meta-row">
+        <span class="price">¥1,380</span>
+        <span class="stars">★★★★☆</span>
+        <span>4.42(405件)</span>
+      </div>
+    </div>
+  </div>
+  <a class="btn-open" href="https://hb.afl.rakuten.co.jp/hgc/g00u575n.dg4fi1fe.g00u575n.dg4fj4af/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fchakasho-dina%2F339chufangdianzi%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fchakasho-dina%2Fi%2F10000586%2F&rafcid=wsc_i_is_852e9d1a-8f83-49dc-bc9e-cf56a98e669a" target="_blank" rel="noopener">商品ページを開く ↗</a>
+  <div class="url-row">
+    <a href="https://item.rakuten.co.jp/chakasho-dina/339chufangdianzi/" target="_blank" rel="noopener">https://item.rakuten.co.jp/chakasho-dina/339chufangdianzi/</a>
+    <button class="copy-btn" onclick="copyPlain(this, 'https://item.rakuten.co.jp/chakasho-dina/339chufangdianzi/')" type="button">URLコピー</button>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>楽天ROOM用</span>
+      <button class="copy-btn" onclick="copyText(this, 'room-2')" type="button">コピー</button>
+    </div>
+    <textarea id="room-2" readonly>🍽️1,380円で食器洗いのストレスが消えました。シンクに敷くだけで、食器が滑らないし傷もつきにくい💡大判30×40cmなのでけっこうな量をまとめて置けますよ。ゴム臭くないシリコン製なのもポイント。レビュー405件・星4.42で、なにげに評価が安定してる。注意点はまれに強い匂いを感じる人もいるらしいので、最初に一度洗ってから使うのが吉。それでもこの価格なら気軽に試せますよ🧼
+#シリコンマット #シンクマット #キッチングッズ #食器洗い #育児パパ #共働き家庭 #時短 #楽天購入品</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="card-head">
+    <img src="https://thumbnail.image.rakuten.co.jp/@0_mall/air-rhizome/cabinet/117/v0c-kago1-ar.jpg?_ex=128x128" alt="マガジンラック VOLCANO 木製スリム" loading="lazy">
+    <div class="info">
+      <span class="genre-chip">収納整理</span>
+      <div class="name">マガジンラック VOLCANO 木製スリム</div>
+      <div class="meta-row">
+        <span class="price">¥9,390</span>
+        <span class="stars">★★★★☆</span>
+        <span>4.28(947件)</span>
+      </div>
+    </div>
+  </div>
+  <a class="btn-open" href="https://hb.afl.rakuten.co.jp/hgc/g00q5lin.dg4fi0bc.g00q5lin.dg4fj5ed/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fair-rhizome%2Fmiy-ar-mg01%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fair-rhizome%2Fi%2F10001991%2F&rafcid=wsc_i_is_852e9d1a-8f83-49dc-bc9e-cf56a98e669a" target="_blank" rel="noopener">商品ページを開く ↗</a>
+  <div class="url-row">
+    <a href="https://item.rakuten.co.jp/air-rhizome/miy-ar-mg01/" target="_blank" rel="noopener">https://item.rakuten.co.jp/air-rhizome/miy-ar-mg01/</a>
+    <button class="copy-btn" onclick="copyPlain(this, 'https://item.rakuten.co.jp/air-rhizome/miy-ar-mg01/')" type="button">URLコピー</button>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>楽天ROOM用</span>
+      <button class="copy-btn" onclick="copyText(this, 'room-3')" type="button">コピー</button>
+    </div>
+    <textarea id="room-3" readonly>📚リビングのマガジンラック、ちゃんと選ばないと部屋の印象がだいぶ変わる。VOLCANOはスリムなのに収納力があって、木製🪵の質感でインテリアに馴染みやすいですよ。雑誌・絵本・タブレットも入るサイズ感。リビングに置いても生活感が出にくいのが一番の理由で選ぶ人が多い印象。レビュー947件・星4.28と実績も十分。9,390円はちょっと高く感じるかもしれないけど、安い収納グッズで失敗した経験があるなら一度検討してみてほしい✨
+#マガジンラック #収納 #木製 #リビング収納 #育児パパ #共働き家庭 #インテリア #楽天インテリア</textarea>
+  </div>
+</div>
+<div class="card featured">
+  <div class="card-head">
+    <img src="https://thumbnail.image.rakuten.co.jp/@0_mall/gaoye/cabinet/biiino/item/main-image/20260611125353_1.jpg?_ex=128x128" alt="KLOUDIC 小型除湿機 ペルチェ式 750mlタンク" loading="lazy">
+    <div class="info">
+      <span class="featured-badge">🔥 本日のThreads/Xピックアップ</span>
+      <span class="genre-chip">空気環境</span>
+      <div class="name">KLOUDIC 小型除湿機 ペルチェ式 750mlタンク</div>
+      <div class="meta-row">
+        <span class="price">¥5,199</span>
+        <span class="stars">★★★★☆</span>
+        <span>4.39(1,288件)</span>
+      </div>
+    </div>
+  </div>
+  <a class="btn-open" href="https://hb.afl.rakuten.co.jp/hgc/g00tvt4n.dg4fi83c.g00tvt4n.dg4fja81/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fgaoye%2Fmame-cs03-rms-1%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fgaoye%2Fi%2F10000017%2F&rafcid=wsc_i_is_852e9d1a-8f83-49dc-bc9e-cf56a98e669a" target="_blank" rel="noopener">商品ページを開く ↗</a>
+  <div class="url-row">
+    <a href="https://item.rakuten.co.jp/gaoye/mame-cs03-rms-1/" target="_blank" rel="noopener">https://item.rakuten.co.jp/gaoye/mame-cs03-rms-1/</a>
+    <button class="copy-btn" onclick="copyPlain(this, 'https://item.rakuten.co.jp/gaoye/mame-cs03-rms-1/')" type="button">URLコピー</button>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>楽天ROOM用</span>
+      <button class="copy-btn" onclick="copyText(this, 'room-4')" type="button">コピー</button>
+    </div>
+    <textarea id="room-4" readonly>💧クローゼットや脱衣所がじめじめする季節、ずっと放置してた。小型除湿機ってこんな需要あったんだと思うくらい、レビューが1,288件も集まってる📊750mlタンクで小さめだけど、ピンポイントで使うならこれで十分。ペルチェ式で静音性が高いから、寝室や子ども部屋にも置きやすい。5,199円でこのサイズ感はちょうどいい。梅雨・秋の結露対策に探してる人には選択肢に入れてみて欲しい🌿
+#除湿機 #小型除湿機 #ペルチェ式 #結露対策 #育児パパ #共働き家庭 #空気環境 #楽天購入品</textarea>
+  </div>
+  <p class="reason">🔥 今日のピックアップ理由: レビュー1,288件と5件中最多の社会的証明があり、クローゼット・脱衣所のじめじめという共働き育児家庭が共感しやすいリアルな悩みに直結するため。</p>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>Threads用</span>
+      <button class="copy-btn" onclick="copyText(this, 'threads-0')" type="button">コピー</button>
+    </div>
+    <textarea id="threads-0" readonly>クローゼット開けるたびにじめじめしてるのずっと気になってたんだけど、小型除湿機ってそんなに需要あるの知らなかった。
+
+調べたらKLOUDICの5,199円のやつ、レビュー1,288件で評価めっちゃ高い。ペルチェ式だから静かで、寝室にも置けるのがいい。タンク750mlって小さいけど脱衣所やクローゼットならこれで足りるっぽい。
+
+大きい除湿機は場所とるし、こういうピンポイントで使えるやつが意外と需要あると思う。
+
+#除湿機 #小型除湿機 #楽天購入品 #育児パパ #共働き家庭 #PR</textarea>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>X用</span>
+      <button class="copy-btn" onclick="copyText(this, 'x-0')" type="button">コピー</button>
+    </div>
+    <textarea id="x-0" readonly>クローゼットや脱衣所がじめじめしてた問題、小型除湿機でようやく解決した。
+
+KLOUDICの5,199円のやつ。ペルチェ式で静かだし、750mlのコンパクトサイズがピンポイントで使いやすい。
+
+大きい除湿機より取り回しが楽で、正直もっと早く買えばよかったやつ。
+
+#除湿機 #楽天購入品 #育児パパ #共働き家庭 #楽天アフィリエイト</textarea>
+  </div>
+</div>
+</div>
+
+<h2 class="section-title">💬 今日のあるある投稿ネタ(商品リンクなし)</h2>
+<div class="cards">
+<div class="card">
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>あるある投稿 #1</span>
+      <button class="copy-btn" onclick="copyText(this, 'daily-0')" type="button">コピー</button>
+    </div>
+    <textarea id="daily-0" class="short" readonly>週5で保育園送迎があると、もう何もする気力残らないよな</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>あるある投稿 #2</span>
+      <button class="copy-btn" onclick="copyText(this, 'daily-1')" type="button">コピー</button>
+    </div>
+    <textarea id="daily-1" class="short" readonly>朝の支度って、子どもが1人増えるだけでなんでこんなにバタバタするんだろう。靴下探してる間に時計見て、また時計見て、気づいたら自分の朝ごはんが食べれてない 😅 #育児パパ</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>あるある投稿 #3</span>
+      <button class="copy-btn" onclick="copyText(this, 'daily-2')" type="button">コピー</button>
+    </div>
+    <textarea id="daily-2" class="short" readonly>夫婦で協力してるつもりでも、なんかいつも同じ人が疲れてる気がする</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>あるある投稿 #4</span>
+      <button class="copy-btn" onclick="copyText(this, 'daily-3')" type="button">コピー</button>
+    </div>
+    <textarea id="daily-3" class="short" readonly>🛁 子どものお風呂あがりに自分がまだ着替えてない問題</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>あるある投稿 #5</span>
+      <button class="copy-btn" onclick="copyText(this, 'daily-4')" type="button">コピー</button>
+    </div>
+    <textarea id="daily-4" class="short" readonly>共働きしながら家事育児回してると、余裕のある家庭ってどんな生活してるんだろうって思う瞬間がある。別に不満とかじゃなくて、ただ単純に想像がつかない #共働き家庭</textarea>
+  </div>
+</div>
+</div>
+
+<footer class="note">商品ページを確認し、投稿文をコピーして手動で投稿してください。<br>Threads/Xの商品紹介は1日1件・あるある投稿と織り交ぜてスパム判定を避けてください。<br>価格・レビューは選定時点の実データです。</footer>
+</div>
+<script>
+function flash(btn) {
+  const original = btn.textContent;
+  btn.textContent = 'コピーしました';
+  btn.classList.add('copied');
+  setTimeout(() => { btn.textContent = original; btn.classList.remove('copied'); }, 1500);
+}
+function copyText(btn, id) {
+  const el = document.getElementById(id);
+  el.select();
+  el.setSelectionRange(0, 999999);
+  navigator.clipboard.writeText(el.value).then(() => flash(btn)).catch(() => {
+    try { document.execCommand('copy'); flash(btn); } catch (e) {}
+  });
+}
+function copyPlain(btn, text) {
+  navigator.clipboard.writeText(text).then(() => flash(btn)).catch(() => {
+    const t = document.createElement('textarea');
+    t.value = text; document.body.appendChild(t); t.select();
+    try { document.execCommand('copy'); flash(btn); } catch (e) {}
+    document.body.removeChild(t);
+  });
+}
+</script>
+</body>
+</html>

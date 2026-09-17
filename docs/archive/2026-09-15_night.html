@@ -1,0 +1,450 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>9/15 夜の選定 - 楽天ROOM投稿リスト</title>
+<style>
+:root {
+  --bg: #f6f3ee;
+  --surface: #ffffff;
+  --ink: #23211d;
+  --ink-soft: #6b6459;
+  --accent: #a8382c;
+  --accent-ink: #fff6f2;
+  --good: #3f7d58;
+  --border: #e4ddd2;
+  --chip-bg: #efe8db;
+  color-scheme: light dark;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #16140f;
+    --surface: #211f1a;
+    --ink: #ece7dc;
+    --ink-soft: #a89e8d;
+    --accent: #e0685a;
+    --accent-ink: #1c0f0c;
+    --good: #6fb98a;
+    --border: #35322a;
+    --chip-bg: #2a2721;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #16140f; --surface: #211f1a; --ink: #ece7dc; --ink-soft: #a89e8d;
+  --accent: #e0685a; --accent-ink: #1c0f0c; --good: #6fb98a; --border: #35322a; --chip-bg: #2a2721;
+}
+:root[data-theme="light"] {
+  --bg: #f6f3ee; --surface: #ffffff; --ink: #23211d; --ink-soft: #6b6459;
+  --accent: #a8382c; --accent-ink: #fff6f2; --good: #3f7d58; --border: #e4ddd2; --chip-bg: #efe8db;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0; background: var(--bg); color: var(--ink);
+  font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Yu Gothic Medium", "Noto Sans JP", sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+.wrap { max-width: 640px; margin: 0 auto; padding: 0 16px 40px; }
+header.top {
+  position: sticky; top: 0; z-index: 5; background: var(--bg);
+  padding: 18px 16px 12px; border-bottom: 1px solid var(--border);
+  display: flex; align-items: baseline; justify-content: space-between; gap: 12px;
+}
+header.top .eyebrow {
+  font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-soft);
+  font-weight: 600; margin: 0 0 2px;
+}
+header.top h1 { font-size: 1.25rem; margin: 0; font-weight: 700; letter-spacing: -0.01em; }
+header.top .count {
+  background: var(--chip-bg); color: var(--ink-soft); font-size: 0.78rem; font-weight: 600;
+  padding: 5px 10px; border-radius: 999px; white-space: nowrap;
+}
+h2.section-title { font-size: 0.95rem; font-weight: 700; margin: 24px 0 12px; }
+.cards { display: flex; flex-direction: column; gap: 16px; margin-top: 18px; }
+.card {
+  background: var(--surface); border: 1px solid var(--border); border-radius: 16px;
+  padding: 16px; display: flex; flex-direction: column; gap: 12px;
+}
+.card.featured { border-color: var(--accent); border-width: 2px; }
+.featured-badge {
+  align-self: flex-start; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.03em;
+  color: var(--accent-ink); background: var(--accent); padding: 3px 9px; border-radius: 999px;
+}
+.card-head { display: flex; gap: 12px; }
+.card-head img {
+  width: 76px; height: 76px; object-fit: cover; border-radius: 10px;
+  border: 1px solid var(--border); background: var(--chip-bg); flex-shrink: 0;
+}
+.card-head .info { min-width: 0; flex: 1; display: flex; flex-direction: column; gap: 4px; }
+.genre-chip {
+  align-self: flex-start; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.03em;
+  color: var(--accent); background: color-mix(in srgb, var(--accent) 12%, transparent);
+  padding: 2px 8px; border-radius: 999px;
+}
+.name {
+  font-weight: 600; font-size: 0.94rem; line-height: 1.4;
+  display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
+}
+.meta-row { display: flex; align-items: baseline; gap: 8px; font-size: 0.82rem; color: var(--ink-soft); }
+.price { font-variant-numeric: tabular-nums; color: var(--ink); font-weight: 700; font-size: 1.05rem; }
+.stars { letter-spacing: -1px; color: var(--accent); }
+.btn-open {
+  display: flex; align-items: center; justify-content: center; gap: 6px;
+  background: var(--accent); color: var(--accent-ink); border: none; border-radius: 11px;
+  padding: 12px; font-weight: 700; font-size: 0.92rem; text-decoration: none;
+}
+.btn-open:active { opacity: 0.85; }
+.url-row {
+  display: flex; align-items: center; gap: 8px;
+  background: var(--chip-bg); border-radius: 9px; padding: 8px 10px;
+}
+.url-row a {
+  flex: 1; min-width: 0; font-size: 0.76rem; color: var(--accent);
+  word-break: break-all; line-height: 1.45; text-decoration: none;
+}
+.url-row a:active { text-decoration: underline; }
+.reason { font-size: 0.8rem; color: var(--ink-soft); }
+.caption-box { border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }
+.caption-head {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 8px 10px; background: var(--chip-bg);
+}
+.caption-head span {
+  font-size: 0.7rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-soft);
+}
+.copy-btn {
+  background: var(--surface); border: 1px solid var(--border); color: var(--ink);
+  border-radius: 7px; padding: 5px 11px; font-size: 0.76rem; font-weight: 600; cursor: pointer;
+}
+.copy-btn:focus-visible, .btn-open:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.copy-btn.copied { background: var(--good); border-color: var(--good); color: #fff; }
+textarea {
+  width: 100%; display: block; border: none; padding: 10px; font-size: 0.85rem; line-height: 1.55;
+  resize: vertical; min-height: 108px; font-family: inherit; background: var(--surface); color: var(--ink);
+}
+textarea.short { min-height: 60px; }
+textarea:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
+footer.note { margin-top: 22px; font-size: 0.76rem; color: var(--ink-soft); text-align: center; line-height: 1.6; }
+@media (prefers-reduced-motion: no-preference) {
+  .copy-btn { transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease; }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <div>
+    <p class="eyebrow">楽天ROOM 投稿リスト</p>
+    <h1>9/15 夜の選定</h1>
+  </div>
+  <span class="count">5件</span>
+</header>
+
+<h2 class="section-title">📦 商品(ROOM用、全5件)</h2>
+<div class="cards">
+<div class="card featured">
+  <div class="card-head">
+    <img src="https://thumbnail.image.rakuten.co.jp/@0_mall/e-kit/cabinet/description/ek-kd22/ek-kd2_1.jpg?_ex=128x128" alt="キッチンドレインネオ 2 キッチンドレイン 正規品 三角コーナーいらず 浮かせる 三角コーナー 折り畳み 生ゴミ 水切りネット 50枚付き ネット ホルダー シンク ラック キッチン いらず シンク おしゃれ 水切りラック" loading="lazy">
+    <div class="info">
+      <span class="featured-badge">🔥 本日のThreads/Xピックアップ</span>
+      <span class="genre-chip">キッチン雑貨</span>
+      <div class="name">キッチンドレインネオ 2 キッチンドレイン 正規品 三角コーナーいらず 浮かせる 三角コーナー 折り畳み 生ゴミ 水切りネット 50枚付き ネット ホルダー シンク ラック キッチン いらず シンク おしゃれ 水切りラック</div>
+      <div class="meta-row">
+        <span class="price">¥1,980</span>
+        <span class="stars">★★★★★</span>
+        <span>4.65(4675件)</span>
+      </div>
+    </div>
+  </div>
+  <a class="btn-open" href="https://hb.afl.rakuten.co.jp/hgc/g00sw2cn.dg4fi2c3.g00sw2cn.dg4fjbad/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fe-kit%2Fek-kd2%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fe-kit%2Fi%2F10042824%2F&rafcid=wsc_i_is_852e9d1a-8f83-49dc-bc9e-cf56a98e669a" target="_blank" rel="noopener">商品ページを開く ↗</a>
+  <div class="url-row">
+    <a href="https://item.rakuten.co.jp/e-kit/ek-kd2/" target="_blank" rel="noopener">https://item.rakuten.co.jp/e-kit/ek-kd2/</a>
+    <button class="copy-btn" onclick="copyPlain(this, 'https://item.rakuten.co.jp/e-kit/ek-kd2/')" type="button">URLコピー</button>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>楽天ROOM用</span>
+      <button class="copy-btn" onclick="copyText(this, 'room-0')" type="button">コピー</button>
+    </div>
+    <textarea id="room-0" readonly>🗑️三角コーナーのヌメヌメを洗うのが本当に嫌だった。
+
+シンクの端に置くタイプだから水が溜まるし、放置するとぬめりが出て余計な仕事が増える。子どもが生まれてから食後の片付けをなるべく早く終わらせたくて、試しにこれに変えたら三角コーナーを完全に撤去できた🙌
+
+浮かせて設置するので接地面がなく、ぬめりがほぼ発生しない。ネットをポイで捨てるだけ。
+
+✅ シンクが広くなった
+✅ 洗い物が一つ減った
+✅ 子どもに「何これ?」と聞かれることもなくなった笑
+
+レビュー4,675件・★4.65という実績が全てを語ってる。迷ってる人は早めに試してみてほしい。
+
+#キッチン雑貨 #三角コーナーいらず #生ゴミ水切り #時短家事 #キッチン収納 #共働き家庭 #育児パパ #楽天ROOM</textarea>
+  </div>
+  <p class="reason">🔥 今日のピックアップ理由: レビュー4,675件・★4.65と5件中最多・最高評価で、1,980円という価格の意外性と「三角コーナーを完全になくせる」という強烈な悩み解決度が組み合わさり、育児家庭の共感を最も得やすいと判断した。</p>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>Threads用</span>
+      <button class="copy-btn" onclick="copyText(this, 'threads-0')" type="button">コピー</button>
+    </div>
+    <textarea id="threads-0" readonly>三角コーナー、もう捨ててる🗑️
+
+1,980円のネットホルダーに変えてから、あのヌメヌメを洗う作業が完全になくなった。浮かせて設置するから接地面ゼロ、ゴミはネットごとポイするだけ。
+
+シンクも広くなるし洗い物も減るし、「なんでもっと早く変えなかったんだ」ってやつ。
+
+レビュー4,675件・★4.65。この数字がすべてだと思う。
+
+#PR #楽天アフィリエイト #キッチン雑貨 #時短家事 #共働き家庭</textarea>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>X用</span>
+      <button class="copy-btn" onclick="copyText(this, 'x-0')" type="button">コピー</button>
+    </div>
+    <textarea id="x-0" readonly>三角コーナー捨てた🗑️
+
+1,980円のネットホルダーに変えたら、ヌメヌメ掃除が消えた。浮かせるから接地面ゼロ、ゴミはネットごとポイするだけ。シンクも広くなる。
+
+レビュー4,675件・★4.65、この数字がすべて。
+
+#PR #楽天アフィリエイト #時短家事 #共働き家庭</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="card-head">
+    <img src="https://thumbnail.image.rakuten.co.jp/@0_mall/oralb-braun/cabinet/event/260911/io2wt.jpg?_ex=128x128" alt="iO2 【クーポン利用で50%OFF！9/11 10:00～9/30 23:59】ブラウン オーラルB 電動歯ブラシ 【コスパモデル】 ホワイト｜Braun Oral-B 公式ストア 公式 電動 歯ブラシ ハブラシ 正規品 充電式 セット 回転式 歯間 歯石 除去 大人 プレゼント 携帯 電動ハブラシ oralb はみがき" loading="lazy">
+    <div class="info">
+      
+      <span class="genre-chip">身だしなみ</span>
+      <div class="name">iO2 【クーポン利用で50%OFF！9/11 10:00～9/30 23:59】ブラウン オーラルB 電動歯ブラシ 【コスパモデル】 ホワイト｜Braun Oral-B 公式ストア 公式 電動 歯ブラシ ハブラシ 正規品 充電式 セット 回転式 歯間 歯石 除去 大人 プレゼント 携帯 電動ハブラシ oralb はみがき</div>
+      <div class="meta-row">
+        <span class="price">¥10,978</span>
+        <span class="stars">★★★★★</span>
+        <span>4.57(2568件)</span>
+      </div>
+    </div>
+  </div>
+  <a class="btn-open" href="https://hb.afl.rakuten.co.jp/hgc/g00t4rin.dg4fi432.g00t4rin.dg4fj358/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Foralb-braun%2Feb-pro2000%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Foralb-braun%2Fi%2F10000051%2F&rafcid=wsc_i_is_852e9d1a-8f83-49dc-bc9e-cf56a98e669a" target="_blank" rel="noopener">商品ページを開く ↗</a>
+  <div class="url-row">
+    <a href="https://item.rakuten.co.jp/oralb-braun/eb-pro2000/" target="_blank" rel="noopener">https://item.rakuten.co.jp/oralb-braun/eb-pro2000/</a>
+    <button class="copy-btn" onclick="copyPlain(this, 'https://item.rakuten.co.jp/oralb-braun/eb-pro2000/')" type="button">URLコピー</button>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>楽天ROOM用</span>
+      <button class="copy-btn" onclick="copyText(this, 'room-1')" type="button">コピー</button>
+    </div>
+    <textarea id="room-1" readonly>💡1万円台でここまで変わるんですよ、歯磨きが。
+
+電動歯ブラシってぶっちゃけ安いの買ってればいいかと思ってたんですが、オーラルBのiO2はブラシの動き方が全然違います。マイクロ振動+円形ヘッドで歯茎へのあたりが柔らかいのに、汚れは落ちてる感がある。
+
+レビュー2,568件で星4.57。手磨きに慣れた人ほど「戻れない」という声が多いのが印象的🦷
+
+忙しいと歯磨きがどうしても雑になりがちな共働き家庭にこそ試してほしい。1回2分、タイマー付きで丁寧に磨けます。
+
+注意点は替えブラシのコストが定期的にかかること💰 楽天での定期購入が割安なのでセットで考えると◎
+
+#電動歯ブラシ #オーラルB #ブラウン #時短ケア #身だしなみ #共働き家庭 #育児パパ #楽天ROOM</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="card-head">
+    <img src="https://thumbnail.image.rakuten.co.jp/@0_mall/osharecafe/cabinet/ranking_top2/rank_6017917.jpg?_ex=128x128" alt="累計 130,000個突破 ピーピースルーF 600g 業務用排水管洗浄剤 正規販売店 【和協産業の強力配管洗浄剤/排水口/排水溝/つまり/掃除/業務用パイプ洗浄剤・強力パイプクリーナーで不安を解消】【宅配便送料無料】 (6017917)" loading="lazy">
+    <div class="info">
+      
+      <span class="genre-chip">ホームケア</span>
+      <div class="name">累計 130,000個突破 ピーピースルーF 600g 業務用排水管洗浄剤 正規販売店 【和協産業の強力配管洗浄剤/排水口/排水溝/つまり/掃除/業務用パイプ洗浄剤・強力パイプクリーナーで不安を解消】【宅配便送料無料】 (6017917)</div>
+      <div class="meta-row">
+        <span class="price">¥2,480</span>
+        <span class="stars">★★★★★</span>
+        <span>4.52(1020件)</span>
+      </div>
+    </div>
+  </div>
+  <a class="btn-open" href="https://hb.afl.rakuten.co.jp/hgc/g00quion.dg4fif66.g00quion.dg4fj040/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fosharecafe%2F6017917%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fosharecafe%2Fi%2F10029941%2F&rafcid=wsc_i_is_852e9d1a-8f83-49dc-bc9e-cf56a98e669a" target="_blank" rel="noopener">商品ページを開く ↗</a>
+  <div class="url-row">
+    <a href="https://item.rakuten.co.jp/osharecafe/6017917/" target="_blank" rel="noopener">https://item.rakuten.co.jp/osharecafe/6017917/</a>
+    <button class="copy-btn" onclick="copyPlain(this, 'https://item.rakuten.co.jp/osharecafe/6017917/')" type="button">URLコピー</button>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>楽天ROOM用</span>
+      <button class="copy-btn" onclick="copyText(this, 'room-2')" type="button">コピー</button>
+    </div>
+    <textarea id="room-2" readonly>🚿排水口の流れが悪くなりかけてた時に、初めてこれを使った。
+
+市販のドラッグストアで売ってるものを何度かためしてみてたんだけど、正直あまり変わらなくて。業務用と書いてあるやつを楽天で探したらこれに行き着いた。
+
+ピーピースルーFは顆粒タイプで、お湯と合わせて排水口に流すだけ。作業としては難しくないし、600gあるから数回使えてコスパが良い💪
+
+詰まりが完全になってから呼ぶ業者代を考えると、2,480円で定期的にケアするほうが断然お得。レビューも1,000件超え・★4.52と評価が安定している。
+
+月1回〜シーズン1回のルーティンに入れておくと安心です。使用後は必ず十分な水で流すのを忘れずに。
+
+#排水管掃除 #ピーピースルー #業務用洗剤 #ホームケア #時短掃除 #共働き家庭 #育児パパ #楽天ROOM</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="card-head">
+    <img src="https://thumbnail.image.rakuten.co.jp/@0_mall/maxshare/cabinet/master/1st/a12583.jpg?_ex=128x128" alt="【楽天1位】レンジ上ラック キッチンラック 伸縮 幅40〜65cm レンジ台 レンジ棚 キッチン収納 1段 大型レンジ対応 電子レンジ トースター 炊飯器 ラック レンジ置台 卓上 棚 カウンター上 収納 調味料ラック シンプル おしゃれ 1年保証 ★[送料無料]" loading="lazy">
+    <div class="info">
+      
+      <span class="genre-chip">キッチン収納</span>
+      <div class="name">【楽天1位】レンジ上ラック キッチンラック 伸縮 幅40〜65cm レンジ台 レンジ棚 キッチン収納 1段 大型レンジ対応 電子レンジ トースター 炊飯器 ラック レンジ置台 卓上 棚 カウンター上 収納 調味料ラック シンプル おしゃれ 1年保証 ★[送料無料]</div>
+      <div class="meta-row">
+        <span class="price">¥3,080</span>
+        <span class="stars">★★★★☆</span>
+        <span>4.37(678件)</span>
+      </div>
+    </div>
+  </div>
+  <a class="btn-open" href="https://hb.afl.rakuten.co.jp/hgc/g00prban.dg4fi623.g00prban.dg4fj9c6/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fmaxshare%2Fa12583%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fmaxshare%2Fi%2F10060548%2F&rafcid=wsc_i_is_852e9d1a-8f83-49dc-bc9e-cf56a98e669a" target="_blank" rel="noopener">商品ページを開く ↗</a>
+  <div class="url-row">
+    <a href="https://item.rakuten.co.jp/maxshare/a12583/" target="_blank" rel="noopener">https://item.rakuten.co.jp/maxshare/a12583/</a>
+    <button class="copy-btn" onclick="copyPlain(this, 'https://item.rakuten.co.jp/maxshare/a12583/')" type="button">URLコピー</button>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>楽天ROOM用</span>
+      <button class="copy-btn" onclick="copyText(this, 'room-3')" type="button">コピー</button>
+    </div>
+    <textarea id="room-3" readonly>💡3,080円でレンジ周りの空間をほぼ倍にできますよ。
+
+レンジの上って何も置かないままにしてる家が多いと思うんですが、伸縮タイプのラックを一枚渡すだけで収納スペースが一段増えます。幅は40〜65cmの間で調整できるので、多くのレンジや食器棚の幅に合う設計。
+
+置けるようになるもの→調味料ボトル・ラップ・キッチンペーパー・よく使うカトラリーなど。
+
+カウンター上に散らかりがちなものがここに収まるだけで、作業スペースが格段に広くなる🙌 工具なしで設置できるのも育児の隙間時間しかない親には助かるポイント。
+
+レビューは678件・★4.37。「思ったより丈夫だった」という声が多め。プチプラ系ラックで迷ってる方はこれで十分だと思います。
+
+#キッチン収納 #レンジ上ラック #伸縮ラック #収納術 #キッチン整理 #共働き家庭 #育児パパ #楽天ROOM</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="card-head">
+    <img src="https://thumbnail.image.rakuten.co.jp/@0_mall/ks-towel/cabinet/item-photo/happybag/new_wakeari_shiro30.jpg?_ex=128x128" alt="【送料無料】【訳あり】B品 白フェイスタオル 薄手 【30枚詰め合わせ】 福袋 国産タオル アウトレット フェイスタオル セット たおる 吸水 タオル 日本製 泉州タオル ランキング オススメ 定番 業務用 人気 備蓄 タオルセット まとめ買い 【クーポン配布中】" loading="lazy">
+    <div class="info">
+      
+      <span class="genre-chip">日用品</span>
+      <div class="name">【送料無料】【訳あり】B品 白フェイスタオル 薄手 【30枚詰め合わせ】 福袋 国産タオル アウトレット フェイスタオル セット たおる 吸水 タオル 日本製 泉州タオル ランキング オススメ 定番 業務用 人気 備蓄 タオルセット まとめ買い 【クーポン配布中】</div>
+      <div class="meta-row">
+        <span class="price">¥5,500</span>
+        <span class="stars">★★★★★</span>
+        <span>4.61(1472件)</span>
+      </div>
+    </div>
+  </div>
+  <a class="btn-open" href="https://hb.afl.rakuten.co.jp/hgc/g00qvron.dg4fi750.g00qvron.dg4fja3d/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fks-towel%2Fset1%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fks-towel%2Fi%2F10000342%2F&rafcid=wsc_i_is_852e9d1a-8f83-49dc-bc9e-cf56a98e669a" target="_blank" rel="noopener">商品ページを開く ↗</a>
+  <div class="url-row">
+    <a href="https://item.rakuten.co.jp/ks-towel/set1/" target="_blank" rel="noopener">https://item.rakuten.co.jp/ks-towel/set1/</a>
+    <button class="copy-btn" onclick="copyPlain(this, 'https://item.rakuten.co.jp/ks-towel/set1/')" type="button">URLコピー</button>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>楽天ROOM用</span>
+      <button class="copy-btn" onclick="copyText(this, 'room-4')" type="button">コピー</button>
+    </div>
+    <textarea id="room-4" readonly>🧺1枚183円で日本製タオルが揃う計算になる、これがずっと気になってた。
+
+泉州タオルの白フェイスタオル30枚セット、5,500円。子どものお食事タオルや手拭きって消耗が激しくて、気がつくとボロボロのまま使い続けてたりするんよね。
+
+日本製の備蓄向けセットなので吸水性はしっかりしてる。白一色に揃えると洗濯後の仕分けが楽になるのも地味に助かるポイント🙌
+
+✅ 1枚当たり約183円
+✅ 泉州産・日本製
+✅ 30枚あれば一気にタオルを入れ替えられる
+
+レビュー1,472件・★4.61。「まとめ買いして正解だった」という声が目立つ。ふるさと納税のタオルと組み合わせて常にストックを切らさない運用にするのがおすすめ。
+
+#泉州タオル #日本製タオル #まとめ買い #日用品 #備蓄 #共働き家庭 #育児パパ #楽天ROOM</textarea>
+  </div>
+</div>
+</div>
+
+<h2 class="section-title">💬 今日のあるある投稿ネタ(商品リンクなし)</h2>
+<div class="cards">
+<div class="card">
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>あるある投稿 #1</span>
+      <button class="copy-btn" onclick="copyText(this, 'daily-0')" type="button">コピー</button>
+    </div>
+    <textarea id="daily-0" class="short" readonly>夜中2時に授乳してると、向こうのベッドで夫が「すーすー」寝てるのが視界に入る。起こす気もないし怒る気力もないんだけど、なんかもう笑えてくるんだよな、その図が。</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>あるある投稿 #2</span>
+      <button class="copy-btn" onclick="copyText(this, 'daily-1')" type="button">コピー</button>
+    </div>
+    <textarea id="daily-1" class="short" readonly>子どもの朝ごはん、ミニおにぎり・卵焼き・ウインナー・ヨーグルト。
+親の朝ごはん、昨日のラーメンの汁が残ってる鍋にご飯ぶち込んだやつ。</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>あるある投稿 #3</span>
+      <button class="copy-btn" onclick="copyText(this, 'daily-2')" type="button">コピー</button>
+    </div>
+    <textarea id="daily-2" class="short" readonly>やっと寝かしつけ終わった、と思ってそっとベッドを離れた瞬間に鳴く。
+これ何回経験しても慣れない。慣れたくもない。</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>あるある投稿 #4</span>
+      <button class="copy-btn" onclick="copyText(this, 'daily-3')" type="button">コピー</button>
+    </div>
+    <textarea id="daily-3" class="short" readonly>子どもの服を畳んでたら、どっかで見たことある柄のやつが出てきた。
+…これ、去年のだ。サイズアウトしてたやつだ。
+いつの間にそんなに大きくなったんだよ、って急にしんどくなった🥲</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>あるある投稿 #5</span>
+      <button class="copy-btn" onclick="copyText(this, 'daily-4')" type="button">コピー</button>
+    </div>
+    <textarea id="daily-4" class="short" readonly>イライラしやすい日の前兆、だいたい同じ3パターン。
+・睡眠が5時間切ってる
+・昼飯をちゃんと食えてない
+・自分の時間が3日以上ない
+
+わかってても防げないんだよな、これが。 #育児パパ</textarea>
+  </div>
+</div>
+</div>
+
+<footer class="note">商品ページを確認し、投稿文をコピーして手動で投稿してください。<br>Threads/Xの商品紹介は1日1件・あるある投稿と織り交ぜてスパム判定を避けてください。<br>価格・レビューは選定時点の実データです。</footer>
+</div>
+<script>
+function flash(btn) {
+  const original = btn.textContent;
+  btn.textContent = 'コピーしました';
+  btn.classList.add('copied');
+  setTimeout(() => { btn.textContent = original; btn.classList.remove('copied'); }, 1500);
+}
+function copyText(btn, id) {
+  const el = document.getElementById(id);
+  el.select();
+  el.setSelectionRange(0, 999999);
+  navigator.clipboard.writeText(el.value).then(() => flash(btn)).catch(() => {
+    try { document.execCommand('copy'); flash(btn); } catch (e) {}
+  });
+}
+function copyPlain(btn, text) {
+  navigator.clipboard.writeText(text).then(() => flash(btn)).catch(() => {
+    const t = document.createElement('textarea');
+    t.value = text; document.body.appendChild(t); t.select();
+    try { document.execCommand('copy'); flash(btn); } catch (e) {}
+    document.body.removeChild(t);
+  });
+}
+</script>
+</body>
+</html>

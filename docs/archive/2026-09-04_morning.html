@@ -1,0 +1,419 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>9/4 朝の選定 - 楽天ROOM投稿リスト</title>
+<style>
+:root {
+  --bg: #f6f3ee;
+  --surface: #ffffff;
+  --ink: #23211d;
+  --ink-soft: #6b6459;
+  --accent: #a8382c;
+  --accent-ink: #fff6f2;
+  --good: #3f7d58;
+  --border: #e4ddd2;
+  --chip-bg: #efe8db;
+  color-scheme: light dark;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #16140f;
+    --surface: #211f1a;
+    --ink: #ece7dc;
+    --ink-soft: #a89e8d;
+    --accent: #e0685a;
+    --accent-ink: #1c0f0c;
+    --good: #6fb98a;
+    --border: #35322a;
+    --chip-bg: #2a2721;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #16140f; --surface: #211f1a; --ink: #ece7dc; --ink-soft: #a89e8d;
+  --accent: #e0685a; --accent-ink: #1c0f0c; --good: #6fb98a; --border: #35322a; --chip-bg: #2a2721;
+}
+:root[data-theme="light"] {
+  --bg: #f6f3ee; --surface: #ffffff; --ink: #23211d; --ink-soft: #6b6459;
+  --accent: #a8382c; --accent-ink: #fff6f2; --good: #3f7d58; --border: #e4ddd2; --chip-bg: #efe8db;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0; background: var(--bg); color: var(--ink);
+  font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Yu Gothic Medium", "Noto Sans JP", sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+.wrap { max-width: 640px; margin: 0 auto; padding: 0 16px 40px; }
+header.top {
+  position: sticky; top: 0; z-index: 5; background: var(--bg);
+  padding: 18px 16px 12px; border-bottom: 1px solid var(--border);
+  display: flex; align-items: baseline; justify-content: space-between; gap: 12px;
+}
+header.top .eyebrow {
+  font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-soft);
+  font-weight: 600; margin: 0 0 2px;
+}
+header.top h1 { font-size: 1.25rem; margin: 0; font-weight: 700; letter-spacing: -0.01em; }
+header.top .count {
+  background: var(--chip-bg); color: var(--ink-soft); font-size: 0.78rem; font-weight: 600;
+  padding: 5px 10px; border-radius: 999px; white-space: nowrap;
+}
+h2.section-title { font-size: 0.95rem; font-weight: 700; margin: 24px 0 12px; }
+.cards { display: flex; flex-direction: column; gap: 16px; margin-top: 18px; }
+.card {
+  background: var(--surface); border: 1px solid var(--border); border-radius: 16px;
+  padding: 16px; display: flex; flex-direction: column; gap: 12px;
+}
+.card.featured { border-color: var(--accent); border-width: 2px; }
+.featured-badge {
+  align-self: flex-start; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.03em;
+  color: var(--accent-ink); background: var(--accent); padding: 3px 9px; border-radius: 999px;
+}
+.card-head { display: flex; gap: 12px; }
+.card-head img {
+  width: 76px; height: 76px; object-fit: cover; border-radius: 10px;
+  border: 1px solid var(--border); background: var(--chip-bg); flex-shrink: 0;
+}
+.card-head .info { min-width: 0; flex: 1; display: flex; flex-direction: column; gap: 4px; }
+.genre-chip {
+  align-self: flex-start; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.03em;
+  color: var(--accent); background: color-mix(in srgb, var(--accent) 12%, transparent);
+  padding: 2px 8px; border-radius: 999px;
+}
+.name {
+  font-weight: 600; font-size: 0.94rem; line-height: 1.4;
+  display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
+}
+.meta-row { display: flex; align-items: baseline; gap: 8px; font-size: 0.82rem; color: var(--ink-soft); }
+.price { font-variant-numeric: tabular-nums; color: var(--ink); font-weight: 700; font-size: 1.05rem; }
+.stars { letter-spacing: -1px; color: var(--accent); }
+.btn-open {
+  display: flex; align-items: center; justify-content: center; gap: 6px;
+  background: var(--accent); color: var(--accent-ink); border: none; border-radius: 11px;
+  padding: 12px; font-weight: 700; font-size: 0.92rem; text-decoration: none;
+}
+.btn-open:active { opacity: 0.85; }
+.url-row {
+  display: flex; align-items: center; gap: 8px;
+  background: var(--chip-bg); border-radius: 9px; padding: 8px 10px;
+}
+.url-row a {
+  flex: 1; min-width: 0; font-size: 0.76rem; color: var(--accent);
+  word-break: break-all; line-height: 1.45; text-decoration: none;
+}
+.url-row a:active { text-decoration: underline; }
+.reason { font-size: 0.8rem; color: var(--ink-soft); }
+.caption-box { border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }
+.caption-head {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 8px 10px; background: var(--chip-bg);
+}
+.caption-head span {
+  font-size: 0.7rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-soft);
+}
+.copy-btn {
+  background: var(--surface); border: 1px solid var(--border); color: var(--ink);
+  border-radius: 7px; padding: 5px 11px; font-size: 0.76rem; font-weight: 600; cursor: pointer;
+}
+.copy-btn:focus-visible, .btn-open:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.copy-btn.copied { background: var(--good); border-color: var(--good); color: #fff; }
+textarea {
+  width: 100%; display: block; border: none; padding: 10px; font-size: 0.85rem; line-height: 1.55;
+  resize: vertical; min-height: 108px; font-family: inherit; background: var(--surface); color: var(--ink);
+}
+textarea.short { min-height: 60px; }
+textarea:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
+footer.note { margin-top: 22px; font-size: 0.76rem; color: var(--ink-soft); text-align: center; line-height: 1.6; }
+@media (prefers-reduced-motion: no-preference) {
+  .copy-btn { transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease; }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <div>
+    <p class="eyebrow">楽天ROOM 投稿リスト</p>
+    <h1>9/4 朝の選定</h1>
+  </div>
+  <span class="count">5件</span>
+</header>
+
+<h2 class="section-title">📦 商品(ROOM用、全5件)</h2>
+<div class="cards">
+<div class="card featured">
+  <div class="card-head">
+    <img src="https://thumbnail.image.rakuten.co.jp/@0_mall/roomy/cabinet/500cart_all/500cart_11g/p10n-4/pmz2041-mt016-1_gt01.jpg?_ex=128x128" alt="【ミトン特典付き】スチームアイロン ハンガーにかけたまま 衣類スチーマー ハンディスチーマー ハンディアイロン スチーマー 吊るしたまま シワ伸ばし プラスマイナスゼロ アイロン ハンディ ハンディー 除菌 脱臭 コンパクト［ ±0 スタイルスチーマー XRS-D010 ］" loading="lazy">
+    <div class="info">
+      <span class="featured-badge">🔥 本日のThreads/Xピックアップ</span>
+      <span class="genre-chip">時短家電</span>
+      <div class="name">【ミトン特典付き】スチームアイロン ハンガーにかけたまま 衣類スチーマー ハンディスチーマー ハンディアイロン スチーマー 吊るしたまま シワ伸ばし プラスマイナスゼロ アイロン ハンディ ハンディー 除菌 脱臭 コンパクト［ ±0 スタイルスチーマー XRS-D010 ］</div>
+      <div class="meta-row">
+        <span class="price">¥9,900</span>
+        <span class="stars">★★★★☆</span>
+        <span>4.46(9751件)</span>
+      </div>
+    </div>
+  </div>
+  <a class="btn-open" href="https://hb.afl.rakuten.co.jp/hgc/g00qb0ln.dg4fi96c.g00qb0ln.dg4fj480/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Froomy%2Fpmz19jun27b01%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Froomy%2Fi%2F10016490%2F&rafcid=wsc_i_is_852e9d1a-8f83-49dc-bc9e-cf56a98e669a" target="_blank" rel="noopener">商品ページを開く ↗</a>
+  <div class="url-row">
+    <a href="https://item.rakuten.co.jp/roomy/pmz19jun27b01/" target="_blank" rel="noopener">https://item.rakuten.co.jp/roomy/pmz19jun27b01/</a>
+    <button class="copy-btn" onclick="copyPlain(this, 'https://item.rakuten.co.jp/roomy/pmz19jun27b01/')" type="button">URLコピー</button>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>楽天ROOM用</span>
+      <button class="copy-btn" onclick="copyText(this, 'room-0')" type="button">コピー</button>
+    </div>
+    <textarea id="room-0" readonly>💡9,900円でこのクオリティ、正直もっと早く買えばよかった。
+±0のスタイルスチーマーはハンガーにかけたまま使えるのが最大の違い。アイロン台を出す必要がないから、ワイシャツ1枚に使う時間が劇的に変わる。
+蒸気で除菌・脱臭もできるので、「洗いたいけど今日は間に合わない」ときに重宝しますよ。
+レビュー9,751件というのは衣類ケア家電では相当な数字。
+ミトン付きで届くので届いたその日から使えます。
+注意点は、スチームなので厚手のコート類には向かない素材がある点。商品ページで対応素材を確認してから。
+#衣類スチーマー #プラスマイナスゼロ #シワ伸ばし #時短家電 #朝の時短 #共働き家庭 #育児パパ #楽天ROOM</textarea>
+  </div>
+  <p class="reason">🔥 今日のピックアップ理由: レビュー9,751件という衣類ケア家電では群を抜いた実績と、9,900円という「1万円切り」の価格ギャップが刺さりやすく、アイロン台不要という朝の準備への直接的な悩み解決度が5件中もっとも高いため。</p>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>Threads用</span>
+      <button class="copy-btn" onclick="copyText(this, 'threads-0')" type="button">コピー</button>
+    </div>
+    <textarea id="threads-0" readonly>朝のワイシャツ、アイロン台を出す気力がなくてそのまま行くやつ、何回やったか数えたくない。
+
+±0のスチーマー、ハンガーにかけたまま使える。台いらない。たった1枚にかかる時間が全然違う。
+9,900円で、蒸気で除菌もできる。「洗いたいけど今朝は無理」の服にも使える。
+
+レビュー9,751件、衣類系でここまでの数字なかなかない。
+
+ミトン付きで届くから、開封してそのまま使えるのも助かった。
+
+#衣類スチーマー #プラスマイナスゼロ #時短家電 #朝の支度 #育児パパ #PR #楽天アフィリエイト</textarea>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>X用</span>
+      <button class="copy-btn" onclick="copyText(this, 'x-0')" type="button">コピー</button>
+    </div>
+    <textarea id="x-0" readonly>朝のワイシャツ、アイロン台出す気力なくてそのまま行くやつ何回やったか
+
+±0のスチーマーはハンガーにかけたまま使える。台いらない🙌
+9,900円で除菌もできる。レビュー9,751件、衣類系でここまでの数字はなかなかない
+
+朝の準備、少しだけ楽になった
+
+#衣類スチーマー #時短家電 #育児パパ #PR #楽天アフィリエイト</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="card-head">
+    <img src="https://thumbnail.image.rakuten.co.jp/@0_mall/risu-onlineshop/cabinet/images/risu/risutc70_i_01c.jpg?_ex=128x128" alt="【メーカー公式店】収納ケース 収納ボックス トランクカーゴ コンテナボックス RISUトランクカーゴ TC-70 送料無料 おしゃれ 座れる 頑丈 丈夫 アウトドア キャンプ 収納BOX フタ付き プラスチック ナチュラル ガーデニング 屋外 チェア 収納 車載 リス" loading="lazy">
+    <div class="info">
+      
+      <span class="genre-chip">収納整理</span>
+      <div class="name">【メーカー公式店】収納ケース 収納ボックス トランクカーゴ コンテナボックス RISUトランクカーゴ TC-70 送料無料 おしゃれ 座れる 頑丈 丈夫 アウトドア キャンプ 収納BOX フタ付き プラスチック ナチュラル ガーデニング 屋外 チェア 収納 車載 リス</div>
+      <div class="meta-row">
+        <span class="price">¥5,980</span>
+        <span class="stars">★★★★★</span>
+        <span>4.71(1490件)</span>
+      </div>
+    </div>
+  </div>
+  <a class="btn-open" href="https://hb.afl.rakuten.co.jp/hgc/g00rbwun.dg4fi470.g00rbwun.dg4fj072/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Frisu-onlineshop%2F16338-1%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Frisu-onlineshop%2Fi%2F10002285%2F&rafcid=wsc_i_is_852e9d1a-8f83-49dc-bc9e-cf56a98e669a" target="_blank" rel="noopener">商品ページを開く ↗</a>
+  <div class="url-row">
+    <a href="https://item.rakuten.co.jp/risu-onlineshop/16338-1/" target="_blank" rel="noopener">https://item.rakuten.co.jp/risu-onlineshop/16338-1/</a>
+    <button class="copy-btn" onclick="copyPlain(this, 'https://item.rakuten.co.jp/risu-onlineshop/16338-1/')" type="button">URLコピー</button>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>楽天ROOM用</span>
+      <button class="copy-btn" onclick="copyText(this, 'room-1')" type="button">コピー</button>
+    </div>
+    <textarea id="room-1" readonly>🏕️おもちゃも、キャンプ道具も、保育園グッズも、全部「とりあえず入れる箱」が家になかった。
+RISUのトランクカーゴTC-70、見た目はアウトドア系のコンテナだけど使い道がとにかく広い。耐荷重100kgで座れるので、子どもの踏み台にも玄関のベンチ代わりにもなってる。
+フタを閉めれば中が見えないのが、リビングに置いても生活感を出さない理由。
+5,980円。普通のカゴ買うより全然多用途だった。
+評価4.71、候補の中でも頭一つ抜けてた数字。
+選ぶ際はTC-50とTC-70で容量差がかなりあるので、入れたいものをイメージしてから。
+#トランクカーゴ #収納ボックス #おしゃれ収納 #アウトドア収納 #共働き家庭 #育児パパ #楽天ROOM</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="card-head">
+    <img src="https://thumbnail.image.rakuten.co.jp/@0_mall/poled-japan/cabinet/item/airluv5/airluv5_top.jpg?_ex=128x128" alt="最新モデル【公式】エアラブ5 ファン付き クールシート airluv エアラブ 赤ちゃん ベビーカー 暑さ対策 ファンシート 出産祝い プレゼント ギフト airluv5 保冷シート ベビーシート シート扇風機 ファン 冷感 冷却シート ポレッド" loading="lazy">
+    <div class="info">
+      
+      <span class="genre-chip">育児グッズ</span>
+      <div class="name">最新モデル【公式】エアラブ5 ファン付き クールシート airluv エアラブ 赤ちゃん ベビーカー 暑さ対策 ファンシート 出産祝い プレゼント ギフト airluv5 保冷シート ベビーシート シート扇風機 ファン 冷感 冷却シート ポレッド</div>
+      <div class="meta-row">
+        <span class="price">¥11,800</span>
+        <span class="stars">★★★★☆</span>
+        <span>4.44(2637件)</span>
+      </div>
+    </div>
+  </div>
+  <a class="btn-open" href="https://hb.afl.rakuten.co.jp/hgc/g00uktjn.dg4fi6fb.g00uktjn.dg4fj288/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fpoled-japan%2Fairluv%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fpoled-japan%2Fi%2F10000016%2F&rafcid=wsc_i_is_852e9d1a-8f83-49dc-bc9e-cf56a98e669a" target="_blank" rel="noopener">商品ページを開く ↗</a>
+  <div class="url-row">
+    <a href="https://item.rakuten.co.jp/poled-japan/airluv/" target="_blank" rel="noopener">https://item.rakuten.co.jp/poled-japan/airluv/</a>
+    <button class="copy-btn" onclick="copyPlain(this, 'https://item.rakuten.co.jp/poled-japan/airluv/')" type="button">URLコピー</button>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>楽天ROOM用</span>
+      <button class="copy-btn" onclick="copyText(this, 'room-2')" type="button">コピー</button>
+    </div>
+    <textarea id="room-2" readonly>🌞ベビーカーで子どもを連れ出すとき、シートの熱さ、気にしてますか。
+日差しの中で30分も乗っていたら、シートの表面温度はかなり上がる。エアラブ5は内蔵ファンが空気を循環させて熱がこもらない構造。冷感素材と組み合わせているので、見た目の涼しさだけじゃなく実際の温度差がある設計ですよ。
+レビュー2,637件・★4.44。9月の残暑シーズン、買い時として悪くない。
+11,800円。出産祝いで選ぶ人が多いのも納得。
+注意点は、USB充電なので外出先でのバッテリー切れに注意。モバイルバッテリーと一緒に使うのが安心。
+#エアラブ #ベビーカー暑さ対策 #ベビーカーグッズ #育児グッズ #残暑対策 #育児パパ #楽天ROOM</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="card-head">
+    <img src="https://thumbnail.image.rakuten.co.jp/@0_mall/monogallery/cabinet/newpoint/p5/023a-041-050skud1.jpg?_ex=128x128" alt="【特典付き】【全17種】ゴミ箱 45リットル 13L～45L スリム ツイン ワイド おしゃれ 分別 キッチン ダストボックス 臭わない 約幅15cm 約幅20cm ふた付き リビング 30L 30リットル キャスター付き 蓋付きゴミ箱 大容量 両開き 分別ゴミ箱( SOLOW ソロウ ペダルオープン )" loading="lazy">
+    <div class="info">
+      
+      <span class="genre-chip">キッチン雑貨</span>
+      <div class="name">【特典付き】【全17種】ゴミ箱 45リットル 13L～45L スリム ツイン ワイド おしゃれ 分別 キッチン ダストボックス 臭わない 約幅15cm 約幅20cm ふた付き リビング 30L 30リットル キャスター付き 蓋付きゴミ箱 大容量 両開き 分別ゴミ箱( SOLOW ソロウ ペダルオープン )</div>
+      <div class="meta-row">
+        <span class="price">¥3,980</span>
+        <span class="stars">★★★★★</span>
+        <span>4.54(1544件)</span>
+      </div>
+    </div>
+  </div>
+  <a class="btn-open" href="https://hb.afl.rakuten.co.jp/hgc/g00q5zpn.dg4fi1cf.g00q5zpn.dg4fj502/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fmonogallery%2F023a-041-050%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fmonogallery%2Fi%2F10004976%2F&rafcid=wsc_i_is_852e9d1a-8f83-49dc-bc9e-cf56a98e669a" target="_blank" rel="noopener">商品ページを開く ↗</a>
+  <div class="url-row">
+    <a href="https://item.rakuten.co.jp/monogallery/023a-041-050/" target="_blank" rel="noopener">https://item.rakuten.co.jp/monogallery/023a-041-050/</a>
+    <button class="copy-btn" onclick="copyPlain(this, 'https://item.rakuten.co.jp/monogallery/023a-041-050/')" type="button">URLコピー</button>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>楽天ROOM用</span>
+      <button class="copy-btn" onclick="copyText(this, 'room-3')" type="button">コピー</button>
+    </div>
+    <textarea id="room-3" readonly>🗑️キッチンのゴミ箱、種類を増やすたびに床が狭くなってた。
+SOLOWのペダル式分別ゴミ箱は幅15cmか20cmから選べるスリム設計。引き出しの隙間とかシンク横の細い空間にも収まる。ペダルで開くのでゴミを捨てるとき両手が塞がってても大丈夫。
+見た目がすっきりしてるので「ゴミ箱感」があまりない。共働きで料理後の片づけを急いでるときに、地味にストレスが減った感じ。
+3,980円でここまで変わるかという値段感。レビュー1,544件。
+フタが両開きなので、どっちからでも捨てやすい点も見落としがちなメリット。
+#SOLOWゴミ箱 #分別ゴミ箱 #キッチン収納 #スリム収納 #キッチン雑貨 #共働き家庭 #育児パパ #楽天ROOM</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="card-head">
+    <img src="https://thumbnail.image.rakuten.co.jp/@0_mall/plywood/cabinet/503/31290004.jpg?_ex=128x128" alt="●楽天1位【選べる特典付】 医薬部外品 電池式蚊取り 蚊よけ 携帯用 カラビナKINCHO × braaa canox 蚊に効くカノクス 蚊取り器 蚊とり 蚊取り 虫よけ 蚊避け 蚊除け グッズ 屋外 アウトドア 釣り ゴルフ◇キャンプ 夏フェス ペット お散歩 公園 送料無料" loading="lazy">
+    <div class="info">
+      
+      <span class="genre-chip">育児グッズ</span>
+      <div class="name">●楽天1位【選べる特典付】 医薬部外品 電池式蚊取り 蚊よけ 携帯用 カラビナKINCHO × braaa canox 蚊に効くカノクス 蚊取り器 蚊とり 蚊取り 虫よけ 蚊避け 蚊除け グッズ 屋外 アウトドア 釣り ゴルフ◇キャンプ 夏フェス ペット お散歩 公園 送料無料</div>
+      <div class="meta-row">
+        <span class="price">¥4,950</span>
+        <span class="stars">★★★★☆</span>
+        <span>4.47(4447件)</span>
+      </div>
+    </div>
+  </div>
+  <a class="btn-open" href="https://hb.afl.rakuten.co.jp/hgc/g00pzd8n.dg4fi90e.g00pzd8n.dg4fj68e/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fplywood%2F31290004%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fplywood%2Fi%2F10020179%2F&rafcid=wsc_i_is_852e9d1a-8f83-49dc-bc9e-cf56a98e669a" target="_blank" rel="noopener">商品ページを開く ↗</a>
+  <div class="url-row">
+    <a href="https://item.rakuten.co.jp/plywood/31290004/" target="_blank" rel="noopener">https://item.rakuten.co.jp/plywood/31290004/</a>
+    <button class="copy-btn" onclick="copyPlain(this, 'https://item.rakuten.co.jp/plywood/31290004/')" type="button">URLコピー</button>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>楽天ROOM用</span>
+      <button class="copy-btn" onclick="copyText(this, 'room-4')" type="button">コピー</button>
+    </div>
+    <textarea id="room-4" readonly>🦟公園お散歩の蚊対策、スプレー以外の選択肢を知ってほしい。
+KINCHO×braaaのカノクスはカラビナ付きの電池式。ベビーカーのフレームにつけるだけで、スプレーを肌に塗らなくていい。子どもが小さいと成分が気になるので、「塗らない」という選択肢はわりと大きい。
+レビュー4,447件。9月上旬でもまだ蚊は普通にいるので、シーズン終わりと思わずに。
+4,950円で電池式だから充電切れもない。アウトドア・釣り・ゴルフでも使える。
+注意点は長期間だと電池代がかかる点。まずお試し感覚で使うくらいがちょうどいい。
+#カノクス #蚊取り #虫よけ #ベビーカー #アウトドア育児 #育児パパ #共働き家庭 #楽天ROOM</textarea>
+  </div>
+</div>
+</div>
+
+<h2 class="section-title">💬 今日のあるある投稿ネタ(商品リンクなし)</h2>
+<div class="cards">
+<div class="card">
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>あるある投稿 #1</span>
+      <button class="copy-btn" onclick="copyText(this, 'daily-0')" type="button">コピー</button>
+    </div>
+    <textarea id="daily-0" class="short" readonly>子ども、ぐずり始めるタイミングだけは毎回きっちり選んでくるよな</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>あるある投稿 #2</span>
+      <button class="copy-btn" onclick="copyText(this, 'daily-1')" type="button">コピー</button>
+    </div>
+    <textarea id="daily-1" class="short" readonly>週の真ん中くらいで、もう週末だっけと一瞬思う瞬間がある。現実を見ると水曜の朝🥲
+みんなどうやってモチベ保ってる? #共働き家庭</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>あるある投稿 #3</span>
+      <button class="copy-btn" onclick="copyText(this, 'daily-2')" type="button">コピー</button>
+    </div>
+    <textarea id="daily-2" class="short" readonly>保育園の連絡帳、「今日の様子」の欄だけ毎朝5秒で書き終えようとして、結果「元気です」しか書けないまま何ヶ月も経ってる気がする。もう少し書けばいいと思いながら書かない。</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>あるある投稿 #4</span>
+      <button class="copy-btn" onclick="copyText(this, 'daily-3')" type="button">コピー</button>
+    </div>
+    <textarea id="daily-3" class="short" readonly>休日の「ゆっくりしようぜ」、子どもが起きた瞬間に消える ☕</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>あるある投稿 #5</span>
+      <button class="copy-btn" onclick="copyText(this, 'daily-4')" type="button">コピー</button>
+    </div>
+    <textarea id="daily-4" class="short" readonly>夕飯作って、子ども食べさせて、風呂入れて、寝かしつけして、家事残り片付けて。
+気づいたら23時。「今日何もしてない」感だけ残る。
+#育児パパ #共働き家庭</textarea>
+  </div>
+</div>
+</div>
+
+<footer class="note">商品ページを確認し、投稿文をコピーして手動で投稿してください。<br>Threads/Xの商品紹介は1日1件・あるある投稿と織り交ぜてスパム判定を避けてください。<br>価格・レビューは選定時点の実データです。</footer>
+</div>
+<script>
+function flash(btn) {
+  const original = btn.textContent;
+  btn.textContent = 'コピーしました';
+  btn.classList.add('copied');
+  setTimeout(() => { btn.textContent = original; btn.classList.remove('copied'); }, 1500);
+}
+function copyText(btn, id) {
+  const el = document.getElementById(id);
+  el.select();
+  el.setSelectionRange(0, 999999);
+  navigator.clipboard.writeText(el.value).then(() => flash(btn)).catch(() => {
+    try { document.execCommand('copy'); flash(btn); } catch (e) {}
+  });
+}
+function copyPlain(btn, text) {
+  navigator.clipboard.writeText(text).then(() => flash(btn)).catch(() => {
+    const t = document.createElement('textarea');
+    t.value = text; document.body.appendChild(t); t.select();
+    try { document.execCommand('copy'); flash(btn); } catch (e) {}
+    document.body.removeChild(t);
+  });
+}
+</script>
+</body>
+</html>

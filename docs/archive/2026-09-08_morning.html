@@ -1,0 +1,406 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>9/8 朝の選定 - 楽天ROOM投稿リスト</title>
+<style>
+:root {
+  --bg: #f6f3ee;
+  --surface: #ffffff;
+  --ink: #23211d;
+  --ink-soft: #6b6459;
+  --accent: #a8382c;
+  --accent-ink: #fff6f2;
+  --good: #3f7d58;
+  --border: #e4ddd2;
+  --chip-bg: #efe8db;
+  color-scheme: light dark;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #16140f;
+    --surface: #211f1a;
+    --ink: #ece7dc;
+    --ink-soft: #a89e8d;
+    --accent: #e0685a;
+    --accent-ink: #1c0f0c;
+    --good: #6fb98a;
+    --border: #35322a;
+    --chip-bg: #2a2721;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #16140f; --surface: #211f1a; --ink: #ece7dc; --ink-soft: #a89e8d;
+  --accent: #e0685a; --accent-ink: #1c0f0c; --good: #6fb98a; --border: #35322a; --chip-bg: #2a2721;
+}
+:root[data-theme="light"] {
+  --bg: #f6f3ee; --surface: #ffffff; --ink: #23211d; --ink-soft: #6b6459;
+  --accent: #a8382c; --accent-ink: #fff6f2; --good: #3f7d58; --border: #e4ddd2; --chip-bg: #efe8db;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0; background: var(--bg); color: var(--ink);
+  font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Yu Gothic Medium", "Noto Sans JP", sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+.wrap { max-width: 640px; margin: 0 auto; padding: 0 16px 40px; }
+header.top {
+  position: sticky; top: 0; z-index: 5; background: var(--bg);
+  padding: 18px 16px 12px; border-bottom: 1px solid var(--border);
+  display: flex; align-items: baseline; justify-content: space-between; gap: 12px;
+}
+header.top .eyebrow {
+  font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-soft);
+  font-weight: 600; margin: 0 0 2px;
+}
+header.top h1 { font-size: 1.25rem; margin: 0; font-weight: 700; letter-spacing: -0.01em; }
+header.top .count {
+  background: var(--chip-bg); color: var(--ink-soft); font-size: 0.78rem; font-weight: 600;
+  padding: 5px 10px; border-radius: 999px; white-space: nowrap;
+}
+h2.section-title { font-size: 0.95rem; font-weight: 700; margin: 24px 0 12px; }
+.cards { display: flex; flex-direction: column; gap: 16px; margin-top: 18px; }
+.card {
+  background: var(--surface); border: 1px solid var(--border); border-radius: 16px;
+  padding: 16px; display: flex; flex-direction: column; gap: 12px;
+}
+.card.featured { border-color: var(--accent); border-width: 2px; }
+.featured-badge {
+  align-self: flex-start; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.03em;
+  color: var(--accent-ink); background: var(--accent); padding: 3px 9px; border-radius: 999px;
+}
+.card-head { display: flex; gap: 12px; }
+.card-head img {
+  width: 76px; height: 76px; object-fit: cover; border-radius: 10px;
+  border: 1px solid var(--border); background: var(--chip-bg); flex-shrink: 0;
+}
+.card-head .info { min-width: 0; flex: 1; display: flex; flex-direction: column; gap: 4px; }
+.genre-chip {
+  align-self: flex-start; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.03em;
+  color: var(--accent); background: color-mix(in srgb, var(--accent) 12%, transparent);
+  padding: 2px 8px; border-radius: 999px;
+}
+.name {
+  font-weight: 600; font-size: 0.94rem; line-height: 1.4;
+  display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
+}
+.meta-row { display: flex; align-items: baseline; gap: 8px; font-size: 0.82rem; color: var(--ink-soft); }
+.price { font-variant-numeric: tabular-nums; color: var(--ink); font-weight: 700; font-size: 1.05rem; }
+.stars { letter-spacing: -1px; color: var(--accent); }
+.btn-open {
+  display: flex; align-items: center; justify-content: center; gap: 6px;
+  background: var(--accent); color: var(--accent-ink); border: none; border-radius: 11px;
+  padding: 12px; font-weight: 700; font-size: 0.92rem; text-decoration: none;
+}
+.btn-open:active { opacity: 0.85; }
+.url-row {
+  display: flex; align-items: center; gap: 8px;
+  background: var(--chip-bg); border-radius: 9px; padding: 8px 10px;
+}
+.url-row a {
+  flex: 1; min-width: 0; font-size: 0.76rem; color: var(--accent);
+  word-break: break-all; line-height: 1.45; text-decoration: none;
+}
+.url-row a:active { text-decoration: underline; }
+.reason { font-size: 0.8rem; color: var(--ink-soft); }
+.caption-box { border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }
+.caption-head {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 8px 10px; background: var(--chip-bg);
+}
+.caption-head span {
+  font-size: 0.7rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-soft);
+}
+.copy-btn {
+  background: var(--surface); border: 1px solid var(--border); color: var(--ink);
+  border-radius: 7px; padding: 5px 11px; font-size: 0.76rem; font-weight: 600; cursor: pointer;
+}
+.copy-btn:focus-visible, .btn-open:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.copy-btn.copied { background: var(--good); border-color: var(--good); color: #fff; }
+textarea {
+  width: 100%; display: block; border: none; padding: 10px; font-size: 0.85rem; line-height: 1.55;
+  resize: vertical; min-height: 108px; font-family: inherit; background: var(--surface); color: var(--ink);
+}
+textarea.short { min-height: 60px; }
+textarea:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
+footer.note { margin-top: 22px; font-size: 0.76rem; color: var(--ink-soft); text-align: center; line-height: 1.6; }
+@media (prefers-reduced-motion: no-preference) {
+  .copy-btn { transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease; }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <div>
+    <p class="eyebrow">楽天ROOM 投稿リスト</p>
+    <h1>9/8 朝の選定</h1>
+  </div>
+  <span class="count">5件</span>
+</header>
+
+<h2 class="section-title">📦 商品(ROOM用、全5件)</h2>
+<div class="cards">
+<div class="card">
+  <div class="card-head">
+    <img src="https://thumbnail.image.rakuten.co.jp/@0_mall/noone/cabinet/futonket/ko2025/kotatsu-2026-smn.jpg?_ex=128x128" alt="【スーパーSALE】あったか ふわふわ こたつ布団 こたつ掛け 省スペース 選べる 掛け布団 単品 天板 80×80 120×80 リバーシブル マイクロファイバー コンパクト こたつ掛け布団 軽い シンプル 新生活 お洒落 モダン" loading="lazy">
+    <div class="info">
+      
+      <span class="genre-chip">季節もの</span>
+      <div class="name">【スーパーSALE】あったか ふわふわ こたつ布団 こたつ掛け 省スペース 選べる 掛け布団 単品 天板 80×80 120×80 リバーシブル マイクロファイバー コンパクト こたつ掛け布団 軽い シンプル 新生活 お洒落 モダン</div>
+      <div class="meta-row">
+        <span class="price">¥1,980</span>
+        <span class="stars">★★★★☆</span>
+        <span>4.33(2225件)</span>
+      </div>
+    </div>
+  </div>
+  <a class="btn-open" href="https://hb.afl.rakuten.co.jp/hgc/g00qg4un.dg4fi145.g00qg4un.dg4fj85c/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fnoone%2Fkotatsu-sfutonset%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fnoone%2Fi%2F10002025%2F&rafcid=wsc_i_is_852e9d1a-8f83-49dc-bc9e-cf56a98e669a" target="_blank" rel="noopener">商品ページを開く ↗</a>
+  <div class="url-row">
+    <a href="https://item.rakuten.co.jp/noone/kotatsu-sfutonset/" target="_blank" rel="noopener">https://item.rakuten.co.jp/noone/kotatsu-sfutonset/</a>
+    <button class="copy-btn" onclick="copyPlain(this, 'https://item.rakuten.co.jp/noone/kotatsu-sfutonset/')" type="button">URLコピー</button>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>楽天ROOM用</span>
+      <button class="copy-btn" onclick="copyText(this, 'room-0')" type="button">コピー</button>
+    </div>
+    <textarea id="room-0" readonly>🔥朝晩の冷え込みで、そろそろこたつを出そうか迷っていませんか。
+このこたつ布団は、80×80cmまでの小さめこたつ用の省スペース設計。マイクロファイバーでふわっと軽く、はみ出しが少ないので狭いリビングでも圧迫感が出ません。リバーシブルなので気分で表裏を変えられて、洗濯機で洗えるサイズです(ネット使用)。単品売りなので、天板やヒーターは今あるものを使えます。
+レビュー2,225件・★4.33という評価が、コンパクトさと価格のバランスを示しています。
+注意点は、対応こたつサイズが決まっているので、天板の一辺の長さを測ってから選ぶこと。乾燥機は使えません。
+1,980円で、今週末からこたつを出せる準備をしませんか?
+#こたつ布団 #こたつ掛け #省スペース #秋支度 #冷え対策 #共働き家庭 #育児パパ #楽天ROOM</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="card-head">
+    <img src="https://thumbnail.image.rakuten.co.jp/@0_mall/jyonetsubatake/cabinet/item/drink/1279-c1/1279-c1_m_r3.jpg?_ex=128x128" alt="【ポイント2倍】 防災 水 保存水 備蓄水 5年 2リットル 6本 サーフビバレッジ 長期保存水 2l 備蓄 セット 保存食 非常食 に追加 備蓄用 国産 みず お水 災害 避難 対策 非常用 災害用水 飲料水 PFAS 検査済 最短9/17出荷" loading="lazy">
+    <div class="info">
+      
+      <span class="genre-chip">防災 安全</span>
+      <div class="name">【ポイント2倍】 防災 水 保存水 備蓄水 5年 2リットル 6本 サーフビバレッジ 長期保存水 2l 備蓄 セット 保存食 非常食 に追加 備蓄用 国産 みず お水 災害 避難 対策 非常用 災害用水 飲料水 PFAS 検査済 最短9/17出荷</div>
+      <div class="meta-row">
+        <span class="price">¥1,268</span>
+        <span class="stars">★★★★★</span>
+        <span>4.75(2220件)</span>
+      </div>
+    </div>
+  </div>
+  <a class="btn-open" href="https://hb.afl.rakuten.co.jp/hgc/g00sykbn.dg4fi0d4.g00sykbn.dg4fj99a/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fjyonetsubatake%2F1279-c1%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fjyonetsubatake%2Fi%2F10000342%2F&rafcid=wsc_i_is_852e9d1a-8f83-49dc-bc9e-cf56a98e669a" target="_blank" rel="noopener">商品ページを開く ↗</a>
+  <div class="url-row">
+    <a href="https://item.rakuten.co.jp/jyonetsubatake/1279-c1/" target="_blank" rel="noopener">https://item.rakuten.co.jp/jyonetsubatake/1279-c1/</a>
+    <button class="copy-btn" onclick="copyPlain(this, 'https://item.rakuten.co.jp/jyonetsubatake/1279-c1/')" type="button">URLコピー</button>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>楽天ROOM用</span>
+      <button class="copy-btn" onclick="copyText(this, 'room-1')" type="button">コピー</button>
+    </div>
+    <textarea id="room-1" readonly>💧防災の水、家族3日分そろっていますか。目安は1人1日3リットルです。
+この保存水は、賞味期限が製造から5年と長い長期保存水。2L×6本セットなので、家族の人数に合わせて必要な箱数を積んでおけます。普段は意識せず置いておき、期限が近づいたら普通に料理や飲用で消費して買い替える「ローリングストック」に向いています。国産のナチュラルミネラルウォーターで硬度51の軟水です。
+レビュー2,220件・★4.75という評価が、備蓄用として選ばれていることを示しています。
+注意点は、直射日光の当たらない冷暗所で保管すること。段ボールのまま床置きすると湿気を吸うので、すのこの上などが安心です。
+1,268円で、後回しにしていた水の備蓄を始めませんか?
+#保存水 #備蓄水 #防災 #ローリングストック #長期保存 #共働き家庭 #育児パパ #楽天ROOM</textarea>
+  </div>
+</div>
+<div class="card featured">
+  <div class="card-head">
+    <img src="https://thumbnail.image.rakuten.co.jp/@0_mall/latuna/cabinet/items/07673659/rack_big.jpg?_ex=128x128" alt="【SS限定クーポン配布!!】【楽天4冠達成!!】 水切りラック シンク上 シンク内 スリム 水切りマット 水切り マット ラック 折りたたみ コンパクト シリコン 折り畳み水切り キッチン 一人暮らし 抗菌 収納 フラット 52cm 33cm 42cm 24cm Latuna ラチュナ 新生活" loading="lazy">
+    <div class="info">
+      <span class="featured-badge">🔥 本日のThreads/Xピックアップ</span>
+      <span class="genre-chip">キッチン雑貨</span>
+      <div class="name">【SS限定クーポン配布!!】【楽天4冠達成!!】 水切りラック シンク上 シンク内 スリム 水切りマット 水切り マット ラック 折りたたみ コンパクト シリコン 折り畳み水切り キッチン 一人暮らし 抗菌 収納 フラット 52cm 33cm 42cm 24cm Latuna ラチュナ 新生活</div>
+      <div class="meta-row">
+        <span class="price">¥1,510</span>
+        <span class="stars">★★★★★</span>
+        <span>4.69(3954件)</span>
+      </div>
+    </div>
+  </div>
+  <a class="btn-open" href="https://hb.afl.rakuten.co.jp/hgc/g00tnrsn.dg4fia3f.g00tnrsn.dg4fj2d1/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Flatuna%2F10000000%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Flatuna%2Fi%2F10000000%2F&rafcid=wsc_i_is_852e9d1a-8f83-49dc-bc9e-cf56a98e669a" target="_blank" rel="noopener">商品ページを開く ↗</a>
+  <div class="url-row">
+    <a href="https://item.rakuten.co.jp/latuna/10000000/" target="_blank" rel="noopener">https://item.rakuten.co.jp/latuna/10000000/</a>
+    <button class="copy-btn" onclick="copyPlain(this, 'https://item.rakuten.co.jp/latuna/10000000/')" type="button">URLコピー</button>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>楽天ROOM用</span>
+      <button class="copy-btn" onclick="copyText(this, 'room-2')" type="button">コピー</button>
+    </div>
+    <textarea id="room-2" readonly>🚰シンクの水切りかご、場所を取るしヌメる。でも無いと洗い物が置けない。
+ラチュナの水切りラックは、シンクの上に渡す・シンク内に置く両対応で、使わないときは折りたためます。外側シリコン・内側スチールで、丸めて立てておけば場所を取りません。グラスやまな板を立てられて、水は直接シンクに落ちるので受け皿の水捨ても不要です。
+レビュー3,954件・★4.69という評価が、置きっぱなしのかごから乗り換えた人の多さを示しています。
+注意点は、シンクをまたぐ幅が足りるか、蛇口の位置と干渉しないかを設置前に確認すること。
+1,510円で、シンクまわりの「かご問題」を片づけませんか?
+#水切りラック #水切りマット #折りたたみ #キッチン収納 #シンク上 #共働き家庭 #育児パパ #楽天ROOM</textarea>
+  </div>
+  <p class="reason">🔥 今日のピックアップ理由: 1,510円で「水切りかごが場所を取る・ヌメる」という毎日のキッチンの小さなストレスを解決でき、レビュー3,954件・★4.69と評価が5件で最も高いため。</p>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>Threads用</span>
+      <button class="copy-btn" onclick="copyText(this, 'threads-0')" type="button">コピー</button>
+    </div>
+    <textarea id="threads-0" readonly>シンクの水切りかご、場所は取るしヌメるし、でも無いと洗い物が置けなくて詰んでた。
+ラチュナの水切りラックに替えたら、使わないときは丸めて立てられる。シンクにまたいで置けるから水は直接落ちて、受け皿の水捨てもいらない。グラスもまな板も立てられる。
+レビュー3,954件・★4.69で1,510円。置きっぱなしのかごから卒業できる。
+蛇口の位置と干渉しないかだけ先に確認して。
+#PR #水切りラック #キッチン収納 #共働き家庭 #育児パパ</textarea>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>X用</span>
+      <button class="copy-btn" onclick="copyText(this, 'x-0')" type="button">コピー</button>
+    </div>
+    <textarea id="x-0" readonly>シンクの水切りかご、場所取るしヌメるのに無いと困る問題。
+ラチュナの水切りラックは使わないとき丸めて立てられる。シンクにまたいで置くから水は直接落ちて受け皿いらず。
+レビュー3,954件・★4.69で1,510円。蛇口と干渉しないか確認だけ。
+#PR #水切りラック #キッチン収納 #育児パパ</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="card-head">
+    <img src="https://thumbnail.image.rakuten.co.jp/@0_mall/importshopaqua/cabinet/zoom_a/omk0/01/mistygarden.jpg?_ex=128x128" alt="【楽天1位】【レビュー3,800件突破】ミクニ 卓上加湿器 ミスティガーデン2nd エコロジー加湿器 気化式加湿器 小型加湿器 おしゃれ 赤ちゃん エコ 衛生的 お手入れ簡単 寝室 電気 使わない テーブル 床が濡れ ない ヒーターレス ペット 安全" loading="lazy">
+    <div class="info">
+      
+      <span class="genre-chip">空気環境</span>
+      <div class="name">【楽天1位】【レビュー3,800件突破】ミクニ 卓上加湿器 ミスティガーデン2nd エコロジー加湿器 気化式加湿器 小型加湿器 おしゃれ 赤ちゃん エコ 衛生的 お手入れ簡単 寝室 電気 使わない テーブル 床が濡れ ない ヒーターレス ペット 安全</div>
+      <div class="meta-row">
+        <span class="price">¥3,790</span>
+        <span class="stars">★★★★☆</span>
+        <span>4.44(4120件)</span>
+      </div>
+    </div>
+  </div>
+  <a class="btn-open" href="https://hb.afl.rakuten.co.jp/hgc/g00pz5qn.dg4fi9b6.g00pz5qn.dg4fjd83/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fimportshopaqua%2Fmistygarden%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fimportshopaqua%2Fi%2F10000488%2F&rafcid=wsc_i_is_852e9d1a-8f83-49dc-bc9e-cf56a98e669a" target="_blank" rel="noopener">商品ページを開く ↗</a>
+  <div class="url-row">
+    <a href="https://item.rakuten.co.jp/importshopaqua/mistygarden/" target="_blank" rel="noopener">https://item.rakuten.co.jp/importshopaqua/mistygarden/</a>
+    <button class="copy-btn" onclick="copyPlain(this, 'https://item.rakuten.co.jp/importshopaqua/mistygarden/')" type="button">URLコピー</button>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>楽天ROOM用</span>
+      <button class="copy-btn" onclick="copyText(this, 'room-3')" type="button">コピー</button>
+    </div>
+    <textarea id="room-3" readonly>🌫暖房を入れ始めると、朝起きたとき喉がイガイガする季節です。
+ミクニの「ミスティガーデン2nd」は、電気を使わない気化式の卓上加湿器。陶器のオブジェが水を吸い上げて自然に蒸発させる仕組みで、電源もヒーターもいらず、机や枕元に置いても倒して壊れる心配がありません。加湿しすぎず、電気代もゼロ。赤ちゃんのいる寝室でも安心して使えます。
+レビュー4,120件・★4.44という評価が、手軽さと安全性の支持を示しています。
+注意点は、パワフルな加湿力はないので、広い部屋の本格加湿には向かず、あくまでデスクや枕元のスポット用と考えること。水はこまめに替えてください。
+3,790円で、電源のいらない加湿を1つ置きませんか?
+#加湿器 #気化式加湿器 #電気を使わない #乾燥対策 #寝室 #赤ちゃん #育児パパ #楽天ROOM</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="card-head">
+    <img src="https://thumbnail.image.rakuten.co.jp/@0_mall/coyoli/cabinet/25ss24562/imgrc0133332016.jpg?_ex=128x128" alt="【期間限定10%OFF】 ヘアドライタオル ヘアバンド ヘアドライキャップ キャップ 吸水 2枚セット 速乾 洗顔 かわいい 髪 大人 子供用 男の子 女の子 キッズ suuf. [M便 1/1] ピンク アイボリー ブラウン グレー パープル 24562" loading="lazy">
+    <div class="info">
+      
+      <span class="genre-chip">身だしなみ</span>
+      <div class="name">【期間限定10%OFF】 ヘアドライタオル ヘアバンド ヘアドライキャップ キャップ 吸水 2枚セット 速乾 洗顔 かわいい 髪 大人 子供用 男の子 女の子 キッズ suuf. [M便 1/1] ピンク アイボリー ブラウン グレー パープル 24562</div>
+      <div class="meta-row">
+        <span class="price">¥1,430</span>
+        <span class="stars">★★★★☆</span>
+        <span>4.48(1717件)</span>
+      </div>
+    </div>
+  </div>
+  <a class="btn-open" href="https://hb.afl.rakuten.co.jp/hgc/g00suf9n.dg4fib0a.g00suf9n.dg4fjc94/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fcoyoli%2F24562%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fcoyoli%2Fi%2F10000493%2F&rafcid=wsc_i_is_852e9d1a-8f83-49dc-bc9e-cf56a98e669a" target="_blank" rel="noopener">商品ページを開く ↗</a>
+  <div class="url-row">
+    <a href="https://item.rakuten.co.jp/coyoli/24562/" target="_blank" rel="noopener">https://item.rakuten.co.jp/coyoli/24562/</a>
+    <button class="copy-btn" onclick="copyPlain(this, 'https://item.rakuten.co.jp/coyoli/24562/')" type="button">URLコピー</button>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>楽天ROOM用</span>
+      <button class="copy-btn" onclick="copyText(this, 'room-4')" type="button">コピー</button>
+    </div>
+    <textarea id="room-4" readonly>💦お風呂上がり、子どもの髪をタオルで拭くのに時間がかかって湯冷めが心配、という悩みへ。
+この吸水ヘアドライキャップは、髪をまとめて包むだけで水分を吸い取ってくれるタイプ。ドライヤー前にこれを数分かぶせておくだけで、乾かす時間が短くなります。2枚セットで大人用・子ども用に分けられ、洗顔時のヘアバンドとしても使えます。軽くて速乾なので、毎日洗って清潔に保てます。
+レビュー1,717件・★4.48という評価が、地道に便利なアイテムであることを示しています。
+注意点は、あくまで下ごしらえ用なので、これだけで完全に乾くわけではないこと。仕上げはドライヤーが必要です。
+1,430円で、お風呂上がりの数分を短くしませんか?
+#ヘアドライキャップ #吸水タオル #お風呂上がり #子育てグッズ #時短 #共働き家庭 #育児パパ #楽天ROOM</textarea>
+  </div>
+</div>
+</div>
+
+<h2 class="section-title">💬 今日のあるある投稿ネタ(商品リンクなし)</h2>
+<div class="cards">
+<div class="card">
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>あるある投稿 #1</span>
+      <button class="copy-btn" onclick="copyText(this, 'daily-0')" type="button">コピー</button>
+    </div>
+    <textarea id="daily-0" class="short" readonly>毎年こたつを出す日を決められないまま冬になる</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>あるある投稿 #2</span>
+      <button class="copy-btn" onclick="copyText(this, 'daily-1')" type="button">コピー</button>
+    </div>
+    <textarea id="daily-1" class="short" readonly>子どもが風邪ひくと、だいたい2日後に自分が同じ症状で寝込む。順番待ちしてる感じ</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>あるある投稿 #3</span>
+      <button class="copy-btn" onclick="copyText(this, 'daily-2')" type="button">コピー</button>
+    </div>
+    <textarea id="daily-2" class="short" readonly>朝ごはん「いらない」って言うから下げたら「食べる」って泣くやつ、何回目だろう</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>あるある投稿 #4</span>
+      <button class="copy-btn" onclick="copyText(this, 'daily-3')" type="button">コピー</button>
+    </div>
+    <textarea id="daily-3" class="short" readonly>在宅の日、昼休みに洗濯機回して夕方干す。仕事なのか家事なのか自分でも曖昧な一日🧺
+#共働き家庭</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>あるある投稿 #5</span>
+      <button class="copy-btn" onclick="copyText(this, 'daily-4')" type="button">コピー</button>
+    </div>
+    <textarea id="daily-4" class="short" readonly>子どもと同じ時間に寝てしまって、夜中に起きて「自分の時間だ」と思うけど結局また寝る</textarea>
+  </div>
+</div>
+</div>
+
+<footer class="note">商品ページを確認し、投稿文をコピーして手動で投稿してください。<br>Threads/Xの商品紹介は1日1件・あるある投稿と織り交ぜてスパム判定を避けてください。<br>価格・レビューは選定時点の実データです。</footer>
+</div>
+<script>
+function flash(btn) {
+  const original = btn.textContent;
+  btn.textContent = 'コピーしました';
+  btn.classList.add('copied');
+  setTimeout(() => { btn.textContent = original; btn.classList.remove('copied'); }, 1500);
+}
+function copyText(btn, id) {
+  const el = document.getElementById(id);
+  el.select();
+  el.setSelectionRange(0, 999999);
+  navigator.clipboard.writeText(el.value).then(() => flash(btn)).catch(() => {
+    try { document.execCommand('copy'); flash(btn); } catch (e) {}
+  });
+}
+function copyPlain(btn, text) {
+  navigator.clipboard.writeText(text).then(() => flash(btn)).catch(() => {
+    const t = document.createElement('textarea');
+    t.value = text; document.body.appendChild(t); t.select();
+    try { document.execCommand('copy'); flash(btn); } catch (e) {}
+    document.body.removeChild(t);
+  });
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,407 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>9/14 夜の選定 - 楽天ROOM投稿リスト</title>
+<style>
+:root {
+  --bg: #f6f3ee;
+  --surface: #ffffff;
+  --ink: #23211d;
+  --ink-soft: #6b6459;
+  --accent: #a8382c;
+  --accent-ink: #fff6f2;
+  --good: #3f7d58;
+  --border: #e4ddd2;
+  --chip-bg: #efe8db;
+  color-scheme: light dark;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #16140f;
+    --surface: #211f1a;
+    --ink: #ece7dc;
+    --ink-soft: #a89e8d;
+    --accent: #e0685a;
+    --accent-ink: #1c0f0c;
+    --good: #6fb98a;
+    --border: #35322a;
+    --chip-bg: #2a2721;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #16140f; --surface: #211f1a; --ink: #ece7dc; --ink-soft: #a89e8d;
+  --accent: #e0685a; --accent-ink: #1c0f0c; --good: #6fb98a; --border: #35322a; --chip-bg: #2a2721;
+}
+:root[data-theme="light"] {
+  --bg: #f6f3ee; --surface: #ffffff; --ink: #23211d; --ink-soft: #6b6459;
+  --accent: #a8382c; --accent-ink: #fff6f2; --good: #3f7d58; --border: #e4ddd2; --chip-bg: #efe8db;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0; background: var(--bg); color: var(--ink);
+  font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Yu Gothic Medium", "Noto Sans JP", sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+.wrap { max-width: 640px; margin: 0 auto; padding: 0 16px 40px; }
+header.top {
+  position: sticky; top: 0; z-index: 5; background: var(--bg);
+  padding: 18px 16px 12px; border-bottom: 1px solid var(--border);
+  display: flex; align-items: baseline; justify-content: space-between; gap: 12px;
+}
+header.top .eyebrow {
+  font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-soft);
+  font-weight: 600; margin: 0 0 2px;
+}
+header.top h1 { font-size: 1.25rem; margin: 0; font-weight: 700; letter-spacing: -0.01em; }
+header.top .count {
+  background: var(--chip-bg); color: var(--ink-soft); font-size: 0.78rem; font-weight: 600;
+  padding: 5px 10px; border-radius: 999px; white-space: nowrap;
+}
+h2.section-title { font-size: 0.95rem; font-weight: 700; margin: 24px 0 12px; }
+.cards { display: flex; flex-direction: column; gap: 16px; margin-top: 18px; }
+.card {
+  background: var(--surface); border: 1px solid var(--border); border-radius: 16px;
+  padding: 16px; display: flex; flex-direction: column; gap: 12px;
+}
+.card.featured { border-color: var(--accent); border-width: 2px; }
+.featured-badge {
+  align-self: flex-start; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.03em;
+  color: var(--accent-ink); background: var(--accent); padding: 3px 9px; border-radius: 999px;
+}
+.card-head { display: flex; gap: 12px; }
+.card-head img {
+  width: 76px; height: 76px; object-fit: cover; border-radius: 10px;
+  border: 1px solid var(--border); background: var(--chip-bg); flex-shrink: 0;
+}
+.card-head .info { min-width: 0; flex: 1; display: flex; flex-direction: column; gap: 4px; }
+.genre-chip {
+  align-self: flex-start; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.03em;
+  color: var(--accent); background: color-mix(in srgb, var(--accent) 12%, transparent);
+  padding: 2px 8px; border-radius: 999px;
+}
+.name {
+  font-weight: 600; font-size: 0.94rem; line-height: 1.4;
+  display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
+}
+.meta-row { display: flex; align-items: baseline; gap: 8px; font-size: 0.82rem; color: var(--ink-soft); }
+.price { font-variant-numeric: tabular-nums; color: var(--ink); font-weight: 700; font-size: 1.05rem; }
+.stars { letter-spacing: -1px; color: var(--accent); }
+.btn-open {
+  display: flex; align-items: center; justify-content: center; gap: 6px;
+  background: var(--accent); color: var(--accent-ink); border: none; border-radius: 11px;
+  padding: 12px; font-weight: 700; font-size: 0.92rem; text-decoration: none;
+}
+.btn-open:active { opacity: 0.85; }
+.url-row {
+  display: flex; align-items: center; gap: 8px;
+  background: var(--chip-bg); border-radius: 9px; padding: 8px 10px;
+}
+.url-row a {
+  flex: 1; min-width: 0; font-size: 0.76rem; color: var(--accent);
+  word-break: break-all; line-height: 1.45; text-decoration: none;
+}
+.url-row a:active { text-decoration: underline; }
+.reason { font-size: 0.8rem; color: var(--ink-soft); }
+.caption-box { border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }
+.caption-head {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 8px 10px; background: var(--chip-bg);
+}
+.caption-head span {
+  font-size: 0.7rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-soft);
+}
+.copy-btn {
+  background: var(--surface); border: 1px solid var(--border); color: var(--ink);
+  border-radius: 7px; padding: 5px 11px; font-size: 0.76rem; font-weight: 600; cursor: pointer;
+}
+.copy-btn:focus-visible, .btn-open:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.copy-btn.copied { background: var(--good); border-color: var(--good); color: #fff; }
+textarea {
+  width: 100%; display: block; border: none; padding: 10px; font-size: 0.85rem; line-height: 1.55;
+  resize: vertical; min-height: 108px; font-family: inherit; background: var(--surface); color: var(--ink);
+}
+textarea.short { min-height: 60px; }
+textarea:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
+footer.note { margin-top: 22px; font-size: 0.76rem; color: var(--ink-soft); text-align: center; line-height: 1.6; }
+@media (prefers-reduced-motion: no-preference) {
+  .copy-btn { transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease; }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <div>
+    <p class="eyebrow">楽天ROOM 投稿リスト</p>
+    <h1>9/14 夜の選定</h1>
+  </div>
+  <span class="count">5件</span>
+</header>
+
+<h2 class="section-title">📦 商品(ROOM用、全5件)</h2>
+<div class="cards">
+<div class="card">
+  <div class="card-head">
+    <img src="https://thumbnail.image.rakuten.co.jp/@0_mall/mollif/cabinet/0130301/c03blc-312_1.jpg?_ex=128x128" alt="おしゃれ クラフタースツール L 踏み台 子供 折りたたみ 軽量【椅子 チェア ステップ台 一段 脚立 コンパクト かわいい インテリア雑貨 子ども ステップ トイレ キッチン 軽い 洗車台 作業台 39cm 掃除 収納 インテリア 携帯 持ち運び 運動会】" loading="lazy">
+    <div class="info">
+      
+      <span class="genre-chip">育児グッズ</span>
+      <div class="name">おしゃれ クラフタースツール L 踏み台 子供 折りたたみ 軽量【椅子 チェア ステップ台 一段 脚立 コンパクト かわいい インテリア雑貨 子ども ステップ トイレ キッチン 軽い 洗車台 作業台 39cm 掃除 収納 インテリア 携帯 持ち運び 運動会】</div>
+      <div class="meta-row">
+        <span class="price">¥1,950</span>
+        <span class="stars">★★★★☆</span>
+        <span>4.5(3266件)</span>
+      </div>
+    </div>
+  </div>
+  <a class="btn-open" href="https://hb.afl.rakuten.co.jp/hgc/g00rbq9n.dg4fie9c.g00rbq9n.dg4fj207/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fmollif%2Fc03blc-312%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fmollif%2Fi%2F10011434%2F&rafcid=wsc_i_is_852e9d1a-8f83-49dc-bc9e-cf56a98e669a" target="_blank" rel="noopener">商品ページを開く ↗</a>
+  <div class="url-row">
+    <a href="https://item.rakuten.co.jp/mollif/c03blc-312/" target="_blank" rel="noopener">https://item.rakuten.co.jp/mollif/c03blc-312/</a>
+    <button class="copy-btn" onclick="copyPlain(this, 'https://item.rakuten.co.jp/mollif/c03blc-312/')" type="button">URLコピー</button>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>楽天ROOM用</span>
+      <button class="copy-btn" onclick="copyText(this, 'room-0')" type="button">コピー</button>
+    </div>
+    <textarea id="room-0" readonly>🚽洗面台に子どもの手が届かなくて、毎回抱っこして歯磨きさせていませんか。
+このクラフタースツールは、折りたためば厚み約5cmになる踏み台。洗面所・トイレ・キッチンと持ち運んで使い回せます。ポップなカラー展開で子どもも自分から進んで使ってくれますよ🌈。軽量なので子ども自身が出し入れしても危なくないのもポイントです。
+レビュー3,266件・★4.5という評価が、扱いやすさを裏づけています。
+注意点は、耐荷重内でも大人が乗って高い場所の作業をする用途には向かないこと。あくまで子ども用の踏み台として使ってください。
+1,950円で、洗面所の「届かない」を一つ解決しませんか?
+#踏み台 #ステップ台 #折りたたみ #洗面台 #トイレトレーニング #育児グッズ #育児パパ #楽天ROOM</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="card-head">
+    <img src="https://thumbnail.image.rakuten.co.jp/@0_mall/santaku/cabinet/01/12999073/imgrc0130904770.jpg?_ex=128x128" alt="【楽天連続1位＊2026年改良モデル】ハンディファン 手持ち扇風機 冷却プレート 卓上扇風機 ハンディ扇風機 強力 携帯扇風機 ハンディーファン強力 冷却ハンディファン 6000mAh 15H連続使用 残量表示 軽量 Type-C充電式 ストラップ 199段階風量 HAGOOGI 大口注文対応" loading="lazy">
+    <div class="info">
+      
+      <span class="genre-chip">時短家電</span>
+      <div class="name">【楽天連続1位＊2026年改良モデル】ハンディファン 手持ち扇風機 冷却プレート 卓上扇風機 ハンディ扇風機 強力 携帯扇風機 ハンディーファン強力 冷却ハンディファン 6000mAh 15H連続使用 残量表示 軽量 Type-C充電式 ストラップ 199段階風量 HAGOOGI 大口注文対応</div>
+      <div class="meta-row">
+        <span class="price">¥2,880</span>
+        <span class="stars">★★★★☆</span>
+        <span>4.48(1486件)</span>
+      </div>
+    </div>
+  </div>
+  <a class="btn-open" href="https://hb.afl.rakuten.co.jp/hgc/g00uf1sn.dg4fi4f8.g00uf1sn.dg4fj615/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fsantaku%2Fk12%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fsantaku%2Fi%2F10000053%2F&rafcid=wsc_i_is_852e9d1a-8f83-49dc-bc9e-cf56a98e669a" target="_blank" rel="noopener">商品ページを開く ↗</a>
+  <div class="url-row">
+    <a href="https://item.rakuten.co.jp/santaku/k12/" target="_blank" rel="noopener">https://item.rakuten.co.jp/santaku/k12/</a>
+    <button class="copy-btn" onclick="copyPlain(this, 'https://item.rakuten.co.jp/santaku/k12/')" type="button">URLコピー</button>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>楽天ROOM用</span>
+      <button class="copy-btn" onclick="copyText(this, 'room-1')" type="button">コピー</button>
+    </div>
+    <textarea id="room-1" readonly>🌬️まだ蒸し暑い日が続くこの時期、公園や送り迎えの道でうちわだけじゃ物足りない、という人へ。
+このハンディファンは199段階の風量調整ができて、動作音は図書館レベルの約20dB🔇。6000mAhの大容量バッテリーで長時間使え、冷却プレート付きなので顔に当てるとひんやり感が長持ちします。卓上に立てて置けるので、ベビーカーに固定して使うのにも向いています。
+レビュー1,486件・★4.48という評価が、静音性への満足度を示しています。
+注意点は、冷却プレートは冷凍庫での事前冷却が必要なので、出かける前に準備しておくこと。
+2,880円で、残暑の外出をもう少し快適にしませんか?
+#ハンディファン #携帯扇風機 #残暑対策 #お出かけグッズ #育児グッズ #育児パパ #楽天ROOM</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="card-head">
+    <img src="https://thumbnail.image.rakuten.co.jp/@0_mall/mizuomoi/cabinet/06216210/2l_renewal2024/12972467/imgrc0123212875.jpg?_ex=128x128" alt="【365日最短当日出荷！】水想い ナチュラルミネラルウォーター 2L×9本 ラベルレス 水 2リットル 天然水 軟水 ローリングストック 防災 備蓄 水 国産 日本製 送料無料" loading="lazy">
+    <div class="info">
+      
+      <span class="genre-chip">防災 安全</span>
+      <div class="name">【365日最短当日出荷！】水想い ナチュラルミネラルウォーター 2L×9本 ラベルレス 水 2リットル 天然水 軟水 ローリングストック 防災 備蓄 水 国産 日本製 送料無料</div>
+      <div class="meta-row">
+        <span class="price">¥1,480</span>
+        <span class="stars">★★★★★</span>
+        <span>4.78(8477件)</span>
+      </div>
+    </div>
+  </div>
+  <a class="btn-open" href="https://hb.afl.rakuten.co.jp/hgc/g00t98en.dg4fi099.g00t98en.dg4fja33/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fmizuomoi%2F4571461292779%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fmizuomoi%2Fi%2F10000004%2F&rafcid=wsc_i_is_852e9d1a-8f83-49dc-bc9e-cf56a98e669a" target="_blank" rel="noopener">商品ページを開く ↗</a>
+  <div class="url-row">
+    <a href="https://item.rakuten.co.jp/mizuomoi/4571461292779/" target="_blank" rel="noopener">https://item.rakuten.co.jp/mizuomoi/4571461292779/</a>
+    <button class="copy-btn" onclick="copyPlain(this, 'https://item.rakuten.co.jp/mizuomoi/4571461292779/')" type="button">URLコピー</button>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>楽天ROOM用</span>
+      <button class="copy-btn" onclick="copyText(this, 'room-2')" type="button">コピー</button>
+    </div>
+    <textarea id="room-2" readonly>💧防災の水、賞味期限が切れて気づかず放置していませんか。
+この「水想い」は、ラベルレスの2Lペットボトル×9本セット。ラベルがない分ゴミが減り、保管もかさばりにくいのが特徴です。長期保存タイプではなく通常の賞味期限なので、普段の飲用水として消費しながら備蓄を入れ替える「ローリングストック」に向いています🚰。国産の軟水で、赤ちゃんのミルク用にも使いやすい硬度です。
+レビュー8,477件・★4.78という件数が、日常使いのしやすさを示しています。
+注意点は、長期保存(5年タイプ)ではないので、あくまで日常使いしながら循環させる備蓄として考えること。
+1,480円で、備蓄水を「消費しながら備える」形に変えませんか?
+#備蓄水 #ローリングストック #防災 #ラベルレス #天然水 #共働き家庭 #育児パパ #楽天ROOM</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="card-head">
+    <img src="https://thumbnail.image.rakuten.co.jp/@0_mall/urushi9emon/cabinet/biiino/item/main-image/20250711193928_1.jpg?_ex=128x128" alt="サイズと色が選べる！ 天然杉お試し曲げわっぱ 弁当箱 送料無料 まげわっぱ アウトレット おすすめ 大人気 お弁当箱 ご飯用 特大 スリム 大容量 保温 大人 子供 ランチボックス 男子 女子 1段 お得 定番 バンド付き 仕切り付き" loading="lazy">
+    <div class="info">
+      
+      <span class="genre-chip">キッチン雑貨</span>
+      <div class="name">サイズと色が選べる！ 天然杉お試し曲げわっぱ 弁当箱 送料無料 まげわっぱ アウトレット おすすめ 大人気 お弁当箱 ご飯用 特大 スリム 大容量 保温 大人 子供 ランチボックス 男子 女子 1段 お得 定番 バンド付き 仕切り付き</div>
+      <div class="meta-row">
+        <span class="price">¥2,400</span>
+        <span class="stars">★★★★★</span>
+        <span>4.68(1339件)</span>
+      </div>
+    </div>
+  </div>
+  <a class="btn-open" href="https://hb.afl.rakuten.co.jp/hgc/g00tczbn.dg4fi7bf.g00tczbn.dg4fj83b/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Furushi9emon%2Fq0047%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Furushi9emon%2Fi%2F10001056%2F&rafcid=wsc_i_is_852e9d1a-8f83-49dc-bc9e-cf56a98e669a" target="_blank" rel="noopener">商品ページを開く ↗</a>
+  <div class="url-row">
+    <a href="https://item.rakuten.co.jp/urushi9emon/q0047/" target="_blank" rel="noopener">https://item.rakuten.co.jp/urushi9emon/q0047/</a>
+    <button class="copy-btn" onclick="copyPlain(this, 'https://item.rakuten.co.jp/urushi9emon/q0047/')" type="button">URLコピー</button>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>楽天ROOM用</span>
+      <button class="copy-btn" onclick="copyText(this, 'room-3')" type="button">コピー</button>
+    </div>
+    <textarea id="room-3" readonly>🍱毎朝のお弁当箱、プラスチックのにおい移りが気になっていませんか。
+この曲げわっぱは天然杉を使った日本製の弁当箱。ふたを開けた瞬間に杉の香りがふわっとして、ごはんの余分な水分を程よく吸ってくれるので冷めてもべたつきにくいのが特徴です。500ml・750ml・850mlとサイズが選べるので、子ども用と大人用で分けて選べます。ランチベルト付きで持ち運びもしやすい作りです✨。
+レビュー1,339件・★4.68という評価が、使い心地の良さを示しています。
+注意点は、木製なので食洗機・電子レンジは使えず、使用後は早めに洗って乾かす必要があること。
+2,400円で、お弁当の時間を少し丁寧にしませんか?
+#曲げわっぱ #お弁当箱 #天然杉 #お弁当グッズ #時短家事 #共働き家庭 #育児パパ #楽天ROOM</textarea>
+  </div>
+</div>
+<div class="card featured">
+  <div class="card-head">
+    <img src="https://thumbnail.image.rakuten.co.jp/@0_mall/cholylife/cabinet/12866554/12931440/bk-2980sale.jpg?_ex=128x128" alt="「楽天1位 6冠達成」髭剃り シェーバー メンズシェーバー 電気シェーバー 電気カミソリ 電動シェーバー 電気かみそり 電気剃刀 お風呂ソリ ひげそり ヒゲソリ 電動 男性 丸洗い可能 深剃り 回転刃 回転式 充電式 防水 出張 携帯 ギフト" loading="lazy">
+    <div class="info">
+      <span class="featured-badge">🔥 本日のThreads/Xピックアップ</span>
+      <span class="genre-chip">身だしなみ</span>
+      <div class="name">「楽天1位 6冠達成」髭剃り シェーバー メンズシェーバー 電気シェーバー 電気カミソリ 電動シェーバー 電気かみそり 電気剃刀 お風呂ソリ ひげそり ヒゲソリ 電動 男性 丸洗い可能 深剃り 回転刃 回転式 充電式 防水 出張 携帯 ギフト</div>
+      <div class="meta-row">
+        <span class="price">¥3,280</span>
+        <span class="stars">★★★★☆</span>
+        <span>4.43(15874件)</span>
+      </div>
+    </div>
+  </div>
+  <a class="btn-open" href="https://hb.afl.rakuten.co.jp/hgc/g00tsqqn.dg4fi0d4.g00tsqqn.dg4fje75/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fcholylife%2Fqm3%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fcholylife%2Fi%2F10000085%2F&rafcid=wsc_i_is_852e9d1a-8f83-49dc-bc9e-cf56a98e669a" target="_blank" rel="noopener">商品ページを開く ↗</a>
+  <div class="url-row">
+    <a href="https://item.rakuten.co.jp/cholylife/qm3/" target="_blank" rel="noopener">https://item.rakuten.co.jp/cholylife/qm3/</a>
+    <button class="copy-btn" onclick="copyPlain(this, 'https://item.rakuten.co.jp/cholylife/qm3/')" type="button">URLコピー</button>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>楽天ROOM用</span>
+      <button class="copy-btn" onclick="copyText(this, 'room-4')" type="button">コピー</button>
+    </div>
+    <textarea id="room-4" readonly>🪒朝の身支度、髭剃りに時間をかけている余裕はありませんか。
+この電気シェーバーは4Dフローティングシステムで顔の輪郭にしっかり沿い、深剃りしやすい設計。IPX7防水でお風呂剃りもできるので、朝バタバタしている日はシャワーのついでに済ませられます🚿。Type-C急速充電に対応していて、低騒音設計だから早朝や夜でも音を気にせず使えます。
+レビュー15,874件・★4.43という圧倒的な件数が、支持の広さを示しています。
+注意点は、深剃り重視の設計のぶん、肌が弱い方は最初は優しい当て方から試すこと。
+3,280円で、朝の身支度を1分でも短くしませんか?
+#電気シェーバー #髭剃り #お風呂剃り #身だしなみ #時短 #育児パパ #楽天ROOM</textarea>
+  </div>
+  <p class="reason">🔥 今日のピックアップ理由: レビュー15,874件という5件中最大の実績と、3,280円で「朝の身支度を短くしたい」という育児パパの日常的なニーズに直結するため。</p>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>Threads用</span>
+      <button class="copy-btn" onclick="copyText(this, 'threads-0')" type="button">コピー</button>
+    </div>
+    <textarea id="threads-0" readonly>朝の身支度、髭剃りに何分かけてるか数えたことある?
+この電気シェーバーに替えてから朝が少し楽になった。4Dフローティングで顔の輪郭にしっかり沿うから深剃りしやすい。IPX7防水だからお風呂剃りもできて、シャワーのついでに済ませられる🚿。
+Type-C急速充電で、低騒音だから寝てる家族を起こさず使える。
+レビュー15,874件・★4.43で3,280円。この実績はさすがに納得。
+肌が弱い人は最初は優しい当て方から試して。
+#PR #電気シェーバー #身だしなみ #育児パパ #共働き家庭</textarea>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>X用</span>
+      <button class="copy-btn" onclick="copyText(this, 'x-0')" type="button">コピー</button>
+    </div>
+    <textarea id="x-0" readonly>朝の髭剃りに時間かけてられない人向け。
+電気シェーバー、4Dフローティングで顔にしっかり沿う。IPX7防水でお風呂剃りもできてシャワーのついでに済む🚿
+レビュー15,874件・★4.43で3,280円。
+#PR #電気シェーバー #身だしなみ #育児パパ</textarea>
+  </div>
+</div>
+</div>
+
+<h2 class="section-title">💬 今日のあるある投稿ネタ(商品リンクなし)</h2>
+<div class="cards">
+<div class="card">
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>あるある投稿 #1</span>
+      <button class="copy-btn" onclick="copyText(this, 'daily-0')" type="button">コピー</button>
+    </div>
+    <textarea id="daily-0" class="short" readonly>お風呂上がりの子ども、パジャマ着せるまでの全裸ダッシュタイムが毎回発生する</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>あるある投稿 #2</span>
+      <button class="copy-btn" onclick="copyText(this, 'daily-1')" type="button">コピー</button>
+    </div>
+    <textarea id="daily-1" class="short" readonly>冷蔵庫の野菜室、いつか使うと思って買ったものが結局しなびていく</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>あるある投稿 #3</span>
+      <button class="copy-btn" onclick="copyText(this, 'daily-2')" type="button">コピー</button>
+    </div>
+    <textarea id="daily-2" class="short" readonly>子どもと歩く5分の距離、実際は寄り道込みで20分かかる🚶
+#育児パパ</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>あるある投稿 #4</span>
+      <button class="copy-btn" onclick="copyText(this, 'daily-3')" type="button">コピー</button>
+    </div>
+    <textarea id="daily-3" class="short" readonly>平日の献立を考える時間が、作る時間より長い気がする日がある</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>あるある投稿 #5</span>
+      <button class="copy-btn" onclick="copyText(this, 'daily-4')" type="button">コピー</button>
+    </div>
+    <textarea id="daily-4" class="short" readonly>休みの前日だけ変に夜更かししてしまい、休みの日に眠くて動けない</textarea>
+  </div>
+</div>
+</div>
+
+<footer class="note">商品ページを確認し、投稿文をコピーして手動で投稿してください。<br>Threads/Xの商品紹介は1日1件・あるある投稿と織り交ぜてスパム判定を避けてください。<br>価格・レビューは選定時点の実データです。</footer>
+</div>
+<script>
+function flash(btn) {
+  const original = btn.textContent;
+  btn.textContent = 'コピーしました';
+  btn.classList.add('copied');
+  setTimeout(() => { btn.textContent = original; btn.classList.remove('copied'); }, 1500);
+}
+function copyText(btn, id) {
+  const el = document.getElementById(id);
+  el.select();
+  el.setSelectionRange(0, 999999);
+  navigator.clipboard.writeText(el.value).then(() => flash(btn)).catch(() => {
+    try { document.execCommand('copy'); flash(btn); } catch (e) {}
+  });
+}
+function copyPlain(btn, text) {
+  navigator.clipboard.writeText(text).then(() => flash(btn)).catch(() => {
+    const t = document.createElement('textarea');
+    t.value = text; document.body.appendChild(t); t.select();
+    try { document.execCommand('copy'); flash(btn); } catch (e) {}
+    document.body.removeChild(t);
+  });
+}
+</script>
+</body>
+</html>

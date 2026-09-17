@@ -1,0 +1,405 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>9/11 夜の選定 - 楽天ROOM投稿リスト</title>
+<style>
+:root {
+  --bg: #f6f3ee;
+  --surface: #ffffff;
+  --ink: #23211d;
+  --ink-soft: #6b6459;
+  --accent: #a8382c;
+  --accent-ink: #fff6f2;
+  --good: #3f7d58;
+  --border: #e4ddd2;
+  --chip-bg: #efe8db;
+  color-scheme: light dark;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #16140f;
+    --surface: #211f1a;
+    --ink: #ece7dc;
+    --ink-soft: #a89e8d;
+    --accent: #e0685a;
+    --accent-ink: #1c0f0c;
+    --good: #6fb98a;
+    --border: #35322a;
+    --chip-bg: #2a2721;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #16140f; --surface: #211f1a; --ink: #ece7dc; --ink-soft: #a89e8d;
+  --accent: #e0685a; --accent-ink: #1c0f0c; --good: #6fb98a; --border: #35322a; --chip-bg: #2a2721;
+}
+:root[data-theme="light"] {
+  --bg: #f6f3ee; --surface: #ffffff; --ink: #23211d; --ink-soft: #6b6459;
+  --accent: #a8382c; --accent-ink: #fff6f2; --good: #3f7d58; --border: #e4ddd2; --chip-bg: #efe8db;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0; background: var(--bg); color: var(--ink);
+  font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Yu Gothic Medium", "Noto Sans JP", sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+.wrap { max-width: 640px; margin: 0 auto; padding: 0 16px 40px; }
+header.top {
+  position: sticky; top: 0; z-index: 5; background: var(--bg);
+  padding: 18px 16px 12px; border-bottom: 1px solid var(--border);
+  display: flex; align-items: baseline; justify-content: space-between; gap: 12px;
+}
+header.top .eyebrow {
+  font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-soft);
+  font-weight: 600; margin: 0 0 2px;
+}
+header.top h1 { font-size: 1.25rem; margin: 0; font-weight: 700; letter-spacing: -0.01em; }
+header.top .count {
+  background: var(--chip-bg); color: var(--ink-soft); font-size: 0.78rem; font-weight: 600;
+  padding: 5px 10px; border-radius: 999px; white-space: nowrap;
+}
+h2.section-title { font-size: 0.95rem; font-weight: 700; margin: 24px 0 12px; }
+.cards { display: flex; flex-direction: column; gap: 16px; margin-top: 18px; }
+.card {
+  background: var(--surface); border: 1px solid var(--border); border-radius: 16px;
+  padding: 16px; display: flex; flex-direction: column; gap: 12px;
+}
+.card.featured { border-color: var(--accent); border-width: 2px; }
+.featured-badge {
+  align-self: flex-start; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.03em;
+  color: var(--accent-ink); background: var(--accent); padding: 3px 9px; border-radius: 999px;
+}
+.card-head { display: flex; gap: 12px; }
+.card-head img {
+  width: 76px; height: 76px; object-fit: cover; border-radius: 10px;
+  border: 1px solid var(--border); background: var(--chip-bg); flex-shrink: 0;
+}
+.card-head .info { min-width: 0; flex: 1; display: flex; flex-direction: column; gap: 4px; }
+.genre-chip {
+  align-self: flex-start; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.03em;
+  color: var(--accent); background: color-mix(in srgb, var(--accent) 12%, transparent);
+  padding: 2px 8px; border-radius: 999px;
+}
+.name {
+  font-weight: 600; font-size: 0.94rem; line-height: 1.4;
+  display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
+}
+.meta-row { display: flex; align-items: baseline; gap: 8px; font-size: 0.82rem; color: var(--ink-soft); }
+.price { font-variant-numeric: tabular-nums; color: var(--ink); font-weight: 700; font-size: 1.05rem; }
+.stars { letter-spacing: -1px; color: var(--accent); }
+.btn-open {
+  display: flex; align-items: center; justify-content: center; gap: 6px;
+  background: var(--accent); color: var(--accent-ink); border: none; border-radius: 11px;
+  padding: 12px; font-weight: 700; font-size: 0.92rem; text-decoration: none;
+}
+.btn-open:active { opacity: 0.85; }
+.url-row {
+  display: flex; align-items: center; gap: 8px;
+  background: var(--chip-bg); border-radius: 9px; padding: 8px 10px;
+}
+.url-row a {
+  flex: 1; min-width: 0; font-size: 0.76rem; color: var(--accent);
+  word-break: break-all; line-height: 1.45; text-decoration: none;
+}
+.url-row a:active { text-decoration: underline; }
+.reason { font-size: 0.8rem; color: var(--ink-soft); }
+.caption-box { border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }
+.caption-head {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 8px 10px; background: var(--chip-bg);
+}
+.caption-head span {
+  font-size: 0.7rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-soft);
+}
+.copy-btn {
+  background: var(--surface); border: 1px solid var(--border); color: var(--ink);
+  border-radius: 7px; padding: 5px 11px; font-size: 0.76rem; font-weight: 600; cursor: pointer;
+}
+.copy-btn:focus-visible, .btn-open:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.copy-btn.copied { background: var(--good); border-color: var(--good); color: #fff; }
+textarea {
+  width: 100%; display: block; border: none; padding: 10px; font-size: 0.85rem; line-height: 1.55;
+  resize: vertical; min-height: 108px; font-family: inherit; background: var(--surface); color: var(--ink);
+}
+textarea.short { min-height: 60px; }
+textarea:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
+footer.note { margin-top: 22px; font-size: 0.76rem; color: var(--ink-soft); text-align: center; line-height: 1.6; }
+@media (prefers-reduced-motion: no-preference) {
+  .copy-btn { transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease; }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <div>
+    <p class="eyebrow">楽天ROOM 投稿リスト</p>
+    <h1>9/11 夜の選定</h1>
+  </div>
+  <span class="count">5件</span>
+</header>
+
+<h2 class="section-title">📦 商品(ROOM用、全5件)</h2>
+<div class="cards">
+<div class="card">
+  <div class="card-head">
+    <img src="https://shop.r10s.jp/aroma-room/cabinet/thumb/coolerbag_r6_main.jpg" alt="ランチバッグ ランチトート 保冷 お弁当 大きめ 大容量 おしゃれ 保温 保冷バッグ お弁当バッグ 弁当袋 マチ 広い 運動会 遠足 行楽 ピクニック 秋 スクエア" loading="lazy">
+    <div class="info">
+      
+      <span class="genre-chip">キッチン雑貨</span>
+      <div class="name">ランチバッグ ランチトート 保冷 お弁当 大きめ 大容量 おしゃれ 保温 保冷バッグ お弁当バッグ 弁当袋 マチ 広い 運動会 遠足 行楽 ピクニック 秋 スクエア</div>
+      <div class="meta-row">
+        <span class="price">¥1,250</span>
+        <span class="stars">★★★★☆</span>
+        <span>4.44(508件)</span>
+      </div>
+    </div>
+  </div>
+  <a class="btn-open" href="https://item.rakuten.co.jp/aroma-room/coolerbag/" target="_blank" rel="noopener">商品ページを開く ↗</a>
+  <div class="url-row">
+    <a href="https://item.rakuten.co.jp/aroma-room/coolerbag/" target="_blank" rel="noopener">https://item.rakuten.co.jp/aroma-room/coolerbag/</a>
+    <button class="copy-btn" onclick="copyPlain(this, 'https://item.rakuten.co.jp/aroma-room/coolerbag/')" type="button">URLコピー</button>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>楽天ROOM用</span>
+      <button class="copy-btn" onclick="copyText(this, 'room-0')" type="button">コピー</button>
+    </div>
+    <textarea id="room-0" readonly>🍱運動会や遠足のお弁当、保冷バッグが小さくて食材が入りきらないことはありませんか。
+このランチバッグは大きめ・大容量サイズで、マチが広く作られているので、複数人分のお弁当や飲み物をまとめて入れられます🧺。表地はアルミ蒸着フィルムの裏地で保冷効果もあり、秋の行楽シーズンのピクニックにも向いています。
+レビュー508件・★4.44という評価が、容量と保冷力のバランスの良さを示しています。
+注意点は、保冷剤は別売りなので、暑い時期に使うなら一緒に用意しておくこと。
+1,250円で、行楽シーズンのお弁当バッグを新調しませんか?
+#ランチバッグ #保冷バッグ #お弁当グッズ #運動会 #遠足 #育児パパ #楽天ROOM</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="card-head">
+    <img src="https://thumbnail.image.rakuten.co.jp/@0_mall/asvel/cabinet/af1908/pd/hl/3197ver24set2_sn.jpg?_ex=128x128" alt="保温弁当箱 お弁当箱 保温 大容量 ランキング受賞 軽量 レンジ対応 食洗機対応 冷蔵 抗菌 3段 汁 味噌汁 ランチボックス ランチジャー" loading="lazy">
+    <div class="info">
+      
+      <span class="genre-chip">キッチン雑貨</span>
+      <div class="name">保温弁当箱 お弁当箱 保温 大容量 ランキング受賞 軽量 レンジ対応 食洗機対応 冷蔵 抗菌 3段 汁 味噌汁 ランチボックス ランチジャー</div>
+      <div class="meta-row">
+        <span class="price">¥3,498</span>
+        <span class="stars">★★★★☆</span>
+        <span>4.43(430件)</span>
+      </div>
+    </div>
+  </div>
+  <a class="btn-open" href="https://item.rakuten.co.jp/asvel/3197set2/" target="_blank" rel="noopener">商品ページを開く ↗</a>
+  <div class="url-row">
+    <a href="https://item.rakuten.co.jp/asvel/3197set2/" target="_blank" rel="noopener">https://item.rakuten.co.jp/asvel/3197set2/</a>
+    <button class="copy-btn" onclick="copyPlain(this, 'https://item.rakuten.co.jp/asvel/3197set2/')" type="button">URLコピー</button>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>楽天ROOM用</span>
+      <button class="copy-btn" onclick="copyText(this, 'room-1')" type="button">コピー</button>
+    </div>
+    <textarea id="room-1" readonly>🍱作り置きしたお味噌汁、持って行く途中でぬるくなっていませんか。
+このアスベルの保温弁当箱は、ステンレス真空断熱構造で保温・保冷を両立。スープ容器が別についているので、味噌汁やカレー、丼など汁気の多いメニューも持ち運べます🍜。3段構成で大容量、軽量なので毎日の通勤・通学にも負担になりません。
+レビュー430件・★4.43という評価が、ランキング受賞の実績とあわせて支持を示しています。
+注意点は、パーツが複数あるぶん洗うものが増えるので、食洗機対応かを活かして手間を減らすこと。
+3,498円で、お昼ごはんを温かいまま持って行きませんか?
+#保温弁当箱 #ランチジャー #お弁当グッズ #食洗機対応 #時短家事 #共働き家庭 #育児パパ #楽天ROOM</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="card-head">
+    <img src="https://shop.r10s.jp/office31/cabinet/item02/10010108_1.jpg" alt="当店限定プレゼント付 マグネットタイプの収納ラック A4ヨコ型 SEPAL マグラック" loading="lazy">
+    <div class="info">
+      
+      <span class="genre-chip">収納整理</span>
+      <div class="name">当店限定プレゼント付 マグネットタイプの収納ラック A4ヨコ型 SEPAL マグラック</div>
+      <div class="meta-row">
+        <span class="price">¥1,000</span>
+        <span class="stars">★★★★★</span>
+        <span>4.61(310件)</span>
+      </div>
+    </div>
+  </div>
+  <a class="btn-open" href="https://item.rakuten.co.jp/office31/10010108/" target="_blank" rel="noopener">商品ページを開く ↗</a>
+  <div class="url-row">
+    <a href="https://item.rakuten.co.jp/office31/10010108/" target="_blank" rel="noopener">https://item.rakuten.co.jp/office31/10010108/</a>
+    <button class="copy-btn" onclick="copyPlain(this, 'https://item.rakuten.co.jp/office31/10010108/')" type="button">URLコピー</button>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>楽天ROOM用</span>
+      <button class="copy-btn" onclick="copyText(this, 'room-2')" type="button">コピー</button>
+    </div>
+    <textarea id="room-2" readonly>🧲冷蔵庫まわり、書類やメモが磁石でごちゃごちゃに貼られていませんか。
+このマグネットタイプの収納ラックは、A4サイズの書類をすっきり立てて収納できるアイテム。仕切りシート2枚付きで、プリントや郵便物をジャンル分けして管理できます📎。ライトグレー・ホワイト・クリアと選べるので、キッチンのインテリアにも馴染みます。
+レビュー310件・★4.61という評価が、モノトーンで統一したい人からの支持を示しています。
+注意点は、貼り付ける面が磁石に対応した素材か、事前に確認すること。
+1,000円で、冷蔵庫まわりの書類をすっきりさせませんか?
+#マグネット収納 #書類整理 #冷蔵庫収納 #収納ラック #キッチン収納 #共働き家庭 #育児パパ #楽天ROOM</textarea>
+  </div>
+</div>
+<div class="card featured">
+  <div class="card-head">
+    <img src="https://shop.r10s.jp/yukaiya/cabinet/eq/eq-22-02-b-01.jpg" alt="楽天1位受賞 現役防災士監修 テレビ 転倒防止 ベルト 耐震ベルト 壁 固定 VESA取付 テレビ固定 家具転倒防止グッズ" loading="lazy">
+    <div class="info">
+      <span class="featured-badge">🔥 本日のThreads/Xピックアップ</span>
+      <span class="genre-chip">防災 安全</span>
+      <div class="name">楽天1位受賞 現役防災士監修 テレビ 転倒防止 ベルト 耐震ベルト 壁 固定 VESA取付 テレビ固定 家具転倒防止グッズ</div>
+      <div class="meta-row">
+        <span class="price">¥1,280</span>
+        <span class="stars">★★★★☆</span>
+        <span>4.5(262件)</span>
+      </div>
+    </div>
+  </div>
+  <a class="btn-open" href="https://item.rakuten.co.jp/yukaiya/10001149/" target="_blank" rel="noopener">商品ページを開く ↗</a>
+  <div class="url-row">
+    <a href="https://item.rakuten.co.jp/yukaiya/10001149/" target="_blank" rel="noopener">https://item.rakuten.co.jp/yukaiya/10001149/</a>
+    <button class="copy-btn" onclick="copyPlain(this, 'https://item.rakuten.co.jp/yukaiya/10001149/')" type="button">URLコピー</button>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>楽天ROOM用</span>
+      <button class="copy-btn" onclick="copyText(this, 'room-3')" type="button">コピー</button>
+    </div>
+    <textarea id="room-3" readonly>📺地震のとき、テレビが倒れてくる心配をしたことはありませんか。
+このテレビ転倒防止ベルトは、現役防災士監修で楽天1位を受賞しているアイテム。壁面にVESA規格で固定するタイプなので、突っ張り棒よりしっかりした固定力が期待できます🏠。工具があれば取り付けも難しくありません。
+レビュー262件・★4.5という評価が、防災グッズとしての信頼性を示しています。
+注意点は、壁の下地(石膏ボードか木下地か)によって使うビスが変わるので、事前に確認すること。
+1,280円で、テレビの転倒対策を今のうちに済ませませんか?
+#テレビ転倒防止 #耐震ベルト #家具転倒防止 #防災 #地震対策 #共働き家庭 #育児パパ #楽天ROOM</textarea>
+  </div>
+  <p class="reason">🔥 今日のピックアップ理由: 「地震でテレビが倒れる心配」という育児家庭に直結する不安を1,280円という手頃さで解消でき、防災士監修という専門性の裏付けもあるため。</p>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>Threads用</span>
+      <button class="copy-btn" onclick="copyText(this, 'threads-0')" type="button">コピー</button>
+    </div>
+    <textarea id="threads-0" readonly>地震のたびにテレビ倒れてこないか気になってたけど、ずっと後回しにしてた。
+これは防災士監修のテレビ転倒防止ベルト。壁にVESA規格でしっかり固定するタイプで、突っ張り棒より頼りになる感じ📺。工具があれば取り付けも難しくない。
+レビュー262件・★4.5で1,280円。地震対策の中でも優先度高いやつだと思う。
+壁の下地(石膏ボードか木下地か)だけ先に確認して。
+#PR #テレビ転倒防止 #防災 #育児パパ #共働き家庭</textarea>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>X用</span>
+      <button class="copy-btn" onclick="copyText(this, 'x-0')" type="button">コピー</button>
+    </div>
+    <textarea id="x-0" readonly>地震でテレビ倒れてこないか気になってたのを、防災士監修の転倒防止ベルトでやっと解消した📺
+壁にVESA規格で固定。レビュー262件・★4.5で1,280円。
+#PR #テレビ転倒防止 #防災 #育児パパ</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="card-head">
+    <img src="https://shop.r10s.jp/roomy/cabinet/500cart_all/500cart_11g/p5-5/ymz5506-07579-0_gt01.jpg" alt="山崎実業 フローリングワイパースタンド フローリングワイパー収納 クイックルワイパー フローリングシート 掃除用品 床掃除 おしゃれ スリム 北欧" loading="lazy">
+    <div class="info">
+      
+      <span class="genre-chip">掃除洗濯</span>
+      <div class="name">山崎実業 フローリングワイパースタンド フローリングワイパー収納 クイックルワイパー フローリングシート 掃除用品 床掃除 おしゃれ スリム 北欧</div>
+      <div class="meta-row">
+        <span class="price">¥2,530</span>
+        <span class="stars">★★★★☆</span>
+        <span>4.35(386件)</span>
+      </div>
+    </div>
+  </div>
+  <a class="btn-open" href="https://item.rakuten.co.jp/roomy/y50607579/" target="_blank" rel="noopener">商品ページを開く ↗</a>
+  <div class="url-row">
+    <a href="https://item.rakuten.co.jp/roomy/y50607579/" target="_blank" rel="noopener">https://item.rakuten.co.jp/roomy/y50607579/</a>
+    <button class="copy-btn" onclick="copyPlain(this, 'https://item.rakuten.co.jp/roomy/y50607579/')" type="button">URLコピー</button>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>楽天ROOM用</span>
+      <button class="copy-btn" onclick="copyText(this, 'room-4')" type="button">コピー</button>
+    </div>
+    <textarea id="room-4" readonly>🧹フローリングワイパー、床に直置きしていて邪魔になっていませんか。
+山崎実業のワイパースタンドは、出番の多いフローリングワイパーを立てて収納できるアイテム。スチール製で適度な重さがあり、倒れにくい設計です🧹。北欧テイストのデザインで、リビングに置いても生活感が出にくいのも特徴です。
+レビュー386件・★4.35という評価が、収納の使いやすさへの支持を示しています。
+注意点は、お使いのワイパーの持ち手の太さに対応するか、購入前に確認すること。
+2,530円で、床に転がっていたワイパーの居場所を作りませんか?
+#フローリングワイパースタンド #山崎実業 #掃除グッズ収納 #掃除の時短 #共働き家庭 #育児パパ #楽天ROOM</textarea>
+  </div>
+</div>
+</div>
+
+<h2 class="section-title">💬 今日のあるある投稿ネタ(商品リンクなし)</h2>
+<div class="cards">
+<div class="card">
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>あるある投稿 #1</span>
+      <button class="copy-btn" onclick="copyText(this, 'daily-0')" type="button">コピー</button>
+    </div>
+    <textarea id="daily-0" class="short" readonly>お弁当バッグ、大きいの買ったのにいつも小さいのを間違えて持っていく</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>あるある投稿 #2</span>
+      <button class="copy-btn" onclick="copyText(this, 'daily-1')" type="button">コピー</button>
+    </div>
+    <textarea id="daily-1" class="short" readonly>キッチンカウンターの焦げ跡、いつ付いたか思い出せない</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>あるある投稿 #3</span>
+      <button class="copy-btn" onclick="copyText(this, 'daily-2')" type="button">コピー</button>
+    </div>
+    <textarea id="daily-2" class="short" readonly>冷蔵庫の書類、いつか整理しようと思って半年経った</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>あるある投稿 #4</span>
+      <button class="copy-btn" onclick="copyText(this, 'daily-3')" type="button">コピー</button>
+    </div>
+    <textarea id="daily-3" class="short" readonly>地震のニュースを見るたびに家具の固定を思い出して、翌日には忘れる</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>あるある投稿 #5</span>
+      <button class="copy-btn" onclick="copyText(this, 'daily-4')" type="button">コピー</button>
+    </div>
+    <textarea id="daily-4" class="short" readonly>フローリングワイパー、いつも同じ場所に立てかけて家族の誰かが蹴る🧹
+#共働き家庭</textarea>
+  </div>
+</div>
+</div>
+
+<footer class="note">商品ページを確認し、投稿文をコピーして手動で投稿してください。<br>Threads/Xの商品紹介は1日1件・あるある投稿と織り交ぜてスパム判定を避けてください。<br>価格・レビューは選定時点の実データです。</footer>
+</div>
+<script>
+function flash(btn) {
+  const original = btn.textContent;
+  btn.textContent = 'コピーしました';
+  btn.classList.add('copied');
+  setTimeout(() => { btn.textContent = original; btn.classList.remove('copied'); }, 1500);
+}
+function copyText(btn, id) {
+  const el = document.getElementById(id);
+  el.select();
+  el.setSelectionRange(0, 999999);
+  navigator.clipboard.writeText(el.value).then(() => flash(btn)).catch(() => {
+    try { document.execCommand('copy'); flash(btn); } catch (e) {}
+  });
+}
+function copyPlain(btn, text) {
+  navigator.clipboard.writeText(text).then(() => flash(btn)).catch(() => {
+    const t = document.createElement('textarea');
+    t.value = text; document.body.appendChild(t); t.select();
+    try { document.execCommand('copy'); flash(btn); } catch (e) {}
+    document.body.removeChild(t);
+  });
+}
+</script>
+</body>
+</html>

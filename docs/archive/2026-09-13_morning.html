@@ -1,0 +1,406 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>9/13 朝の選定 - 楽天ROOM投稿リスト</title>
+<style>
+:root {
+  --bg: #f6f3ee;
+  --surface: #ffffff;
+  --ink: #23211d;
+  --ink-soft: #6b6459;
+  --accent: #a8382c;
+  --accent-ink: #fff6f2;
+  --good: #3f7d58;
+  --border: #e4ddd2;
+  --chip-bg: #efe8db;
+  color-scheme: light dark;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #16140f;
+    --surface: #211f1a;
+    --ink: #ece7dc;
+    --ink-soft: #a89e8d;
+    --accent: #e0685a;
+    --accent-ink: #1c0f0c;
+    --good: #6fb98a;
+    --border: #35322a;
+    --chip-bg: #2a2721;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #16140f; --surface: #211f1a; --ink: #ece7dc; --ink-soft: #a89e8d;
+  --accent: #e0685a; --accent-ink: #1c0f0c; --good: #6fb98a; --border: #35322a; --chip-bg: #2a2721;
+}
+:root[data-theme="light"] {
+  --bg: #f6f3ee; --surface: #ffffff; --ink: #23211d; --ink-soft: #6b6459;
+  --accent: #a8382c; --accent-ink: #fff6f2; --good: #3f7d58; --border: #e4ddd2; --chip-bg: #efe8db;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0; background: var(--bg); color: var(--ink);
+  font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Yu Gothic Medium", "Noto Sans JP", sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+.wrap { max-width: 640px; margin: 0 auto; padding: 0 16px 40px; }
+header.top {
+  position: sticky; top: 0; z-index: 5; background: var(--bg);
+  padding: 18px 16px 12px; border-bottom: 1px solid var(--border);
+  display: flex; align-items: baseline; justify-content: space-between; gap: 12px;
+}
+header.top .eyebrow {
+  font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-soft);
+  font-weight: 600; margin: 0 0 2px;
+}
+header.top h1 { font-size: 1.25rem; margin: 0; font-weight: 700; letter-spacing: -0.01em; }
+header.top .count {
+  background: var(--chip-bg); color: var(--ink-soft); font-size: 0.78rem; font-weight: 600;
+  padding: 5px 10px; border-radius: 999px; white-space: nowrap;
+}
+h2.section-title { font-size: 0.95rem; font-weight: 700; margin: 24px 0 12px; }
+.cards { display: flex; flex-direction: column; gap: 16px; margin-top: 18px; }
+.card {
+  background: var(--surface); border: 1px solid var(--border); border-radius: 16px;
+  padding: 16px; display: flex; flex-direction: column; gap: 12px;
+}
+.card.featured { border-color: var(--accent); border-width: 2px; }
+.featured-badge {
+  align-self: flex-start; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.03em;
+  color: var(--accent-ink); background: var(--accent); padding: 3px 9px; border-radius: 999px;
+}
+.card-head { display: flex; gap: 12px; }
+.card-head img {
+  width: 76px; height: 76px; object-fit: cover; border-radius: 10px;
+  border: 1px solid var(--border); background: var(--chip-bg); flex-shrink: 0;
+}
+.card-head .info { min-width: 0; flex: 1; display: flex; flex-direction: column; gap: 4px; }
+.genre-chip {
+  align-self: flex-start; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.03em;
+  color: var(--accent); background: color-mix(in srgb, var(--accent) 12%, transparent);
+  padding: 2px 8px; border-radius: 999px;
+}
+.name {
+  font-weight: 600; font-size: 0.94rem; line-height: 1.4;
+  display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
+}
+.meta-row { display: flex; align-items: baseline; gap: 8px; font-size: 0.82rem; color: var(--ink-soft); }
+.price { font-variant-numeric: tabular-nums; color: var(--ink); font-weight: 700; font-size: 1.05rem; }
+.stars { letter-spacing: -1px; color: var(--accent); }
+.btn-open {
+  display: flex; align-items: center; justify-content: center; gap: 6px;
+  background: var(--accent); color: var(--accent-ink); border: none; border-radius: 11px;
+  padding: 12px; font-weight: 700; font-size: 0.92rem; text-decoration: none;
+}
+.btn-open:active { opacity: 0.85; }
+.url-row {
+  display: flex; align-items: center; gap: 8px;
+  background: var(--chip-bg); border-radius: 9px; padding: 8px 10px;
+}
+.url-row a {
+  flex: 1; min-width: 0; font-size: 0.76rem; color: var(--accent);
+  word-break: break-all; line-height: 1.45; text-decoration: none;
+}
+.url-row a:active { text-decoration: underline; }
+.reason { font-size: 0.8rem; color: var(--ink-soft); }
+.caption-box { border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }
+.caption-head {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 8px 10px; background: var(--chip-bg);
+}
+.caption-head span {
+  font-size: 0.7rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-soft);
+}
+.copy-btn {
+  background: var(--surface); border: 1px solid var(--border); color: var(--ink);
+  border-radius: 7px; padding: 5px 11px; font-size: 0.76rem; font-weight: 600; cursor: pointer;
+}
+.copy-btn:focus-visible, .btn-open:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.copy-btn.copied { background: var(--good); border-color: var(--good); color: #fff; }
+textarea {
+  width: 100%; display: block; border: none; padding: 10px; font-size: 0.85rem; line-height: 1.55;
+  resize: vertical; min-height: 108px; font-family: inherit; background: var(--surface); color: var(--ink);
+}
+textarea.short { min-height: 60px; }
+textarea:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
+footer.note { margin-top: 22px; font-size: 0.76rem; color: var(--ink-soft); text-align: center; line-height: 1.6; }
+@media (prefers-reduced-motion: no-preference) {
+  .copy-btn { transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease; }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <div>
+    <p class="eyebrow">楽天ROOM 投稿リスト</p>
+    <h1>9/13 朝の選定</h1>
+  </div>
+  <span class="count">5件</span>
+</header>
+
+<h2 class="section-title">📦 商品(ROOM用、全5件)</h2>
+<div class="cards">
+<div class="card">
+  <div class="card-head">
+    <img src="https://thumbnail.image.rakuten.co.jp/@0_mall/ogisoshop/cabinet/shohingazou/07990392/08050110/imgrc0107284398.jpg?_ex=128x128" alt="9cm すくいやすい 割れにくい 強化磁器 返しがあるおやつ皿 食べやすいお皿 こども食器 フルーツ皿 深皿 キッズ用食器" loading="lazy">
+    <div class="info">
+      
+      <span class="genre-chip">育児グッズ</span>
+      <div class="name">9cm すくいやすい 割れにくい 強化磁器 返しがあるおやつ皿 食べやすいお皿 こども食器 フルーツ皿 深皿 キッズ用食器</div>
+      <div class="meta-row">
+        <span class="price">¥1,782</span>
+        <span class="stars">★★★★★</span>
+        <span>4.72(421件)</span>
+      </div>
+    </div>
+  </div>
+  <a class="btn-open" href="https://item.rakuten.co.jp/ogisoshop/c1711-noa/" target="_blank" rel="noopener">商品ページを開く ↗</a>
+  <div class="url-row">
+    <a href="https://item.rakuten.co.jp/ogisoshop/c1711-noa/" target="_blank" rel="noopener">https://item.rakuten.co.jp/ogisoshop/c1711-noa/</a>
+    <button class="copy-btn" onclick="copyPlain(this, 'https://item.rakuten.co.jp/ogisoshop/c1711-noa/')" type="button">URLコピー</button>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>楽天ROOM用</span>
+      <button class="copy-btn" onclick="copyText(this, 'room-0')" type="button">コピー</button>
+    </div>
+    <textarea id="room-0" readonly>🍨おやつのゼリーやフルーツ、子どもがすくいにくそうにしていませんか。
+このキッズ用おやつ皿は、9cmの小さめサイズで「返し」がついた強化磁器製。すくう動作がしやすく、こぼしにくいのでスプーンの練習中の子どもにも向いています🍮。割れにくい強化磁器なので、毎日の食卓で気兼ねなく使えます。
+レビュー421件・★4.72という高評価が、使いやすさへの満足度を示しています。
+注意点は、電子レンジ・食洗機対応かどうかを商品ページで確認してから使うこと。
+1,782円で、おやつタイムの「すくえない」を減らしませんか?
+#おやつ皿 #キッズ食器 #こども食器 #強化磁器 #離乳食グッズ #育児パパ #楽天ROOM</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="card-head">
+    <img src="https://shop.r10s.jp/yamayuu/cabinet/01023319/05941228/hw-pr-sk023_t_01.jpg" alt="PRISMATE プリズメイト サラダチキンメーカー 楽しく使えるレシピブック付 PR-SK023 サラダフィッシュ スープ 低温調理" loading="lazy">
+    <div class="info">
+      
+      <span class="genre-chip">時短家電</span>
+      <div class="name">PRISMATE プリズメイト サラダチキンメーカー 楽しく使えるレシピブック付 PR-SK023 サラダフィッシュ スープ 低温調理</div>
+      <div class="meta-row">
+        <span class="price">¥5,610</span>
+        <span class="stars">★★★★★</span>
+        <span>4.55(165件)</span>
+      </div>
+    </div>
+  </div>
+  <a class="btn-open" href="https://item.rakuten.co.jp/yamayuu/hw-pr-sk023/" target="_blank" rel="noopener">商品ページを開く ↗</a>
+  <div class="url-row">
+    <a href="https://item.rakuten.co.jp/yamayuu/hw-pr-sk023/" target="_blank" rel="noopener">https://item.rakuten.co.jp/yamayuu/hw-pr-sk023/</a>
+    <button class="copy-btn" onclick="copyPlain(this, 'https://item.rakuten.co.jp/yamayuu/hw-pr-sk023/')" type="button">URLコピー</button>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>楽天ROOM用</span>
+      <button class="copy-btn" onclick="copyText(this, 'room-1')" type="button">コピー</button>
+    </div>
+    <textarea id="room-1" readonly>🍗ダイエットや作り置きで、パサつかないサラダチキンを手作りしたいと思っていませんか。
+プリズメイトのサラダチキンメーカーは、ボタン一つで操作できる低温調理器。サラダチキン以外にもサラダフィッシュやスープが作れ、50種類以上載ったレシピブック付きです🍗。市販品よりコストを抑えながら、味付けも自分好みに調整できます。
+レビュー165件・★4.55という評価が、手軽さへの支持を示しています。
+注意点は、調理に数時間かかるものが多いので、時間に余裕があるときに仕込むこと。
+5,610円で、作り置きのおかずをヘルシーに増やしませんか?
+#サラダチキンメーカー #低温調理器 #作り置き #時短家電 #ダイエット #共働き家庭 #育児パパ #楽天ROOM</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="card-head">
+    <img src="https://shop.r10s.jp/life-inc/cabinet/10_nitiyouhin4/kb-63-75_350n.jpg" alt="つっぱり棚 伸縮タイプ 63-93cm/75-120cm 突ぱり強力伸縮棚 壁面収納 隙間収納 収納ラック" loading="lazy">
+    <div class="info">
+      
+      <span class="genre-chip">収納整理</span>
+      <div class="name">つっぱり棚 伸縮タイプ 63-93cm/75-120cm 突ぱり強力伸縮棚 壁面収納 隙間収納 収納ラック</div>
+      <div class="meta-row">
+        <span class="price">¥1,680</span>
+        <span class="stars">★★★★☆</span>
+        <span>4.5(451件)</span>
+      </div>
+    </div>
+  </div>
+  <a class="btn-open" href="https://item.rakuten.co.jp/life-inc/110617-1439-0001/" target="_blank" rel="noopener">商品ページを開く ↗</a>
+  <div class="url-row">
+    <a href="https://item.rakuten.co.jp/life-inc/110617-1439-0001/" target="_blank" rel="noopener">https://item.rakuten.co.jp/life-inc/110617-1439-0001/</a>
+    <button class="copy-btn" onclick="copyPlain(this, 'https://item.rakuten.co.jp/life-inc/110617-1439-0001/')" type="button">URLコピー</button>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>楽天ROOM用</span>
+      <button class="copy-btn" onclick="copyText(this, 'room-2')" type="button">コピー</button>
+    </div>
+    <textarea id="room-2" readonly>📚壁面のちょっとしたすき間、活用できずに空間を無駄にしていませんか。
+このつっぱり棚は工具・ネジ不要で、グリップを締めるだけで一人でも設置できる伸縮タイプ。63〜93cm、75〜120cmと幅が選べるので、家中のすき間に合わせられます📚。壁を傷つけないので賃貸でも安心です。
+レビュー451件・★4.5という評価が、簡単設置への支持を示しています。
+注意点は、耐荷重内でも重い物を乗せすぎず、設置後にグラつきがないか確認すること。
+1,680円で、家中の使っていないすき間を収納棚に変えませんか?
+#つっぱり棚 #すき間収納 #壁面収納 #賃貸OK #収納ラック #共働き家庭 #育児パパ #楽天ROOM</textarea>
+  </div>
+</div>
+<div class="card featured">
+  <div class="card-head">
+    <img src="https://shop.r10s.jp/netbaby/cabinet/788/403788.jpg" alt="1種類を選べる 日本育児ミュージカルキッズランドDX II+拡張トイパネルセット 1セット ベビーサークル 扉 トイパネル8枚 セーフティグッズ" loading="lazy">
+    <div class="info">
+      <span class="featured-badge">🔥 本日のThreads/Xピックアップ</span>
+      <span class="genre-chip">育児グッズ</span>
+      <div class="name">1種類を選べる 日本育児ミュージカルキッズランドDX II+拡張トイパネルセット 1セット ベビーサークル 扉 トイパネル8枚 セーフティグッズ</div>
+      <div class="meta-row">
+        <span class="price">¥14,850</span>
+        <span class="stars">★★★★★</span>
+        <span>4.53(3215件)</span>
+      </div>
+    </div>
+  </div>
+  <a class="btn-open" href="https://item.rakuten.co.jp/netbaby/10003303/" target="_blank" rel="noopener">商品ページを開く ↗</a>
+  <div class="url-row">
+    <a href="https://item.rakuten.co.jp/netbaby/10003303/" target="_blank" rel="noopener">https://item.rakuten.co.jp/netbaby/10003303/</a>
+    <button class="copy-btn" onclick="copyPlain(this, 'https://item.rakuten.co.jp/netbaby/10003303/')" type="button">URLコピー</button>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>楽天ROOM用</span>
+      <button class="copy-btn" onclick="copyText(this, 'room-3')" type="button">コピー</button>
+    </div>
+    <textarea id="room-3" readonly>🎵つかまり立ちが始まって、赤ちゃんの行動範囲をどう区切るか悩んでいませんか。
+日本育児のミュージカルキッズランドDXは、八角形・正方形と部屋の形に合わせて変えられるベビーサークル。扉はダブルロックで、白パネルには全24曲のメロディ付きの知育遊びが詰まっています🎵。畳約2畳分のゆったりスペースで、赤ちゃんが安全に遊べます。
+レビュー3,215件・★4.53という圧倒的な件数が、定番アイテムとしての実績を示しています。
+注意点は、設置に畳2畳分のスペースが必要なので、部屋の広さを事前に確認すること。
+14,850円で、赤ちゃんの安全な遊び場を用意しませんか?
+#ベビーサークル #キッズランド #知育玩具 #安全対策 #日本育児 #育児パパ #楽天ROOM</textarea>
+  </div>
+  <p class="reason">🔥 今日のピックアップ理由: レビュー3,215件と5件で最大の実績を持ち、「つかまり立ちが始まった赤ちゃんの安全な行動範囲」という育児家庭の切実なニーズに直結するため。</p>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>Threads用</span>
+      <button class="copy-btn" onclick="copyText(this, 'threads-0')" type="button">コピー</button>
+    </div>
+    <textarea id="threads-0" readonly>つかまり立ち始まった頃、赤ちゃんの行動範囲どう区切るか本気で悩んでた。
+日本育児のミュージカルキッズランドDX、八角形にも正方形にもできるベビーサークル。扉はダブルロックで安心感が違う🎵。白パネルには24曲のメロディ付き知育遊びがついてて、赤ちゃんが飽きずに遊んでくれる。
+レビュー3,215件・★4.53、この実績はさすが。
+畳2畳分のスペースがいるから、部屋の広さだけ先に確認して。14,850円。
+#PR #ベビーサークル #キッズランド #育児パパ #共働き家庭</textarea>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>X用</span>
+      <button class="copy-btn" onclick="copyText(this, 'x-0')" type="button">コピー</button>
+    </div>
+    <textarea id="x-0" readonly>つかまり立ち始まった赤ちゃんの行動範囲、日本育児のキッズランドDXで解決した🎵
+八角形・正方形に変えられて扉はダブルロック。
+レビュー3,215件・★4.53で14,850円。畳2畳分のスペース確認して。
+#PR #ベビーサークル #育児パパ</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="card-head">
+    <img src="https://shop.r10s.jp/office31/cabinet/item02/10001069_1.jpg" alt="背幅が伸び縮みする便利なファイル セマック ドキュメントスタンド A4 MA-3100" loading="lazy">
+    <div class="info">
+      
+      <span class="genre-chip">収納整理</span>
+      <div class="name">背幅が伸び縮みする便利なファイル セマック ドキュメントスタンド A4 MA-3100</div>
+      <div class="meta-row">
+        <span class="price">¥1,156</span>
+        <span class="stars">★★★★★</span>
+        <span>4.67(293件)</span>
+      </div>
+    </div>
+  </div>
+  <a class="btn-open" href="https://item.rakuten.co.jp/office31/10001069/" target="_blank" rel="noopener">商品ページを開く ↗</a>
+  <div class="url-row">
+    <a href="https://item.rakuten.co.jp/office31/10001069/" target="_blank" rel="noopener">https://item.rakuten.co.jp/office31/10001069/</a>
+    <button class="copy-btn" onclick="copyPlain(this, 'https://item.rakuten.co.jp/office31/10001069/')" type="button">URLコピー</button>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>楽天ROOM用</span>
+      <button class="copy-btn" onclick="copyText(this, 'room-4')" type="button">コピー</button>
+    </div>
+    <textarea id="room-4" readonly>📂在宅ワーク中、資料を机に広げすぎて作業スペースがなくなっていませんか。
+このセマックドキュメントスタンドは、背幅が伸び縮みする12仕切り13ポケットのファイル。書類の量に合わせて厚みを調整できるので、無駄なスペースを取りません📂。ホワイト・ブルー・レッドなど選べるカラーで、デスクまわりの統一感も出せます。
+レビュー293件・★4.67という評価が、機能性への支持を示しています。
+注意点は、ポケットいっぱいに詰め込むと出し入れがしにくくなるので、適量を心がけること。
+1,156円で、デスクの書類スペースを整理しませんか?
+#ドキュメントスタンド #書類整理 #デスク収納 #在宅ワーク #収納グッズ #共働き家庭 #育児パパ #楽天ROOM</textarea>
+  </div>
+</div>
+</div>
+
+<h2 class="section-title">💬 今日のあるある投稿ネタ(商品リンクなし)</h2>
+<div class="cards">
+<div class="card">
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>あるある投稿 #1</span>
+      <button class="copy-btn" onclick="copyText(this, 'daily-0')" type="button">コピー</button>
+    </div>
+    <textarea id="daily-0" class="short" readonly>焼肉に行くたび、次は家でやろうと思って結局また外食する</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>あるある投稿 #2</span>
+      <button class="copy-btn" onclick="copyText(this, 'daily-1')" type="button">コピー</button>
+    </div>
+    <textarea id="daily-1" class="short" readonly>作り置き、初日は張り切って三日目には同じ味に飽きる</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>あるある投稿 #3</span>
+      <button class="copy-btn" onclick="copyText(this, 'daily-2')" type="button">コピー</button>
+    </div>
+    <textarea id="daily-2" class="short" readonly>壁のすき間、収納棚にする構想だけ半年持ち越してる</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>あるある投稿 #4</span>
+      <button class="copy-btn" onclick="copyText(this, 'daily-3')" type="button">コピー</button>
+    </div>
+    <textarea id="daily-3" class="short" readonly>赤ちゃんが動き回るようになってから、家じゅうの危険物を再発見する日々</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>あるある投稿 #5</span>
+      <button class="copy-btn" onclick="copyText(this, 'daily-4')" type="button">コピー</button>
+    </div>
+    <textarea id="daily-4" class="short" readonly>在宅ワークの資料、気づいたらデスクの半分を占領してる📂
+#共働き家庭</textarea>
+  </div>
+</div>
+</div>
+
+<footer class="note">商品ページを確認し、投稿文をコピーして手動で投稿してください。<br>Threads/Xの商品紹介は1日1件・あるある投稿と織り交ぜてスパム判定を避けてください。<br>価格・レビューは選定時点の実データです。</footer>
+</div>
+<script>
+function flash(btn) {
+  const original = btn.textContent;
+  btn.textContent = 'コピーしました';
+  btn.classList.add('copied');
+  setTimeout(() => { btn.textContent = original; btn.classList.remove('copied'); }, 1500);
+}
+function copyText(btn, id) {
+  const el = document.getElementById(id);
+  el.select();
+  el.setSelectionRange(0, 999999);
+  navigator.clipboard.writeText(el.value).then(() => flash(btn)).catch(() => {
+    try { document.execCommand('copy'); flash(btn); } catch (e) {}
+  });
+}
+function copyPlain(btn, text) {
+  navigator.clipboard.writeText(text).then(() => flash(btn)).catch(() => {
+    const t = document.createElement('textarea');
+    t.value = text; document.body.appendChild(t); t.select();
+    try { document.execCommand('copy'); flash(btn); } catch (e) {}
+    document.body.removeChild(t);
+  });
+}
+</script>
+</body>
+</html>

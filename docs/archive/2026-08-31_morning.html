@@ -1,0 +1,328 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>8/31 朝の選定 - 楽天ROOM投稿リスト</title>
+<style>
+:root {
+  --bg: #f6f3ee;
+  --surface: #ffffff;
+  --ink: #23211d;
+  --ink-soft: #6b6459;
+  --accent: #a8382c;
+  --accent-ink: #fff6f2;
+  --good: #3f7d58;
+  --border: #e4ddd2;
+  --chip-bg: #efe8db;
+  color-scheme: light dark;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #16140f;
+    --surface: #211f1a;
+    --ink: #ece7dc;
+    --ink-soft: #a89e8d;
+    --accent: #e0685a;
+    --accent-ink: #1c0f0c;
+    --good: #6fb98a;
+    --border: #35322a;
+    --chip-bg: #2a2721;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #16140f; --surface: #211f1a; --ink: #ece7dc; --ink-soft: #a89e8d;
+  --accent: #e0685a; --accent-ink: #1c0f0c; --good: #6fb98a; --border: #35322a; --chip-bg: #2a2721;
+}
+:root[data-theme="light"] {
+  --bg: #f6f3ee; --surface: #ffffff; --ink: #23211d; --ink-soft: #6b6459;
+  --accent: #a8382c; --accent-ink: #fff6f2; --good: #3f7d58; --border: #e4ddd2; --chip-bg: #efe8db;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0; background: var(--bg); color: var(--ink);
+  font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Yu Gothic Medium", "Noto Sans JP", sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+.wrap { max-width: 640px; margin: 0 auto; padding: 0 16px 40px; }
+header.top {
+  position: sticky; top: 0; z-index: 5; background: var(--bg);
+  padding: 18px 16px 12px; border-bottom: 1px solid var(--border);
+  display: flex; align-items: baseline; justify-content: space-between; gap: 12px;
+}
+header.top .eyebrow {
+  font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-soft);
+  font-weight: 600; margin: 0 0 2px;
+}
+header.top h1 { font-size: 1.25rem; margin: 0; font-weight: 700; letter-spacing: -0.01em; }
+header.top .count {
+  background: var(--chip-bg); color: var(--ink-soft); font-size: 0.78rem; font-weight: 600;
+  padding: 5px 10px; border-radius: 999px; white-space: nowrap;
+}
+.cards { display: flex; flex-direction: column; gap: 16px; margin-top: 18px; }
+.card {
+  background: var(--surface); border: 1px solid var(--border); border-radius: 16px;
+  padding: 16px; display: flex; flex-direction: column; gap: 12px;
+}
+.card-head { display: flex; gap: 12px; }
+.card-head img {
+  width: 76px; height: 76px; object-fit: cover; border-radius: 10px;
+  border: 1px solid var(--border); background: var(--chip-bg); flex-shrink: 0;
+}
+.card-head .info { min-width: 0; flex: 1; display: flex; flex-direction: column; gap: 4px; }
+.genre-chip {
+  align-self: flex-start; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.03em;
+  color: var(--accent); background: color-mix(in srgb, var(--accent) 12%, transparent);
+  padding: 2px 8px; border-radius: 999px;
+}
+.name {
+  font-weight: 600; font-size: 0.94rem; line-height: 1.4;
+  display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
+}
+.meta-row { display: flex; align-items: baseline; gap: 8px; font-size: 0.82rem; color: var(--ink-soft); }
+.price { font-variant-numeric: tabular-nums; color: var(--ink); font-weight: 700; font-size: 1.05rem; }
+.stars { letter-spacing: -1px; color: var(--accent); }
+.btn-open {
+  display: flex; align-items: center; justify-content: center; gap: 6px;
+  background: var(--accent); color: var(--accent-ink); border: none; border-radius: 11px;
+  padding: 12px; font-weight: 700; font-size: 0.92rem; text-decoration: none;
+}
+.btn-open:active { opacity: 0.85; }
+.caption-box { border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }
+.caption-head {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 8px 10px; background: var(--chip-bg);
+}
+.caption-head span {
+  font-size: 0.7rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-soft);
+}
+.copy-btn {
+  background: var(--surface); border: 1px solid var(--border); color: var(--ink);
+  border-radius: 7px; padding: 5px 11px; font-size: 0.76rem; font-weight: 600; cursor: pointer;
+}
+.copy-btn:focus-visible, .btn-open:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.copy-btn.copied { background: var(--good); border-color: var(--good); color: #fff; }
+textarea {
+  width: 100%; display: block; border: none; padding: 10px; font-size: 0.85rem; line-height: 1.55;
+  resize: vertical; min-height: 108px; font-family: inherit; background: var(--surface); color: var(--ink);
+}
+textarea:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
+footer.note { margin-top: 22px; font-size: 0.76rem; color: var(--ink-soft); text-align: center; line-height: 1.6; }
+@media (prefers-reduced-motion: no-preference) {
+  .copy-btn { transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease; }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <div>
+    <p class="eyebrow">楽天ROOM 投稿リスト</p>
+    <h1>8/31 朝の選定</h1>
+  </div>
+  <span class="count">5件</span>
+</header>
+<div class="cards">
+<div class="card">
+  <div class="card-head">
+    <img src="https://thumbnail.image.rakuten.co.jp/@0_mall/westream/cabinet/kinto/20397-399_1.jpg?_ex=256x256" alt="KINTO ウォーターボトル 950ml WATER BOTTLE" loading="lazy">
+    <div class="info">
+      <span class="genre-chip">キッチン雑貨</span>
+      <div class="name">KINTO ウォーターボトル 950ml WATER BOTTLE</div>
+      <div class="meta-row">
+        <span class="price">¥1,980</span>
+        <span class="stars">★★★★★</span>
+        <span>4.78(605件)</span>
+      </div>
+    </div>
+  </div>
+  <a class="btn-open" href="https://hb.afl.rakuten.co.jp/hgc/g00r3wnn.dg4fi9b4.g00r3wnn.dg4fj9f6/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fwestream%2F20397-399%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fwestream%2Fi%2F10008867%2F&rafcid=wsc_i_is_852e9d1a-8f83-49dc-bc9e-cf56a98e669a" target="_blank" rel="noopener">商品ページを開く ↗</a>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>楽天ROOM用</span>
+      <button class="copy-btn" onclick="copyText(this, 'room-0')" type="button">コピー</button>
+    </div>
+    <textarea id="room-0" readonly>💧また水筒、使わなくなって置きっぱなしにしてませんか?
+KINTOのウォーターボトルは「重くない・洗いやすい・どこに置いても浮かない」という、続く理由が詰まった一本。950mlの大容量なのに軽量設計、炭酸対応・食洗機OKで毎日の手間も増えません。
+レビュー605件・★4.78という評価は、実際に使い続けている人の多さの証拠です。
+注意点は、クリアなボディなので色の濃い飲み物は着色に気をつけたいところ。
+夏の水分補給を「ちゃんと続く習慣」に変えてみませんか?
+#KINTO #マイボトル #水分補給 #夏支度 #時短家事 #共働き家庭 #育児パパ #楽天ROOM</textarea>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>Threads用</span>
+      <button class="copy-btn" onclick="copyText(this, 'threads-0')" type="button">コピー</button>
+    </div>
+    <textarea id="threads-0" readonly>水筒って、買った瞬間がいちばんテンション高くて、気づいたら戸棚の奥、ってなりがちじゃない?
+KINTOのこれは違った。950mlなのに軽い、洗いやすい、炭酸もOK。デスクからキッチンまでどこ置いても様になるから、自然と手が伸びる。
+レビュー605件・★4.78、続いてる人の数がそのまま証拠。
+1,980円は正直安い。
+#KINTO #マイボトル #夏支度 #共働き家庭 #育児パパ #PR #楽天アフィリエイト</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="card-head">
+    <img src="https://thumbnail.image.rakuten.co.jp/@0_mall/plywood/cabinet/503/14949100.jpg?_ex=256x256" alt="BALMUDA The Pot KPT03JP 電気ケトル" loading="lazy">
+    <div class="info">
+      <span class="genre-chip">時短家電</span>
+      <div class="name">BALMUDA The Pot KPT03JP 電気ケトル</div>
+      <div class="meta-row">
+        <span class="price">¥18,920</span>
+        <span class="stars">★★★★★</span>
+        <span>4.76(2076件)</span>
+      </div>
+    </div>
+  </div>
+  <a class="btn-open" href="https://hb.afl.rakuten.co.jp/hgc/g00pzd8n.dg4fi90e.g00pzd8n.dg4fj68e/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fplywood%2F14949004%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fplywood%2Fi%2F10013837%2F&rafcid=wsc_i_is_852e9d1a-8f83-49dc-bc9e-cf56a98e669a" target="_blank" rel="noopener">商品ページを開く ↗</a>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>楽天ROOM用</span>
+      <button class="copy-btn" onclick="copyText(this, 'room-1')" type="button">コピー</button>
+    </div>
+    <textarea id="room-1" readonly>☕18,920円のケトル、高いと思いました?でも2,076件のレビューで★4.76という数字を見て、考えが変わりました。
+BALMUDA The Potは、コーヒー3杯・カップ麺2杯分というちょうど良いサイズで、片手でさっと使える軽さが魅力。注ぎ口の流速がコントロールしやすく、ドリップコーヒーはゆっくり、カップ麺はすばやく、と自由自在です。
+注意点は、容量が最大550mlなので大人数分を一気に沸かす用途には不向きなこと。
+毎日のお湯を沸かす時間を、ちょっと特別にしたい人へ。
+#BALMUDA #電気ケトル #おしゃれ家電 #時短家事 #共働き家庭 #育児パパ #楽天ROOM</textarea>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>Threads用</span>
+      <button class="copy-btn" onclick="copyText(this, 'threads-1')" type="button">コピー</button>
+    </div>
+    <textarea id="threads-1" readonly>毎日何回もお湯沸かすのに、そこにこだわらないのもったいなくない?
+BALMUDA The Potは注ぎやすさが別格。コーヒーはゆっくり、カップ麺は一気に、って流速を自分でコントロールできる。灯台みたいな電源ランプも地味に良い。
+レビュー2,076件・★4.76。1.9万は高く見えて、毎日使うものだから割ると全然安い。
+#BALMUDA #電気ケトル #おしゃれ家電 #育児パパ #PR #楽天アフィリエイト</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="card-head">
+    <img src="https://thumbnail.image.rakuten.co.jp/@0_mall/seastar/cabinet/evacuator/imgrc0113808122.jpg?_ex=256x256" alt="BabySmile メルシーポット ボンジュールセット S-504 電動鼻水吸引器" loading="lazy">
+    <div class="info">
+      <span class="genre-chip">育児グッズ</span>
+      <div class="name">BabySmile メルシーポット ボンジュールセット S-504 電動鼻水吸引器</div>
+      <div class="meta-row">
+        <span class="price">¥10,450</span>
+        <span class="stars">★★★★★</span>
+        <span>4.71(1537件)</span>
+      </div>
+    </div>
+  </div>
+  <a class="btn-open" href="https://hb.afl.rakuten.co.jp/hgc/g00px93n.dg4fif00.g00px93n.dg4fj178/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fseastar%2F0000002336bs%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fseastar%2Fi%2F10061727%2F&rafcid=wsc_i_is_852e9d1a-8f83-49dc-bc9e-cf56a98e669a" target="_blank" rel="noopener">商品ページを開く ↗</a>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>楽天ROOM用</span>
+      <button class="copy-btn" onclick="copyText(this, 'room-2')" type="button">コピー</button>
+    </div>
+    <textarea id="room-2" readonly>🤧夜中に鼻づまりで泣く子を抱えて、途方に暮れた夜ありませんか。
+メルシーポット ボンジュールセットは、耳鼻科の吸引器に近いパワフルさを家庭で使える電動鼻水吸引器。鼻水がチューブを通らない設計だからお手入れもラクで、吸引力は状態に合わせて調整できます。
+レビュー1,537件・★4.71という数字が、多くの家庭で頼られている証拠です。
+注意点は、本体サイズがやや大きめなので置き場所を事前に確認しておくと安心。
+風邪シーズン前に備えておきたい一台です。
+#電動鼻水吸引器 #メルシーポット #育児グッズ #夜泣き対策 #共働き家庭 #育児パパ #楽天ROOM</textarea>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>Threads用</span>
+      <button class="copy-btn" onclick="copyText(this, 'threads-2')" type="button">コピー</button>
+    </div>
+    <textarea id="threads-2" readonly>子どもの鼻水、放置すると中耳炎とか怖いのに、吸うの下手だと全然取れないんだよな。
+メルシーポットは耳鼻科レベルの吸引力を謳ってて、実際レビュー1,537件・★4.71。夜中にリビングまで運ばなくても、家にあるだけで安心感が違う。
+1万円するけど、寝不足の夜を何回減らせるか考えたら余裕で元取れる。
+#メルシーポット #電動鼻水吸引器 #育児パパ #共働き家庭 #PR #楽天アフィリエイト</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="card-head">
+    <img src="https://thumbnail.image.rakuten.co.jp/@0_mall/roomy/cabinet/500cart_all/500cart_11g/p10-4/hch1002-00008-0_gt01.jpg?_ex=256x256" alt="オムニウッティ 20L ふた付き 万能バケツ" loading="lazy">
+    <div class="info">
+      <span class="genre-chip">収納整理</span>
+      <div class="name">オムニウッティ 20L ふた付き 万能バケツ</div>
+      <div class="meta-row">
+        <span class="price">¥3,630</span>
+        <span class="stars">★★★★★</span>
+        <span>4.71(5255件)</span>
+      </div>
+    </div>
+  </div>
+  <a class="btn-open" href="https://hb.afl.rakuten.co.jp/hgc/g00qb0ln.dg4fi96c.g00qb0ln.dg4fj480/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Froomy%2Fomuni_20%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Froomy%2Fi%2F10001338%2F&rafcid=wsc_i_is_852e9d1a-8f83-49dc-bc9e-cf56a98e669a" target="_blank" rel="noopener">商品ページを開く ↗</a>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>楽天ROOM用</span>
+      <button class="copy-btn" onclick="copyText(this, 'room-3')" type="button">コピー</button>
+    </div>
+    <textarea id="room-3" readonly>🪣おもちゃ・オムツ・洗濯物、家の中の「行き場のないモノ」に困ってませんか。
+オムニウッティ20Lふた付きは、フタをすればスツールにもなる耐荷重150kgの万能バケツ。おもちゃ箱、オムツ入れ、洗濯カゴと、家中どこでも使い道が広がります。
+レビュー5,255件・★4.71という圧倒的な実績が、この万能さを裏付けています。
+注意点は、カラー展開が人気で在庫切れになりやすいので気になる色は早めのチェックがおすすめ。
+散らかりがちな場所を、ひとつ整えてみませんか?
+#オムニウッティ #収納ボックス #おもちゃ収納 #オムツ収納 #共働き家庭 #育児パパ #楽天ROOM</textarea>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>Threads用</span>
+      <button class="copy-btn" onclick="copyText(this, 'threads-3')" type="button">コピー</button>
+    </div>
+    <textarea id="threads-3" readonly>おもちゃもオムツも洗濯物も、結局「とりあえずバケツ」に助けられてる説。
+オムニウッティは見た目カラフルで可愛いのに耐荷重150kg、フタしてスツールにもなる。レビュー5,255件・★4.71は伊達じゃない。
+3,630円でここまで家中の「置き場所ない問題」を解決してくれるのはコスパ良すぎる。
+#オムニウッティ #収納ボックス #共働き家庭 #育児パパ #PR #楽天アフィリエイト</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="card-head">
+    <img src="https://thumbnail.image.rakuten.co.jp/@0_mall/k-lalala/cabinet/syohin/jej/lise/lisetablem_main2.jpg?_ex=256x256" alt="リセスタイル テーブルワゴン キャスター付き" loading="lazy">
+    <div class="info">
+      <span class="genre-chip">収納整理</span>
+      <div class="name">リセスタイル テーブルワゴン キャスター付き</div>
+      <div class="meta-row">
+        <span class="price">¥2,630</span>
+        <span class="stars">★★★★★</span>
+        <span>4.76(1060件)</span>
+      </div>
+    </div>
+  </div>
+  <a class="btn-open" href="https://hb.afl.rakuten.co.jp/hgc/g00qzvnn.dg4fib5f.g00qzvnn.dg4fj4ae/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fk-lalala%2Flise-tablem%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fk-lalala%2Fi%2F10437355%2F&rafcid=wsc_i_is_852e9d1a-8f83-49dc-bc9e-cf56a98e669a" target="_blank" rel="noopener">商品ページを開く ↗</a>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>楽天ROOM用</span>
+      <button class="copy-btn" onclick="copyText(this, 'room-4')" type="button">コピー</button>
+    </div>
+    <textarea id="room-4" readonly>🛒2,630円で、デスク下や洗面所の「なんとなく散らかる」がこれで片付きました。
+リセスタイルのテーブルワゴンは、深さのあるカゴ収納と物が置ける天板を両立し、底面キャスターでラクに移動できるのが魅力。プラスチック製なので水回りでも気兼ねなく使えます。
+レビュー1,060件・★4.76という評価も、使い勝手の良さを裏付けています。
+注意点は、サイズ展開が複数あるので設置場所は事前に採寸しておくと失敗しません。
+ちょっとしたスペースの収納、見直してみませんか?
+#収納ワゴン #テーブルワゴン #キッチン収納 #時短家事 #共働き家庭 #育児パパ #楽天ROOM</textarea>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>Threads用</span>
+      <button class="copy-btn" onclick="copyText(this, 'threads-4')" type="button">コピー</button>
+    </div>
+    <textarea id="threads-4" readonly>デスク下とか洗面所の隙間、微妙に物が溜まっていく問題、ワゴン一台で解決するんだよな。
+リセスタイルはカゴ収納+天板のハイブリッドで、キャスター付きだから掃除も楽。プラ製で水回りも気にせず使える。
+レビュー1,060件・★4.76で2,630円。この価格でこの使い勝手はズルい。
+#収納ワゴン #テーブルワゴン #共働き家庭 #育児パパ #PR #楽天アフィリエイト</textarea>
+  </div>
+</div>
+</div>
+<footer class="note">商品ページを確認し、投稿文をコピーして手動で投稿してください。<br>価格・レビューは選定時点の実データです。</footer>
+</div>
+<script>
+function copyText(btn, id) {
+  const el = document.getElementById(id);
+  el.select();
+  el.setSelectionRange(0, 999999);
+  navigator.clipboard.writeText(el.value).then(() => {
+    const original = btn.textContent;
+    btn.textContent = 'コピーしました';
+    btn.classList.add('copied');
+    setTimeout(() => { btn.textContent = original; btn.classList.remove('copied'); }, 1500);
+  });
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,406 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>9/12 朝の選定 - 楽天ROOM投稿リスト</title>
+<style>
+:root {
+  --bg: #f6f3ee;
+  --surface: #ffffff;
+  --ink: #23211d;
+  --ink-soft: #6b6459;
+  --accent: #a8382c;
+  --accent-ink: #fff6f2;
+  --good: #3f7d58;
+  --border: #e4ddd2;
+  --chip-bg: #efe8db;
+  color-scheme: light dark;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #16140f;
+    --surface: #211f1a;
+    --ink: #ece7dc;
+    --ink-soft: #a89e8d;
+    --accent: #e0685a;
+    --accent-ink: #1c0f0c;
+    --good: #6fb98a;
+    --border: #35322a;
+    --chip-bg: #2a2721;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #16140f; --surface: #211f1a; --ink: #ece7dc; --ink-soft: #a89e8d;
+  --accent: #e0685a; --accent-ink: #1c0f0c; --good: #6fb98a; --border: #35322a; --chip-bg: #2a2721;
+}
+:root[data-theme="light"] {
+  --bg: #f6f3ee; --surface: #ffffff; --ink: #23211d; --ink-soft: #6b6459;
+  --accent: #a8382c; --accent-ink: #fff6f2; --good: #3f7d58; --border: #e4ddd2; --chip-bg: #efe8db;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0; background: var(--bg); color: var(--ink);
+  font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Yu Gothic Medium", "Noto Sans JP", sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+.wrap { max-width: 640px; margin: 0 auto; padding: 0 16px 40px; }
+header.top {
+  position: sticky; top: 0; z-index: 5; background: var(--bg);
+  padding: 18px 16px 12px; border-bottom: 1px solid var(--border);
+  display: flex; align-items: baseline; justify-content: space-between; gap: 12px;
+}
+header.top .eyebrow {
+  font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-soft);
+  font-weight: 600; margin: 0 0 2px;
+}
+header.top h1 { font-size: 1.25rem; margin: 0; font-weight: 700; letter-spacing: -0.01em; }
+header.top .count {
+  background: var(--chip-bg); color: var(--ink-soft); font-size: 0.78rem; font-weight: 600;
+  padding: 5px 10px; border-radius: 999px; white-space: nowrap;
+}
+h2.section-title { font-size: 0.95rem; font-weight: 700; margin: 24px 0 12px; }
+.cards { display: flex; flex-direction: column; gap: 16px; margin-top: 18px; }
+.card {
+  background: var(--surface); border: 1px solid var(--border); border-radius: 16px;
+  padding: 16px; display: flex; flex-direction: column; gap: 12px;
+}
+.card.featured { border-color: var(--accent); border-width: 2px; }
+.featured-badge {
+  align-self: flex-start; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.03em;
+  color: var(--accent-ink); background: var(--accent); padding: 3px 9px; border-radius: 999px;
+}
+.card-head { display: flex; gap: 12px; }
+.card-head img {
+  width: 76px; height: 76px; object-fit: cover; border-radius: 10px;
+  border: 1px solid var(--border); background: var(--chip-bg); flex-shrink: 0;
+}
+.card-head .info { min-width: 0; flex: 1; display: flex; flex-direction: column; gap: 4px; }
+.genre-chip {
+  align-self: flex-start; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.03em;
+  color: var(--accent); background: color-mix(in srgb, var(--accent) 12%, transparent);
+  padding: 2px 8px; border-radius: 999px;
+}
+.name {
+  font-weight: 600; font-size: 0.94rem; line-height: 1.4;
+  display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
+}
+.meta-row { display: flex; align-items: baseline; gap: 8px; font-size: 0.82rem; color: var(--ink-soft); }
+.price { font-variant-numeric: tabular-nums; color: var(--ink); font-weight: 700; font-size: 1.05rem; }
+.stars { letter-spacing: -1px; color: var(--accent); }
+.btn-open {
+  display: flex; align-items: center; justify-content: center; gap: 6px;
+  background: var(--accent); color: var(--accent-ink); border: none; border-radius: 11px;
+  padding: 12px; font-weight: 700; font-size: 0.92rem; text-decoration: none;
+}
+.btn-open:active { opacity: 0.85; }
+.url-row {
+  display: flex; align-items: center; gap: 8px;
+  background: var(--chip-bg); border-radius: 9px; padding: 8px 10px;
+}
+.url-row a {
+  flex: 1; min-width: 0; font-size: 0.76rem; color: var(--accent);
+  word-break: break-all; line-height: 1.45; text-decoration: none;
+}
+.url-row a:active { text-decoration: underline; }
+.reason { font-size: 0.8rem; color: var(--ink-soft); }
+.caption-box { border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }
+.caption-head {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 8px 10px; background: var(--chip-bg);
+}
+.caption-head span {
+  font-size: 0.7rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-soft);
+}
+.copy-btn {
+  background: var(--surface); border: 1px solid var(--border); color: var(--ink);
+  border-radius: 7px; padding: 5px 11px; font-size: 0.76rem; font-weight: 600; cursor: pointer;
+}
+.copy-btn:focus-visible, .btn-open:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.copy-btn.copied { background: var(--good); border-color: var(--good); color: #fff; }
+textarea {
+  width: 100%; display: block; border: none; padding: 10px; font-size: 0.85rem; line-height: 1.55;
+  resize: vertical; min-height: 108px; font-family: inherit; background: var(--surface); color: var(--ink);
+}
+textarea.short { min-height: 60px; }
+textarea:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
+footer.note { margin-top: 22px; font-size: 0.76rem; color: var(--ink-soft); text-align: center; line-height: 1.6; }
+@media (prefers-reduced-motion: no-preference) {
+  .copy-btn { transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease; }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <div>
+    <p class="eyebrow">楽天ROOM 投稿リスト</p>
+    <h1>9/12 朝の選定</h1>
+  </div>
+  <span class="count">5件</span>
+</header>
+
+<h2 class="section-title">📦 商品(ROOM用、全5件)</h2>
+<div class="cards">
+<div class="card featured">
+  <div class="card-head">
+    <img src="https://shop.r10s.jp/magchan/cabinet/12649059/imgrc0117669636.jpg" alt="公式マグちゃんショップ 洗たくマグちゃん アウトレット 1個 洗濯マグちゃん マグちゃん 洗濯まぐちゃん" loading="lazy">
+    <div class="info">
+      <span class="featured-badge">🔥 本日のThreads/Xピックアップ</span>
+      <span class="genre-chip">掃除洗濯</span>
+      <div class="name">公式マグちゃんショップ 洗たくマグちゃん アウトレット 1個 洗濯マグちゃん マグちゃん 洗濯まぐちゃん</div>
+      <div class="meta-row">
+        <span class="price">¥1,210</span>
+        <span class="stars">★★★★★</span>
+        <span>4.79(255件)</span>
+      </div>
+    </div>
+  </div>
+  <a class="btn-open" href="https://item.rakuten.co.jp/magchan/m-00001/" target="_blank" rel="noopener">商品ページを開く ↗</a>
+  <div class="url-row">
+    <a href="https://item.rakuten.co.jp/magchan/m-00001/" target="_blank" rel="noopener">https://item.rakuten.co.jp/magchan/m-00001/</a>
+    <button class="copy-btn" onclick="copyPlain(this, 'https://item.rakuten.co.jp/magchan/m-00001/')" type="button">URLコピー</button>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>楽天ROOM用</span>
+      <button class="copy-btn" onclick="copyText(this, 'room-0')" type="button">コピー</button>
+    </div>
+    <textarea id="room-0" readonly>🧺洗剤の詰め替え、重い容器を毎回運ぶのがじわじわ負担になっていませんか。
+洗たくマグちゃんは、マグネシウムの力で水をアルカリイオン化し、洗剤なしでも汚れや菌の繁殖を抑えるアイテム。洗濯槽に入れるだけで、繰り返し使えるのでランニングコストがじわじわ下がります♻️。すすぎ1回で済むので時短にもなります。
+レビュー255件・★4.79という評価が、地球にやさしい洗濯として支持されていることを示しています。
+注意点は、泥汚れや油汚れなど頑固な汚れには別途洗剤が必要なこと。普段使いの衣類洗いに向いています。
+1,210円で、洗剤の買い足しを一つ減らしませんか?
+#洗たくマグちゃん #洗濯マグネシウム #エコ洗濯 #時短家事 #共働き家庭 #育児パパ #楽天ROOM</textarea>
+  </div>
+  <p class="reason">🔥 今日のピックアップ理由: 1,210円で洗剤の買い足しを減らせる経済性と、レビュー255件・★4.79という高評価が、共働き家庭の日常の負担軽減に直結するため。</p>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>Threads用</span>
+      <button class="copy-btn" onclick="copyText(this, 'threads-0')" type="button">コピー</button>
+    </div>
+    <textarea id="threads-0" readonly>洗剤の詰め替え、重い容器を毎回運ぶのが地味にしんどかった。
+洗たくマグちゃん、マグネシウムの力で水をアルカリイオン化して洗剤なしで洗える。洗濯槽に入れるだけで、繰り返し使えるからランニングコスト下がる♻️。すすぎ1回で時短にもなる。
+レビュー255件・★4.79で1,210円。
+泥汚れとか油汚れの頑固なやつは別途洗剤いるから、普段使いの洗濯に向いてる。
+#PR #洗たくマグちゃん #エコ洗濯 #育児パパ #共働き家庭</textarea>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>X用</span>
+      <button class="copy-btn" onclick="copyText(this, 'x-0')" type="button">コピー</button>
+    </div>
+    <textarea id="x-0" readonly>洗剤の詰め替え運ぶの地味にしんどかったけど、洗たくマグちゃんで洗剤なしで洗えるようになった♻️
+繰り返し使えてすすぎ1回で時短にも。
+レビュー255件・★4.79で1,210円。
+#PR #洗たくマグちゃん #エコ洗濯 #育児パパ</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="card-head">
+    <img src="https://shop.r10s.jp/arisana/cabinet/kihon11/18ai08_00.jpg" alt="ネックウォーマー キッズ 女の子 マフラー スヌード 子供 子ども 防寒 ケーブルニット ボア おしゃれ かわいい" loading="lazy">
+    <div class="info">
+      
+      <span class="genre-chip">季節もの</span>
+      <div class="name">ネックウォーマー キッズ 女の子 マフラー スヌード 子供 子ども 防寒 ケーブルニット ボア おしゃれ かわいい</div>
+      <div class="meta-row">
+        <span class="price">¥1,580</span>
+        <span class="stars">★★★★★</span>
+        <span>4.61(249件)</span>
+      </div>
+    </div>
+  </div>
+  <a class="btn-open" href="https://item.rakuten.co.jp/arisana/18ai08/" target="_blank" rel="noopener">商品ページを開く ↗</a>
+  <div class="url-row">
+    <a href="https://item.rakuten.co.jp/arisana/18ai08/" target="_blank" rel="noopener">https://item.rakuten.co.jp/arisana/18ai08/</a>
+    <button class="copy-btn" onclick="copyPlain(this, 'https://item.rakuten.co.jp/arisana/18ai08/')" type="button">URLコピー</button>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>楽天ROOM用</span>
+      <button class="copy-btn" onclick="copyText(this, 'room-1')" type="button">コピー</button>
+    </div>
+    <textarea id="room-1" readonly>🧣マフラーを嫌がる子どもの首もと、寒さ対策に困っていませんか。
+このネックウォーマーはケーブルニット素材で、マフラーより外れにくく、子どもが自分で着脱しやすい作りです。ボア付きで見た目もかわいく、通園・通学の防寒アイテムとして秋口から出番があります👧。女の子ウケの良いデザインも魅力です。
+レビュー249件・★4.61という評価が、防寒アイテムとしての使いやすさを示しています。
+注意点は、洗濯方法(手洗い可否)を商品詳細で確認してから使うこと。
+1,580円で、子どもの首もとの防寒を今のうちに準備しませんか?
+#ネックウォーマー #キッズ防寒 #子供防寒グッズ #通園グッズ #冬支度 #育児パパ #楽天ROOM</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="card-head">
+    <img src="https://shop.r10s.jp/rinkydink/cabinet/interior/kitchen2/ymasonjarregularmult.jpg" alt="メイソンジャー BALL ボール Mason Jar 16oz レギュラーマウス ガラス保存ビン 480ml 100周年 6本セット" loading="lazy">
+    <div class="info">
+      
+      <span class="genre-chip">キッチン雑貨</span>
+      <div class="name">メイソンジャー BALL ボール Mason Jar 16oz レギュラーマウス ガラス保存ビン 480ml 100周年 6本セット</div>
+      <div class="meta-row">
+        <span class="price">¥9,900</span>
+        <span class="stars">★★★★★</span>
+        <span>4.79(206件)</span>
+      </div>
+    </div>
+  </div>
+  <a class="btn-open" href="https://item.rakuten.co.jp/rinkydink/ballmarsonjar16oz6pcsa/" target="_blank" rel="noopener">商品ページを開く ↗</a>
+  <div class="url-row">
+    <a href="https://item.rakuten.co.jp/rinkydink/ballmarsonjar16oz6pcsa/" target="_blank" rel="noopener">https://item.rakuten.co.jp/rinkydink/ballmarsonjar16oz6pcsa/</a>
+    <button class="copy-btn" onclick="copyPlain(this, 'https://item.rakuten.co.jp/rinkydink/ballmarsonjar16oz6pcsa/')" type="button">URLコピー</button>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>楽天ROOM用</span>
+      <button class="copy-btn" onclick="copyText(this, 'room-2')" type="button">コピー</button>
+    </div>
+    <textarea id="room-2" readonly>🫙作り置きのおかずやピクルス、保存容器のふたがうまく閉まらず困っていませんか。
+このメイソンジャーはアメリカのBALL社製で、100周年を記念した16oz(480ml)サイズの6本セット。ガラス製なのでにおい移りがなく、そのまま食卓に出しても様になります🍯。ジャムや自家製ドレッシング、常備菜の保存にも向いています。
+レビュー206件・★4.79という評価が、定番ブランドとしての信頼を示しています。
+注意点は、ガラス製なので急激な温度変化(熱いものを入れてすぐ冷水にさらすなど)は避けること。
+9,900円で、保存容器を見た目からアップデートしませんか?
+#メイソンジャー #保存瓶 #作り置き #キッチン雑貨 #常備菜 #共働き家庭 #育児パパ #楽天ROOM</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="card-head">
+    <img src="https://shop.r10s.jp/kurashi-nexus/cabinet/code055/11719638/documentfile_01_2.jpg" alt="整理収納アドバイザー監修 ドキュメントファイル A4対応 書類ケース 13 25ポケット領収書ファイル" loading="lazy">
+    <div class="info">
+      
+      <span class="genre-chip">収納整理</span>
+      <div class="name">整理収納アドバイザー監修 ドキュメントファイル A4対応 書類ケース 13 25ポケット領収書ファイル</div>
+      <div class="meta-row">
+        <span class="price">¥1,480</span>
+        <span class="stars">★★★★★</span>
+        <span>4.62(246件)</span>
+      </div>
+    </div>
+  </div>
+  <a class="btn-open" href="https://item.rakuten.co.jp/kurashi-nexus/code055/" target="_blank" rel="noopener">商品ページを開く ↗</a>
+  <div class="url-row">
+    <a href="https://item.rakuten.co.jp/kurashi-nexus/code055/" target="_blank" rel="noopener">https://item.rakuten.co.jp/kurashi-nexus/code055/</a>
+    <button class="copy-btn" onclick="copyPlain(this, 'https://item.rakuten.co.jp/kurashi-nexus/code055/')" type="button">URLコピー</button>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>楽天ROOM用</span>
+      <button class="copy-btn" onclick="copyText(this, 'room-3')" type="button">コピー</button>
+    </div>
+    <textarea id="room-3" readonly>📄保育園や学校からのプリント、机の上に山積みになっていませんか。
+このドキュメントファイルは整理収納アドバイザー監修で、13〜25ポケットにジャンル分けして書類を管理できます。持ち運びしやすいので、必要な書類だけ取り出して外出先でも確認できます📎。領収書やお便りなど、細かい紙類の整理にも向いています。
+レビュー246件・★4.62という評価が、書類整理アイテムとしての人気を示しています。
+注意点は、ポケット数が多いタイプほど厚みが出るので、収納スペースを確認しておくこと。
+1,480円で、机の上のプリントの山を片づけませんか?
+#ドキュメントファイル #書類整理 #書類ケース #収納グッズ #保育園グッズ #共働き家庭 #育児パパ #楽天ROOM</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="card-head">
+    <img src="https://shop.r10s.jp/lecdirect/cabinet/img/s/imgrc0112689854.jpg" alt="メーカー公式 激落ちくん ホコリ取り トレループ プレミアム 時短 ケース付き ハンディ 伸縮 床 階段用" loading="lazy">
+    <div class="info">
+      
+      <span class="genre-chip">掃除洗濯</span>
+      <div class="name">メーカー公式 激落ちくん ホコリ取り トレループ プレミアム 時短 ケース付き ハンディ 伸縮 床 階段用</div>
+      <div class="meta-row">
+        <span class="price">¥2,838</span>
+        <span class="stars">★★★★☆</span>
+        <span>4.36(236件)</span>
+      </div>
+    </div>
+  </div>
+  <a class="btn-open" href="https://item.rakuten.co.jp/lecdirect/v-torepr/" target="_blank" rel="noopener">商品ページを開く ↗</a>
+  <div class="url-row">
+    <a href="https://item.rakuten.co.jp/lecdirect/v-torepr/" target="_blank" rel="noopener">https://item.rakuten.co.jp/lecdirect/v-torepr/</a>
+    <button class="copy-btn" onclick="copyPlain(this, 'https://item.rakuten.co.jp/lecdirect/v-torepr/')" type="button">URLコピー</button>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>楽天ROOM用</span>
+      <button class="copy-btn" onclick="copyText(this, 'room-4')" type="button">コピー</button>
+    </div>
+    <textarea id="room-4" readonly>🧹床のホコリ、フローリングワイパーを出すほどでもないと放置していませんか。
+「激落ちくん」のホコリ取りは、ケースに通すだけでモップ部分をきれいに保てる時短アイテム。伸縮するので床だけでなく階段や家具のすき間のホコリも取れます🧽。モップ部分を交換する必要がなく繰り返し使えるので経済的です。
+レビュー236件・★4.36という評価が、手軽さへの支持を示しています。
+注意点は、水拭きには対応していないので、あくまで乾いたホコリ取り用と考えること。
+2,838円で、「ちょっとのホコリ」をサッと片づけませんか?
+#ホコリ取り #激落ちくん #掃除グッズ #掃除の時短 #階段掃除 #共働き家庭 #育児パパ #楽天ROOM</textarea>
+  </div>
+</div>
+</div>
+
+<h2 class="section-title">💬 今日のあるある投稿ネタ(商品リンクなし)</h2>
+<div class="cards">
+<div class="card">
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>あるある投稿 #1</span>
+      <button class="copy-btn" onclick="copyText(this, 'daily-0')" type="button">コピー</button>
+    </div>
+    <textarea id="daily-0" class="short" readonly>洗剤のボトル、いつも残り少ないのに気づくのが使う瞬間</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>あるある投稿 #2</span>
+      <button class="copy-btn" onclick="copyText(this, 'daily-1')" type="button">コピー</button>
+    </div>
+    <textarea id="daily-1" class="short" readonly>子どものマフラー、朝の着替えで一番時間がかかる工程かもしれない</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>あるある投稿 #3</span>
+      <button class="copy-btn" onclick="copyText(this, 'daily-2')" type="button">コピー</button>
+    </div>
+    <textarea id="daily-2" class="short" readonly>作り置き、容器のふたが見つからなくて結局ラップで代用する</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>あるある投稿 #4</span>
+      <button class="copy-btn" onclick="copyText(this, 'daily-3')" type="button">コピー</button>
+    </div>
+    <textarea id="daily-3" class="short" readonly>保育園のプリント、大事なやつに限って別のプリントに紛れる</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>あるある投稿 #5</span>
+      <button class="copy-btn" onclick="copyText(this, 'daily-4')" type="button">コピー</button>
+    </div>
+    <textarea id="daily-4" class="short" readonly>床のホコリ、見えてるのに「あとで」と言い続けて夜になる🧹
+#共働き家庭</textarea>
+  </div>
+</div>
+</div>
+
+<footer class="note">商品ページを確認し、投稿文をコピーして手動で投稿してください。<br>Threads/Xの商品紹介は1日1件・あるある投稿と織り交ぜてスパム判定を避けてください。<br>価格・レビューは選定時点の実データです。</footer>
+</div>
+<script>
+function flash(btn) {
+  const original = btn.textContent;
+  btn.textContent = 'コピーしました';
+  btn.classList.add('copied');
+  setTimeout(() => { btn.textContent = original; btn.classList.remove('copied'); }, 1500);
+}
+function copyText(btn, id) {
+  const el = document.getElementById(id);
+  el.select();
+  el.setSelectionRange(0, 999999);
+  navigator.clipboard.writeText(el.value).then(() => flash(btn)).catch(() => {
+    try { document.execCommand('copy'); flash(btn); } catch (e) {}
+  });
+}
+function copyPlain(btn, text) {
+  navigator.clipboard.writeText(text).then(() => flash(btn)).catch(() => {
+    const t = document.createElement('textarea');
+    t.value = text; document.body.appendChild(t); t.select();
+    try { document.execCommand('copy'); flash(btn); } catch (e) {}
+    document.body.removeChild(t);
+  });
+}
+</script>
+</body>
+</html>
