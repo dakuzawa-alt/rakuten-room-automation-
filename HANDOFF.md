@@ -1,13 +1,14 @@
 # 引き継ぎ書 — 楽天ROOM副業自動化プロジェクト
 
-最終更新: 2026-09-15 / 前セッション最終commit: `adf3829`
+最終更新: 2026-09-17 / 前セッション最終commit: `060e1af`
 
 ## 1. プロジェクト概要
 
 「育児パパ×共働き家庭」向け楽天ROOMアカウント（[room_63cb75728b](https://room.rakuten.co.jp/room_63cb75728b/items)）のために、時短家電・収納・育児グッズを毎日朝夜2回選定し、ROOM/Threads/X用の紹介文を生成する。目的は楽天アフィリエイト収入。
 
 - **リポジトリ（ローカル）**: `C:\Users\81908\OneDrive\デスクトップ\RakutenRoom自動化`
-- **リポジトリ（GitHub、Private）**: `dakuzawa-alt/rakuten-room-automation-`（末尾ハイフンあり、これが正式名）
+- **リポジトリ（GitHub、Public）**: `dakuzawa-alt/rakuten-room-automation-`（末尾ハイフンあり、これが正式名。2026-09-16にユーザー合意のもとPublic化、GitHub Pages有効化）
+- **公開一覧ページ（固定URL）**: https://dakuzawa-alt.github.io/rakuten-room-automation-/ （自動実行のたびに最新版へ更新される）
 - **統括ドキュメント**: `CLAUDE.md`（実行フロー）, `docs/style_guide.md`（投稿文ルール）, `.claude/agents/*.md`（product-scout / copywriter / qa-checker）
 - **台帳**: `data/posted_history.json`（現在 **140件**、重複itemCodeなし）
 
@@ -28,10 +29,18 @@
 ユーザーに確認したところ、9/15夜(16:40開始の自動実行)は通知が届かなかった。原因調査の結果、この実行はコミット`adf3829`(16:52、Artifact削除・PushNotification仕様修正・`run_*.bat`の配線バグ修正)より**前**に動いていたことが判明。つまり「`run_*.bat`が`prompt_*.txt`を実際には読み込んでいなかったバグ」が直る前の実行であり、通知が届かなかったのはその壊れた配線が原因である可能性が高い。ヘッドレス実行下でのPushNotificationツール自体の可否は、サンドボックス制限(ネストしたエージェント生成がブロックされる)のためこのセッションからは直接検証できなかった。
 **次アクション**: 修正後の設定で動く次回の自動実行(朝7:00の`RakutenRoomSelect_Morning`、または夜21:00)で通知が届くか確認すること。届かなければ、PushNotificationツール自体がヘッドレス実行で機能しない(Artifactツールと同じ制約)可能性を疑い、代替の通知手段を検討する。
 
-### 3-3. 旧タスクが今も存在し、二重発火することがある
-`RakutenROOM_Morning` / `RakutenROOM_Night`（全部大文字、8/31作成の初期タスク）が今も **Ready** 状態で残っている。Claude側からは `Disable-ScheduledTask` も `Unregister-ScheduledTask` も **Access is denied** で操作不可（権限の壁）。
-→ **ユーザー側でタスクスケジューラGUIから無効化が必要**（`taskschd.msc` → 該当タスク右クリック→無効にする。権限エラーが出たらタスクスケジューラを管理者として再起動）。
-現在正しく動くのは `RakutenRoomSelect_Morning`（毎日7:00）/ `RakutenRoomSelect_Night`（毎日21:00）の方（`RoomSelect` とキャメルケース気味の名前）。
+### 3-3. 旧タスクの二重発火 — 2026-09-17、ユーザーがGUIから無効化して解消
+`RakutenROOM_Morning` / `RakutenROOM_Night`（全部大文字、8/31作成の初期タスク）が9/17まで **Ready** 状態で残っており、`RakutenRoomSelect_Morning`/`_Night`（正しい方）と同じ時間帯に二重発火していたことが確認された。証拠: `logs/run_history.log`で9/13・9/15・9/17に同一slotのSTART行が数十ミリ秒差で2回記録、`data/posted_history.json`で9/15夜・9/17朝が本来5件のところ10件(重複ではなく別々の商品5件×2回分)記録されていた。Claude側からは`Disable-ScheduledTask`が権限の壁(`Access is denied`)で実行できなかったため、**ユーザーがタスクスケジューラGUIから無効化**(2026-09-17)。現在は以下の状態:
+```
+RakutenRoomSelect_Morning   Ready       ← 正、7:00
+RakutenRoomSelect_Night     Ready       ← 正、21:00
+RakutenROOM_Morning         Disabled    ← 旧、無効化済み
+RakutenROOM_Night           Disabled    ← 旧、無効化済み
+```
+**次アクション**: 無効化後の初回実行(9/18朝以降)でSTART行が各slot1回だけになっているか、`posted_history.json`が1slotあたり5件ぴったりになっているかを確認すること。
+
+### 3-3-1. 9/16夜の実行がハングして未完了に終わった事例
+`run_history.log`に9/16夜(21:00:02.79)のSTART行はあるが、EXIT行・git commitが一切存在しない。実行時間上限30分でタスクスケジューラに強制終了されたとみられる。この日は二重発火はしていなかった(START行は1つ)ため、3-3の二重発火だけが原因とは言い切れない。他の要因(楽天API側の遅延、ネットワーク瞬断など)の可能性も残るため、今後ハングが再発するか継続観察すること。
 
 ### 3-4. クラウドのRemoteTriggerルーチンは無効化済み
 過去に `trig_01XRrGTzb3M83vNmZANrFY2H`（名前「楽天ROOM」）というクラウドルーチンを作ったが、クラウドのサンドボックスから楽天API (`openapi.rakuten.co.jp`) への通信が403で拒否されるため機能しない。`enabled: false` に設定して停止中。再度使うなら、ネットワーク許可のある別のクラウド環境を作る必要がある（未着手）。
@@ -69,11 +78,12 @@
 | # | 内容 | 誰が |
 |---|---|---|
 | 1 | ~~9/15夜テスト実行のPushNotificationが実際に届いたか確認~~ → 届かなかったことを確認済み(2026-09-16)。配線バグ修正前の実行だったためと推定 | 完了 |
-| 2 | 旧タスク `RakutenROOM_Morning`/`RakutenROOM_Night` をタスクスケジューラGUIで無効化 | ユーザー |
+| 2 | ~~旧タスク `RakutenROOM_Morning`/`RakutenROOM_Night` をタスクスケジューラGUIで無効化~~ → 完了(2026-09-17)。3-3参照 | 完了 |
 | 3 | ~~「簡易トイレ」重複素通り事例の原因調査~~ → 調査済み、誤検知と判明(2026-09-16、3-6参照)。対応不要 | 完了 |
 | 4 | ~~GitHub Pages化するか改めて検討~~ → 完了(2026-09-16)。ユーザーが無料の方法(リポジトリPublic化)を選択。GitHub Pages有効化済み、固定URL https://dakuzawa-alt.github.io/rakuten-room-automation-/ 。`prompt_morning.txt`/`prompt_night.txt`に「docs/index.htmlへコピー」ステップを追加済み。次回自動実行で反映されるか要確認 | 完了 |
-| 5 | 自動実行が今後も安定するか、1週間程度は`logs/run_history.log`と`output/`の日付欠けを定期チェック推奨 | 次セッション |
+| 5 | 自動実行が今後も安定するか、1週間程度は`logs/run_history.log`と`output/`の日付欠けを定期チェック推奨。特に9/16夜のハングが再発しないか要観察(3-3-1参照) | 次セッション |
 | 6 | 修正後の設定で動く次回の自動実行後、PushNotificationが実際に届くか確認。届かなければヘッドレス実行でのツール可否を疑い代替の通知手段を検討 | ユーザー→報告 |
+| 7 | 9/15夜・9/17朝の`posted_history.json`に旧タスク二重発火で余分な5件ずつが記録済み(実害なし、投稿はされていない)。将来カテゴリ選定の幅が狭まる程度の軽微な影響なので、気になれば該当itemCodeを削除しても良いが緊急ではない | 任意・次セッション |
 
 ## 7. よくある質問への回答（過去に何度も聞かれた）
 
