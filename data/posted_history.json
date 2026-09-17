@@ -1521,6 +1521,53 @@
       "channels": [
         "room"
       ]
+    },
+    {
+      "itemCode": "supplement-life:10000078",
+      "itemName": "カビピカ バイオカビ防止 1箱1年分",
+      "date": "2026-09-17",
+      "slot": "night",
+      "channels": [
+        "room"
+      ]
+    },
+    {
+      "itemCode": "ilemon:10000573",
+      "itemName": "防カビテープ 防水テープ 透明 3.2m",
+      "date": "2026-09-17",
+      "slot": "night",
+      "channels": [
+        "room"
+      ]
+    },
+    {
+      "itemCode": "tensijapan:10000001",
+      "itemName": "天使のワンタッチクリーパー フローリングワイパー",
+      "date": "2026-09-17",
+      "slot": "night",
+      "channels": [
+        "room"
+      ]
+    },
+    {
+      "itemCode": "keyuca:10031606",
+      "itemName": "KEYUCA Relio オイルボトル 耐熱ガラス",
+      "date": "2026-09-17",
+      "slot": "night",
+      "channels": [
+        "room"
+      ]
+    },
+    {
+      "itemCode": "atmys:10026653",
+      "itemName": "フロントガラス凍結防止サンシェード リバーシブル",
+      "date": "2026-09-17",
+      "slot": "night",
+      "channels": [
+        "room",
+        "threads",
+        "x"
+      ]
     }
   ]
 }
