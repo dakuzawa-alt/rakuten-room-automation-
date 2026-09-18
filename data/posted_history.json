@@ -1615,6 +1615,53 @@
         "threads",
         "x"
       ]
+    },
+    {
+      "itemCode": "sikoku-kako:10000203",
+      "itemName": "まな板 美(び) ヒノキ 一枚板 木製 日本製",
+      "date": "2026-09-19",
+      "slot": "night",
+      "channels": [
+        "room"
+      ]
+    },
+    {
+      "itemCode": "sleepybed:10001957",
+      "itemName": "木製ステップ＆スツール 子供踏み台 2段 石崎家具",
+      "date": "2026-09-19",
+      "slot": "night",
+      "channels": [
+        "room"
+      ]
+    },
+    {
+      "itemCode": "tansu:10001506",
+      "itemName": "こたつ 2点セット(テーブル+布団) 正方形 69×69 タンスのゲン",
+      "date": "2026-09-19",
+      "slot": "night",
+      "channels": [
+        "room"
+      ]
+    },
+    {
+      "itemCode": "safety-security:10094197",
+      "itemName": "ドクターラボ トイレ踏み台 トイレトレーニング用",
+      "date": "2026-09-19",
+      "slot": "night",
+      "channels": [
+        "room",
+        "threads",
+        "x"
+      ]
+    },
+    {
+      "itemCode": "bigtonya:10000038",
+      "itemName": "シャーク スチームモップ専用 マイクロファイバー交換パッド 4枚セット",
+      "date": "2026-09-19",
+      "slot": "night",
+      "channels": [
+        "room"
+      ]
     }
   ]
 }

@@ -1,0 +1,433 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>9/19 夜の選定 - 楽天ROOM投稿リスト</title>
+<style>
+:root {
+  --bg: #f6f3ee;
+  --surface: #ffffff;
+  --ink: #23211d;
+  --ink-soft: #6b6459;
+  --accent: #a8382c;
+  --accent-ink: #fff6f2;
+  --good: #3f7d58;
+  --border: #e4ddd2;
+  --chip-bg: #efe8db;
+  color-scheme: light dark;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #16140f;
+    --surface: #211f1a;
+    --ink: #ece7dc;
+    --ink-soft: #a89e8d;
+    --accent: #e0685a;
+    --accent-ink: #1c0f0c;
+    --good: #6fb98a;
+    --border: #35322a;
+    --chip-bg: #2a2721;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #16140f; --surface: #211f1a; --ink: #ece7dc; --ink-soft: #a89e8d;
+  --accent: #e0685a; --accent-ink: #1c0f0c; --good: #6fb98a; --border: #35322a; --chip-bg: #2a2721;
+}
+:root[data-theme="light"] {
+  --bg: #f6f3ee; --surface: #ffffff; --ink: #23211d; --ink-soft: #6b6459;
+  --accent: #a8382c; --accent-ink: #fff6f2; --good: #3f7d58; --border: #e4ddd2; --chip-bg: #efe8db;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0; background: var(--bg); color: var(--ink);
+  font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Yu Gothic Medium", "Noto Sans JP", sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+.wrap { max-width: 640px; margin: 0 auto; padding: 0 16px 40px; }
+header.top {
+  position: sticky; top: 0; z-index: 5; background: var(--bg);
+  padding: 18px 16px 12px; border-bottom: 1px solid var(--border);
+  display: flex; align-items: baseline; justify-content: space-between; gap: 12px;
+}
+header.top .eyebrow {
+  font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-soft);
+  font-weight: 600; margin: 0 0 2px;
+}
+header.top h1 { font-size: 1.25rem; margin: 0; font-weight: 700; letter-spacing: -0.01em; }
+header.top .count {
+  background: var(--chip-bg); color: var(--ink-soft); font-size: 0.78rem; font-weight: 600;
+  padding: 5px 10px; border-radius: 999px; white-space: nowrap;
+}
+h2.section-title { font-size: 0.95rem; font-weight: 700; margin: 24px 0 12px; }
+.cards { display: flex; flex-direction: column; gap: 16px; margin-top: 18px; }
+.card {
+  background: var(--surface); border: 1px solid var(--border); border-radius: 16px;
+  padding: 16px; display: flex; flex-direction: column; gap: 12px;
+}
+.card.featured { border-color: var(--accent); border-width: 2px; }
+.featured-badge {
+  align-self: flex-start; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.03em;
+  color: var(--accent-ink); background: var(--accent); padding: 3px 9px; border-radius: 999px;
+}
+.card-head { display: flex; gap: 12px; }
+.card-head img {
+  width: 76px; height: 76px; object-fit: cover; border-radius: 10px;
+  border: 1px solid var(--border); background: var(--chip-bg); flex-shrink: 0;
+}
+.card-head .info { min-width: 0; flex: 1; display: flex; flex-direction: column; gap: 4px; }
+.genre-chip {
+  align-self: flex-start; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.03em;
+  color: var(--accent); background: color-mix(in srgb, var(--accent) 12%, transparent);
+  padding: 2px 8px; border-radius: 999px;
+}
+.name {
+  font-weight: 600; font-size: 0.94rem; line-height: 1.4;
+  display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
+}
+.meta-row { display: flex; align-items: baseline; gap: 8px; font-size: 0.82rem; color: var(--ink-soft); }
+.price { font-variant-numeric: tabular-nums; color: var(--ink); font-weight: 700; font-size: 1.05rem; }
+.stars { letter-spacing: -1px; color: var(--accent); }
+.btn-open {
+  display: flex; align-items: center; justify-content: center; gap: 6px;
+  background: var(--accent); color: var(--accent-ink); border: none; border-radius: 11px;
+  padding: 12px; font-weight: 700; font-size: 0.92rem; text-decoration: none;
+}
+.btn-open:active { opacity: 0.85; }
+.url-row {
+  display: flex; align-items: center; gap: 8px;
+  background: var(--chip-bg); border-radius: 9px; padding: 8px 10px;
+}
+.url-row a {
+  flex: 1; min-width: 0; font-size: 0.76rem; color: var(--accent);
+  word-break: break-all; line-height: 1.45; text-decoration: none;
+}
+.url-row a:active { text-decoration: underline; }
+.reason { font-size: 0.8rem; color: var(--ink-soft); }
+.caption-box { border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }
+.caption-head {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 8px 10px; background: var(--chip-bg);
+}
+.caption-head span {
+  font-size: 0.7rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-soft);
+}
+.copy-btn {
+  background: var(--surface); border: 1px solid var(--border); color: var(--ink);
+  border-radius: 7px; padding: 5px 11px; font-size: 0.76rem; font-weight: 600; cursor: pointer;
+}
+.copy-btn:focus-visible, .btn-open:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.copy-btn.copied { background: var(--good); border-color: var(--good); color: #fff; }
+textarea {
+  width: 100%; display: block; border: none; padding: 10px; font-size: 0.85rem; line-height: 1.55;
+  resize: vertical; min-height: 108px; font-family: inherit; background: var(--surface); color: var(--ink);
+}
+textarea.short { min-height: 60px; }
+textarea:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
+footer.note { margin-top: 22px; font-size: 0.76rem; color: var(--ink-soft); text-align: center; line-height: 1.6; }
+@media (prefers-reduced-motion: no-preference) {
+  .copy-btn { transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease; }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <div>
+    <p class="eyebrow">楽天ROOM 投稿リスト</p>
+    <h1>9/19 夜の選定</h1>
+  </div>
+  <span class="count">5件</span>
+</header>
+
+<h2 class="section-title">📦 商品(ROOM用、全5件)</h2>
+<div class="cards">
+<div class="card">
+  <div class="card-head">
+    <img src="https://thumbnail.image.rakuten.co.jp/@0_mall/sikoku-kako/cabinet/mana2/2024bi_sam1.jpg?_ex=128x128" alt="【10%オフクーポン対象】まな板 美(び) ヒノキ 一枚板 木製 小/中/大 S/M/L 長方形 正方形削り直しサービス有 サイズ調整可 角丸加工可能 日本製" loading="lazy">
+    <div class="info">
+      
+      <span class="genre-chip">キッチン雑貨</span>
+      <div class="name">【10%オフクーポン対象】まな板 美(び) ヒノキ 一枚板 木製 小/中/大 S/M/L 長方形 正方形削り直しサービス有 サイズ調整可 角丸加工可能 日本製</div>
+      <div class="meta-row">
+        <span class="price">¥3,630</span>
+        <span class="stars">★★★★★</span>
+        <span>4.8(680件)</span>
+      </div>
+    </div>
+  </div>
+  <a class="btn-open" href="https://hb.afl.rakuten.co.jp/hgc/g00r51ln.dg4fi5ef.g00r51ln.dg4fj658/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fsikoku-kako%2Fza-ma-bil%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fsikoku-kako%2Fi%2F10000203%2F&rafcid=wsc_i_is_852e9d1a-8f83-49dc-bc9e-cf56a98e669a" target="_blank" rel="noopener">商品ページを開く ↗</a>
+  <div class="url-row">
+    <a href="https://item.rakuten.co.jp/sikoku-kako/za-ma-bil/" target="_blank" rel="noopener">https://item.rakuten.co.jp/sikoku-kako/za-ma-bil/</a>
+    <button class="copy-btn" onclick="copyPlain(this, 'https://item.rakuten.co.jp/sikoku-kako/za-ma-bil/')" type="button">URLコピー</button>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>楽天ROOM用</span>
+      <button class="copy-btn" onclick="copyText(this, 'room-0')" type="button">コピー</button>
+    </div>
+    <textarea id="room-0" readonly>削り直しサービス付きのまな板、初めて知ったとき「そんなのあるの?」ってなった🪵
+
+長年使ってると、包丁の傷で表面がボロボロになってくる。普通は買い替えてたけど、こっちは職人が削って新品状態に戻してくれる仕組み。
+
+ヒノキ一枚板で日本製。抗菌性があって食材のにおい移りも少ないのが木製まな板の良いところで、このシリーズはそれをちゃんと押さえてる🌿
+
+S/M/Lのサイズ展開あり。まず小さめから使い始めるのもあり。レビュー680件で星4.8というのは、木製まな板カテゴリでもかなり信頼できる数字だと思う⭐
+
+#まな板 #木製まな板 #ヒノキ #日本製キッチン用品 #キッチン雑貨 #時短キッチン #共働き家庭 #育児パパ</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="card-head">
+    <img src="https://thumbnail.image.rakuten.co.jp/@0_mall/sleepybed/cabinet/kids/stepstool-ic.jpg?_ex=128x128" alt="木製 「ステップ＆スツール」【滑り止め付き新仕様】 子供 踏み台 2段 踏台 子供 子ども キッズ ステップ 台 トイレ 洗面所 手洗い 脚立 子ども用 おしゃれ 教育 木製 スツール モンテッソーリ 石崎家具" loading="lazy">
+    <div class="info">
+      
+      <span class="genre-chip">育児グッズ</span>
+      <div class="name">木製 「ステップ＆スツール」【滑り止め付き新仕様】 子供 踏み台 2段 踏台 子供 子ども キッズ ステップ 台 トイレ 洗面所 手洗い 脚立 子ども用 おしゃれ 教育 木製 スツール モンテッソーリ 石崎家具</div>
+      <div class="meta-row">
+        <span class="price">¥4,990</span>
+        <span class="stars">★★★★★</span>
+        <span>4.54(1765件)</span>
+      </div>
+    </div>
+  </div>
+  <a class="btn-open" href="https://hb.afl.rakuten.co.jp/hgc/g00qv1sn.dg4fi064.g00qv1sn.dg4fj934/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fsleepybed%2Fstepstool2d-1%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fsleepybed%2Fi%2F10001957%2F&rafcid=wsc_i_is_852e9d1a-8f83-49dc-bc9e-cf56a98e669a" target="_blank" rel="noopener">商品ページを開く ↗</a>
+  <div class="url-row">
+    <a href="https://item.rakuten.co.jp/sleepybed/stepstool2d-1/" target="_blank" rel="noopener">https://item.rakuten.co.jp/sleepybed/stepstool2d-1/</a>
+    <button class="copy-btn" onclick="copyPlain(this, 'https://item.rakuten.co.jp/sleepybed/stepstool2d-1/')" type="button">URLコピー</button>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>楽天ROOM用</span>
+      <button class="copy-btn" onclick="copyText(this, 'room-1')" type="button">コピー</button>
+    </div>
+    <textarea id="room-1" readonly>🪜4,990円で高さ調整が4段階できる踏み台、この価格帯では珍しい仕様だと思う。
+
+「手洗いしたいのにシンクに届かない」問題、毎朝のプチストレスだったりするよね。上段のステップ高さが300/350/400/450mmの4段階で変えられるから、子どもの成長に合わせて買い替えなくていいのがいい🌱
+
+ブナ材使用で滑り止め付き。トイレにも洗面所にも使える2段タイプ。レビューの数がかなり多い部類で、長く使えてる家庭が多そう💪
+
+男女どちらにも使いやすいシンプルなデザインなのも選びやすいポイント。
+
+#子供踏み台 #踏み台 #手洗い #洗面所 #育児グッズ #育児パパ #共働き家庭 #時短育児 #石崎家具</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="card-head">
+    <img src="https://thumbnail.image.rakuten.co.jp/@0_mall/tansu/cabinet/closet/6814001139_10.jpg?_ex=128x128" alt="【20時~5％引クーポン】 布団付き こたつ 2点セット [ こたつテーブル + 掛け布団 ] 暖か おしゃれ コーデュロイ 正方形 69×69 一人暮らし コンパクト 掛布団 こたつセット 電気こたつ こたつ布団 こたつ布団セット 炬燵 掛け布団 1人用 一人用" loading="lazy">
+    <div class="info">
+      
+      <span class="genre-chip">季節もの</span>
+      <div class="name">【20時~5％引クーポン】 布団付き こたつ 2点セット [ こたつテーブル + 掛け布団 ] 暖か おしゃれ コーデュロイ 正方形 69×69 一人暮らし コンパクト 掛布団 こたつセット 電気こたつ こたつ布団 こたつ布団セット 炬燵 掛け布団 1人用 一人用</div>
+      <div class="meta-row">
+        <span class="price">¥10,999</span>
+        <span class="stars">★★★★☆</span>
+        <span>4.27(3799件)</span>
+      </div>
+    </div>
+  </div>
+  <a class="btn-open" href="https://hb.afl.rakuten.co.jp/hgc/g00ppgln.dg4fi082.g00ppgln.dg4fj78d/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Ftansu%2F10001506%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Ftansu%2Fi%2F10001506%2F&rafcid=wsc_i_is_852e9d1a-8f83-49dc-bc9e-cf56a98e669a" target="_blank" rel="noopener">商品ページを開く ↗</a>
+  <div class="url-row">
+    <a href="https://item.rakuten.co.jp/tansu/10001506/" target="_blank" rel="noopener">https://item.rakuten.co.jp/tansu/10001506/</a>
+    <button class="copy-btn" onclick="copyPlain(this, 'https://item.rakuten.co.jp/tansu/10001506/')" type="button">URLコピー</button>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>楽天ROOM用</span>
+      <button class="copy-btn" onclick="copyText(this, 'room-2')" type="button">コピー</button>
+    </div>
+    <textarea id="room-2" readonly>☃️こたつ、今年買おうかなって検索してたら、テーブルと掛け布団のセットが1万円ちょっとで出てきて二度見した。
+
+69×69cmの正方形1人用サイズ。コーデュロイ生地でリバーシブルだから、気分で掛け布団の色を変えられる。省スペースで置けて、育児家庭みたいにリビングに物が多い状況でも邪魔になりにくい🧺
+
+掛け布団は自宅洗濯できるのも助かるポイント。3,799件のレビューがついてると極端な地雷も少なめで安心感がある。
+
+今年こたつデビューしてみようかという人には試しやすい価格帯だと思う。
+
+#こたつ #こたつセット #こたつ布団 #コーデュロイ #タンスのゲン #秋冬インテリア #育児パパ #共働き家庭</textarea>
+  </div>
+</div>
+<div class="card featured">
+  <div class="card-head">
+    <img src="https://thumbnail.image.rakuten.co.jp/@0_mall/safety-security/cabinet/img1/zak-toiletstand/20200130_th.jpg?_ex=128x128" alt="【最大15％OFFクーポン配布中】 トイレ 踏み台 トイレトレーニング 踏み台 トイレ踏み台 子ども用 キッズ トイレステップ 便秘解消 お通じ解消 トイレ 足置き台 ドクターラボ" loading="lazy">
+    <div class="info">
+      <span class="featured-badge">🔥 本日のThreads/Xピックアップ</span>
+      <span class="genre-chip">育児グッズ</span>
+      <div class="name">【最大15％OFFクーポン配布中】 トイレ 踏み台 トイレトレーニング 踏み台 トイレ踏み台 子ども用 キッズ トイレステップ 便秘解消 お通じ解消 トイレ 足置き台 ドクターラボ</div>
+      <div class="meta-row">
+        <span class="price">¥3,980</span>
+        <span class="stars">★★★★☆</span>
+        <span>4.38(1527件)</span>
+      </div>
+    </div>
+  </div>
+  <a class="btn-open" href="https://hb.afl.rakuten.co.jp/hgc/g00qzbln.dg4fi4be.g00qzbln.dg4fjd1e/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fsafety-security%2Fzak-toiletstand-c1%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fsafety-security%2Fi%2F10094197%2F&rafcid=wsc_i_is_852e9d1a-8f83-49dc-bc9e-cf56a98e669a" target="_blank" rel="noopener">商品ページを開く ↗</a>
+  <div class="url-row">
+    <a href="https://item.rakuten.co.jp/safety-security/zak-toiletstand-c1/" target="_blank" rel="noopener">https://item.rakuten.co.jp/safety-security/zak-toiletstand-c1/</a>
+    <button class="copy-btn" onclick="copyPlain(this, 'https://item.rakuten.co.jp/safety-security/zak-toiletstand-c1/')" type="button">URLコピー</button>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>楽天ROOM用</span>
+      <button class="copy-btn" onclick="copyText(this, 'room-3')" type="button">コピー</button>
+    </div>
+    <textarea id="room-3" readonly>🚽購入者の92%がトイトレ成功、という数字で思わず手が止まった商品。
+
+3,980円で現役医師推薦のトイレ踏み台。足がブラブラした状態だとお腹に力を入れにくくて、トイトレが進まない原因になることがあるらしい。この踏み台は理想的な排便姿勢を取れる設計になってる👶
+
+「なんでまだできないんだろう」ってなってる育児パパさんに届いてほしい。道具で解決できることって、意外とあるよなと思う💡
+
+価格と効果のバランスを考えると、迷ってるなら試してみる価値はあると思う。
+
+#トイトレ #トイレトレーニング #トイレ踏み台 #育児グッズ #ドクターラボ #育児パパ #共働き家庭 #子育て</textarea>
+  </div>
+  <p class="reason">🔥 今日のピックアップ理由: 「購入者の92%がトイトレ成功」という具体的な数値が強力な社会的証明として機能し、トイトレに悩む育児パパ層への悩み解決度が5件中もっとも高いと判断した。</p>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>Threads用</span>
+      <button class="copy-btn" onclick="copyText(this, 'threads-0')" type="button">コピー</button>
+    </div>
+    <textarea id="threads-0" readonly>トイトレ、道具の問題だったかもしれない。
+
+足がブラブラした状態でトイレに座ると、お腹に力が入りにくいらしい。踏み台ひとつで排便姿勢が変わるってことを知ってから、「まだできない」の見方が少し変わった。
+
+ドクターラボのトイレ踏み台、3,980円で現役医師推薦。購入者の92%がトイトレ成功ってデータがあって、そのアプローチが刺さった。根性論じゃなくて姿勢の問題だったのか、って。
+
+なかなか進まなくて悩んでる育児パパいたら一回チェックしてみて👌
+
+#PR #育児パパ #トイトレ #共働き家庭</textarea>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>X用</span>
+      <button class="copy-btn" onclick="copyText(this, 'x-0')" type="button">コピー</button>
+    </div>
+    <textarea id="x-0" readonly>トイトレ、道具の問題だったかもしれない。
+
+足がブラブラでトイレ座ると力が入らないらしくて。踏み台ひとつで姿勢が変わる話を知ってから見方が変わった。
+
+ドクターラボのトイレ踏み台、3,980円。購入者の92%がトイトレ成功ってデータがある。根性論じゃなくて姿勢の問題だったのかと。
+
+悩んでる育児パパはチェックしてみて👌
+
+#PR #育児パパ #トイトレ</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="card-head">
+    <img src="https://thumbnail.image.rakuten.co.jp/@0_mall/bigtonya/cabinet/b001/shark4.jpg?_ex=128x128" alt="(品質抜群 厚めの生地)シャークスチームモップ専用 マイクロファイバー交換パッド4枚セット 替えパッド 取り替え 交換用 マイクロファイバーモップパッド 　(ハイブリッドスチーム使用可) スチームクリーナー" loading="lazy">
+    <div class="info">
+      
+      <span class="genre-chip">掃除洗濯</span>
+      <div class="name">(品質抜群 厚めの生地)シャークスチームモップ専用 マイクロファイバー交換パッド4枚セット 替えパッド 取り替え 交換用 マイクロファイバーモップパッド 　(ハイブリッドスチーム使用可) スチームクリーナー</div>
+      <div class="meta-row">
+        <span class="price">¥1,480</span>
+        <span class="stars">★★★★☆</span>
+        <span>4.26(228件)</span>
+      </div>
+    </div>
+  </div>
+  <a class="btn-open" href="https://hb.afl.rakuten.co.jp/hgc/g00ryj2n.dg4fi99a.g00ryj2n.dg4fj501/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fbigtonya%2Fx001-5%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fbigtonya%2Fi%2F10000038%2F&rafcid=wsc_i_is_852e9d1a-8f83-49dc-bc9e-cf56a98e669a" target="_blank" rel="noopener">商品ページを開く ↗</a>
+  <div class="url-row">
+    <a href="https://item.rakuten.co.jp/bigtonya/x001-5/" target="_blank" rel="noopener">https://item.rakuten.co.jp/bigtonya/x001-5/</a>
+    <button class="copy-btn" onclick="copyPlain(this, 'https://item.rakuten.co.jp/bigtonya/x001-5/')" type="button">URLコピー</button>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>楽天ROOM用</span>
+      <button class="copy-btn" onclick="copyText(this, 'room-4')" type="button">コピー</button>
+    </div>
+    <textarea id="room-4" readonly>🧹シャークのスチームモップ使ってて、替えパッドをどこで買うか意外と困ってたんだよな。
+
+純正品はもっと高かったりするし、対応品を探してもサイズが合うか不安だったりして。このパッドはシャークスチームモップ全般対応で4枚セットが1,480円。枚数あると洗い替えしながら使えて助かる🔄
+
+マイクロファイバー製でサイズは15.5×27.5cm。消耗品系の替えパッドにしてはちゃんと評価がついてる💧
+
+スチームモップ持ってるのに替えパッドだけで躊躇してる人いたら、試してみる価値はあると思う。
+
+#シャーク #スチームモップ #スチームクリーナー #替えパッド #掃除グッズ #時短掃除 #共働き家庭 #育児パパ</textarea>
+  </div>
+</div>
+</div>
+
+<h2 class="section-title">💬 今日のあるある投稿ネタ(商品リンクなし)</h2>
+<div class="cards">
+<div class="card">
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>あるある投稿 #1</span>
+      <button class="copy-btn" onclick="copyText(this, 'daily-0')" type="button">コピー</button>
+    </div>
+    <textarea id="daily-0" class="short" readonly>ご飯作りながら泣き声聞こえてくる時間、あれ何回乗り越えても慣れんな</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>あるある投稿 #2</span>
+      <button class="copy-btn" onclick="copyText(this, 'daily-1')" type="button">コピー</button>
+    </div>
+    <textarea id="daily-1" class="short" readonly>子どもの写真撮ろうとスマホ向けたら笑ってくれた。が、後ろに山積みの洗濯物。背景だけきれいにしてから撮れよって話なんだけど、泣く前に撮るのを優先してしまう毎回 😅</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>あるある投稿 #3</span>
+      <button class="copy-btn" onclick="copyText(this, 'daily-2')" type="button">コピー</button>
+    </div>
+    <textarea id="daily-2" class="short" readonly>子どもにイライラしやすい日の共通点、うちだけかな
+・自分が寝不足
+・自分がまだ食べてない
+・なんか急いでる
+イライラの9割は子のせいじゃなくて自分のコンディションの問題なんだよな、わかってはいるんだけど</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>あるある投稿 #4</span>
+      <button class="copy-btn" onclick="copyText(this, 'daily-3')" type="button">コピー</button>
+    </div>
+    <textarea id="daily-3" class="short" readonly>夜泣き対応した記憶、自分の中には何十回もあるけど、パートナーは「私もたまに起きてたよ」って言う。お互い夢かと思ってやり過ごしてる可能性がある、あの夜たちは一体なんだったんだ 🌙</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>あるある投稿 #5</span>
+      <button class="copy-btn" onclick="copyText(this, 'daily-4')" type="button">コピー</button>
+    </div>
+    <textarea id="daily-4" class="short" readonly>週末、子どもがお絵かきした紙を持ってきて「これパパ」って渡してきた。棒人間かと思ったら顔の中にちゃんと目と鼻と口があって、地味に画力上がってる。疲れてたのに全部どこかに行った ☺️</textarea>
+  </div>
+</div>
+</div>
+
+<footer class="note">商品ページを確認し、投稿文をコピーして手動で投稿してください。<br>Threads/Xの商品紹介は1日1件・あるある投稿と織り交ぜてスパム判定を避けてください。<br>価格・レビューは選定時点の実データです。</footer>
+</div>
+<script>
+function flash(btn) {
+  const original = btn.textContent;
+  btn.textContent = 'コピーしました';
+  btn.classList.add('copied');
+  setTimeout(() => { btn.textContent = original; btn.classList.remove('copied'); }, 1500);
+}
+function copyText(btn, id) {
+  const el = document.getElementById(id);
+  el.select();
+  el.setSelectionRange(0, 999999);
+  navigator.clipboard.writeText(el.value).then(() => flash(btn)).catch(() => {
+    try { document.execCommand('copy'); flash(btn); } catch (e) {}
+  });
+}
+function copyPlain(btn, text) {
+  navigator.clipboard.writeText(text).then(() => flash(btn)).catch(() => {
+    const t = document.createElement('textarea');
+    t.value = text; document.body.appendChild(t); t.select();
+    try { document.execCommand('copy'); flash(btn); } catch (e) {}
+    document.body.removeChild(t);
+  });
+}
+</script>
+</body>
+</html>
