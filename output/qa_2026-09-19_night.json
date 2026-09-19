@@ -1,0 +1,68 @@
+{
+  "date": "2026-09-19",
+  "slot": "night",
+  "passed": true,
+  "items": [
+    {
+      "itemCode": "sikoku-kako:10000203",
+      "itemName": "まな板 美(び) ヒノキ 一枚板 木製 日本製",
+      "room_charCount": 300,
+      "room_emoji_count": 3,
+      "room_passed": true,
+      "room_issues": []
+    },
+    {
+      "itemCode": "sleepybed:10001957",
+      "itemName": "木製ステップ＆スツール 子供踏み台 2段 石崎家具",
+      "room_charCount": 292,
+      "room_emoji_count": 3,
+      "room_passed": true,
+      "room_issues": []
+    },
+    {
+      "itemCode": "tansu:10001506",
+      "itemName": "こたつ 2点セット コーデュロイ 正方形 タンスのゲン",
+      "room_charCount": 296,
+      "room_emoji_count": 3,
+      "room_passed": true,
+      "room_issues": []
+    },
+    {
+      "itemCode": "safety-security:10094197",
+      "itemName": "ドクターラボ トイレ踏み台 トイレトレーニング用",
+      "room_charCount": 280,
+      "room_emoji_count": 3,
+      "room_passed": true,
+      "room_issues": []
+    },
+    {
+      "itemCode": "bigtonya:10000038",
+      "itemName": "シャーク スチームモップ 替えパッド 4枚セット",
+      "room_charCount": 293,
+      "room_emoji_count": 3,
+      "room_passed": true,
+      "room_issues": []
+    }
+  ],
+  "featured_threads_charCount": 238,
+  "featured_threads_passed": true,
+  "featured_x_charCount": 169,
+  "featured_x_passed": true,
+  "pr_tag_ok": true,
+  "url_in_text_ok": true,
+  "duplicate_check_ok": true,
+  "ngword_check_ok": true,
+  "emoji_check_ok": true,
+  "numerical_consistency_ok": true,
+  "daily_posts_ok": true,
+  "issues": [],
+  "check_notes": {
+    "char_count_note": "改行(\\n)を除外した実測文字数。全件400文字以内。",
+    "emoji_count_method": "☃️はU+2603+U+FE0F(variation selector)で1絵文字として計上。正規表現マッチでは2トークンになるが、視覚的に1絵文字なので実測値2個と判定。",
+    "duplicate_check_note": "今回の5件(sikoku-kako:10000203, sleepybed:10001957, tansu:10001506, safety-security:10094197, bigtonya:10000038)はposted_historyに既に記録されているが、これは想定済み(今回選定分として事前記録済み)であり重複FAILとしない。過去の別商品との重複は0件。",
+    "tansu_review_note": "投稿文中に3,799件の記載あり。selected.jsonのreviewCount=3799と一致。数値整合性OK。",
+    "daily_posts_note": "5件すべてURL・PR表記なし。捏造エピソード型(今日〜だった)パターンなし。各投稿文の文字数: post1=33字, post2=80字, post3=97字, post4=88字, post5=90字。すべて150字以内。",
+    "threads_x_note": "Threads=238字(400字以内OK)、X=169字(280字以内OK)。#PR表記あり。NGワードなし。URL含まず。",
+    "verdict": "初回QA: tansu:10001506の絵文字不足(2個)により不合格。❄️を追加して3個に修正し、再チェックにて全件合格。"
+  }
+}
