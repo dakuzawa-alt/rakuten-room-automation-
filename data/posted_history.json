@@ -1662,6 +1662,53 @@
       "channels": [
         "room"
       ]
+    },
+    {
+      "itemCode": "roomy:10015281",
+      "itemName": "山崎実業 tower 密閉米びつ",
+      "date": "2026-09-19",
+      "slot": "morning",
+      "channels": [
+        "room"
+      ]
+    },
+    {
+      "itemCode": "bon-like:10007093",
+      "itemName": "オープンラック 木製 幅60 絵本棚",
+      "date": "2026-09-19",
+      "slot": "morning",
+      "channels": [
+        "room"
+      ]
+    },
+    {
+      "itemCode": "rcmd:30268767",
+      "itemName": "siroca 全自動コーヒーメーカー SC-A271",
+      "date": "2026-09-19",
+      "slot": "morning",
+      "channels": [
+        "room"
+      ]
+    },
+    {
+      "itemCode": "kaitekistore:10000835",
+      "itemName": "7ways ベビーサークル 置くだけ 扉付き",
+      "date": "2026-09-19",
+      "slot": "morning",
+      "channels": [
+        "room",
+        "threads",
+        "x"
+      ]
+    },
+    {
+      "itemCode": "bathroom:10004347",
+      "itemName": "山崎実業 tower マグネット水切りワイパー",
+      "date": "2026-09-19",
+      "slot": "morning",
+      "channels": [
+        "room"
+      ]
     }
   ]
 }

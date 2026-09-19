@@ -1,0 +1,64 @@
+{
+  "date": "2026-09-19",
+  "slot": "morning",
+  "passed": true,
+  "items": [
+    {
+      "itemCode": "roomy:10015281",
+      "itemName": "山崎実業 tower 密閉米びつ",
+      "room_charCount": 317,
+      "room_emoji_count": 4,
+      "room_passed": true,
+      "room_issues": []
+    },
+    {
+      "itemCode": "bon-like:10007093",
+      "itemName": "オープンラック 木製 幅60 絵本棚",
+      "room_charCount": 309,
+      "room_emoji_count": 4,
+      "room_passed": true,
+      "room_issues": []
+    },
+    {
+      "itemCode": "rcmd:30268767",
+      "itemName": "siroca 全自動コーヒーメーカー SC-A271",
+      "room_charCount": 298,
+      "room_emoji_count": 3,
+      "room_passed": true,
+      "room_issues": []
+    },
+    {
+      "itemCode": "kaitekistore:10000835",
+      "itemName": "7ways ベビーサークル 置くだけ 扉付き",
+      "room_charCount": 285,
+      "room_emoji_count": 4,
+      "room_passed": true,
+      "room_issues": []
+    },
+    {
+      "itemCode": "bathroom:10004347",
+      "itemName": "山崎実業 tower マグネット水切りワイパー",
+      "room_charCount": 317,
+      "room_emoji_count": 4,
+      "room_passed": true,
+      "room_issues": []
+    }
+  ],
+  "featured_threads_charCount": 233,
+  "featured_threads_passed": true,
+  "featured_x_charCount": 161,
+  "featured_x_passed": true,
+  "pr_tag_ok": true,
+  "url_in_text_ok": true,
+  "duplicate_check_ok": true,
+  "ngword_check_ok": true,
+  "emoji_check_ok": true,
+  "numerical_consistency_ok": true,
+  "daily_posts_ok": true,
+  "issues": [],
+  "check_notes": {
+    "siroca_emoji_detail": "冒頭☕(U+2615)、本文中⏰(U+23F0)、🎶(U+1F3B6)の計3個を確認。前回QAでは正規表現パターンがU+2300-23FF範囲(Misc Technical)を含んでいなかったため2個と誤検出していた。修正済み投稿文での実測値は3個でありOK。",
+    "char_count_note": "改行(\\n)除外後の実測値を使用。JSON内のcopywriter記載のcharCountと一部差異あるが全件400文字以内に収まっており問題なし。",
+    "daily_posts_note": "5件すべてURL・PR表記なし。「今週3回目」「帰り道で気づいて」等の表現はあるある共感投稿として許容範囲(特定日付・固有エピソードの断言型ではない)。"
+  }
+}
