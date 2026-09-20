@@ -29,6 +29,10 @@
 ユーザーに確認したところ、9/15夜(16:40開始の自動実行)は通知が届かなかった。原因調査の結果、この実行はコミット`adf3829`(16:52、Artifact削除・PushNotification仕様修正・`run_*.bat`の配線バグ修正)より**前**に動いていたことが判明。つまり「`run_*.bat`が`prompt_*.txt`を実際には読み込んでいなかったバグ」が直る前の実行であり、通知が届かなかったのはその壊れた配線が原因である可能性が高い。ヘッドレス実行下でのPushNotificationツール自体の可否は、サンドボックス制限(ネストしたエージェント生成がブロックされる)のためこのセッションからは直接検証できなかった。
 **次アクション**: 修正後の設定で動く次回の自動実行(朝7:00の`RakutenRoomSelect_Morning`、または夜21:00)で通知が届くか確認すること。届かなければ、PushNotificationツール自体がヘッドレス実行で機能しない(Artifactツールと同じ制約)可能性を疑い、代替の通知手段を検討する。
 
+**2026-09-20追記: 通知未達の真因が判明**
+統括エージェントが対話セッション内で`PushNotification`を直接実行したところ、結果は「Mobile push not sent (Remote Control inactive)」だった。つまり**スマホ(Remote Control)が接続されていないと、どんな状況でもモバイル通知は送れない仕様**であることが判明した。これは`run_*.bat`の配線バグとは無関係の、より根本的な制約。ヘッドレス実行(`claude -p`)では対話セッションと違いRemote Control接続が確立されないため、今後も自動実行からのモバイル通知は原理的に届かない可能性が高い。
+**次アクション**: ユーザー側でRemote Control接続の設定方法を確認し、常時接続できるか検討すること。無理であれば、通知はあきらめて「毎回固定URL(archiveの一覧メニュー)を自分でチェックする」運用に倒す方が現実的。
+
 ### 3-3. 旧タスクの二重発火 — 2026-09-17、ユーザーがGUIから無効化して解消
 `RakutenROOM_Morning` / `RakutenROOM_Night`（全部大文字、8/31作成の初期タスク）が9/17まで **Ready** 状態で残っており、`RakutenRoomSelect_Morning`/`_Night`（正しい方）と同じ時間帯に二重発火していたことが確認された。証拠: `logs/run_history.log`で9/13・9/15・9/17に同一slotのSTART行が数十ミリ秒差で2回記録、`data/posted_history.json`で9/15夜・9/17朝が本来5件のところ10件(重複ではなく別々の商品5件×2回分)記録されていた。Claude側からは`Disable-ScheduledTask`が権限の壁(`Access is denied`)で実行できなかったため、**ユーザーがタスクスケジューラGUIから無効化**(2026-09-17)。現在は以下の状態:
 ```
@@ -41,6 +45,11 @@ RakutenROOM_Night           Disabled    ← 旧、無効化済み
 
 ### 3-3-1. 9/16夜の実行がハングして未完了に終わった事例
 `run_history.log`に9/16夜(21:00:02.79)のSTART行はあるが、EXIT行・git commitが一切存在しない。実行時間上限30分でタスクスケジューラに強制終了されたとみられる。この日は二重発火はしていなかった(START行は1つ)ため、3-3の二重発火だけが原因とは言い切れない。他の要因(楽天API側の遅延、ネットワーク瞬断など)の可能性も残るため、今後ハングが再発するか継続観察すること。
+
+### 3-3-2. 9/20夜が丸ごとスキップされた事例 — 原因はPCのスリープ、統括エージェントが手動でリカバリ
+`RakutenRoomSelect_Night`のLastRunTimeが9/19のまま、NextRunTimeが9/21に飛んでいた(9/20が完全にスキップ)。Windowsイベントログを確認したところ、9/20 11:01頃から22:32(蓋を開けて復帰)までノートPCが**Modern Standby(スリープ)**に入ったままで、21:00の発火タイミングをまるごと逃していたことが判明。タスク設定は`WakeToRun: True`だが、蓋が閉じた状態だとスリープからの自動起床が効かないことがある(ノートPCの電源設定依存)。`Microsoft-Windows-TaskScheduler/Operational`ログは無効化されており(`IsEnabled: False`)、タスク側の詳細な失敗ログは取得できなかった。
+→ ユーザーの指示で統括エージェントが対話セッション内でproduct-scout→copywriter→qa-checkerのフローを手動実行してリカバリした(9/20夜、QA差し戻し3回を経て確定)。
+**次アクション**: 再発防止には「ノートPCの電源設定で蓋を閉じてもスリープしない」設定変更(ユーザー側)が必要。または夜間は毎回ユーザーがPCを開いた状態にしておく運用でカバーする。
 
 ### 3-4. クラウドのRemoteTriggerルーチンは無効化済み
 過去に `trig_01XRrGTzb3M83vNmZANrFY2H`（名前「楽天ROOM」）というクラウドルーチンを作ったが、クラウドのサンドボックスから楽天API (`openapi.rakuten.co.jp`) への通信が403で拒否されるため機能しない。`enabled: false` に設定して停止中。再度使うなら、ネットワーク許可のある別のクラウド環境を作る必要がある（未着手）。
@@ -69,9 +78,11 @@ RakutenROOM_Night           Disabled    ← 旧、無効化済み
 7. QAスクリプトで検証（NGワード・絵文字数・字数・重複・数値一致）→ 過去セッションで都度使い捨てPythonスクリプトをBashで書いていた。定型化されたQAスクリプトは無いので、必要なら新規に組む
 8. `scripts/generate_page.py --selected ... --captions ... --out ... --label "..."` でページ生成
 9. `data/posted_history.json` に追記
-10. ページを `<style>`+`<body>`だけの断片に変換し、`<img src="https://...">` を全てbase64データURIに埋め込み（Artifactの外部画像CSP制限のため）
-11. `Artifact` ツールで公開（faviconは🛍️固定）
-12. `git add -A && git commit && git push origin main`
+10. 生成したページを `docs/archive/YYYY-MM-DD_slot.html` にコピーし、`python scripts/build_archive_index.py` で `docs/index.html`(一覧メニュー)を再生成
+11. `git add -A && git commit && git push origin main`
+12. 可能ならPushNotificationで完了通知(ただしRemote Control未接続だと届かない。3-2参照)
+
+**2026-09-20実績**: この手順をサブエージェント経由(product-scout→copywriter→qa-checker)で実行し、QA差し戻し3回を経て9/20夜分を確定させた。product-scout/copywriter/qa-checkerの3エージェント構成は手動リカバリでも問題なく機能することを確認済み。
 
 ## 6. 次回セッションでの未対応アクション項目
 
@@ -81,9 +92,11 @@ RakutenROOM_Night           Disabled    ← 旧、無効化済み
 | 2 | ~~旧タスク `RakutenROOM_Morning`/`RakutenROOM_Night` をタスクスケジューラGUIで無効化~~ → 完了(2026-09-17)。3-3参照 | 完了 |
 | 3 | ~~「簡易トイレ」重複素通り事例の原因調査~~ → 調査済み、誤検知と判明(2026-09-16、3-6参照)。対応不要 | 完了 |
 | 4 | ~~GitHub Pages化するか改めて検討~~ → 完了(2026-09-16)。ユーザーが無料の方法(リポジトリPublic化)を選択。GitHub Pages有効化済み、固定URL https://dakuzawa-alt.github.io/rakuten-room-automation-/ 。`prompt_morning.txt`/`prompt_night.txt`に「docs/index.htmlへコピー」ステップを追加済み。次回自動実行で反映されるか要確認 | 完了 |
-| 5 | 自動実行が今後も安定するか、1週間程度は`logs/run_history.log`と`output/`の日付欠けを定期チェック推奨。特に9/16夜のハングが再発しないか要観察(3-3-1参照) | 次セッション |
-| 6 | 修正後の設定で動く次回の自動実行後、PushNotificationが実際に届くか確認。届かなければヘッドレス実行でのツール可否を疑い代替の通知手段を検討 | ユーザー→報告 |
+| 5 | 自動実行が今後も安定するか、`logs/run_history.log`と`output/`の日付欠けを定期チェック推奨。9/16夜(ハング)・9/20夜(PCスリープでスキップ)と2回の未完了事例あり | 次セッション |
+| 6 | ~~PushNotificationが実際に届くか確認~~ → 届かない原因が判明(2026-09-20、3-2追記参照)。「Mobile push not sent (Remote Control inactive)」。Remote Control接続がないと原理的に送れない | 完了(要ユーザー判断) |
 | 7 | 9/15夜・9/17朝の`posted_history.json`に旧タスク二重発火で余分な5件ずつが記録済み(実害なし、投稿はされていない)。将来カテゴリ選定の幅が狭まる程度の軽微な影響なので、気になれば該当itemCodeを削除しても良いが緊急ではない | 任意・次セッション |
+| 8 | Remote Control接続を常時有効にできるか検討。できなければ、通知に頼らず「毎日ユーザー自身が固定URL(一覧メニュー)を開いて確認する」運用に切り替える | ユーザー |
+| 9 | ノートPCの電源設定(蓋を閉じたときスリープしない設定)への変更を検討。9/20夜のような発火スキップの再発防止 | ユーザー |
 
 ## 7. よくある質問への回答（過去に何度も聞かれた）
 
