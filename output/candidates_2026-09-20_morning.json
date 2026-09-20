@@ -1,0 +1,67 @@
+{
+  "date": "2026-09-20",
+  "slot": "morning",
+  "note": "APIから複数回検索(計7回)を行ったが、最終的に品質基準・重複基準を満たす候補が4件のみ確保できた。まな板が3件以上投稿済み(除外)、ペットシーツはペルソナ外(除外)、抱っこ紐/スリング系は投稿済み(除外)、見守りカメラは同ブランドSecuSTATION投稿済み(除外)、お米保存袋は同タイプ投稿済み(除外)、B品タオルは品質基準外(除外)のため、5件に達しなかった。5件目はキーワード「知育玩具 木製 1歳」で追加検索しエデュテ カースライダーを追加。",
+  "selected": [
+    {
+      "itemCode": "e-office:10000765",
+      "itemName": "CREW'S（クルーズ） オフィスボックス OB-2000 ファイル 文房具 ステーショナリー 書類 ケース ファイル 収納 オフィス A4 ハンギング ファイルボックス 海外 輸入 デザイン リモートワーク 書類整理 ハンギングファイル ブラック ブルー",
+      "itemPrice": 5984,
+      "reviewCount": 140,
+      "reviewAverage": 4.66,
+      "itemUrl": "https://item.rakuten.co.jp/e-office/ob2000/",
+      "imageUrl": "https://thumbnail.image.rakuten.co.jp/@0_mall/e-office/cabinet/crews/ob2000_01.jpg?_ex=128x128",
+      "shopName": "おしゃれ文具専門店イー・オフィス",
+      "genre": "収納整理",
+      "catchcopy": "ハンギングファイル5色付き、書類をサッと入れるだけのA4ファイルボックス(オランダ製)"
+    },
+    {
+      "itemCode": "officeland:10287262",
+      "itemName": "リヒトラブ LIHIT LAB. noie noie-style ドキュメントボックス ヨコ A4 13ポケット 蛇腹 ジャバラ 書類 収納 ホワイト F7691-0 ファイルボックス",
+      "itemPrice": 1248,
+      "reviewCount": 141,
+      "reviewAverage": 4.58,
+      "itemUrl": "https://item.rakuten.co.jp/officeland/6332521/",
+      "imageUrl": "https://thumbnail.image.rakuten.co.jp/@0_mall/officeland/cabinet/lihit1808/6332521.jpg?_ex=128x128",
+      "shopName": "オフィスランド",
+      "genre": "収納整理",
+      "catchcopy": "ジャバラ13ポケットで卓上でも収納でも使えるA4ドキュメントボックス"
+    },
+    {
+      "itemCode": "nemuri-seisakusyo:10000008",
+      "itemName": "除湿マットはれふわり 布団 湿気 除湿マット 敷パッド 防ダニ 防カビ 眠り製作所 日本製 消臭 除湿 吸湿 除湿シート 除湿マット 敷きマット 寝汗 丸洗い シリカゲル 洗える 花粉 黄砂対策 結露 臭い 洗濯機 アレルゲン 母の日 父の日 プレゼント",
+      "itemPrice": 4950,
+      "reviewCount": 240,
+      "reviewAverage": 4.56,
+      "itemUrl": "https://item.rakuten.co.jp/nemuri-seisakusyo/pt-s90g/",
+      "imageUrl": "https://thumbnail.image.rakuten.co.jp/@0_mall/nemuri-seisakusyo/cabinet/biiino/item/main-image/20260812113533_1.jpg?_ex=128x128",
+      "shopName": "抱かれ枕の眠り製作所",
+      "genre": "季節もの",
+      "catchcopy": "日本製・シリカゲル調湿、丸洗いOKの敷きマット。防ダニ・防カビ・消臭"
+    },
+    {
+      "itemCode": "cogit:10001651",
+      "itemName": "コジット お風呂のカビきれい お風呂 カビ対策 防カビ 浴室 カビ予防 カビ防止 冬 シャワーカーテン 防カビ 赤カビ 対策 ハイパワー バイオ コジット 貼る 吊り下げ 湿気 カビ取り 防カビ 対策 掃除簡単 湿気対策 メーカー直送 夏 冬 カビ取り",
+      "itemPrice": 1320,
+      "reviewCount": 613,
+      "reviewAverage": 4.26,
+      "itemUrl": "https://item.rakuten.co.jp/cogit/061825/",
+      "imageUrl": "https://thumbnail.image.rakuten.co.jp/@0_mall/cogit/cabinet/page/027125_0218.jpg?_ex=128x128",
+      "shopName": "アイデア.com コジット公式ストア",
+      "genre": "掃除洗濯",
+      "catchcopy": "貼るだけ・吊るすだけのバイオ防カビ。浴室の赤カビ対策に約6ヶ月効果持続"
+    },
+    {
+      "itemCode": "edute:10002201",
+      "itemName": "木のおもちゃ スロープトイ 知育玩具 カースライダー エデュテ おもちゃ 木製 1歳誕生日プレゼント 誕生日プレゼント 1歳 一歳 1歳半 2歳 男の子 女の子 赤ちゃん",
+      "itemPrice": 5500,
+      "reviewCount": 572,
+      "reviewAverage": 4.7,
+      "itemUrl": "https://item.rakuten.co.jp/edute/lbw-slider/",
+      "imageUrl": "https://thumbnail.image.rakuten.co.jp/@0_mall/edute/cabinet/labelwood/lbw-slider_1.jpg?_ex=128x128",
+      "shopName": "木のおもちゃ知育玩具 エデュテ",
+      "genre": "育児グッズ",
+      "catchcopy": "1〜2歳の指先・空間認識を育てる木製スロープトイ。レール伝いに車がころころ転がる"
+    }
+  ]
+}

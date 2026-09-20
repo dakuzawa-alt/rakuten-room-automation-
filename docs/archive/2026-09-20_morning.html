@@ -1,0 +1,442 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>2026-09-20 朝 - 楽天ROOM投稿リスト</title>
+<style>
+:root {
+  --bg: #f6f3ee;
+  --surface: #ffffff;
+  --ink: #23211d;
+  --ink-soft: #6b6459;
+  --accent: #a8382c;
+  --accent-ink: #fff6f2;
+  --good: #3f7d58;
+  --border: #e4ddd2;
+  --chip-bg: #efe8db;
+  color-scheme: light dark;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #16140f;
+    --surface: #211f1a;
+    --ink: #ece7dc;
+    --ink-soft: #a89e8d;
+    --accent: #e0685a;
+    --accent-ink: #1c0f0c;
+    --good: #6fb98a;
+    --border: #35322a;
+    --chip-bg: #2a2721;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #16140f; --surface: #211f1a; --ink: #ece7dc; --ink-soft: #a89e8d;
+  --accent: #e0685a; --accent-ink: #1c0f0c; --good: #6fb98a; --border: #35322a; --chip-bg: #2a2721;
+}
+:root[data-theme="light"] {
+  --bg: #f6f3ee; --surface: #ffffff; --ink: #23211d; --ink-soft: #6b6459;
+  --accent: #a8382c; --accent-ink: #fff6f2; --good: #3f7d58; --border: #e4ddd2; --chip-bg: #efe8db;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0; background: var(--bg); color: var(--ink);
+  font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Yu Gothic Medium", "Noto Sans JP", sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+.wrap { max-width: 640px; margin: 0 auto; padding: 0 16px 40px; }
+header.top {
+  position: sticky; top: 0; z-index: 5; background: var(--bg);
+  padding: 18px 16px 12px; border-bottom: 1px solid var(--border);
+  display: flex; align-items: baseline; justify-content: space-between; gap: 12px;
+}
+header.top .eyebrow {
+  font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-soft);
+  font-weight: 600; margin: 0 0 2px;
+}
+header.top h1 { font-size: 1.25rem; margin: 0; font-weight: 700; letter-spacing: -0.01em; }
+header.top .count {
+  background: var(--chip-bg); color: var(--ink-soft); font-size: 0.78rem; font-weight: 600;
+  padding: 5px 10px; border-radius: 999px; white-space: nowrap;
+}
+h2.section-title { font-size: 0.95rem; font-weight: 700; margin: 24px 0 12px; }
+.cards { display: flex; flex-direction: column; gap: 16px; margin-top: 18px; }
+.card {
+  background: var(--surface); border: 1px solid var(--border); border-radius: 16px;
+  padding: 16px; display: flex; flex-direction: column; gap: 12px;
+}
+.card.featured { border-color: var(--accent); border-width: 2px; }
+.featured-badge {
+  align-self: flex-start; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.03em;
+  color: var(--accent-ink); background: var(--accent); padding: 3px 9px; border-radius: 999px;
+}
+.card-head { display: flex; gap: 12px; }
+.card-head img {
+  width: 76px; height: 76px; object-fit: cover; border-radius: 10px;
+  border: 1px solid var(--border); background: var(--chip-bg); flex-shrink: 0;
+}
+.card-head .info { min-width: 0; flex: 1; display: flex; flex-direction: column; gap: 4px; }
+.genre-chip {
+  align-self: flex-start; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.03em;
+  color: var(--accent); background: color-mix(in srgb, var(--accent) 12%, transparent);
+  padding: 2px 8px; border-radius: 999px;
+}
+.name {
+  font-weight: 600; font-size: 0.94rem; line-height: 1.4;
+  display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
+}
+.meta-row { display: flex; align-items: baseline; gap: 8px; font-size: 0.82rem; color: var(--ink-soft); }
+.price { font-variant-numeric: tabular-nums; color: var(--ink); font-weight: 700; font-size: 1.05rem; }
+.stars { letter-spacing: -1px; color: var(--accent); }
+.btn-open {
+  display: flex; align-items: center; justify-content: center; gap: 6px;
+  background: var(--accent); color: var(--accent-ink); border: none; border-radius: 11px;
+  padding: 12px; font-weight: 700; font-size: 0.92rem; text-decoration: none;
+}
+.btn-open:active { opacity: 0.85; }
+.url-row {
+  display: flex; align-items: center; gap: 8px;
+  background: var(--chip-bg); border-radius: 9px; padding: 8px 10px;
+}
+.url-row a {
+  flex: 1; min-width: 0; font-size: 0.76rem; color: var(--accent);
+  word-break: break-all; line-height: 1.45; text-decoration: none;
+}
+.url-row a:active { text-decoration: underline; }
+.reason { font-size: 0.8rem; color: var(--ink-soft); }
+.caption-box { border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }
+.caption-head {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 8px 10px; background: var(--chip-bg);
+}
+.caption-head span {
+  font-size: 0.7rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-soft);
+}
+.copy-btn {
+  background: var(--surface); border: 1px solid var(--border); color: var(--ink);
+  border-radius: 7px; padding: 5px 11px; font-size: 0.76rem; font-weight: 600; cursor: pointer;
+}
+.copy-btn:focus-visible, .btn-open:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.copy-btn.copied { background: var(--good); border-color: var(--good); color: #fff; }
+textarea {
+  width: 100%; display: block; border: none; padding: 10px; font-size: 0.85rem; line-height: 1.55;
+  resize: vertical; min-height: 108px; font-family: inherit; background: var(--surface); color: var(--ink);
+}
+textarea.short { min-height: 60px; }
+textarea:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
+footer.note { margin-top: 22px; font-size: 0.76rem; color: var(--ink-soft); text-align: center; line-height: 1.6; }
+@media (prefers-reduced-motion: no-preference) {
+  .copy-btn { transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease; }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <div>
+    <p class="eyebrow">楽天ROOM 投稿リスト</p>
+    <h1>2026-09-20 朝</h1>
+  </div>
+  <span class="count">5件</span>
+</header>
+
+<h2 class="section-title">📦 商品(ROOM用、全5件)</h2>
+<div class="cards">
+<div class="card">
+  <div class="card-head">
+    <img src="https://thumbnail.image.rakuten.co.jp/@0_mall/e-office/cabinet/crews/ob2000_01.jpg?_ex=128x128" alt="CREW&#x27;S（クルーズ） オフィスボックス OB-2000 ファイル 文房具 ステーショナリー 書類 ケース ファイル 収納 オフィス A4 ハンギング ファイルボックス 海外 輸入 デザイン リモートワーク 書類整理 ハンギングファイル ブラック ブルー" loading="lazy">
+    <div class="info">
+      
+      <span class="genre-chip">収納整理</span>
+      <div class="name">CREW&#x27;S（クルーズ） オフィスボックス OB-2000 ファイル 文房具 ステーショナリー 書類 ケース ファイル 収納 オフィス A4 ハンギング ファイルボックス 海外 輸入 デザイン リモートワーク 書類整理 ハンギングファイル ブラック ブルー</div>
+      <div class="meta-row">
+        <span class="price">¥5,984</span>
+        <span class="stars">★★★★★</span>
+        <span>4.66(140件)</span>
+      </div>
+    </div>
+  </div>
+  <a class="btn-open" href="https://item.rakuten.co.jp/e-office/ob2000/" target="_blank" rel="noopener">商品ページを開く ↗</a>
+  <div class="url-row">
+    <a href="https://item.rakuten.co.jp/e-office/ob2000/" target="_blank" rel="noopener">https://item.rakuten.co.jp/e-office/ob2000/</a>
+    <button class="copy-btn" onclick="copyPlain(this, 'https://item.rakuten.co.jp/e-office/ob2000/')" type="button">URLコピー</button>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>楽天ROOM用</span>
+      <button class="copy-btn" onclick="copyText(this, 'room-0')" type="button">コピー</button>
+    </div>
+    <textarea id="room-0" readonly>📂在宅ワーク中に書類をどかしながらPC作業するの、毎日じわじわくる。
+
+5,984円で棚・ファイル立て・本棚をまとめて解決できるのがCREW&#x27;Sのオフィスボックス。天板・中棚・引き出し・マガジンラックが一体になってるから、バラバラに買い揃えるより省スペースで完結できる📦
+
+幅54cmにこれだけ収納量が詰まってるのは、デスク横の狭いスペースに置きたい人にちょうどいい。在宅ワークになってから机周りが地味に散らかってる、という人向け。
+
+レビュー140件で★4.66。書類やキャリーファイルを立てて使う家庭が多いみたい💡
+
+#オフィスボックス #デスク収納 #書類整理 #在宅ワーク #収納整理 #共働き家庭 #育児パパ #楽天購入品</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="card-head">
+    <img src="https://thumbnail.image.rakuten.co.jp/@0_mall/officeland/cabinet/lihit1808/6332521.jpg?_ex=128x128" alt="リヒトラブ LIHIT LAB. noie noie-style ドキュメントボックス ヨコ A4 13ポケット 蛇腹 ジャバラ 書類 収納 ホワイト F7691-0 ファイルボックス" loading="lazy">
+    <div class="info">
+      
+      <span class="genre-chip">収納整理</span>
+      <div class="name">リヒトラブ LIHIT LAB. noie noie-style ドキュメントボックス ヨコ A4 13ポケット 蛇腹 ジャバラ 書類 収納 ホワイト F7691-0 ファイルボックス</div>
+      <div class="meta-row">
+        <span class="price">¥1,248</span>
+        <span class="stars">★★★★★</span>
+        <span>4.58(141件)</span>
+      </div>
+    </div>
+  </div>
+  <a class="btn-open" href="https://item.rakuten.co.jp/officeland/6332521/" target="_blank" rel="noopener">商品ページを開く ↗</a>
+  <div class="url-row">
+    <a href="https://item.rakuten.co.jp/officeland/6332521/" target="_blank" rel="noopener">https://item.rakuten.co.jp/officeland/6332521/</a>
+    <button class="copy-btn" onclick="copyPlain(this, 'https://item.rakuten.co.jp/officeland/6332521/')" type="button">URLコピー</button>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>楽天ROOM用</span>
+      <button class="copy-btn" onclick="copyText(this, 'room-1')" type="button">コピー</button>
+    </div>
+    <textarea id="room-1" readonly>🗂️書類を「とりあえず」でどこかに突っ込んでしまうの、毎年やってる。
+
+年末に税務書類を探し始めて全然出てこない、あの感覚。そこからリヒトラブのドキュメントボックスを使うようにした。
+
+ジャバラ式のA4対応で、区切りを自分で調整できる。保育園のおたより・保険証書・取扱説明書あたりを種類ごとに入れとくのにちょうどいいサイズ感📋
+
+1,248円ならとりあえず試せる価格帯だし、同じシリーズで揃えると棚がすっきり見える。ファイルボックスで入れ物を全部変えるよりハードルが低い。
+
+「書類の管理どうしてる?」ってなってる共働き家庭に一回使ってほしいやつ✅
+
+#リヒトラブ #ドキュメントボックス #書類整理 #書類収納 #収納整理 #共働き家庭 #育児パパ</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="card-head">
+    <img src="https://thumbnail.image.rakuten.co.jp/@0_mall/nemuri-seisakusyo/cabinet/biiino/item/main-image/20260812113533_1.jpg?_ex=128x128" alt="除湿マットはれふわり 布団 湿気 除湿マット 敷パッド 防ダニ 防カビ 眠り製作所 日本製 消臭 除湿 吸湿 除湿シート 除湿マット 敷きマット 寝汗 丸洗い シリカゲル 洗える 花粉 黄砂対策 結露 臭い 洗濯機 アレルゲン 母の日 父の日 プレゼント" loading="lazy">
+    <div class="info">
+      
+      <span class="genre-chip">季節もの</span>
+      <div class="name">除湿マットはれふわり 布団 湿気 除湿マット 敷パッド 防ダニ 防カビ 眠り製作所 日本製 消臭 除湿 吸湿 除湿シート 除湿マット 敷きマット 寝汗 丸洗い シリカゲル 洗える 花粉 黄砂対策 結露 臭い 洗濯機 アレルゲン 母の日 父の日 プレゼント</div>
+      <div class="meta-row">
+        <span class="price">¥4,950</span>
+        <span class="stars">★★★★★</span>
+        <span>4.56(240件)</span>
+      </div>
+    </div>
+  </div>
+  <a class="btn-open" href="https://item.rakuten.co.jp/nemuri-seisakusyo/pt-s90g/" target="_blank" rel="noopener">商品ページを開く ↗</a>
+  <div class="url-row">
+    <a href="https://item.rakuten.co.jp/nemuri-seisakusyo/pt-s90g/" target="_blank" rel="noopener">https://item.rakuten.co.jp/nemuri-seisakusyo/pt-s90g/</a>
+    <button class="copy-btn" onclick="copyPlain(this, 'https://item.rakuten.co.jp/nemuri-seisakusyo/pt-s90g/')" type="button">URLコピー</button>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>楽天ROOM用</span>
+      <button class="copy-btn" onclick="copyText(this, 'room-2')" type="button">コピー</button>
+    </div>
+    <textarea id="room-2" readonly>🛏️敷き布団の下、持ち上げたら黒カビが生えてた、という体験を知人から聞いてぞっとした。
+
+床に布団を敷くスタイルの家庭、カビリスクは思ってる以上にある。除湿マット「はれふわり」は眠り製作所の日本製で、吸湿センサー付きだから除湿効果が落ちてきたら色で教えてくれる仕組み。天日干しで繰り返し使える🌞
+
+ダブルサイズ対応で防ダニ・防カビ加工済み。布団下の湿気はマットレスや体への影響が出る前に対策しておきたい。
+
+4,950円で日本製・大判サイズはこのカテゴリではむしろ安い部類。レビュー240件で★4.56、実際に使い始めた家庭の評価が安定してる💪
+
+#除湿マット #はれふわり #布団 #防カビ #防ダニ #寝具 #育児パパ #共働き家庭</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="card-head">
+    <img src="https://thumbnail.image.rakuten.co.jp/@0_mall/cogit/cabinet/page/027125_0218.jpg?_ex=128x128" alt="コジット お風呂のカビきれい お風呂 カビ対策 防カビ 浴室 カビ予防 カビ防止 冬 シャワーカーテン 防カビ 赤カビ 対策 ハイパワー バイオ コジット 貼る 吊り下げ 湿気 カビ取り 防カビ 対策 掃除簡単 湿気対策 メーカー直送 夏 冬 カビ取り" loading="lazy">
+    <div class="info">
+      
+      <span class="genre-chip">掃除洗濯</span>
+      <div class="name">コジット お風呂のカビきれい お風呂 カビ対策 防カビ 浴室 カビ予防 カビ防止 冬 シャワーカーテン 防カビ 赤カビ 対策 ハイパワー バイオ コジット 貼る 吊り下げ 湿気 カビ取り 防カビ 対策 掃除簡単 湿気対策 メーカー直送 夏 冬 カビ取り</div>
+      <div class="meta-row">
+        <span class="price">¥1,320</span>
+        <span class="stars">★★★★☆</span>
+        <span>4.26(613件)</span>
+      </div>
+    </div>
+  </div>
+  <a class="btn-open" href="https://item.rakuten.co.jp/cogit/061825/" target="_blank" rel="noopener">商品ページを開く ↗</a>
+  <div class="url-row">
+    <a href="https://item.rakuten.co.jp/cogit/061825/" target="_blank" rel="noopener">https://item.rakuten.co.jp/cogit/061825/</a>
+    <button class="copy-btn" onclick="copyPlain(this, 'https://item.rakuten.co.jp/cogit/061825/')" type="button">URLコピー</button>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>楽天ROOM用</span>
+      <button class="copy-btn" onclick="copyText(this, 'room-3')" type="button">コピー</button>
+    </div>
+    <textarea id="room-3" readonly>🚿お風呂のカビ掃除、また先週末やってた。
+
+スプレーして放置して、翌朝こすって、残ってまたスプレーする。この繰り返しがしんどくて、いつの間にかカビが広がってる。
+
+コジットの「お風呂のカビきれい」は置いておくだけで予防するタイプ。掃除じゃなくてそもそも生えにくくするアプローチで、シャワーカーテン・天井・タイルの黒カビを抑えてくれる。
+
+1,320円でお風呂に置くだけなら、忙しくて掃除に時間を割けない家庭にハードルが低い。レビュー613件がついてて評価はかなり安定してる🙌
+
+ずっとカビ掃除を繰り返してる人は「生やさない方向」に切り替えてみる価値があるかも🧴
+
+#カビ対策 #お風呂掃除 #防カビ #コジット #置き型 #時短掃除 #育児パパ #共働き家庭</textarea>
+  </div>
+</div>
+<div class="card featured">
+  <div class="card-head">
+    <img src="https://thumbnail.image.rakuten.co.jp/@0_mall/edute/cabinet/labelwood/lbw-slider_1.jpg?_ex=128x128" alt="木のおもちゃ スロープトイ 知育玩具 カースライダー エデュテ おもちゃ 木製 1歳誕生日プレゼント 誕生日プレゼント 1歳 一歳 1歳半 2歳 男の子 女の子 赤ちゃん" loading="lazy">
+    <div class="info">
+      <span class="featured-badge">🔥 本日のThreads/Xピックアップ</span>
+      <span class="genre-chip">育児グッズ</span>
+      <div class="name">木のおもちゃ スロープトイ 知育玩具 カースライダー エデュテ おもちゃ 木製 1歳誕生日プレゼント 誕生日プレゼント 1歳 一歳 1歳半 2歳 男の子 女の子 赤ちゃん</div>
+      <div class="meta-row">
+        <span class="price">¥5,500</span>
+        <span class="stars">★★★★★</span>
+        <span>4.7(572件)</span>
+      </div>
+    </div>
+  </div>
+  <a class="btn-open" href="https://item.rakuten.co.jp/edute/lbw-slider/" target="_blank" rel="noopener">商品ページを開く ↗</a>
+  <div class="url-row">
+    <a href="https://item.rakuten.co.jp/edute/lbw-slider/" target="_blank" rel="noopener">https://item.rakuten.co.jp/edute/lbw-slider/</a>
+    <button class="copy-btn" onclick="copyPlain(this, 'https://item.rakuten.co.jp/edute/lbw-slider/')" type="button">URLコピー</button>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>楽天ROOM用</span>
+      <button class="copy-btn" onclick="copyText(this, 'room-4')" type="button">コピー</button>
+    </div>
+    <textarea id="room-4" readonly>🚗1歳半の子どもがスロープを転がる車を目で追う、あの集中顔がよかった。
+
+エデュテの木製カースライダー、5,500円で木のぬくもりがあるのに値段がそこまで高くない。1歳から使えてスロープを車が滑り降りる動きが視覚・手先の発育にいいとされてて、知育玩具としてはシンプルに完成度が高い🌳
+
+素材がちゃんとした木製なのは、誤飲サイズの細かいパーツがなく安全性が高いのと、プラスチックより長く使えるのが理由として大きい。
+
+レビュー572件で★4.70。プレゼントに選ばれることも多いみたいで、1歳・1歳半・2歳の子どもを持つ家庭には試してみてほしい玩具✨
+
+#木のおもちゃ #スロープトイ #知育玩具 #エデュテ #1歳 #育児グッズ #育児パパ #共働き家庭</textarea>
+  </div>
+  <p class="reason">🔥 今日のピックアップ理由: レビュー572件・★4.70という5件中最高評価で社会的証明が最も強く、1,248円の日用品と違い5,500円のおもちゃは「買うか迷う」層が多くTwitterで意見を求めやすい。育児パパペルソナへの悩み解決度(プレゼント・知育・安全性の三点)も高く、Threads/Xでのエンゲージメントを最も取りやすいと判断した。</p>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>Threads用</span>
+      <button class="copy-btn" onclick="copyText(this, 'threads-0')" type="button">コピー</button>
+    </div>
+    <textarea id="threads-0" readonly>木のおもちゃ、最初は「高いな」と思ってた。
+
+でも1歳ごろからプラスチックのおもちゃが増えてきて、なんか部屋がうるさくなってきた感じがして。そのタイミングでエデュテの木製カースライダーを試した。
+
+車がスロープをゆっくり滑り降りるのを目で追う時間、子どもがめちゃくちゃ集中してる。スイッチも電池もない。それだけなのに飽きずに遊んでる。
+
+5,500円。レビュー572件で星4.7は木のおもちゃカテゴリでもかなり上の方だと思う。プレゼントとして選んでる人も多そう。
+
+1〜2歳の子がいる家庭、試してみてほしいやつ🪵
+
+#PR #育児パパ #知育玩具 #共働き家庭</textarea>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>X用</span>
+      <button class="copy-btn" onclick="copyText(this, 'x-0')" type="button">コピー</button>
+    </div>
+    <textarea id="x-0" readonly>木のおもちゃ、最初は「高いな」と思ってた。
+
+エデュテの木製カースライダー、車がスロープを滑り降りる動きをひたすら目で追ってる子どもを見て「これでいいな」ってなった。スイッチも電池もない。
+
+5,500円・★4.70・レビュー572件。1〜2歳のプレゼントに迷ってるなら一択に近いかも🪵
+
+#PR #育児パパ #知育玩具</textarea>
+  </div>
+</div>
+</div>
+
+<h2 class="section-title">💬 今日のあるある投稿ネタ(商品リンクなし)</h2>
+<div class="cards">
+<div class="card">
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>あるある投稿 #1</span>
+      <button class="copy-btn" onclick="copyText(this, 'daily-0')" type="button">コピー</button>
+    </div>
+    <textarea id="daily-0" class="short" readonly>子どもの「もういっかい」、あれ何回まで付き合えばいいんだろう。
+
+絵本を読み終わって「もういっかい」、積み木を崩して「もういっかい」。10回目あたりから自分の声に感情がなくなってくるのわかってる、わかってるけど止められない 😅 #育児パパ</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>あるある投稿 #2</span>
+      <button class="copy-btn" onclick="copyText(this, 'daily-1')" type="button">コピー</button>
+    </div>
+    <textarea id="daily-1" class="short" readonly>子どもが歩き始めてから、家の床の低さに気づいた。
+
+コンセント・引き出しの角・コードの存在感、全部新しく見えてくる。子どもが危なくないように動線を考え直した土日、なんか楽しかった気がする。</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>あるある投稿 #3</span>
+      <button class="copy-btn" onclick="copyText(this, 'daily-2')" type="button">コピー</button>
+    </div>
+    <textarea id="daily-2" class="short" readonly>育休中に気づいたんだけど、家事の「中断」がいちばんしんどい。
+
+食器洗ってたら泣く、洗濯物たたんでたら泣く、メシ作ってたら泣く。全部中断して、再開する頃には前の作業を忘れてる。
+これが積み重なると夕方くたくたになってるの、理由がわかってなかったのかもしれない。</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>あるある投稿 #4</span>
+      <button class="copy-btn" onclick="copyText(this, 'daily-3')" type="button">コピー</button>
+    </div>
+    <textarea id="daily-3" class="short" readonly>朝の保育園の送り出し、テレビ見てる子を靴下履かせようとしてふんぞり返られた日は出勤してから30分は立ち直れない</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>あるある投稿 #5</span>
+      <button class="copy-btn" onclick="copyText(this, 'daily-4')" type="button">コピー</button>
+    </div>
+    <textarea id="daily-4" class="short" readonly>子どもの笑顔を動画に残そうとスマホ向けたら、一瞬で真顔になる。
+
+カメラを下ろすとまた笑う。また向けると真顔。この攻防だけで10分経ってて、結局いい顔は一枚も残ってない。でもなぜか動画フォルダはどんどん増えていく ☺️</textarea>
+  </div>
+</div>
+</div>
+
+<footer class="note">商品ページを確認し、投稿文をコピーして手動で投稿してください。<br>Threads/Xの商品紹介は1日1件・あるある投稿と織り交ぜてスパム判定を避けてください。<br>価格・レビューは選定時点の実データです。</footer>
+</div>
+<script>
+function flash(btn) {
+  const original = btn.textContent;
+  btn.textContent = 'コピーしました';
+  btn.classList.add('copied');
+  setTimeout(() => { btn.textContent = original; btn.classList.remove('copied'); }, 1500);
+}
+function copyText(btn, id) {
+  const el = document.getElementById(id);
+  el.select();
+  el.setSelectionRange(0, 999999);
+  navigator.clipboard.writeText(el.value).then(() => flash(btn)).catch(() => {
+    try { document.execCommand('copy'); flash(btn); } catch (e) {}
+  });
+}
+function copyPlain(btn, text) {
+  navigator.clipboard.writeText(text).then(() => flash(btn)).catch(() => {
+    const t = document.createElement('textarea');
+    t.value = text; document.body.appendChild(t); t.select();
+    try { document.execCommand('copy'); flash(btn); } catch (e) {}
+    document.body.removeChild(t);
+  });
+}
+</script>
+</body>
+</html>

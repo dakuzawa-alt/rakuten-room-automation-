@@ -1709,6 +1709,53 @@
       "channels": [
         "room"
       ]
+    },
+    {
+      "itemCode": "e-office:10000765",
+      "itemName": "CREW'Sオフィスボックス OB-2000",
+      "date": "2026-09-20",
+      "slot": "morning",
+      "channels": [
+        "room"
+      ]
+    },
+    {
+      "itemCode": "officeland:10287262",
+      "itemName": "リヒトラブ ドキュメントボックス ジャバラ A4",
+      "date": "2026-09-20",
+      "slot": "morning",
+      "channels": [
+        "room"
+      ]
+    },
+    {
+      "itemCode": "nemuri-seisakusyo:10000008",
+      "itemName": "除湿マット はれふわり 布団ダブル用 日本製",
+      "date": "2026-09-20",
+      "slot": "morning",
+      "channels": [
+        "room"
+      ]
+    },
+    {
+      "itemCode": "cogit:10001651",
+      "itemName": "コジット お風呂のカビきれい 置き型",
+      "date": "2026-09-20",
+      "slot": "morning",
+      "channels": [
+        "room"
+      ]
+    },
+    {
+      "itemCode": "edute:10002201",
+      "itemName": "エデュテ 木製カースライダー スロープトイ",
+      "date": "2026-09-20",
+      "slot": "morning",
+      "channels": [
+        "room",
+        "threads",
+        "x"
+      ]
     }
   ]
 }

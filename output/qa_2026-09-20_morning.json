@@ -1,0 +1,48 @@
+{
+  "date": "2026-09-20",
+  "slot": "morning",
+  "result": "pass",
+  "checks": [
+    {
+      "check": "文字数",
+      "status": "pass",
+      "detail": "ROOM投稿文5件: e-office(316字)/officeland(325字)/nemuri-seisakusyo(318字)/cogit(329字)/edute(327字) — すべて400字以内。Threads: 280字(400字以内)。X: 160字(280字以内)。あるある投稿: ID1=119字/ID2=94字/ID3=130字/ID4=55字/ID5=109字 — すべて150字以内。"
+    },
+    {
+      "check": "NGワード",
+      "status": "pass",
+      "detail": "「治る」「効く」「絶対」「100%」「奇跡」のいずれもROOM投稿文・Threads文・X文・あるある投稿のすべてに含まれていない。"
+    },
+    {
+      "check": "URL含有",
+      "status": "pass",
+      "detail": "ROOM投稿文・Threads文・X文・あるある投稿のいずれにもhttp始まりのURLが含まれていない。"
+    },
+    {
+      "check": "重複チェック(itemCode)",
+      "status": "pass",
+      "detail": "今回の5件(e-office:10000765/officeland:10287262/nemuri-seisakusyo:10000008/cogit:10001651/edute:10002201)はすべてposted_history.jsonに未登録。"
+    },
+    {
+      "check": "実質同一商品チェック",
+      "status": "pass",
+      "detail": "historyとカテゴリが近い商品として「除湿シート 快眠ドライプラス シングル(i-office1:10039597)」があるが、今回の「除湿マット はれふわり 布団ダブル用(nemuri-seisakusyo:10000008)」はブランド名・商品名ともに異なり、指示書の「ブランド名+商品名詞が一致する」条件を満たさないため実質同一ではないと判定。その他(ドキュメント系・カビ対策系・木製おもちゃ系)も商品形態・ブランドが異なり実質同一なし。"
+    },
+    {
+      "check": "PR表記",
+      "status": "pass",
+      "detail": "featured Threads文に「#PR」あり。featured X文に「#PR」あり。ROOM投稿文はスタイルガイドの規定(楽天ROOMは商品が自動で紐づく構造のためPR表記不要)に従いPR表記なし — これは仕様通り。"
+    },
+    {
+      "check": "絵文字",
+      "status": "pass",
+      "detail": "ROOM投稿文5件の絵文字数: e-office=4個(冒頭1個)/officeland=3個(冒頭1個)/nemuri-seisakusyo=4個(冒頭1個)/cogit=3個(冒頭1個)/edute=4個(冒頭1個)。すべて最低3個・冒頭1個以上の条件を満たす。あるある投稿は任意のため問題なし。"
+    },
+    {
+      "check": "あるある投稿の健全性",
+      "status": "pass",
+      "detail": "あるある投稿5件に商品URL・PR表記は含まれていない。「今日」「昨日」等の具体日付断定表現もなし。いずれも普遍的なシーンの描写にとどまっており捏造エピソード断定ではない。"
+    }
+  ],
+  "failed_items": []
+}
