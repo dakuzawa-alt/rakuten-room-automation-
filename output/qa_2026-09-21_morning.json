@@ -1,0 +1,97 @@
+{
+  "status": "pass",
+  "checked_at": "2026-09-21",
+  "slot": "morning",
+  "items": [
+    {
+      "itemCode": "townland:10000761",
+      "itemName": "電気毛布 電気ひざ掛け毛布(赤色チェック柄・洗える・ダニ退治)",
+      "checks": {
+        "char_count_room": {"value": 323, "limit": 400, "result": "pass"},
+        "emoji_count": {"value": 5, "first_line": 1, "result": "pass"},
+        "ng_words": {"result": "pass"},
+        "url_valid": {"url": "https://item.rakuten.co.jp/townland/y-na-052h/", "result": "pass"},
+        "numeric_match": {"price": "OK", "review_count": "OK", "review_avg": "OK"},
+        "duplicate": {"result": "pass"}
+      }
+    },
+    {
+      "itemCode": "ichibankanshop:11185862",
+      "itemName": "お米保存袋 米ガードミニ 5〜10kg袋用 脱酸素剤付き 真空パック",
+      "checks": {
+        "char_count_room": {"value": 352, "limit": 400, "result": "pass"},
+        "emoji_count": {"value": 3, "first_line": 1, "result": "pass"},
+        "ng_words": {"result": "pass"},
+        "url_valid": {"url": "https://item.rakuten.co.jp/ichibankanshop/komegard-mini/", "result": "pass"},
+        "numeric_match": {"price": "OK", "review_count": "OK", "review_avg": "OK"},
+        "duplicate": {"result": "pass", "note": "過去にliving-market-1st:10000136(別メーカー汎用品)を選定済みだが、今回は環境技研製ブランド品(米ガードミニ)で別商品と判定"}
+      }
+    },
+    {
+      "itemCode": "chocomoco:10000771",
+      "itemName": "日本製 木製積み木 無垢材 手作り 初めてのつみき",
+      "featured": true,
+      "checks": {
+        "char_count_room": {"value": 333, "limit": 400, "result": "pass"},
+        "char_count_threads": {"value": 214, "limit": 400, "result": "pass"},
+        "char_count_x": {"value": 130, "limit": 280, "result": "pass"},
+        "emoji_count": {"value": 4, "first_line": 1, "result": "pass"},
+        "ng_words": {"result": "pass"},
+        "pr_tag_threads": {"result": "pass", "found": "#PR"},
+        "pr_tag_x": {"result": "pass", "found": "#PR"},
+        "url_valid": {"url": "https://item.rakuten.co.jp/chocomoco/tumiki-w/", "result": "pass"},
+        "numeric_match": {"price": "OK", "review_count": "OK", "review_avg": "OK"},
+        "duplicate": {"result": "pass", "note": "過去にwoodypuddy:10001340(ウッディプッディ はじめてのつみき)を選定済みだが、ブランド・商品が異なるため別商品と判定"}
+      }
+    },
+    {
+      "itemCode": "mg-mail:10005582",
+      "itemName": "マザーガーデン 野いちご スウィートカフェリボン おままごとセット(ピンク)",
+      "checks": {
+        "char_count_room": {"value": 346, "limit": 400, "result": "pass"},
+        "emoji_count": {"value": 3, "first_line": 1, "result": "pass"},
+        "ng_words": {"result": "pass"},
+        "url_valid": {"url": "https://item.rakuten.co.jp/mg-mail/441-52577-1/", "result": "pass"},
+        "numeric_match": {"price": "OK", "review_count": "OK", "review_avg": "OK"},
+        "duplicate": {"result": "pass"}
+      }
+    },
+    {
+      "itemCode": "busyman:10001838",
+      "itemName": "木製おままごとキッチン 調理器具・調味料セット付き ギフトボックス入り",
+      "checks": {
+        "char_count_room": {"value": 353, "limit": 400, "result": "pass"},
+        "emoji_count": {"value": 3, "first_line": 1, "result": "pass"},
+        "ng_words": {"result": "pass"},
+        "url_valid": {"url": "https://item.rakuten.co.jp/busyman/wf190635-bu/", "result": "pass"},
+        "numeric_match": {"price": "OK", "review_count": "OK", "review_avg": "OK"},
+        "duplicate": {"result": "pass"}
+      }
+    }
+  ],
+  "daily_posts": {
+    "count": 5,
+    "url_in_post": "none",
+    "pr_tag_in_post": "none",
+    "char_count_all_within_150": true,
+    "result": "pass"
+  },
+  "corrections_applied": [
+    {
+      "itemCode": "ichibankanshop:11185862",
+      "field": "roomCaption",
+      "reason": "価格(3,190円)・レビュー件数(281件)・星評価(4.49)がAPIデータと一致する記載がなかったため追加"
+    },
+    {
+      "itemCode": "mg-mail:10005582",
+      "field": "roomCaption",
+      "reason": "価格(6,800円)の記載がなかったため、レビュー件数・星評価の行に統合して追加"
+    },
+    {
+      "itemCode": "busyman:10001838",
+      "field": "roomCaption",
+      "reason": "レビュー件数(613件)・星評価(4.26)の記載がなかったため追加"
+    }
+  ],
+  "notes": "初回チェックで3件の数値不一致(価格・レビュー件数・星評価の未記載)を検出。投稿文を修正して再チェックし全項目通過。"
+}

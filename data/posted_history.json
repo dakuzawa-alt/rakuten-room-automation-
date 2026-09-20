@@ -1803,6 +1803,53 @@
       "channels": [
         "room"
       ]
+    },
+    {
+      "itemCode": "townland:10000761",
+      "itemName": "電気毛布 電気ひざ掛け毛布(赤色チェック柄・洗える・ダニ退治)",
+      "date": "2026-09-21",
+      "slot": "morning",
+      "channels": [
+        "room"
+      ]
+    },
+    {
+      "itemCode": "ichibankanshop:11185862",
+      "itemName": "お米保存袋 米ガードミニ 5〜10kg袋用 脱酸素剤付き 真空パック",
+      "date": "2026-09-21",
+      "slot": "morning",
+      "channels": [
+        "room"
+      ]
+    },
+    {
+      "itemCode": "chocomoco:10000771",
+      "itemName": "日本製 木製積み木 無垢材 手作り 初めてのつみき",
+      "date": "2026-09-21",
+      "slot": "morning",
+      "channels": [
+        "room",
+        "threads",
+        "x"
+      ]
+    },
+    {
+      "itemCode": "mg-mail:10005582",
+      "itemName": "マザーガーデン 野いちご スウィートカフェリボン おままごとセット(ピンク)",
+      "date": "2026-09-21",
+      "slot": "morning",
+      "channels": [
+        "room"
+      ]
+    },
+    {
+      "itemCode": "busyman:10001838",
+      "itemName": "木製おままごとキッチン 調理器具・調味料セット付き ギフトボックス入り",
+      "date": "2026-09-21",
+      "slot": "morning",
+      "channels": [
+        "room"
+      ]
     }
   ]
 }
