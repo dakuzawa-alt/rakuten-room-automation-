@@ -1,0 +1,373 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>9/20 夜の選定 - 楽天ROOM投稿リスト</title>
+<style>
+:root {
+  --bg: #f6f3ee;
+  --surface: #ffffff;
+  --ink: #23211d;
+  --ink-soft: #6b6459;
+  --accent: #a8382c;
+  --accent-ink: #fff6f2;
+  --good: #3f7d58;
+  --border: #e4ddd2;
+  --chip-bg: #efe8db;
+  color-scheme: light dark;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #16140f;
+    --surface: #211f1a;
+    --ink: #ece7dc;
+    --ink-soft: #a89e8d;
+    --accent: #e0685a;
+    --accent-ink: #1c0f0c;
+    --good: #6fb98a;
+    --border: #35322a;
+    --chip-bg: #2a2721;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #16140f; --surface: #211f1a; --ink: #ece7dc; --ink-soft: #a89e8d;
+  --accent: #e0685a; --accent-ink: #1c0f0c; --good: #6fb98a; --border: #35322a; --chip-bg: #2a2721;
+}
+:root[data-theme="light"] {
+  --bg: #f6f3ee; --surface: #ffffff; --ink: #23211d; --ink-soft: #6b6459;
+  --accent: #a8382c; --accent-ink: #fff6f2; --good: #3f7d58; --border: #e4ddd2; --chip-bg: #efe8db;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0; background: var(--bg); color: var(--ink);
+  font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Yu Gothic Medium", "Noto Sans JP", sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+.wrap { max-width: 640px; margin: 0 auto; padding: 0 16px 40px; }
+header.top {
+  position: sticky; top: 0; z-index: 5; background: var(--bg);
+  padding: 18px 16px 12px; border-bottom: 1px solid var(--border);
+  display: flex; align-items: baseline; justify-content: space-between; gap: 12px;
+}
+header.top .eyebrow {
+  font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-soft);
+  font-weight: 600; margin: 0 0 2px;
+}
+header.top h1 { font-size: 1.25rem; margin: 0; font-weight: 700; letter-spacing: -0.01em; }
+header.top .count {
+  background: var(--chip-bg); color: var(--ink-soft); font-size: 0.78rem; font-weight: 600;
+  padding: 5px 10px; border-radius: 999px; white-space: nowrap;
+}
+h2.section-title { font-size: 0.95rem; font-weight: 700; margin: 24px 0 12px; }
+.cards { display: flex; flex-direction: column; gap: 16px; margin-top: 18px; }
+.card {
+  background: var(--surface); border: 1px solid var(--border); border-radius: 16px;
+  padding: 16px; display: flex; flex-direction: column; gap: 12px;
+}
+.card.featured { border-color: var(--accent); border-width: 2px; }
+.featured-badge {
+  align-self: flex-start; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.03em;
+  color: var(--accent-ink); background: var(--accent); padding: 3px 9px; border-radius: 999px;
+}
+.card-head { display: flex; gap: 12px; }
+.card-head img {
+  width: 76px; height: 76px; object-fit: cover; border-radius: 10px;
+  border: 1px solid var(--border); background: var(--chip-bg); flex-shrink: 0;
+}
+.card-head .info { min-width: 0; flex: 1; display: flex; flex-direction: column; gap: 4px; }
+.genre-chip {
+  align-self: flex-start; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.03em;
+  color: var(--accent); background: color-mix(in srgb, var(--accent) 12%, transparent);
+  padding: 2px 8px; border-radius: 999px;
+}
+.name {
+  font-weight: 600; font-size: 0.94rem; line-height: 1.4;
+  display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
+}
+.meta-row { display: flex; align-items: baseline; gap: 8px; font-size: 0.82rem; color: var(--ink-soft); }
+.price { font-variant-numeric: tabular-nums; color: var(--ink); font-weight: 700; font-size: 1.05rem; }
+.stars { letter-spacing: -1px; color: var(--accent); }
+.btn-open {
+  display: flex; align-items: center; justify-content: center; gap: 6px;
+  background: var(--accent); color: var(--accent-ink); border: none; border-radius: 11px;
+  padding: 12px; font-weight: 700; font-size: 0.92rem; text-decoration: none;
+}
+.btn-open:active { opacity: 0.85; }
+.url-row {
+  display: flex; align-items: center; gap: 8px;
+  background: var(--chip-bg); border-radius: 9px; padding: 8px 10px;
+}
+.url-row a {
+  flex: 1; min-width: 0; font-size: 0.76rem; color: var(--accent);
+  word-break: break-all; line-height: 1.45; text-decoration: none;
+}
+.url-row a:active { text-decoration: underline; }
+.reason { font-size: 0.8rem; color: var(--ink-soft); }
+.caption-box { border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }
+.caption-head {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 8px 10px; background: var(--chip-bg);
+}
+.caption-head span {
+  font-size: 0.7rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-soft);
+}
+.copy-btn {
+  background: var(--surface); border: 1px solid var(--border); color: var(--ink);
+  border-radius: 7px; padding: 5px 11px; font-size: 0.76rem; font-weight: 600; cursor: pointer;
+}
+.copy-btn:focus-visible, .btn-open:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.copy-btn.copied { background: var(--good); border-color: var(--good); color: #fff; }
+textarea {
+  width: 100%; display: block; border: none; padding: 10px; font-size: 0.85rem; line-height: 1.55;
+  resize: vertical; min-height: 108px; font-family: inherit; background: var(--surface); color: var(--ink);
+}
+textarea.short { min-height: 60px; }
+textarea:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
+footer.note { margin-top: 22px; font-size: 0.76rem; color: var(--ink-soft); text-align: center; line-height: 1.6; }
+@media (prefers-reduced-motion: no-preference) {
+  .copy-btn { transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease; }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <div>
+    <p class="eyebrow">楽天ROOM 投稿リスト</p>
+    <h1>9/20 夜の選定</h1>
+  </div>
+  <span class="count">5件</span>
+</header>
+
+<h2 class="section-title">📦 商品(ROOM用、全5件)</h2>
+<div class="cards">
+<div class="card featured">
+  <div class="card-head">
+    <img src="https://thumbnail.image.rakuten.co.jp/@0_mall/secupcs/cabinet/1st-img/tokka/dc53bw_tokka.jpg?_ex=128x128" alt="【 SDカード付き 届いてすぐ使える 】 見守りカメラ ペットカメラ 首振り 追尾 双方向通話 スマホ連動 遠隔監視 wifi 無線 ワイヤレス 家庭用 屋内 みまもり 赤ちゃん 高齢者 会話 SDカード 録画 夜間撮影 防犯カメラ DC53(B) 白【 SecuSTATION カメまる 】" loading="lazy">
+    <div class="info">
+      <span class="featured-badge">🔥 本日のThreads/Xピックアップ</span>
+      <span class="genre-chip">育児グッズ</span>
+      <div class="name">【 SDカード付き 届いてすぐ使える 】 見守りカメラ ペットカメラ 首振り 追尾 双方向通話 スマホ連動 遠隔監視 wifi 無線 ワイヤレス 家庭用 屋内 みまもり 赤ちゃん 高齢者 会話 SDカード 録画 夜間撮影 防犯カメラ DC53(B) 白【 SecuSTATION カメまる 】</div>
+      <div class="meta-row">
+        <span class="price">¥7,789</span>
+        <span class="stars">★★★★☆</span>
+        <span>4.4(1653件)</span>
+      </div>
+    </div>
+  </div>
+  <a class="btn-open" href="https://hb.afl.rakuten.co.jp/hgc/g00rvm0n.dg4fi473.g00rvm0n.dg4fj2c4/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fsecupcs%2F001-lc52-b%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fsecupcs%2Fi%2F10000214%2F&rafcid=wsc_i_is_852e9d1a-8f83-49dc-bc9e-cf56a98e669a" target="_blank" rel="noopener">商品ページを開く ↗</a>
+  <div class="url-row">
+    <a href="https://item.rakuten.co.jp/secupcs/001-lc52-b/" target="_blank" rel="noopener">https://item.rakuten.co.jp/secupcs/001-lc52-b/</a>
+    <button class="copy-btn" onclick="copyPlain(this, 'https://item.rakuten.co.jp/secupcs/001-lc52-b/')" type="button">URLコピー</button>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>楽天ROOM用</span>
+      <button class="copy-btn" onclick="copyText(this, 'room-0')" type="button">コピー</button>
+    </div>
+    <textarea id="room-0" readonly>👶下の子を寝かしつけてる間、上の子がリビングで何してるか気になって落ち着かない夜がよくあった。導入したのが見守りカメラ「カメまる」。スマホで首振り確認できるし、双方向通話で“ちょっと待っててね”も言える。SDカード付きで届いてすぐ使えるのも助かったポイント。レビュー1,653件で星4.4、みんな同じ悩みで導入してるんだなと実感。⚠️Wi-Fi環境の確認だけは事前に。ワンオペの夜、これで少し肩の力が抜けました。📱🌙 #見守りカメラ #育児グッズ #ワンオペ育児 #育児パパ #共働き家庭 #時短家電</textarea>
+  </div>
+  <p class="reason">🔥 今日のピックアップ理由: レビュー1,653件と5件中最多で社会的証明が強く、ワンオペの夜に上の子の様子が気になるという育児パパ層の悩みに直結する解決力の高さから、今日は本商品を選定した。</p>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>Threads用</span>
+      <button class="copy-btn" onclick="copyText(this, 'threads-0')" type="button">コピー</button>
+    </div>
+    <textarea id="threads-0" readonly>下の子寝かしつけてる間、上の子が一人でリビングで何してるか気になって、扉開けて様子見に行くの地味にしんどかった。見守りカメラ導入したら解決。スマホで首振りしながら覗けるし、双方向通話で“ちょっと待っててね”って声かけられるのがデカい。SDカード付きで箱から出してすぐ使えたのも良かった。レビューの数がとにかく多くて、同じ悩みで買ってる人多いんだなって思った。Wi-Fi環境だけ先に確認しといて。ワンオペの夜、これで肩の力抜けた気がする。#見守りカメラ #ワンオペ育児 #育児パパ #PR</textarea>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>X用</span>
+      <button class="copy-btn" onclick="copyText(this, 'x-0')" type="button">コピー</button>
+    </div>
+    <textarea id="x-0" readonly>下の子寝かしつけ中、上の子が何してるか気になって扉開けて確認しに行くのがしんどかった。見守りカメラ導入したら解決。スマホで首振りして覗けるし、双方向通話で声かけもできる。SDカード付きで届いてすぐ使えたのも助かった。ワンオペの夜、少し肩の力が抜けた。#見守りカメラ #ワンオペ育児 #PR</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="card-head">
+    <img src="https://thumbnail.image.rakuten.co.jp/@0_mall/selectshop-one/cabinet/rank/gg340_rank_v2.jpg?_ex=128x128" alt="【クーポン利用で 3312円~】＼楽天1位／ベビーバス 折りたたみ バスタブ 沐浴 洗い桶 ベビーバスチェア タライ 折り畳み 洗濯 洗濯物 沐浴用 ソフトタブワイド ベビー ペット お風呂 ソフトバケツ フットバス 桶 カゴ ソフトタブ バケツ 赤ちゃん 大型 洗濯かご" loading="lazy">
+    <div class="info">
+      
+      <span class="genre-chip">育児グッズ</span>
+      <div class="name">【クーポン利用で 3312円~】＼楽天1位／ベビーバス 折りたたみ バスタブ 沐浴 洗い桶 ベビーバスチェア タライ 折り畳み 洗濯 洗濯物 沐浴用 ソフトタブワイド ベビー ペット お風呂 ソフトバケツ フットバス 桶 カゴ ソフトタブ バケツ 赤ちゃん 大型 洗濯かご</div>
+      <div class="meta-row">
+        <span class="price">¥3,680</span>
+        <span class="stars">★★★★☆</span>
+        <span>4.5(165件)</span>
+      </div>
+    </div>
+  </div>
+  <a class="btn-open" href="https://hb.afl.rakuten.co.jp/hgc/g00siyen.dg4fi990.g00siyen.dg4fjb7e/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fselectshop-one%2Fgg340%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fselectshop-one%2Fi%2F10002395%2F&rafcid=wsc_i_is_852e9d1a-8f83-49dc-bc9e-cf56a98e669a" target="_blank" rel="noopener">商品ページを開く ↗</a>
+  <div class="url-row">
+    <a href="https://item.rakuten.co.jp/selectshop-one/gg340/" target="_blank" rel="noopener">https://item.rakuten.co.jp/selectshop-one/gg340/</a>
+    <button class="copy-btn" onclick="copyPlain(this, 'https://item.rakuten.co.jp/selectshop-one/gg340/')" type="button">URLコピー</button>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>楽天ROOM用</span>
+      <button class="copy-btn" onclick="copyText(this, 'room-1')" type="button">コピー</button>
+    </div>
+    <textarea id="room-1" readonly>🛁3,680円で沐浴期からしばらく使える折りたたみベビーバス。①使わない時はコンパクトに折りたためて収納場所を取らない②ソフト素材で赤ちゃんの体にもやさしい③沐浴だけでなく洗濯桶やペット用としても転用可能。レビュー165件ですが星4.5と満足度は高めです。⚠️耐荷重・対象月齢は購入前に必ずチェックを。新生児期の沐浴グッズ選びで迷ってる方はチェックしてみてください。👶💧 #ベビーバス #沐浴 #新生児グッズ #育児グッズ #育児パパ #共働き家庭 #出産準備</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="card-head">
+    <img src="https://thumbnail.image.rakuten.co.jp/@0_mall/gekiyasukaguya/cabinet/500images13/z200710nm2401g.jpg?_ex=128x128" alt="【先着限定！500円OFFクーポン】 シューズボックス クリア 4個/8個セット S/M/Lサイズ 靴 収納 箱型 おしゃれ シューズケース 扉付き コンパクト 靴入れ スタッキング 靴収納ケース 靴収納棚 スニーカー クリアシューズケース クリアシューズボックス 約 奥行36 cm" loading="lazy">
+    <div class="info">
+      
+      <span class="genre-chip">収納整理</span>
+      <div class="name">【先着限定！500円OFFクーポン】 シューズボックス クリア 4個/8個セット S/M/Lサイズ 靴 収納 箱型 おしゃれ シューズケース 扉付き コンパクト 靴入れ スタッキング 靴収納ケース 靴収納棚 スニーカー クリアシューズケース クリアシューズボックス 約 奥行36 cm</div>
+      <div class="meta-row">
+        <span class="price">¥2,780</span>
+        <span class="stars">★★★★★</span>
+        <span>4.62(748件)</span>
+      </div>
+    </div>
+  </div>
+  <a class="btn-open" href="https://hb.afl.rakuten.co.jp/hgc/g00pxm3n.dg4fiedd.g00pxm3n.dg4fj600/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fgekiyasukaguya%2Fsbx100784%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fgekiyasukaguya%2Fi%2F10024097%2F&rafcid=wsc_i_is_852e9d1a-8f83-49dc-bc9e-cf56a98e669a" target="_blank" rel="noopener">商品ページを開く ↗</a>
+  <div class="url-row">
+    <a href="https://item.rakuten.co.jp/gekiyasukaguya/sbx100784/" target="_blank" rel="noopener">https://item.rakuten.co.jp/gekiyasukaguya/sbx100784/</a>
+    <button class="copy-btn" onclick="copyPlain(this, 'https://item.rakuten.co.jp/gekiyasukaguya/sbx100784/')" type="button">URLコピー</button>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>楽天ROOM用</span>
+      <button class="copy-btn" onclick="copyText(this, 'room-2')" type="button">コピー</button>
+    </div>
+    <textarea id="room-2" readonly>👟玄関に脱ぎっぱなしの靴、子どもの分だけでもう溢れてた。見た目もごちゃつくし、掃除のたびに靴をどかすのが地味にストレスだった。取り入れたのがクリアタイプのシューズボックス、4個/8個セットから選べてスタッキングできるから玄関の隙間にぴったり収まった。①クリアで中身が一目で分かる②扉付きでホコリよけ③積み重ねて収納力アップ。レビュー748件で星4.62、みんな同じ悩みで導入してるんだなと納得。⚠️サイズ(S/M/L)は靴の高さに合わせて選んでください。玄関がすっきりするだけで朝の支度がちょっと楽になります。✨ #シューズボックス #玄関収納 #収納整理 #育児パパ #共働き家庭 #すっきり暮らし</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="card-head">
+    <img src="https://thumbnail.image.rakuten.co.jp/@0_mall/petitbelly/cabinet/siling-phot/ss-cart-1.jpg?_ex=128x128" alt="ファムベリー スリング しじら 新生児から2歳頃まで使えるベビースリング　出産祝いにも♪　抱っこひも　新生児【メール便不可】巾着袋付 ss ギフト プレゼント" loading="lazy">
+    <div class="info">
+      
+      <span class="genre-chip">育児グッズ</span>
+      <div class="name">ファムベリー スリング しじら 新生児から2歳頃まで使えるベビースリング　出産祝いにも♪　抱っこひも　新生児【メール便不可】巾着袋付 ss ギフト プレゼント</div>
+      <div class="meta-row">
+        <span class="price">¥9,570</span>
+        <span class="stars">★★★★☆</span>
+        <span>4.33(923件)</span>
+      </div>
+    </div>
+  </div>
+  <a class="btn-open" href="https://hb.afl.rakuten.co.jp/hgc/g00q8ion.dg4fic6a.g00q8ion.dg4fj883/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fpetitbelly%2Fsijira-yuri-sirokogiku%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fpetitbelly%2Fi%2F10000060%2F&rafcid=wsc_i_is_852e9d1a-8f83-49dc-bc9e-cf56a98e669a" target="_blank" rel="noopener">商品ページを開く ↗</a>
+  <div class="url-row">
+    <a href="https://item.rakuten.co.jp/petitbelly/sijira-yuri-sirokogiku/" target="_blank" rel="noopener">https://item.rakuten.co.jp/petitbelly/sijira-yuri-sirokogiku/</a>
+    <button class="copy-btn" onclick="copyPlain(this, 'https://item.rakuten.co.jp/petitbelly/sijira-yuri-sirokogiku/')" type="button">URLコピー</button>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>楽天ROOM用</span>
+      <button class="copy-btn" onclick="copyText(this, 'room-3')" type="button">コピー</button>
+    </div>
+    <textarea id="room-3" readonly>🧣レビュー923件で星4.33、新生児から2歳頃まで長く使えるファムベリーのスリング。抱っこ紐迷った時、まず候補に挙がる理由が使ってみて分かりました。①しじら織りで通気性がよく汗ばむ季節も快適②新生児から2歳頃まで対象月齢が長く買い替え不要③巾着袋付きでお出かけ時の持ち運びもコンパクト。価格は9,570円とやや投資額ですが、長く使える分トータルではお得な印象です。⚠️正しい抱っこ姿勢は説明書をしっかり確認してから。出産祝いにも選ばれてるアイテムなので、プレゼント候補としても良さそうです。👶🎁 #ベビースリング #抱っこ紐 #新生児グッズ #育児グッズ #育児パパ #共働き家庭 #出産祝い</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="card-head">
+    <img src="https://thumbnail.image.rakuten.co.jp/@0_mall/kurashiya/cabinet/06743615/sasikae2/sl-nc09.jpg?_ex=128x128" alt="【14時30分まで当日発送 土日発送も可能】象印 保温弁当箱 おべんと SL-NC09-ST ランチジャー ランチボックス おべんとうばこ ステンレスランチジャー 仕切り お・べ・ん・と冬 温かい 保温 茶碗約1.5杯分 ZOJIRUSHI 最強配送" loading="lazy">
+    <div class="info">
+      
+      <span class="genre-chip">キッチン雑貨</span>
+      <div class="name">【14時30分まで当日発送 土日発送も可能】象印 保温弁当箱 おべんと SL-NC09-ST ランチジャー ランチボックス おべんとうばこ ステンレスランチジャー 仕切り お・べ・ん・と冬 温かい 保温 茶碗約1.5杯分 ZOJIRUSHI 最強配送</div>
+      <div class="meta-row">
+        <span class="price">¥5,800</span>
+        <span class="stars">★★★★☆</span>
+        <span>4.39(424件)</span>
+      </div>
+    </div>
+  </div>
+  <a class="btn-open" href="https://hb.afl.rakuten.co.jp/hgc/g00q0ozn.dg4fic90.g00q0ozn.dg4fja7e/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fkurashiya%2F002-97584%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fkurashiya%2Fi%2F10001415%2F&rafcid=wsc_i_is_852e9d1a-8f83-49dc-bc9e-cf56a98e669a" target="_blank" rel="noopener">商品ページを開く ↗</a>
+  <div class="url-row">
+    <a href="https://item.rakuten.co.jp/kurashiya/002-97584/" target="_blank" rel="noopener">https://item.rakuten.co.jp/kurashiya/002-97584/</a>
+    <button class="copy-btn" onclick="copyPlain(this, 'https://item.rakuten.co.jp/kurashiya/002-97584/')" type="button">URLコピー</button>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>楽天ROOM用</span>
+      <button class="copy-btn" onclick="copyText(this, 'room-4')" type="button">コピー</button>
+    </div>
+    <textarea id="room-4" readonly>🍱お弁当を持たせても午後には冷めきってて、冬場は特に可哀想だなと思ってた。象印の保温弁当箱に変えてから、お昼になってもご飯がちゃんと温かいって本人が教えてくれるようになった。ステンレス製のランチジャーで保温力が違うし、茶碗約1.5杯分の容量で仕切りもあるからおかずも詰めやすい。レビュー424件で星4.39、冬の弁当問題で悩んでる人には試してほしい。⚠️保温効果を活かすには温かいご飯を詰めるのがポイントです。寒い季節のお弁当作り、これで少し気持ちが楽になりました。♨️🍚 #保温弁当箱 #象印 #お弁当グッズ #育児パパ #共働き家庭 #冬支度</textarea>
+  </div>
+</div>
+</div>
+
+<h2 class="section-title">💬 今日のあるある投稿ネタ(商品リンクなし)</h2>
+<div class="cards">
+<div class="card">
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>あるある投稿 #1</span>
+      <button class="copy-btn" onclick="copyText(this, 'daily-0')" type="button">コピー</button>
+    </div>
+    <textarea id="daily-0" class="short" readonly>背中スイッチの感度、うちの子だけ異常に高い気がする。布団に触れた瞬間に泣く。</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>あるある投稿 #2</span>
+      <button class="copy-btn" onclick="copyText(this, 'daily-1')" type="button">コピー</button>
+    </div>
+    <textarea id="daily-1" class="short" readonly>子どもの寝顔、可愛く撮れたと思って見返したら背景に脱ぎっぱなしの靴下と昨日の洗濯物が写り込んでる。せっかくの一枚のはずが記録用の汚部屋証拠写真になった。</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>あるある投稿 #3</span>
+      <button class="copy-btn" onclick="copyText(this, 'daily-2')" type="button">コピー</button>
+    </div>
+    <textarea id="daily-2" class="short" readonly>家事育児の何がしんどいって『中断』だと思う。洗い物してる途中で呼ばれて手を止めて、戻ったら泡が乾いてる。育休中にそれを毎日繰り返してようやく妻がずっとこれをやってたんだと気づいた。気づくの遅すぎたけど気づけて良かった。</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>あるある投稿 #4</span>
+      <button class="copy-btn" onclick="copyText(this, 'daily-3')" type="button">コピー</button>
+    </div>
+    <textarea id="daily-3" class="short" readonly>子の朝食は品数多いのに、親の朝食は昨日の残り物とコーヒーだけ。これでいいのかとは思うけど今日も同じ。</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>あるある投稿 #5</span>
+      <button class="copy-btn" onclick="copyText(this, 'daily-4')" type="button">コピー</button>
+    </div>
+    <textarea id="daily-4" class="short" readonly>子どもに言い過ぎる日の共通点、①自分の寝不足②予定通りに進まない③言った側から同じこと繰り返される、の3つが揃うと確実にキレる。揃わないように寝る時間だけは死守してる。</textarea>
+  </div>
+</div>
+</div>
+
+<footer class="note">商品ページを確認し、投稿文をコピーして手動で投稿してください。<br>Threads/Xの商品紹介は1日1件・あるある投稿と織り交ぜてスパム判定を避けてください。<br>価格・レビューは選定時点の実データです。</footer>
+</div>
+<script>
+function flash(btn) {
+  const original = btn.textContent;
+  btn.textContent = 'コピーしました';
+  btn.classList.add('copied');
+  setTimeout(() => { btn.textContent = original; btn.classList.remove('copied'); }, 1500);
+}
+function copyText(btn, id) {
+  const el = document.getElementById(id);
+  el.select();
+  el.setSelectionRange(0, 999999);
+  navigator.clipboard.writeText(el.value).then(() => flash(btn)).catch(() => {
+    try { document.execCommand('copy'); flash(btn); } catch (e) {}
+  });
+}
+function copyPlain(btn, text) {
+  navigator.clipboard.writeText(text).then(() => flash(btn)).catch(() => {
+    const t = document.createElement('textarea');
+    t.value = text; document.body.appendChild(t); t.select();
+    try { document.execCommand('copy'); flash(btn); } catch (e) {}
+    document.body.removeChild(t);
+  });
+}
+</script>
+</body>
+</html>

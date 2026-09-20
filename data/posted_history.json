@@ -1756,6 +1756,53 @@
         "threads",
         "x"
       ]
+    },
+    {
+      "itemCode": "secupcs:10000214",
+      "itemName": "【 SDカード付き 届いてすぐ使える 】 見守りカメラ ペットカメラ 首振り 追",
+      "date": "2026-09-20",
+      "slot": "night",
+      "channels": [
+        "room",
+        "threads",
+        "x"
+      ]
+    },
+    {
+      "itemCode": "selectshop-one:10002395",
+      "itemName": "【クーポン利用で 3312円~】＼楽天1位／ベビーバス 折りたたみ バスタブ 沐",
+      "date": "2026-09-20",
+      "slot": "night",
+      "channels": [
+        "room"
+      ]
+    },
+    {
+      "itemCode": "gekiyasukaguya:10024097",
+      "itemName": "【先着限定！500円OFFクーポン】 シューズボックス クリア 4個/8個セット",
+      "date": "2026-09-20",
+      "slot": "night",
+      "channels": [
+        "room"
+      ]
+    },
+    {
+      "itemCode": "petitbelly:10000060",
+      "itemName": "ファムベリー スリング しじら 新生児から2歳頃まで使えるベビースリング　出産祝",
+      "date": "2026-09-20",
+      "slot": "night",
+      "channels": [
+        "room"
+      ]
+    },
+    {
+      "itemCode": "kurashiya:10001415",
+      "itemName": "【14時30分まで当日発送 土日発送も可能】象印 保温弁当箱 おべんと SL-N",
+      "date": "2026-09-20",
+      "slot": "night",
+      "channels": [
+        "room"
+      ]
     }
   ]
 }
