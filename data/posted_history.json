@@ -1935,6 +1935,53 @@
       "channels": [
         "room"
       ]
+    },
+    {
+      "itemCode": "tcconlineshop:10000020",
+      "itemName": "【ベビーシッター監修】赤ちゃん 電動爪削り 電動つめけずり",
+      "date": "2026-09-22",
+      "slot": "night",
+      "channels": [
+        "room",
+        "threads",
+        "x"
+      ]
+    },
+    {
+      "itemCode": "happy11:10016264",
+      "itemName": "子ども用 傘 晴雨兼用 完全遮光 遮熱 UVカット キッズ傘",
+      "date": "2026-09-22",
+      "slot": "night",
+      "channels": [
+        "room"
+      ]
+    },
+    {
+      "itemCode": "otbj:10003775",
+      "itemName": "靴 消臭 乾燥 パウダー ニーノ",
+      "date": "2026-09-22",
+      "slot": "night",
+      "channels": [
+        "room"
+      ]
+    },
+    {
+      "itemCode": "chachazakka:10000252",
+      "itemName": "ぶんぶんチョッパー スーパー5 食洗機対応 みじん切り器",
+      "date": "2026-09-22",
+      "slot": "night",
+      "channels": [
+        "room"
+      ]
+    },
+    {
+      "itemCode": "longlife-global:10000311",
+      "itemName": "折りたためる 洗濯かご ランドリーバスケット メッシュ 自立",
+      "date": "2026-09-22",
+      "slot": "night",
+      "channels": [
+        "room"
+      ]
     }
   ]
 }
