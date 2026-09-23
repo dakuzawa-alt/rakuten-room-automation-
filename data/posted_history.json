@@ -1888,6 +1888,53 @@
       "channels": [
         "room"
       ]
+    },
+    {
+      "itemCode": "mythik:10000040",
+      "itemName": "シューズクリップ 2WAY 1年保証 リッタグリッタ ベビーカー シューズホルダー Litta Glitta",
+      "date": "2026-09-22",
+      "slot": "morning",
+      "channels": [
+        "room",
+        "threads",
+        "x"
+      ]
+    },
+    {
+      "itemCode": "lock110:10011938",
+      "itemName": "家具転倒防止 突っ張り棒 アイリスオーヤマ 家具転倒防止伸縮棒 SSSサイズ 2本セット",
+      "date": "2026-09-22",
+      "slot": "morning",
+      "channels": [
+        "room"
+      ]
+    },
+    {
+      "itemCode": "roomy:10016068",
+      "itemName": "プラマイゼロ コーヒーミル 電動 コードレス コニカル式 セラミック XKM-J110",
+      "date": "2026-09-22",
+      "slot": "morning",
+      "channels": [
+        "room"
+      ]
+    },
+    {
+      "itemCode": "e-rack:10003803",
+      "itemName": "スチールラック ラック 棚 幅45 奥行30 4段 キャスター付き ドウシシャ LCR45-4",
+      "date": "2026-09-22",
+      "slot": "morning",
+      "channels": [
+        "room"
+      ]
+    },
+    {
+      "itemCode": "expsjapan:10048210",
+      "itemName": "ファイルボックス 大容量 ドキュメントファイル A4 ワイド じゃばら式",
+      "date": "2026-09-22",
+      "slot": "morning",
+      "channels": [
+        "room"
+      ]
     }
   ]
 }
