@@ -1,0 +1,358 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>9/23 朝の選定 - 楽天ROOM投稿リスト</title>
+<style>
+:root {
+  --bg: #f6f3ee;
+  --surface: #ffffff;
+  --ink: #23211d;
+  --ink-soft: #6b6459;
+  --accent: #a8382c;
+  --accent-ink: #fff6f2;
+  --good: #3f7d58;
+  --border: #e4ddd2;
+  --chip-bg: #efe8db;
+  color-scheme: light dark;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #16140f;
+    --surface: #211f1a;
+    --ink: #ece7dc;
+    --ink-soft: #a89e8d;
+    --accent: #e0685a;
+    --accent-ink: #1c0f0c;
+    --good: #6fb98a;
+    --border: #35322a;
+    --chip-bg: #2a2721;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #16140f; --surface: #211f1a; --ink: #ece7dc; --ink-soft: #a89e8d;
+  --accent: #e0685a; --accent-ink: #1c0f0c; --good: #6fb98a; --border: #35322a; --chip-bg: #2a2721;
+}
+:root[data-theme="light"] {
+  --bg: #f6f3ee; --surface: #ffffff; --ink: #23211d; --ink-soft: #6b6459;
+  --accent: #a8382c; --accent-ink: #fff6f2; --good: #3f7d58; --border: #e4ddd2; --chip-bg: #efe8db;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0; background: var(--bg); color: var(--ink);
+  font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Yu Gothic Medium", "Noto Sans JP", sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+.wrap { max-width: 640px; margin: 0 auto; padding: 0 16px 40px; }
+header.top {
+  position: sticky; top: 0; z-index: 5; background: var(--bg);
+  padding: 18px 16px 12px; border-bottom: 1px solid var(--border);
+  display: flex; align-items: baseline; justify-content: space-between; gap: 12px;
+}
+header.top .eyebrow {
+  font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-soft);
+  font-weight: 600; margin: 0 0 2px;
+}
+header.top h1 { font-size: 1.25rem; margin: 0; font-weight: 700; letter-spacing: -0.01em; }
+header.top .count {
+  background: var(--chip-bg); color: var(--ink-soft); font-size: 0.78rem; font-weight: 600;
+  padding: 5px 10px; border-radius: 999px; white-space: nowrap;
+}
+h2.section-title { font-size: 0.95rem; font-weight: 700; margin: 24px 0 12px; }
+.cards { display: flex; flex-direction: column; gap: 16px; margin-top: 18px; }
+.card {
+  background: var(--surface); border: 1px solid var(--border); border-radius: 16px;
+  padding: 16px; display: flex; flex-direction: column; gap: 12px;
+}
+.card.featured { border-color: var(--accent); border-width: 2px; }
+.featured-badge {
+  align-self: flex-start; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.03em;
+  color: var(--accent-ink); background: var(--accent); padding: 3px 9px; border-radius: 999px;
+}
+.card-head { display: flex; gap: 12px; }
+.card-head img {
+  width: 76px; height: 76px; object-fit: cover; border-radius: 10px;
+  border: 1px solid var(--border); background: var(--chip-bg); flex-shrink: 0;
+}
+.card-head .info { min-width: 0; flex: 1; display: flex; flex-direction: column; gap: 4px; }
+.genre-chip {
+  align-self: flex-start; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.03em;
+  color: var(--accent); background: color-mix(in srgb, var(--accent) 12%, transparent);
+  padding: 2px 8px; border-radius: 999px;
+}
+.name {
+  font-weight: 600; font-size: 0.94rem; line-height: 1.4;
+  display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
+}
+.meta-row { display: flex; align-items: baseline; gap: 8px; font-size: 0.82rem; color: var(--ink-soft); }
+.price { font-variant-numeric: tabular-nums; color: var(--ink); font-weight: 700; font-size: 1.05rem; }
+.stars { letter-spacing: -1px; color: var(--accent); }
+.btn-open {
+  display: flex; align-items: center; justify-content: center; gap: 6px;
+  background: var(--accent); color: var(--accent-ink); border: none; border-radius: 11px;
+  padding: 12px; font-weight: 700; font-size: 0.92rem; text-decoration: none;
+}
+.btn-open:active { opacity: 0.85; }
+.url-row {
+  display: flex; align-items: center; gap: 8px;
+  background: var(--chip-bg); border-radius: 9px; padding: 8px 10px;
+}
+.url-row a {
+  flex: 1; min-width: 0; font-size: 0.76rem; color: var(--accent);
+  word-break: break-all; line-height: 1.45; text-decoration: none;
+}
+.url-row a:active { text-decoration: underline; }
+.reason { font-size: 0.8rem; color: var(--ink-soft); }
+.caption-box { border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }
+.caption-head {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 8px 10px; background: var(--chip-bg);
+}
+.caption-head span {
+  font-size: 0.7rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-soft);
+}
+.copy-btn {
+  background: var(--surface); border: 1px solid var(--border); color: var(--ink);
+  border-radius: 7px; padding: 5px 11px; font-size: 0.76rem; font-weight: 600; cursor: pointer;
+}
+.copy-btn:focus-visible, .btn-open:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.copy-btn.copied { background: var(--good); border-color: var(--good); color: #fff; }
+textarea {
+  width: 100%; display: block; border: none; padding: 10px; font-size: 0.85rem; line-height: 1.55;
+  resize: vertical; min-height: 108px; font-family: inherit; background: var(--surface); color: var(--ink);
+}
+textarea.short { min-height: 60px; }
+textarea:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
+footer.note { margin-top: 22px; font-size: 0.76rem; color: var(--ink-soft); text-align: center; line-height: 1.6; }
+@media (prefers-reduced-motion: no-preference) {
+  .copy-btn { transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease; }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <div>
+    <p class="eyebrow">楽天ROOM 投稿リスト</p>
+    <h1>9/23 朝の選定</h1>
+  </div>
+  <span class="count">4件</span>
+</header>
+
+<h2 class="section-title">📦 商品(ROOM用、全4件)</h2>
+<div class="cards">
+<div class="card featured">
+  <div class="card-head">
+    <img src="https://thumbnail.image.rakuten.co.jp/@0_mall/auc-tokutoku/cabinet/sty4/chibikuro24126_1.jpg?_ex=128x128" alt="【マラソン中P5倍】炊飯器 電子レンジ専用炊飯器 2合炊き 安い 節電 時短 備長炭入 炊飯器 お米 ご飯 ひとり暮らし 一人用 独身用 簡単 炊飯 電子レンジ レンジ炊飯器 出張 1人暮らし 便利グッズ 手軽 火いらず レンチン おかゆ 【☆60】/ちびくろちゃん" loading="lazy">
+    <div class="info">
+      <span class="featured-badge">🔥 本日のThreads/Xピックアップ</span>
+      <span class="genre-chip">時短家電</span>
+      <div class="name">【マラソン中P5倍】炊飯器 電子レンジ専用炊飯器 2合炊き 安い 節電 時短 備長炭入 炊飯器 お米 ご飯 ひとり暮らし 一人用 独身用 簡単 炊飯 電子レンジ レンジ炊飯器 出張 1人暮らし 便利グッズ 手軽 火いらず レンチン おかゆ 【☆60】/ちびくろちゃん</div>
+      <div class="meta-row">
+        <span class="price">¥1,280</span>
+        <span class="stars">★★★★☆</span>
+        <span>4.37(652件)</span>
+      </div>
+    </div>
+  </div>
+  <a class="btn-open" href="https://hb.afl.rakuten.co.jp/hgc/g00qbprn.dg4fif2e.g00qbprn.dg4fj94c/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fauc-tokutoku%2Ftibikuro2gou%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fauc-tokutoku%2Fi%2F10063478%2F&rafcid=wsc_i_is_852e9d1a-8f83-49dc-bc9e-cf56a98e669a" target="_blank" rel="noopener">商品ページを開く ↗</a>
+  <div class="url-row">
+    <a href="https://item.rakuten.co.jp/auc-tokutoku/tibikuro2gou/" target="_blank" rel="noopener">https://item.rakuten.co.jp/auc-tokutoku/tibikuro2gou/</a>
+    <button class="copy-btn" onclick="copyPlain(this, 'https://item.rakuten.co.jp/auc-tokutoku/tibikuro2gou/')" type="button">URLコピー</button>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>楽天ROOM用</span>
+      <button class="copy-btn" onclick="copyText(this, 'room-0')" type="button">コピー</button>
+    </div>
+    <textarea id="room-0" readonly>⚡1,280円で、洗い物は茶碗と箸だけ。電子レンジ専用の2合炊飯器なら、洗米して水加減したらレンジに入れるだけでご飯が炊けます🍚備長炭入りで炊きムラも少なめ。ひとり暮らしや単身赴任の自炊ハードルがぐっと下がりますよ⏰レビュー652件で星4.37と評価も安定🌟対応ワット数は機種で差があるので使う前に確認を。毎日のご飯支度が一気にラクになります😊
+
+#時短家電 #ひとり暮らし #自炊 #育児パパ #共働き家庭 #炊飯器 #レンジ調理</textarea>
+  </div>
+  <p class="reason">🔥 今日のピックアップ理由: 1,280円という価格の意外性とレビュー652件という実績の掛け合わせが一番強く、忙しい人に刺さりやすいため今日の1件に選定</p>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>Threads用</span>
+      <button class="copy-btn" onclick="copyText(this, 'threads-0')" type="button">コピー</button>
+    </div>
+    <textarea id="threads-0" readonly>1,280円の電子レンジ専用炊飯器、正直ナメてた。備長炭入りの2合炊きで、洗米してレンジに入れるだけ。火も使わないし洗い物は茶碗と箸くらい。一人暮らしの子が独立するときにこれ渡しとけばよかったなって今更思ってる。レビュー652件で星4.37、地味な家電のわりに数字がちゃんとしてるのも安心材料。ワット数だけ機種で確認してね。
+
+#PR #時短家電 #ひとり暮らし #育児パパ #共働き家庭</textarea>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>X用</span>
+      <button class="copy-btn" onclick="copyText(this, 'x-0')" type="button">コピー</button>
+    </div>
+    <textarea id="x-0" readonly>1,280円の電子レンジ専用炊飯器、洗米してチンするだけで一人暮らしの自炊が終わる。火も使わないから洗い物も最小限。レビュー652件で星4.37、地味だけど数字はしっかりしてる。ワット数だけ確認してね。
+
+#PR #時短家電 #ひとり暮らし</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="card-head">
+    <img src="https://thumbnail.image.rakuten.co.jp/@0_mall/e-kurashi/cabinet/main-img/012/main-xf488.jpg?_ex=128x128" alt="【P10倍 9/24 9:59迄】 ホットプレート 大型 ホットプレートワイド 焼肉 ワイドホットプレート 電気ホットプレート 大型ホットプレート 平面プレート ふた付き 蓋付き 卓上 新生活山善 YAMAZEN 【送料無料】" loading="lazy">
+    <div class="info">
+      
+      <span class="genre-chip">時短家電</span>
+      <div class="name">【P10倍 9/24 9:59迄】 ホットプレート 大型 ホットプレートワイド 焼肉 ワイドホットプレート 電気ホットプレート 大型ホットプレート 平面プレート ふた付き 蓋付き 卓上 新生活山善 YAMAZEN 【送料無料】</div>
+      <div class="meta-row">
+        <span class="price">¥9,980</span>
+        <span class="stars">★★★★☆</span>
+        <span>4.48(688件)</span>
+      </div>
+    </div>
+  </div>
+  <a class="btn-open" href="https://hb.afl.rakuten.co.jp/hgc/g00pui9n.dg4fi835.g00pui9n.dg4fj2d8/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fe-kurashi%2F1515715%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fe-kurashi%2Fi%2F10003897%2F&rafcid=wsc_i_is_852e9d1a-8f83-49dc-bc9e-cf56a98e669a" target="_blank" rel="noopener">商品ページを開く ↗</a>
+  <div class="url-row">
+    <a href="https://item.rakuten.co.jp/e-kurashi/1515715/" target="_blank" rel="noopener">https://item.rakuten.co.jp/e-kurashi/1515715/</a>
+    <button class="copy-btn" onclick="copyPlain(this, 'https://item.rakuten.co.jp/e-kurashi/1515715/')" type="button">URLコピー</button>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>楽天ROOM用</span>
+      <button class="copy-btn" onclick="copyText(this, 'room-1')" type="button">コピー</button>
+    </div>
+    <textarea id="room-1" readonly>🔥週末の夕飯、子どもが『お肉焼くのやりたい!』って騒いで台所がカオスになってた。それがこのワイドホットプレートに変えてから解決。大型の平面プレートだから焼肉もホットケーキも同時に並べられて、子どもも自分の分を横で焼ける😆蓋付きだから煙も抑えられて後片付けもラク。レビュー688件で星4.48と支持されてるのも納得です🌟お値段は9,980円とそれなりですが、休日の食卓がぐっと盛り上がるので我が家では大満足の投資でした✨
+
+#時短家電 #ホットプレート #おうち焼肉 #育児パパ #共働き家庭 #休日ごはん</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="card-head">
+    <img src="https://thumbnail.image.rakuten.co.jp/@0_mall/waabbit/cabinet/k/06716882/lunch-name-al-s/imgrc0097150688.jpg?_ex=128x128" alt="キッズ アルミ 弁当箱 【名入れ不可 】Sサイズ 280ml (満量350ml) Lサイズ440ml （満量550ml）幼稚園 オリジナルデザイン アルミ弁当箱 日本製 保温庫 子供 卒園 記念品 入園祝い 入学 入学式 祝い ギフト 卒園 保育園 弁当箱 幼稚園 恐竜【食洗機・電子レンジ不可】" loading="lazy">
+    <div class="info">
+      
+      <span class="genre-chip">育児グッズ</span>
+      <div class="name">キッズ アルミ 弁当箱 【名入れ不可 】Sサイズ 280ml (満量350ml) Lサイズ440ml （満量550ml）幼稚園 オリジナルデザイン アルミ弁当箱 日本製 保温庫 子供 卒園 記念品 入園祝い 入学 入学式 祝い ギフト 卒園 保育園 弁当箱 幼稚園 恐竜【食洗機・電子レンジ不可】</div>
+      <div class="meta-row">
+        <span class="price">¥2,580</span>
+        <span class="stars">★★★★★</span>
+        <span>4.68(121件)</span>
+      </div>
+    </div>
+  </div>
+  <a class="btn-open" href="https://hb.afl.rakuten.co.jp/hgc/g00rj7ln.dg4fifa2.g00rj7ln.dg4fj5e5/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fwaabbit%2Flunch-al-s-kids01%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fwaabbit%2Fi%2F10000571%2F&rafcid=wsc_i_is_852e9d1a-8f83-49dc-bc9e-cf56a98e669a" target="_blank" rel="noopener">商品ページを開く ↗</a>
+  <div class="url-row">
+    <a href="https://item.rakuten.co.jp/waabbit/lunch-al-s-kids01/" target="_blank" rel="noopener">https://item.rakuten.co.jp/waabbit/lunch-al-s-kids01/</a>
+    <button class="copy-btn" onclick="copyPlain(this, 'https://item.rakuten.co.jp/waabbit/lunch-al-s-kids01/')" type="button">URLコピー</button>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>楽天ROOM用</span>
+      <button class="copy-btn" onclick="copyText(this, 'room-2')" type="button">コピー</button>
+    </div>
+    <textarea id="room-2" readonly>🎒2,580円のアルミ弁当箱、レビュー121件で星4.68とかなり高評価なんです。幼稚園や保育園の毎朝のお弁当、保温庫対応で軽くて割れにくいから子どもも自分で持ちやすいのがポイント。名入れはできませんが、日本製で作りもしっかりしていて長く使えます🍱電子レンジ・食洗機は使えないので、洗い方だけ注意してくださいね。入園準備の1つとしてもおすすめです✨
+
+#育児グッズ #お弁当箱 #幼稚園準備 #保育園準備 #育児パパ #共働き家庭</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="card-head">
+    <img src="https://thumbnail.image.rakuten.co.jp/@0_mall/saigaitaisakuhonpo/cabinet/00869187/variety10_top_202602.gif?_ex=128x128" alt="バラエティセット10 防災士監修 1人用 3日分 非常食 防災食 防災食 保存食セット5年保存 備蓄 アルファ米 パン パスタ 保存水 野菜ジュース みそ汁 スープ 菓子 在宅避難 帰宅困難 家族 法人 企業 自治会 ギフト 贈答 災害対策本舗 WFP寄付【リマインダーサービス対象】" loading="lazy">
+    <div class="info">
+      
+      <span class="genre-chip">防災 安全</span>
+      <div class="name">バラエティセット10 防災士監修 1人用 3日分 非常食 防災食 防災食 保存食セット5年保存 備蓄 アルファ米 パン パスタ 保存水 野菜ジュース みそ汁 スープ 菓子 在宅避難 帰宅困難 家族 法人 企業 自治会 ギフト 贈答 災害対策本舗 WFP寄付【リマインダーサービス対象】</div>
+      <div class="meta-row">
+        <span class="price">¥6,965</span>
+        <span class="stars">★★★★★</span>
+        <span>4.57(268件)</span>
+      </div>
+    </div>
+  </div>
+  <a class="btn-open" href="https://hb.afl.rakuten.co.jp/hgc/g00q5oen.dg4fi6ab.g00q5oen.dg4fj211/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fsaigaitaisakuhonpo%2F08-02-005%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fsaigaitaisakuhonpo%2Fi%2F10000260%2F&rafcid=wsc_i_is_852e9d1a-8f83-49dc-bc9e-cf56a98e669a" target="_blank" rel="noopener">商品ページを開く ↗</a>
+  <div class="url-row">
+    <a href="https://item.rakuten.co.jp/saigaitaisakuhonpo/08-02-005/" target="_blank" rel="noopener">https://item.rakuten.co.jp/saigaitaisakuhonpo/08-02-005/</a>
+    <button class="copy-btn" onclick="copyPlain(this, 'https://item.rakuten.co.jp/saigaitaisakuhonpo/08-02-005/')" type="button">URLコピー</button>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>楽天ROOM用</span>
+      <button class="copy-btn" onclick="copyText(this, 'room-3')" type="button">コピー</button>
+    </div>
+    <textarea id="room-3" readonly>🚨先日のニュースで避難情報が出ているのを見て、うちの防災グッズが何年も前のまま止まっていることに気づいてゾッとした。慌てて調べて選んだのがこの防災士監修のバラエティセット。1人用3日分の非常食と保存水がまとめて揃うから、買い足す手間も置き場所を考える手間も一気に減った感じ。パンやアルファ米、スープまで種類があって、味の偏りも少なそう🍞レビュー268件で星4.57と評価も高め🌟備えてないと後で後悔するタイプの買い物だと思うので、まだの人は一度チェックしてみてください。
+
+#防災グッズ #非常食 #備蓄 #育児パパ #共働き家庭 #防災セット</textarea>
+  </div>
+</div>
+</div>
+
+<h2 class="section-title">💬 今日のあるある投稿ネタ(商品リンクなし)</h2>
+<div class="cards">
+<div class="card">
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>あるある投稿 #1</span>
+      <button class="copy-btn" onclick="copyText(this, 'daily-0')" type="button">コピー</button>
+    </div>
+    <textarea id="daily-0" class="short" readonly>背中スイッチ、うちの子は感度よすぎて誤作動レベル😂</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>あるある投稿 #2</span>
+      <button class="copy-btn" onclick="copyText(this, 'daily-1')" type="button">コピー</button>
+    </div>
+    <textarea id="daily-1" class="short" readonly>子どもに言い過ぎたなと反省する日の共通点、①自分が寝不足②予定が詰まってる③晩ごはんがまだできてない。だいたいこの3つが揃ってる。</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>あるある投稿 #3</span>
+      <button class="copy-btn" onclick="copyText(this, 'daily-2')" type="button">コピー</button>
+    </div>
+    <textarea id="daily-2" class="short" readonly>洗濯物をたたんでる最中に呼ばれて中断、また最初からたたみ直す。これが1日に何回あるか数えたら負けな気がする。</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>あるある投稿 #4</span>
+      <button class="copy-btn" onclick="copyText(this, 'daily-3')" type="button">コピー</button>
+    </div>
+    <textarea id="daily-3" class="short" readonly>スマホの写真フォルダ、9割が子どもの寝顔と食事シーン。見返すとかわいくて癒されるんだけど、よく見ると背景に脱ぎっぱなしの靴下とオムツの空き箱と洗ってない哺乳瓶が写り込んでて、これも含めて記録なんだよなって最近思うようになった。</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>あるある投稿 #5</span>
+      <button class="copy-btn" onclick="copyText(this, 'daily-4')" type="button">コピー</button>
+    </div>
+    <textarea id="daily-4" class="short" readonly>夜泣きに気づいて起きたの俺だけかと思ったら、隣で妻も同じタイミングで目覚めてたらしい。お互い「寝たふり選手権」してたのバレてた😂</textarea>
+  </div>
+</div>
+</div>
+
+<footer class="note">商品ページを確認し、投稿文をコピーして手動で投稿してください。<br>Threads/Xの商品紹介は1日1件・あるある投稿と織り交ぜてスパム判定を避けてください。<br>価格・レビューは選定時点の実データです。</footer>
+</div>
+<script>
+function flash(btn) {
+  const original = btn.textContent;
+  btn.textContent = 'コピーしました';
+  btn.classList.add('copied');
+  setTimeout(() => { btn.textContent = original; btn.classList.remove('copied'); }, 1500);
+}
+function copyText(btn, id) {
+  const el = document.getElementById(id);
+  el.select();
+  el.setSelectionRange(0, 999999);
+  navigator.clipboard.writeText(el.value).then(() => flash(btn)).catch(() => {
+    try { document.execCommand('copy'); flash(btn); } catch (e) {}
+  });
+}
+function copyPlain(btn, text) {
+  navigator.clipboard.writeText(text).then(() => flash(btn)).catch(() => {
+    const t = document.createElement('textarea');
+    t.value = text; document.body.appendChild(t); t.select();
+    try { document.execCommand('copy'); flash(btn); } catch (e) {}
+    document.body.removeChild(t);
+  });
+}
+</script>
+</body>
+</html>
