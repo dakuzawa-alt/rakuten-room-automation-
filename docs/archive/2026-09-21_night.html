@@ -1,0 +1,352 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>9/21 夜の選定 - 楽天ROOM投稿リスト</title>
+<style>
+:root {
+  --bg: #f6f3ee;
+  --surface: #ffffff;
+  --ink: #23211d;
+  --ink-soft: #6b6459;
+  --accent: #a8382c;
+  --accent-ink: #fff6f2;
+  --good: #3f7d58;
+  --border: #e4ddd2;
+  --chip-bg: #efe8db;
+  color-scheme: light dark;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #16140f;
+    --surface: #211f1a;
+    --ink: #ece7dc;
+    --ink-soft: #a89e8d;
+    --accent: #e0685a;
+    --accent-ink: #1c0f0c;
+    --good: #6fb98a;
+    --border: #35322a;
+    --chip-bg: #2a2721;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #16140f; --surface: #211f1a; --ink: #ece7dc; --ink-soft: #a89e8d;
+  --accent: #e0685a; --accent-ink: #1c0f0c; --good: #6fb98a; --border: #35322a; --chip-bg: #2a2721;
+}
+:root[data-theme="light"] {
+  --bg: #f6f3ee; --surface: #ffffff; --ink: #23211d; --ink-soft: #6b6459;
+  --accent: #a8382c; --accent-ink: #fff6f2; --good: #3f7d58; --border: #e4ddd2; --chip-bg: #efe8db;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0; background: var(--bg); color: var(--ink);
+  font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Yu Gothic Medium", "Noto Sans JP", sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+.wrap { max-width: 640px; margin: 0 auto; padding: 0 16px 40px; }
+header.top {
+  position: sticky; top: 0; z-index: 5; background: var(--bg);
+  padding: 18px 16px 12px; border-bottom: 1px solid var(--border);
+  display: flex; align-items: baseline; justify-content: space-between; gap: 12px;
+}
+header.top .eyebrow {
+  font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-soft);
+  font-weight: 600; margin: 0 0 2px;
+}
+header.top h1 { font-size: 1.25rem; margin: 0; font-weight: 700; letter-spacing: -0.01em; }
+header.top .count {
+  background: var(--chip-bg); color: var(--ink-soft); font-size: 0.78rem; font-weight: 600;
+  padding: 5px 10px; border-radius: 999px; white-space: nowrap;
+}
+h2.section-title { font-size: 0.95rem; font-weight: 700; margin: 24px 0 12px; }
+.cards { display: flex; flex-direction: column; gap: 16px; margin-top: 18px; }
+.card {
+  background: var(--surface); border: 1px solid var(--border); border-radius: 16px;
+  padding: 16px; display: flex; flex-direction: column; gap: 12px;
+}
+.card.featured { border-color: var(--accent); border-width: 2px; }
+.featured-badge {
+  align-self: flex-start; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.03em;
+  color: var(--accent-ink); background: var(--accent); padding: 3px 9px; border-radius: 999px;
+}
+.card-head { display: flex; gap: 12px; }
+.card-head img {
+  width: 76px; height: 76px; object-fit: cover; border-radius: 10px;
+  border: 1px solid var(--border); background: var(--chip-bg); flex-shrink: 0;
+}
+.card-head .info { min-width: 0; flex: 1; display: flex; flex-direction: column; gap: 4px; }
+.genre-chip {
+  align-self: flex-start; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.03em;
+  color: var(--accent); background: color-mix(in srgb, var(--accent) 12%, transparent);
+  padding: 2px 8px; border-radius: 999px;
+}
+.name {
+  font-weight: 600; font-size: 0.94rem; line-height: 1.4;
+  display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
+}
+.meta-row { display: flex; align-items: baseline; gap: 8px; font-size: 0.82rem; color: var(--ink-soft); }
+.price { font-variant-numeric: tabular-nums; color: var(--ink); font-weight: 700; font-size: 1.05rem; }
+.stars { letter-spacing: -1px; color: var(--accent); }
+.btn-open {
+  display: flex; align-items: center; justify-content: center; gap: 6px;
+  background: var(--accent); color: var(--accent-ink); border: none; border-radius: 11px;
+  padding: 12px; font-weight: 700; font-size: 0.92rem; text-decoration: none;
+}
+.btn-open:active { opacity: 0.85; }
+.url-row {
+  display: flex; align-items: center; gap: 8px;
+  background: var(--chip-bg); border-radius: 9px; padding: 8px 10px;
+}
+.url-row a {
+  flex: 1; min-width: 0; font-size: 0.76rem; color: var(--accent);
+  word-break: break-all; line-height: 1.45; text-decoration: none;
+}
+.url-row a:active { text-decoration: underline; }
+.reason { font-size: 0.8rem; color: var(--ink-soft); }
+.caption-box { border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }
+.caption-head {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 8px 10px; background: var(--chip-bg);
+}
+.caption-head span {
+  font-size: 0.7rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-soft);
+}
+.copy-btn {
+  background: var(--surface); border: 1px solid var(--border); color: var(--ink);
+  border-radius: 7px; padding: 5px 11px; font-size: 0.76rem; font-weight: 600; cursor: pointer;
+}
+.copy-btn:focus-visible, .btn-open:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.copy-btn.copied { background: var(--good); border-color: var(--good); color: #fff; }
+textarea {
+  width: 100%; display: block; border: none; padding: 10px; font-size: 0.85rem; line-height: 1.55;
+  resize: vertical; min-height: 108px; font-family: inherit; background: var(--surface); color: var(--ink);
+}
+textarea.short { min-height: 60px; }
+textarea:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
+footer.note { margin-top: 22px; font-size: 0.76rem; color: var(--ink-soft); text-align: center; line-height: 1.6; }
+@media (prefers-reduced-motion: no-preference) {
+  .copy-btn { transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease; }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <div>
+    <p class="eyebrow">楽天ROOM 投稿リスト</p>
+    <h1>9/21 夜の選定</h1>
+  </div>
+  <span class="count">4件</span>
+</header>
+
+<h2 class="section-title">📦 商品(ROOM用、全4件)</h2>
+<div class="cards">
+<div class="card featured">
+  <div class="card-head">
+    <img src="https://thumbnail.image.rakuten.co.jp/@0_mall/hagoogi/cabinet/11214062/13859825/13859828/imgrc0108063240.jpg?_ex=128x128" alt="【2026人気再販】【新色追加】【楽天連続1位】湯たんぽ 充電式 ゆたんぽ 蓄熱式 電気湯たんぽ 4~12H長時間保温 省エネ 防爆充電器 過熱防止 急速充電 冷え対策 エコ 省エネ 暖房器具 ギフト プレゼント" loading="lazy">
+    <div class="info">
+      <span class="featured-badge">🔥 本日のThreads/Xピックアップ</span>
+      <span class="genre-chip">季節もの</span>
+      <div class="name">【2026人気再販】【新色追加】【楽天連続1位】湯たんぽ 充電式 ゆたんぽ 蓄熱式 電気湯たんぽ 4~12H長時間保温 省エネ 防爆充電器 過熱防止 急速充電 冷え対策 エコ 省エネ 暖房器具 ギフト プレゼント</div>
+      <div class="meta-row">
+        <span class="price">¥2,980</span>
+        <span class="stars">★★★★★</span>
+        <span>4.62(3824件)</span>
+      </div>
+    </div>
+  </div>
+  <a class="btn-open" href="https://hb.afl.rakuten.co.jp/hgc/g00trzxn.dg4fia0c.g00trzxn.dg4fj0ea/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fhagoogi%2Flxe-01%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fhagoogi%2Fi%2F10000213%2F&rafcid=wsc_i_is_852e9d1a-8f83-49dc-bc9e-cf56a98e669a" target="_blank" rel="noopener">商品ページを開く ↗</a>
+  <div class="url-row">
+    <a href="https://item.rakuten.co.jp/hagoogi/lxe-01/" target="_blank" rel="noopener">https://item.rakuten.co.jp/hagoogi/lxe-01/</a>
+    <button class="copy-btn" onclick="copyPlain(this, 'https://item.rakuten.co.jp/hagoogi/lxe-01/')" type="button">URLコピー</button>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>楽天ROOM用</span>
+      <button class="copy-btn" onclick="copyText(this, 'room-0')" type="button">コピー</button>
+    </div>
+    <textarea id="room-0" readonly>🥶布団に入った瞬間、足先が氷みたいに冷たくて全然寝付けない夜、ありませんか。うちはこの「充電式湯たんぽ」を導入してから、その悩みがかなり軽くなりました。電源につないで待つだけで蓄熱、あとはコードレスで4〜12時間じんわりあたたかい状態をキープしてくれます🔌✨。電気毛布と違ってコンセントに繋ぎっぱなしじゃないので、寝ている間の安心感も違います。楽天では連続1位、レビュー3,824件・星4.62という実績も心強いポイント。過熱防止機能付きとはいえ、直接肌に長時間当て続けるのは低温やけどのリスクがあるのでタオルなどで包んで使うのがおすすめです🧣。冷え性の家族がいる家庭は、寝る前の準備にぜひ検討してみてください😊
+#湯たんぽ #冷え対策 #防寒グッズ #季節もの #共働き家庭 #育児パパ #暖房器具</textarea>
+  </div>
+  <p class="reason">🔥 今日のピックアップ理由: レビュー3,824件は今回の商品群で断トツで多く社会的証明が圧倒的な上、2,980円という手頃さと、朝晩の冷え込みが強まるこの時期に先取りで検討されやすい季節性の後押しも強いため選定</p>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>Threads用</span>
+      <button class="copy-btn" onclick="copyText(this, 'threads-0')" type="button">コピー</button>
+    </div>
+    <textarea id="threads-0" readonly>布団入った瞬間、足先が氷みたいで全然寝付けない夜ってあるよな。うちはそれ、充電式の湯たんぽに替えてからだいぶマシになった。コンセントに挿しっぱなしじゃなくていいから、寝てる間の安心感が電気毛布と全然違う。充電しておけば4〜12時間くらいじんわりあったかいのが続く感じ。レビューの数、正直えぐいくらい集まってて、それだけで信頼して良さそうだった。低温やけどだけは注意で、タオル一枚挟むだけで全然違う。朝晩ぐっと冷えてきたし、足先冷たい人は一回試してみてほしい。
+#PR #湯たんぽ #冷え対策 #育児パパ #共働き家庭</textarea>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>X用</span>
+      <button class="copy-btn" onclick="copyText(this, 'x-0')" type="button">コピー</button>
+    </div>
+    <textarea id="x-0" readonly>布団入った瞬間、足先が氷みたいで寝付けない夜、充電式湯たんぽで結構マシになった。コンセント挿しっぱなしじゃないから寝てる間も安心。4〜12時間くらいあったかいのキープ。レビューの数がえぐくて説得力あった。低温やけどだけ注意、タオル挟むだけで全然違う。
+#PR #冷え対策</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="card-head">
+    <img src="https://thumbnail.image.rakuten.co.jp/@0_mall/hibaya-aomori/cabinet/manaita/imgrc0093018207.jpg?_ex=128x128" alt="青森ヒバ【30×30×厚3cm/継ぎ（8〜12枚)】厚型 ひば 木 まな板 青森ヒバ 無塗装 木製 消臭 芳香 抗菌 黒カビ 正方形 反りにくい継 水切れ ヒバ まないた ギフト 母の日 プレゼント manaita 日本製 天然木 厚い" loading="lazy">
+    <div class="info">
+      
+      <span class="genre-chip">キッチン雑貨</span>
+      <div class="name">青森ヒバ【30×30×厚3cm/継ぎ（8〜12枚)】厚型 ひば 木 まな板 青森ヒバ 無塗装 木製 消臭 芳香 抗菌 黒カビ 正方形 反りにくい継 水切れ ヒバ まないた ギフト 母の日 プレゼント manaita 日本製 天然木 厚い</div>
+      <div class="meta-row">
+        <span class="price">¥5,940</span>
+        <span class="stars">★★★★★</span>
+        <span>4.69(483件)</span>
+      </div>
+    </div>
+  </div>
+  <a class="btn-open" href="https://hb.afl.rakuten.co.jp/hgc/g00qgasn.dg4fie9b.g00qgasn.dg4fj998/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fhibaya-aomori%2F3011%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fhibaya-aomori%2Fi%2F10000028%2F&rafcid=wsc_i_is_852e9d1a-8f83-49dc-bc9e-cf56a98e669a" target="_blank" rel="noopener">商品ページを開く ↗</a>
+  <div class="url-row">
+    <a href="https://item.rakuten.co.jp/hibaya-aomori/3011/" target="_blank" rel="noopener">https://item.rakuten.co.jp/hibaya-aomori/3011/</a>
+    <button class="copy-btn" onclick="copyPlain(this, 'https://item.rakuten.co.jp/hibaya-aomori/3011/')" type="button">URLコピー</button>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>楽天ROOM用</span>
+      <button class="copy-btn" onclick="copyText(this, 'room-1')" type="button">コピー</button>
+    </div>
+    <textarea id="room-1" readonly>🌲5,940円で一生モノの木のまな板って、実はアリなんです。青森ヒバは天然の抗菌・消臭パワーが強くて、木製まな板特有の「臭いが染み付く」「黒カビが出る」という悩みを解決してくれるんですよ。無塗装・厚さ3cmでどっしり安定、水切れも良く反りにくいのが魅力です。レビュー483件で星4.69と評価も高め◎✨ ただし天然木なので使い始めは面取りやお手入れ(乾燥重視)を意識すると長持ちします。長く使えるまな板を探している方はチェックしてみてくださいね🪵
+#キッチン雑貨 #まな板 #青森ヒバ #天然木 #キッチングッズ #共働き家庭 #育児パパ</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="card-head">
+    <img src="https://thumbnail.image.rakuten.co.jp/@0_mall/good-toy/cabinet/12871781/rakuten/e-001-011.jpg?_ex=128x128" alt="【SALEクーポンあり】●うさぎ車 赤ちゃん おもちゃ 木のおもちゃ 車 はがため 歯がため 知育玩具 出産祝い 日本製 カタカタ 男の子＆女の子 おしゃれ 3ヶ月 4ヶ月 5ヶ月 6ヶ月 7ヶ月 8ヶ月 9ヶ月 10ヶ月 0歳 1歳 1歳半 2歳 木製 玩具 がらがら ラトル デザイン psc" loading="lazy">
+    <div class="info">
+      
+      <span class="genre-chip">育児グッズ</span>
+      <div class="name">【SALEクーポンあり】●うさぎ車 赤ちゃん おもちゃ 木のおもちゃ 車 はがため 歯がため 知育玩具 出産祝い 日本製 カタカタ 男の子＆女の子 おしゃれ 3ヶ月 4ヶ月 5ヶ月 6ヶ月 7ヶ月 8ヶ月 9ヶ月 10ヶ月 0歳 1歳 1歳半 2歳 木製 玩具 がらがら ラトル デザイン psc</div>
+      <div class="meta-row">
+        <span class="price">¥3,080</span>
+        <span class="stars">★★★★★</span>
+        <span>4.63(416件)</span>
+      </div>
+    </div>
+  </div>
+  <a class="btn-open" href="https://hb.afl.rakuten.co.jp/hgc/g00q5z9n.dg4fibb1.g00q5z9n.dg4fja19/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fgood-toy%2Fe-001%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fgood-toy%2Fi%2F10000077%2F&rafcid=wsc_i_is_852e9d1a-8f83-49dc-bc9e-cf56a98e669a" target="_blank" rel="noopener">商品ページを開く ↗</a>
+  <div class="url-row">
+    <a href="https://item.rakuten.co.jp/good-toy/e-001/" target="_blank" rel="noopener">https://item.rakuten.co.jp/good-toy/e-001/</a>
+    <button class="copy-btn" onclick="copyPlain(this, 'https://item.rakuten.co.jp/good-toy/e-001/')" type="button">URLコピー</button>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>楽天ROOM用</span>
+      <button class="copy-btn" onclick="copyText(this, 'room-2')" type="button">コピー</button>
+    </div>
+    <textarea id="room-2" readonly>🐰3,080円で出産祝いにもぴったりな木のおもちゃ、実は歯がため・がらがら・車としての3役をこなしてくれるんです。日本製で角が丸く仕上げられているので、口に入れても安心感があります。うさぎモチーフのやさしいデザインで、男の子にも女の子にも贈りやすいのが嬉しいポイント。レビュー416件・星4.63と高評価が続いています。😊対象月齢の目安はあるので、赤ちゃんの成長やお口に入れる癖に合わせて選んであげてください。出産祝いの候補で迷っている方はぜひ検討してみてくださいね🎁
+#育児グッズ #出産祝い #木のおもちゃ #知育玩具 #歯固め #育児パパ #共働き家庭</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="card-head">
+    <img src="https://thumbnail.image.rakuten.co.jp/@0_mall/hoppltown/cabinet/10751616/13267629/imgrc0126109566.jpg?_ex=128x128" alt="木製 ベビージム ハンギングトイ セット [おもちゃ3個付] おしゃれ プレイジム 歯固め 北欧デザイン 0歳 赤ちゃん 知育玩具 組み立て簡単 コンパクト収納 出産祝い プレゼント ギフト | 公式ストア HOPPL ホップル" loading="lazy">
+    <div class="info">
+      
+      <span class="genre-chip">育児グッズ</span>
+      <div class="name">木製 ベビージム ハンギングトイ セット [おもちゃ3個付] おしゃれ プレイジム 歯固め 北欧デザイン 0歳 赤ちゃん 知育玩具 組み立て簡単 コンパクト収納 出産祝い プレゼント ギフト | 公式ストア HOPPL ホップル</div>
+      <div class="meta-row">
+        <span class="price">¥14,300</span>
+        <span class="stars">★★★★★</span>
+        <span>4.65(524件)</span>
+      </div>
+    </div>
+  </div>
+  <a class="btn-open" href="https://hb.afl.rakuten.co.jp/hgc/g00svutn.dg4fiebc.g00svutn.dg4fje71/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fhoppltown%2F10000227%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fhoppltown%2Fi%2F10000227%2F&rafcid=wsc_i_is_852e9d1a-8f83-49dc-bc9e-cf56a98e669a" target="_blank" rel="noopener">商品ページを開く ↗</a>
+  <div class="url-row">
+    <a href="https://item.rakuten.co.jp/hoppltown/10000227/" target="_blank" rel="noopener">https://item.rakuten.co.jp/hoppltown/10000227/</a>
+    <button class="copy-btn" onclick="copyPlain(this, 'https://item.rakuten.co.jp/hoppltown/10000227/')" type="button">URLコピー</button>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>楽天ROOM用</span>
+      <button class="copy-btn" onclick="copyText(this, 'room-3')" type="button">コピー</button>
+    </div>
+    <textarea id="room-3" readonly>🌿生まれたばかりの頃、床にただ寝かせておくだけで何もしてあげられてない気がして焦ってました。そんな時に置いたのが「HOPPL 木製ベビージム」。北欧デザインで組み立ても簡単、リビングに置いても浮かないインテリア性✨がありがたい存在です。付属のおもちゃ3個を手足でバタバタ触る姿がかわいくて、気づけば毎日眺めてます。価格は14,300円と決して安くはないですが、レビュー524件・星4.65という支持を見て納得して購入しました。コンパクトに収納できるので使わない時期がきても場所を取らないのも◎。今しかない寝転び期を、少しおしゃれに彩ってみませんか😊
+#育児グッズ #ベビージム #出産祝い #知育玩具 #木のおもちゃ #育児パパ #共働き家庭</textarea>
+  </div>
+</div>
+</div>
+
+<h2 class="section-title">💬 今日のあるある投稿ネタ(商品リンクなし)</h2>
+<div class="cards">
+<div class="card">
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>あるある投稿 #1</span>
+      <button class="copy-btn" onclick="copyText(this, 'daily-0')" type="button">コピー</button>
+    </div>
+    <textarea id="daily-0" class="short" readonly>背中スイッチの感度、うちの子は多分MAX振り切ってる😂</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>あるある投稿 #2</span>
+      <button class="copy-btn" onclick="copyText(this, 'daily-1')" type="button">コピー</button>
+    </div>
+    <textarea id="daily-1" class="short" readonly>子どもの寝顔、写真で見返すとほんとかわいい。なのに背景には脱ぎっぱなしの靴下と山積みの洗濯物がバッチリ写り込んでる、これもう記録だよね。</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>あるある投稿 #3</span>
+      <button class="copy-btn" onclick="copyText(this, 'daily-2')" type="button">コピー</button>
+    </div>
+    <textarea id="daily-2" class="short" readonly>子どもについ強めに言っちゃう日、振り返ると原因はだいたい同じ。自分の準備が終わってない、時間に追われてる、前の日ろくに寝てない。この3つ、子どもは関係ないんだよな。</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>あるある投稿 #4</span>
+      <button class="copy-btn" onclick="copyText(this, 'daily-3')" type="button">コピー</button>
+    </div>
+    <textarea id="daily-3" class="short" readonly>夜中に子どもが泣いた記憶、妻の中には鮮明に残ってて自分の記憶はうっすらしかない、というのが我が家の実情。ちゃんと起きてたつもりだったんだけどな…温度差、地味に申し訳なくなる時がある。</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>あるある投稿 #5</span>
+      <button class="copy-btn" onclick="copyText(this, 'daily-4')" type="button">コピー</button>
+    </div>
+    <textarea id="daily-4" class="short" readonly>保育園帰りに真っ先に見せてくるのは謎の折り紙作品。何を作ったのか全然分からないけど全力で「すごいね」って言う、これがもう日課🧡 #育児パパ</textarea>
+  </div>
+</div>
+</div>
+
+<footer class="note">商品ページを確認し、投稿文をコピーして手動で投稿してください。<br>Threads/Xの商品紹介は1日1件・あるある投稿と織り交ぜてスパム判定を避けてください。<br>価格・レビューは選定時点の実データです。</footer>
+</div>
+<script>
+function flash(btn) {
+  const original = btn.textContent;
+  btn.textContent = 'コピーしました';
+  btn.classList.add('copied');
+  setTimeout(() => { btn.textContent = original; btn.classList.remove('copied'); }, 1500);
+}
+function copyText(btn, id) {
+  const el = document.getElementById(id);
+  el.select();
+  el.setSelectionRange(0, 999999);
+  navigator.clipboard.writeText(el.value).then(() => flash(btn)).catch(() => {
+    try { document.execCommand('copy'); flash(btn); } catch (e) {}
+  });
+}
+function copyPlain(btn, text) {
+  navigator.clipboard.writeText(text).then(() => flash(btn)).catch(() => {
+    const t = document.createElement('textarea');
+    t.value = text; document.body.appendChild(t); t.select();
+    try { document.execCommand('copy'); flash(btn); } catch (e) {}
+    document.body.removeChild(t);
+  });
+}
+</script>
+</body>
+</html>
