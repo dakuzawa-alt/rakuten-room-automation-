@@ -2161,6 +2161,53 @@
       "channels": [
         "room"
       ]
+    },
+    {
+      "itemCode": "monange-kyoto:10000175",
+      "itemName": "gg* tsumiki 積み木 出産祝い 日本製 知育玩具",
+      "date": "2026-09-29",
+      "slot": "morning",
+      "channels": [
+        "room"
+      ]
+    },
+    {
+      "itemCode": "rennkou-syouji:10019441",
+      "itemName": "日傘 折りたたみ 完全遮光 晴雨兼用 軽量 天然木持ち手",
+      "date": "2026-09-29",
+      "slot": "morning",
+      "channels": [
+        "room",
+        "threads",
+        "x"
+      ]
+    },
+    {
+      "itemCode": "mikirona:10000092",
+      "itemName": "シャワーヘッド マイクロナノバブル 節水 塩素除去 6段階",
+      "date": "2026-09-29",
+      "slot": "morning",
+      "channels": [
+        "room"
+      ]
+    },
+    {
+      "itemCode": "smile-hg:10005369",
+      "itemName": "つっぱり棚 突ぱり強力伸縮棚[小] KB-63",
+      "date": "2026-09-29",
+      "slot": "morning",
+      "channels": [
+        "room"
+      ]
+    },
+    {
+      "itemCode": "magicraven:10000054",
+      "itemName": "モバイルモニター 15.6インチ フルHD サブモニター",
+      "date": "2026-09-29",
+      "slot": "morning",
+      "channels": [
+        "room"
+      ]
     }
   ]
 }

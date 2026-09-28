@@ -1,0 +1,459 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>9/29 朝の選定 - 楽天ROOM投稿リスト</title>
+<style>
+:root {
+  --bg: #f6f3ee;
+  --surface: #ffffff;
+  --ink: #23211d;
+  --ink-soft: #6b6459;
+  --accent: #a8382c;
+  --accent-ink: #fff6f2;
+  --good: #3f7d58;
+  --border: #e4ddd2;
+  --chip-bg: #efe8db;
+  color-scheme: light dark;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #16140f;
+    --surface: #211f1a;
+    --ink: #ece7dc;
+    --ink-soft: #a89e8d;
+    --accent: #e0685a;
+    --accent-ink: #1c0f0c;
+    --good: #6fb98a;
+    --border: #35322a;
+    --chip-bg: #2a2721;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #16140f; --surface: #211f1a; --ink: #ece7dc; --ink-soft: #a89e8d;
+  --accent: #e0685a; --accent-ink: #1c0f0c; --good: #6fb98a; --border: #35322a; --chip-bg: #2a2721;
+}
+:root[data-theme="light"] {
+  --bg: #f6f3ee; --surface: #ffffff; --ink: #23211d; --ink-soft: #6b6459;
+  --accent: #a8382c; --accent-ink: #fff6f2; --good: #3f7d58; --border: #e4ddd2; --chip-bg: #efe8db;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0; background: var(--bg); color: var(--ink);
+  font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Yu Gothic Medium", "Noto Sans JP", sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+.wrap { max-width: 640px; margin: 0 auto; padding: 0 16px 40px; }
+header.top {
+  position: sticky; top: 0; z-index: 5; background: var(--bg);
+  padding: 18px 16px 12px; border-bottom: 1px solid var(--border);
+  display: flex; align-items: baseline; justify-content: space-between; gap: 12px;
+}
+header.top .eyebrow {
+  font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-soft);
+  font-weight: 600; margin: 0 0 2px;
+}
+header.top h1 { font-size: 1.25rem; margin: 0; font-weight: 700; letter-spacing: -0.01em; }
+header.top .count {
+  background: var(--chip-bg); color: var(--ink-soft); font-size: 0.78rem; font-weight: 600;
+  padding: 5px 10px; border-radius: 999px; white-space: nowrap;
+}
+h2.section-title { font-size: 0.95rem; font-weight: 700; margin: 24px 0 12px; }
+.cards { display: flex; flex-direction: column; gap: 16px; margin-top: 18px; }
+.card {
+  background: var(--surface); border: 1px solid var(--border); border-radius: 16px;
+  padding: 16px; display: flex; flex-direction: column; gap: 12px;
+}
+.card.featured { border-color: var(--accent); border-width: 2px; }
+.featured-badge {
+  align-self: flex-start; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.03em;
+  color: var(--accent-ink); background: var(--accent); padding: 3px 9px; border-radius: 999px;
+}
+.card-head { display: flex; gap: 12px; }
+.card-head img {
+  width: 76px; height: 76px; object-fit: cover; border-radius: 10px;
+  border: 1px solid var(--border); background: var(--chip-bg); flex-shrink: 0;
+}
+.card-head .info { min-width: 0; flex: 1; display: flex; flex-direction: column; gap: 4px; }
+.genre-chip {
+  align-self: flex-start; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.03em;
+  color: var(--accent); background: color-mix(in srgb, var(--accent) 12%, transparent);
+  padding: 2px 8px; border-radius: 999px;
+}
+.name {
+  font-weight: 600; font-size: 0.94rem; line-height: 1.4;
+  display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
+}
+.meta-row { display: flex; align-items: baseline; gap: 8px; font-size: 0.82rem; color: var(--ink-soft); }
+.price { font-variant-numeric: tabular-nums; color: var(--ink); font-weight: 700; font-size: 1.05rem; }
+.stars { letter-spacing: -1px; color: var(--accent); }
+.btn-open {
+  display: flex; align-items: center; justify-content: center; gap: 6px;
+  background: var(--accent); color: var(--accent-ink); border: none; border-radius: 11px;
+  padding: 12px; font-weight: 700; font-size: 0.92rem; text-decoration: none;
+}
+.btn-open:active { opacity: 0.85; }
+.url-row {
+  display: flex; align-items: center; gap: 8px;
+  background: var(--chip-bg); border-radius: 9px; padding: 8px 10px;
+}
+.url-row a {
+  flex: 1; min-width: 0; font-size: 0.76rem; color: var(--accent);
+  word-break: break-all; line-height: 1.45; text-decoration: none;
+}
+.url-row a:active { text-decoration: underline; }
+.reason { font-size: 0.8rem; color: var(--ink-soft); }
+.caption-box { border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }
+.caption-head {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 8px 10px; background: var(--chip-bg);
+}
+.caption-head span {
+  font-size: 0.7rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-soft);
+}
+.copy-btn {
+  background: var(--surface); border: 1px solid var(--border); color: var(--ink);
+  border-radius: 7px; padding: 5px 11px; font-size: 0.76rem; font-weight: 600; cursor: pointer;
+}
+.copy-btn:focus-visible, .btn-open:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.copy-btn.copied { background: var(--good); border-color: var(--good); color: #fff; }
+textarea {
+  width: 100%; display: block; border: none; padding: 10px; font-size: 0.85rem; line-height: 1.55;
+  resize: vertical; min-height: 108px; font-family: inherit; background: var(--surface); color: var(--ink);
+}
+textarea.short { min-height: 60px; }
+textarea:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
+footer.note { margin-top: 22px; font-size: 0.76rem; color: var(--ink-soft); text-align: center; line-height: 1.6; }
+@media (prefers-reduced-motion: no-preference) {
+  .copy-btn { transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease; }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <div>
+    <p class="eyebrow">楽天ROOM 投稿リスト</p>
+    <h1>9/29 朝の選定</h1>
+  </div>
+  <span class="count">5件</span>
+</header>
+
+<h2 class="section-title">📦 商品(ROOM用、全5件)</h2>
+<div class="cards">
+<div class="card">
+  <div class="card-head">
+    <img src="https://thumbnail.image.rakuten.co.jp/@0_mall/monange-kyoto/cabinet/gg_tsumiki/tsumiki_750x750.jpg?_ex=128x128" alt="【kiko+ &amp; gg*正規取扱店】gg* tsumiki ジジ 積み木 出産祝い つみき 積木 木製 木のおもちゃ 子供 音 おしゃれ 誕生日 1歳 2歳 3歳 4歳 日本製 男 女 出産祝い 子供 ギフト 男の子 女の子 ベビー 赤ちゃん 木製 玩具 知育玩具" loading="lazy">
+    <div class="info">
+      
+      <span class="genre-chip">育児グッズ</span>
+      <div class="name">【kiko+ &amp; gg*正規取扱店】gg* tsumiki ジジ 積み木 出産祝い つみき 積木 木製 木のおもちゃ 子供 音 おしゃれ 誕生日 1歳 2歳 3歳 4歳 日本製 男 女 出産祝い 子供 ギフト 男の子 女の子 ベビー 赤ちゃん 木製 玩具 知育玩具</div>
+      <div class="meta-row">
+        <span class="price">¥13,800</span>
+        <span class="stars">★★★★★</span>
+        <span>4.6(706件)</span>
+      </div>
+    </div>
+  </div>
+  <a class="btn-open" href="" target="_blank" rel="noopener">商品ページを開く ↗</a>
+  <div class="url-row">
+    <a href="https://item.rakuten.co.jp/monange-kyoto/1716-1010-1/" target="_blank" rel="noopener">https://item.rakuten.co.jp/monange-kyoto/1716-1010-1/</a>
+    <button class="copy-btn" onclick="copyPlain(this, 'https://item.rakuten.co.jp/monange-kyoto/1716-1010-1/')" type="button">URLコピー</button>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>楽天ROOM用</span>
+      <button class="copy-btn" onclick="copyText(this, 'room-0')" type="button">コピー</button>
+    </div>
+    <textarea id="room-0" readonly>🎁出産祝いで迷ったら、正直これでいいと思ってる。
+gg* tsumikiの積み木、日本製・木製でシンプルだけど、子どもがずっと飽きずに遊んでる🪵
+
+重すぎず軽すぎず、手の小さい1歳の子でもつかみやすいサイズ感。
+積んで崩してまた積んで、気づいたら30分経ってた。
+
+レビュー706件・星4.6というのも正直背中を押してくれた数字。
+贈り物として箱ごと渡せるビジュアルもポイント高め🎀
+
+13,800円は安くはないけど、長く使える知育玩具を選ぶなら納得できる価格帯✨
+
+#出産祝い #知育玩具 #積み木 #木製おもちゃ #日本製 #育児パパ #1歳 #2歳おもちゃ #プレゼント</textarea>
+  </div>
+</div>
+<div class="card featured">
+  <div class="card-head">
+    <img src="https://thumbnail.image.rakuten.co.jp/@0_mall/rennkou-syouji/cabinet/umbrella/solshade/sols031f_03.jpg?_ex=128x128" alt="【最大20%オフクーポン 楽天1位】日傘 折りたたみ 完全遮光 晴雨兼用 2段折り 遮光率100% UVカット100% UPF50+ 遮熱率89%以上 遮熱 軽量 長傘 折りたたみ日傘 天然木持ち手 8本骨 折り畳む 傘 雨傘 耐風 丈夫 暑さ対策 熱中症対策 フリル -47℃の遮熱効果" loading="lazy">
+    <div class="info">
+      <span class="featured-badge">🔥 本日のThreads/Xピックアップ</span>
+      <span class="genre-chip">アウトドア お出かけ</span>
+      <div class="name">【最大20%オフクーポン 楽天1位】日傘 折りたたみ 完全遮光 晴雨兼用 2段折り 遮光率100% UVカット100% UPF50+ 遮熱率89%以上 遮熱 軽量 長傘 折りたたみ日傘 天然木持ち手 8本骨 折り畳む 傘 雨傘 耐風 丈夫 暑さ対策 熱中症対策 フリル -47℃の遮熱効果</div>
+      <div class="meta-row">
+        <span class="price">¥3,980</span>
+        <span class="stars">★★★★☆</span>
+        <span>4.45(6167件)</span>
+      </div>
+    </div>
+  </div>
+  <a class="btn-open" href="" target="_blank" rel="noopener">商品ページを開く ↗</a>
+  <div class="url-row">
+    <a href="https://item.rakuten.co.jp/rennkou-syouji/solshade022/" target="_blank" rel="noopener">https://item.rakuten.co.jp/rennkou-syouji/solshade022/</a>
+    <button class="copy-btn" onclick="copyPlain(this, 'https://item.rakuten.co.jp/rennkou-syouji/solshade022/')" type="button">URLコピー</button>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>楽天ROOM用</span>
+      <button class="copy-btn" onclick="copyText(this, 'room-1')" type="button">コピー</button>
+    </div>
+    <textarea id="room-1" readonly>☀️3,980円でこのスペック全部入り、ちょっと反則じゃない?
+
+完全遮光・UVカット・晴雨兼用・耐風・軽量・天然木持ち手——普通ここまで揃ったら7,000〜8,000円くらいする。
+
+レビュー6,167件というのが圧倒的で、「軽くて使いやすい」「持ち手の質感がいい」という声が多い。
+
+子どもと外出するとき片手に日傘・もう片手は子どもの手ってなかなかきつい。
+軽量なのは地味にありがたい☂️
+
+折りたたみ式なので鞄にそのまま入れておける。
+完全遮光でも内側に熱はこもるので、通気性を最優先にするなら他との比較もあり🌟
+
+#日傘 #折りたたみ日傘 #完全遮光 #UVカット #暑さ対策 #お出かけグッズ #育児パパ #熱中症対策</textarea>
+  </div>
+  <p class="reason">🔥 今日のピックアップ理由: レビュー6,167件・3,980円という「この価格でこれ全部揃ってるの?」という価格の意外性とレビュー実績の組み合わせが、タイムライン上で最も指を止める力があると判断。</p>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>Threads用</span>
+      <button class="copy-btn" onclick="copyText(this, 'threads-0')" type="button">コピー</button>
+    </div>
+    <textarea id="threads-0" readonly>3,980円の日傘にレビュー6,167件って何事
+
+完全遮光・UVカット・晴雨兼用・耐風・軽量・天然木持ち手…
+ここまで揃ったら普通7,000〜8,000円はする
+
+しかも折りたたみで鞄にそのまま入れておける
+
+子どもと外出するとき、片手に日傘・もう片手は子どもの手ってなかなかきつい
+軽いだけで全然違うんだよな
+
+夏の外出、これ1本あるだけで体感だいぶ変わる気がする
+
+楽天で探してみて
+
+#日傘 #暑さ対策 #お出かけ準備 #PR</textarea>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>X用</span>
+      <button class="copy-btn" onclick="copyText(this, 'x-0')" type="button">コピー</button>
+    </div>
+    <textarea id="x-0" readonly>3,980円の日傘にレビュー6,167件って何事
+
+完全遮光・UVカット・晴雨兼用・耐風・軽量・天然木持ち手、全部入ってる
+ここまで揃ったら普通7,000円はする
+
+子どもと歩くとき片手に日傘・もう片手は子どもの手ってきつい
+軽いだけで全然違う
+
+#日傘 #暑さ対策 #育児パパ #PR</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="card-head">
+    <img src="https://thumbnail.image.rakuten.co.jp/@0_mall/mikirona/cabinet/11312680/imgrc0135318818.jpg?_ex=128x128" alt="【楽天1位★クーポンで3,070円～】シャワーヘッド マイクロナノバブル 手元止水 6段階モード ミスト 増圧 節水 塩素除去 シャワー フェース 肌ケア 高洗浄力 毛穴 汚れ除去 美肌 美顔 美髪 カートリッジ 美容 取付簡単 国際汎用基準G1/2 新生活 正規品" loading="lazy">
+    <div class="info">
+      
+      <span class="genre-chip">浴室 洗面</span>
+      <div class="name">【楽天1位★クーポンで3,070円～】シャワーヘッド マイクロナノバブル 手元止水 6段階モード ミスト 増圧 節水 塩素除去 シャワー フェース 肌ケア 高洗浄力 毛穴 汚れ除去 美肌 美顔 美髪 カートリッジ 美容 取付簡単 国際汎用基準G1/2 新生活 正規品</div>
+      <div class="meta-row">
+        <span class="price">¥6,140</span>
+        <span class="stars">★★★★★</span>
+        <span>4.56(3428件)</span>
+      </div>
+    </div>
+  </div>
+  <a class="btn-open" href="" target="_blank" rel="noopener">商品ページを開く ↗</a>
+  <div class="url-row">
+    <a href="https://item.rakuten.co.jp/mikirona/s-hs-11/" target="_blank" rel="noopener">https://item.rakuten.co.jp/mikirona/s-hs-11/</a>
+    <button class="copy-btn" onclick="copyPlain(this, 'https://item.rakuten.co.jp/mikirona/s-hs-11/')" type="button">URLコピー</button>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>楽天ROOM用</span>
+      <button class="copy-btn" onclick="copyText(this, 'room-2')" type="button">コピー</button>
+    </div>
+    <textarea id="room-2" readonly>🚿お風呂上がりの「なんか肌がつっぱる」感、ずっとそういうもんだと思ってた。
+
+シャワーヘッドをマイクロナノバブル対応に替えたら、明らかに肌のざらつきが減った気がする。
+塩素除去・節水・6段階モード・手元止水まで一台で揃う。
+取り付けは工具なし、ほぼ1分でいけた💧
+
+6,140円で毎日のシャワー体験が変わるなら悪くない。
+節水効果で長期的には元が取れる可能性もある。
+
+子どもと一緒に入るとき、手元止水がめちゃくちゃ便利✨
+レビューも3,000件超えで評価は安定してる。
+
+#シャワーヘッド #マイクロナノバブル #節水 #塩素除去 #美肌ケア #浴室グッズ #育児パパ #時短 #お風呂</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="card-head">
+    <img src="https://thumbnail.image.rakuten.co.jp/@0_mall/smile-hg/cabinet/heian/img58444114.jpg?_ex=128x128" alt="つっぱり棚/突ぱり強力伸縮棚[小]KB-63/【ポイント 倍】" loading="lazy">
+    <div class="info">
+      
+      <span class="genre-chip">収納整理</span>
+      <div class="name">つっぱり棚/突ぱり強力伸縮棚[小]KB-63/【ポイント 倍】</div>
+      <div class="meta-row">
+        <span class="price">¥1,490</span>
+        <span class="stars">★★★★☆</span>
+        <span>4.43(668件)</span>
+      </div>
+    </div>
+  </div>
+  <a class="btn-open" href="" target="_blank" rel="noopener">商品ページを開く ↗</a>
+  <div class="url-row">
+    <a href="https://item.rakuten.co.jp/smile-hg/203005/" target="_blank" rel="noopener">https://item.rakuten.co.jp/smile-hg/203005/</a>
+    <button class="copy-btn" onclick="copyPlain(this, 'https://item.rakuten.co.jp/smile-hg/203005/')" type="button">URLコピー</button>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>楽天ROOM用</span>
+      <button class="copy-btn" onclick="copyText(this, 'room-3')" type="button">コピー</button>
+    </div>
+    <textarea id="room-3" readonly>💡1,490円で「ここに棚があれば」を1個解決できる。
+
+洗面台の上、トイレ、キッチン横——工具も穴あけも一切不要で突っ張るだけ。
+賃貸でも使えるのが地味にありがたくて、子どもがいると物の置き場所問題は永遠についてまわる🔧
+
+この価格で逆に不安になるかもしれないけど、レビュー668件・星4.43は普通に信頼できる数字。
+
+「小」サイズなのでそこだけ注意。大きめの収納が必要なら上位サイズの確認を。
+
+試しやすい価格なので、とりあえず1個置いてみる感覚で使えるのがいい🏠
+
+#突っ張り棚 #収納グッズ #賃貸OK #整理収納 #洗面台収納 #育児パパ #共働き家庭 #時短収納</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="card-head">
+    <img src="https://thumbnail.image.rakuten.co.jp/@0_mall/magicraven/cabinet/12247701/13031586/zt02.jpg?_ex=128x128" alt="【保護ケース付き】 モバイルモニター 15.6インチ モバイルモニタースタンド ノングレア 1080PフルHD ディスプレイ コスパ デュアルモニター サブモニター ポータブルモニター ゲーミングモニター Tpye-C/mini HDMI iPhone対応" loading="lazy">
+    <div class="info">
+      
+      <span class="genre-chip">在宅ワーク デスク</span>
+      <div class="name">【保護ケース付き】 モバイルモニター 15.6インチ モバイルモニタースタンド ノングレア 1080PフルHD ディスプレイ コスパ デュアルモニター サブモニター ポータブルモニター ゲーミングモニター Tpye-C/mini HDMI iPhone対応</div>
+      <div class="meta-row">
+        <span class="price">¥13,480</span>
+        <span class="stars">★★★★☆</span>
+        <span>4.48(215件)</span>
+      </div>
+    </div>
+  </div>
+  <a class="btn-open" href="" target="_blank" rel="noopener">商品ページを開く ↗</a>
+  <div class="url-row">
+    <a href="https://item.rakuten.co.jp/magicraven/p15-nc/" target="_blank" rel="noopener">https://item.rakuten.co.jp/magicraven/p15-nc/</a>
+    <button class="copy-btn" onclick="copyPlain(this, 'https://item.rakuten.co.jp/magicraven/p15-nc/')" type="button">URLコピー</button>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>楽天ROOM用</span>
+      <button class="copy-btn" onclick="copyText(this, 'room-4')" type="button">コピー</button>
+    </div>
+    <textarea id="room-4" readonly>💻在宅ワークの生産性、モニター増やすだけで上がるってマジだった。
+
+15.6インチ・フルHD・ノングレア・ケース付きで13,480円。
+「サブモニターほしいけど置く場所が」って思ってたけど、モバイル型だから使わないときはたたんで収納できる🖥️
+
+資料見ながらZoom、動画見ながら作業、2画面になると仕事のテンポが明らかに変わる。
+
+持ち運べるので出張・カフェ作業にも使えるのが地味にでかい。
+「据え置きモニターは大げさ」と思ってた人にはちょうどいいサイズ感✨
+
+#モバイルモニター #サブモニター #在宅ワーク #テレワーク #仕事効率化 #育児パパ #共働き家庭</textarea>
+  </div>
+</div>
+</div>
+
+<h2 class="section-title">💬 今日のあるある投稿ネタ(商品リンクなし)</h2>
+<div class="cards">
+<div class="card">
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>あるある投稿 #1</span>
+      <button class="copy-btn" onclick="copyText(this, 'daily-0')" type="button">コピー</button>
+    </div>
+    <textarea id="daily-0" class="short" readonly>布団に置いた瞬間に泣く。
+毎回同じ動作なのに毎回同じ結果になってる。
+学習してるのどっちだ。</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>あるある投稿 #2</span>
+      <button class="copy-btn" onclick="copyText(this, 'daily-1')" type="button">コピー</button>
+    </div>
+    <textarea id="daily-1" class="short" readonly>子どもの寝顔を撮ろうとしてカメラ構えたら、背景にオムツの山と洗濯物が写り込んでた。
+保存したけど、これは誰にも見せない。</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>あるある投稿 #3</span>
+      <button class="copy-btn" onclick="copyText(this, 'daily-2')" type="button">コピー</button>
+    </div>
+    <textarea id="daily-2" class="short" readonly>家事の何がしんどいって「中断」なんだよな。
+食器洗ってたら呼ばれる、洗濯たたんでたら泣く、ご飯作ってたら転ぶ。
+ひとつも最後まで終わらせてない気がする。</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>あるある投稿 #4</span>
+      <button class="copy-btn" onclick="copyText(this, 'daily-3')" type="button">コピー</button>
+    </div>
+    <textarea id="daily-3" class="short" readonly>子どもに「パパと結婚する」って言われた。
+今日これだけで生きていける。</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>あるある投稿 #5</span>
+      <button class="copy-btn" onclick="copyText(this, 'daily-4')" type="button">コピー</button>
+    </div>
+    <textarea id="daily-4" class="short" readonly>夜泣きで起きたのは自分だけで、妻は爆睡してた。
+翌朝「昨夜大変だったね」って声かけてきたとき、
+何を言おうか3秒くらい考えた。</textarea>
+  </div>
+</div>
+</div>
+
+<footer class="note">商品ページを確認し、投稿文をコピーして手動で投稿してください。<br>Threads/Xの商品紹介は1日1件・あるある投稿と織り交ぜてスパム判定を避けてください。<br>価格・レビューは選定時点の実データです。</footer>
+</div>
+<script>
+function flash(btn) {
+  const original = btn.textContent;
+  btn.textContent = 'コピーしました';
+  btn.classList.add('copied');
+  setTimeout(() => { btn.textContent = original; btn.classList.remove('copied'); }, 1500);
+}
+function copyText(btn, id) {
+  const el = document.getElementById(id);
+  el.select();
+  el.setSelectionRange(0, 999999);
+  navigator.clipboard.writeText(el.value).then(() => flash(btn)).catch(() => {
+    try { document.execCommand('copy'); flash(btn); } catch (e) {}
+  });
+}
+function copyPlain(btn, text) {
+  navigator.clipboard.writeText(text).then(() => flash(btn)).catch(() => {
+    const t = document.createElement('textarea');
+    t.value = text; document.body.appendChild(t); t.select();
+    try { document.execCommand('copy'); flash(btn); } catch (e) {}
+    document.body.removeChild(t);
+  });
+}
+</script>
+</body>
+</html>
