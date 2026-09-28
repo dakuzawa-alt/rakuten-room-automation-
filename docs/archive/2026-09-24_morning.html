@@ -1,0 +1,380 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>9/24 朝の選定 - 楽天ROOM投稿リスト</title>
+<style>
+:root {
+  --bg: #f6f3ee;
+  --surface: #ffffff;
+  --ink: #23211d;
+  --ink-soft: #6b6459;
+  --accent: #a8382c;
+  --accent-ink: #fff6f2;
+  --good: #3f7d58;
+  --border: #e4ddd2;
+  --chip-bg: #efe8db;
+  color-scheme: light dark;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #16140f;
+    --surface: #211f1a;
+    --ink: #ece7dc;
+    --ink-soft: #a89e8d;
+    --accent: #e0685a;
+    --accent-ink: #1c0f0c;
+    --good: #6fb98a;
+    --border: #35322a;
+    --chip-bg: #2a2721;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #16140f; --surface: #211f1a; --ink: #ece7dc; --ink-soft: #a89e8d;
+  --accent: #e0685a; --accent-ink: #1c0f0c; --good: #6fb98a; --border: #35322a; --chip-bg: #2a2721;
+}
+:root[data-theme="light"] {
+  --bg: #f6f3ee; --surface: #ffffff; --ink: #23211d; --ink-soft: #6b6459;
+  --accent: #a8382c; --accent-ink: #fff6f2; --good: #3f7d58; --border: #e4ddd2; --chip-bg: #efe8db;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0; background: var(--bg); color: var(--ink);
+  font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Yu Gothic Medium", "Noto Sans JP", sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+.wrap { max-width: 640px; margin: 0 auto; padding: 0 16px 40px; }
+header.top {
+  position: sticky; top: 0; z-index: 5; background: var(--bg);
+  padding: 18px 16px 12px; border-bottom: 1px solid var(--border);
+  display: flex; align-items: baseline; justify-content: space-between; gap: 12px;
+}
+header.top .eyebrow {
+  font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-soft);
+  font-weight: 600; margin: 0 0 2px;
+}
+header.top h1 { font-size: 1.25rem; margin: 0; font-weight: 700; letter-spacing: -0.01em; }
+header.top .count {
+  background: var(--chip-bg); color: var(--ink-soft); font-size: 0.78rem; font-weight: 600;
+  padding: 5px 10px; border-radius: 999px; white-space: nowrap;
+}
+h2.section-title { font-size: 0.95rem; font-weight: 700; margin: 24px 0 12px; }
+.cards { display: flex; flex-direction: column; gap: 16px; margin-top: 18px; }
+.card {
+  background: var(--surface); border: 1px solid var(--border); border-radius: 16px;
+  padding: 16px; display: flex; flex-direction: column; gap: 12px;
+}
+.card.featured { border-color: var(--accent); border-width: 2px; }
+.featured-badge {
+  align-self: flex-start; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.03em;
+  color: var(--accent-ink); background: var(--accent); padding: 3px 9px; border-radius: 999px;
+}
+.card-head { display: flex; gap: 12px; }
+.card-head img {
+  width: 76px; height: 76px; object-fit: cover; border-radius: 10px;
+  border: 1px solid var(--border); background: var(--chip-bg); flex-shrink: 0;
+}
+.card-head .info { min-width: 0; flex: 1; display: flex; flex-direction: column; gap: 4px; }
+.genre-chip {
+  align-self: flex-start; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.03em;
+  color: var(--accent); background: color-mix(in srgb, var(--accent) 12%, transparent);
+  padding: 2px 8px; border-radius: 999px;
+}
+.name {
+  font-weight: 600; font-size: 0.94rem; line-height: 1.4;
+  display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
+}
+.meta-row { display: flex; align-items: baseline; gap: 8px; font-size: 0.82rem; color: var(--ink-soft); }
+.price { font-variant-numeric: tabular-nums; color: var(--ink); font-weight: 700; font-size: 1.05rem; }
+.stars { letter-spacing: -1px; color: var(--accent); }
+.btn-open {
+  display: flex; align-items: center; justify-content: center; gap: 6px;
+  background: var(--accent); color: var(--accent-ink); border: none; border-radius: 11px;
+  padding: 12px; font-weight: 700; font-size: 0.92rem; text-decoration: none;
+}
+.btn-open:active { opacity: 0.85; }
+.url-row {
+  display: flex; align-items: center; gap: 8px;
+  background: var(--chip-bg); border-radius: 9px; padding: 8px 10px;
+}
+.url-row a {
+  flex: 1; min-width: 0; font-size: 0.76rem; color: var(--accent);
+  word-break: break-all; line-height: 1.45; text-decoration: none;
+}
+.url-row a:active { text-decoration: underline; }
+.reason { font-size: 0.8rem; color: var(--ink-soft); }
+.caption-box { border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }
+.caption-head {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 8px 10px; background: var(--chip-bg);
+}
+.caption-head span {
+  font-size: 0.7rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-soft);
+}
+.copy-btn {
+  background: var(--surface); border: 1px solid var(--border); color: var(--ink);
+  border-radius: 7px; padding: 5px 11px; font-size: 0.76rem; font-weight: 600; cursor: pointer;
+}
+.copy-btn:focus-visible, .btn-open:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.copy-btn.copied { background: var(--good); border-color: var(--good); color: #fff; }
+textarea {
+  width: 100%; display: block; border: none; padding: 10px; font-size: 0.85rem; line-height: 1.55;
+  resize: vertical; min-height: 108px; font-family: inherit; background: var(--surface); color: var(--ink);
+}
+textarea.short { min-height: 60px; }
+textarea:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
+footer.note { margin-top: 22px; font-size: 0.76rem; color: var(--ink-soft); text-align: center; line-height: 1.6; }
+@media (prefers-reduced-motion: no-preference) {
+  .copy-btn { transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease; }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <div>
+    <p class="eyebrow">楽天ROOM 投稿リスト</p>
+    <h1>9/24 朝の選定</h1>
+  </div>
+  <span class="count">5件</span>
+</header>
+
+<h2 class="section-title">📦 商品(ROOM用、全5件)</h2>
+<div class="cards">
+<div class="card">
+  <div class="card-head">
+    <img src="https://thumbnail.image.rakuten.co.jp/@0_mall/lysin/cabinet/product4/ls-yx-z02b_thum.jpg?_ex=128x128" alt="【レビュー投稿で2年保証】 ライシン アウトドアワゴン Eシリーズ 最大230L 拡張機能 キャリーワゴン キャリーカート 大容量 折りたたみ" loading="lazy">
+    <div class="info">
+      
+      <span class="genre-chip">アウトドア お出かけ</span>
+      <div class="name">【レビュー投稿で2年保証】 ライシン アウトドアワゴン Eシリーズ 最大230L 拡張機能 キャリーワゴン キャリーカート 大容量 折りたたみ</div>
+      <div class="meta-row">
+        <span class="price">¥13,800</span>
+        <span class="stars">★★★★★</span>
+        <span>4.58(2100件)</span>
+      </div>
+    </div>
+  </div>
+  <a class="btn-open" href="https://hb.afl.rakuten.co.jp/hgc/g00ssrhn.dg4fifba.g00ssrhn.dg4fj3b2/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Flysin%2Fls-yx-z02b%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Flysin%2Fi%2F10000425%2F&rafcid=wsc_i_is_852e9d1a-8f83-49dc-bc9e-cf56a98e669a" target="_blank" rel="noopener">商品ページを開く ↗</a>
+  <div class="url-row">
+    <a href="https://item.rakuten.co.jp/lysin/ls-yx-z02b/" target="_blank" rel="noopener">https://item.rakuten.co.jp/lysin/ls-yx-z02b/</a>
+    <button class="copy-btn" onclick="copyPlain(this, 'https://item.rakuten.co.jp/lysin/ls-yx-z02b/')" type="button">URLコピー</button>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>楽天ROOM用</span>
+      <button class="copy-btn" onclick="copyText(this, 'room-0')" type="button">コピー</button>
+    </div>
+    <textarea id="room-0" readonly>🚙13,800円で最大230Lまで積める、これはお出かけの救世主かもしれません。運動会や公園遊び、キャンプで荷物が増える日、両手が空くだけで気持ちの余裕が全然違いますよ。拡張機能付きで積み方に合わせてサイズを変えられるのも便利なポイント。折りたたみできるので車の積載スペースも取りません。✅レビューは2,100件・評価4.58と、すでに多くの家庭で使われている実績あり。ただしタイヤの径が小さめなので、砂地や芝生では小回りに少し工夫が必要です。荷物運びに悩んでいるなら候補に入れてみてください🌿
+#アウトドアワゴン #キャリーワゴン #お出かけグッズ #育児パパ #共働き家庭 #折りたたみワゴン #ファミリーキャンプ</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="card-head">
+    <img src="https://thumbnail.image.rakuten.co.jp/@0_mall/lifeideakan/cabinet/m15/imgrc0092275324.jpg?_ex=128x128" alt="【楽天1位獲得】ツインファン 車載扇風機 12V/24V 電動ファン 後部座席用 角度調整可能 ハイパワー 10W カーファン 省エネ 静音 車内の暑さ対策 シガー電源 車 自動車用 車載用扇風機" loading="lazy">
+    <div class="info">
+      
+      <span class="genre-chip">アウトドア お出かけ</span>
+      <div class="name">【楽天1位獲得】ツインファン 車載扇風機 12V/24V 電動ファン 後部座席用 角度調整可能 ハイパワー 10W カーファン 省エネ 静音 車内の暑さ対策 シガー電源 車 自動車用 車載用扇風機</div>
+      <div class="meta-row">
+        <span class="price">¥2,580</span>
+        <span class="stars">★★★★☆</span>
+        <span>4.35(1131件)</span>
+      </div>
+    </div>
+  </div>
+  <a class="btn-open" href="https://hb.afl.rakuten.co.jp/hgc/g00u2m6n.dg4fi01a.g00u2m6n.dg4fjce5/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Flifeideakan%2Fm15%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Flifeideakan%2Fi%2F10000067%2F&rafcid=wsc_i_is_852e9d1a-8f83-49dc-bc9e-cf56a98e669a" target="_blank" rel="noopener">商品ページを開く ↗</a>
+  <div class="url-row">
+    <a href="https://item.rakuten.co.jp/lifeideakan/m15/" target="_blank" rel="noopener">https://item.rakuten.co.jp/lifeideakan/m15/</a>
+    <button class="copy-btn" onclick="copyPlain(this, 'https://item.rakuten.co.jp/lifeideakan/m15/')" type="button">URLコピー</button>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>楽天ROOM用</span>
+      <button class="copy-btn" onclick="copyText(this, 'room-1')" type="button">コピー</button>
+    </div>
+    <textarea id="room-1" readonly>🚗後部座席から「暑い暑い」の大合唱、エアコン全開でも風が届かないあの車内、正直かなりストレスだった。そこで取り付けたのがこのツインファン。シガーソケットから電源をとって、後部座席の座席後ろやヘッドレストに固定するだけ。角度調整できるから子どもの顔に直接風を送れるし、静音設計なので運転中も気になりません。楽天1位を獲得してるだけあって「もっと早く買えばよかった」という声も多い印象。取り付け位置だけ最初にちゃんと決めておくと配線がすっきりします🌀夏のドライブ、後部座席の機嫌がだいぶ変わりますよ😊
+#車載扇風機 #ドライブグッズ #車内暑さ対策 #育児パパ #共働き家庭 #夏のお出かけ #子連れドライブ</textarea>
+  </div>
+</div>
+<div class="card featured">
+  <div class="card-head">
+    <img src="https://thumbnail.image.rakuten.co.jp/@0_mall/value-create/cabinet/3d-eyemask/11760187/samune01.jpg?_ex=128x128" alt="【楽天1位 3冠】【睡眠栄養指導士 監修】遮光率99,99％ アイマスク 安眠 遮光 立体 睡眠 3d 低反発 シルク質感 眼精疲労 リラックス 送料無料" loading="lazy">
+    <div class="info">
+      <span class="featured-badge">🔥 本日のThreads/Xピックアップ</span>
+      <span class="genre-chip">寝具 睡眠</span>
+      <div class="name">【楽天1位 3冠】【睡眠栄養指導士 監修】遮光率99,99％ アイマスク 安眠 遮光 立体 睡眠 3d 低反発 シルク質感 眼精疲労 リラックス 送料無料</div>
+      <div class="meta-row">
+        <span class="price">¥1,380</span>
+        <span class="stars">★★★★★</span>
+        <span>4.62(1670件)</span>
+      </div>
+    </div>
+  </div>
+  <a class="btn-open" href="https://hb.afl.rakuten.co.jp/hgc/g00tmtxn.dg4fi245.g00tmtxn.dg4fjaa0/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fvalue-create%2F3d-eyemask%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fvalue-create%2Fi%2F10000001%2F&rafcid=wsc_i_is_852e9d1a-8f83-49dc-bc9e-cf56a98e669a" target="_blank" rel="noopener">商品ページを開く ↗</a>
+  <div class="url-row">
+    <a href="https://item.rakuten.co.jp/value-create/3d-eyemask/" target="_blank" rel="noopener">https://item.rakuten.co.jp/value-create/3d-eyemask/</a>
+    <button class="copy-btn" onclick="copyPlain(this, 'https://item.rakuten.co.jp/value-create/3d-eyemask/')" type="button">URLコピー</button>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>楽天ROOM用</span>
+      <button class="copy-btn" onclick="copyText(this, 'room-2')" type="button">コピー</button>
+    </div>
+    <textarea id="room-2" readonly>😴遮光率99.99%と言われると眠りの質が変わりそうな気がしませんか。楽天で1位を3つ獲得しているこのアイマスク、立体構造で目元を圧迫しない設計になっていて、シルクのような質感が肌当たりも優しいです。低反発クッションがまぶたの上にちょうど乗る感じで、寝返りしてもズレにくいのもポイント。レビューは1,670件、評価4.62と高評価が集まっています✨ただしゴムのサイズ調整幅は広くないので、頭が大きめの方は少しきつく感じることもあるかもしれません。在宅ワークの休憩中や飛行機移動でも活躍しますよ🛫
+#アイマスク #遮光アイマスク #安眠グッズ #睡眠改善 #育児パパ #共働き家庭 #リラックスタイム</textarea>
+  </div>
+  <p class="reason">🔥 今日のピックアップ理由: 価格1,380円という手頃さに加え、楽天1位3冠・レビュー1,670件・評価4.62という実績が揃い、悩み解決度と社会的証明の強さが5件中で最も高いため選定</p>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>Threads用</span>
+      <button class="copy-btn" onclick="copyText(this, 'threads-0')" type="button">コピー</button>
+    </div>
+    <textarea id="threads-0" readonly>遮光率99.99%って言われてもピンとこなかったんだけど、実際つけてみたら光がほぼ入らなくて驚いた。立体構造だから目玉が押されないし、シルクみたいな質感で肌当たりもいい。楽天で1位を3つ獲ってるらしくて、それも納得できる仕上がり。夜勤明けの昼寝とか、飛行機の移動中にも使ってる。1,380円だから気軽に試せるのもいいところ。ゴムの伸び幅はそんなに広くないから、頭が大きい人は一応チェックしてから。これつけて寝ると、なんか外の世界と一回切り離される感じがして好き。みんなアイマスクって寝る前しか使わない?自分は昼寝用に置いてる派。
+#PR #アイマスク #育児パパ #共働き家庭</textarea>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>X用</span>
+      <button class="copy-btn" onclick="copyText(this, 'x-0')" type="button">コピー</button>
+    </div>
+    <textarea id="x-0" readonly>遮光率99.99%、実際つけたら光がほぼ入らなくて驚いた。立体構造で目玉を押さないし、シルクみたいな質感で肌当たりもいい。楽天1位3冠らしくて納得。1,380円だから気軽に試せる。ゴムの伸び幅はそんなに広くないから頭大きい人は要チェック。昼寝用に一枚置いておくと世界が一回切り離される感じ、なんか好き。
+#PR #アイマスク #育児パパ #共働き家庭</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="card-head">
+    <img src="https://thumbnail.image.rakuten.co.jp/@0_mall/plaisiureux/cabinet/imgrc0095893278.jpg?_ex=128x128" alt="【コドモエに掲載】＼楽天1位／耳かき 耳掃除 楽天1位 子供用 みみかき ライト Plaisiureux プレジュール" loading="lazy">
+    <div class="info">
+      
+      <span class="genre-chip">身だしなみ</span>
+      <div class="name">【コドモエに掲載】＼楽天1位／耳かき 耳掃除 楽天1位 子供用 みみかき ライト Plaisiureux プレジュール</div>
+      <div class="meta-row">
+        <span class="price">¥1,000</span>
+        <span class="stars">★★★★☆</span>
+        <span>4.42(256件)</span>
+      </div>
+    </div>
+  </div>
+  <a class="btn-open" href="https://hb.afl.rakuten.co.jp/hgc/g00tb0pn.dg4fi3e0.g00tb0pn.dg4fj683/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fplaisiureux%2F10000014%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fplaisiureux%2Fi%2F10000014%2F&rafcid=wsc_i_is_852e9d1a-8f83-49dc-bc9e-cf56a98e669a" target="_blank" rel="noopener">商品ページを開く ↗</a>
+  <div class="url-row">
+    <a href="https://item.rakuten.co.jp/plaisiureux/10000014/" target="_blank" rel="noopener">https://item.rakuten.co.jp/plaisiureux/10000014/</a>
+    <button class="copy-btn" onclick="copyPlain(this, 'https://item.rakuten.co.jp/plaisiureux/10000014/')" type="button">URLコピー</button>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>楽天ROOM用</span>
+      <button class="copy-btn" onclick="copyText(this, 'room-3')" type="button">コピー</button>
+    </div>
+    <textarea id="room-3" readonly>👂子どもの耳掃除、毎回じっとしてくれなくて攻防戦だった我が家。無理に押さえつけるのも可哀想だし、暗くて見えないまま耳かきを入れるのも怖くて仕方なかった。それで試してみたのがライト付きの子供用耳かき。先端が光るから耳の中がしっかり見えて、力を入れずに掃除できる。子どもも「見える見える」と興味を持ってくれて、じっとしてくれる時間が増えた気がする😌コドモエにも掲載された商品らしく、評価4.42とレビューも好意的なものが多い印象。先端がやわらかめなので、暴れる子には片手でしっかり頭を固定してあげてくださいね🌟
+#耳かき #子供用耳かき #ライト付き耳かき #育児グッズ #育児パパ #共働き家庭 #耳掃除</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="card-head">
+    <img src="https://thumbnail.image.rakuten.co.jp/@0_mall/merci-p/cabinet/dulton/ch03-h92-100.jpg?_ex=128x128" alt="ダルトン ステンレスフラワーシェイプ DULTON CH03-H92 4ホール 洗面用具 インテリア雑貨 歯ブラシスタンド ホルダー サニタリー 洗面所 バスルーム 歯ブラシホルダー 歯ブラシ立て" loading="lazy">
+    <div class="info">
+      
+      <span class="genre-chip">浴室 洗面</span>
+      <div class="name">ダルトン ステンレスフラワーシェイプ DULTON CH03-H92 4ホール 洗面用具 インテリア雑貨 歯ブラシスタンド ホルダー サニタリー 洗面所 バスルーム 歯ブラシホルダー 歯ブラシ立て</div>
+      <div class="meta-row">
+        <span class="price">¥1,540</span>
+        <span class="stars">★★★★★</span>
+        <span>4.77(277件)</span>
+      </div>
+    </div>
+  </div>
+  <a class="btn-open" href="https://hb.afl.rakuten.co.jp/hgc/g00q31zn.dg4fi164.g00q31zn.dg4fj528/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fmerci-p%2Fch03-h92%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fmerci-p%2Fi%2F10002036%2F&rafcid=wsc_i_is_852e9d1a-8f83-49dc-bc9e-cf56a98e669a" target="_blank" rel="noopener">商品ページを開く ↗</a>
+  <div class="url-row">
+    <a href="https://item.rakuten.co.jp/merci-p/ch03-h92/" target="_blank" rel="noopener">https://item.rakuten.co.jp/merci-p/ch03-h92/</a>
+    <button class="copy-btn" onclick="copyPlain(this, 'https://item.rakuten.co.jp/merci-p/ch03-h92/')" type="button">URLコピー</button>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>楽天ROOM用</span>
+      <button class="copy-btn" onclick="copyText(this, 'room-4')" type="button">コピー</button>
+    </div>
+    <textarea id="room-4" readonly>🪥1,540円でこの高級感、洗面台の印象がガラッと変わりますよ。ダルトンのステンレスフラワーシェイプ歯ブラシスタンド、4ホールで家族分の歯ブラシをまとめて置けて、花びらのようなデザインが地味になりがちな洗面所を一気におしゃれにしてくれます。ステンレス製だから水垢もつきにくく、お手入れは布でサッと拭くだけ🌸レビューは277件で評価4.77と、インテリア雑貨としてはかなり高い支持を集めています✨ただし穴の間隔が広めなので、極端に細い歯ブラシだとグラつくことがあるので要チェック。生活感を出したくない洗面所づくりに、ひとつどうぞ🚿
+#歯ブラシスタンド #歯ブラシホルダー #洗面所インテリア #ダルトン #DULTON #育児パパ #共働き家庭 #雑貨</textarea>
+  </div>
+</div>
+</div>
+
+<h2 class="section-title">💬 今日のあるある投稿ネタ(商品リンクなし)</h2>
+<div class="cards">
+<div class="card">
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>あるある投稿 #1</span>
+      <button class="copy-btn" onclick="copyText(this, 'daily-0')" type="button">コピー</button>
+    </div>
+    <textarea id="daily-0" class="short" readonly>せっかく寝た…と思ってそっと下ろした瞬間、目が開く『背中スイッチ』の精度、なんでこんなに高いんだろう。抱っこしたまま夜が明けそうになった日もあるし、結局そのまま朝までソファで過ごしたこともある。腕の感覚、もう覚えてない。</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>あるある投稿 #2</span>
+      <button class="copy-btn" onclick="copyText(this, 'daily-1')" type="button">コピー</button>
+    </div>
+    <textarea id="daily-1" class="short" readonly>子どもの寝顔、天使すぎて写真撮ったのに、あとで見返すと背景に洗濯物の山とオムツのゴミ袋がしっかり写り込んでる。天使とゴミ山、同じフレームに収まるのが我が家。加工でどうにかなる範囲を超えてる気がする。</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>あるある投稿 #3</span>
+      <button class="copy-btn" onclick="copyText(this, 'daily-2')" type="button">コピー</button>
+    </div>
+    <textarea id="daily-2" class="short" readonly>家事の何がしんどいって『中断』だと思う。皿洗いの途中で呼ばれて、洗濯物を畳んでる途中で呼ばれて、結局どれも終わってない状態でまた呼ばれる。気づいたら夜になってて、今日何したかよくわからない。</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>あるある投稿 #4</span>
+      <button class="copy-btn" onclick="copyText(this, 'daily-3')" type="button">コピー</button>
+    </div>
+    <textarea id="daily-3" class="short" readonly>育休中に気づいたんだけど、子どもが泣き止む一番の方法、抱っこじゃなくて自分が座って落ち着くことだった気がする。焦ってる時ほど伝わるんだな、たぶん。妻に指摘されて初めて自覚した。育休、実はいろいろ勉強になってる。</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>あるある投稿 #5</span>
+      <button class="copy-btn" onclick="copyText(this, 'daily-4')" type="button">コピー</button>
+    </div>
+    <textarea id="daily-4" class="short" readonly>子どもに言い過ぎる日の共通点、①寝不足、②仕事のことが頭に残ってる、③自分の予定が思い通りに進んでない。だいたいこの3つが重なると、余裕なくなって声が大きくなる気がする。</textarea>
+  </div>
+</div>
+</div>
+
+<footer class="note">商品ページを確認し、投稿文をコピーして手動で投稿してください。<br>Threads/Xの商品紹介は1日1件・あるある投稿と織り交ぜてスパム判定を避けてください。<br>価格・レビューは選定時点の実データです。</footer>
+</div>
+<script>
+function flash(btn) {
+  const original = btn.textContent;
+  btn.textContent = 'コピーしました';
+  btn.classList.add('copied');
+  setTimeout(() => { btn.textContent = original; btn.classList.remove('copied'); }, 1500);
+}
+function copyText(btn, id) {
+  const el = document.getElementById(id);
+  el.select();
+  el.setSelectionRange(0, 999999);
+  navigator.clipboard.writeText(el.value).then(() => flash(btn)).catch(() => {
+    try { document.execCommand('copy'); flash(btn); } catch (e) {}
+  });
+}
+function copyPlain(btn, text) {
+  navigator.clipboard.writeText(text).then(() => flash(btn)).catch(() => {
+    const t = document.createElement('textarea');
+    t.value = text; document.body.appendChild(t); t.select();
+    try { document.execCommand('copy'); flash(btn); } catch (e) {}
+    document.body.removeChild(t);
+  });
+}
+</script>
+</body>
+</html>
