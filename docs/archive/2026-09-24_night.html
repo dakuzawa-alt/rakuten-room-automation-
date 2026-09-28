@@ -1,0 +1,381 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>9/24 夜の選定 - 楽天ROOM投稿リスト</title>
+<style>
+:root {
+  --bg: #f6f3ee;
+  --surface: #ffffff;
+  --ink: #23211d;
+  --ink-soft: #6b6459;
+  --accent: #a8382c;
+  --accent-ink: #fff6f2;
+  --good: #3f7d58;
+  --border: #e4ddd2;
+  --chip-bg: #efe8db;
+  color-scheme: light dark;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #16140f;
+    --surface: #211f1a;
+    --ink: #ece7dc;
+    --ink-soft: #a89e8d;
+    --accent: #e0685a;
+    --accent-ink: #1c0f0c;
+    --good: #6fb98a;
+    --border: #35322a;
+    --chip-bg: #2a2721;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #16140f; --surface: #211f1a; --ink: #ece7dc; --ink-soft: #a89e8d;
+  --accent: #e0685a; --accent-ink: #1c0f0c; --good: #6fb98a; --border: #35322a; --chip-bg: #2a2721;
+}
+:root[data-theme="light"] {
+  --bg: #f6f3ee; --surface: #ffffff; --ink: #23211d; --ink-soft: #6b6459;
+  --accent: #a8382c; --accent-ink: #fff6f2; --good: #3f7d58; --border: #e4ddd2; --chip-bg: #efe8db;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0; background: var(--bg); color: var(--ink);
+  font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Yu Gothic Medium", "Noto Sans JP", sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+.wrap { max-width: 640px; margin: 0 auto; padding: 0 16px 40px; }
+header.top {
+  position: sticky; top: 0; z-index: 5; background: var(--bg);
+  padding: 18px 16px 12px; border-bottom: 1px solid var(--border);
+  display: flex; align-items: baseline; justify-content: space-between; gap: 12px;
+}
+header.top .eyebrow {
+  font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-soft);
+  font-weight: 600; margin: 0 0 2px;
+}
+header.top h1 { font-size: 1.25rem; margin: 0; font-weight: 700; letter-spacing: -0.01em; }
+header.top .count {
+  background: var(--chip-bg); color: var(--ink-soft); font-size: 0.78rem; font-weight: 600;
+  padding: 5px 10px; border-radius: 999px; white-space: nowrap;
+}
+h2.section-title { font-size: 0.95rem; font-weight: 700; margin: 24px 0 12px; }
+.cards { display: flex; flex-direction: column; gap: 16px; margin-top: 18px; }
+.card {
+  background: var(--surface); border: 1px solid var(--border); border-radius: 16px;
+  padding: 16px; display: flex; flex-direction: column; gap: 12px;
+}
+.card.featured { border-color: var(--accent); border-width: 2px; }
+.featured-badge {
+  align-self: flex-start; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.03em;
+  color: var(--accent-ink); background: var(--accent); padding: 3px 9px; border-radius: 999px;
+}
+.card-head { display: flex; gap: 12px; }
+.card-head img {
+  width: 76px; height: 76px; object-fit: cover; border-radius: 10px;
+  border: 1px solid var(--border); background: var(--chip-bg); flex-shrink: 0;
+}
+.card-head .info { min-width: 0; flex: 1; display: flex; flex-direction: column; gap: 4px; }
+.genre-chip {
+  align-self: flex-start; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.03em;
+  color: var(--accent); background: color-mix(in srgb, var(--accent) 12%, transparent);
+  padding: 2px 8px; border-radius: 999px;
+}
+.name {
+  font-weight: 600; font-size: 0.94rem; line-height: 1.4;
+  display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
+}
+.meta-row { display: flex; align-items: baseline; gap: 8px; font-size: 0.82rem; color: var(--ink-soft); }
+.price { font-variant-numeric: tabular-nums; color: var(--ink); font-weight: 700; font-size: 1.05rem; }
+.stars { letter-spacing: -1px; color: var(--accent); }
+.btn-open {
+  display: flex; align-items: center; justify-content: center; gap: 6px;
+  background: var(--accent); color: var(--accent-ink); border: none; border-radius: 11px;
+  padding: 12px; font-weight: 700; font-size: 0.92rem; text-decoration: none;
+}
+.btn-open:active { opacity: 0.85; }
+.url-row {
+  display: flex; align-items: center; gap: 8px;
+  background: var(--chip-bg); border-radius: 9px; padding: 8px 10px;
+}
+.url-row a {
+  flex: 1; min-width: 0; font-size: 0.76rem; color: var(--accent);
+  word-break: break-all; line-height: 1.45; text-decoration: none;
+}
+.url-row a:active { text-decoration: underline; }
+.reason { font-size: 0.8rem; color: var(--ink-soft); }
+.caption-box { border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }
+.caption-head {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 8px 10px; background: var(--chip-bg);
+}
+.caption-head span {
+  font-size: 0.7rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-soft);
+}
+.copy-btn {
+  background: var(--surface); border: 1px solid var(--border); color: var(--ink);
+  border-radius: 7px; padding: 5px 11px; font-size: 0.76rem; font-weight: 600; cursor: pointer;
+}
+.copy-btn:focus-visible, .btn-open:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.copy-btn.copied { background: var(--good); border-color: var(--good); color: #fff; }
+textarea {
+  width: 100%; display: block; border: none; padding: 10px; font-size: 0.85rem; line-height: 1.55;
+  resize: vertical; min-height: 108px; font-family: inherit; background: var(--surface); color: var(--ink);
+}
+textarea.short { min-height: 60px; }
+textarea:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
+footer.note { margin-top: 22px; font-size: 0.76rem; color: var(--ink-soft); text-align: center; line-height: 1.6; }
+@media (prefers-reduced-motion: no-preference) {
+  .copy-btn { transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease; }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <div>
+    <p class="eyebrow">楽天ROOM 投稿リスト</p>
+    <h1>9/24 夜の選定</h1>
+  </div>
+  <span class="count">5件</span>
+</header>
+
+<h2 class="section-title">📦 商品(ROOM用、全5件)</h2>
+<div class="cards">
+<div class="card featured">
+  <div class="card-head">
+    <img src="https://thumbnail.image.rakuten.co.jp/@0_mall/dondon/cabinet/zkr01_2.jpg?_ex=128x128" alt="着る毛布 ルームウェア レディース メンズ フリーサイズ もこもこ モコモコ かわいい 可愛い おしゃれ 着るブランケット フード付き 部屋着 パジャマ ガウン 秋冬 あったかグッズ 暖かい アウター 洗濯 ポケット" loading="lazy">
+    <div class="info">
+      <span class="featured-badge">🔥 本日のThreads/Xピックアップ</span>
+      <span class="genre-chip">寝具 睡眠</span>
+      <div class="name">着る毛布 ルームウェア レディース メンズ フリーサイズ もこもこ モコモコ かわいい 可愛い おしゃれ 着るブランケット フード付き 部屋着 パジャマ ガウン 秋冬 あったかグッズ 暖かい アウター 洗濯 ポケット</div>
+      <div class="meta-row">
+        <span class="price">¥3,999</span>
+        <span class="stars">★★★★☆</span>
+        <span>4.5(7740件)</span>
+      </div>
+    </div>
+  </div>
+  <a class="btn-open" href="https://hb.afl.rakuten.co.jp/hgc/g00qqpqn.dg4fi795.g00qqpqn.dg4fjb0f/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fdondon%2Fss-02-mf-001%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fdondon%2Fi%2F10001891%2F&rafcid=wsc_i_is_852e9d1a-8f83-49dc-bc9e-cf56a98e669a" target="_blank" rel="noopener">商品ページを開く ↗</a>
+  <div class="url-row">
+    <a href="https://item.rakuten.co.jp/dondon/ss-02-mf-001/" target="_blank" rel="noopener">https://item.rakuten.co.jp/dondon/ss-02-mf-001/</a>
+    <button class="copy-btn" onclick="copyPlain(this, 'https://item.rakuten.co.jp/dondon/ss-02-mf-001/')" type="button">URLコピー</button>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>楽天ROOM用</span>
+      <button class="copy-btn" onclick="copyText(this, 'room-0')" type="button">コピー</button>
+    </div>
+    <textarea id="room-0" readonly>🧥レビュー7,740件・星4.5、これだけの人が選んでる着る毛布です。朝晩の冷え込みが強くなってきて、リビングで羽織るものが欲しい季節になりましたよね。もこもこ素材でフード付き、着たまま家事も動けるくらい軽いのがポイント。ポケット付きでスマホ入れて放送見ながらゴロゴロできます😌サイズはフリーサイズで男女兼用、洗濯機で洗えるのも助かるところ。¥3,999で秋冬ずっと使えると考えるとかなり満足度高いです。注意点は毛足が長めなのでお手入れ時は洗濯ネット推奨⚠️寒がりなお子さんのいる家庭にもおすすめです🌙
+#着る毛布 #ルームウェア #もこもこアイテム #育児パパ #共働き家庭 #秋冬あったかグッズ #防寒対策</textarea>
+  </div>
+  <p class="reason">🔥 今日のピックアップ理由: レビュー7,740件・星4.5という圧倒的な実績に加え、朝晩の冷え込みが強まる時期でタイムリーさが最も高く、フォロワーの反応が見込めるため選定した</p>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>Threads用</span>
+      <button class="copy-btn" onclick="copyText(this, 'threads-0')" type="button">コピー</button>
+    </div>
+    <textarea id="threads-0" readonly>これ着てるだけで暖房代の申し訳なさが消える説。着る毛布、フード付きでフリーサイズ、¥3,999。レビュー7,740件で星4.5ってどんだけみんな衣替えのタイミングで買ってるんだよって数字。もこもこの中に埋もれてゲームするとか原稿書くとか、もう部屋着の概念じゃなくて第二の皮膚。洗濯機OKなのも助かる。寒がりな子どもにも普通に着せられるサイズ感で、これから毎晩お世話になりそう。ポケットにスマホ突っ込んで丸まってる時間が幸せすぎる🧥
+みんな今年もう着る毛布出した?
+#PR #着る毛布 #秋冬あったかグッズ #育児パパ</textarea>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>X用</span>
+      <button class="copy-btn" onclick="copyText(this, 'x-0')" type="button">コピー</button>
+    </div>
+    <textarea id="x-0" readonly>着る毛布、レビュー7,740件で星4.5って人気ぶりがえぐい。フード付き¥3,999、フリーサイズでもこもこ。洗濯機で洗えるから普通に部屋着として着倒せる。寒がりな子にも着せられるサイズ感、これから毎晩お世話になりそう🧥
+#PR #着る毛布</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="card-head">
+    <img src="https://thumbnail.image.rakuten.co.jp/@0_mall/royal3000/cabinet/tmb/a/a712.jpg?_ex=128x128" alt="【ポイント10倍 9/25(金)00:00〜10/1(木)23:59まで】 日本製 チェアマット 透明 180×91 cm 厚1.5mm クリア | 床保護マット PVCマット チェア マット 床保護 透明マット デスク下マット PVC カットできる 傷防止 撥水 ずれない 椅子 フロアマット フロア シート 床マット 床" loading="lazy">
+    <div class="info">
+      
+      <span class="genre-chip">在宅ワーク デスク</span>
+      <div class="name">【ポイント10倍 9/25(金)00:00〜10/1(木)23:59まで】 日本製 チェアマット 透明 180×91 cm 厚1.5mm クリア | 床保護マット PVCマット チェア マット 床保護 透明マット デスク下マット PVC カットできる 傷防止 撥水 ずれない 椅子 フロアマット フロア シート 床マット 床</div>
+      <div class="meta-row">
+        <span class="price">¥2,490</span>
+        <span class="stars">★★★★☆</span>
+        <span>4.45(9159件)</span>
+      </div>
+    </div>
+  </div>
+  <a class="btn-open" href="https://hb.afl.rakuten.co.jp/hgc/g00pm6zn.dg4fid15.g00pm6zn.dg4fjf77/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Froyal3000%2Fa712%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Froyal3000%2Fi%2F10005567%2F&rafcid=wsc_i_is_852e9d1a-8f83-49dc-bc9e-cf56a98e669a" target="_blank" rel="noopener">商品ページを開く ↗</a>
+  <div class="url-row">
+    <a href="https://item.rakuten.co.jp/royal3000/a712/" target="_blank" rel="noopener">https://item.rakuten.co.jp/royal3000/a712/</a>
+    <button class="copy-btn" onclick="copyPlain(this, 'https://item.rakuten.co.jp/royal3000/a712/')" type="button">URLコピー</button>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>楽天ROOM用</span>
+      <button class="copy-btn" onclick="copyText(this, 'room-1')" type="button">コピー</button>
+    </div>
+    <textarea id="room-1" readonly>在宅ワーク中、椅子を引くたびにフローリングが傷んでいくのが地味にストレスだった😔気づいたら椅子の足元だけ床の色が変わってて、これはもう放置できないと購入したのが透明のチェアマット。180×91cmの日本製で、デスク周りをまるっとカバーできるサイズ感が良かった。厚み1.5mmでしっかりしてるのにハサミでカットできる柔らかさもあって、うちは形に合わせて微調整した✂️レビュー9,159件・星4.45というのも決め手になった。撥水仕様で子どものジュースをこぼした日も拭くだけで済んで助かってる🙆‍♂️床を守りたい在宅ワーカーに選んでほしい一枚です。
+#チェアマット #床保護 #在宅ワーク #デスク環境 #育児パパ #共働き家庭 #日本製</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="card-head">
+    <img src="https://thumbnail.image.rakuten.co.jp/@0_mall/analostyle/cabinet/146/1466807a11.jpg?_ex=128x128" alt="レジャーシート 厚手 おしゃれ 大判 防水 200cm 150cm | コットン素材 大判シート 折りたたみ 花見 キャンプ ピクニック 運動会" loading="lazy">
+    <div class="info">
+      
+      <span class="genre-chip">アウトドア お出かけ</span>
+      <div class="name">レジャーシート 厚手 おしゃれ 大判 防水 200cm 150cm | コットン素材 大判シート 折りたたみ 花見 キャンプ ピクニック 運動会</div>
+      <div class="meta-row">
+        <span class="price">¥2,979</span>
+        <span class="stars">★★★★☆</span>
+        <span>4.38(1951件)</span>
+      </div>
+    </div>
+  </div>
+  <a class="btn-open" href="https://hb.afl.rakuten.co.jp/hgc/g00q405n.dg4fi83b.g00q405n.dg4fj7a0/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fanalostyle%2F1466807%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fanalostyle%2Fi%2F10003687%2F&rafcid=wsc_i_is_852e9d1a-8f83-49dc-bc9e-cf56a98e669a" target="_blank" rel="noopener">商品ページを開く ↗</a>
+  <div class="url-row">
+    <a href="https://item.rakuten.co.jp/analostyle/1466807/" target="_blank" rel="noopener">https://item.rakuten.co.jp/analostyle/1466807/</a>
+    <button class="copy-btn" onclick="copyPlain(this, 'https://item.rakuten.co.jp/analostyle/1466807/')" type="button">URLコピー</button>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>楽天ROOM用</span>
+      <button class="copy-btn" onclick="copyText(this, 'room-2')" type="button">コピー</button>
+    </div>
+    <textarea id="room-2" readonly>☀️¥2,979で大判200cm、これ一枚あれば公園も運動会も困らないレジャーシートです。厚手のコットン素材で地面のデコボコが気にならず、防水加工だから朝露や芝生の湿気もしっかりブロック。広げるとゆったり4人家族でも座れるサイズで、折りたたむとコンパクトになるので持ち運びも楽です🧺レビューは1,951件、星4.38と安定した評価。注意点は厚みがある分やや重さを感じるので、車移動メインの人向きかもしれません🚗これからの行楽シーズンに向けてストックしておきたいアイテムです🍂
+#レジャーシート #お花見 #運動会グッズ #ピクニック #育児パパ #共働き家庭 #アウトドア準備</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="card-head">
+    <img src="https://thumbnail.image.rakuten.co.jp/@0_mall/solo-sapiens/cabinet/09904180/hie_t04.jpg?_ex=128x128" alt="【年中使える保冷バッグ！】 保冷バッグ 完全防水 大容量 クーラーバッグ クーラーボックス 保冷バック お弁当 シームレス 保冷 保温 ソフトクーラー エコバッグ レジバッグ トートバッグ BBQ アウトドア レジかご 自立 ヒエポ キャンプ ピクニック 遠足 マチ広" loading="lazy">
+    <div class="info">
+      
+      <span class="genre-chip">アウトドア お出かけ</span>
+      <div class="name">【年中使える保冷バッグ！】 保冷バッグ 完全防水 大容量 クーラーバッグ クーラーボックス 保冷バック お弁当 シームレス 保冷 保温 ソフトクーラー エコバッグ レジバッグ トートバッグ BBQ アウトドア レジかご 自立 ヒエポ キャンプ ピクニック 遠足 マチ広</div>
+      <div class="meta-row">
+        <span class="price">¥3,980</span>
+        <span class="stars">★★★★★</span>
+        <span>4.7(345件)</span>
+      </div>
+    </div>
+  </div>
+  <a class="btn-open" href="https://hb.afl.rakuten.co.jp/hgc/g00u2lsn.dg4fi02c.g00u2lsn.dg4fj5c3/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fsolo-sapiens%2Fss_hiepo_01%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fsolo-sapiens%2Fi%2F10000075%2F&rafcid=wsc_i_is_852e9d1a-8f83-49dc-bc9e-cf56a98e669a" target="_blank" rel="noopener">商品ページを開く ↗</a>
+  <div class="url-row">
+    <a href="https://item.rakuten.co.jp/solo-sapiens/ss_hiepo_01/" target="_blank" rel="noopener">https://item.rakuten.co.jp/solo-sapiens/ss_hiepo_01/</a>
+    <button class="copy-btn" onclick="copyPlain(this, 'https://item.rakuten.co.jp/solo-sapiens/ss_hiepo_01/')" type="button">URLコピー</button>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>楽天ROOM用</span>
+      <button class="copy-btn" onclick="copyText(this, 'room-3')" type="button">コピー</button>
+    </div>
+    <textarea id="room-3" readonly>BBQに向かう途中、保冷剤を入れたはずの飲み物がぬるくなっていて地味にテンションが下がったことがある🧊それ以来探してたのがこのヒエポの保冷バッグ。30Lの大容量で500mlペットボトルが何十本も入るし、内側が防水ビニールだから氷が溶けても気にせず水洗いできるのがいい。肩掛けトート型で持ち運びも楽で、自立するから車のトランクでも倒れない👜レビュー345件だけど星4.7とかなり高評価なのが気になって試してみました。注意点はしっかり保冷したいなら保冷剤多めが必須なところ。キャンプや行楽シーズンの相棒になりそうです⛺
+#保冷バッグ #クーラーバッグ #キャンプ準備 #アウトドア #育児パパ #共働き家庭 #BBQ</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="card-head">
+    <img src="https://thumbnail.image.rakuten.co.jp/@0_mall/virginbeautyshop/cabinet/thu02/200-1-c-6.jpg?_ex=128x128" alt="鼻毛ワックス メンズゴリラ 6回分 ブラジリアンワックス 鼻毛 脱毛 鼻毛取り 鼻毛ワックス脱毛キット 1セット 鼻毛 ワックス のみ 鼻毛脱毛 セルフ 自宅 処理 ブラジリアンワックス メンズ レディース兼用 粒状 ハードワックス" loading="lazy">
+    <div class="info">
+      
+      <span class="genre-chip">身だしなみ</span>
+      <div class="name">鼻毛ワックス メンズゴリラ 6回分 ブラジリアンワックス 鼻毛 脱毛 鼻毛取り 鼻毛ワックス脱毛キット 1セット 鼻毛 ワックス のみ 鼻毛脱毛 セルフ 自宅 処理 ブラジリアンワックス メンズ レディース兼用 粒状 ハードワックス</div>
+      <div class="meta-row">
+        <span class="price">¥1,000</span>
+        <span class="stars">★★★★☆</span>
+        <span>4.38(245件)</span>
+      </div>
+    </div>
+  </div>
+  <a class="btn-open" href="https://hb.afl.rakuten.co.jp/hgc/g00s2mpn.dg4fi8b1.g00s2mpn.dg4fj71e/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fvirginbeautyshop%2F200-1-c-6%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fvirginbeautyshop%2Fi%2F10000219%2F&rafcid=wsc_i_is_852e9d1a-8f83-49dc-bc9e-cf56a98e669a" target="_blank" rel="noopener">商品ページを開く ↗</a>
+  <div class="url-row">
+    <a href="https://item.rakuten.co.jp/virginbeautyshop/200-1-c-6/" target="_blank" rel="noopener">https://item.rakuten.co.jp/virginbeautyshop/200-1-c-6/</a>
+    <button class="copy-btn" onclick="copyPlain(this, 'https://item.rakuten.co.jp/virginbeautyshop/200-1-c-6/')" type="button">URLコピー</button>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>楽天ROOM用</span>
+      <button class="copy-btn" onclick="copyText(this, 'room-4')" type="button">コピー</button>
+    </div>
+    <textarea id="room-4" readonly>💡¥1,000で6回分、身だしなみの地味な悩みを解決してくれるのが鼻毛ワックスです。ハサミやカッターだとすぐ伸びてチクチクするのが気になっていましたが、ワックスタイプはごっそり抜けるので効果の持続期間が長め。塗って固まったら剥がすだけのシンプル設計で、奥まで取りすぎない安全設計になっているのも安心ポイント🙌男女兼用で使えるのでパートナーとシェアもできます。レビューは245件、星4.38。注意点は初めては少量から試して肌に合うか確認したほうがいいところ⚠️身だしなみを整える時短アイテムとして頼りになります。
+#鼻毛ワックス #身だしなみ #メンズケア #時短ケア #育児パパ #共働き家庭 #セルフケア</textarea>
+  </div>
+</div>
+</div>
+
+<h2 class="section-title">💬 今日のあるある投稿ネタ(商品リンクなし)</h2>
+<div class="cards">
+<div class="card">
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>あるある投稿 #1</span>
+      <button class="copy-btn" onclick="copyText(this, 'daily-0')" type="button">コピー</button>
+    </div>
+    <textarea id="daily-0" class="short" readonly>背中スイッチ、感度良すぎる説。置いた瞬間に目が開く😇</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>あるある投稿 #2</span>
+      <button class="copy-btn" onclick="copyText(this, 'daily-1')" type="button">コピー</button>
+    </div>
+    <textarea id="daily-1" class="short" readonly>子どもの寝顔を撮った写真、あとで見返すとほんとに天使すぎて保存フォルダが増える一方なんだけど、よく見ると背景に脱ぎっぱなしの靴下とたたんでない洗濯物と謎に転がってるおもちゃが写り込んでて、幸せと汚部屋が同じフレームに収まってるの、これがリアルな子育てだと思う。</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>あるある投稿 #3</span>
+      <button class="copy-btn" onclick="copyText(this, 'daily-2')" type="button">コピー</button>
+    </div>
+    <textarea id="daily-2" class="short" readonly>夜泣きの記憶、夫婦で解像度が違いすぎる。妻は「毎晩3回起きてた」、自分は「たまに起きたような」。同じ夜を過ごしてたはずなのに記憶の量が全然違う、これ我が家だけ?</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>あるある投稿 #4</span>
+      <button class="copy-btn" onclick="copyText(this, 'daily-3')" type="button">コピー</button>
+    </div>
+    <textarea id="daily-3" class="short" readonly>子どもに言い過ぎる日の共通点、①自分の寝不足②仕事の締切③夜ご飯の支度中に話しかけられる、の3つ。余裕がないとそのまま声に出る。</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>あるある投稿 #5</span>
+      <button class="copy-btn" onclick="copyText(this, 'daily-4')" type="button">コピー</button>
+    </div>
+    <textarea id="daily-4" class="short" readonly>『中断』が一番しんどい。洗濯物たたんでる途中で呼ばれて戻ったらまた呼ばれて、結局何もたたみ終わってない夜がある</textarea>
+  </div>
+</div>
+</div>
+
+<footer class="note">商品ページを確認し、投稿文をコピーして手動で投稿してください。<br>Threads/Xの商品紹介は1日1件・あるある投稿と織り交ぜてスパム判定を避けてください。<br>価格・レビューは選定時点の実データです。</footer>
+</div>
+<script>
+function flash(btn) {
+  const original = btn.textContent;
+  btn.textContent = 'コピーしました';
+  btn.classList.add('copied');
+  setTimeout(() => { btn.textContent = original; btn.classList.remove('copied'); }, 1500);
+}
+function copyText(btn, id) {
+  const el = document.getElementById(id);
+  el.select();
+  el.setSelectionRange(0, 999999);
+  navigator.clipboard.writeText(el.value).then(() => flash(btn)).catch(() => {
+    try { document.execCommand('copy'); flash(btn); } catch (e) {}
+  });
+}
+function copyPlain(btn, text) {
+  navigator.clipboard.writeText(text).then(() => flash(btn)).catch(() => {
+    const t = document.createElement('textarea');
+    t.value = text; document.body.appendChild(t); t.select();
+    try { document.execCommand('copy'); flash(btn); } catch (e) {}
+    document.body.removeChild(t);
+  });
+}
+</script>
+</body>
+</html>
