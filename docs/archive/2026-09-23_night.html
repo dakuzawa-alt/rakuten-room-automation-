@@ -1,0 +1,373 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>9/23 夜の選定 - 楽天ROOM投稿リスト</title>
+<style>
+:root {
+  --bg: #f6f3ee;
+  --surface: #ffffff;
+  --ink: #23211d;
+  --ink-soft: #6b6459;
+  --accent: #a8382c;
+  --accent-ink: #fff6f2;
+  --good: #3f7d58;
+  --border: #e4ddd2;
+  --chip-bg: #efe8db;
+  color-scheme: light dark;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #16140f;
+    --surface: #211f1a;
+    --ink: #ece7dc;
+    --ink-soft: #a89e8d;
+    --accent: #e0685a;
+    --accent-ink: #1c0f0c;
+    --good: #6fb98a;
+    --border: #35322a;
+    --chip-bg: #2a2721;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #16140f; --surface: #211f1a; --ink: #ece7dc; --ink-soft: #a89e8d;
+  --accent: #e0685a; --accent-ink: #1c0f0c; --good: #6fb98a; --border: #35322a; --chip-bg: #2a2721;
+}
+:root[data-theme="light"] {
+  --bg: #f6f3ee; --surface: #ffffff; --ink: #23211d; --ink-soft: #6b6459;
+  --accent: #a8382c; --accent-ink: #fff6f2; --good: #3f7d58; --border: #e4ddd2; --chip-bg: #efe8db;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0; background: var(--bg); color: var(--ink);
+  font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Yu Gothic Medium", "Noto Sans JP", sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+.wrap { max-width: 640px; margin: 0 auto; padding: 0 16px 40px; }
+header.top {
+  position: sticky; top: 0; z-index: 5; background: var(--bg);
+  padding: 18px 16px 12px; border-bottom: 1px solid var(--border);
+  display: flex; align-items: baseline; justify-content: space-between; gap: 12px;
+}
+header.top .eyebrow {
+  font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-soft);
+  font-weight: 600; margin: 0 0 2px;
+}
+header.top h1 { font-size: 1.25rem; margin: 0; font-weight: 700; letter-spacing: -0.01em; }
+header.top .count {
+  background: var(--chip-bg); color: var(--ink-soft); font-size: 0.78rem; font-weight: 600;
+  padding: 5px 10px; border-radius: 999px; white-space: nowrap;
+}
+h2.section-title { font-size: 0.95rem; font-weight: 700; margin: 24px 0 12px; }
+.cards { display: flex; flex-direction: column; gap: 16px; margin-top: 18px; }
+.card {
+  background: var(--surface); border: 1px solid var(--border); border-radius: 16px;
+  padding: 16px; display: flex; flex-direction: column; gap: 12px;
+}
+.card.featured { border-color: var(--accent); border-width: 2px; }
+.featured-badge {
+  align-self: flex-start; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.03em;
+  color: var(--accent-ink); background: var(--accent); padding: 3px 9px; border-radius: 999px;
+}
+.card-head { display: flex; gap: 12px; }
+.card-head img {
+  width: 76px; height: 76px; object-fit: cover; border-radius: 10px;
+  border: 1px solid var(--border); background: var(--chip-bg); flex-shrink: 0;
+}
+.card-head .info { min-width: 0; flex: 1; display: flex; flex-direction: column; gap: 4px; }
+.genre-chip {
+  align-self: flex-start; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.03em;
+  color: var(--accent); background: color-mix(in srgb, var(--accent) 12%, transparent);
+  padding: 2px 8px; border-radius: 999px;
+}
+.name {
+  font-weight: 600; font-size: 0.94rem; line-height: 1.4;
+  display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
+}
+.meta-row { display: flex; align-items: baseline; gap: 8px; font-size: 0.82rem; color: var(--ink-soft); }
+.price { font-variant-numeric: tabular-nums; color: var(--ink); font-weight: 700; font-size: 1.05rem; }
+.stars { letter-spacing: -1px; color: var(--accent); }
+.btn-open {
+  display: flex; align-items: center; justify-content: center; gap: 6px;
+  background: var(--accent); color: var(--accent-ink); border: none; border-radius: 11px;
+  padding: 12px; font-weight: 700; font-size: 0.92rem; text-decoration: none;
+}
+.btn-open:active { opacity: 0.85; }
+.url-row {
+  display: flex; align-items: center; gap: 8px;
+  background: var(--chip-bg); border-radius: 9px; padding: 8px 10px;
+}
+.url-row a {
+  flex: 1; min-width: 0; font-size: 0.76rem; color: var(--accent);
+  word-break: break-all; line-height: 1.45; text-decoration: none;
+}
+.url-row a:active { text-decoration: underline; }
+.reason { font-size: 0.8rem; color: var(--ink-soft); }
+.caption-box { border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }
+.caption-head {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 8px 10px; background: var(--chip-bg);
+}
+.caption-head span {
+  font-size: 0.7rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-soft);
+}
+.copy-btn {
+  background: var(--surface); border: 1px solid var(--border); color: var(--ink);
+  border-radius: 7px; padding: 5px 11px; font-size: 0.76rem; font-weight: 600; cursor: pointer;
+}
+.copy-btn:focus-visible, .btn-open:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.copy-btn.copied { background: var(--good); border-color: var(--good); color: #fff; }
+textarea {
+  width: 100%; display: block; border: none; padding: 10px; font-size: 0.85rem; line-height: 1.55;
+  resize: vertical; min-height: 108px; font-family: inherit; background: var(--surface); color: var(--ink);
+}
+textarea.short { min-height: 60px; }
+textarea:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
+footer.note { margin-top: 22px; font-size: 0.76rem; color: var(--ink-soft); text-align: center; line-height: 1.6; }
+@media (prefers-reduced-motion: no-preference) {
+  .copy-btn { transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease; }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <div>
+    <p class="eyebrow">楽天ROOM 投稿リスト</p>
+    <h1>9/23 夜の選定</h1>
+  </div>
+  <span class="count">5件</span>
+</header>
+
+<h2 class="section-title">📦 商品(ROOM用、全5件)</h2>
+<div class="cards">
+<div class="card">
+  <div class="card-head">
+    <img src="https://thumbnail.image.rakuten.co.jp/@0_mall/e-goods/cabinet/h_cart3/soil-bathmat-lt_th.jpg?_ex=128x128" alt="【抽選で最大10万ポイントが当たる】 珪藻土バスマット バスマット 珪藻土 soil [ 日本製 安心 安全 ] [ アスベスト未使用 ] [ レビュー5000件超え ] soil バスマット ライト ノンアスベスト ソイル イスルギ 丈夫 速乾 足ふきマット 正規品" loading="lazy">
+    <div class="info">
+      
+      <span class="genre-chip">浴室 洗面</span>
+      <div class="name">【抽選で最大10万ポイントが当たる】 珪藻土バスマット バスマット 珪藻土 soil [ 日本製 安心 安全 ] [ アスベスト未使用 ] [ レビュー5000件超え ] soil バスマット ライト ノンアスベスト ソイル イスルギ 丈夫 速乾 足ふきマット 正規品</div>
+      <div class="meta-row">
+        <span class="price">¥9,900</span>
+        <span class="stars">★★★★★</span>
+        <span>4.64(5132件)</span>
+      </div>
+    </div>
+  </div>
+  <a class="btn-open" href="https://hb.afl.rakuten.co.jp/hgc/g00pmxdn.dg4fi076.g00pmxdn.dg4fj9ff/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fe-goods%2Fbath_soil-bathmat-lt%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fe-goods%2Fi%2F10009860%2F&rafcid=wsc_i_is_852e9d1a-8f83-49dc-bc9e-cf56a98e669a" target="_blank" rel="noopener">商品ページを開く ↗</a>
+  <div class="url-row">
+    <a href="https://item.rakuten.co.jp/e-goods/bath_soil-bathmat-lt/" target="_blank" rel="noopener">https://item.rakuten.co.jp/e-goods/bath_soil-bathmat-lt/</a>
+    <button class="copy-btn" onclick="copyPlain(this, 'https://item.rakuten.co.jp/e-goods/bath_soil-bathmat-lt/')" type="button">URLコピー</button>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>楽天ROOM用</span>
+      <button class="copy-btn" onclick="copyText(this, 'room-0')" type="button">コピー</button>
+    </div>
+    <textarea id="room-0" readonly>🛀お風呂上がりの濡れた足、脱衣所の床にペタペタ跡がつくのって地味なストレスですよね。珪藻土バスマットsoilは、乗った瞬間にぐんぐん水分を吸い込んで数十秒でサラッと乾く優れものです✨日本製でアスベスト未使用、家族で安心して使える点も嬉しいポイント。お手入れは軽くこすって乾かすだけなので清潔をキープしやすいですよ。レビューは5,132件で評価4.64と高評価が集まっています⭐️価格は9,900円と少し高めですが、毎日のことだからこそ投資する価値ありです。直置きより壁に立てかけて乾かすのが長持ちのコツですよ🌿 #珪藻土バスマット #soil #バスグッズ #お風呂タイム #時短家事 #育児パパ #共働き家庭</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="card-head">
+    <img src="https://thumbnail.image.rakuten.co.jp/@0_mall/bathroom/cabinet/0001/020/st-x3ban_s01bcg.jpg?_ex=128x128" alt="特典あり《 アラミック 節水シャワーヘッドプロプレミアム ナノバブル 》節水効果最大70％ Arromic 日本製 水量調整機能 手元ストップ 止水 増圧 低水圧 美容 頭皮ケア 洗顔 清潔 毛穴汚れ シルキーな水流 パールホワイト クローム 高級感 誕生日 公式 ギフト プレゼント" loading="lazy">
+    <div class="info">
+      
+      <span class="genre-chip">浴室 洗面</span>
+      <div class="name">特典あり《 アラミック 節水シャワーヘッドプロプレミアム ナノバブル 》節水効果最大70％ Arromic 日本製 水量調整機能 手元ストップ 止水 増圧 低水圧 美容 頭皮ケア 洗顔 清潔 毛穴汚れ シルキーな水流 パールホワイト クローム 高級感 誕生日 公式 ギフト プレゼント</div>
+      <div class="meta-row">
+        <span class="price">¥16,800</span>
+        <span class="stars">★★★★☆</span>
+        <span>4.48(6543件)</span>
+      </div>
+    </div>
+  </div>
+  <a class="btn-open" href="https://hb.afl.rakuten.co.jp/hgc/g00s670n.dg4fi1a0.g00s670n.dg4fjd6d/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fbathroom%2Fst-x3ban%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fbathroom%2Fi%2F10003774%2F&rafcid=wsc_i_is_852e9d1a-8f83-49dc-bc9e-cf56a98e669a" target="_blank" rel="noopener">商品ページを開く ↗</a>
+  <div class="url-row">
+    <a href="https://item.rakuten.co.jp/bathroom/st-x3ban/" target="_blank" rel="noopener">https://item.rakuten.co.jp/bathroom/st-x3ban/</a>
+    <button class="copy-btn" onclick="copyPlain(this, 'https://item.rakuten.co.jp/bathroom/st-x3ban/')" type="button">URLコピー</button>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>楽天ROOM用</span>
+      <button class="copy-btn" onclick="copyText(this, 'room-1')" type="button">コピー</button>
+    </div>
+    <textarea id="room-1" readonly>😩シャンプーを流すのに時間がかかって、湯船で子どもが冷えちゃう…そんな夜が続いてました。アラミックの節水シャワーヘッドプロプレミアムに変えてから状況が一変。ナノバブルの細かい泡がしっかり泡立ちを絡め取ってくれて、少ない水量でもすすぎがスピーディーになりました💧手元で止水できるボタンもついていて、家族で使う時の節水にも自然とつながっています。節水効果は最大70%とのことで、水道代を気にする共働き家庭にはうれしい機能ですね✨レビューは6,543件で評価4.48と多くの家庭で選ばれています。価格は16,800円と高めですが、毎日使う家族の分だと思うと納得の投資です🚿 #節水シャワーヘッド #アラミック #ナノバブル #バスグッズ #時短家事 #育児パパ #共働き家庭</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="card-head">
+    <img src="https://thumbnail.image.rakuten.co.jp/@0_mall/greenhouse-store/cabinet/06484431/gh-amdx1/gh-amdx1.jpg?_ex=128x128" alt="【コスパ最強】 グリーンハウス モニターアーム 最大32インチ 耐荷重9kg メカニカルスプリング 上下左右移動 画面回転 土台組み立て済みでセットアップ簡単 【メーカー保証3年】 PR02 GH-AMDX1" loading="lazy">
+    <div class="info">
+      
+      <span class="genre-chip">在宅ワーク デスク</span>
+      <div class="name">【コスパ最強】 グリーンハウス モニターアーム 最大32インチ 耐荷重9kg メカニカルスプリング 上下左右移動 画面回転 土台組み立て済みでセットアップ簡単 【メーカー保証3年】 PR02 GH-AMDX1</div>
+      <div class="meta-row">
+        <span class="price">¥4,998</span>
+        <span class="stars">★★★★★</span>
+        <span>4.64(752件)</span>
+      </div>
+    </div>
+  </div>
+  <a class="btn-open" href="https://hb.afl.rakuten.co.jp/hgc/g00sczjn.dg4fi2fa.g00sczjn.dg4fjcdd/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fgreenhouse-store%2F45116771303%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fgreenhouse-store%2Fi%2F10002424%2F&rafcid=wsc_i_is_852e9d1a-8f83-49dc-bc9e-cf56a98e669a" target="_blank" rel="noopener">商品ページを開く ↗</a>
+  <div class="url-row">
+    <a href="https://item.rakuten.co.jp/greenhouse-store/45116771303/" target="_blank" rel="noopener">https://item.rakuten.co.jp/greenhouse-store/45116771303/</a>
+    <button class="copy-btn" onclick="copyPlain(this, 'https://item.rakuten.co.jp/greenhouse-store/45116771303/')" type="button">URLコピー</button>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>楽天ROOM用</span>
+      <button class="copy-btn" onclick="copyText(this, 'room-2')" type="button">コピー</button>
+    </div>
+    <textarea id="room-2" readonly>💻在宅ワーク中、ノートPCの画面が低くて首や肩がバキバキになっていませんか？グリーンハウスのモニターアームなら、最大32インチ・耐荷重9kgまで対応していて上下左右に画面を自由に動かせます✨土台は組み立て済みなのでセットアップは机に挟むだけと簡単ですよ🔧画面の高さを目線に合わせられるだけで、姿勢がかなり楽になります。レビューは752件で評価4.64と高評価が多く、メーカー保証も3年ついているので安心感がありますね。価格は4,998円とアーム単体としてはお手頃です。デスクの厚みによっては取り付けられない場合があるので、購入前にサイズ確認だけ忘れずに🖥️ #モニターアーム #グリーンハウス #在宅ワーク #デスク環境 #テレワーク #育児パパ #共働き家庭</textarea>
+  </div>
+</div>
+<div class="card featured">
+  <div class="card-head">
+    <img src="https://thumbnail.image.rakuten.co.jp/@0_mall/luckyspread/cabinet/07240546/10248259/imgrc0078419063.jpg?_ex=128x128" alt="【日本No.1受賞】ハグモッチ 正規品【より改善】【医師の92%推奨】30万人の眠りをサポートした 枕 ふわもち 腰 肩 首 いびき対策 抱き枕 妊婦 誕生日プレゼント 人をダメにする クッション【品質保証3年】カバー 洗える 高さ調整 補充綿「2024年最も売れた枕」" loading="lazy">
+    <div class="info">
+      <span class="featured-badge">🔥 本日のThreads/Xピックアップ</span>
+      <span class="genre-chip">寝具 睡眠</span>
+      <div class="name">【日本No.1受賞】ハグモッチ 正規品【より改善】【医師の92%推奨】30万人の眠りをサポートした 枕 ふわもち 腰 肩 首 いびき対策 抱き枕 妊婦 誕生日プレゼント 人をダメにする クッション【品質保証3年】カバー 洗える 高さ調整 補充綿「2024年最も売れた枕」</div>
+      <div class="meta-row">
+        <span class="price">¥9,980</span>
+        <span class="stars">★★★★★</span>
+        <span>4.54(15892件)</span>
+      </div>
+    </div>
+  </div>
+  <a class="btn-open" href="https://hb.afl.rakuten.co.jp/hgc/g00tm5yn.dg4fibbe.g00tm5yn.dg4fjf7b/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fluckyspread%2F10000001%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fluckyspread%2Fi%2F10000001%2F&rafcid=wsc_i_is_852e9d1a-8f83-49dc-bc9e-cf56a98e669a" target="_blank" rel="noopener">商品ページを開く ↗</a>
+  <div class="url-row">
+    <a href="https://item.rakuten.co.jp/luckyspread/10000001/" target="_blank" rel="noopener">https://item.rakuten.co.jp/luckyspread/10000001/</a>
+    <button class="copy-btn" onclick="copyPlain(this, 'https://item.rakuten.co.jp/luckyspread/10000001/')" type="button">URLコピー</button>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>楽天ROOM用</span>
+      <button class="copy-btn" onclick="copyText(this, 'room-3')" type="button">コピー</button>
+    </div>
+    <textarea id="room-3" readonly>😴夜中に何度も寝返りを打って、朝起きると腰や肩がバキバキ…そんな日々が続いていました。試しに使い始めたのがハグモッチです。抱きついて寝るだけで体の余計な力が抜けて、気づいたら朝まで熟睡していることが増えました✨日本No.1受賞や医師の92%が推奨しているという実績も背中を押してくれるポイントです。カバーは取り外して洗えるので、清潔に長く使えるのも助かっています🧺レビューは15,892件、評価4.54と多くの人が実感している商品なんだなと納得しました。価格は9,980円と決して安くはないですが、毎晩使うものだと思えば十分に価値があります。高さ調整用の補充綿が付属しているので、自分の体格に合わせて調整してみてくださいね🛏️ #抱き枕 #ハグモッチ #快眠グッズ #いびき対策 #育児パパ #共働き家庭</textarea>
+  </div>
+  <p class="reason">🔥 今日のピックアップ理由: レビュー15,892件・医師の92%推奨という強い社会的証明があり、価格9,980円とのギャップも刺さりやすいため。</p>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>Threads用</span>
+      <button class="copy-btn" onclick="copyText(this, 'threads-0')" type="button">コピー</button>
+    </div>
+    <textarea id="threads-0" readonly>抱き枕、ただのクッションだと思ってた時期が自分にもあった。ハグモッチ使ってみたら体の力がふっと抜ける感じで、気づいたら朝までぐっすり。医師の9割超えが勧めてるとか聞くと、寝苦しい夜が続いてる人は一回試す価値ありそう。カバー洗えるから清潔面も気にしなくていいのは普通に助かる。腰とか肩のあたりに挟んで寝るだけで姿勢が安定するの、なんでもっと早く知らなかったんだろうな〜 #PR #抱き枕 #ハグモッチ #快眠グッズ #育児パパ #共働き家庭</textarea>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>X用</span>
+      <button class="copy-btn" onclick="copyText(this, 'x-0')" type="button">コピー</button>
+    </div>
+    <textarea id="x-0" readonly>抱き枕、正直ナメてた。ハグモッチ使った夜から寝返りが減って、朝起きた時の体の軽さが違う。医師の9割が推してるらしいけど、それより自分の体感の方が説得力あった。カバー洗えるのも助かる。寝苦しい夜が続いてる人はためしてみて〜 #PR #ハグモッチ #快眠グッズ #育児パパ</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="card-head">
+    <img src="https://thumbnail.image.rakuten.co.jp/@0_mall/dotline/cabinet/pc/s-laptop7dan/2607laptop/2607laptop-1.jpg?_ex=128x128" alt="ノートパソコンスタンド パソコンスタンド 折りたたみ式 Z型 アルミ製 軽量 角度調整 高さ調整 7段階 7+9段階 放熱 冷却 滑り止め テレワーク 在宅勤務 肩こり対策 姿勢改善 ノートPC台 タブレットスタンド 敬老の日" loading="lazy">
+    <div class="info">
+      
+      <span class="genre-chip">在宅ワーク デスク</span>
+      <div class="name">ノートパソコンスタンド パソコンスタンド 折りたたみ式 Z型 アルミ製 軽量 角度調整 高さ調整 7段階 7+9段階 放熱 冷却 滑り止め テレワーク 在宅勤務 肩こり対策 姿勢改善 ノートPC台 タブレットスタンド 敬老の日</div>
+      <div class="meta-row">
+        <span class="price">¥2,790</span>
+        <span class="stars">★★★★★</span>
+        <span>4.6(4435件)</span>
+      </div>
+    </div>
+  </div>
+  <a class="btn-open" href="https://hb.afl.rakuten.co.jp/hgc/g00tf97n.dg4fi32a.g00tf97n.dg4fj939/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fdotline%2F998002pcstand%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fdotline%2Fi%2F10000195%2F&rafcid=wsc_i_is_852e9d1a-8f83-49dc-bc9e-cf56a98e669a" target="_blank" rel="noopener">商品ページを開く ↗</a>
+  <div class="url-row">
+    <a href="https://item.rakuten.co.jp/dotline/998002pcstand/" target="_blank" rel="noopener">https://item.rakuten.co.jp/dotline/998002pcstand/</a>
+    <button class="copy-btn" onclick="copyPlain(this, 'https://item.rakuten.co.jp/dotline/998002pcstand/')" type="button">URLコピー</button>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>楽天ROOM用</span>
+      <button class="copy-btn" onclick="copyText(this, 'room-4')" type="button">コピー</button>
+    </div>
+    <textarea id="room-4" readonly>🖥️2,790円でここまで姿勢が変わるとは思っていませんでした。ノートパソコンスタンドZ型は、角度を7段階、高さを7〜9段階で細かく調整できるアルミ製スタンドです✨画面の位置を目線まで持ち上げるだけで、猫背やストレートネックの負担がぐっと軽減されます。折りたたみ式でコンパクトになるので、カフェ作業や出張にも持ち運びやすいのも嬉しいポイント。放熱性の高い設計でPC本体の熱もこもりにくくなっています🌀レビューは4,435件で評価4.60と、価格の割に満足度が高い商品として選ばれています。滑り止めもついていますが、デスクの素材によっては別途マットを敷くとより安定しますよ。 #ノートパソコンスタンド #PCスタンド #在宅ワーク #テレワーク #姿勢改善 #育児パパ #共働き家庭</textarea>
+  </div>
+</div>
+</div>
+
+<h2 class="section-title">💬 今日のあるある投稿ネタ(商品リンクなし)</h2>
+<div class="cards">
+<div class="card">
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>あるある投稿 #1</span>
+      <button class="copy-btn" onclick="copyText(this, 'daily-0')" type="button">コピー</button>
+    </div>
+    <textarea id="daily-0" class="short" readonly>背中スイッチの感度、うちの子だけ特別仕様なのでは。置いた瞬間に泣く。</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>あるある投稿 #2</span>
+      <button class="copy-btn" onclick="copyText(this, 'daily-1')" type="button">コピー</button>
+    </div>
+    <textarea id="daily-1" class="short" readonly>子どもの寝顔、天使かってくらい可愛く撮れたと思って見返したら、背景に脱ぎっぱなしの靴下と畳んでない洗濯物がしっかり写り込んでる。かわいい写真フォルダ、実質わが家の汚部屋アーカイブになってる。 #育児パパ</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>あるある投稿 #3</span>
+      <button class="copy-btn" onclick="copyText(this, 'daily-2')" type="button">コピー</button>
+    </div>
+    <textarea id="daily-2" class="short" readonly>夜泣き対応、記憶に残ってるの自分だけな気がする。妻に聞くと『え、そんなことあった?』ってなる。あの頃の重みとか匂い、今ではもう思い出せなくて、ふと寂しくなる夜がある。</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>あるある投稿 #4</span>
+      <button class="copy-btn" onclick="copyText(this, 'daily-3')" type="button">コピー</button>
+    </div>
+    <textarea id="daily-3" class="short" readonly>子どもに言い過ぎた日の共通点、書き出してみた。①自分の寝不足②仕事の締切前③夫婦の会話が業務連絡だけになってる日。結局いつも同じ3つに戻ってくる。 #共働き家庭</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>あるある投稿 #5</span>
+      <button class="copy-btn" onclick="copyText(this, 'daily-4')" type="button">コピー</button>
+    </div>
+    <textarea id="daily-4" class="short" readonly>『ちょっと待ってて』が一日に何回発動してるか数えたら心が折れそうだった。数えるのやめた。</textarea>
+  </div>
+</div>
+</div>
+
+<footer class="note">商品ページを確認し、投稿文をコピーして手動で投稿してください。<br>Threads/Xの商品紹介は1日1件・あるある投稿と織り交ぜてスパム判定を避けてください。<br>価格・レビューは選定時点の実データです。</footer>
+</div>
+<script>
+function flash(btn) {
+  const original = btn.textContent;
+  btn.textContent = 'コピーしました';
+  btn.classList.add('copied');
+  setTimeout(() => { btn.textContent = original; btn.classList.remove('copied'); }, 1500);
+}
+function copyText(btn, id) {
+  const el = document.getElementById(id);
+  el.select();
+  el.setSelectionRange(0, 999999);
+  navigator.clipboard.writeText(el.value).then(() => flash(btn)).catch(() => {
+    try { document.execCommand('copy'); flash(btn); } catch (e) {}
+  });
+}
+function copyPlain(btn, text) {
+  navigator.clipboard.writeText(text).then(() => flash(btn)).catch(() => {
+    const t = document.createElement('textarea');
+    t.value = text; document.body.appendChild(t); t.select();
+    try { document.execCommand('copy'); flash(btn); } catch (e) {}
+    document.body.removeChild(t);
+  });
+}
+</script>
+</body>
+</html>
