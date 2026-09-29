@@ -2208,6 +2208,53 @@
       "channels": [
         "room"
       ]
+    },
+    {
+      "itemCode": "japan-store1:10000000",
+      "itemName": "日丸屋製作所 シャワーヘッド 塩素除去 節水 止水ボタン(LDKベストバイ3冠)",
+      "date": "2026-09-25",
+      "slot": "morning",
+      "channels": [
+        "room"
+      ]
+    },
+    {
+      "itemCode": "valueprice:10000115",
+      "itemName": "BabyGoo スプーン フォーク2点セット ベビー 離乳食",
+      "date": "2026-09-25",
+      "slot": "morning",
+      "channels": [
+        "room"
+      ]
+    },
+    {
+      "itemCode": "liberesta:10000014",
+      "itemName": "日傘 折りたたみ 完全遮光 Radi-Cool 自動開閉 210g 晴雨兼用",
+      "date": "2026-09-25",
+      "slot": "morning",
+      "channels": [
+        "room",
+        "threads",
+        "x"
+      ]
+    },
+    {
+      "itemCode": "sakuka-video:10000095",
+      "itemName": "SAKUKA CarPlay オンダッシュモニター ドライブレコーダー 10.26インチ",
+      "date": "2026-09-25",
+      "slot": "morning",
+      "channels": [
+        "room"
+      ]
+    },
+    {
+      "itemCode": "lepro:10000046",
+      "itemName": "Lepro LEDデスクライト ACアダプター付き 最大800ルーメン 2年保証",
+      "date": "2026-09-25",
+      "slot": "morning",
+      "channels": [
+        "room"
+      ]
     }
   ]
 }

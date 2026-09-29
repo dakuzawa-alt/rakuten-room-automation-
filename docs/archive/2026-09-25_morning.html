@@ -1,0 +1,380 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>9/25 朝の選定 - 楽天ROOM投稿リスト</title>
+<style>
+:root {
+  --bg: #f6f3ee;
+  --surface: #ffffff;
+  --ink: #23211d;
+  --ink-soft: #6b6459;
+  --accent: #a8382c;
+  --accent-ink: #fff6f2;
+  --good: #3f7d58;
+  --border: #e4ddd2;
+  --chip-bg: #efe8db;
+  color-scheme: light dark;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #16140f;
+    --surface: #211f1a;
+    --ink: #ece7dc;
+    --ink-soft: #a89e8d;
+    --accent: #e0685a;
+    --accent-ink: #1c0f0c;
+    --good: #6fb98a;
+    --border: #35322a;
+    --chip-bg: #2a2721;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #16140f; --surface: #211f1a; --ink: #ece7dc; --ink-soft: #a89e8d;
+  --accent: #e0685a; --accent-ink: #1c0f0c; --good: #6fb98a; --border: #35322a; --chip-bg: #2a2721;
+}
+:root[data-theme="light"] {
+  --bg: #f6f3ee; --surface: #ffffff; --ink: #23211d; --ink-soft: #6b6459;
+  --accent: #a8382c; --accent-ink: #fff6f2; --good: #3f7d58; --border: #e4ddd2; --chip-bg: #efe8db;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0; background: var(--bg); color: var(--ink);
+  font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Yu Gothic Medium", "Noto Sans JP", sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+.wrap { max-width: 640px; margin: 0 auto; padding: 0 16px 40px; }
+header.top {
+  position: sticky; top: 0; z-index: 5; background: var(--bg);
+  padding: 18px 16px 12px; border-bottom: 1px solid var(--border);
+  display: flex; align-items: baseline; justify-content: space-between; gap: 12px;
+}
+header.top .eyebrow {
+  font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-soft);
+  font-weight: 600; margin: 0 0 2px;
+}
+header.top h1 { font-size: 1.25rem; margin: 0; font-weight: 700; letter-spacing: -0.01em; }
+header.top .count {
+  background: var(--chip-bg); color: var(--ink-soft); font-size: 0.78rem; font-weight: 600;
+  padding: 5px 10px; border-radius: 999px; white-space: nowrap;
+}
+h2.section-title { font-size: 0.95rem; font-weight: 700; margin: 24px 0 12px; }
+.cards { display: flex; flex-direction: column; gap: 16px; margin-top: 18px; }
+.card {
+  background: var(--surface); border: 1px solid var(--border); border-radius: 16px;
+  padding: 16px; display: flex; flex-direction: column; gap: 12px;
+}
+.card.featured { border-color: var(--accent); border-width: 2px; }
+.featured-badge {
+  align-self: flex-start; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.03em;
+  color: var(--accent-ink); background: var(--accent); padding: 3px 9px; border-radius: 999px;
+}
+.card-head { display: flex; gap: 12px; }
+.card-head img {
+  width: 76px; height: 76px; object-fit: cover; border-radius: 10px;
+  border: 1px solid var(--border); background: var(--chip-bg); flex-shrink: 0;
+}
+.card-head .info { min-width: 0; flex: 1; display: flex; flex-direction: column; gap: 4px; }
+.genre-chip {
+  align-self: flex-start; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.03em;
+  color: var(--accent); background: color-mix(in srgb, var(--accent) 12%, transparent);
+  padding: 2px 8px; border-radius: 999px;
+}
+.name {
+  font-weight: 600; font-size: 0.94rem; line-height: 1.4;
+  display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
+}
+.meta-row { display: flex; align-items: baseline; gap: 8px; font-size: 0.82rem; color: var(--ink-soft); }
+.price { font-variant-numeric: tabular-nums; color: var(--ink); font-weight: 700; font-size: 1.05rem; }
+.stars { letter-spacing: -1px; color: var(--accent); }
+.btn-open {
+  display: flex; align-items: center; justify-content: center; gap: 6px;
+  background: var(--accent); color: var(--accent-ink); border: none; border-radius: 11px;
+  padding: 12px; font-weight: 700; font-size: 0.92rem; text-decoration: none;
+}
+.btn-open:active { opacity: 0.85; }
+.url-row {
+  display: flex; align-items: center; gap: 8px;
+  background: var(--chip-bg); border-radius: 9px; padding: 8px 10px;
+}
+.url-row a {
+  flex: 1; min-width: 0; font-size: 0.76rem; color: var(--accent);
+  word-break: break-all; line-height: 1.45; text-decoration: none;
+}
+.url-row a:active { text-decoration: underline; }
+.reason { font-size: 0.8rem; color: var(--ink-soft); }
+.caption-box { border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }
+.caption-head {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 8px 10px; background: var(--chip-bg);
+}
+.caption-head span {
+  font-size: 0.7rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-soft);
+}
+.copy-btn {
+  background: var(--surface); border: 1px solid var(--border); color: var(--ink);
+  border-radius: 7px; padding: 5px 11px; font-size: 0.76rem; font-weight: 600; cursor: pointer;
+}
+.copy-btn:focus-visible, .btn-open:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.copy-btn.copied { background: var(--good); border-color: var(--good); color: #fff; }
+textarea {
+  width: 100%; display: block; border: none; padding: 10px; font-size: 0.85rem; line-height: 1.55;
+  resize: vertical; min-height: 108px; font-family: inherit; background: var(--surface); color: var(--ink);
+}
+textarea.short { min-height: 60px; }
+textarea:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
+footer.note { margin-top: 22px; font-size: 0.76rem; color: var(--ink-soft); text-align: center; line-height: 1.6; }
+@media (prefers-reduced-motion: no-preference) {
+  .copy-btn { transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease; }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <div>
+    <p class="eyebrow">楽天ROOM 投稿リスト</p>
+    <h1>9/25 朝の選定</h1>
+  </div>
+  <span class="count">5件</span>
+</header>
+
+<h2 class="section-title">📦 商品(ROOM用、全5件)</h2>
+<div class="cards">
+<div class="card">
+  <div class="card-head">
+    <img src="https://thumbnail.image.rakuten.co.jp/@0_mall/japan-store1/cabinet/item/showerhead/main1.jpg?_ex=128x128" alt="【LDKベストバイ3冠受賞】日丸屋製作所 シャワーヘッド 日本製塩素除去剤 節水 浄水 止水ボタン 水流調整 角度調整 アダプター付 国際基準G1/2 2年間保証 ギフト" loading="lazy">
+    <div class="info">
+      
+      <span class="genre-chip">浴室 洗面</span>
+      <div class="name">【LDKベストバイ3冠受賞】日丸屋製作所 シャワーヘッド 日本製塩素除去剤 節水 浄水 止水ボタン 水流調整 角度調整 アダプター付 国際基準G1/2 2年間保証 ギフト</div>
+      <div class="meta-row">
+        <span class="price">¥2,980</span>
+        <span class="stars">★★★★☆</span>
+        <span>4.33(5193件)</span>
+      </div>
+    </div>
+  </div>
+  <a class="btn-open" href="https://item.rakuten.co.jp/japan-store1/h-sh-001/" target="_blank" rel="noopener">商品ページを開く ↗</a>
+  <div class="url-row">
+    <a href="https://item.rakuten.co.jp/japan-store1/h-sh-001/" target="_blank" rel="noopener">https://item.rakuten.co.jp/japan-store1/h-sh-001/</a>
+    <button class="copy-btn" onclick="copyPlain(this, 'https://item.rakuten.co.jp/japan-store1/h-sh-001/')" type="button">URLコピー</button>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>楽天ROOM用</span>
+      <button class="copy-btn" onclick="copyText(this, 'room-0')" type="button">コピー</button>
+    </div>
+    <textarea id="room-0" readonly>🚿¥2,980なのにLDKベストバイ3冠受賞のシャワーヘッド。お風呂の水圧が弱くてシャンプーに時間がかかる、そんな悩みありませんか?極細穴構造で節水しながら水流アップ、手元の止水ボタンで節約にも◎国産セラミックボールで塩素除去までしてくれます✨レビュー5,193件・星4.33、2年保証付きで安心🛁毎日のバスタイムを快適にしてみてください。
+#シャワーヘッド #節水グッズ #浴室グッズ #時短家電 #育児パパ #共働き家庭 #楽天ROOM</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="card-head">
+    <img src="https://thumbnail.image.rakuten.co.jp/@0_mall/valueprice/cabinet/cutlery/thumbnail0605.jpg?_ex=128x128" alt="【楽天1位】【握りやすくて食べやすい】 BabyGoo スプーン フォーク2点セット 赤ちゃん ベビー スプーン フォーク トレーニング ベビー食器 離乳食 子供 キッズ カトラリー 練習 自宅 持ち運び 出産祝い 出産準備 保育園 知育カトラリー" loading="lazy">
+    <div class="info">
+      
+      <span class="genre-chip">育児グッズ</span>
+      <div class="name">【楽天1位】【握りやすくて食べやすい】 BabyGoo スプーン フォーク2点セット 赤ちゃん ベビー スプーン フォーク トレーニング ベビー食器 離乳食 子供 キッズ カトラリー 練習 自宅 持ち運び 出産祝い 出産準備 保育園 知育カトラリー</div>
+      <div class="meta-row">
+        <span class="price">¥1,990</span>
+        <span class="stars">★★★★★</span>
+        <span>4.73(3697件)</span>
+      </div>
+    </div>
+  </div>
+  <a class="btn-open" href="https://item.rakuten.co.jp/valueprice/babycutlery/" target="_blank" rel="noopener">商品ページを開く ↗</a>
+  <div class="url-row">
+    <a href="https://item.rakuten.co.jp/valueprice/babycutlery/" target="_blank" rel="noopener">https://item.rakuten.co.jp/valueprice/babycutlery/</a>
+    <button class="copy-btn" onclick="copyPlain(this, 'https://item.rakuten.co.jp/valueprice/babycutlery/')" type="button">URLコピー</button>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>楽天ROOM用</span>
+      <button class="copy-btn" onclick="copyText(this, 'room-1')" type="button">コピー</button>
+    </div>
+    <textarea id="room-1" readonly>🥄離乳食、スプーンを持たせた瞬間にポイッと投げて、床がご飯だらけになってた😅それでも「自分で食べたい」って手を伸ばしてくるから、練習用を用意してみたのがこれ。BabyGooのスプーンとフォークの2点セットで、楽天1位を獲得してる離乳食練習用のカトラリー。レビュー3,697件・星4.73と評価がかなり高くて、初めてのカトラリー選びでも安心感があった✨お値段は¥1,990。選ぶときのポイントは、スプーンだけじゃなくフォークもセットになってるかどうか。食べ物に合わせて持ち替えられると、子どものやる気が続きやすい気がする👶
+#離乳食 #ベビースプーン #育児グッズ #赤ちゃん用品 #育児パパ #共働き家庭 #楽天ROOM</textarea>
+  </div>
+</div>
+<div class="card featured">
+  <div class="card-head">
+    <img src="https://thumbnail.image.rakuten.co.jp/@0_mall/liberesta/cabinet/12178158/12277475/ys012---2178.jpg?_ex=128x128" alt="【クーポン利用で最安2178円・酸化チタンシリーズ】「年間ランキング受賞」「楽天1位」＼Radi-Cool素材使用／日傘 折りたたみ 形状記憶 完全遮光 自動開閉 傘 超軽量 わずか210g 折りたたみ傘 ワンタッチ 自動開閉 遮熱 晴雨兼用 遮光率100% UVカット 撥水加工 親骨 6本骨" loading="lazy">
+    <div class="info">
+      <span class="featured-badge">🔥 本日のThreads/Xピックアップ</span>
+      <span class="genre-chip">アウトドア お出かけ</span>
+      <div class="name">【クーポン利用で最安2178円・酸化チタンシリーズ】「年間ランキング受賞」「楽天1位」＼Radi-Cool素材使用／日傘 折りたたみ 形状記憶 完全遮光 自動開閉 傘 超軽量 わずか210g 折りたたみ傘 ワンタッチ 自動開閉 遮熱 晴雨兼用 遮光率100% UVカット 撥水加工 親骨 6本骨</div>
+      <div class="meta-row">
+        <span class="price">¥2,978</span>
+        <span class="stars">★★★★☆</span>
+        <span>4.3(15186件)</span>
+      </div>
+    </div>
+  </div>
+  <a class="btn-open" href="https://item.rakuten.co.jp/liberesta/vsh012/" target="_blank" rel="noopener">商品ページを開く ↗</a>
+  <div class="url-row">
+    <a href="https://item.rakuten.co.jp/liberesta/vsh012/" target="_blank" rel="noopener">https://item.rakuten.co.jp/liberesta/vsh012/</a>
+    <button class="copy-btn" onclick="copyPlain(this, 'https://item.rakuten.co.jp/liberesta/vsh012/')" type="button">URLコピー</button>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>楽天ROOM用</span>
+      <button class="copy-btn" onclick="copyText(this, 'room-2')" type="button">コピー</button>
+    </div>
+    <textarea id="room-2" readonly>☀️レビュー15,186件・星4.30、楽天1位を獲得してる日傘です。夏の外出、日傘を忘れて後悔したことありませんか?Radi-Cool素材で完全遮光・遮熱、自動開閉のワンタッチ式だからベビーカーや荷物で両手がふさがってても片手でパッと開けます☂️わずか210gの超軽量でバッグの負担にならず、しっかりUVカット・撥水加工付きで急な雨にも対応、晴雨兼用で一年通して使えます。¥2,978、クーポン利用でさらに安く手に入ります🌂
+#日傘 #完全遮光 #UVカット #お出かけグッズ #育児パパ #共働き家庭</textarea>
+  </div>
+  <p class="reason">🔥 今日のピックアップ理由: レビュー15,186件という5件中最大の社会的証明があり、まだ紫外線が強い9月末という季節性とも噛み合っていて、今日の中で最も反応が取れそうだと判断したため</p>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>Threads用</span>
+      <button class="copy-btn" onclick="copyText(this, 'threads-0')" type="button">コピー</button>
+    </div>
+    <textarea id="threads-0" readonly>日傘、正直軽量って謳い文句にはもう聞き飽きてたんだけど、これ210gは普通に驚いた。レビュー15,186件で星4.3ってこの手の商品にしてはえぐい数字だよな。Radi-Cool素材とやらで完全遮光・遮熱、自動開閉だからベビーカー押しながらでも片手でパッと開ける。UVカットもしっかりで撥水もついてて晴雨兼用、¥2,978。正直この時期の紫外線まだ油断できないんだよな〜。バッグに入れっぱなしにできるサイズ感、これはわりと優勝。
+#PR #日傘 #育児パパ #共働き家庭</textarea>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>X用</span>
+      <button class="copy-btn" onclick="copyText(this, 'x-0')" type="button">コピー</button>
+    </div>
+    <textarea id="x-0" readonly>日傘、正直もう軽量アピール聞き飽きてたけど210gは驚いた。レビュー15,186件・星4.3ってえぐい数字だよな。完全遮光・遮熱で自動開閉、片手でパッと開けるのが地味に助かる。しっかりUVカット・撥水・晴雨兼用で¥2,978。紫外線まだ油断できない季節だしバッグに一本あると安心。
+#PR #日傘</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="card-head">
+    <img src="https://thumbnail.image.rakuten.co.jp/@0_mall/sakuka-video/cabinet/12459000/1125.jpg?_ex=128x128" alt="SAKUKA CarPlay オンダッシュモニター ドライブレコーダー フロントモニター 分離式 10.26 インチ 1600*600 前後 車載用 モニター カーディスプレイ カーナビ フロントカメラ内蔵 バックカメラ付き IPS iphone android アイホン アンドロイド" loading="lazy">
+    <div class="info">
+      
+      <span class="genre-chip">アウトドア お出かけ</span>
+      <div class="name">SAKUKA CarPlay オンダッシュモニター ドライブレコーダー フロントモニター 分離式 10.26 インチ 1600*600 前後 車載用 モニター カーディスプレイ カーナビ フロントカメラ内蔵 バックカメラ付き IPS iphone android アイホン アンドロイド</div>
+      <div class="meta-row">
+        <span class="price">¥16,800</span>
+        <span class="stars">★★★★☆</span>
+        <span>4.38(269件)</span>
+      </div>
+    </div>
+  </div>
+  <a class="btn-open" href="https://item.rakuten.co.jp/sakuka-video/cp1026/" target="_blank" rel="noopener">商品ページを開く ↗</a>
+  <div class="url-row">
+    <a href="https://item.rakuten.co.jp/sakuka-video/cp1026/" target="_blank" rel="noopener">https://item.rakuten.co.jp/sakuka-video/cp1026/</a>
+    <button class="copy-btn" onclick="copyPlain(this, 'https://item.rakuten.co.jp/sakuka-video/cp1026/')" type="button">URLコピー</button>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>楽天ROOM用</span>
+      <button class="copy-btn" onclick="copyText(this, 'room-3')" type="button">コピー</button>
+    </div>
+    <textarea id="room-3" readonly>🚗純正ナビが古くて地図が更新されない、スマホのナビ画面が小さくて見づらい…そんな車、多いですよね。このオンダッシュモニターはCarPlay/Android auto対応、10.26インチの大画面にナビを映せます。フロントカメラ内蔵でドラレコとしても使え、バックカメラにも対応🎥分離式でダッシュボードに置くだけの簡単設置です。レビュー269件・星4.38、後付けでナビとドラレコが一台にまとまるのは魅力的です🚙
+#カーグッズ #ドラレコ #CarPlay #お出かけ #育児パパ #共働き家庭</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="card-head">
+    <img src="https://thumbnail.image.rakuten.co.jp/@0_mall/lepro/cabinet/08863929/08917749/310001-0.jpg?_ex=128x128" alt="【2年保証】「楽天1位」Lepro LEDデスクライト ACアダプター付き最大800ルーメン目に優しい JIS規格AA形相当卓上ライト電気スタンドテーブルライト学習机ライト勉強机コンセント式 ledライト卓上スタンド おしゃれテレワーク" loading="lazy">
+    <div class="info">
+      
+      <span class="genre-chip">在宅ワーク デスク</span>
+      <div class="name">【2年保証】「楽天1位」Lepro LEDデスクライト ACアダプター付き最大800ルーメン目に優しい JIS規格AA形相当卓上ライト電気スタンドテーブルライト学習机ライト勉強机コンセント式 ledライト卓上スタンド おしゃれテレワーク</div>
+      <div class="meta-row">
+        <span class="price">¥2,799</span>
+        <span class="stars">★★★★★</span>
+        <span>4.68(860件)</span>
+      </div>
+    </div>
+  </div>
+  <a class="btn-open" href="https://item.rakuten.co.jp/lepro/pr310001-dww-jp/" target="_blank" rel="noopener">商品ページを開く ↗</a>
+  <div class="url-row">
+    <a href="https://item.rakuten.co.jp/lepro/pr310001-dww-jp/" target="_blank" rel="noopener">https://item.rakuten.co.jp/lepro/pr310001-dww-jp/</a>
+    <button class="copy-btn" onclick="copyPlain(this, 'https://item.rakuten.co.jp/lepro/pr310001-dww-jp/')" type="button">URLコピー</button>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>楽天ROOM用</span>
+      <button class="copy-btn" onclick="copyText(this, 'room-4')" type="button">コピー</button>
+    </div>
+    <textarea id="room-4" readonly>💡子どもが宿題してる横からノートを覗いたら、手元が自分の手の影で暗くなってた😅天井の照明だけだと、机の上って意外と暗いんだよね。そこで見つけたのが楽天1位のLepro LEDデスクライト。最大800ルーメンで、JIS規格AA形相当の明るさ✨白っぽい昼光色(約6500K)は学習やPC作業向き。昼は在宅ワークの机、夕方からは子どもの勉強机、と家族で使い回せるのがちょうどいい📚ACアダプター付きのコンセント式で、2年保証なのも安心。レビュー860件・星4.68で¥2,799。選ぶときのポイントは、明るさの目安になるルーメン数と規格表記をチェックすること🔍
+#デスクライト #在宅ワーク #勉強机 #LEDライト #育児パパ #共働き家庭 #楽天ROOM</textarea>
+  </div>
+</div>
+</div>
+
+<h2 class="section-title">💬 今日のあるある投稿ネタ(商品リンクなし)</h2>
+<div class="cards">
+<div class="card">
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>あるある投稿 #1</span>
+      <button class="copy-btn" onclick="copyText(this, 'daily-0')" type="button">コピー</button>
+    </div>
+    <textarea id="daily-0" class="short" readonly>背中スイッチ、うちの子は感度が良すぎる気がする。布団に着地した瞬間に起動する。</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>あるある投稿 #2</span>
+      <button class="copy-btn" onclick="copyText(this, 'daily-1')" type="button">コピー</button>
+    </div>
+    <textarea id="daily-1" class="short" readonly>スマホの中の『いい写真』、よく見ると背景に脱ぎっぱなしのパジャマと段ボールが写り込んでてもう選別できない。</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>あるある投稿 #3</span>
+      <button class="copy-btn" onclick="copyText(this, 'daily-2')" type="button">コピー</button>
+    </div>
+    <textarea id="daily-2" class="short" readonly>夜泣きの記憶、なぜか自分より妻のほうが鮮明に覚えてる。同じ部屋で寝てたはずなのに『あの日3回起きた』とか普通に言われて、正直ちゃんと起きてたのか自分の記憶に自信なくなる。でも次の日ちゃんと保育園の連絡帳書いてる妻、普通にすごい。</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>あるある投稿 #4</span>
+      <button class="copy-btn" onclick="copyText(this, 'daily-3')" type="button">コピー</button>
+    </div>
+    <textarea id="daily-3" class="short" readonly>子どもに『早くして』って言い過ぎる日の共通点、3つある。①自分の寝不足 ②スケジュールを詰めすぎ ③そもそも自分が朝ギリギリまで寝てる。原因、だいたい自分。</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>あるある投稿 #5</span>
+      <button class="copy-btn" onclick="copyText(this, 'daily-4')" type="button">コピー</button>
+    </div>
+    <textarea id="daily-4" class="short" readonly>家事の『中断』が一番しんどい。皿洗い→呼ばれる→戻る→また呼ばれる→気づいたら1時間経ってるのに皿はまだ半分。</textarea>
+  </div>
+</div>
+</div>
+
+<footer class="note">商品ページを確認し、投稿文をコピーして手動で投稿してください。<br>Threads/Xの商品紹介は1日1件・あるある投稿と織り交ぜてスパム判定を避けてください。<br>価格・レビューは選定時点の実データです。</footer>
+</div>
+<script>
+function flash(btn) {
+  const original = btn.textContent;
+  btn.textContent = 'コピーしました';
+  btn.classList.add('copied');
+  setTimeout(() => { btn.textContent = original; btn.classList.remove('copied'); }, 1500);
+}
+function copyText(btn, id) {
+  const el = document.getElementById(id);
+  el.select();
+  el.setSelectionRange(0, 999999);
+  navigator.clipboard.writeText(el.value).then(() => flash(btn)).catch(() => {
+    try { document.execCommand('copy'); flash(btn); } catch (e) {}
+  });
+}
+function copyPlain(btn, text) {
+  navigator.clipboard.writeText(text).then(() => flash(btn)).catch(() => {
+    const t = document.createElement('textarea');
+    t.value = text; document.body.appendChild(t); t.select();
+    try { document.execCommand('copy'); flash(btn); } catch (e) {}
+    document.body.removeChild(t);
+  });
+}
+</script>
+</body>
+</html>
