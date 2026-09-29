@@ -2,7 +2,7 @@ CLAUDE.mdの指示に従い、本日「夜」の分の商品選定〜投稿文�
 
 必須事項:
 1. 商品情報は必ず scripts/search_products.py 経由で楽天市場APIの実データを使うこと。AIの知識から商品名・価格・レビュー数を生成することは厳禁。
-2. data/posted_history.json と照合し、itemCodeだけでなく「ブランド名+商品タイプ」でも実質重複を除外すること。
+2. 重複は scripts/dup_check.py で確認する(data/posted_history.json を自分で丸読みしない)。itemCodeだけでなく「ブランド名+商品タイプ」でも実質重複を除外すること。QAは scripts/qa_check.py で行い、合格したら --append で履歴に追記する。
 3. 投稿文は docs/style_guide.md のルールを厳守すること(文字数・絵文字・冒頭フック・NGワード・PR表記・あるある投稿の具体性ルール)。
 4. 一覧ページは scripts/generate_page.py で output/page_YYYY-MM-DD_night.html として生成すること。
 5. **Artifactツールは使わないこと**(headless実行では利用できないツールのため、呼び出しても失敗するか無視される)。一覧ページはローカルファイル(output/以下)として生成する。

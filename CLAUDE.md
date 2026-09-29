@@ -39,14 +39,14 @@
 ```
 1. product-scout に「本日の朝(または夜)分、5件選定して」と指示
 2. copywriter に選定結果を渡し、①ROOM文(5件全部)②Threads文・X文(5件中もっとも刺さりそうな1件のみ、選定理由つき)③あるある系日常投稿(商品に紐づかない共感投稿5個)を作成させる
-3. qa-checker にチェックさせる
+3. qa-checker にチェックさせる(機械的な検査は `scripts/qa_check.py` が行う。履歴の丸読みや、QAごとの使い捨てスクリプト作成はしない)
    - 不合格の商品があれば、product-scout に代替選定を依頼し、2に戻る
    - 全て合格したら次へ
 4. 合格した内容から、スマホ向け一覧ページ(HTML)を `output/` に生成する
    - 商品5件それぞれ:商品画像・商品名・価格・レビュー実績・商品URL・ROOM投稿文(コピーボタン付き)
    - 選ばれた1件のみ:Threads投稿文・X投稿文(コピーボタン付き、選定理由も表示)
    - あるある系日常投稿5個(コピーボタン付き、商品情報なし)
-5. data/posted_history.json を更新する(qa-checkerが実施)
+5. data/posted_history.json を更新する(`qa_check.py --append` で行う)
 6. 生成した output/page_YYYY-MM-DD_slot.html を docs/archive/YYYY-MM-DD_slot.html にコピーし、
    `python scripts/build_archive_index.py` を実行して docs/index.html(日付ごとに選べる一覧メニュー)を再生成する
    (GitHub Pages公開元が docs/ に設定済み。メニュー: https://dakuzawa-alt.github.io/rakuten-room-automation-/ 、
