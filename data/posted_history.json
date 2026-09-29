@@ -2631,6 +2631,53 @@
       "channels": [
         "room"
       ]
+    },
+    {
+      "itemCode": "starfocus:10003127",
+      "itemName": "SanDisk SDカード 128GB",
+      "date": "2026-09-30",
+      "slot": "morning",
+      "channels": [
+        "room"
+      ]
+    },
+    {
+      "itemCode": "shop-always:10000006",
+      "itemName": "EONON 広角170度 防水バックカメラ",
+      "date": "2026-09-30",
+      "slot": "morning",
+      "channels": [
+        "room"
+      ]
+    },
+    {
+      "itemCode": "linedrops:10007149",
+      "itemName": "キッズ晴雨兼用傘 透明窓付き",
+      "date": "2026-09-30",
+      "slot": "morning",
+      "channels": [
+        "room",
+        "threads",
+        "x"
+      ]
+    },
+    {
+      "itemCode": "kaguzaku:10008025",
+      "itemName": "HANAKOエラストマーカッティングボード",
+      "date": "2026-09-30",
+      "slot": "morning",
+      "channels": [
+        "room"
+      ]
+    },
+    {
+      "itemCode": "a-life2010:10000181",
+      "itemName": "押入れ整理棚 伸縮タイプ 2台セット",
+      "date": "2026-09-30",
+      "slot": "morning",
+      "channels": [
+        "room"
+      ]
     }
   ]
 }

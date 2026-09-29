@@ -1,0 +1,143 @@
+{
+  "date": "2026-09-30",
+  "slot": "morning",
+  "passed": true,
+  "checks": [
+    {
+      "itemCode": "starfocus:10003127",
+      "itemName": "SanDisk SDカード 128GB",
+      "roomPostLength": 364,
+      "roomPostPassed": true,
+      "emojiCount": 3,
+      "emojiPassed": true,
+      "firstSentenceEmojiPassed": true,
+      "prTagFound": true,
+      "urlValid": true,
+      "ngWordsFound": [],
+      "issues": []
+    },
+    {
+      "itemCode": "shop-always:10000006",
+      "itemName": "EONON 広角170度 防水バックカメラ",
+      "roomPostLength": 306,
+      "roomPostPassed": true,
+      "emojiCount": 3,
+      "emojiPassed": true,
+      "firstSentenceEmojiPassed": true,
+      "prTagFound": true,
+      "urlValid": true,
+      "ngWordsFound": [],
+      "issues": []
+    },
+    {
+      "itemCode": "linedrops:10007149",
+      "itemName": "キッズ晴雨兼用傘 透明窓付き 1,980円",
+      "roomPostLength": 303,
+      "roomPostPassed": true,
+      "emojiCount": 3,
+      "emojiPassed": true,
+      "firstSentenceEmojiPassed": true,
+      "prTagFound": true,
+      "urlValid": true,
+      "ngWordsFound": [],
+      "issues": []
+    },
+    {
+      "itemCode": "kaguzaku:10008025",
+      "itemName": "HANAKOエラストマーカッティングボード",
+      "roomPostLength": 280,
+      "roomPostPassed": true,
+      "emojiCount": 3,
+      "emojiPassed": true,
+      "firstSentenceEmojiPassed": true,
+      "prTagFound": true,
+      "urlValid": true,
+      "ngWordsFound": [],
+      "issues": []
+    },
+    {
+      "itemCode": "a-life2010:10000181",
+      "itemName": "押入れ整理棚 伸縮タイプ 2台セット",
+      "roomPostLength": 309,
+      "roomPostPassed": true,
+      "emojiCount": 3,
+      "emojiPassed": true,
+      "firstSentenceEmojiPassed": true,
+      "prTagFound": true,
+      "urlValid": true,
+      "ngWordsFound": [],
+      "issues": []
+    }
+  ],
+  "featuredChecks": {
+    "itemCode": "linedrops:10007149",
+    "threadsPostLength": 275,
+    "threadsPostPassed": true,
+    "xPostLength": 153,
+    "xPostPassed": true,
+    "threadsPrTagFound": true,
+    "xPrTagFound": true,
+    "threadsNgWordsFound": [],
+    "xNgWordsFound": [],
+    "issues": []
+  },
+  "aruaruChecks": [
+    {
+      "index": 0,
+      "length": 49,
+      "passed": true,
+      "urlFound": false,
+      "prTagFound": false,
+      "specificEpisode": false,
+      "issues": []
+    },
+    {
+      "index": 1,
+      "length": 54,
+      "passed": true,
+      "urlFound": false,
+      "prTagFound": false,
+      "specificEpisode": false,
+      "issues": []
+    },
+    {
+      "index": 2,
+      "length": 73,
+      "passed": true,
+      "urlFound": false,
+      "prTagFound": false,
+      "specificEpisode": false,
+      "issues": []
+    },
+    {
+      "index": 3,
+      "length": 71,
+      "passed": true,
+      "urlFound": false,
+      "prTagFound": false,
+      "specificEpisode": false,
+      "issues": []
+    },
+    {
+      "index": 4,
+      "length": 87,
+      "passed": true,
+      "urlFound": false,
+      "prTagFound": false,
+      "specificEpisode": false,
+      "issues": []
+    }
+  ],
+  "similarityWarnings": [
+    {
+      "itemCode": "a-life2010:10000181",
+      "itemName": "押入れ整理棚 伸縮タイプ 2台セット",
+      "similarHistoryCode": "smile-hg:10001277",
+      "similarHistoryName": "押入れフリーラック 2台入り 伸縮",
+      "judgment": "別ショップ・別商品コード・引き出し有無など仕様差あり。実質別商品と判断しOKとする。",
+      "passed": true
+    }
+  ],
+  "overallIssues": [],
+  "historyDuplicates": []
+}

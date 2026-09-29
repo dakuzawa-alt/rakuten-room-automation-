@@ -307,22 +307,25 @@ def main():
         is_featured = item["itemCode"] == featured_code
         featured_captions = ""
         if is_featured:
+            reason = featured.get("selectionReason", featured.get("reason", ""))
             featured_captions = FEATURED_CAPTIONS_TEMPLATE.format(
-                reason_esc=html.escape(featured.get("reason", "")),
+                reason_esc=html.escape(reason),
                 threads_caption=html.escape(featured.get("threadsCaption", "")),
                 x_caption=html.escape(featured.get("xCaption", "")),
             )
+        price = item.get("itemPrice", item.get("price", 0))
+        aff_url = item.get("itemUrl", item.get("affiliateUrl", ""))
         cards_html.append(CARD_TEMPLATE.format(
             featured_class=" featured" if is_featured else "",
             featured_badge='<span class="featured-badge">🔥 本日のThreads/Xピックアップ</span>' if is_featured else "",
             image_url=item.get("imageUrl", ""),
             name_esc=html.escape(item["itemName"]),
             genre_esc=html.escape(item.get("genreGroup", "")),
-            price=item["price"],
+            price=price,
             review_count=item["reviewCount"],
             review_avg=item["reviewAverage"],
             stars=star_string(item["reviewAverage"]),
-            aff_url=item["affiliateUrl"],
+            aff_url=aff_url,
             product_url=html.escape(product_url_of(item), quote=True),
             idx=idx,
             room_caption=html.escape(cap.get("roomCaption", "")),
