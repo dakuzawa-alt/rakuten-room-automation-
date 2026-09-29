@@ -2443,6 +2443,53 @@
       "channels": [
         "room"
       ]
+    },
+    {
+      "itemCode": "vesync:10000001",
+      "itemName": "COSORI ノンフライヤー CAF-L501 4.7L",
+      "date": "2026-09-27",
+      "slot": "night",
+      "channels": [
+        "room"
+      ]
+    },
+    {
+      "itemCode": "bellevie-harima:10168291",
+      "itemName": "ティファール インジニオ・ネオ IHチャコールグレー セット8 L77298",
+      "date": "2026-09-27",
+      "slot": "night",
+      "channels": [
+        "room"
+      ]
+    },
+    {
+      "itemCode": "torreya-shop:10000057",
+      "itemName": "多機能防災ラジオ 5800mAh ソーラー・手回し・USB充電 防災士監修",
+      "date": "2026-09-27",
+      "slot": "night",
+      "channels": [
+        "room"
+      ]
+    },
+    {
+      "itemCode": "aquatalk:10000217",
+      "itemName": "日本製 布団圧縮袋 4枚・6枚・12枚セット マチ付き バルブ付",
+      "date": "2026-09-27",
+      "slot": "night",
+      "channels": [
+        "room",
+        "threads",
+        "x"
+      ]
+    },
+    {
+      "itemCode": "k-yokohama:10000877",
+      "itemName": "大木製作所 ステンレスハンガーDL ピンチハンガー 28ピンチ",
+      "date": "2026-09-27",
+      "slot": "night",
+      "channels": [
+        "room"
+      ]
     }
   ]
 }
