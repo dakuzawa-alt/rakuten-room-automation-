@@ -1,0 +1,473 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>9/26 夜の選定 - 楽天ROOM投稿リスト</title>
+<style>
+:root {
+  --bg: #f6f3ee;
+  --surface: #ffffff;
+  --ink: #23211d;
+  --ink-soft: #6b6459;
+  --accent: #a8382c;
+  --accent-ink: #fff6f2;
+  --good: #3f7d58;
+  --border: #e4ddd2;
+  --chip-bg: #efe8db;
+  color-scheme: light dark;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #16140f;
+    --surface: #211f1a;
+    --ink: #ece7dc;
+    --ink-soft: #a89e8d;
+    --accent: #e0685a;
+    --accent-ink: #1c0f0c;
+    --good: #6fb98a;
+    --border: #35322a;
+    --chip-bg: #2a2721;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #16140f; --surface: #211f1a; --ink: #ece7dc; --ink-soft: #a89e8d;
+  --accent: #e0685a; --accent-ink: #1c0f0c; --good: #6fb98a; --border: #35322a; --chip-bg: #2a2721;
+}
+:root[data-theme="light"] {
+  --bg: #f6f3ee; --surface: #ffffff; --ink: #23211d; --ink-soft: #6b6459;
+  --accent: #a8382c; --accent-ink: #fff6f2; --good: #3f7d58; --border: #e4ddd2; --chip-bg: #efe8db;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0; background: var(--bg); color: var(--ink);
+  font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Yu Gothic Medium", "Noto Sans JP", sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+.wrap { max-width: 640px; margin: 0 auto; padding: 0 16px 40px; }
+header.top {
+  position: sticky; top: 0; z-index: 5; background: var(--bg);
+  padding: 18px 16px 12px; border-bottom: 1px solid var(--border);
+  display: flex; align-items: baseline; justify-content: space-between; gap: 12px;
+}
+header.top .eyebrow {
+  font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-soft);
+  font-weight: 600; margin: 0 0 2px;
+}
+header.top h1 { font-size: 1.25rem; margin: 0; font-weight: 700; letter-spacing: -0.01em; }
+header.top .count {
+  background: var(--chip-bg); color: var(--ink-soft); font-size: 0.78rem; font-weight: 600;
+  padding: 5px 10px; border-radius: 999px; white-space: nowrap;
+}
+h2.section-title { font-size: 0.95rem; font-weight: 700; margin: 24px 0 12px; }
+.cards { display: flex; flex-direction: column; gap: 16px; margin-top: 18px; }
+.card {
+  background: var(--surface); border: 1px solid var(--border); border-radius: 16px;
+  padding: 16px; display: flex; flex-direction: column; gap: 12px;
+}
+.card.featured { border-color: var(--accent); border-width: 2px; }
+.featured-badge {
+  align-self: flex-start; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.03em;
+  color: var(--accent-ink); background: var(--accent); padding: 3px 9px; border-radius: 999px;
+}
+.card-head { display: flex; gap: 12px; }
+.card-head img {
+  width: 76px; height: 76px; object-fit: cover; border-radius: 10px;
+  border: 1px solid var(--border); background: var(--chip-bg); flex-shrink: 0;
+}
+.card-head .info { min-width: 0; flex: 1; display: flex; flex-direction: column; gap: 4px; }
+.genre-chip {
+  align-self: flex-start; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.03em;
+  color: var(--accent); background: color-mix(in srgb, var(--accent) 12%, transparent);
+  padding: 2px 8px; border-radius: 999px;
+}
+.name {
+  font-weight: 600; font-size: 0.94rem; line-height: 1.4;
+  display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
+}
+.meta-row { display: flex; align-items: baseline; gap: 8px; font-size: 0.82rem; color: var(--ink-soft); }
+.price { font-variant-numeric: tabular-nums; color: var(--ink); font-weight: 700; font-size: 1.05rem; }
+.stars { letter-spacing: -1px; color: var(--accent); }
+.btn-open {
+  display: flex; align-items: center; justify-content: center; gap: 6px;
+  background: var(--accent); color: var(--accent-ink); border: none; border-radius: 11px;
+  padding: 12px; font-weight: 700; font-size: 0.92rem; text-decoration: none;
+}
+.btn-open:active { opacity: 0.85; }
+.url-row {
+  display: flex; align-items: center; gap: 8px;
+  background: var(--chip-bg); border-radius: 9px; padding: 8px 10px;
+}
+.url-row a {
+  flex: 1; min-width: 0; font-size: 0.76rem; color: var(--accent);
+  word-break: break-all; line-height: 1.45; text-decoration: none;
+}
+.url-row a:active { text-decoration: underline; }
+.reason { font-size: 0.8rem; color: var(--ink-soft); }
+.caption-box { border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }
+.caption-head {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 8px 10px; background: var(--chip-bg);
+}
+.caption-head span {
+  font-size: 0.7rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-soft);
+}
+.copy-btn {
+  background: var(--surface); border: 1px solid var(--border); color: var(--ink);
+  border-radius: 7px; padding: 5px 11px; font-size: 0.76rem; font-weight: 600; cursor: pointer;
+}
+.copy-btn:focus-visible, .btn-open:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.copy-btn.copied { background: var(--good); border-color: var(--good); color: #fff; }
+textarea {
+  width: 100%; display: block; border: none; padding: 10px; font-size: 0.85rem; line-height: 1.55;
+  resize: vertical; min-height: 108px; font-family: inherit; background: var(--surface); color: var(--ink);
+}
+textarea.short { min-height: 60px; }
+textarea:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
+footer.note { margin-top: 22px; font-size: 0.76rem; color: var(--ink-soft); text-align: center; line-height: 1.6; }
+@media (prefers-reduced-motion: no-preference) {
+  .copy-btn { transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease; }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <div>
+    <p class="eyebrow">楽天ROOM 投稿リスト</p>
+    <h1>9/26 夜の選定</h1>
+  </div>
+  <span class="count">5件</span>
+</header>
+
+<h2 class="section-title">📦 商品(ROOM用、全5件)</h2>
+<div class="cards">
+<div class="card">
+  <div class="card-head">
+    <img src="https://thumbnail.image.rakuten.co.jp/@0_mall/sevensails/cabinet/entryp10/pikaentryp10/imgrc0137691384.jpg?_ex=128x128" alt="【本日エントリーでP10倍!】トイレ掃除 【めざましTVで紹介されました】 尿石 落とし 掃除のプロも愛用 ピカスティック 強力 業務用 五徳 コゲとり IH クリーナー コゲ取り コンロ 五徳掃除 トイレ ブラシ 尿石除去 洗面台 掃除 洗剤 黄ばみ 黒ずみ" loading="lazy">
+    <div class="info">
+      
+      <span class="genre-chip">掃除洗濯</span>
+      <div class="name">【本日エントリーでP10倍!】トイレ掃除 【めざましTVで紹介されました】 尿石 落とし 掃除のプロも愛用 ピカスティック 強力 業務用 五徳 コゲとり IH クリーナー コゲ取り コンロ 五徳掃除 トイレ ブラシ 尿石除去 洗面台 掃除 洗剤 黄ばみ 黒ずみ</div>
+      <div class="meta-row">
+        <span class="price">¥1,250</span>
+        <span class="stars">★★★★★</span>
+        <span>4.57(2530件)</span>
+      </div>
+    </div>
+  </div>
+  <a class="btn-open" href="https://item.rakuten.co.jp/sevensails/pika_2p/" target="_blank" rel="noopener">商品ページを開く ↗</a>
+  <div class="url-row">
+    <a href="https://item.rakuten.co.jp/sevensails/pika_2p/" target="_blank" rel="noopener">https://item.rakuten.co.jp/sevensails/pika_2p/</a>
+    <button class="copy-btn" onclick="copyPlain(this, 'https://item.rakuten.co.jp/sevensails/pika_2p/')" type="button">URLコピー</button>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>楽天ROOM用</span>
+      <button class="copy-btn" onclick="copyText(this, 'room-0')" type="button">コピー</button>
+    </div>
+    <textarea id="room-0" readonly>💡¥1,250で、トイレのフチの黄ばみ問題に手が打てるんですよ。
+
+ブラシでいくらこすっても落ちない、便器の奥の尿石や黄ばみ。見て見ぬふりしがちですよね😅
+ピカスティックはトイレの尿石落とし用の掃除スティックです。
+
+✅トイレの尿石・黄ばみ・黒ずみに
+✅五徳のコゲ取りやIHの掃除にも使える
+✅洗面台の掃除にも
+
+週末の水回り掃除をこれでまとめて回せるのがうれしいところ✨
+レビューは2,530件で星4.57です⭐
+
+注意点は、こする場所の素材。傷が気になる所は目立たない場所で試してから使うと安心ですよ🔍
+
+#トイレ掃除 #尿石 #ピカスティック #五徳掃除 #掃除グッズ #育児パパ #共働き家庭</textarea>
+  </div>
+</div>
+<div class="card featured">
+  <div class="card-head">
+    <img src="https://thumbnail.image.rakuten.co.jp/@0_mall/ameliashop/cabinet/img/11085143/compass1751521520.jpg?_ex=128x128" alt="【楽天1位！LumiLumi公式】タイマー 子供 子ども 時計 知育 学習タイマー かわいい 勉強 テレビ キッチンタイマー アナログ ゲーム カウント 料理 自宅学習 テレワーク 子供用 子ども用" loading="lazy">
+    <div class="info">
+      <span class="featured-badge">🔥 本日のThreads/Xピックアップ</span>
+      <span class="genre-chip">育児グッズ</span>
+      <div class="name">【楽天1位！LumiLumi公式】タイマー 子供 子ども 時計 知育 学習タイマー かわいい 勉強 テレビ キッチンタイマー アナログ ゲーム カウント 料理 自宅学習 テレワーク 子供用 子ども用</div>
+      <div class="meta-row">
+        <span class="price">¥1,970</span>
+        <span class="stars">★★★★☆</span>
+        <span>4.5(3245件)</span>
+      </div>
+    </div>
+  </div>
+  <a class="btn-open" href="https://item.rakuten.co.jp/ameliashop/20240703/" target="_blank" rel="noopener">商品ページを開く ↗</a>
+  <div class="url-row">
+    <a href="https://item.rakuten.co.jp/ameliashop/20240703/" target="_blank" rel="noopener">https://item.rakuten.co.jp/ameliashop/20240703/</a>
+    <button class="copy-btn" onclick="copyPlain(this, 'https://item.rakuten.co.jp/ameliashop/20240703/')" type="button">URLコピー</button>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>楽天ROOM用</span>
+      <button class="copy-btn" onclick="copyText(this, 'room-1')" type="button">コピー</button>
+    </div>
+    <textarea id="room-1" readonly>📺「あと5分」が、うちでは5分で終わったことがなかった。
+
+テレビもゲームも、終わりの時間になると毎回ひと揉め。声をかける側もかけられる側も、ちょっと疲れてた😅
+
+そこで気になったのがLumiLumiの学習タイマー。アナログだから、残り時間がどれくらいかパッと見てわかる⏰
+宿題の集中タイムや料理、テレワークにも使えて、見た目もかわいい✨
+レビュー3,245件で星4.50、¥1,970。
+
+選ぶときのワンポイント:子どもが自分でセットするところまで任せると、「パパに言われたから」じゃなくなる気がする👍
+
+#学習タイマー #LumiLumi #知育 #子供タイマー #スクリーンタイム #育児パパ #共働き家庭</textarea>
+  </div>
+  <p class="reason">🔥 今日のピックアップ理由: 5件中最多のレビュー3,245件・星4.50を¥1,970で持ち、「テレビ・ゲームの終わり時間で毎日揉める」という共働き家庭の夕方〜夜に誰もが経験する悩みに直結していて、共感と返信を最も誘いやすいため。</p>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>Threads用</span>
+      <button class="copy-btn" onclick="copyText(this, 'threads-0')" type="button">コピー</button>
+    </div>
+    <textarea id="threads-0" readonly>「あと5分だけね」を一番破ってるの、たぶん自分。
+
+テレビ終わりの時間、毎日ひと揉め。考えてみたら、終わりを決めてるのはいつも大人の気分なんだよな。子どもからしたら急に終わる。そりゃ怒る。
+
+で、LumiLumiの学習タイマー。¥1,970。
+アナログだから残り時間がパッと見てわかる。子どもが自分でセットして、自分で「あと少し」を確認できるのがいい。
+
+宿題の集中タイム、料理中のキッチンタイマーにも。レビュー数も3,245件あって、使ってる家多いんだなと。
+
+揉める日がゼロになるとは思ってない
+でも週に何回か減るなら、それで十分
+
+みんなのとこ、終わりの合図どうしてる?
+
+#PR #学習タイマー #LumiLumi #育児パパ #共働き家庭</textarea>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>X用</span>
+      <button class="copy-btn" onclick="copyText(this, 'x-0')" type="button">コピー</button>
+    </div>
+    <textarea id="x-0" readonly>「あと5分だけね」を一番破ってるの、たぶん自分。
+テレビ終わりの時間、毎日ひと揉め。
+
+LumiLumiの学習タイマー、¥1,970。アナログで残り時間が目で見える。子どもが自分でセットできるのがいい。
+
+揉める日がゼロになるとは思ってない。減ればいい
+
+#PR #学習タイマー #育児パパ</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="card-head">
+    <img src="https://thumbnail.image.rakuten.co.jp/@0_mall/auc-yamatoya/cabinet/11532810/12668168/raincoat-83.jpg?_ex=128x128" alt="[メール便送料無料] キッズ レインコート 子供 カッパ レインウェア [90cm 100cm 110cm 120cm 130cm140cm] キッズフォーレ Kidsforet B17815 ランドセル対応 3才4才5才 男の子 女の子 雨具 リュック 入園入学 保育園 幼稚園 幼児 小学生 通園通学 自転車 丸高衣料 2026 pizz" loading="lazy">
+    <div class="info">
+      
+      <span class="genre-chip">アウトドア お出かけ</span>
+      <div class="name">[メール便送料無料] キッズ レインコート 子供 カッパ レインウェア [90cm 100cm 110cm 120cm 130cm140cm] キッズフォーレ Kidsforet B17815 ランドセル対応 3才4才5才 男の子 女の子 雨具 リュック 入園入学 保育園 幼稚園 幼児 小学生 通園通学 自転車 丸高衣料 2026 pizz</div>
+      <div class="meta-row">
+        <span class="price">¥2,290</span>
+        <span class="stars">★★★★★</span>
+        <span>4.62(2453件)</span>
+      </div>
+    </div>
+  </div>
+  <a class="btn-open" href="https://item.rakuten.co.jp/auc-yamatoya/kids-rainwear-b13869-b/" target="_blank" rel="noopener">商品ページを開く ↗</a>
+  <div class="url-row">
+    <a href="https://item.rakuten.co.jp/auc-yamatoya/kids-rainwear-b13869-b/" target="_blank" rel="noopener">https://item.rakuten.co.jp/auc-yamatoya/kids-rainwear-b13869-b/</a>
+    <button class="copy-btn" onclick="copyPlain(this, 'https://item.rakuten.co.jp/auc-yamatoya/kids-rainwear-b13869-b/')" type="button">URLコピー</button>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>楽天ROOM用</span>
+      <button class="copy-btn" onclick="copyText(this, 'room-2')" type="button">コピー</button>
+    </div>
+    <textarea id="room-2" readonly>☔レビュー2,453件で星4.62。雨の日の登園・通学用に選ばれているキッズレインコートですよ。
+
+ランドセルやリュックを背負うと、普通のカッパだと背中が濡れたり、そもそも入らなかったりしますよね💦
+キッズフォーレのB17815はランドセル対応なので、背負ったまま上から着られるんです。
+
+✅サイズは90cm〜140cmまで展開
+✅保育園・幼稚園の通園から小学生の通学まで
+✅自転車での送り迎えにも
+
+価格は¥2,290です🎒
+
+注意点はサイズ選び。背負う荷物の分、少しゆとりを見て選ぶと安心ですよ📏
+
+秋雨の季節に入る前に、一着あると朝がラクになりますよ🍂
+
+#キッズレインコート #レインコート #ランドセル #キッズフォーレ #通園グッズ #雨の日 #育児パパ #共働き家庭</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="card-head">
+    <img src="https://thumbnail.image.rakuten.co.jp/@0_mall/mustblanche/cabinet/item/kjw/pic/kjw-4832_1.jpg?_ex=128x128" alt="ケーブルボックス Lサイズ コード収納 コードケース 蓋付き 配線 タップ ミニ収納 ケーブル収納 コンセント収納 テーブルタップボックス 電源 オフィス 子供部屋 アウトレット 整理 小窓付き 延長コード" loading="lazy">
+    <div class="info">
+      
+      <span class="genre-chip">在宅ワーク デスク</span>
+      <div class="name">ケーブルボックス Lサイズ コード収納 コードケース 蓋付き 配線 タップ ミニ収納 ケーブル収納 コンセント収納 テーブルタップボックス 電源 オフィス 子供部屋 アウトレット 整理 小窓付き 延長コード</div>
+      <div class="meta-row">
+        <span class="price">¥2,140</span>
+        <span class="stars">★★★★★</span>
+        <span>4.53(1072件)</span>
+      </div>
+    </div>
+  </div>
+  <a class="btn-open" href="https://item.rakuten.co.jp/mustblanche/kjw-4832/" target="_blank" rel="noopener">商品ページを開く ↗</a>
+  <div class="url-row">
+    <a href="https://item.rakuten.co.jp/mustblanche/kjw-4832/" target="_blank" rel="noopener">https://item.rakuten.co.jp/mustblanche/kjw-4832/</a>
+    <button class="copy-btn" onclick="copyPlain(this, 'https://item.rakuten.co.jp/mustblanche/kjw-4832/')" type="button">URLコピー</button>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>楽天ROOM用</span>
+      <button class="copy-btn" onclick="copyText(this, 'room-3')" type="button">コピー</button>
+    </div>
+    <textarea id="room-3" readonly>🔌テレビ台の裏、タップとコードが絡まってホコリの巣になってた。
+
+しかも子どもがハイハイし始めてから、コンセントまわりが一番気になる場所に。手を伸ばすたびに止めに行く、の繰り返しだった😅
+
+それで気になったのがこのケーブルボックス。Lサイズで、タップとコードを丸ごと中に隠せる。蓋付きで小窓もついてて、日本製✨
+リビングだけじゃなく、子供部屋やデスクまわりにも置ける。
+
+レビュー1,072件で星4.53、¥2,140📦
+
+選ぶときのワンポイント:手持ちのタップの長さを先に測っておくこと。入るかどうかで満足度がだいぶ変わる📏
+
+#ケーブルボックス #コード収納 #配線整理 #いたずら防止 #リビング収納 #育児パパ #共働き家庭</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="card-head">
+    <img src="https://thumbnail.image.rakuten.co.jp/@0_mall/e-kitchen/cabinet/10535310/eigyouyou1/9179786-0.jpg?_ex=128x128" alt="貝印 キッチンバサミ ステンレス 分解 キッチンばさみ 分解 キッチンはさみ ハサミ キッチン用ハサミ はさみ 貝印 セレクト100 select100 DH3005 衛生的 取り外し可能 【代金引換不可・日時指定不可】【メール便】" loading="lazy">
+    <div class="info">
+      
+      <span class="genre-chip">キッチン雑貨</span>
+      <div class="name">貝印 キッチンバサミ ステンレス 分解 キッチンばさみ 分解 キッチンはさみ ハサミ キッチン用ハサミ はさみ 貝印 セレクト100 select100 DH3005 衛生的 取り外し可能 【代金引換不可・日時指定不可】【メール便】</div>
+      <div class="meta-row">
+        <span class="price">¥1,899</span>
+        <span class="stars">★★★★★</span>
+        <span>4.65(1174件)</span>
+      </div>
+    </div>
+  </div>
+  <a class="btn-open" href="https://item.rakuten.co.jp/e-kitchen/9179786/" target="_blank" rel="noopener">商品ページを開く ↗</a>
+  <div class="url-row">
+    <a href="https://item.rakuten.co.jp/e-kitchen/9179786/" target="_blank" rel="noopener">https://item.rakuten.co.jp/e-kitchen/9179786/</a>
+    <button class="copy-btn" onclick="copyPlain(this, 'https://item.rakuten.co.jp/e-kitchen/9179786/')" type="button">URLコピー</button>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>楽天ROOM用</span>
+      <button class="copy-btn" onclick="copyText(this, 'room-4')" type="button">コピー</button>
+    </div>
+    <textarea id="room-4" readonly>✂️そのキッチンバサミ、刃の付け根までちゃんと洗えてますか?
+
+肉を切ったあと、刃が重なる部分が洗いにくくてモヤっとしたこと、ありますよね😅
+貝印のDH3005は分解できるタイプ。刃を取り外して、すみずみまで洗えるんです。
+
+✅分解して洗えて衛生的
+✅ステンレス製
+✅まな板を出さずに肉・野菜をカットできて、洗い物が減る
+
+レビュー1,174件で星4.65と、今回の5件で一番の高評価です⭐ 価格は¥1,899。
+
+注意点は、分解・組み立ての手順。最初は説明書で確認しておくと安心ですよ📖
+
+平日の夕飯づくりの相棒に、一本どうですか🍳
+
+#キッチンバサミ #貝印 #分解できる #時短料理 #キッチン雑貨 #育児パパ #共働き家庭</textarea>
+  </div>
+</div>
+</div>
+
+<h2 class="section-title">💬 今日のあるある投稿ネタ(商品リンクなし)</h2>
+<div class="cards">
+<div class="card">
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>あるある投稿 #1</span>
+      <button class="copy-btn" onclick="copyText(this, 'daily-0')" type="button">コピー</button>
+    </div>
+    <textarea id="daily-0" class="short" readonly>保育園に向かう自転車の後ろから、「なんで?」が止まらない。
+なんで信号赤なの、なんで雲動くの、なんでパパ汗かいてるの。
+最後のは坂道のせいだよ。
+全部に答えてるうちに園に着くから、ある意味ちょうどいい距離なのかもしれない</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>あるある投稿 #2</span>
+      <button class="copy-btn" onclick="copyText(this, 'daily-1')" type="button">コピー</button>
+    </div>
+    <textarea id="daily-1" class="short" readonly>寝かしつけの途中で自分が先に落ちて、気づいたら夜中の2時。
+電気もテレビもつけっぱなし、歯も磨いてない、洗濯機の中身もそのまま</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>あるある投稿 #3</span>
+      <button class="copy-btn" onclick="copyText(this, 'daily-2')" type="button">コピー</button>
+    </div>
+    <textarea id="daily-2" class="short" readonly>妻に「牛乳まだある?」って聞かれて、冷蔵庫開けて「ないよ」って答えたら、奥にあった。
+自分の「ない」は、手前だけ見て言ってる「ない」なんだと最近気づいた。
+そのあと自分で確認しに行く妻の背中を見て、信用されてない理由もなんとなくわかった😇</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>あるある投稿 #4</span>
+      <button class="copy-btn" onclick="copyText(this, 'daily-3')" type="button">コピー</button>
+    </div>
+    <textarea id="daily-3" class="short" readonly>子どもが急に静かになったとき、見に行く場所ランキング
+1. ティッシュ箱の前(だいたい全部出てる)
+2. 洗面所(水が出しっぱなし)
+3. 自分のカバンの中(財布が開いてる)
+静かなのが一番こわい
+#育児パパ</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>あるある投稿 #5</span>
+      <button class="copy-btn" onclick="copyText(this, 'daily-4')" type="button">コピー</button>
+    </div>
+    <textarea id="daily-4" class="short" readonly>朝の抱っこ要求、正直腰にくる。
+玄関から駐車場まで、10キロ超えを抱えて片手に保育園バッグ。
+なのに、たまに「じぶんであるく」って言われると、ちょっとだけ寂しいのはなんなんだ
+#育児パパ</textarea>
+  </div>
+</div>
+</div>
+
+<footer class="note">商品ページを確認し、投稿文をコピーして手動で投稿してください。<br>Threads/Xの商品紹介は1日1件・あるある投稿と織り交ぜてスパム判定を避けてください。<br>価格・レビューは選定時点の実データです。</footer>
+</div>
+<script>
+function flash(btn) {
+  const original = btn.textContent;
+  btn.textContent = 'コピーしました';
+  btn.classList.add('copied');
+  setTimeout(() => { btn.textContent = original; btn.classList.remove('copied'); }, 1500);
+}
+function copyText(btn, id) {
+  const el = document.getElementById(id);
+  el.select();
+  el.setSelectionRange(0, 999999);
+  navigator.clipboard.writeText(el.value).then(() => flash(btn)).catch(() => {
+    try { document.execCommand('copy'); flash(btn); } catch (e) {}
+  });
+}
+function copyPlain(btn, text) {
+  navigator.clipboard.writeText(text).then(() => flash(btn)).catch(() => {
+    const t = document.createElement('textarea');
+    t.value = text; document.body.appendChild(t); t.select();
+    try { document.execCommand('copy'); flash(btn); } catch (e) {}
+    document.body.removeChild(t);
+  });
+}
+</script>
+</body>
+</html>

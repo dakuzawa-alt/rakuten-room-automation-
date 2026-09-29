@@ -2349,6 +2349,53 @@
       "channels": [
         "room"
       ]
+    },
+    {
+      "itemCode": "sevensails:10000001",
+      "itemName": "ピカスティック トイレ掃除 尿石落とし",
+      "date": "2026-09-26",
+      "slot": "night",
+      "channels": [
+        "room"
+      ]
+    },
+    {
+      "itemCode": "ameliashop:10000051",
+      "itemName": "LumiLumi 学習タイマー 子供用 アナログ",
+      "date": "2026-09-26",
+      "slot": "night",
+      "channels": [
+        "room",
+        "threads",
+        "x"
+      ]
+    },
+    {
+      "itemCode": "auc-yamatoya:10000770",
+      "itemName": "キッズフォーレ キッズレインコート ランドセル対応 B17815",
+      "date": "2026-09-26",
+      "slot": "night",
+      "channels": [
+        "room"
+      ]
+    },
+    {
+      "itemCode": "mustblanche:10003232",
+      "itemName": "ケーブルボックス Lサイズ 日本製 コード収納",
+      "date": "2026-09-26",
+      "slot": "night",
+      "channels": [
+        "room"
+      ]
+    },
+    {
+      "itemCode": "e-kitchen:10046418",
+      "itemName": "貝印 キッチンバサミ 分解できるタイプ DH3005",
+      "date": "2026-09-26",
+      "slot": "night",
+      "channels": [
+        "room"
+      ]
     }
   ]
 }
