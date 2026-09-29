@@ -2537,6 +2537,53 @@
         "threads",
         "x"
       ]
+    },
+    {
+      "itemCode": "meijo:10000005",
+      "itemName": "meijo 電動バリカン V899 IPX7防水 10種類アタッチメント",
+      "date": "2026-09-28",
+      "slot": "night",
+      "channels": [
+        "room"
+      ]
+    },
+    {
+      "itemCode": "auc-risecreation:10004524",
+      "itemName": "atRise 人感センサーライト コンセント式 足元灯",
+      "date": "2026-09-28",
+      "slot": "night",
+      "channels": [
+        "room",
+        "threads",
+        "x"
+      ]
+    },
+    {
+      "itemCode": "kai:10005072",
+      "itemName": "貝印 ハンドミキサー お菓子作り5点セット",
+      "date": "2026-09-28",
+      "slot": "night",
+      "channels": [
+        "room"
+      ]
+    },
+    {
+      "itemCode": "d-fit:10009043",
+      "itemName": "Ciメディカル 仕上げ磨き用歯ブラシ Ci602/Ci603 20本",
+      "date": "2026-09-28",
+      "slot": "night",
+      "channels": [
+        "room"
+      ]
+    },
+    {
+      "itemCode": "lifehouse:10000005",
+      "itemName": "ライフハウス 防臭袋 300枚入り SSサイズ",
+      "date": "2026-09-28",
+      "slot": "night",
+      "channels": [
+        "room"
+      ]
     }
   ]
 }
