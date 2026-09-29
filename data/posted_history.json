@@ -2654,6 +2654,27 @@
       "itemCode": "linedrops:10007149",
       "itemName": "キッズ晴雨兼用傘 透明窓付き",
       "date": "2026-09-30",
+      "slot": "rejected_duplicate",
+      "channels": []
+    },
+    {
+      "itemCode": "kaguzaku:10008025",
+      "itemName": "HANAKOエラストマーカッティングボード",
+      "date": "2026-09-30",
+      "slot": "rejected_duplicate",
+      "channels": []
+    },
+    {
+      "itemCode": "a-life2010:10000181",
+      "itemName": "押入れ整理棚 伸縮タイプ 2台セット",
+      "date": "2026-09-30",
+      "slot": "rejected_duplicate",
+      "channels": []
+    },
+    {
+      "itemCode": "rakuten24:10358428",
+      "itemName": "タニタ デジタルクッキングスケール KD187WH(1台)【タニタ(TANITA)】",
+      "date": "2026-09-30",
       "slot": "morning",
       "channels": [
         "room",
@@ -2662,8 +2683,8 @@
       ]
     },
     {
-      "itemCode": "kaguzaku:10008025",
-      "itemName": "HANAKOエラストマーカッティングボード",
+      "itemCode": "lorelife:10000136",
+      "itemName": "【楽天1位受賞】目覚まし時計 大音量 デジタル 置き時計 おしゃれ アラーム時計 目覚まし めざまし時計 起きれる 高評",
       "date": "2026-09-30",
       "slot": "morning",
       "channels": [
@@ -2671,8 +2692,8 @@
       ]
     },
     {
-      "itemCode": "a-life2010:10000181",
-      "itemName": "押入れ整理棚 伸縮タイプ 2台セット",
+      "itemCode": "hifumi-japan:10000045",
+      "itemName": "楽天ポイントが毎日貯まる 体重計【楽天1位】AIアドバイス スマホ連動 体組成計 AI体重計 体脂肪率 家電 ポイ活体重",
       "date": "2026-09-30",
       "slot": "morning",
       "channels": [
