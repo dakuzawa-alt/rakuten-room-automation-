@@ -2302,6 +2302,53 @@
       "channels": [
         "room"
       ]
+    },
+    {
+      "itemCode": "meilulan:10000073",
+      "itemName": "Umimile 自動ソープディスペンサー 泡 吐出量2段階調節",
+      "date": "2026-09-26",
+      "slot": "morning",
+      "channels": [
+        "room"
+      ]
+    },
+    {
+      "itemCode": "brilbe:10000087",
+      "itemName": "BRILBE スワドル 秋・通年用 おくるみ",
+      "date": "2026-09-26",
+      "slot": "morning",
+      "channels": [
+        "room",
+        "threads",
+        "x"
+      ]
+    },
+    {
+      "itemCode": "matsuyoshi-web:10057505",
+      "itemName": "タニタ 非接触体温計 BT-543 約1秒測定",
+      "date": "2026-09-26",
+      "slot": "morning",
+      "channels": [
+        "room"
+      ]
+    },
+    {
+      "itemCode": "yminfo:10129100",
+      "itemName": "燕三条製 TSBBQ ホットサンドメーカー TSBBQ-004(上下分離・直火)",
+      "date": "2026-09-26",
+      "slot": "morning",
+      "channels": [
+        "room"
+      ]
+    },
+    {
+      "itemCode": "fereple:10000008",
+      "itemName": "衣類カバー 不織布 5枚組 サイドファスナー",
+      "date": "2026-09-26",
+      "slot": "morning",
+      "channels": [
+        "room"
+      ]
     }
   ]
 }
