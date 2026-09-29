@@ -2255,6 +2255,53 @@
       "channels": [
         "room"
       ]
+    },
+    {
+      "itemCode": "2zest:10003093",
+      "itemName": "お名前シール工場 名前シール 布 アイロン ラバー 透けないタイプ",
+      "date": "2026-09-25",
+      "slot": "night",
+      "channels": [
+        "room"
+      ]
+    },
+    {
+      "itemCode": "magcruise:10000014",
+      "itemName": "Mag Ride マグライド イチハチロク 子供用ヘルメット 186g SGマーク 1歳〜",
+      "date": "2026-09-25",
+      "slot": "night",
+      "channels": [
+        "room",
+        "threads",
+        "x"
+      ]
+    },
+    {
+      "itemCode": "cucina:10008914",
+      "itemName": "タケヤ スリムジャグ 1.1L 2個セット 麦茶ポット 横置き 耐熱 日本製",
+      "date": "2026-09-25",
+      "slot": "night",
+      "channels": [
+        "room"
+      ]
+    },
+    {
+      "itemCode": "kaimin-rs:10001781",
+      "itemName": "防水シーツ おねしょシーツ 抗菌防臭 乾燥機・脱水可",
+      "date": "2026-09-25",
+      "slot": "night",
+      "channels": [
+        "room"
+      ]
+    },
+    {
+      "itemCode": "relief10:10001430",
+      "itemName": "電動ドライバーセット 47点 最軽量280g USB充電式 2Way",
+      "date": "2026-09-25",
+      "slot": "night",
+      "channels": [
+        "room"
+      ]
     }
   ]
 }
