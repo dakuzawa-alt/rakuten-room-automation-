@@ -1,0 +1,444 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>9/28 朝の選定 - 楽天ROOM投稿リスト</title>
+<style>
+:root {
+  --bg: #f6f3ee;
+  --surface: #ffffff;
+  --ink: #23211d;
+  --ink-soft: #6b6459;
+  --accent: #a8382c;
+  --accent-ink: #fff6f2;
+  --good: #3f7d58;
+  --border: #e4ddd2;
+  --chip-bg: #efe8db;
+  color-scheme: light dark;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #16140f;
+    --surface: #211f1a;
+    --ink: #ece7dc;
+    --ink-soft: #a89e8d;
+    --accent: #e0685a;
+    --accent-ink: #1c0f0c;
+    --good: #6fb98a;
+    --border: #35322a;
+    --chip-bg: #2a2721;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #16140f; --surface: #211f1a; --ink: #ece7dc; --ink-soft: #a89e8d;
+  --accent: #e0685a; --accent-ink: #1c0f0c; --good: #6fb98a; --border: #35322a; --chip-bg: #2a2721;
+}
+:root[data-theme="light"] {
+  --bg: #f6f3ee; --surface: #ffffff; --ink: #23211d; --ink-soft: #6b6459;
+  --accent: #a8382c; --accent-ink: #fff6f2; --good: #3f7d58; --border: #e4ddd2; --chip-bg: #efe8db;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0; background: var(--bg); color: var(--ink);
+  font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Yu Gothic Medium", "Noto Sans JP", sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+.wrap { max-width: 640px; margin: 0 auto; padding: 0 16px 40px; }
+header.top {
+  position: sticky; top: 0; z-index: 5; background: var(--bg);
+  padding: 18px 16px 12px; border-bottom: 1px solid var(--border);
+  display: flex; align-items: baseline; justify-content: space-between; gap: 12px;
+}
+header.top .eyebrow {
+  font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-soft);
+  font-weight: 600; margin: 0 0 2px;
+}
+header.top h1 { font-size: 1.25rem; margin: 0; font-weight: 700; letter-spacing: -0.01em; }
+header.top .count {
+  background: var(--chip-bg); color: var(--ink-soft); font-size: 0.78rem; font-weight: 600;
+  padding: 5px 10px; border-radius: 999px; white-space: nowrap;
+}
+h2.section-title { font-size: 0.95rem; font-weight: 700; margin: 24px 0 12px; }
+.cards { display: flex; flex-direction: column; gap: 16px; margin-top: 18px; }
+.card {
+  background: var(--surface); border: 1px solid var(--border); border-radius: 16px;
+  padding: 16px; display: flex; flex-direction: column; gap: 12px;
+}
+.card.featured { border-color: var(--accent); border-width: 2px; }
+.featured-badge {
+  align-self: flex-start; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.03em;
+  color: var(--accent-ink); background: var(--accent); padding: 3px 9px; border-radius: 999px;
+}
+.card-head { display: flex; gap: 12px; }
+.card-head img {
+  width: 76px; height: 76px; object-fit: cover; border-radius: 10px;
+  border: 1px solid var(--border); background: var(--chip-bg); flex-shrink: 0;
+}
+.card-head .info { min-width: 0; flex: 1; display: flex; flex-direction: column; gap: 4px; }
+.genre-chip {
+  align-self: flex-start; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.03em;
+  color: var(--accent); background: color-mix(in srgb, var(--accent) 12%, transparent);
+  padding: 2px 8px; border-radius: 999px;
+}
+.name {
+  font-weight: 600; font-size: 0.94rem; line-height: 1.4;
+  display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
+}
+.meta-row { display: flex; align-items: baseline; gap: 8px; font-size: 0.82rem; color: var(--ink-soft); }
+.price { font-variant-numeric: tabular-nums; color: var(--ink); font-weight: 700; font-size: 1.05rem; }
+.stars { letter-spacing: -1px; color: var(--accent); }
+.btn-open {
+  display: flex; align-items: center; justify-content: center; gap: 6px;
+  background: var(--accent); color: var(--accent-ink); border: none; border-radius: 11px;
+  padding: 12px; font-weight: 700; font-size: 0.92rem; text-decoration: none;
+}
+.btn-open:active { opacity: 0.85; }
+.url-row {
+  display: flex; align-items: center; gap: 8px;
+  background: var(--chip-bg); border-radius: 9px; padding: 8px 10px;
+}
+.url-row a {
+  flex: 1; min-width: 0; font-size: 0.76rem; color: var(--accent);
+  word-break: break-all; line-height: 1.45; text-decoration: none;
+}
+.url-row a:active { text-decoration: underline; }
+.reason { font-size: 0.8rem; color: var(--ink-soft); }
+.caption-box { border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }
+.caption-head {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 8px 10px; background: var(--chip-bg);
+}
+.caption-head span {
+  font-size: 0.7rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-soft);
+}
+.copy-btn {
+  background: var(--surface); border: 1px solid var(--border); color: var(--ink);
+  border-radius: 7px; padding: 5px 11px; font-size: 0.76rem; font-weight: 600; cursor: pointer;
+}
+.copy-btn:focus-visible, .btn-open:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.copy-btn.copied { background: var(--good); border-color: var(--good); color: #fff; }
+textarea {
+  width: 100%; display: block; border: none; padding: 10px; font-size: 0.85rem; line-height: 1.55;
+  resize: vertical; min-height: 108px; font-family: inherit; background: var(--surface); color: var(--ink);
+}
+textarea.short { min-height: 60px; }
+textarea:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
+footer.note { margin-top: 22px; font-size: 0.76rem; color: var(--ink-soft); text-align: center; line-height: 1.6; }
+@media (prefers-reduced-motion: no-preference) {
+  .copy-btn { transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease; }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <div>
+    <p class="eyebrow">楽天ROOM 投稿リスト</p>
+    <h1>9/28 朝の選定</h1>
+  </div>
+  <span class="count">5件</span>
+</header>
+
+<h2 class="section-title">📦 商品(ROOM用、全5件)</h2>
+<div class="cards">
+<div class="card">
+  <div class="card-head">
+    <img src="https://thumbnail.image.rakuten.co.jp/@0_mall/importshopaqua/cabinet/zoom_c/omk1/01/glb-spn.jpg?_ex=128x128" alt="【楽天1位】包丁研ぎ器 【豪華特典付き】 GLOBAL（グローバル） スピードシャープナー GSS-01 GLOBAL包丁 グローバル包丁 砥ぎ 砥石 お手入れ メンテナンス セラミック 日本製◆メール便配送◆" loading="lazy">
+    <div class="info">
+      
+      <span class="genre-chip">キッチン雑貨</span>
+      <div class="name">【楽天1位】包丁研ぎ器 【豪華特典付き】 GLOBAL（グローバル） スピードシャープナー GSS-01 GLOBAL包丁 グローバル包丁 砥ぎ 砥石 お手入れ メンテナンス セラミック 日本製◆メール便配送◆</div>
+      <div class="meta-row">
+        <span class="price">¥2,200</span>
+        <span class="stars">★★★★★</span>
+        <span>4.74(1161件)</span>
+      </div>
+    </div>
+  </div>
+  <a class="btn-open" href="https://item.rakuten.co.jp/importshopaqua/glb-spn/" target="_blank" rel="noopener">商品ページを開く ↗</a>
+  <div class="url-row">
+    <a href="https://item.rakuten.co.jp/importshopaqua/glb-spn/" target="_blank" rel="noopener">https://item.rakuten.co.jp/importshopaqua/glb-spn/</a>
+    <button class="copy-btn" onclick="copyPlain(this, 'https://item.rakuten.co.jp/importshopaqua/glb-spn/')" type="button">URLコピー</button>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>楽天ROOM用</span>
+      <button class="copy-btn" onclick="copyText(this, 'room-0')" type="button">コピー</button>
+    </div>
+    <textarea id="room-0" readonly>🔪レビュー1,161件で★4.74。包丁研ぎ器でこの評価なんですよ。
+トマトに刃がスッと入らなくなってきたら、研ぎどきのサイン💡
+GLOBALのスピードシャープナーGSS-01は、包丁を前後にスライドさせるだけの簡易研ぎ器。砥石の代わりにセラミックの板が4枚入った作りです。
+✅研ぎ部は錆びにくいセラミック
+✅約10.5cm幅のコンパクトサイズで置き場所に困らない
+✅¥2,200で、平日の夜でも気軽にお手入れ
+⚠️GLOBALの両刃包丁向けの簡易タイプなので、刃こぼれしている包丁には向きません。
+料理担当のパパにもおすすめですよ😊
+#包丁研ぎ器 #シャープナー #GLOBAL #グローバル包丁 #キッチン雑貨 #時短家事 #共働き家庭 #育児パパ</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="card-head">
+    <img src="https://thumbnail.image.rakuten.co.jp/@0_mall/mixiofficial/cabinet/11359285/imgrc0090913905.jpg?_ex=128x128" alt="【公式】みてねみまもりGPS（MG05）｜MIXI お知らせボタン付き 利用者数NO.1 業界最大級の長持ちバッテリー搭載！子供向けGPS 防水防塵 迷子防止" loading="lazy">
+    <div class="info">
+      
+      <span class="genre-chip">育児グッズ</span>
+      <div class="name">【公式】みてねみまもりGPS（MG05）｜MIXI お知らせボタン付き 利用者数NO.1 業界最大級の長持ちバッテリー搭載！子供向けGPS 防水防塵 迷子防止</div>
+      <div class="meta-row">
+        <span class="price">¥5,280</span>
+        <span class="stars">★★★★☆</span>
+        <span>4.44(334件)</span>
+      </div>
+    </div>
+  </div>
+  <a class="btn-open" href="https://item.rakuten.co.jp/mixiofficial/50000110/" target="_blank" rel="noopener">商品ページを開く ↗</a>
+  <div class="url-row">
+    <a href="https://item.rakuten.co.jp/mixiofficial/50000110/" target="_blank" rel="noopener">https://item.rakuten.co.jp/mixiofficial/50000110/</a>
+    <button class="copy-btn" onclick="copyPlain(this, 'https://item.rakuten.co.jp/mixiofficial/50000110/')" type="button">URLコピー</button>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>楽天ROOM用</span>
+      <button class="copy-btn" onclick="copyText(this, 'room-1')" type="button">コピー</button>
+    </div>
+    <textarea id="room-1" readonly>📱子どもが一人で移動してる時間、仕事中でもなんとなくソワソワする。
+学童から習い事へ、みたいな日が増えてきて気になってたのが、みてねみまもりGPS(MG05)。
+🎒ランドセルに入れておけば、専用アプリで居場所を確認できる
+🔔お知らせボタン付きで、子どもから保護者に知らせられる
+🔋1回の充電で最大2ヶ月(GPSプラン・省電力モードなど条件あり)
+☔防水・防塵IP55(水没は非対応)
+スマホを持ち込めない学校でも使えるサイズ感なのもポイント。
+ワンポイント:端末¥5,280のほかに、アプリの月額利用料528円(税込)がかかる。トータルで考えて選ぶのがおすすめ。
+#見守りGPS #みてねみまもりGPS #子供GPS #小学生 #共働き家庭 #育児パパ #楽天ROOM</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="card-head">
+    <img src="https://thumbnail.image.rakuten.co.jp/@0_mall/dentendo/cabinet/08/va60200108_1.jpg?_ex=128x128" alt="パナソニック 洗濯槽クリーナー | 縦型用N-W1A ドラム用N-W2 | 1〜3個 | 後悔をしたくないなら塩素系！ 業務用レベルの強力洗浄！" loading="lazy">
+    <div class="info">
+      
+      <span class="genre-chip">掃除洗濯</span>
+      <div class="name">パナソニック 洗濯槽クリーナー | 縦型用N-W1A ドラム用N-W2 | 1〜3個 | 後悔をしたくないなら塩素系！ 業務用レベルの強力洗浄！</div>
+      <div class="meta-row">
+        <span class="price">¥1,584</span>
+        <span class="stars">★★★★★</span>
+        <span>4.72(490件)</span>
+      </div>
+    </div>
+  </div>
+  <a class="btn-open" href="https://item.rakuten.co.jp/dentendo/va60200108/" target="_blank" rel="noopener">商品ページを開く ↗</a>
+  <div class="url-row">
+    <a href="https://item.rakuten.co.jp/dentendo/va60200108/" target="_blank" rel="noopener">https://item.rakuten.co.jp/dentendo/va60200108/</a>
+    <button class="copy-btn" onclick="copyPlain(this, 'https://item.rakuten.co.jp/dentendo/va60200108/')" type="button">URLコピー</button>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>楽天ROOM用</span>
+      <button class="copy-btn" onclick="copyText(this, 'room-2')" type="button">コピー</button>
+    </div>
+    <textarea id="room-2" readonly>🌀洗濯物に黒いピロピロがつく…それ、洗濯槽の裏側の汚れかもしれませんよ。
+パナソニックの洗濯槽クリーナーは、次亜塩素酸ナトリウム配合の塩素系。
+✅洗濯槽についた黒カビやイヤなニオイを分解
+✅防食補助剤配合で、プラスチック槽・ステンレス槽どちらもOK
+✅全メーカーの洗濯機に使える
+縦型用N-W1Aとドラム式用N-W2があって、価格は¥1,584〜。
+家族分の洗濯を毎日回していると、見えない槽の裏ってつい後回しになるんですよね😅
+レビュー490件で★4.72と評価も高め✨
+⚠️縦型用とドラム式用は別物なので、購入前に型番を必ず確認してくださいね。
+#洗濯槽クリーナー #パナソニック #塩素系 #洗濯 #掃除 #時短家事 #共働き家庭 #育児パパ</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="card-head">
+    <img src="https://thumbnail.image.rakuten.co.jp/@0_mall/lotuslife2018/cabinet/06557074/12726598/1.jpg?_ex=128x128" alt="グッドトイ&amp;トイオブザイヤー W受賞 お風呂でも大好評♪ 公式 ピタリコ 壁も使える 新感覚ブロック | 知育玩具 ブロック 吸盤 男の子 女の子 お風呂 おもちゃ 誕生日 プレゼント 知育 玩具 子供 3歳 4歳 5歳 型はめ 型はめパズル 入園祝い 幼児 お風呂おもちゃ" loading="lazy">
+    <div class="info">
+      
+      <span class="genre-chip">育児グッズ</span>
+      <div class="name">グッドトイ&amp;トイオブザイヤー W受賞 お風呂でも大好評♪ 公式 ピタリコ 壁も使える 新感覚ブロック | 知育玩具 ブロック 吸盤 男の子 女の子 お風呂 おもちゃ 誕生日 プレゼント 知育 玩具 子供 3歳 4歳 5歳 型はめ 型はめパズル 入園祝い 幼児 お風呂おもちゃ</div>
+      <div class="meta-row">
+        <span class="price">¥3,099</span>
+        <span class="stars">★★★★★</span>
+        <span>4.54(1878件)</span>
+      </div>
+    </div>
+  </div>
+  <a class="btn-open" href="https://item.rakuten.co.jp/lotuslife2018/b07rw6nnzv/" target="_blank" rel="noopener">商品ページを開く ↗</a>
+  <div class="url-row">
+    <a href="https://item.rakuten.co.jp/lotuslife2018/b07rw6nnzv/" target="_blank" rel="noopener">https://item.rakuten.co.jp/lotuslife2018/b07rw6nnzv/</a>
+    <button class="copy-btn" onclick="copyPlain(this, 'https://item.rakuten.co.jp/lotuslife2018/b07rw6nnzv/')" type="button">URLコピー</button>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>楽天ROOM用</span>
+      <button class="copy-btn" onclick="copyText(this, 'room-3')" type="button">コピー</button>
+    </div>
+    <textarea id="room-3" readonly>🛁お風呂で「まだ出ない!」が始まると、先に冷えてくるのはパパの方。
+そんな時間を遊びに変えてくれそうなのが、吸盤でくっつくブロック「ピタリコ」。
+床だけじゃなく壁にもペタッと貼れるから、浴室の壁がそのまま遊び場に。濡れても使えるのでお風呂おもちゃとしてもいける。
+🧩柔らかいTPR素材で、硬い角がない
+🫧水洗いOK、食洗機にも対応
+👜取っ手付きの専用ボトルケースでお片付けまで
+¥3,099で、レビュー1,878件・★4.54。
+選ぶときのワンポイント:対象は3歳〜。柔らかい素材で噛みちぎれることもあるので、なんでも口に入れる時期の子には目を離さないで。
+#ピタリコ #知育玩具 #お風呂おもちゃ #吸盤ブロック #3歳 #育児パパ #共働き家庭 #楽天ROOM</textarea>
+  </div>
+</div>
+<div class="card featured">
+  <div class="card-head">
+    <img src="https://thumbnail.image.rakuten.co.jp/@0_mall/linoulu/cabinet/car/ca08_r_0214.jpg?_ex=128x128" alt="【楽天1位】高評価★4.4 キックガード 車 シート マット カバー シートカバー 傷 汚れ 防止 撥水 バックポケット 後部座席 収納 小物入れ カー用品 シートバックポケット キックカバー キックマット ドライブ お出かけ 雨の日 雨天 安心 メッシュポケット リノウル" loading="lazy">
+    <div class="info">
+      <span class="featured-badge">🔥 本日のThreads/Xピックアップ</span>
+      <span class="genre-chip">アウトドア お出かけ</span>
+      <div class="name">【楽天1位】高評価★4.4 キックガード 車 シート マット カバー シートカバー 傷 汚れ 防止 撥水 バックポケット 後部座席 収納 小物入れ カー用品 シートバックポケット キックカバー キックマット ドライブ お出かけ 雨の日 雨天 安心 メッシュポケット リノウル</div>
+      <div class="meta-row">
+        <span class="price">¥1,280</span>
+        <span class="stars">★★★★☆</span>
+        <span>4.43(211件)</span>
+      </div>
+    </div>
+  </div>
+  <a class="btn-open" href="https://item.rakuten.co.jp/linoulu/ca08/" target="_blank" rel="noopener">商品ページを開く ↗</a>
+  <div class="url-row">
+    <a href="https://item.rakuten.co.jp/linoulu/ca08/" target="_blank" rel="noopener">https://item.rakuten.co.jp/linoulu/ca08/</a>
+    <button class="copy-btn" onclick="copyPlain(this, 'https://item.rakuten.co.jp/linoulu/ca08/')" type="button">URLコピー</button>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>楽天ROOM用</span>
+      <button class="copy-btn" onclick="copyText(this, 'room-4')" type="button">コピー</button>
+    </div>
+    <textarea id="room-4" readonly>🚗¥1,280で、前の座席の「靴あと問題」がラクになるんですよ。
+チャイルドシートに座ると、子どもの足がちょうど届くのが前席の背もたれ。気づけば足あとだらけ…ありますよね。
+リノウルのキックガードは
+✅撥水加工で、汚れてもお手入れしやすい
+✅工具不要、切れ込みとゴムバンドで固定
+✅メッシュポケット付きで、おもちゃや飲み物の置き場に
+サイズは縦約66cm×横約44cm📏
+レビュー211件で★4.43✨
+⚠️白系のカラーは環境や使い方で色移りすることがあるので、接触面に布を一枚敷いておくと安心です。
+#キックガード #車用品 #シートカバー #チャイルドシート #お出かけ #ドライブ #育児パパ #共働き家庭</textarea>
+  </div>
+  <p class="reason">🔥 今日のピックアップ理由: ¥1,280と手に取りやすい価格で、チャイルドシートから前席を蹴られて靴跡だらけになるという車持ち子育て家庭の誰もが経験する悩みを直接解決でき、機能説明も誇張なしで伝えやすいため。</p>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>Threads用</span>
+      <button class="copy-btn" onclick="copyText(this, 'threads-0')" type="button">コピー</button>
+    </div>
+    <textarea id="threads-0" readonly>運転席の背もたれの裏、最近ちゃんと見た?
+
+チャイルドシートに座ると、ちょうど足が届く位置なんだよな。ブラブラさせてるだけで悪気ゼロ。で、気づいたら靴の跡だらけ。
+
+これ、¥1,280のキックガードで片づいた。
+切れ込みとゴムバンドで留めるだけで工具いらず。撥水だから汚れてもサッと拭ける。
+下のメッシュポケットにおもちゃと飲み物を入れとくと、「あれ取って」が少し減る…気がする。
+
+白系の色は色移りすることがあるらしいから、そこだけ注意かな〜
+
+車の後ろ、みんなどうしてる?
+
+#PR #キックガード #車用品 #育児パパ</textarea>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>X用</span>
+      <button class="copy-btn" onclick="copyText(this, 'x-0')" type="button">コピー</button>
+    </div>
+    <textarea id="x-0" readonly>運転席の背もたれの裏、靴の跡だらけ問題。
+チャイルドシートからだと、ちょうど足が届くんだよな。
+
+¥1,280のキックガード、ゴムバンドで留めるだけ。
+撥水でサッと拭けて、メッシュポケットにおもちゃも入る。
+
+白系は色移り注意らしい〜
+
+#PR #キックガード #育児パパ</textarea>
+  </div>
+</div>
+</div>
+
+<h2 class="section-title">💬 今日のあるある投稿ネタ(商品リンクなし)</h2>
+<div class="cards">
+<div class="card">
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>あるある投稿 #1</span>
+      <button class="copy-btn" onclick="copyText(this, 'daily-0')" type="button">コピー</button>
+    </div>
+    <textarea id="daily-0" class="short" readonly>平日と休日で、子どもが別人になる件
+・平日7時、揺すっても布団から出てこない
+・休日6時前、顔の真上から「あさだよ」
+・平日の朝ごはん、ひと口ごとに一時停止
+・休日の朝ごはん、おかわりまでする
+その体力、ちょっとだけ平日に回してほしい😇</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>あるある投稿 #2</span>
+      <button class="copy-btn" onclick="copyText(this, 'daily-1')" type="button">コピー</button>
+    </div>
+    <textarea id="daily-1" class="short" readonly>保育園の着替え袋、補充したつもりがズボンだけ入ってなかった。お迎えで先生に「今日お借りしました〜」ってにこやかに言われるの、優しさが逆に刺さる</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>あるある投稿 #3</span>
+      <button class="copy-btn" onclick="copyText(this, 'daily-2')" type="button">コピー</button>
+    </div>
+    <textarea id="daily-2" class="short" readonly>ゴミ出しは自分の担当、のつもりだった。
+袋を集積所に持っていくまでが仕事だと思ってたら、その前後に新しい袋をセットするとか、分別し直すとか、名前のない家事がいくつもくっついてた。
+「やってるつもり」って、たぶん半分くらいなんだよな #共働き家庭</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>あるある投稿 #4</span>
+      <button class="copy-btn" onclick="copyText(this, 'daily-3')" type="button">コピー</button>
+    </div>
+    <textarea id="daily-3" class="short" readonly>歯みがきが毎晩ちょっとした交渉。
+口は開けない、逃げる、歯ブラシは噛んで離さない。こっちも仕事終わりで余裕ゼロ。
+なのに仕上げ磨きが終わった瞬間、「つぎパパのばん」って歯ブラシ持ってくるの、反則だろ🪥 #育児パパ</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>あるある投稿 #5</span>
+      <button class="copy-btn" onclick="copyText(this, 'daily-4')" type="button">コピー</button>
+    </div>
+    <textarea id="daily-4" class="short" readonly>「パパ見て!」の回数、1日で何回あるんだろ。10回目あたりから返事が雑になってるの、自分でもわかってる</textarea>
+  </div>
+</div>
+</div>
+
+<footer class="note">商品ページを確認し、投稿文をコピーして手動で投稿してください。<br>Threads/Xの商品紹介は1日1件・あるある投稿と織り交ぜてスパム判定を避けてください。<br>価格・レビューは選定時点の実データです。</footer>
+</div>
+<script>
+function flash(btn) {
+  const original = btn.textContent;
+  btn.textContent = 'コピーしました';
+  btn.classList.add('copied');
+  setTimeout(() => { btn.textContent = original; btn.classList.remove('copied'); }, 1500);
+}
+function copyText(btn, id) {
+  const el = document.getElementById(id);
+  el.select();
+  el.setSelectionRange(0, 999999);
+  navigator.clipboard.writeText(el.value).then(() => flash(btn)).catch(() => {
+    try { document.execCommand('copy'); flash(btn); } catch (e) {}
+  });
+}
+function copyPlain(btn, text) {
+  navigator.clipboard.writeText(text).then(() => flash(btn)).catch(() => {
+    const t = document.createElement('textarea');
+    t.value = text; document.body.appendChild(t); t.select();
+    try { document.execCommand('copy'); flash(btn); } catch (e) {}
+    document.body.removeChild(t);
+  });
+}
+</script>
+</body>
+</html>

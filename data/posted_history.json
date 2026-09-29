@@ -2490,6 +2490,53 @@
       "channels": [
         "room"
       ]
+    },
+    {
+      "itemCode": "importshopaqua:10002997",
+      "itemName": "GLOBAL スピードシャープナー GSS-01 包丁研ぎ器",
+      "date": "2026-09-28",
+      "slot": "morning",
+      "channels": [
+        "room"
+      ]
+    },
+    {
+      "itemCode": "mixiofficial:10000040",
+      "itemName": "みてねみまもりGPS(MG05) 子供向けGPS",
+      "date": "2026-09-28",
+      "slot": "morning",
+      "channels": [
+        "room"
+      ]
+    },
+    {
+      "itemCode": "dentendo:10026801",
+      "itemName": "パナソニック 洗濯槽クリーナー 縦型用N-W1A ドラム用N-W2",
+      "date": "2026-09-28",
+      "slot": "morning",
+      "channels": [
+        "room"
+      ]
+    },
+    {
+      "itemCode": "lotuslife2018:10000039",
+      "itemName": "ピタリコ 吸盤 知育ブロック お風呂おもちゃ",
+      "date": "2026-09-28",
+      "slot": "morning",
+      "channels": [
+        "room"
+      ]
+    },
+    {
+      "itemCode": "linoulu:10000534",
+      "itemName": "リノウル キックガード 車 シートバックポケット",
+      "date": "2026-09-28",
+      "slot": "morning",
+      "channels": [
+        "room",
+        "threads",
+        "x"
+      ]
     }
   ]
 }
