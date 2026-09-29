@@ -1,6 +1,7 @@
 ---
 name: qa-checker
 description: copywriterが作成したROOM投稿文(5件)・Threads/X投稿文(featured1件)・あるある系日常投稿(5個)を機械的にチェックし、文字数超過・NGワード・URL不備・重複投稿を検出する。投稿文生成の直後、一覧ページ作成前に使用する。
+model: haiku
 tools: Bash, Read, Write
 ---
 

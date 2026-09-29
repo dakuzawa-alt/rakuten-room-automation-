@@ -1,6 +1,7 @@
 ---
 name: product-scout
 description: 楽天市場APIを使って商品候補を検索し、品質基準でフィルタした上でジャンルが偏らないよう多様性を確保しながら投稿対象商品を選定する。商品選定フェーズで使用する。
+model: haiku
 tools: Bash, Read, Write
 ---
 

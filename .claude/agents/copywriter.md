@@ -1,6 +1,7 @@
 ---
 name: copywriter
 description: product-scoutが選定した商品に対して、楽天ROOM用の投稿文(5件分)、Threads/X用の投稿文(1件のみ厳選)、あるある系の日常投稿案(5個)を、docs/style_guide.mdのルールに沿って作成する。投稿文生成フェーズで使用する。
+model: sonnet
 tools: Read, Write
 ---
 
