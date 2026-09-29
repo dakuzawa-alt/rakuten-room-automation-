@@ -2396,6 +2396,53 @@
       "channels": [
         "room"
       ]
+    },
+    {
+      "itemCode": "shimoyama-onlineshop:10001834",
+      "itemName": "曙産業 レンジでらくチン！ゆでたまご 4個用/2個用 RE-279/RE-277",
+      "date": "2026-09-27",
+      "slot": "morning",
+      "channels": [
+        "room",
+        "threads",
+        "x"
+      ]
+    },
+    {
+      "itemCode": "yoch2:10000395",
+      "itemName": "はさマンモス 表裏セット ドア指はさみ防止",
+      "date": "2026-09-27",
+      "slot": "morning",
+      "channels": [
+        "room"
+      ]
+    },
+    {
+      "itemCode": "crstore:10000002",
+      "itemName": "お風呂の学校 日本地図&世界地図&宇宙地図 お風呂ポスター3枚セット B3",
+      "date": "2026-09-27",
+      "slot": "morning",
+      "channels": [
+        "room"
+      ]
+    },
+    {
+      "itemCode": "isseiki:10001190",
+      "itemName": "ISSEIKI KIDS LIFE 木製学習椅子 組立式",
+      "date": "2026-09-27",
+      "slot": "morning",
+      "channels": [
+        "room"
+      ]
+    },
+    {
+      "itemCode": "rounds:10000044",
+      "itemName": "ROUNDS Smartru 自動開閉ウエットティッシュケース",
+      "date": "2026-09-27",
+      "slot": "morning",
+      "channels": [
+        "room"
+      ]
     }
   ]
 }
