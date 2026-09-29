@@ -2584,6 +2584,53 @@
       "channels": [
         "room"
       ]
+    },
+    {
+      "itemCode": "andne:10000084",
+      "itemName": "nikii カッティングボード 3色セット 日本製 抗菌 食洗機対応 ミニまな板3枚セット",
+      "date": "2026-09-29",
+      "slot": "night",
+      "channels": [
+        "room"
+      ]
+    },
+    {
+      "itemCode": "thetoplandgiftstore:10000151",
+      "itemName": "mammababy マンマベビー ベビーソープ 泡タイプ全身用 400mL",
+      "date": "2026-09-29",
+      "slot": "night",
+      "channels": [
+        "room",
+        "threads",
+        "x"
+      ]
+    },
+    {
+      "itemCode": "try:10031955",
+      "itemName": "イフミー スニーカー キッズ 新幹線デザイン IFME×TRAIN",
+      "date": "2026-09-29",
+      "slot": "night",
+      "channels": [
+        "room"
+      ]
+    },
+    {
+      "itemCode": "ymsk:10000461",
+      "itemName": "ラサーナ 海藻 ヘア エッセンス 洗い流さないトリートメント 無香料 しっとり",
+      "date": "2026-09-29",
+      "slot": "night",
+      "channels": [
+        "room"
+      ]
+    },
+    {
+      "itemCode": "watermode:10010295",
+      "itemName": "Coleman コールマン キッズリュック 10L 幼稚園 保育園 小学校低学年",
+      "date": "2026-09-29",
+      "slot": "night",
+      "channels": [
+        "room"
+      ]
     }
   ]
 }

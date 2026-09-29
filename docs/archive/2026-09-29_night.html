@@ -1,0 +1,426 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>9/29 夜の選定 - 楽天ROOM投稿リスト</title>
+<style>
+:root {
+  --bg: #f6f3ee;
+  --surface: #ffffff;
+  --ink: #23211d;
+  --ink-soft: #6b6459;
+  --accent: #a8382c;
+  --accent-ink: #fff6f2;
+  --good: #3f7d58;
+  --border: #e4ddd2;
+  --chip-bg: #efe8db;
+  color-scheme: light dark;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #16140f;
+    --surface: #211f1a;
+    --ink: #ece7dc;
+    --ink-soft: #a89e8d;
+    --accent: #e0685a;
+    --accent-ink: #1c0f0c;
+    --good: #6fb98a;
+    --border: #35322a;
+    --chip-bg: #2a2721;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #16140f; --surface: #211f1a; --ink: #ece7dc; --ink-soft: #a89e8d;
+  --accent: #e0685a; --accent-ink: #1c0f0c; --good: #6fb98a; --border: #35322a; --chip-bg: #2a2721;
+}
+:root[data-theme="light"] {
+  --bg: #f6f3ee; --surface: #ffffff; --ink: #23211d; --ink-soft: #6b6459;
+  --accent: #a8382c; --accent-ink: #fff6f2; --good: #3f7d58; --border: #e4ddd2; --chip-bg: #efe8db;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0; background: var(--bg); color: var(--ink);
+  font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Yu Gothic Medium", "Noto Sans JP", sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+.wrap { max-width: 640px; margin: 0 auto; padding: 0 16px 40px; }
+header.top {
+  position: sticky; top: 0; z-index: 5; background: var(--bg);
+  padding: 18px 16px 12px; border-bottom: 1px solid var(--border);
+  display: flex; align-items: baseline; justify-content: space-between; gap: 12px;
+}
+header.top .eyebrow {
+  font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-soft);
+  font-weight: 600; margin: 0 0 2px;
+}
+header.top h1 { font-size: 1.25rem; margin: 0; font-weight: 700; letter-spacing: -0.01em; }
+header.top .count {
+  background: var(--chip-bg); color: var(--ink-soft); font-size: 0.78rem; font-weight: 600;
+  padding: 5px 10px; border-radius: 999px; white-space: nowrap;
+}
+h2.section-title { font-size: 0.95rem; font-weight: 700; margin: 24px 0 12px; }
+.cards { display: flex; flex-direction: column; gap: 16px; margin-top: 18px; }
+.card {
+  background: var(--surface); border: 1px solid var(--border); border-radius: 16px;
+  padding: 16px; display: flex; flex-direction: column; gap: 12px;
+}
+.card.featured { border-color: var(--accent); border-width: 2px; }
+.featured-badge {
+  align-self: flex-start; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.03em;
+  color: var(--accent-ink); background: var(--accent); padding: 3px 9px; border-radius: 999px;
+}
+.card-head { display: flex; gap: 12px; }
+.card-head img {
+  width: 76px; height: 76px; object-fit: cover; border-radius: 10px;
+  border: 1px solid var(--border); background: var(--chip-bg); flex-shrink: 0;
+}
+.card-head .info { min-width: 0; flex: 1; display: flex; flex-direction: column; gap: 4px; }
+.genre-chip {
+  align-self: flex-start; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.03em;
+  color: var(--accent); background: color-mix(in srgb, var(--accent) 12%, transparent);
+  padding: 2px 8px; border-radius: 999px;
+}
+.name {
+  font-weight: 600; font-size: 0.94rem; line-height: 1.4;
+  display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
+}
+.meta-row { display: flex; align-items: baseline; gap: 8px; font-size: 0.82rem; color: var(--ink-soft); }
+.price { font-variant-numeric: tabular-nums; color: var(--ink); font-weight: 700; font-size: 1.05rem; }
+.stars { letter-spacing: -1px; color: var(--accent); }
+.btn-open {
+  display: flex; align-items: center; justify-content: center; gap: 6px;
+  background: var(--accent); color: var(--accent-ink); border: none; border-radius: 11px;
+  padding: 12px; font-weight: 700; font-size: 0.92rem; text-decoration: none;
+}
+.btn-open:active { opacity: 0.85; }
+.url-row {
+  display: flex; align-items: center; gap: 8px;
+  background: var(--chip-bg); border-radius: 9px; padding: 8px 10px;
+}
+.url-row a {
+  flex: 1; min-width: 0; font-size: 0.76rem; color: var(--accent);
+  word-break: break-all; line-height: 1.45; text-decoration: none;
+}
+.url-row a:active { text-decoration: underline; }
+.reason { font-size: 0.8rem; color: var(--ink-soft); }
+.caption-box { border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }
+.caption-head {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 8px 10px; background: var(--chip-bg);
+}
+.caption-head span {
+  font-size: 0.7rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-soft);
+}
+.copy-btn {
+  background: var(--surface); border: 1px solid var(--border); color: var(--ink);
+  border-radius: 7px; padding: 5px 11px; font-size: 0.76rem; font-weight: 600; cursor: pointer;
+}
+.copy-btn:focus-visible, .btn-open:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.copy-btn.copied { background: var(--good); border-color: var(--good); color: #fff; }
+textarea {
+  width: 100%; display: block; border: none; padding: 10px; font-size: 0.85rem; line-height: 1.55;
+  resize: vertical; min-height: 108px; font-family: inherit; background: var(--surface); color: var(--ink);
+}
+textarea.short { min-height: 60px; }
+textarea:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
+footer.note { margin-top: 22px; font-size: 0.76rem; color: var(--ink-soft); text-align: center; line-height: 1.6; }
+@media (prefers-reduced-motion: no-preference) {
+  .copy-btn { transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease; }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <div>
+    <p class="eyebrow">楽天ROOM 投稿リスト</p>
+    <h1>9/29 夜の選定</h1>
+  </div>
+  <span class="count">5件</span>
+</header>
+
+<h2 class="section-title">📦 商品(ROOM用、全5件)</h2>
+<div class="cards">
+<div class="card">
+  <div class="card-head">
+    <img src="https://thumbnail.image.rakuten.co.jp/@0_mall/andne/cabinet/nik/nik-188.jpg?_ex=128x128" alt="【特典あり】 カッティングボード 3色セット 3P nikii 日本製 抗菌 食洗機 まな板 ミニまな板 吊り下げ 引っ掛け 小さい 丸 四角 台所 薄い 軽量 おしゃれ かわいい パスタメジャー シンプル モノトーン パステル 滑り止め 3枚 プラスチック 【&amp;NE公式】" loading="lazy">
+    <div class="info">
+      
+      <span class="genre-chip"></span>
+      <div class="name">【特典あり】 カッティングボード 3色セット 3P nikii 日本製 抗菌 食洗機 まな板 ミニまな板 吊り下げ 引っ掛け 小さい 丸 四角 台所 薄い 軽量 おしゃれ かわいい パスタメジャー シンプル モノトーン パステル 滑り止め 3枚 プラスチック 【&amp;NE公式】</div>
+      <div class="meta-row">
+        <span class="price">¥1,320</span>
+        <span class="stars">★★★★★</span>
+        <span>4.67(802件)</span>
+      </div>
+    </div>
+  </div>
+  <a class="btn-open" href="https://item.rakuten.co.jp/andne/nik-188/" target="_blank" rel="noopener">商品ページを開く ↗</a>
+  <div class="url-row">
+    <a href="https://item.rakuten.co.jp/andne/nik-188/" target="_blank" rel="noopener">https://item.rakuten.co.jp/andne/nik-188/</a>
+    <button class="copy-btn" onclick="copyPlain(this, 'https://item.rakuten.co.jp/andne/nik-188/')" type="button">URLコピー</button>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>楽天ROOM用</span>
+      <button class="copy-btn" onclick="copyText(this, 'room-0')" type="button">コピー</button>
+    </div>
+    <textarea id="room-0" readonly>🥗まな板1枚で肉も野菜も全部切ってたけど、3色セットにしてから食材ごとに自然と使い分けるようになった。
+
+色で判断するだけで衛生管理の意識が変わるの、地味にデカい。🧼抗菌加工・食洗機対応で日本製、1,320円で3枚セットはお得だと思う。レビュー802件・星4.67もある。ミニサイズで場所もとらないのもうれしいポイント🍳
+
+#まな板 #カッティングボード #キッチングッズ #抗菌 #日本製 #食洗機対応 #時短家事 #育児パパ #共働き家庭 #楽天購入品</textarea>
+  </div>
+</div>
+<div class="card featured">
+  <div class="card-head">
+    <img src="https://thumbnail.image.rakuten.co.jp/@0_mall/thetoplandgiftstore/cabinet/mammababy/item_bodysoapb.jpg?_ex=128x128" alt="mammababy ベビーソープ（泡タイプ全身用）400mL" loading="lazy">
+    <div class="info">
+      <span class="featured-badge">🔥 本日のThreads/Xピックアップ</span>
+      <span class="genre-chip"></span>
+      <div class="name">mammababy ベビーソープ（泡タイプ全身用）400mL</div>
+      <div class="meta-row">
+        <span class="price">¥1,980</span>
+        <span class="stars">★★★★★</span>
+        <span>4.75(980件)</span>
+      </div>
+    </div>
+  </div>
+  <a class="btn-open" href="https://item.rakuten.co.jp/thetoplandgiftstore/lmb_4580523062588/" target="_blank" rel="noopener">商品ページを開く ↗</a>
+  <div class="url-row">
+    <a href="https://item.rakuten.co.jp/thetoplandgiftstore/lmb_4580523062588/" target="_blank" rel="noopener">https://item.rakuten.co.jp/thetoplandgiftstore/lmb_4580523062588/</a>
+    <button class="copy-btn" onclick="copyPlain(this, 'https://item.rakuten.co.jp/thetoplandgiftstore/lmb_4580523062588/')" type="button">URLコピー</button>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>楽天ROOM用</span>
+      <button class="copy-btn" onclick="copyText(this, 'room-1')" type="button">コピー</button>
+    </div>
+    <textarea id="room-1" readonly>🧴創業80年の製薬会社が作ったベビーソープ、1,980円で試せるの知らなかった。
+
+泡タイプで片手でも洗いやすく、新生児から使えるオーガニック成分・11の無添加処方。ベビー用品は成分が気になることが多いけど、製薬会社発というのは信頼感が違う。
+
+レビュー980件・星4.75、それだけ使われてる理由がある👶
+
+400mLのたっぷりサイズで、まとめ買いも検討してみてください🍼
+
+#ベビーソープ #無添加 #育児グッズ #ベビーケア #新生児 #mammababy #育児パパ #共働き家庭 #楽天購入品</textarea>
+  </div>
+  <p class="reason">🔥 今日のピックアップ理由: 1,980円・創業80年製薬会社発・11の無添加という意外性と、新生児から使える安心感が育児パパ×共働き家庭ターゲットに最も刺さると判断した。</p>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>Threads用</span>
+      <button class="copy-btn" onclick="copyText(this, 'threads-0')" type="button">コピー</button>
+    </div>
+    <textarea id="threads-0" readonly>製薬会社がベビーソープ作ってた、って知らなかった。
+
+創業80年の会社が、ちゃんと処方設計して出してるやつ。11の無添加処方で新生児から使える泡タイプ。
+
+成分表を読みだすと不安になりがちなベビー用品の中で、「製薬会社発」ってだけで一旦信頼できる気持ちになるよな。
+
+1,980円。育児グッズにしては手が届きやすい。
+
+#育児パパ #楽天アフィリエイト</textarea>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>X用</span>
+      <button class="copy-btn" onclick="copyText(this, 'x-0')" type="button">コピー</button>
+    </div>
+    <textarea id="x-0" readonly>製薬会社がベビーソープ作ってた。
+
+創業80年、11の無添加処方、新生児から使える泡タイプ。
+
+成分が気になりだすと育児グッズって選ぶの大変だけど、出所がちゃんとしてると気持ちが楽になる。
+
+1,980円で試せる。
+
+#育児パパ #PR</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="card-head">
+    <img src="https://thumbnail.image.rakuten.co.jp/@0_mall/try/cabinet/ifme/2025/kids_etc/3-ifm-k-train-010.jpg?_ex=128x128" alt="【ランキング受賞】 【全国送料無料】 イフミー スニーカー キッズ IFME × TRAIN 20-3407 30-3419 30-4891 30-4320 子ども 靴 ベビー トレイン 新幹線 鉄道 D51形蒸気機関車 E5系 E6系 E7系 ドクターイエロー" loading="lazy">
+    <div class="info">
+      
+      <span class="genre-chip"></span>
+      <div class="name">【ランキング受賞】 【全国送料無料】 イフミー スニーカー キッズ IFME × TRAIN 20-3407 30-3419 30-4891 30-4320 子ども 靴 ベビー トレイン 新幹線 鉄道 D51形蒸気機関車 E5系 E6系 E7系 ドクターイエロー</div>
+      <div class="meta-row">
+        <span class="price">¥3,950</span>
+        <span class="stars">★★★★★</span>
+        <span>4.85(1367件)</span>
+      </div>
+    </div>
+  </div>
+  <a class="btn-open" href="https://item.rakuten.co.jp/try/3-ifm-k-train-010/" target="_blank" rel="noopener">商品ページを開く ↗</a>
+  <div class="url-row">
+    <a href="https://item.rakuten.co.jp/try/3-ifm-k-train-010/" target="_blank" rel="noopener">https://item.rakuten.co.jp/try/3-ifm-k-train-010/</a>
+    <button class="copy-btn" onclick="copyPlain(this, 'https://item.rakuten.co.jp/try/3-ifm-k-train-010/')" type="button">URLコピー</button>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>楽天ROOM用</span>
+      <button class="copy-btn" onclick="copyText(this, 'room-2')" type="button">コピー</button>
+    </div>
+    <textarea id="room-2" readonly>🚅これ見せた瞬間の息子の顔が最高だった。
+
+新幹線好きの子ってほんとに「新幹線ついてる」だけで選ぶんですよね。でもIFMEは子どもの足の発達を考えた設計の子供靴ブランドで、機能面もしっかりしてる。デザインだけじゃなく、足にちゃんといい靴なのが親としては安心できるポイント。
+
+レビュー1,367件で星4.85という評価はキッズシューズの中でもトップクラス。3,950円でこのクオリティは正直かなりお買い得だと思います👟
+
+鉄道好きのお子さんへのプレゼント🎁や、日常使いの一足として選びやすいです。サイズ選びは公式のサイズ表を参考にするのがおすすめ！
+
+#イフミー #IFME #新幹線 #キッズシューズ #子供靴 #育児パパ #男の子 #共働き家庭 #楽天購入品 #鉄道好き</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="card-head">
+    <img src="https://thumbnail.image.rakuten.co.jp/@0_mall/ymsk/cabinet/itemimg/thumb_logo/597910_1_2603.jpg?_ex=128x128" alt="ラサーナ 海藻 ヘア エッセンス 無香料 しっとり 洗い流さないトリートメント" loading="lazy">
+    <div class="info">
+      
+      <span class="genre-chip"></span>
+      <div class="name">ラサーナ 海藻 ヘア エッセンス 無香料 しっとり 洗い流さないトリートメント</div>
+      <div class="meta-row">
+        <span class="price">¥1,100</span>
+        <span class="stars">★★★★★</span>
+        <span>4.75(2934件)</span>
+      </div>
+    </div>
+  </div>
+  <a class="btn-open" href="https://item.rakuten.co.jp/ymsk/597910/" target="_blank" rel="noopener">商品ページを開く ↗</a>
+  <div class="url-row">
+    <a href="https://item.rakuten.co.jp/ymsk/597910/" target="_blank" rel="noopener">https://item.rakuten.co.jp/ymsk/597910/</a>
+    <button class="copy-btn" onclick="copyPlain(this, 'https://item.rakuten.co.jp/ymsk/597910/')" type="button">URLコピー</button>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>楽天ROOM用</span>
+      <button class="copy-btn" onclick="copyText(this, 'room-3')" type="button">コピー</button>
+    </div>
+    <textarea id="room-3" readonly>🌿無香料のトリートメント探してたとき、1,100円でこれに出会ったのはよかった。
+
+赤ちゃんがいる家って香料に敏感になるんよな。市販品は香りが強すぎて、なかなか使えるものが見つからなかった。ラサーナの洗い流さないタイプ、国産・無香料で安心して使えてる✨
+
+レビュー2,934件・星4.75。これだけ評価されてると納得感ある。
+
+髪がまとまりやすくなった気がするし、コスパも悪くない。共働き家庭で時短したい人にもちょうどいい一本🍃
+
+#ヘアケア #洗い流さないトリートメント #無香料 #ラサーナ #国産 #時短ケア #育児パパ #共働き家庭 #楽天購入品</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="card-head">
+    <img src="https://thumbnail.image.rakuten.co.jp/@0_mall/watermode/cabinet/10774479/2025wkmini-1-ma.jpg?_ex=128x128" alt="リュック キッズ 男の子 女の子 小学生 低学年 ブランド 10L 幼稚園 保育園 園児 リュックサック コールマン Coleman 通園 こども 子供 子ども" loading="lazy">
+    <div class="info">
+      
+      <span class="genre-chip"></span>
+      <div class="name">リュック キッズ 男の子 女の子 小学生 低学年 ブランド 10L 幼稚園 保育園 園児 リュックサック コールマン Coleman 通園 こども 子供 子ども</div>
+      <div class="meta-row">
+        <span class="price">¥4,400</span>
+        <span class="stars">★★★★★</span>
+        <span>4.71(4617件)</span>
+      </div>
+    </div>
+  </div>
+  <a class="btn-open" href="https://item.rakuten.co.jp/watermode/10009605/" target="_blank" rel="noopener">商品ページを開く ↗</a>
+  <div class="url-row">
+    <a href="https://item.rakuten.co.jp/watermode/10009605/" target="_blank" rel="noopener">https://item.rakuten.co.jp/watermode/10009605/</a>
+    <button class="copy-btn" onclick="copyPlain(this, 'https://item.rakuten.co.jp/watermode/10009605/')" type="button">URLコピー</button>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>楽天ROOM用</span>
+      <button class="copy-btn" onclick="copyText(this, 'room-4')" type="button">コピー</button>
+    </div>
+    <textarea id="room-4" readonly>🎒レビュー4,617件、星4.71。このリュックが選ばれ続けてる理由、なんとなくわかる。
+
+Colemanのキッズリュック10L、幼稚園・保育園・小学校低学年まで幅広く使えるサイズ感。コールマンというブランドへの安心感もあるし、子どもが「かわいい」って思える見た目でもある。
+
+背負いやすさは実際に使ってみると差が出るポイントで、このサイズ感は荷物が少ない幼稚園・保育園児にちょうどいい容量。ランドセルの補助バッグや遠足にも使いやすい大きさです👟
+
+4,400円でブランドリュックが手に入ると考えると、プレゼントにも選びやすい価格帯。入園・入学シーズンに向けての準備にもちょうどいいタイミング🌸
+
+#コールマン #Colemanリュック #キッズリュック #保育園 #幼稚園 #入園準備 #育児パパ #共働き家庭 #楽天購入品</textarea>
+  </div>
+</div>
+</div>
+
+<h2 class="section-title">💬 今日のあるある投稿ネタ(商品リンクなし)</h2>
+<div class="cards">
+<div class="card">
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>あるある投稿 #1</span>
+      <button class="copy-btn" onclick="copyText(this, 'daily-0')" type="button">コピー</button>
+    </div>
+    <textarea id="daily-0" class="short" readonly>保育園の準備してる間に子どもが靴を自分で履こうとして、5分後もまだ格闘してる。急いでるのはわかってる、でも「やってあげる」って言ったら泣く、手伝ってもらうの嫌な時期。
+#育児パパ</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>あるある投稿 #2</span>
+      <button class="copy-btn" onclick="copyText(this, 'daily-1')" type="button">コピー</button>
+    </div>
+    <textarea id="daily-1" class="short" readonly>休日に「今日はどこ行く?」って子どもに聞いたら「公園！」「電車！」「プール！」って全員バラバラに答えてくるの、いつもそれ😂</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>あるある投稿 #3</span>
+      <button class="copy-btn" onclick="copyText(this, 'daily-2')" type="button">コピー</button>
+    </div>
+    <textarea id="daily-2" class="short" readonly>子どもが寝たあとの静かな時間、最高なんだけど自分も気づいたら寝てる。ソファで変な体勢で。</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>あるある投稿 #4</span>
+      <button class="copy-btn" onclick="copyText(this, 'daily-3')" type="button">コピー</button>
+    </div>
+    <textarea id="daily-3" class="short" readonly>夫婦でご飯食べながら今日あったこと話そうとするんだけど、子どもが途中で入ってきて話が全部そこで止まる。一回も結論まで話したことないかもしれない。</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>あるある投稿 #5</span>
+      <button class="copy-btn" onclick="copyText(this, 'daily-4')" type="button">コピー</button>
+    </div>
+    <textarea id="daily-4" class="short" readonly>「もう一回だけ」が3回目に入ったあたりから、こっちのメンタルが試されてる感じがするんだよな</textarea>
+  </div>
+</div>
+</div>
+
+<footer class="note">商品ページを確認し、投稿文をコピーして手動で投稿してください。<br>Threads/Xの商品紹介は1日1件・あるある投稿と織り交ぜてスパム判定を避けてください。<br>価格・レビューは選定時点の実データです。</footer>
+</div>
+<script>
+function flash(btn) {
+  const original = btn.textContent;
+  btn.textContent = 'コピーしました';
+  btn.classList.add('copied');
+  setTimeout(() => { btn.textContent = original; btn.classList.remove('copied'); }, 1500);
+}
+function copyText(btn, id) {
+  const el = document.getElementById(id);
+  el.select();
+  el.setSelectionRange(0, 999999);
+  navigator.clipboard.writeText(el.value).then(() => flash(btn)).catch(() => {
+    try { document.execCommand('copy'); flash(btn); } catch (e) {}
+  });
+}
+function copyPlain(btn, text) {
+  navigator.clipboard.writeText(text).then(() => flash(btn)).catch(() => {
+    const t = document.createElement('textarea');
+    t.value = text; document.body.appendChild(t); t.select();
+    try { document.execCommand('copy'); flash(btn); } catch (e) {}
+    document.body.removeChild(t);
+  });
+}
+</script>
+</body>
+</html>

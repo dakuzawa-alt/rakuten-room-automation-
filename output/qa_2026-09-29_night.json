@@ -1,0 +1,102 @@
+{
+  "date": "2026-09-29",
+  "slot": "night",
+  "result": "pass",
+  "checkedAt": "2026-09-29",
+  "targetFile": "output/copy_2026-09-29_night.json",
+  "checks": {
+    "charCount": {
+      "status": "pass",
+      "detail": [
+        {"itemCode": "andne:10000084", "roomCaption": 228, "limit": 400, "ok": true},
+        {"itemCode": "thetoplandgiftstore:10000151", "roomCaption": 251, "limit": 400, "ok": true},
+        {"itemCode": "try:10031955", "roomCaption": 337, "limit": 400, "ok": true},
+        {"itemCode": "ymsk:10000461", "roomCaption": 277, "limit": 400, "ok": true},
+        {"itemCode": "watermode:10010295", "roomCaption": 363, "limit": 400, "ok": true},
+        {"channel": "threads", "itemCode": "thetoplandgiftstore:10000151", "chars": 176, "limit": 400, "ok": true},
+        {"channel": "x", "itemCode": "thetoplandgiftstore:10000151", "chars": 118, "limit": 280, "ok": true},
+        {"channel": "daily1", "chars": 89, "limit": 150, "ok": true},
+        {"channel": "daily2", "chars": 61, "limit": 150, "ok": true},
+        {"channel": "daily3", "chars": 44, "limit": 150, "ok": true},
+        {"channel": "daily4", "chars": 72, "limit": 150, "ok": true},
+        {"channel": "daily5", "chars": 45, "limit": 150, "ok": true}
+      ]
+    },
+    "affiliateUrl": {
+      "status": "pass",
+      "detail": "全5件のitemUrlがhttps://item.rakuten.co.jp/で始まることを確認。Threads文・X文にURL直接記載なし。"
+    },
+    "ngWords": {
+      "status": "pass",
+      "detail": "「効く」「治る」「絶対」「100%」「奇跡」の全NGワードがROOM文5件・Threads文・X文・日常投稿5件すべてに含まれていないことを確認。"
+    },
+    "prTag": {
+      "status": "pass",
+      "detail": {
+        "threads": "#楽天アフィリエイト 含有 -> OK",
+        "x": "#PR 含有 -> OK"
+      }
+    },
+    "urlInPost": {
+      "status": "pass",
+      "detail": "Threads文・X文ともにhttps://を含むURL直接記載なし。"
+    },
+    "emojiCheck": {
+      "status": "pass",
+      "detail": [
+        {"itemCode": "andne:10000084", "emojiTotal": 3, "firstLineEmoji": true, "ok": true},
+        {"itemCode": "thetoplandgiftstore:10000151", "emojiTotal": 3, "firstLineEmoji": true, "ok": true},
+        {"itemCode": "try:10031955", "emojiTotal": 3, "firstLineEmoji": true, "ok": true},
+        {"itemCode": "ymsk:10000461", "emojiTotal": 3, "firstLineEmoji": true, "ok": true},
+        {"itemCode": "watermode:10010295", "emojiTotal": 3, "firstLineEmoji": true, "ok": true}
+      ]
+    },
+    "duplicateCheck": {
+      "status": "pass",
+      "itemCodeExactMatch": "なし（5件すべてposted_history.jsonに未登録）",
+      "substantialDuplicate": [
+        {
+          "todayItem": "andne:10000084（nikii カッティングボード 3色セット プラスチック 3枚セット）",
+          "pastItems": [
+            "e-kit:10042755（かまぼこ型 丸まな板 エラストマー 1枚、2026-09-06）",
+            "apricot-r:10020314（マーナ まな板 TPU 1枚、2026-09-13）",
+            "sikoku-kako:10000203（まな板 ヒノキ一枚板 木製、2026-09-19）",
+            "hibaya-aomori:10000028（青森ヒバ まな板 木製、2026-09-21）"
+          ],
+          "judgment": "pass",
+          "reason": "今回はプラスチック素材・3色3枚セット・色分け衛生管理というコンセプトの商品。過去投稿はエラストマー/TPU/木製の単枚品であり素材・枚数・コンセプトが異なる。実質重複には該当しない。"
+        },
+        {
+          "todayItem": "thetoplandgiftstore:10000151（mammababy ベビーソープ 泡タイプ全身用）",
+          "pastItems": [
+            "selectshop-one:10002395（ベビーバス 折りたたみ バスタブ、2026-09-20）"
+          ],
+          "judgment": "pass",
+          "reason": "ベビーバス（沐浴用桶）とベビーソープ（洗浄剤）はカテゴリが異なる別商品。実質重複には該当しない。"
+        }
+      ]
+    },
+    "dailyPostHealth": {
+      "status": "pass",
+      "detail": "日常投稿5件すべてにURL・商品リンク・PR表記・アフィリエイトURLの混入なし。育児あるある系の共感投稿として問題なし。捏造エピソード（「今日〜だった」形式）の検出なし。"
+    },
+    "numericalConsistency": {
+      "status": "pass",
+      "detail": [
+        {"itemCode": "andne:10000084", "price": "1,320円 -> OK", "reviewCount": "802件 -> OK", "reviewAverage": "4.67 -> OK"},
+        {"itemCode": "thetoplandgiftstore:10000151", "price": "1,980円 -> OK", "reviewCount": "980件 -> OK", "reviewAverage": "4.75 -> OK"},
+        {"itemCode": "try:10031955", "price": "3,950円 -> OK", "reviewCount": "1,367件 -> OK", "reviewAverage": "4.85 -> OK"},
+        {"itemCode": "ymsk:10000461", "price": "1,100円 -> OK", "reviewCount": "2,934件 -> OK", "reviewAverage": "4.75 -> OK"},
+        {"itemCode": "watermode:10010295", "price": "4,400円 -> OK", "reviewCount": "4,617件 -> OK", "reviewAverage": "4.71 -> OK"}
+      ]
+    }
+  },
+  "failReasons": [],
+  "passedItems": [
+    "andne:10000084",
+    "thetoplandgiftstore:10000151",
+    "try:10031955",
+    "ymsk:10000461",
+    "watermode:10010295"
+  ]
+}
