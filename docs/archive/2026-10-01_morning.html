@@ -1,0 +1,434 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>本日の選定 - 楽天ROOM投稿リスト</title>
+<style>
+:root {
+  --bg: #f6f3ee;
+  --surface: #ffffff;
+  --ink: #23211d;
+  --ink-soft: #6b6459;
+  --accent: #a8382c;
+  --accent-ink: #fff6f2;
+  --good: #3f7d58;
+  --border: #e4ddd2;
+  --chip-bg: #efe8db;
+  color-scheme: light dark;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #16140f;
+    --surface: #211f1a;
+    --ink: #ece7dc;
+    --ink-soft: #a89e8d;
+    --accent: #e0685a;
+    --accent-ink: #1c0f0c;
+    --good: #6fb98a;
+    --border: #35322a;
+    --chip-bg: #2a2721;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #16140f; --surface: #211f1a; --ink: #ece7dc; --ink-soft: #a89e8d;
+  --accent: #e0685a; --accent-ink: #1c0f0c; --good: #6fb98a; --border: #35322a; --chip-bg: #2a2721;
+}
+:root[data-theme="light"] {
+  --bg: #f6f3ee; --surface: #ffffff; --ink: #23211d; --ink-soft: #6b6459;
+  --accent: #a8382c; --accent-ink: #fff6f2; --good: #3f7d58; --border: #e4ddd2; --chip-bg: #efe8db;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0; background: var(--bg); color: var(--ink);
+  font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Yu Gothic Medium", "Noto Sans JP", sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+.wrap { max-width: 640px; margin: 0 auto; padding: 0 16px 40px; }
+header.top {
+  position: sticky; top: 0; z-index: 5; background: var(--bg);
+  padding: 18px 16px 12px; border-bottom: 1px solid var(--border);
+  display: flex; align-items: baseline; justify-content: space-between; gap: 12px;
+}
+header.top .eyebrow {
+  font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-soft);
+  font-weight: 600; margin: 0 0 2px;
+}
+header.top h1 { font-size: 1.25rem; margin: 0; font-weight: 700; letter-spacing: -0.01em; }
+header.top .count {
+  background: var(--chip-bg); color: var(--ink-soft); font-size: 0.78rem; font-weight: 600;
+  padding: 5px 10px; border-radius: 999px; white-space: nowrap;
+}
+h2.section-title { font-size: 0.95rem; font-weight: 700; margin: 24px 0 12px; }
+.cards { display: flex; flex-direction: column; gap: 16px; margin-top: 18px; }
+.card {
+  background: var(--surface); border: 1px solid var(--border); border-radius: 16px;
+  padding: 16px; display: flex; flex-direction: column; gap: 12px;
+}
+.card.featured { border-color: var(--accent); border-width: 2px; }
+.featured-badge {
+  align-self: flex-start; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.03em;
+  color: var(--accent-ink); background: var(--accent); padding: 3px 9px; border-radius: 999px;
+}
+.card-head { display: flex; gap: 12px; }
+.card-head img {
+  width: 76px; height: 76px; object-fit: cover; border-radius: 10px;
+  border: 1px solid var(--border); background: var(--chip-bg); flex-shrink: 0;
+}
+.card-head .info { min-width: 0; flex: 1; display: flex; flex-direction: column; gap: 4px; }
+.genre-chip {
+  align-self: flex-start; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.03em;
+  color: var(--accent); background: color-mix(in srgb, var(--accent) 12%, transparent);
+  padding: 2px 8px; border-radius: 999px;
+}
+.name {
+  font-weight: 600; font-size: 0.94rem; line-height: 1.4;
+  display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
+}
+.meta-row { display: flex; align-items: baseline; gap: 8px; font-size: 0.82rem; color: var(--ink-soft); }
+.price { font-variant-numeric: tabular-nums; color: var(--ink); font-weight: 700; font-size: 1.05rem; }
+.stars { letter-spacing: -1px; color: var(--accent); }
+.btn-open {
+  display: flex; align-items: center; justify-content: center; gap: 6px;
+  background: var(--accent); color: var(--accent-ink); border: none; border-radius: 11px;
+  padding: 12px; font-weight: 700; font-size: 0.92rem; text-decoration: none;
+}
+.btn-open:active { opacity: 0.85; }
+.url-row {
+  display: flex; align-items: center; gap: 8px;
+  background: var(--chip-bg); border-radius: 9px; padding: 8px 10px;
+}
+.url-row a {
+  flex: 1; min-width: 0; font-size: 0.76rem; color: var(--accent);
+  word-break: break-all; line-height: 1.45; text-decoration: none;
+}
+.url-row a:active { text-decoration: underline; }
+.reason { font-size: 0.8rem; color: var(--ink-soft); }
+.caption-box { border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }
+.caption-head {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 8px 10px; background: var(--chip-bg);
+}
+.caption-head span {
+  font-size: 0.7rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-soft);
+}
+.copy-btn {
+  background: var(--surface); border: 1px solid var(--border); color: var(--ink);
+  border-radius: 7px; padding: 5px 11px; font-size: 0.76rem; font-weight: 600; cursor: pointer;
+}
+.copy-btn:focus-visible, .btn-open:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.copy-btn.copied { background: var(--good); border-color: var(--good); color: #fff; }
+textarea {
+  width: 100%; display: block; border: none; padding: 10px; font-size: 0.85rem; line-height: 1.55;
+  resize: vertical; min-height: 108px; font-family: inherit; background: var(--surface); color: var(--ink);
+}
+textarea.short { min-height: 60px; }
+textarea:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
+footer.note { margin-top: 22px; font-size: 0.76rem; color: var(--ink-soft); text-align: center; line-height: 1.6; }
+@media (prefers-reduced-motion: no-preference) {
+  .copy-btn { transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease; }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <div>
+    <p class="eyebrow">楽天ROOM 投稿リスト</p>
+    <h1>本日の選定</h1>
+  </div>
+  <span class="count">5件</span>
+</header>
+
+<h2 class="section-title">📦 商品(ROOM用、全5件)</h2>
+<div class="cards">
+<div class="card">
+  <div class="card-head">
+    <img src="https://thumbnail.image.rakuten.co.jp/@0_mall/amelion/cabinet/tainetsu/tainetsu_10off.jpg?_ex=128x128" alt="【24時間限定 全品10%OFFクーポン】 【cookpad掲載×TV放送×栄養管理士推薦】 耐熱ガラス 耐熱容器 保存容器 耐熱ガラス容器 フタをしたまま電子レンジ対応 TAINETSU BOX 各種セット 1位受賞 密閉 オーブン 冷凍 食器洗浄機 角型 BPAフリー 作り置きおかず 耐熱皿 ギフト" loading="lazy">
+    <div class="info">
+      
+      <span class="genre-chip"></span>
+      <div class="name">【24時間限定 全品10%OFFクーポン】 【cookpad掲載×TV放送×栄養管理士推薦】 耐熱ガラス 耐熱容器 保存容器 耐熱ガラス容器 フタをしたまま電子レンジ対応 TAINETSU BOX 各種セット 1位受賞 密閉 オーブン 冷凍 食器洗浄機 角型 BPAフリー 作り置きおかず 耐熱皿 ギフト</div>
+      <div class="meta-row">
+        <span class="price">¥1,680</span>
+        <span class="stars">★★★★★</span>
+        <span>4.57(1989件)</span>
+      </div>
+    </div>
+  </div>
+  <a class="btn-open" href="https://item.rakuten.co.jp/amelion/tainetsu8/" target="_blank" rel="noopener">商品ページを開く ↗</a>
+  <div class="url-row">
+    <a href="https://item.rakuten.co.jp/amelion/tainetsu8/" target="_blank" rel="noopener">https://item.rakuten.co.jp/amelion/tainetsu8/</a>
+    <button class="copy-btn" onclick="copyPlain(this, 'https://item.rakuten.co.jp/amelion/tainetsu8/')" type="button">URLコピー</button>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>楽天ROOM用</span>
+      <button class="copy-btn" onclick="copyText(this, 'room-0')" type="button">コピー</button>
+    </div>
+    <textarea id="room-0" readonly>🍱 1,680円でここまで使えるの、ちょっと反則じゃないですか。
+
+作り置きのタッパーを探してて見つけたんですが、フタしたまま電子レンジOK、オーブンOK、冷凍OK🧊、食洗機もOK。耐熱ガラスだから匂い移りなし、油汚れもさっと落ちる。
+
+共働きで週末に作り置きする家庭にはかなり刺さる仕様。ガラスなので「今日の残り、レンジかけていい?」ってそのまま出せる✨。
+
+レビュー1,989件・星4.57。注意点はガラスなので落とすと割れること。ただそれを差し引いても、この価格帯でこの使い勝手はなかなかないですよ。
+
+#耐熱ガラス保存容器 #作り置き #時短家事 #共働き家庭 #電子レンジ対応 #冷凍保存 #食洗機対応 #育児パパ #楽天購入品</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="card-head">
+    <img src="https://thumbnail.image.rakuten.co.jp/@0_mall/gajumarunoki/cabinet/rrm/sq/1227_sq_1.jpg?_ex=128x128" alt="積み木 音が鳴る 音いっぱいつみき ボリュームセット 名入れ無料 25ピース すべて音入り 木箱付き 1歳 誕生日プレゼント 木のおもちゃ 出産祝い エドインター GENI 木製 知育玩具 赤ちゃん 男の子 女の子 孫 クリスマス" loading="lazy">
+    <div class="info">
+      
+      <span class="genre-chip"></span>
+      <div class="name">積み木 音が鳴る 音いっぱいつみき ボリュームセット 名入れ無料 25ピース すべて音入り 木箱付き 1歳 誕生日プレゼント 木のおもちゃ 出産祝い エドインター GENI 木製 知育玩具 赤ちゃん 男の子 女の子 孫 クリスマス</div>
+      <div class="meta-row">
+        <span class="price">¥11,000</span>
+        <span class="stars">★★★★★</span>
+        <span>4.84(1825件)</span>
+      </div>
+    </div>
+  </div>
+  <a class="btn-open" href="https://item.rakuten.co.jp/gajumarunoki/ed825051/" target="_blank" rel="noopener">商品ページを開く ↗</a>
+  <div class="url-row">
+    <a href="https://item.rakuten.co.jp/gajumarunoki/ed825051/" target="_blank" rel="noopener">https://item.rakuten.co.jp/gajumarunoki/ed825051/</a>
+    <button class="copy-btn" onclick="copyPlain(this, 'https://item.rakuten.co.jp/gajumarunoki/ed825051/')" type="button">URLコピー</button>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>楽天ROOM用</span>
+      <button class="copy-btn" onclick="copyText(this, 'room-1')" type="button">コピー</button>
+    </div>
+    <textarea id="room-1" readonly>🎵 息子の1歳誕生日に何を贈るか迷って、これ選んだ話。
+
+25ピース全部に音が鳴る仕掛けが入ってて、積むたびにポロンポロン鳴る。最初は「うるさい…」ってなったんだけど、子が顔を輝かせて何度も積んで崩してを繰り返してるのを見たら、まあいいかってなった😅
+
+木のぬくもりがあって🌳、プラスチックのおもちゃとは持った感触が全然違う。舐めても安全な素材で、木箱付きなので片づけやすいのも助かってる。
+
+名入れ無料で出産祝いにも重宝。レビュー1,825件で星4.84、この数字はなかなかすごい。
+
+#音いっぱいつみき #エドインター #知育玩具 #木のおもちゃ #1歳プレゼント #出産祝い #育児パパ #積み木 #赤ちゃんおもちゃ</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="card-head">
+    <img src="https://thumbnail.image.rakuten.co.jp/@0_mall/nayami-kaiketu/cabinet/kikiann/nayami0208-1001-1s.jpg?_ex=128x128" alt="防災セット 1人用 HIH 防災グッズ 防災リュック ハザードランク36ダセット 法人用" loading="lazy">
+    <div class="info">
+      
+      <span class="genre-chip"></span>
+      <div class="name">防災セット 1人用 HIH 防災グッズ 防災リュック ハザードランク36ダセット 法人用</div>
+      <div class="meta-row">
+        <span class="price">¥15,800</span>
+        <span class="stars">★★★★★</span>
+        <span>4.6(3242件)</span>
+      </div>
+    </div>
+  </div>
+  <a class="btn-open" href="https://item.rakuten.co.jp/nayami-kaiketu/nayami0208-1001000/" target="_blank" rel="noopener">商品ページを開く ↗</a>
+  <div class="url-row">
+    <a href="https://item.rakuten.co.jp/nayami-kaiketu/nayami0208-1001000/" target="_blank" rel="noopener">https://item.rakuten.co.jp/nayami-kaiketu/nayami0208-1001000/</a>
+    <button class="copy-btn" onclick="copyPlain(this, 'https://item.rakuten.co.jp/nayami-kaiketu/nayami0208-1001000/')" type="button">URLコピー</button>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>楽天ROOM用</span>
+      <button class="copy-btn" onclick="copyText(this, 'room-2')" type="button">コピー</button>
+    </div>
+    <textarea id="room-2" readonly>⚠️ 「うちは大丈夫」って思ってる間が、一番危ない。
+
+子どもができてから防災グッズを見直そうと思いつつ、何年も後回しにしてた。HIH防災セットは1人用で中身36点。水・食料・救急用品・ラジオまで入って15,800円🎒。
+
+「自分で揃えればもっと安い」は確かにそう。でも揃えることを先延ばしにしてる時点で、その論理は破綻してる。セットで買って玄関に置いとく、それだけで気持ちが全然違う。
+
+レビュー3,242件・星4.6。子どもがいる家庭で「まだ買ってない」なら、今月中に動いたほうがいいと思う💡。
+
+#防災セット #防災グッズ #防災リュック #育児パパ #共働き家庭 #防災対策 #備え #子育て #楽天購入品</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="card-head">
+    <img src="https://thumbnail.image.rakuten.co.jp/@0_mall/roomy/cabinet/500cart_all/500cart_11g/p10n-7/mhe2006-oy000-1_gt01.jpg?_ex=128x128" alt="販売店舗限定 ヨーグルトメーカー ビタントニオ【選べる特典＆レシピ付き】飲むヨーグルト 甘酒 牛乳パック レシピ 豆乳 カスピ海ヨーグルト 豆乳 菌活 牛乳 自家製ヨーグルト 低温調理 低温調理器 塩麹 発酵食品 簡単 調理家電 VYG-30［ Vitantonio ヨーグルトメーカー ］" loading="lazy">
+    <div class="info">
+      
+      <span class="genre-chip"></span>
+      <div class="name">販売店舗限定 ヨーグルトメーカー ビタントニオ【選べる特典＆レシピ付き】飲むヨーグルト 甘酒 牛乳パック レシピ 豆乳 カスピ海ヨーグルト 豆乳 菌活 牛乳 自家製ヨーグルト 低温調理 低温調理器 塩麹 発酵食品 簡単 調理家電 VYG-30［ Vitantonio ヨーグルトメーカー ］</div>
+      <div class="meta-row">
+        <span class="price">¥7,920</span>
+        <span class="stars">★★★★★</span>
+        <span>4.67(1987件)</span>
+      </div>
+    </div>
+  </div>
+  <a class="btn-open" href="https://item.rakuten.co.jp/roomy/mtb17aug21h01/" target="_blank" rel="noopener">商品ページを開く ↗</a>
+  <div class="url-row">
+    <a href="https://item.rakuten.co.jp/roomy/mtb17aug21h01/" target="_blank" rel="noopener">https://item.rakuten.co.jp/roomy/mtb17aug21h01/</a>
+    <button class="copy-btn" onclick="copyPlain(this, 'https://item.rakuten.co.jp/roomy/mtb17aug21h01/')" type="button">URLコピー</button>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>楽天ROOM用</span>
+      <button class="copy-btn" onclick="copyText(this, 'room-3')" type="button">コピー</button>
+    </div>
+    <textarea id="room-3" readonly>🥛 市販のヨーグルト代、じわじわくるなと思ってた。
+
+毎朝子ども用に400gパック開けてたんだけど、週に2〜3本消費するとけっこうな額になる。でビタントニオのヨーグルトメーカーを導入したら、牛乳パックそのままセットして8〜9時間後に完成⏰。
+
+甘酒・豆乳ヨーグルト・カスピ海ヨーグルトも作れて、低温調理器としても使える。7,920円の元がいつ取れるか計算したら、わりとすぐだった😋。
+
+みんなは自家製ヨーグルト、試したことある? レシピ付き・特典付きで楽天だとお得な版が買えます。
+
+#ヨーグルトメーカー #ビタントニオ #VYG30 #自家製ヨーグルト #発酵食品 #時短調理家電 #共働き家庭 #育児パパ #家計管理</textarea>
+  </div>
+</div>
+<div class="card featured">
+  <div class="card-head">
+    <img src="https://thumbnail.image.rakuten.co.jp/@0_mall/netbaby/cabinet/393/400393.jpg?_ex=128x128" alt="【1種類を選べる】日本育児ベビーズゲイト123 ローステップ type(1個 or 1セット)【日本育児】[ベビーゲート セーフティゲート 拡張付き 突っ張り]" loading="lazy">
+    <div class="info">
+      <span class="featured-badge">🔥 本日のThreads/Xピックアップ</span>
+      <span class="genre-chip"></span>
+      <div class="name">【1種類を選べる】日本育児ベビーズゲイト123 ローステップ type(1個 or 1セット)【日本育児】[ベビーゲート セーフティゲート 拡張付き 突っ張り]</div>
+      <div class="meta-row">
+        <span class="price">¥5,918</span>
+        <span class="stars">★★★★☆</span>
+        <span>4.36(13337件)</span>
+      </div>
+    </div>
+  </div>
+  <a class="btn-open" href="https://item.rakuten.co.jp/netbaby/10005791/" target="_blank" rel="noopener">商品ページを開く ↗</a>
+  <div class="url-row">
+    <a href="https://item.rakuten.co.jp/netbaby/10005791/" target="_blank" rel="noopener">https://item.rakuten.co.jp/netbaby/10005791/</a>
+    <button class="copy-btn" onclick="copyPlain(this, 'https://item.rakuten.co.jp/netbaby/10005791/')" type="button">URLコピー</button>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>楽天ROOM用</span>
+      <button class="copy-btn" onclick="copyText(this, 'room-4')" type="button">コピー</button>
+    </div>
+    <textarea id="room-4" readonly>🚧 ハイハイが始まった瞬間から、急にどこにでも行くんですよね。
+
+キッチン・階段・テレビ台まわり、一気に危険地帯になって「ちょっと待って!」が追いつかなくなる😰。
+
+日本育児のベビーズゲイト123、突っ張り式で工事不要・拡張パネル付きでドア幅に合わせて調整できる。ローステップだから大人がまたぐのも苦にならない。5,918円でここまで使い勝手がいい✅。
+
+レビューが13,337件まで積み上がってるのが、もはや育児家庭のスタンダードになってる証拠な気がする。
+
+#ベビーゲート #日本育児 #ベビーズゲイト123 #赤ちゃんの安全 #育児パパ #ハイハイ期 #共働き家庭 #突っ張りゲート #楽天購入品</textarea>
+  </div>
+  <p class="reason">🔥 今日のピックアップ理由: レビュー13,337件という突出した実績と、ハイハイ期の転落・侵入を防ぐ「悩み解決度の強さ」が育児パパペルソナに直撃する一方、5,918円という手が届く価格帯が購買意欲を後押しするため。</p>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>Threads用</span>
+      <button class="copy-btn" onclick="copyText(this, 'threads-0')" type="button">コピー</button>
+    </div>
+    <textarea id="threads-0" readonly>ハイハイ始まった瞬間、急にどこにでも行くようになるんよな。
+
+キッチン・階段・テレビ台。「ちょっと待って」が追いつかない。
+
+日本育児のベビーズゲイト、あのレビュー数がえぐいことになってて、まあそれだけ買ってる家庭が多いってことだよな。突っ張りで工事なし、5,918円。
+
+使い始めてから「危ない!」って叫ぶ回数が体感で半分くらいになった気がする。ローステップだから大人のまたぐストレスがほぼないのも地味にでかい。
+
+#ベビーゲート #育児パパ #共働き家庭 #楽天アフィリエイト</textarea>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>X用</span>
+      <button class="copy-btn" onclick="copyText(this, 'x-0')" type="button">コピー</button>
+    </div>
+    <textarea id="x-0" readonly>ハイハイ始まった瞬間、急にどこにでも行くやつ。
+
+キッチン・階段・テレビ台。「ちょっと待って」が追いつかない。
+
+日本育児ベビーズゲイト、突っ張り・5,918円。レビュー13,337件。
+
+使い始めてから「危ない!」って叫ぶ回数が減った。
+
+#ベビーゲート #育児パパ #PR</textarea>
+  </div>
+</div>
+</div>
+
+<h2 class="section-title">💬 今日のあるある投稿ネタ(商品リンクなし)</h2>
+<div class="cards">
+<div class="card">
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>あるある投稿 #1</span>
+      <button class="copy-btn" onclick="copyText(this, 'daily-0')" type="button">コピー</button>
+    </div>
+    <textarea id="daily-0" class="short" readonly>布団に下ろした瞬間に泣くやつ、うちだけじゃないよな。
+あの背中スイッチの感度の良さ、どこで鍛えてきたんだろう。</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>あるある投稿 #2</span>
+      <button class="copy-btn" onclick="copyText(this, 'daily-1')" type="button">コピー</button>
+    </div>
+    <textarea id="daily-1" class="short" readonly>かわいい寝顔を撮ったら、背景にオムツと脱ぎ捨てたタオルが堂々と写り込んでた。誰に見せるんだこれ😅 #育児パパ</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>あるある投稿 #3</span>
+      <button class="copy-btn" onclick="copyText(this, 'daily-2')" type="button">コピー</button>
+    </div>
+    <textarea id="daily-2" class="short" readonly>子の朝ごはんだけちゃんとしてる。野菜あって、フルーツあって、主食あって。親の朝食は昨日の残り物のみ。この非対称さ、誰か共感して。 #共働き家庭</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>あるある投稿 #4</span>
+      <button class="copy-btn" onclick="copyText(this, 'daily-3')" type="button">コピー</button>
+    </div>
+    <textarea id="daily-3" class="short" readonly>夜泣き対応した回数、どう考えても俺の方が多いと思ってるんだけど、パートナーに言うと「記憶にない」って返ってくる。記憶にないのに対応したことになってるのはなんで。</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>あるある投稿 #5</span>
+      <button class="copy-btn" onclick="copyText(this, 'daily-4')" type="button">コピー</button>
+    </div>
+    <textarea id="daily-4" class="short" readonly>子に強い言い方してしまう日の共通点、自分なりに分析してみた
+・睡眠4時間以下
+・朝に予定外のことが起きた
+・水分あんまり飲んでない
+原因わかっても防ぎきれないのが難しいんだよな #育児パパ</textarea>
+  </div>
+</div>
+</div>
+
+<footer class="note">商品ページを確認し、投稿文をコピーして手動で投稿してください。<br>Threads/Xの商品紹介は1日1件・あるある投稿と織り交ぜてスパム判定を避けてください。<br>価格・レビューは選定時点の実データです。</footer>
+</div>
+<script>
+function flash(btn) {
+  const original = btn.textContent;
+  btn.textContent = 'コピーしました';
+  btn.classList.add('copied');
+  setTimeout(() => { btn.textContent = original; btn.classList.remove('copied'); }, 1500);
+}
+function copyText(btn, id) {
+  const el = document.getElementById(id);
+  el.select();
+  el.setSelectionRange(0, 999999);
+  navigator.clipboard.writeText(el.value).then(() => flash(btn)).catch(() => {
+    try { document.execCommand('copy'); flash(btn); } catch (e) {}
+  });
+}
+function copyPlain(btn, text) {
+  navigator.clipboard.writeText(text).then(() => flash(btn)).catch(() => {
+    const t = document.createElement('textarea');
+    t.value = text; document.body.appendChild(t); t.select();
+    try { document.execCommand('copy'); flash(btn); } catch (e) {}
+    document.body.removeChild(t);
+  });
+}
+</script>
+</body>
+</html>

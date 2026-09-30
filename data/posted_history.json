@@ -2746,6 +2746,53 @@
       "channels": [
         "room"
       ]
+    },
+    {
+      "itemCode": "amelion:10000115",
+      "itemName": "耐熱ガラス 耐熱容器 保存容器 耐熱ガラス容器 フタをしたまま電子レンジ対応 TAINETSU BOX 各種セット 1位",
+      "date": null,
+      "slot": null,
+      "channels": [
+        "room"
+      ]
+    },
+    {
+      "itemCode": "gajumarunoki:10001116",
+      "itemName": "積み木 音が鳴る 音いっぱいつみき ボリュームセット 名入れ無料 25ピース すべて音入り 木箱付き 1歳 誕生日プレゼ",
+      "date": null,
+      "slot": null,
+      "channels": [
+        "room"
+      ]
+    },
+    {
+      "itemCode": "nayami-kaiketu:10000630",
+      "itemName": "防災セット 1人用 HIH 防災グッズ 防災リュック ハザードランク36ダセット 法人用",
+      "date": null,
+      "slot": null,
+      "channels": [
+        "room"
+      ]
+    },
+    {
+      "itemCode": "roomy:10016404",
+      "itemName": "販売店舗限定 ヨーグルトメーカー ビタントニオ飲むヨーグルト 甘酒 牛乳パック レシピ 豆乳 カスピ海ヨーグルト 豆乳 ",
+      "date": null,
+      "slot": null,
+      "channels": [
+        "room"
+      ]
+    },
+    {
+      "itemCode": "netbaby:10005791",
+      "itemName": "日本育児ベビーズゲイト123 ローステップ type(1個 or 1セット)",
+      "date": null,
+      "slot": null,
+      "channels": [
+        "room",
+        "threads",
+        "x"
+      ]
     }
   ]
 }
