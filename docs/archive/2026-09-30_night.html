@@ -1,0 +1,439 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>本日の選定 - 楽天ROOM投稿リスト</title>
+<style>
+:root {
+  --bg: #f6f3ee;
+  --surface: #ffffff;
+  --ink: #23211d;
+  --ink-soft: #6b6459;
+  --accent: #a8382c;
+  --accent-ink: #fff6f2;
+  --good: #3f7d58;
+  --border: #e4ddd2;
+  --chip-bg: #efe8db;
+  color-scheme: light dark;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #16140f;
+    --surface: #211f1a;
+    --ink: #ece7dc;
+    --ink-soft: #a89e8d;
+    --accent: #e0685a;
+    --accent-ink: #1c0f0c;
+    --good: #6fb98a;
+    --border: #35322a;
+    --chip-bg: #2a2721;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #16140f; --surface: #211f1a; --ink: #ece7dc; --ink-soft: #a89e8d;
+  --accent: #e0685a; --accent-ink: #1c0f0c; --good: #6fb98a; --border: #35322a; --chip-bg: #2a2721;
+}
+:root[data-theme="light"] {
+  --bg: #f6f3ee; --surface: #ffffff; --ink: #23211d; --ink-soft: #6b6459;
+  --accent: #a8382c; --accent-ink: #fff6f2; --good: #3f7d58; --border: #e4ddd2; --chip-bg: #efe8db;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0; background: var(--bg); color: var(--ink);
+  font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Yu Gothic Medium", "Noto Sans JP", sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+.wrap { max-width: 640px; margin: 0 auto; padding: 0 16px 40px; }
+header.top {
+  position: sticky; top: 0; z-index: 5; background: var(--bg);
+  padding: 18px 16px 12px; border-bottom: 1px solid var(--border);
+  display: flex; align-items: baseline; justify-content: space-between; gap: 12px;
+}
+header.top .eyebrow {
+  font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-soft);
+  font-weight: 600; margin: 0 0 2px;
+}
+header.top h1 { font-size: 1.25rem; margin: 0; font-weight: 700; letter-spacing: -0.01em; }
+header.top .count {
+  background: var(--chip-bg); color: var(--ink-soft); font-size: 0.78rem; font-weight: 600;
+  padding: 5px 10px; border-radius: 999px; white-space: nowrap;
+}
+h2.section-title { font-size: 0.95rem; font-weight: 700; margin: 24px 0 12px; }
+.cards { display: flex; flex-direction: column; gap: 16px; margin-top: 18px; }
+.card {
+  background: var(--surface); border: 1px solid var(--border); border-radius: 16px;
+  padding: 16px; display: flex; flex-direction: column; gap: 12px;
+}
+.card.featured { border-color: var(--accent); border-width: 2px; }
+.featured-badge {
+  align-self: flex-start; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.03em;
+  color: var(--accent-ink); background: var(--accent); padding: 3px 9px; border-radius: 999px;
+}
+.card-head { display: flex; gap: 12px; }
+.card-head img {
+  width: 76px; height: 76px; object-fit: cover; border-radius: 10px;
+  border: 1px solid var(--border); background: var(--chip-bg); flex-shrink: 0;
+}
+.card-head .info { min-width: 0; flex: 1; display: flex; flex-direction: column; gap: 4px; }
+.genre-chip {
+  align-self: flex-start; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.03em;
+  color: var(--accent); background: color-mix(in srgb, var(--accent) 12%, transparent);
+  padding: 2px 8px; border-radius: 999px;
+}
+.name {
+  font-weight: 600; font-size: 0.94rem; line-height: 1.4;
+  display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
+}
+.meta-row { display: flex; align-items: baseline; gap: 8px; font-size: 0.82rem; color: var(--ink-soft); }
+.price { font-variant-numeric: tabular-nums; color: var(--ink); font-weight: 700; font-size: 1.05rem; }
+.stars { letter-spacing: -1px; color: var(--accent); }
+.btn-open {
+  display: flex; align-items: center; justify-content: center; gap: 6px;
+  background: var(--accent); color: var(--accent-ink); border: none; border-radius: 11px;
+  padding: 12px; font-weight: 700; font-size: 0.92rem; text-decoration: none;
+}
+.btn-open:active { opacity: 0.85; }
+.url-row {
+  display: flex; align-items: center; gap: 8px;
+  background: var(--chip-bg); border-radius: 9px; padding: 8px 10px;
+}
+.url-row a {
+  flex: 1; min-width: 0; font-size: 0.76rem; color: var(--accent);
+  word-break: break-all; line-height: 1.45; text-decoration: none;
+}
+.url-row a:active { text-decoration: underline; }
+.reason { font-size: 0.8rem; color: var(--ink-soft); }
+.caption-box { border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }
+.caption-head {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 8px 10px; background: var(--chip-bg);
+}
+.caption-head span {
+  font-size: 0.7rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-soft);
+}
+.copy-btn {
+  background: var(--surface); border: 1px solid var(--border); color: var(--ink);
+  border-radius: 7px; padding: 5px 11px; font-size: 0.76rem; font-weight: 600; cursor: pointer;
+}
+.copy-btn:focus-visible, .btn-open:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.copy-btn.copied { background: var(--good); border-color: var(--good); color: #fff; }
+textarea {
+  width: 100%; display: block; border: none; padding: 10px; font-size: 0.85rem; line-height: 1.55;
+  resize: vertical; min-height: 108px; font-family: inherit; background: var(--surface); color: var(--ink);
+}
+textarea.short { min-height: 60px; }
+textarea:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
+footer.note { margin-top: 22px; font-size: 0.76rem; color: var(--ink-soft); text-align: center; line-height: 1.6; }
+@media (prefers-reduced-motion: no-preference) {
+  .copy-btn { transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease; }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <div>
+    <p class="eyebrow">楽天ROOM 投稿リスト</p>
+    <h1>本日の選定</h1>
+  </div>
+  <span class="count">5件</span>
+</header>
+
+<h2 class="section-title">📦 商品(ROOM用、全5件)</h2>
+<div class="cards">
+<div class="card">
+  <div class="card-head">
+    <img src="https://thumbnail.image.rakuten.co.jp/@0_mall/bio-fujisawa/cabinet/imgrc0176477942.jpg?_ex=128x128" alt="サンホワイトP-1 50g 日興リカ チューブタイプ チューブ 乾燥肌 敏感肌 保湿 高純度 白色ワセリン 無添加 スキンケア 赤ちゃん ベビー リップケア ハンドクリーム" loading="lazy">
+    <div class="info">
+      
+      <span class="genre-chip"></span>
+      <div class="name">サンホワイトP-1 50g 日興リカ チューブタイプ チューブ 乾燥肌 敏感肌 保湿 高純度 白色ワセリン 無添加 スキンケア 赤ちゃん ベビー リップケア ハンドクリーム</div>
+      <div class="meta-row">
+        <span class="price">¥1,660</span>
+        <span class="stars">★★★★★</span>
+        <span>4.75(912件)</span>
+      </div>
+    </div>
+  </div>
+  <a class="btn-open" href="https://item.rakuten.co.jp/bio-fujisawa/10012-2/" target="_blank" rel="noopener">商品ページを開く ↗</a>
+  <div class="url-row">
+    <a href="https://item.rakuten.co.jp/bio-fujisawa/10012-2/" target="_blank" rel="noopener">https://item.rakuten.co.jp/bio-fujisawa/10012-2/</a>
+    <button class="copy-btn" onclick="copyPlain(this, 'https://item.rakuten.co.jp/bio-fujisawa/10012-2/')" type="button">URLコピー</button>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>楽天ROOM用</span>
+      <button class="copy-btn" onclick="copyText(this, 'room-0')" type="button">コピー</button>
+    </div>
+    <textarea id="room-0" readonly>💡1,660円でここまでのワセリンが手に入るとは思わなかった🫢
+
+高純度の白色ワセリン、チューブタイプで使いやすい。赤ちゃんの肌にも使えるレベルの無添加処方なので、乾燥が気になるこの季節に重宝してる✨
+
+リップ・ハンド・赤ちゃんの保湿と一本で使い回せるのがいい。朝の支度のバタバタな時間でもサッと使える手軽さが嬉しい👶
+
+レビュー912件で星4.75。これだけ評価高いのに価格がずっとこのままなの、本当にありがたい。
+
+注意点はチューブが少し固めなこと。でも高純度ゆえなので納得。乾燥肌の方にはまずこれを試してほしい🌿
+
+#ワセリン #サンホワイト #ベビーケア #育児パパ #共働き家庭 #乾燥肌対策 #スキンケア</textarea>
+  </div>
+</div>
+<div class="card featured">
+  <div class="card-head">
+    <img src="https://thumbnail.image.rakuten.co.jp/@0_mall/thetoplandgiftstore/cabinet/product_img/shampoo_badge.jpg?_ex=128x128" alt="【48時間限定 送料無料】ママベビー シャンプー｜創業80年製薬会社発の オーガニック 品質｜2〜12歳の11つの無添加処方 [ノンシリコン パラベンフリー アルコールフリー] 赤ちゃん シャンプー キッズ ＆ ベビー ソープ アンド ママ キッズ" loading="lazy">
+    <div class="info">
+      <span class="featured-badge">🔥 本日のThreads/Xピックアップ</span>
+      <span class="genre-chip"></span>
+      <div class="name">【48時間限定 送料無料】ママベビー シャンプー｜創業80年製薬会社発の オーガニック 品質｜2〜12歳の11つの無添加処方 [ノンシリコン パラベンフリー アルコールフリー] 赤ちゃん シャンプー キッズ ＆ ベビー ソープ アンド ママ キッズ</div>
+      <div class="meta-row">
+        <span class="price">¥1,980</span>
+        <span class="stars">★★★★★</span>
+        <span>4.62(2413件)</span>
+      </div>
+    </div>
+  </div>
+  <a class="btn-open" href="https://item.rakuten.co.jp/thetoplandgiftstore/lmb_4571194363074/" target="_blank" rel="noopener">商品ページを開く ↗</a>
+  <div class="url-row">
+    <a href="https://item.rakuten.co.jp/thetoplandgiftstore/lmb_4571194363074/" target="_blank" rel="noopener">https://item.rakuten.co.jp/thetoplandgiftstore/lmb_4571194363074/</a>
+    <button class="copy-btn" onclick="copyPlain(this, 'https://item.rakuten.co.jp/thetoplandgiftstore/lmb_4571194363074/')" type="button">URLコピー</button>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>楽天ROOM用</span>
+      <button class="copy-btn" onclick="copyText(this, 'room-1')" type="button">コピー</button>
+    </div>
+    <textarea id="room-1" readonly>🛁子どものシャンプー、なんとなく選んでたけど調べたら成分表がちょっと怖かった。
+
+ちゃんと探して見つけたのがこれ。創業80年の製薬会社が作ったオーガニック品質で、パラベンフリー・アルコールフリー・ノンシリコン。11つの無添加処方は、敏感肌のうちの子にはちょうどいい✨
+
+2〜12歳まで使えるから、兄弟がいる家庭でもシャンプーを使い分けなくていいのが地味に楽👶
+
+1,980円でレビュー2,413件・星4.62、この数字がすごく正直。
+
+頭皮ケアを気にし始めた親御さんに一度試してみてほしい🌿
+
+#ママベビーシャンプー #育児パパ #共働き家庭 #オーガニック #無添加 #キッズシャンプー #ベビーシャンプー</textarea>
+  </div>
+  <p class="reason">🔥 今日のピックアップ理由: レビュー2,413件が今回5件中最多で社会的証明が最も強く、1,980円という価格とオーガニック無添加処方の組み合わせが育児パパペルソナに最も刺さりやすいと判断した。</p>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>Threads用</span>
+      <button class="copy-btn" onclick="copyText(this, 'threads-0')" type="button">コピー</button>
+    </div>
+    <textarea id="threads-0" readonly>子どもにシャンプー、なんとなく選んでない?
+
+成分ちゃんと見たら「これでよかったのか」ってなった経験、我が家もあって。
+
+今使ってるのは創業80年の製薬会社が作ったやつ。パラベンフリー・アルコールフリー・ノンシリコン、11個の無添加処方🌿
+
+2〜12歳まで使えるから兄弟いても1本でOKなのがめちゃ助かってる。1,980円でこれは正直コスパいいと思う。
+
+レビューがマジで多いのと、製薬会社発ってのが地味に安心感ある
+
+#育児パパ #共働き家庭 #PR</textarea>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>X用</span>
+      <button class="copy-btn" onclick="copyText(this, 'x-0')" type="button">コピー</button>
+    </div>
+    <textarea id="x-0" readonly>子どもにシャンプー、なんとなく選んでない?
+
+成分ちゃんと見たら「これでよかったのか」ってなった。
+
+創業80年の製薬会社発のオーガニック品質、無添加11処方🌿 2〜12歳まで使えて1,980円。兄弟いる家庭にはありがたい
+
+製薬会社製ってのが地味に安心なんよな
+
+#育児パパ #共働き家庭 #PR</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="card-head">
+    <img src="https://thumbnail.image.rakuten.co.jp/@0_mall/irodorikukan/cabinet/skater3/23510138_main2.jpg?_ex=128x128" alt="スケーター 水筒 キッズ 子供 直飲み 保冷 超軽量 ステンレスボトル SDC4 KSDC4 水筒 カバ 付き ワンタッチ ランチグッズ おしゃれ ディズニー 【TOKU】" loading="lazy">
+    <div class="info">
+      
+      <span class="genre-chip"></span>
+      <div class="name">スケーター 水筒 キッズ 子供 直飲み 保冷 超軽量 ステンレスボトル SDC4 KSDC4 水筒 カバ 付き ワンタッチ ランチグッズ おしゃれ ディズニー 【TOKU】</div>
+      <div class="meta-row">
+        <span class="price">¥2,780</span>
+        <span class="stars">★★★★★</span>
+        <span>4.56(571件)</span>
+      </div>
+    </div>
+  </div>
+  <a class="btn-open" href="https://item.rakuten.co.jp/irodorikukan/skdc4-1/" target="_blank" rel="noopener">商品ページを開く ↗</a>
+  <div class="url-row">
+    <a href="https://item.rakuten.co.jp/irodorikukan/skdc4-1/" target="_blank" rel="noopener">https://item.rakuten.co.jp/irodorikukan/skdc4-1/</a>
+    <button class="copy-btn" onclick="copyPlain(this, 'https://item.rakuten.co.jp/irodorikukan/skdc4-1/')" type="button">URLコピー</button>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>楽天ROOM用</span>
+      <button class="copy-btn" onclick="copyText(this, 'room-2')" type="button">コピー</button>
+    </div>
+    <textarea id="room-2" readonly>🚰2,780円でステンレス・超軽量・ワンタッチ開閉が全部揃うのか、と正直驚いた。
+
+スケーターの水筒は子ども向けの鉄板ブランド。直飲みタイプで保冷機能あり、カバー付きで落下に強い。幼稚園から小学生まで長く使えるサイズ感✨
+
+朝のお茶を入れてそのままカバンに突っ込める手軽さ、共働き家庭には本当に助かる🎒
+
+レビュー571件・星4.56。ディズニーデザインもあるので子どもが自分から持ちたがるのがいい。
+
+注意点として直飲みのみなので、コップ飲みを習慣にしたい場合は別を選んだほうがいい👌
+
+#スケーター水筒 #キッズ水筒 #育児パパ #共働き家庭 #入園準備 #子ども水筒 #ランチグッズ</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="card-head">
+    <img src="https://thumbnail.image.rakuten.co.jp/@0_mall/queenroom88/cabinet/11388266/11388267/imgrc0122285712.jpg?_ex=128x128" alt="送料無料!【選べる種類・数量】ミルボン エルジューダ エマルジョン エマルジョン＋ MO FO グレイスオンセラム グレイスオンエマルジョン ブリーチケアセラム ブリーチケアジェルセラム フリッズフィクサーエマルジョン フリッズフィクサーエマルジョン＋ 120ml" loading="lazy">
+    <div class="info">
+      
+      <span class="genre-chip"></span>
+      <div class="name">送料無料!【選べる種類・数量】ミルボン エルジューダ エマルジョン エマルジョン＋ MO FO グレイスオンセラム グレイスオンエマルジョン ブリーチケアセラム ブリーチケアジェルセラム フリッズフィクサーエマルジョン フリッズフィクサーエマルジョン＋ 120ml</div>
+      <div class="meta-row">
+        <span class="price">¥1,954</span>
+        <span class="stars">★★★★★</span>
+        <span>4.66(1356件)</span>
+      </div>
+    </div>
+  </div>
+  <a class="btn-open" href="https://item.rakuten.co.jp/queenroom88/102943/" target="_blank" rel="noopener">商品ページを開く ↗</a>
+  <div class="url-row">
+    <a href="https://item.rakuten.co.jp/queenroom88/102943/" target="_blank" rel="noopener">https://item.rakuten.co.jp/queenroom88/102943/</a>
+    <button class="copy-btn" onclick="copyPlain(this, 'https://item.rakuten.co.jp/queenroom88/102943/')" type="button">URLコピー</button>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>楽天ROOM用</span>
+      <button class="copy-btn" onclick="copyText(this, 'room-3')" type="button">コピー</button>
+    </div>
+    <textarea id="room-3" readonly>💆朝の時間がなさすぎて、ドライヤーの後なんもできてなかった時期があった。
+
+試しに使い始めたのがエルジューダ。サロン向けブランドのミルボンなんだけど、楽天だと1,954円で買える。サロンで勧められたやつを自分でリピート購入できるのが嬉しい✨
+
+保湿と広がり抑制が同時にできる。洗い流さないトリートメントとして、タオルドライ後にほんの少しなじませるだけ。
+
+レビューめっちゃ多くて評価も安定してる。共働きで朝の1分が惜しい人にはちょうどいい選択かも🌿
+
+#ミルボン #エルジューダ #ヘアケア #育児パパ #共働き家庭 #洗い流さないトリートメント #時短美容</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="card-head">
+    <img src="https://thumbnail.image.rakuten.co.jp/@0_mall/inlife-bungustore/cabinet/doubutu01/09822782/pet1.jpg?_ex=128x128" alt="【動物シリーズ1】お名前スタンプ なまえスタンプ 名前はんこ 浸透印 スタンプ シャチハタ 布用 布 オーダー 保育園 おむつ 小学校 アルファベット 介護 漢字 油性 洗濯 耐水 かわいい 靴下 キャラクター 油性 インク 大人 子ども 即日出荷 入園 入学 漢字 祝い 新生活" loading="lazy">
+    <div class="info">
+      
+      <span class="genre-chip"></span>
+      <div class="name">【動物シリーズ1】お名前スタンプ なまえスタンプ 名前はんこ 浸透印 スタンプ シャチハタ 布用 布 オーダー 保育園 おむつ 小学校 アルファベット 介護 漢字 油性 洗濯 耐水 かわいい 靴下 キャラクター 油性 インク 大人 子ども 即日出荷 入園 入学 漢字 祝い 新生活</div>
+      <div class="meta-row">
+        <span class="price">¥1,890</span>
+        <span class="stars">★★★★☆</span>
+        <span>4.39(537件)</span>
+      </div>
+    </div>
+  </div>
+  <a class="btn-open" href="https://item.rakuten.co.jp/inlife-bungustore/doubutu01/" target="_blank" rel="noopener">商品ページを開く ↗</a>
+  <div class="url-row">
+    <a href="https://item.rakuten.co.jp/inlife-bungustore/doubutu01/" target="_blank" rel="noopener">https://item.rakuten.co.jp/inlife-bungustore/doubutu01/</a>
+    <button class="copy-btn" onclick="copyPlain(this, 'https://item.rakuten.co.jp/inlife-bungustore/doubutu01/')" type="button">URLコピー</button>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>楽天ROOM用</span>
+      <button class="copy-btn" onclick="copyText(this, 'room-4')" type="button">コピー</button>
+    </div>
+    <textarea id="room-4" readonly>🖊️入園前に名前書きを甘く見てたら地獄だった。
+
+靴下・おむつ・上着・タオル…全部に書かないといけないやつ。1枚1枚ペンで書いてたら手首終わる。
+
+このお名前スタンプはシャチハタタイプの浸透印で、布にも油性インクで押せる✨動物柄がかわいいので子どもも喜んだ🐾
+
+漢字・アルファベット・ひらがな対応で、入園から小学校まで長く使えるのも◎
+
+1,890円でこの作業量が劇的に減るなら安い。名前書き地獄を経験する前に買ってほしい。
+
+#お名前スタンプ #入園準備 #育児パパ #共働き家庭 #名前付け #小学校準備 #時短育児</textarea>
+  </div>
+</div>
+</div>
+
+<h2 class="section-title">💬 今日のあるある投稿ネタ(商品リンクなし)</h2>
+<div class="cards">
+<div class="card">
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>あるある投稿 #1</span>
+      <button class="copy-btn" onclick="copyText(this, 'daily-0')" type="button">コピー</button>
+    </div>
+    <textarea id="daily-0" class="short" readonly>夕方17時になって「今日の夜ごはん何にしよう」って考えてる、毎日。一回も事前に決めたことない気がする</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>あるある投稿 #2</span>
+      <button class="copy-btn" onclick="copyText(this, 'daily-1')" type="button">コピー</button>
+    </div>
+    <textarea id="daily-1" class="short" readonly>おむつ替えてたら即タイミング合わせてくる子、才能がある🐣</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>あるある投稿 #3</span>
+      <button class="copy-btn" onclick="copyText(this, 'daily-2')" type="button">コピー</button>
+    </div>
+    <textarea id="daily-2" class="short" readonly>保育園の連絡帳の「週末の様子」欄、書くことが毎回思い浮かばない。週末の記憶が薄すぎてほぼ白紙になる</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>あるある投稿 #4</span>
+      <button class="copy-btn" onclick="copyText(this, 'daily-3')" type="button">コピー</button>
+    </div>
+    <textarea id="daily-3" class="short" readonly>子どもに「パパありがとう」って言ってもらえた日でも22時に片付けてて、なんか疲れてる😮‍💨</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>あるある投稿 #5</span>
+      <button class="copy-btn" onclick="copyText(this, 'daily-4')" type="button">コピー</button>
+    </div>
+    <textarea id="daily-4" class="short" readonly>夜泣きの記憶、俺はほとんどないのに妻はめちゃくちゃ覚えてる。同じ夜を過ごしてたはずなのに</textarea>
+  </div>
+</div>
+</div>
+
+<footer class="note">商品ページを確認し、投稿文をコピーして手動で投稿してください。<br>Threads/Xの商品紹介は1日1件・あるある投稿と織り交ぜてスパム判定を避けてください。<br>価格・レビューは選定時点の実データです。</footer>
+</div>
+<script>
+function flash(btn) {
+  const original = btn.textContent;
+  btn.textContent = 'コピーしました';
+  btn.classList.add('copied');
+  setTimeout(() => { btn.textContent = original; btn.classList.remove('copied'); }, 1500);
+}
+function copyText(btn, id) {
+  const el = document.getElementById(id);
+  el.select();
+  el.setSelectionRange(0, 999999);
+  navigator.clipboard.writeText(el.value).then(() => flash(btn)).catch(() => {
+    try { document.execCommand('copy'); flash(btn); } catch (e) {}
+  });
+}
+function copyPlain(btn, text) {
+  navigator.clipboard.writeText(text).then(() => flash(btn)).catch(() => {
+    const t = document.createElement('textarea');
+    t.value = text; document.body.appendChild(t); t.select();
+    try { document.execCommand('copy'); flash(btn); } catch (e) {}
+    document.body.removeChild(t);
+  });
+}
+</script>
+</body>
+</html>
