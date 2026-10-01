@@ -2793,6 +2793,53 @@
         "threads",
         "x"
       ]
+    },
+    {
+      "itemCode": "soopsori:10000002",
+      "itemName": "積み木 1歳 誕生日プレゼント 音が鳴る 木のおもちゃ 型はめパズル 赤ちゃん 積み木セット 22P 木箱 名前入り 型",
+      "date": "2026-10-01",
+      "slot": "night",
+      "channels": [
+        "room"
+      ]
+    },
+    {
+      "itemCode": "pigeon-shop:10001775",
+      "itemName": "母乳実感哺乳びん ガラス | 0ヵ月頃〜　ピジョン 哺乳瓶 ほ乳瓶 哺乳 ガラス 赤ちゃん 赤ちゃん用 赤ちゃん用品 ベ",
+      "date": "2026-10-01",
+      "slot": "night",
+      "channels": [
+        "room"
+      ]
+    },
+    {
+      "itemCode": "omutsufactory:10003946",
+      "itemName": "10月3日(土) 出産祝い ベビー 食器セット 日本製 離乳食 1位 mikihouse ミキハウス 箱付 テーブルウェ",
+      "date": "2026-10-01",
+      "slot": "night",
+      "channels": [
+        "room"
+      ]
+    },
+    {
+      "itemCode": "4cal:10011794",
+      "itemName": "mushie ムシエ おもちゃ スタッキングカップ Stacking cups toy 赤ちゃん 6ヶ月 0歳 1歳 2",
+      "date": "2026-10-01",
+      "slot": "night",
+      "channels": [
+        "room"
+      ]
+    },
+    {
+      "itemCode": "larutan:10000136",
+      "itemName": "高評価!!レビュー2000件★楽天1位14冠芸能人愛用!!助産師推薦 哺乳瓶除菌乾燥機 哺乳瓶 除菌 乾燥 除菌乾燥機 ",
+      "date": "2026-10-01",
+      "slot": "night",
+      "channels": [
+        "room",
+        "threads",
+        "x"
+      ]
     }
   ]
 }

@@ -1,0 +1,424 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>本日の選定 - 楽天ROOM投稿リスト</title>
+<style>
+:root {
+  --bg: #f6f3ee;
+  --surface: #ffffff;
+  --ink: #23211d;
+  --ink-soft: #6b6459;
+  --accent: #a8382c;
+  --accent-ink: #fff6f2;
+  --good: #3f7d58;
+  --border: #e4ddd2;
+  --chip-bg: #efe8db;
+  color-scheme: light dark;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #16140f;
+    --surface: #211f1a;
+    --ink: #ece7dc;
+    --ink-soft: #a89e8d;
+    --accent: #e0685a;
+    --accent-ink: #1c0f0c;
+    --good: #6fb98a;
+    --border: #35322a;
+    --chip-bg: #2a2721;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #16140f; --surface: #211f1a; --ink: #ece7dc; --ink-soft: #a89e8d;
+  --accent: #e0685a; --accent-ink: #1c0f0c; --good: #6fb98a; --border: #35322a; --chip-bg: #2a2721;
+}
+:root[data-theme="light"] {
+  --bg: #f6f3ee; --surface: #ffffff; --ink: #23211d; --ink-soft: #6b6459;
+  --accent: #a8382c; --accent-ink: #fff6f2; --good: #3f7d58; --border: #e4ddd2; --chip-bg: #efe8db;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0; background: var(--bg); color: var(--ink);
+  font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Yu Gothic Medium", "Noto Sans JP", sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+.wrap { max-width: 640px; margin: 0 auto; padding: 0 16px 40px; }
+header.top {
+  position: sticky; top: 0; z-index: 5; background: var(--bg);
+  padding: 18px 16px 12px; border-bottom: 1px solid var(--border);
+  display: flex; align-items: baseline; justify-content: space-between; gap: 12px;
+}
+header.top .eyebrow {
+  font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-soft);
+  font-weight: 600; margin: 0 0 2px;
+}
+header.top h1 { font-size: 1.25rem; margin: 0; font-weight: 700; letter-spacing: -0.01em; }
+header.top .count {
+  background: var(--chip-bg); color: var(--ink-soft); font-size: 0.78rem; font-weight: 600;
+  padding: 5px 10px; border-radius: 999px; white-space: nowrap;
+}
+h2.section-title { font-size: 0.95rem; font-weight: 700; margin: 24px 0 12px; }
+.cards { display: flex; flex-direction: column; gap: 16px; margin-top: 18px; }
+.card {
+  background: var(--surface); border: 1px solid var(--border); border-radius: 16px;
+  padding: 16px; display: flex; flex-direction: column; gap: 12px;
+}
+.card.featured { border-color: var(--accent); border-width: 2px; }
+.featured-badge {
+  align-self: flex-start; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.03em;
+  color: var(--accent-ink); background: var(--accent); padding: 3px 9px; border-radius: 999px;
+}
+.card-head { display: flex; gap: 12px; }
+.card-head img {
+  width: 76px; height: 76px; object-fit: cover; border-radius: 10px;
+  border: 1px solid var(--border); background: var(--chip-bg); flex-shrink: 0;
+}
+.card-head .info { min-width: 0; flex: 1; display: flex; flex-direction: column; gap: 4px; }
+.genre-chip {
+  align-self: flex-start; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.03em;
+  color: var(--accent); background: color-mix(in srgb, var(--accent) 12%, transparent);
+  padding: 2px 8px; border-radius: 999px;
+}
+.name {
+  font-weight: 600; font-size: 0.94rem; line-height: 1.4;
+  display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
+}
+.meta-row { display: flex; align-items: baseline; gap: 8px; font-size: 0.82rem; color: var(--ink-soft); }
+.price { font-variant-numeric: tabular-nums; color: var(--ink); font-weight: 700; font-size: 1.05rem; }
+.stars { letter-spacing: -1px; color: var(--accent); }
+.btn-open {
+  display: flex; align-items: center; justify-content: center; gap: 6px;
+  background: var(--accent); color: var(--accent-ink); border: none; border-radius: 11px;
+  padding: 12px; font-weight: 700; font-size: 0.92rem; text-decoration: none;
+}
+.btn-open:active { opacity: 0.85; }
+.url-row {
+  display: flex; align-items: center; gap: 8px;
+  background: var(--chip-bg); border-radius: 9px; padding: 8px 10px;
+}
+.url-row a {
+  flex: 1; min-width: 0; font-size: 0.76rem; color: var(--accent);
+  word-break: break-all; line-height: 1.45; text-decoration: none;
+}
+.url-row a:active { text-decoration: underline; }
+.reason { font-size: 0.8rem; color: var(--ink-soft); }
+.caption-box { border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }
+.caption-head {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 8px 10px; background: var(--chip-bg);
+}
+.caption-head span {
+  font-size: 0.7rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-soft);
+}
+.copy-btn {
+  background: var(--surface); border: 1px solid var(--border); color: var(--ink);
+  border-radius: 7px; padding: 5px 11px; font-size: 0.76rem; font-weight: 600; cursor: pointer;
+}
+.copy-btn:focus-visible, .btn-open:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.copy-btn.copied { background: var(--good); border-color: var(--good); color: #fff; }
+textarea {
+  width: 100%; display: block; border: none; padding: 10px; font-size: 0.85rem; line-height: 1.55;
+  resize: vertical; min-height: 108px; font-family: inherit; background: var(--surface); color: var(--ink);
+}
+textarea.short { min-height: 60px; }
+textarea:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
+footer.note { margin-top: 22px; font-size: 0.76rem; color: var(--ink-soft); text-align: center; line-height: 1.6; }
+@media (prefers-reduced-motion: no-preference) {
+  .copy-btn { transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease; }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <div>
+    <p class="eyebrow">楽天ROOM 投稿リスト</p>
+    <h1>本日の選定</h1>
+  </div>
+  <span class="count">5件</span>
+</header>
+
+<h2 class="section-title">📦 商品(ROOM用、全5件)</h2>
+<div class="cards">
+<div class="card">
+  <div class="card-head">
+    <img src="https://thumbnail.image.rakuten.co.jp/@0_mall/soopsori/cabinet/pd/top/22ts.jpg?_ex=128x128" alt="積み木 1歳 誕生日プレゼント 音が鳴る 木のおもちゃ 型はめパズル 赤ちゃん 積み木セット 22P 木箱 名前入り 型はめ 遊び方ガイドつき 1歳おもちゃ 知育玩具 ハーフバースデー 8ヶ月 10ヶ月 男の子 女の子 天然素材 無着色 スプソリ soopsori" loading="lazy">
+    <div class="info">
+      
+      <span class="genre-chip"></span>
+      <div class="name">積み木 1歳 誕生日プレゼント 音が鳴る 木のおもちゃ 型はめパズル 赤ちゃん 積み木セット 22P 木箱 名前入り 型はめ 遊び方ガイドつき 1歳おもちゃ 知育玩具 ハーフバースデー 8ヶ月 10ヶ月 男の子 女の子 天然素材 無着色 スプソリ soopsori</div>
+      <div class="meta-row">
+        <span class="price">¥9,900</span>
+        <span class="stars">★★★★★</span>
+        <span>4.77(436件)</span>
+      </div>
+    </div>
+  </div>
+  <a class="btn-open" href="https://item.rakuten.co.jp/soopsori/smile_pazzle/" target="_blank" rel="noopener">商品ページを開く ↗</a>
+  <div class="url-row">
+    <a href="https://item.rakuten.co.jp/soopsori/smile_pazzle/" target="_blank" rel="noopener">https://item.rakuten.co.jp/soopsori/smile_pazzle/</a>
+    <button class="copy-btn" onclick="copyPlain(this, 'https://item.rakuten.co.jp/soopsori/smile_pazzle/')" type="button">URLコピー</button>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>楽天ROOM用</span>
+      <button class="copy-btn" onclick="copyText(this, 'room-0')" type="button">コピー</button>
+    </div>
+    <textarea id="room-0" readonly>🧸「どんなおもちゃを買えばいいか全然わからん」って1歳の誕生日前は本当に途方に暮れてた。
+
+木のおもちゃ・型はめパズル・音が鳴る積み木が✨一つのセットになってるsoopsoriの積み木セット22P。木箱に収納できるから片づけもラク。天然素材・無着色で素材を選ぶ不安もなく、遊び方ガイドつきなのが意外と重要だった🎁
+
+名前入りにできるから出産祝いにも選ばれてるみたい。レビュー436件で星4.77。
+
+¥9,900
+
+#知育玩具 #1歳誕生日プレゼント #木のおもちゃ #積み木 #出産祝い #育児パパ #共働き家庭 #楽天ROOM</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="card-head">
+    <img src="https://thumbnail.image.rakuten.co.jp/@0_mall/pigeon-shop/cabinet/thumb/11827558/1026732_th.jpg?_ex=128x128" alt="母乳実感哺乳びん ガラス | 0ヵ月頃〜　ピジョン 哺乳瓶 ほ乳瓶 哺乳 ガラス 赤ちゃん 赤ちゃん用 赤ちゃん用品 ベビー ベビー用 ベビー用品 ベビーグッズ 新生児 子育て 育児 出産祝い プレゼント 出産準備 赤ちゃんグッズ あかちゃん" loading="lazy">
+    <div class="info">
+      
+      <span class="genre-chip"></span>
+      <div class="name">母乳実感哺乳びん ガラス | 0ヵ月頃〜　ピジョン 哺乳瓶 ほ乳瓶 哺乳 ガラス 赤ちゃん 赤ちゃん用 赤ちゃん用品 ベビー ベビー用 ベビー用品 ベビーグッズ 新生児 子育て 育児 出産祝い プレゼント 出産準備 赤ちゃんグッズ あかちゃん</div>
+      <div class="meta-row">
+        <span class="price">¥2,750</span>
+        <span class="stars">★★★★★</span>
+        <span>4.76(387件)</span>
+      </div>
+    </div>
+  </div>
+  <a class="btn-open" href="https://item.rakuten.co.jp/pigeon-shop/1026732/" target="_blank" rel="noopener">商品ページを開く ↗</a>
+  <div class="url-row">
+    <a href="https://item.rakuten.co.jp/pigeon-shop/1026732/" target="_blank" rel="noopener">https://item.rakuten.co.jp/pigeon-shop/1026732/</a>
+    <button class="copy-btn" onclick="copyPlain(this, 'https://item.rakuten.co.jp/pigeon-shop/1026732/')" type="button">URLコピー</button>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>楽天ROOM用</span>
+      <button class="copy-btn" onclick="copyText(this, 'room-1')" type="button">コピー</button>
+    </div>
+    <textarea id="room-1" readonly>🍼哺乳瓶ってどれでも同じだろって思ってたんですよ、子どもが生まれる前は。
+
+レビュー387件・星4.76。ピジョンの「母乳実感」だけは別格で、赤ちゃんが乳首を混乱しにくい設計です。授乳と哺乳瓶を交互に使う家庭には特に合う✨ガラス製だから耐熱性も高く、煮沸・薬液・電子レンジのどの消毒法にも対応しているのが助かる点です🌟
+
+正規品が¥2,750。出産準備の最初の1本として選ぶ人が多いのも頷ける。
+
+#哺乳瓶 #母乳実感 #ピジョン #出産準備 #育児グッズ #新生児グッズ #育児パパ #共働き家庭 #楽天ROOM</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="card-head">
+    <img src="https://thumbnail.image.rakuten.co.jp/@0_mall/omutsufactory/cabinet/jsc/mh0006_item.jpg?_ex=128x128" alt="10月3日(土)★到着可能★ 出産祝い ベビー 食器セット 日本製 離乳食 1位 mikihouse ミキハウス 箱付 テーブルウェアセット お食い初め 男の子 女の子 送料無料 ギフト キャラクター 豪華 専門 ランキング" loading="lazy">
+    <div class="info">
+      
+      <span class="genre-chip"></span>
+      <div class="name">10月3日(土)★到着可能★ 出産祝い ベビー 食器セット 日本製 離乳食 1位 mikihouse ミキハウス 箱付 テーブルウェアセット お食い初め 男の子 女の子 送料無料 ギフト キャラクター 豪華 専門 ランキング</div>
+      <div class="meta-row">
+        <span class="price">¥5,500</span>
+        <span class="stars">★★★★★</span>
+        <span>4.73(880件)</span>
+      </div>
+    </div>
+  </div>
+  <a class="btn-open" href="https://item.rakuten.co.jp/omutsufactory/mh0006/" target="_blank" rel="noopener">商品ページを開く ↗</a>
+  <div class="url-row">
+    <a href="https://item.rakuten.co.jp/omutsufactory/mh0006/" target="_blank" rel="noopener">https://item.rakuten.co.jp/omutsufactory/mh0006/</a>
+    <button class="copy-btn" onclick="copyPlain(this, 'https://item.rakuten.co.jp/omutsufactory/mh0006/')" type="button">URLコピー</button>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>楽天ROOM用</span>
+      <button class="copy-btn" onclick="copyText(this, 'room-2')" type="button">コピー</button>
+    </div>
+    <textarea id="room-2" readonly>🍽️出産祝いに何を贈るか迷って、「どうせなら日常で使えるものを」とベビー食器に決めた。
+
+ミキハウスのテーブルウェアセットは日本製✨離乳食からお食い初めまで対応していて、レビュー880件・星4.73という安定感がある。食器選びで後悔したくないなら候補筆頭。
+
+¥5,500でギフトボックス対応もしてるから出産祝いとして持っていける🎁
+
+#離乳食 #ベビー食器 #ミキハウス #お食い初め #出産祝い #育児グッズ #日本製 #育児パパ #共働き家庭 #楽天ROOM</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="card-head">
+    <img src="https://thumbnail.image.rakuten.co.jp/@0_mall/4cal/cabinet/ranking/mushie-cup-001_m1n.jpg?_ex=128x128" alt="mushie ムシエ おもちゃ スタッキングカップ Stacking cups toy 赤ちゃん 6ヶ月 0歳 1歳 2歳 3歳 知育玩具 キッズ ベビー 積み木 つみき 玩具 出産祝い ギフト 誕生日 プレゼント 男の子 女の子" loading="lazy">
+    <div class="info">
+      
+      <span class="genre-chip"></span>
+      <div class="name">mushie ムシエ おもちゃ スタッキングカップ Stacking cups toy 赤ちゃん 6ヶ月 0歳 1歳 2歳 3歳 知育玩具 キッズ ベビー 積み木 つみき 玩具 出産祝い ギフト 誕生日 プレゼント 男の子 女の子</div>
+      <div class="meta-row">
+        <span class="price">¥3,280</span>
+        <span class="stars">★★★★★</span>
+        <span>4.7(528件)</span>
+      </div>
+    </div>
+  </div>
+  <a class="btn-open" href="https://item.rakuten.co.jp/4cal/mushie-cup-001/" target="_blank" rel="noopener">商品ページを開く ↗</a>
+  <div class="url-row">
+    <a href="https://item.rakuten.co.jp/4cal/mushie-cup-001/" target="_blank" rel="noopener">https://item.rakuten.co.jp/4cal/mushie-cup-001/</a>
+    <button class="copy-btn" onclick="copyPlain(this, 'https://item.rakuten.co.jp/4cal/mushie-cup-001/')" type="button">URLコピー</button>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>楽天ROOM用</span>
+      <button class="copy-btn" onclick="copyText(this, 'room-3')" type="button">コピー</button>
+    </div>
+    <textarea id="room-3" readonly>💡¥3,280でここまでおしゃれな知育玩具ってあるんですよ。
+
+mushieのスタッキングカップ、デンマーク発のブランドで日本でも人気が出てきてる✨積んで、崩して、重ねてと0歳から3歳まで長く使える形で、見た目のシンプルさがいい🌿
+
+お風呂でも使えるから遊び場所を選ばない。レビュー528件・星4.7。
+
+¥3,280
+
+#知育玩具 #スタッキングカップ #mushie #0歳おもちゃ #ベビーおもちゃ #育児グッズ #育児パパ #共働き家庭 #楽天ROOM</textarea>
+  </div>
+</div>
+<div class="card featured">
+  <div class="card-head">
+    <img src="https://thumbnail.image.rakuten.co.jp/@0_mall/larutan/cabinet/larutan/n100-r/n100-search-image/n100-a1-top.jpg?_ex=128x128" alt="高評価!!レビュー2000件★楽天1位14冠＼選べるレビュー特典／芸能人愛用!!助産師推薦 哺乳瓶除菌乾燥機 哺乳瓶 除菌 乾燥 除菌乾燥機 乾燥器 哺乳びん 大容量 空焚き防止 ベビー ベビー用品 赤ちゃん 子育て 双子 育児 新生児 出産祝い 出産準備 時短 静か プレゼント ギフト" loading="lazy">
+    <div class="info">
+      <span class="featured-badge">🔥 本日のThreads/Xピックアップ</span>
+      <span class="genre-chip"></span>
+      <div class="name">高評価!!レビュー2000件★楽天1位14冠＼選べるレビュー特典／芸能人愛用!!助産師推薦 哺乳瓶除菌乾燥機 哺乳瓶 除菌 乾燥 除菌乾燥機 乾燥器 哺乳びん 大容量 空焚き防止 ベビー ベビー用品 赤ちゃん 子育て 双子 育児 新生児 出産祝い 出産準備 時短 静か プレゼント ギフト</div>
+      <div class="meta-row">
+        <span class="price">¥14,850</span>
+        <span class="stars">★★★★★</span>
+        <span>4.61(2173件)</span>
+      </div>
+    </div>
+  </div>
+  <a class="btn-open" href="https://item.rakuten.co.jp/larutan/n100/" target="_blank" rel="noopener">商品ページを開く ↗</a>
+  <div class="url-row">
+    <a href="https://item.rakuten.co.jp/larutan/n100/" target="_blank" rel="noopener">https://item.rakuten.co.jp/larutan/n100/</a>
+    <button class="copy-btn" onclick="copyPlain(this, 'https://item.rakuten.co.jp/larutan/n100/')" type="button">URLコピー</button>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>楽天ROOM用</span>
+      <button class="copy-btn" onclick="copyText(this, 'room-4')" type="button">コピー</button>
+    </div>
+    <textarea id="room-4" readonly>🍼毎晩哺乳瓶を洗って、消毒して、乾かして——それを何本もやってた夜のこと、よく続けてたなと思う。
+
+LARUTANの哺乳瓶除菌乾燥機はセットしてボタン押すだけ🔔除菌から乾燥まで全部やってくれて、大容量なので双子にも対応できる。空焚き防止機能つきだから置きっぱなしでOK✨
+
+レビュー2,173件・星4.61。
+
+¥14,850
+
+#哺乳瓶除菌 #除菌乾燥機 #育児時短 #哺乳瓶 #新生児グッズ #出産準備 #育児家電 #育児パパ #共働き家庭 #楽天ROOM</textarea>
+  </div>
+  <p class="reason">🔥 今日のピックアップ理由: レビュー2,173件は5件中ダントツで、毎晩の哺乳瓶消毒という育児パパなら確実に刺さる悩みを直接解決する点で悩み解決度が最大。</p>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>Threads用</span>
+      <button class="copy-btn" onclick="copyText(this, 'threads-0')" type="button">コピー</button>
+    </div>
+    <textarea id="threads-0" readonly>毎晩哺乳瓶の消毒してた時期、あれ本当にしんどかった。
+
+洗って、消毒して、乾かして。深夜に。何本も。
+
+LARUTANの除菌乾燥機に変えてから、その作業が全部なくなった。セットしてボタン押すだけで、乾燥まで全部終わる。双子でも使えるサイズで、空焚き防止もついてるから置きっぱなしでいい。
+
+¥14,850は正直安くはないけど、毎晩あの作業が消えると思ったら、むしろ早く買えばよかったってなった。
+
+#哺乳瓶除菌 #育児時短 #除菌乾燥機 #育児パパ #共働き家庭 #PR</textarea>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>X用</span>
+      <button class="copy-btn" onclick="copyText(this, 'x-0')" type="button">コピー</button>
+    </div>
+    <textarea id="x-0" readonly>深夜に哺乳瓶消毒してた時期、あれ毎晩しんどかった。
+
+LARUTANの除菌乾燥機に変えてから、その作業が全部なくなった。セットしてボタン押すだけで乾燥まで終わる。
+
+¥14,850、正直早く買えばよかった。
+
+#哺乳瓶除菌 #育児時短 #育児パパ #PR</textarea>
+  </div>
+</div>
+</div>
+
+<h2 class="section-title">💬 今日のあるある投稿ネタ(商品リンクなし)</h2>
+<div class="cards">
+<div class="card">
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>あるある投稿 #1</span>
+      <button class="copy-btn" onclick="copyText(this, 'daily-0')" type="button">コピー</button>
+    </div>
+    <textarea id="daily-0" class="short" readonly>やっと寝た。よし布団へ。そっと置く。泣く。
+これを何回繰り返すんだ。 #育児パパ</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>あるある投稿 #2</span>
+      <button class="copy-btn" onclick="copyText(this, 'daily-1')" type="button">コピー</button>
+    </div>
+    <textarea id="daily-1" class="short" readonly>子どもの寝顔、世界一かわいいと思って写真撮るたびに背景に洗濯物とオムツが写り込んでる。いつか子どもに見せたとき「パパの部屋汚くない?」って言われるやつ。😂 #育児パパ</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>あるある投稿 #3</span>
+      <button class="copy-btn" onclick="copyText(this, 'daily-2')" type="button">コピー</button>
+    </div>
+    <textarea id="daily-2" class="short" readonly>家事育児で一番しんどいのって「中断」なんだよな。洗い物の途中で泣く。畳んでる途中で呼ばれる。ご飯食べてる途中でこぼす。何かを最初から最後までやりきった記憶、最近ほんとにない。これ我が家だけ？</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>あるある投稿 #4</span>
+      <button class="copy-btn" onclick="copyText(this, 'daily-3')" type="button">コピー</button>
+    </div>
+    <textarea id="daily-3" class="short" readonly>子ども連れてスーパー行くと帰るまでに30分余分にかかる。毎回。</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>あるある投稿 #5</span>
+      <button class="copy-btn" onclick="copyText(this, 'daily-4')" type="button">コピー</button>
+    </div>
+    <textarea id="daily-4" class="short" readonly>子どもが「パパ」って呼んできたとき、なんか全部どうでもよくなる瞬間あるよな。しんどいとか眠いとかが一瞬で飛ぶ。飛んだあとに現実に戻ってくるんだけど。😊</textarea>
+  </div>
+</div>
+</div>
+
+<footer class="note">商品ページを確認し、投稿文をコピーして手動で投稿してください。<br>Threads/Xの商品紹介は1日1件・あるある投稿と織り交ぜてスパム判定を避けてください。<br>価格・レビューは選定時点の実データです。</footer>
+</div>
+<script>
+function flash(btn) {
+  const original = btn.textContent;
+  btn.textContent = 'コピーしました';
+  btn.classList.add('copied');
+  setTimeout(() => { btn.textContent = original; btn.classList.remove('copied'); }, 1500);
+}
+function copyText(btn, id) {
+  const el = document.getElementById(id);
+  el.select();
+  el.setSelectionRange(0, 999999);
+  navigator.clipboard.writeText(el.value).then(() => flash(btn)).catch(() => {
+    try { document.execCommand('copy'); flash(btn); } catch (e) {}
+  });
+}
+function copyPlain(btn, text) {
+  navigator.clipboard.writeText(text).then(() => flash(btn)).catch(() => {
+    const t = document.createElement('textarea');
+    t.value = text; document.body.appendChild(t); t.select();
+    try { document.execCommand('copy'); flash(btn); } catch (e) {}
+    document.body.removeChild(t);
+  });
+}
+</script>
+</body>
+</html>
