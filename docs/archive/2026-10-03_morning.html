@@ -1,0 +1,450 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>2026-10-03 朝 - 楽天ROOM投稿リスト</title>
+<style>
+:root {
+  --bg: #f6f3ee;
+  --surface: #ffffff;
+  --ink: #23211d;
+  --ink-soft: #6b6459;
+  --accent: #a8382c;
+  --accent-ink: #fff6f2;
+  --good: #3f7d58;
+  --border: #e4ddd2;
+  --chip-bg: #efe8db;
+  color-scheme: light dark;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #16140f;
+    --surface: #211f1a;
+    --ink: #ece7dc;
+    --ink-soft: #a89e8d;
+    --accent: #e0685a;
+    --accent-ink: #1c0f0c;
+    --good: #6fb98a;
+    --border: #35322a;
+    --chip-bg: #2a2721;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #16140f; --surface: #211f1a; --ink: #ece7dc; --ink-soft: #a89e8d;
+  --accent: #e0685a; --accent-ink: #1c0f0c; --good: #6fb98a; --border: #35322a; --chip-bg: #2a2721;
+}
+:root[data-theme="light"] {
+  --bg: #f6f3ee; --surface: #ffffff; --ink: #23211d; --ink-soft: #6b6459;
+  --accent: #a8382c; --accent-ink: #fff6f2; --good: #3f7d58; --border: #e4ddd2; --chip-bg: #efe8db;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0; background: var(--bg); color: var(--ink);
+  font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Yu Gothic Medium", "Noto Sans JP", sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+.wrap { max-width: 640px; margin: 0 auto; padding: 0 16px 40px; }
+header.top {
+  position: sticky; top: 0; z-index: 5; background: var(--bg);
+  padding: 18px 16px 12px; border-bottom: 1px solid var(--border);
+  display: flex; align-items: baseline; justify-content: space-between; gap: 12px;
+}
+header.top .eyebrow {
+  font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-soft);
+  font-weight: 600; margin: 0 0 2px;
+}
+header.top h1 { font-size: 1.25rem; margin: 0; font-weight: 700; letter-spacing: -0.01em; }
+header.top .count {
+  background: var(--chip-bg); color: var(--ink-soft); font-size: 0.78rem; font-weight: 600;
+  padding: 5px 10px; border-radius: 999px; white-space: nowrap;
+}
+h2.section-title { font-size: 0.95rem; font-weight: 700; margin: 24px 0 12px; }
+.cards { display: flex; flex-direction: column; gap: 16px; margin-top: 18px; }
+.card {
+  background: var(--surface); border: 1px solid var(--border); border-radius: 16px;
+  padding: 16px; display: flex; flex-direction: column; gap: 12px;
+}
+.card.featured { border-color: var(--accent); border-width: 2px; }
+.featured-badge {
+  align-self: flex-start; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.03em;
+  color: var(--accent-ink); background: var(--accent); padding: 3px 9px; border-radius: 999px;
+}
+.card-head { display: flex; gap: 12px; }
+.card-head img {
+  width: 76px; height: 76px; object-fit: cover; border-radius: 10px;
+  border: 1px solid var(--border); background: var(--chip-bg); flex-shrink: 0;
+}
+.card-head .info { min-width: 0; flex: 1; display: flex; flex-direction: column; gap: 4px; }
+.genre-chip {
+  align-self: flex-start; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.03em;
+  color: var(--accent); background: color-mix(in srgb, var(--accent) 12%, transparent);
+  padding: 2px 8px; border-radius: 999px;
+}
+.name {
+  font-weight: 600; font-size: 0.94rem; line-height: 1.4;
+  display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
+}
+.meta-row { display: flex; align-items: baseline; gap: 8px; font-size: 0.82rem; color: var(--ink-soft); }
+.price { font-variant-numeric: tabular-nums; color: var(--ink); font-weight: 700; font-size: 1.05rem; }
+.stars { letter-spacing: -1px; color: var(--accent); }
+.btn-open {
+  display: flex; align-items: center; justify-content: center; gap: 6px;
+  background: var(--accent); color: var(--accent-ink); border: none; border-radius: 11px;
+  padding: 12px; font-weight: 700; font-size: 0.92rem; text-decoration: none;
+}
+.btn-open:active { opacity: 0.85; }
+.url-row {
+  display: flex; align-items: center; gap: 8px;
+  background: var(--chip-bg); border-radius: 9px; padding: 8px 10px;
+}
+.url-row a {
+  flex: 1; min-width: 0; font-size: 0.76rem; color: var(--accent);
+  word-break: break-all; line-height: 1.45; text-decoration: none;
+}
+.url-row a:active { text-decoration: underline; }
+.reason { font-size: 0.8rem; color: var(--ink-soft); }
+.caption-box { border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }
+.caption-head {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 8px 10px; background: var(--chip-bg);
+}
+.caption-head span {
+  font-size: 0.7rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-soft);
+}
+.copy-btn {
+  background: var(--surface); border: 1px solid var(--border); color: var(--ink);
+  border-radius: 7px; padding: 5px 11px; font-size: 0.76rem; font-weight: 600; cursor: pointer;
+}
+.copy-btn:focus-visible, .btn-open:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.copy-btn.copied { background: var(--good); border-color: var(--good); color: #fff; }
+textarea {
+  width: 100%; display: block; border: none; padding: 10px; font-size: 0.85rem; line-height: 1.55;
+  resize: vertical; min-height: 108px; font-family: inherit; background: var(--surface); color: var(--ink);
+}
+textarea.short { min-height: 60px; }
+textarea:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
+footer.note { margin-top: 22px; font-size: 0.76rem; color: var(--ink-soft); text-align: center; line-height: 1.6; }
+@media (prefers-reduced-motion: no-preference) {
+  .copy-btn { transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease; }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <div>
+    <p class="eyebrow">楽天ROOM 投稿リスト</p>
+    <h1>2026-10-03 朝</h1>
+  </div>
+  <span class="count">5件</span>
+</header>
+
+<h2 class="section-title">📦 商品(ROOM用、全5件)</h2>
+<div class="cards">
+<div class="card">
+  <div class="card-head">
+    <img src="https://thumbnail.image.rakuten.co.jp/@0_mall/p-s/cabinet/c005/bamix/c005bamix2024-09.jpg?_ex=128x128" alt="バーミックス bamix M300 セット / 全2種 2色 ( メーカ保証5年 ) ハンディタイプ の フードプロセッサー 【 正規販売店 】" loading="lazy">
+    <div class="info">
+      
+      <span class="genre-chip">時短家電</span>
+      <div class="name">バーミックス bamix M300 セット / 全2種 2色 ( メーカ保証5年 ) ハンディタイプ の フードプロセッサー 【 正規販売店 】</div>
+      <div class="meta-row">
+        <span class="price">¥36,300</span>
+        <span class="stars">★★★★★</span>
+        <span>4.51(367件)</span>
+      </div>
+    </div>
+  </div>
+  <a class="btn-open" href="https://item.rakuten.co.jp/p-s/c0050100025101/" target="_blank" rel="noopener">商品ページを開く ↗</a>
+  <div class="url-row">
+    <a href="https://item.rakuten.co.jp/p-s/c0050100025101/" target="_blank" rel="noopener">https://item.rakuten.co.jp/p-s/c0050100025101/</a>
+    <button class="copy-btn" onclick="copyPlain(this, 'https://item.rakuten.co.jp/p-s/c0050100025101/')" type="button">URLコピー</button>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>楽天ROOM用</span>
+      <button class="copy-btn" onclick="copyText(this, 'room-0')" type="button">コピー</button>
+    </div>
+    <textarea id="room-0" readonly>💡 3万円台のハンドブレンダーって、正直高いと思ってた。
+
+でも調べてみたら、スイス製バーミックスM300はメーカー保証5年付き。毎日使うものへの投資と考えると、むしろ安いかも🤔
+
+300Wのパワーで離乳食・スムージー・スープがなめらかに仕上がる。ミンサー・ウィスク・ビーター等のアタッチメントが複数付いてくるので、これ1台で作業が完結する🙌
+
+2段階の速度切り替えで素材に合わせて使い分けられて、連続5分間の使用に対応。
+
+レビュー367件・星4.51という実績を見て、長く使えるキッチン家電としてROOMに追加しました✨
+
+ただし鍋に直接当てると傷が付くので要注意。
+
+#バーミックス #ハンドブレンダー #時短料理 #離乳食 #スムージー #育児パパ #共働き家庭 #キッチン家電 #時短家電</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="card-head">
+    <img src="https://thumbnail.image.rakuten.co.jp/@0_mall/kagudoki/cabinet/kihon10/aku1056573.jpg?_ex=128x128" alt="パーソナルデスク 2点セット 幅90cm デスク カギ付き 机 鍵付き オフィスデスク 勉強机 学習机 ビジネスデスク 在宅勤務 パソコンデスク PCデスク 子供部屋 書斎机 ダークブラウン ナチュラル 送料無料 AKU1056573" loading="lazy">
+    <div class="info">
+      
+      <span class="genre-chip">在宅ワーク デスク</span>
+      <div class="name">パーソナルデスク 2点セット 幅90cm デスク カギ付き 机 鍵付き オフィスデスク 勉強机 学習机 ビジネスデスク 在宅勤務 パソコンデスク PCデスク 子供部屋 書斎机 ダークブラウン ナチュラル 送料無料 AKU1056573</div>
+      <div class="meta-row">
+        <span class="price">¥26,999</span>
+        <span class="stars">★★★★☆</span>
+        <span>4.34(303件)</span>
+      </div>
+    </div>
+  </div>
+  <a class="btn-open" href="https://item.rakuten.co.jp/kagudoki/sb93103/" target="_blank" rel="noopener">商品ページを開く ↗</a>
+  <div class="url-row">
+    <a href="https://item.rakuten.co.jp/kagudoki/sb93103/" target="_blank" rel="noopener">https://item.rakuten.co.jp/kagudoki/sb93103/</a>
+    <button class="copy-btn" onclick="copyPlain(this, 'https://item.rakuten.co.jp/kagudoki/sb93103/')" type="button">URLコピー</button>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>楽天ROOM用</span>
+      <button class="copy-btn" onclick="copyText(this, 'room-1')" type="button">コピー</button>
+    </div>
+    <textarea id="room-1" readonly>🖥️ 在宅ワーク始めてから、リビングのテーブルが仕事場になってた。仕事道具も子どもの荷物も混在して、毎朝「あれどこ行った」状態。
+
+そこで見つけたのがこのパーソナルデスク2点セット。幅90cmのデスクにキャスター付きチェストが付いてくる。チェストは鍵付きで、触れてほしくない書類や仕事道具をしっかりロック🔒
+
+デスク下に収まるサイズなので、使わないときはすっきり格納できる。そのまま子どもの勉強机にもなるし、長く使えそう。
+
+¥26,999で2点セットは正直コスパいいと思う。レビュー303件・星4.34。
+
+広い作業面さえあればって人には特に刺さりそうな一台です📐
+
+#パソコンデスク #在宅勤務 #勉強机 #テレワーク #デスク環境 #育児パパ #共働き家庭 #鍵付き収納 #子供部屋</textarea>
+  </div>
+</div>
+<div class="card featured">
+  <div class="card-head">
+    <img src="https://thumbnail.image.rakuten.co.jp/@0_mall/kurashi-zakka/cabinet/kth-ktf_01.jpg?_ex=128x128" alt="＼50％OFFクーポン！10/1〜10/12／sakuraku キッチンマット L型 「透明 L字 拭ける 255 270 240 」(洗濯不要 PVC おしゃれ キッチン マット 240 クリア 撥水 防水 透明マット 床保護マット 保護シート 滑り止め 滑らない )【意匠登録済】" loading="lazy">
+    <div class="info">
+      <span class="featured-badge">🔥 本日のThreads/Xピックアップ</span>
+      <span class="genre-chip">キッチン雑貨</span>
+      <div class="name">＼50％OFFクーポン！10/1〜10/12／sakuraku キッチンマット L型 「透明 L字 拭ける 255 270 240 」(洗濯不要 PVC おしゃれ キッチン マット 240 クリア 撥水 防水 透明マット 床保護マット 保護シート 滑り止め 滑らない )【意匠登録済】</div>
+      <div class="meta-row">
+        <span class="price">¥6,980</span>
+        <span class="stars">★★★★★</span>
+        <span>4.54(5458件)</span>
+      </div>
+    </div>
+  </div>
+  <a class="btn-open" href="https://item.rakuten.co.jp/kurashi-zakka/ktn-101/" target="_blank" rel="noopener">商品ページを開く ↗</a>
+  <div class="url-row">
+    <a href="https://hb.afl.rakuten.co.jp/hgc/g00qx1gn.dg4fi674.g00qx1gn.dg4fjd0a/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fkurashi-zakka%2Fktn-101%2F&amp;m=http%3A%2F%2Fm.rakuten.co.jp%2Fkurashi-zakka%2Fi%2F10002344%2F&amp;rafcid=wsc_i_is_852e9d1a-8f83-49dc-bc9e-cf56a98e669a" target="_blank" rel="noopener">https://hb.afl.rakuten.co.jp/hgc/g00qx1gn.dg4fi674.g00qx1gn.dg4fjd0a/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fkurashi-zakka%2Fktn-101%2F&amp;m=http%3A%2F%2Fm.rakuten.co.jp%2Fkurashi-zakka%2Fi%2F10002344%2F&amp;rafcid=wsc_i_is_852e9d1a-8f83-49dc-bc9e-cf56a98e669a</a>
+    <button class="copy-btn" onclick="copyPlain(this, 'https://hb.afl.rakuten.co.jp/hgc/g00qx1gn.dg4fi674.g00qx1gn.dg4fjd0a/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fkurashi-zakka%2Fktn-101%2F&amp;m=http%3A%2F%2Fm.rakuten.co.jp%2Fkurashi-zakka%2Fi%2F10002344%2F&amp;rafcid=wsc_i_is_852e9d1a-8f83-49dc-bc9e-cf56a98e669a')" type="button">URLコピー</button>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>楽天ROOM用</span>
+      <button class="copy-btn" onclick="copyText(this, 'room-2')" type="button">コピー</button>
+    </div>
+    <textarea id="room-2" readonly>✨ レビュー5,458件・星4.54。数字だけ見ると「本当に?」ってなるけど、実際に使ってみて納得した。
+
+sakurakuのL字型透明キッチンマット、洗濯が一切いらないのがまず最高🙌 PVC素材で汚れても拭くだけ。油や醤油が飛んでも30秒でリセット。
+
+L字形状がシンクとカウンターの隙間をぴったり埋めてくれるのもポイント。今まで普通の長方形マットで「なんかズレる」状態だったのが解消された。
+
+撥水・防水・滑り止めと床保護がこれ1枚で済む。¥6,980でここまで機能してるとは正直思ってなかった😊
+
+ただし±3cmほどサイズ誤差があるため、購入前に寸法確認は必須。
+
+#キッチンマット #透明マット #キッチン用品 #拭けるマット #床保護 #共働き家庭 #時短掃除 #育児パパ #防水マット</textarea>
+  </div>
+  <p class="reason">🔥 今日のピックアップ理由: 5,458件という圧倒的なレビュー数と¥6,980という手頃な価格の組み合わせが意外性として刺さりやすく、「拭くだけ」という悩み解決の具体性が共働き家庭ペルソナに直撃するため。</p>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>Threads用</span>
+      <button class="copy-btn" onclick="copyText(this, 'threads-0')" type="button">コピー</button>
+    </div>
+    <textarea id="threads-0" readonly>キッチンマット、ずっと洗濯式のやつ使ってたんだけど、
+
+毎回干す場所に困るし、乾燥機NG素材だし、なんか微妙にカビ臭くなってくるし、
+
+正直もうやめようと思ってた。
+
+で、試しに透明のPVCマット買ったら拭くだけで終わるじゃん。醤油も油汚れも30秒でリセット。洗濯って何だったんって感じ。
+
+L字形状がシンクとカウンターの隙間を埋めてくれるのが意外と便利で、普通の長方形マットの「なんかズレてく感じ」がなくなった。
+
+¥6,980でここまで変わるなら、もっと早く変えとけばよかった〜
+
+#キッチンマット #共働き家庭 #時短 #PR</textarea>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>X用</span>
+      <button class="copy-btn" onclick="copyText(this, 'x-0')" type="button">コピー</button>
+    </div>
+    <textarea id="x-0" readonly>キッチンマット、洗濯式からPVCの透明マットに変えたら「拭くだけ終了」になって震えてる。
+
+醤油も油も30秒でリセット。L字のシンクぴったり形状で、ズレてく感じも消えた。
+
+¥6,980でこんなに快適になるとは思ってなかった〜
+
+#キッチンマット #共働き家庭 #PR</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="card-head">
+    <img src="https://thumbnail.image.rakuten.co.jp/@0_mall/kawaiizou/cabinet/compass1702022048.jpg?_ex=128x128" alt="＼1枚あたり800円／【2枚購入で＋1枚無料】 ★着後レビューで特典★ シリコンビブ【001】 ビブ お食事エプロン 全8色 お食事ビブ お食事スタイ 無地 離乳食準備 出産祝い 出産準備 保育園 離乳食 ギフト プレゼント くすみカラー kawaiiZOU 女の子 男の子 食洗機対応" loading="lazy">
+    <div class="info">
+      
+      <span class="genre-chip">育児グッズ</span>
+      <div class="name">＼1枚あたり800円／【2枚購入で＋1枚無料】 ★着後レビューで特典★ シリコンビブ【001】 ビブ お食事エプロン 全8色 お食事ビブ お食事スタイ 無地 離乳食準備 出産祝い 出産準備 保育園 離乳食 ギフト プレゼント くすみカラー kawaiiZOU 女の子 男の子 食洗機対応</div>
+      <div class="meta-row">
+        <span class="price">¥1,200</span>
+        <span class="stars">★★★★★</span>
+        <span>4.65(1239件)</span>
+      </div>
+    </div>
+  </div>
+  <a class="btn-open" href="https://item.rakuten.co.jp/kawaiizou/10000060/" target="_blank" rel="noopener">商品ページを開く ↗</a>
+  <div class="url-row">
+    <a href="https://hb.afl.rakuten.co.jp/hgc/g00tyb2n.dg4fi4f9.g00tyb2n.dg4fja69/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fkawaiizou%2F10000060%2F&amp;m=http%3A%2F%2Fm.rakuten.co.jp%2Fkawaiizou%2Fi%2F10000197%2F&amp;rafcid=wsc_i_is_852e9d1a-8f83-49dc-bc9e-cf56a98e669a" target="_blank" rel="noopener">https://hb.afl.rakuten.co.jp/hgc/g00tyb2n.dg4fi4f9.g00tyb2n.dg4fja69/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fkawaiizou%2F10000060%2F&amp;m=http%3A%2F%2Fm.rakuten.co.jp%2Fkawaiizou%2Fi%2F10000197%2F&amp;rafcid=wsc_i_is_852e9d1a-8f83-49dc-bc9e-cf56a98e669a</a>
+    <button class="copy-btn" onclick="copyPlain(this, 'https://hb.afl.rakuten.co.jp/hgc/g00tyb2n.dg4fi4f9.g00tyb2n.dg4fja69/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fkawaiizou%2F10000060%2F&amp;m=http%3A%2F%2Fm.rakuten.co.jp%2Fkawaiizou%2Fi%2F10000197%2F&amp;rafcid=wsc_i_is_852e9d1a-8f83-49dc-bc9e-cf56a98e669a')" type="button">URLコピー</button>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>楽天ROOM用</span>
+      <button class="copy-btn" onclick="copyText(this, 'room-3')" type="button">コピー</button>
+    </div>
+    <textarea id="room-3" readonly>🍼 離乳食が始まった頃、布製のスタイがすぐびしょびしょになって、1日に何枚も替えてた。洗濯物の山がまたひとつ増える、あの地味な疲弊感。
+
+kawaiiZOUのシリコンビブはその悩みをまるごと解決してくれた。汚れてもさっと拭けて、食洗機に入れればリセット完了。丸められるから外出先にも持ち運びやすい👜
+
+首まわりは4段階調整できるので、成長に合わせて長く使えるのも助かる。くすみカラー全8色展開で見た目もかわいい✨
+
+累計1万枚突破、¥1,200という価格を考えると出産祝いにも喜ばれそう。
+
+離乳食期の定番として、ROOMに追加しました。
+
+#シリコンビブ #お食事エプロン #離乳食 #育児グッズ #出産祝い #育児パパ #共働き家庭 #赤ちゃんグッズ #食洗機対応</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="card-head">
+    <img src="https://thumbnail.image.rakuten.co.jp/@0_mall/woodypuddy/cabinet/item/thum/g05-2225_m.jpg?_ex=128x128" alt="はじめてのおままごと グツグツ煮込みお料理セット【 ウッディプッディ おままごと おもちゃ 野菜 木のおもちゃ WOODYPUDDY おままごとセット マグネット 磁石 木のおままごとセット 子供 木製 知育玩具 キッチン 幼児 プレゼント 】" loading="lazy">
+    <div class="info">
+      
+      <span class="genre-chip">育児グッズ</span>
+      <div class="name">はじめてのおままごと グツグツ煮込みお料理セット【 ウッディプッディ おままごと おもちゃ 野菜 木のおもちゃ WOODYPUDDY おままごとセット マグネット 磁石 木のおままごとセット 子供 木製 知育玩具 キッチン 幼児 プレゼント 】</div>
+      <div class="meta-row">
+        <span class="price">¥16,500</span>
+        <span class="stars">★★★★★</span>
+        <span>4.69(1714件)</span>
+      </div>
+    </div>
+  </div>
+  <a class="btn-open" href="https://item.rakuten.co.jp/woodypuddy/gift-012/" target="_blank" rel="noopener">商品ページを開く ↗</a>
+  <div class="url-row">
+    <a href="https://hb.afl.rakuten.co.jp/hgc/g00q63xn.dg4fi334.g00q63xn.dg4fjdee/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fwoodypuddy%2Fgift-012%2F&amp;m=http%3A%2F%2Fm.rakuten.co.jp%2Fwoodypuddy%2Fi%2F10000631%2F&amp;rafcid=wsc_i_is_852e9d1a-8f83-49dc-bc9e-cf56a98e669a" target="_blank" rel="noopener">https://hb.afl.rakuten.co.jp/hgc/g00q63xn.dg4fi334.g00q63xn.dg4fjdee/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fwoodypuddy%2Fgift-012%2F&amp;m=http%3A%2F%2Fm.rakuten.co.jp%2Fwoodypuddy%2Fi%2F10000631%2F&amp;rafcid=wsc_i_is_852e9d1a-8f83-49dc-bc9e-cf56a98e669a</a>
+    <button class="copy-btn" onclick="copyPlain(this, 'https://hb.afl.rakuten.co.jp/hgc/g00q63xn.dg4fi334.g00q63xn.dg4fjdee/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fwoodypuddy%2Fgift-012%2F&amp;m=http%3A%2F%2Fm.rakuten.co.jp%2Fwoodypuddy%2Fi%2F10000631%2F&amp;rafcid=wsc_i_is_852e9d1a-8f83-49dc-bc9e-cf56a98e669a')" type="button">URLコピー</button>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>楽天ROOM用</span>
+      <button class="copy-btn" onclick="copyText(this, 'room-4')" type="button">コピー</button>
+    </div>
+    <textarea id="room-4" readonly>🪵 木製おままごとセット、安いやつを買って「もうちょっとよかった」と後悔した経験ないですか?
+
+ウッディプッディのグツグツ煮込みお料理セットは、まな板・包丁・鍋・野菜・魚など25点入りの充実ぶり。野菜や魚はマグネット式で本当に切れる仕様で、子どもが「切れた!」と大喜び✂️
+
+天然木製で口に入れても安心。対象年齢3歳以上で長く遊べる。木箱付きなのでおもちゃ箱に散らかりがちな小物がひとまとめになって助かる🧺
+
+¥16,500は決して安くないけど、誕生日・クリスマスプレゼントとして一択になりうる完成度だと思う。
+
+レビュー1,714件・星4.69という評価、ここまで集まってるのは納得感ある。
+
+#おままごとセット #木のおもちゃ #知育玩具 #ウッディプッディ #誕生日プレゼント #育児パパ #共働き家庭 #3歳 #おもちゃ</textarea>
+  </div>
+</div>
+</div>
+
+<h2 class="section-title">💬 今日のあるある投稿ネタ(商品リンクなし)</h2>
+<div class="cards">
+<div class="card">
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>あるある投稿 #1</span>
+      <button class="copy-btn" onclick="copyText(this, 'daily-0')" type="button">コピー</button>
+    </div>
+    <textarea id="daily-0" class="short" readonly>子どもの朝ごはんは昨日の夜から考えてるのに、自分の朝ごはんは「まあいっか」で終わる。</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>あるある投稿 #2</span>
+      <button class="copy-btn" onclick="copyText(this, 'daily-1')" type="button">コピー</button>
+    </div>
+    <textarea id="daily-1" class="short" readonly>かわいい寝顔を撮ろうとして、後から写真確認したら背景にオムツとタオルとまだ片付いてない夕食の食器が全部映り込んでた🙃
+育児記録ってなんでいつもこういうことになるんだろう</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>あるある投稿 #3</span>
+      <button class="copy-btn" onclick="copyText(this, 'daily-2')" type="button">コピー</button>
+    </div>
+    <textarea id="daily-2" class="short" readonly>寝かしつけ、今日は20分でいけた!って静かに布団から抜け出した瞬間に泣き声がする。
+
+あの「…あ。」ってなる沈黙は何度経験してもしんどいんだよな。
+うちの子の背中スイッチ、精度高すぎる。 #育児パパ</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>あるある投稿 #4</span>
+      <button class="copy-btn" onclick="copyText(this, 'daily-3')" type="button">コピー</button>
+    </div>
+    <textarea id="daily-3" class="short" readonly>ご飯中に「これなに?」って聞いてきて、答えたら「いらない」。毎回この流れ😂</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>あるある投稿 #5</span>
+      <button class="copy-btn" onclick="copyText(this, 'daily-4')" type="button">コピー</button>
+    </div>
+    <textarea id="daily-4" class="short" readonly>子どもが夜泣きしても自分だけ寝てた話、妻から「あの頃の話をしようか」って感じで出てくることがある。
+
+ちゃんと起きてたつもりだったんだけど、「つもり」だったんだよな多分。
+夜中の記憶、こんなに非対称なのか。</textarea>
+  </div>
+</div>
+</div>
+
+<footer class="note">商品ページを確認し、投稿文をコピーして手動で投稿してください。<br>Threads/Xの商品紹介は1日1件・あるある投稿と織り交ぜてスパム判定を避けてください。<br>価格・レビューは選定時点の実データです。</footer>
+</div>
+<script>
+function flash(btn) {
+  const original = btn.textContent;
+  btn.textContent = 'コピーしました';
+  btn.classList.add('copied');
+  setTimeout(() => { btn.textContent = original; btn.classList.remove('copied'); }, 1500);
+}
+function copyText(btn, id) {
+  const el = document.getElementById(id);
+  el.select();
+  el.setSelectionRange(0, 999999);
+  navigator.clipboard.writeText(el.value).then(() => flash(btn)).catch(() => {
+    try { document.execCommand('copy'); flash(btn); } catch (e) {}
+  });
+}
+function copyPlain(btn, text) {
+  navigator.clipboard.writeText(text).then(() => flash(btn)).catch(() => {
+    const t = document.createElement('textarea');
+    t.value = text; document.body.appendChild(t); t.select();
+    try { document.execCommand('copy'); flash(btn); } catch (e) {}
+    document.body.removeChild(t);
+  });
+}
+</script>
+</body>
+</html>

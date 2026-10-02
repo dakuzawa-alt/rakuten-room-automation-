@@ -2887,6 +2887,53 @@
       "channels": [
         "room"
       ]
+    },
+    {
+      "itemCode": "p-s:10002088",
+      "itemName": "バーミックス bamix M300 セット / 全2種 2色 ( メーカ保証5年 ) ハンディタイプ の フードプロセッ",
+      "date": "2026-10-03",
+      "slot": "morning",
+      "channels": [
+        "room"
+      ]
+    },
+    {
+      "itemCode": "kagudoki:10000499",
+      "itemName": "パーソナルデスク 2点セット 幅90cm デスク カギ付き 机 鍵付き オフィスデスク 勉強机 学習机 ビジネスデスク ",
+      "date": "2026-10-03",
+      "slot": "morning",
+      "channels": [
+        "room"
+      ]
+    },
+    {
+      "itemCode": "kurashi-zakka:10002344",
+      "itemName": "sakuraku キッチンマット L型 「透明 L字 拭ける 255 270 240 」(洗濯不要 PVC おしゃれ キ",
+      "date": "2026-10-03",
+      "slot": "morning",
+      "channels": [
+        "room",
+        "threads",
+        "x"
+      ]
+    },
+    {
+      "itemCode": "kawaiizou:10000197",
+      "itemName": "シリコンビブ ビブ お食事エプロン 全8色 お食事ビブ お食事スタイ 無地 離乳食準備 出産祝い 出産準備 保育園 離乳",
+      "date": "2026-10-03",
+      "slot": "morning",
+      "channels": [
+        "room"
+      ]
+    },
+    {
+      "itemCode": "woodypuddy:10000631",
+      "itemName": "はじめてのおままごと グツグツ煮込みお料理セット",
+      "date": "2026-10-03",
+      "slot": "morning",
+      "channels": [
+        "room"
+      ]
     }
   ]
 }
