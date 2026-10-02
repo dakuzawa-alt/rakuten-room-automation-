@@ -2840,6 +2840,53 @@
         "threads",
         "x"
       ]
+    },
+    {
+      "itemCode": "gajumarunoki:10000278",
+      "itemName": "積み木 音が鳴る 木製 知育玩具 赤ちゃん 安全 大きめサイズ 1歳 誕生日 プレゼント 木のおもちゃ 音いっぱいつみき",
+      "date": "2026-10-02",
+      "slot": "night",
+      "channels": [
+        "room"
+      ]
+    },
+    {
+      "itemCode": "auc-babyjacksons:10004186",
+      "itemName": "スプーン フォーク2点セット 知育カトラリー ドードル doddl 1歳〜5歳頃用 レビュー特典付 大人気 ドードルスプ",
+      "date": "2026-10-02",
+      "slot": "night",
+      "channels": [
+        "room",
+        "threads",
+        "x"
+      ]
+    },
+    {
+      "itemCode": "youplus-r:10004028",
+      "itemName": "離乳食 ベビー カトラリー スプーン フォーク 練習 出産祝い セット ベビー食器 ケース付き のど突き防止 トレーニン",
+      "date": "2026-10-02",
+      "slot": "night",
+      "channels": [
+        "room"
+      ]
+    },
+    {
+      "itemCode": "fabomi:10000126",
+      "itemName": "哺乳瓶ブラシ3点 セット シリコン 哺乳瓶 洗浄 消毒 哺乳瓶洗い ブラシ 洗う ボトルブラシ シリコンブラシ 乳首ブラ",
+      "date": "2026-10-02",
+      "slot": "night",
+      "channels": [
+        "room"
+      ]
+    },
+    {
+      "itemCode": "handkbaby:10000068",
+      "itemName": "デュアルシリコンが哺乳瓶に密着☆H&K BABY シリコン 哺乳瓶ブラシ 2種セット ボトルブラシ シリコンブラシ 洗浄",
+      "date": "2026-10-02",
+      "slot": "night",
+      "channels": [
+        "room"
+      ]
     }
   ]
 }

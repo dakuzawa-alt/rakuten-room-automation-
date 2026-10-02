@@ -1,0 +1,440 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>2026-10-02 夜 - 楽天ROOM投稿リスト</title>
+<style>
+:root {
+  --bg: #f6f3ee;
+  --surface: #ffffff;
+  --ink: #23211d;
+  --ink-soft: #6b6459;
+  --accent: #a8382c;
+  --accent-ink: #fff6f2;
+  --good: #3f7d58;
+  --border: #e4ddd2;
+  --chip-bg: #efe8db;
+  color-scheme: light dark;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #16140f;
+    --surface: #211f1a;
+    --ink: #ece7dc;
+    --ink-soft: #a89e8d;
+    --accent: #e0685a;
+    --accent-ink: #1c0f0c;
+    --good: #6fb98a;
+    --border: #35322a;
+    --chip-bg: #2a2721;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #16140f; --surface: #211f1a; --ink: #ece7dc; --ink-soft: #a89e8d;
+  --accent: #e0685a; --accent-ink: #1c0f0c; --good: #6fb98a; --border: #35322a; --chip-bg: #2a2721;
+}
+:root[data-theme="light"] {
+  --bg: #f6f3ee; --surface: #ffffff; --ink: #23211d; --ink-soft: #6b6459;
+  --accent: #a8382c; --accent-ink: #fff6f2; --good: #3f7d58; --border: #e4ddd2; --chip-bg: #efe8db;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0; background: var(--bg); color: var(--ink);
+  font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Yu Gothic Medium", "Noto Sans JP", sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+.wrap { max-width: 640px; margin: 0 auto; padding: 0 16px 40px; }
+header.top {
+  position: sticky; top: 0; z-index: 5; background: var(--bg);
+  padding: 18px 16px 12px; border-bottom: 1px solid var(--border);
+  display: flex; align-items: baseline; justify-content: space-between; gap: 12px;
+}
+header.top .eyebrow {
+  font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-soft);
+  font-weight: 600; margin: 0 0 2px;
+}
+header.top h1 { font-size: 1.25rem; margin: 0; font-weight: 700; letter-spacing: -0.01em; }
+header.top .count {
+  background: var(--chip-bg); color: var(--ink-soft); font-size: 0.78rem; font-weight: 600;
+  padding: 5px 10px; border-radius: 999px; white-space: nowrap;
+}
+h2.section-title { font-size: 0.95rem; font-weight: 700; margin: 24px 0 12px; }
+.cards { display: flex; flex-direction: column; gap: 16px; margin-top: 18px; }
+.card {
+  background: var(--surface); border: 1px solid var(--border); border-radius: 16px;
+  padding: 16px; display: flex; flex-direction: column; gap: 12px;
+}
+.card.featured { border-color: var(--accent); border-width: 2px; }
+.featured-badge {
+  align-self: flex-start; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.03em;
+  color: var(--accent-ink); background: var(--accent); padding: 3px 9px; border-radius: 999px;
+}
+.card-head { display: flex; gap: 12px; }
+.card-head img {
+  width: 76px; height: 76px; object-fit: cover; border-radius: 10px;
+  border: 1px solid var(--border); background: var(--chip-bg); flex-shrink: 0;
+}
+.card-head .info { min-width: 0; flex: 1; display: flex; flex-direction: column; gap: 4px; }
+.genre-chip {
+  align-self: flex-start; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.03em;
+  color: var(--accent); background: color-mix(in srgb, var(--accent) 12%, transparent);
+  padding: 2px 8px; border-radius: 999px;
+}
+.name {
+  font-weight: 600; font-size: 0.94rem; line-height: 1.4;
+  display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
+}
+.meta-row { display: flex; align-items: baseline; gap: 8px; font-size: 0.82rem; color: var(--ink-soft); }
+.price { font-variant-numeric: tabular-nums; color: var(--ink); font-weight: 700; font-size: 1.05rem; }
+.stars { letter-spacing: -1px; color: var(--accent); }
+.btn-open {
+  display: flex; align-items: center; justify-content: center; gap: 6px;
+  background: var(--accent); color: var(--accent-ink); border: none; border-radius: 11px;
+  padding: 12px; font-weight: 700; font-size: 0.92rem; text-decoration: none;
+}
+.btn-open:active { opacity: 0.85; }
+.url-row {
+  display: flex; align-items: center; gap: 8px;
+  background: var(--chip-bg); border-radius: 9px; padding: 8px 10px;
+}
+.url-row a {
+  flex: 1; min-width: 0; font-size: 0.76rem; color: var(--accent);
+  word-break: break-all; line-height: 1.45; text-decoration: none;
+}
+.url-row a:active { text-decoration: underline; }
+.reason { font-size: 0.8rem; color: var(--ink-soft); }
+.caption-box { border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }
+.caption-head {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 8px 10px; background: var(--chip-bg);
+}
+.caption-head span {
+  font-size: 0.7rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-soft);
+}
+.copy-btn {
+  background: var(--surface); border: 1px solid var(--border); color: var(--ink);
+  border-radius: 7px; padding: 5px 11px; font-size: 0.76rem; font-weight: 600; cursor: pointer;
+}
+.copy-btn:focus-visible, .btn-open:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.copy-btn.copied { background: var(--good); border-color: var(--good); color: #fff; }
+textarea {
+  width: 100%; display: block; border: none; padding: 10px; font-size: 0.85rem; line-height: 1.55;
+  resize: vertical; min-height: 108px; font-family: inherit; background: var(--surface); color: var(--ink);
+}
+textarea.short { min-height: 60px; }
+textarea:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
+footer.note { margin-top: 22px; font-size: 0.76rem; color: var(--ink-soft); text-align: center; line-height: 1.6; }
+@media (prefers-reduced-motion: no-preference) {
+  .copy-btn { transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease; }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <div>
+    <p class="eyebrow">楽天ROOM 投稿リスト</p>
+    <h1>2026-10-02 夜</h1>
+  </div>
+  <span class="count">5件</span>
+</header>
+
+<h2 class="section-title">📦 商品(ROOM用、全5件)</h2>
+<div class="cards">
+<div class="card">
+  <div class="card-head">
+    <img src="https://thumbnail.image.rakuten.co.jp/@0_mall/gajumarunoki/cabinet/rrm/sq/49_sq_1.jpg?_ex=128x128" alt="積み木 音が鳴る 木製 知育玩具 赤ちゃん 安全 大きめサイズ 1歳 誕生日 プレゼント 木のおもちゃ 音いっぱいつみき 名入れ無料I エドインター 名入れ無料 出産祝い カラフル 男の子 女の子 0歳 2歳 3歳" loading="lazy">
+    <div class="info">
+      
+      <span class="genre-chip">新規キーワード</span>
+      <div class="name">積み木 音が鳴る 木製 知育玩具 赤ちゃん 安全 大きめサイズ 1歳 誕生日 プレゼント 木のおもちゃ 音いっぱいつみき 名入れ無料I エドインター 名入れ無料 出産祝い カラフル 男の子 女の子 0歳 2歳 3歳</div>
+      <div class="meta-row">
+        <span class="price">¥5,500</span>
+        <span class="stars">★★★★★</span>
+        <span>4.81(1662件)</span>
+      </div>
+    </div>
+  </div>
+  <a class="btn-open" href="https://item.rakuten.co.jp/gajumarunoki/ed-806371/" target="_blank" rel="noopener">商品ページを開く ↗</a>
+  <div class="url-row">
+    <a href="https://hb.afl.rakuten.co.jp/hgc/g00rg0fn.dg4fi335.g00rg0fn.dg4fjb9d/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fgajumarunoki%2Fed-806371%2F&amp;m=http%3A%2F%2Fm.rakuten.co.jp%2Fgajumarunoki%2Fi%2F10000278%2F&amp;rafcid=wsc_i_is_852e9d1a-8f83-49dc-bc9e-cf56a98e669a" target="_blank" rel="noopener">https://hb.afl.rakuten.co.jp/hgc/g00rg0fn.dg4fi335.g00rg0fn.dg4fjb9d/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fgajumarunoki%2Fed-806371%2F&amp;m=http%3A%2F%2Fm.rakuten.co.jp%2Fgajumarunoki%2Fi%2F10000278%2F&amp;rafcid=wsc_i_is_852e9d1a-8f83-49dc-bc9e-cf56a98e669a</a>
+    <button class="copy-btn" onclick="copyPlain(this, 'https://hb.afl.rakuten.co.jp/hgc/g00rg0fn.dg4fi335.g00rg0fn.dg4fjb9d/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fgajumarunoki%2Fed-806371%2F&amp;m=http%3A%2F%2Fm.rakuten.co.jp%2Fgajumarunoki%2Fi%2F10000278%2F&amp;rafcid=wsc_i_is_852e9d1a-8f83-49dc-bc9e-cf56a98e669a')" type="button">URLコピー</button>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>楽天ROOM用</span>
+      <button class="copy-btn" onclick="copyText(this, 'room-0')" type="button">コピー</button>
+    </div>
+    <textarea id="room-0" readonly>🎵 息子の誕生日プレゼント、何時間悩んでも「これにしよう」って思えなかった。
+
+木製で音が鳴る積み木、エドインター。積むたびにポロンと鳴るから、子が何度も繰り返してる🌳。口に入れても安全な素材、大きめサイズで誤飲の心配も少ない。名入れ無料だから出産祝いにも使いやすい。
+
+5,500円でレビュー1,662件・星4.81。これが高いか安いかは、選んだときの子どもの顔を見てから決めてほしい✨。
+
+名入れしたい場合は注文時の備考欄への入力を忘れずに。
+
+#積み木 #知育玩具 #エドインター #木のおもちゃ #1歳プレゼント #出産祝い #育児パパ #音いっぱいつみき #赤ちゃんおもちゃ</textarea>
+  </div>
+</div>
+<div class="card featured">
+  <div class="card-head">
+    <img src="https://thumbnail.image.rakuten.co.jp/@0_mall/auc-babyjacksons/cabinet/others3/doddl_n2set_000.jpg?_ex=128x128" alt="スプーン フォーク2点セット 知育カトラリー ドードル doddl 1歳〜5歳頃用 レビュー特典付 大人気 ドードルスプーン 子供用スプーン 幼児用 子供 カトラリー 子供 お箸 練習 ベビー食器 出産祝い ギフト 知育カトラリー ベビースプーン 離乳食 スプーン" loading="lazy">
+    <div class="info">
+      <span class="featured-badge">🔥 本日のThreads/Xピックアップ</span>
+      <span class="genre-chip">新規キーワード</span>
+      <div class="name">スプーン フォーク2点セット 知育カトラリー ドードル doddl 1歳〜5歳頃用 レビュー特典付 大人気 ドードルスプーン 子供用スプーン 幼児用 子供 カトラリー 子供 お箸 練習 ベビー食器 出産祝い ギフト 知育カトラリー ベビースプーン 離乳食 スプーン</div>
+      <div class="meta-row">
+        <span class="price">¥3,300</span>
+        <span class="stars">★★★★★</span>
+        <span>4.57(7200件)</span>
+      </div>
+    </div>
+  </div>
+  <a class="btn-open" href="https://item.rakuten.co.jp/auc-babyjacksons/doddl-2set/" target="_blank" rel="noopener">商品ページを開く ↗</a>
+  <div class="url-row">
+    <a href="https://hb.afl.rakuten.co.jp/hgc/g00qnmmn.dg4fidd7.g00qnmmn.dg4fj878/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fauc-babyjacksons%2Fdoddl-2set%2F&amp;m=http%3A%2F%2Fm.rakuten.co.jp%2Fauc-babyjacksons%2Fi%2F10004186%2F&amp;rafcid=wsc_i_is_852e9d1a-8f83-49dc-bc9e-cf56a98e669a" target="_blank" rel="noopener">https://hb.afl.rakuten.co.jp/hgc/g00qnmmn.dg4fidd7.g00qnmmn.dg4fj878/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fauc-babyjacksons%2Fdoddl-2set%2F&amp;m=http%3A%2F%2Fm.rakuten.co.jp%2Fauc-babyjacksons%2Fi%2F10004186%2F&amp;rafcid=wsc_i_is_852e9d1a-8f83-49dc-bc9e-cf56a98e669a</a>
+    <button class="copy-btn" onclick="copyPlain(this, 'https://hb.afl.rakuten.co.jp/hgc/g00qnmmn.dg4fidd7.g00qnmmn.dg4fj878/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fauc-babyjacksons%2Fdoddl-2set%2F&amp;m=http%3A%2F%2Fm.rakuten.co.jp%2Fauc-babyjacksons%2Fi%2F10004186%2F&amp;rafcid=wsc_i_is_852e9d1a-8f83-49dc-bc9e-cf56a98e669a')" type="button">URLコピー</button>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>楽天ROOM用</span>
+      <button class="copy-btn" onclick="copyText(this, 'room-1')" type="button">コピー</button>
+    </div>
+    <textarea id="room-1" readonly>🥄 レビュー7,200件って、もはやひとつのジャンルの「答え」みたいになってますよ。
+
+doddlの知育カトラリー。普通のスプーンと形が全然違って、人間工学に基づいたカーブがついてる。子どもの手の使い方に合わせて自然に持てるから、「自分で食べたい」気持ちを邪魔しない🍽️。
+
+スプーン+フォークの2点セットで3,300円。ただし使い始めはゆっくり慣らしてあげると定着しやすい。
+
+共働きで夕飯の準備しながら「早く食べて」ってなりがちな場面に、これ一本持ち込むとちょっとだけ楽になる🌟。
+
+#doddl #ドードル #知育カトラリー #離乳食 #スプーン練習 #ベビー食器 #出産祝い #育児パパ #共働き家庭</textarea>
+  </div>
+  <p class="reason">🔥 今日のピックアップ理由: レビュー7,200件という今回5件中最大の実績と、「子どもが自分でご飯を食べたがる時期」という育児家庭なら誰もが通るフェーズへの直撃感が強く、価格も3,300円と手が届く水準のため。</p>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>Threads用</span>
+      <button class="copy-btn" onclick="copyText(this, 'threads-0')" type="button">コピー</button>
+    </div>
+    <textarea id="threads-0" readonly>doddl、見た目からして普通のスプーンじゃないんよ。
+持ち手が角度ついてて、子どもの手首の動かし方に合わせた形になってる。
+
+うちの子が「自分でやる!」ってなった時期に試したんだけど、こぼしながらでも最後まで諦めないで食べてて、あ、食べたいんじゃなくて「やりたい」んだな、って思った。
+
+3,300円。スプーン一本の話なんだけど、わりと大事だった気がする。
+
+みんな子どものカトラリーってどのタイミングで変えてる?
+
+#doddl #知育カトラリー #育児パパ #楽天アフィリエイト</textarea>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>X用</span>
+      <button class="copy-btn" onclick="copyText(this, 'x-0')" type="button">コピー</button>
+    </div>
+    <textarea id="x-0" readonly>doddl、見た目からして普通のスプーンじゃない。
+
+持ち手が角度ついてて、子どもの手首の動きに合わせた形。
+
+「自分でやる!」ってなった時期に試した。最後まで諦めないで食べてて、食べたいんじゃなくてやりたいんだな、って。
+
+3,300円。スプーン一本でこんな気づきある?
+
+#doddl #育児パパ #PR</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="card-head">
+    <img src="https://thumbnail.image.rakuten.co.jp/@0_mall/youplus-r/cabinet/crossmall008/zak-b-cts-st_r-msm.jpg?_ex=128x128" alt="【人間生活工学認証】離乳食 ベビー カトラリー スプーン フォーク 練習 出産祝い セット ベビー食器 ケース付き のど突き防止 トレーニング 知育カトラリー 食洗機対応 シリコン 赤ちゃん 1歳 ベビーカトラリー ステップ regalo piu rv014" loading="lazy">
+    <div class="info">
+      
+      <span class="genre-chip">新規キーワード</span>
+      <div class="name">【人間生活工学認証】離乳食 ベビー カトラリー スプーン フォーク 練習 出産祝い セット ベビー食器 ケース付き のど突き防止 トレーニング 知育カトラリー 食洗機対応 シリコン 赤ちゃん 1歳 ベビーカトラリー ステップ regalo piu rv014</div>
+      <div class="meta-row">
+        <span class="price">¥1,880</span>
+        <span class="stars">★★★★★</span>
+        <span>4.62(1665件)</span>
+      </div>
+    </div>
+  </div>
+  <a class="btn-open" href="https://item.rakuten.co.jp/youplus-r/zak-b-cts-st-msm/" target="_blank" rel="noopener">商品ページを開く ↗</a>
+  <div class="url-row">
+    <a href="https://hb.afl.rakuten.co.jp/hgc/g00s64un.dg4fi14a.g00s64un.dg4fjadf/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fyouplus-r%2Fzak-b-cts-st-msm%2F&amp;m=http%3A%2F%2Fm.rakuten.co.jp%2Fyouplus-r%2Fi%2F10004028%2F&amp;rafcid=wsc_i_is_852e9d1a-8f83-49dc-bc9e-cf56a98e669a" target="_blank" rel="noopener">https://hb.afl.rakuten.co.jp/hgc/g00s64un.dg4fi14a.g00s64un.dg4fjadf/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fyouplus-r%2Fzak-b-cts-st-msm%2F&amp;m=http%3A%2F%2Fm.rakuten.co.jp%2Fyouplus-r%2Fi%2F10004028%2F&amp;rafcid=wsc_i_is_852e9d1a-8f83-49dc-bc9e-cf56a98e669a</a>
+    <button class="copy-btn" onclick="copyPlain(this, 'https://hb.afl.rakuten.co.jp/hgc/g00s64un.dg4fi14a.g00s64un.dg4fjadf/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fyouplus-r%2Fzak-b-cts-st-msm%2F&amp;m=http%3A%2F%2Fm.rakuten.co.jp%2Fyouplus-r%2Fi%2F10004028%2F&amp;rafcid=wsc_i_is_852e9d1a-8f83-49dc-bc9e-cf56a98e669a')" type="button">URLコピー</button>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>楽天ROOM用</span>
+      <button class="copy-btn" onclick="copyText(this, 'room-2')" type="button">コピー</button>
+    </div>
+    <textarea id="room-2" readonly>😰 赤ちゃん用のスプーン、「のど突き防止」って意識して選んでる?
+
+regalo piuのカトラリーセット、それ知ってから調べた。スプーンに突き当たりが設計されてて、奥まで入りすぎない構造🛡️。人間生活工学認証取得で、シリコン製だから柔らかくて食洗機も対応。ケース付きで持ち運びやすい。
+
+1,880円でセットが揃うなら、量と価格のバランスがいい✨。レビュー1,665件・星4.62で評価も安定してる。
+
+離乳食始める前に「なんでもいいや」で買いそうになってたけど、こういう機能差は一回知ると気になってくる。
+
+#regalopiu #ベビーカトラリー #離乳食グッズ #のど突き防止 #知育カトラリー #食洗機対応 #育児パパ #共働き家庭 #ベビー食器</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="card-head">
+    <img src="https://thumbnail.image.rakuten.co.jp/@0_mall/fabomi/cabinet/baby/c06101bb/1.jpg?_ex=128x128" alt="【Kirarily★楽天1位】 哺乳瓶ブラシ3点 セット シリコン 哺乳瓶 洗浄 消毒 哺乳瓶洗い ブラシ 洗う ボトルブラシ シリコンブラシ 乳首ブラシ ストローブラシ ストロー ストローマグ ベビーマグ BPAフリー 哺乳瓶グッズ 出産準備" loading="lazy">
+    <div class="info">
+      
+      <span class="genre-chip">新規キーワード</span>
+      <div class="name">【Kirarily★楽天1位】 哺乳瓶ブラシ3点 セット シリコン 哺乳瓶 洗浄 消毒 哺乳瓶洗い ブラシ 洗う ボトルブラシ シリコンブラシ 乳首ブラシ ストローブラシ ストロー ストローマグ ベビーマグ BPAフリー 哺乳瓶グッズ 出産準備</div>
+      <div class="meta-row">
+        <span class="price">¥1,980</span>
+        <span class="stars">★★★★★</span>
+        <span>4.58(425件)</span>
+      </div>
+    </div>
+  </div>
+  <a class="btn-open" href="https://item.rakuten.co.jp/fabomi/c06101bb/" target="_blank" rel="noopener">商品ページを開く ↗</a>
+  <div class="url-row">
+    <a href="https://hb.afl.rakuten.co.jp/hgc/g00u3p0n.dg4fie3a.g00u3p0n.dg4fj3c4/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Ffabomi%2Fc06101bb%2F&amp;m=http%3A%2F%2Fm.rakuten.co.jp%2Ffabomi%2Fi%2F10000126%2F&amp;rafcid=wsc_i_is_852e9d1a-8f83-49dc-bc9e-cf56a98e669a" target="_blank" rel="noopener">https://hb.afl.rakuten.co.jp/hgc/g00u3p0n.dg4fie3a.g00u3p0n.dg4fj3c4/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Ffabomi%2Fc06101bb%2F&amp;m=http%3A%2F%2Fm.rakuten.co.jp%2Ffabomi%2Fi%2F10000126%2F&amp;rafcid=wsc_i_is_852e9d1a-8f83-49dc-bc9e-cf56a98e669a</a>
+    <button class="copy-btn" onclick="copyPlain(this, 'https://hb.afl.rakuten.co.jp/hgc/g00u3p0n.dg4fie3a.g00u3p0n.dg4fj3c4/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Ffabomi%2Fc06101bb%2F&amp;m=http%3A%2F%2Fm.rakuten.co.jp%2Ffabomi%2Fi%2F10000126%2F&amp;rafcid=wsc_i_is_852e9d1a-8f83-49dc-bc9e-cf56a98e669a')" type="button">URLコピー</button>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>楽天ROOM用</span>
+      <button class="copy-btn" onclick="copyText(this, 'room-3')" type="button">コピー</button>
+    </div>
+    <textarea id="room-3" readonly>🍼 1,980円で3点セット、しかも楽天1位ってどういう価格設定なの。
+
+Kirarilyの哺乳瓶ブラシセット、ボトルブラシ・乳首ブラシ・ストローブラシが揃う。シリコン素材で傷がつきにくく、BPAフリーなので赤ちゃんのものを洗うのに使っても安心🛡️。哺乳瓶だけじゃなくストローマグやベビーマグにも使えるから、月齢が上がっても出番がある。
+
+消毒前の洗浄が毎日の作業だから、ここのストレスを一回見直すのはあり。レビュー425件で評価も安定✅。
+
+一つずつ揃えるより断然お得。
+
+#哺乳瓶ブラシ #Kirarily #ボトルブラシ #シリコンブラシ #哺乳瓶グッズ #BPAフリー #育児パパ #出産準備 #楽天購入品</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="card-head">
+    <img src="https://thumbnail.image.rakuten.co.jp/@0_mall/handkbaby/cabinet/07653478/hk_bottle_brush/white/hk_brush_m1.jpg?_ex=128x128" alt="[新タイプ] デュアルシリコンが哺乳瓶に密着☆H&amp;K BABY シリコン 哺乳瓶ブラシ 2種セット ボトルブラシ シリコンブラシ 洗浄 消毒 マイボトル 水筒 哺乳瓶洗い 哺乳瓶グッズ キッチングッズ キッチン小物 キッチンブラシ 出産準備 プレゼント ベビー 出産祝い 韓国" loading="lazy">
+    <div class="info">
+      
+      <span class="genre-chip">新規キーワード</span>
+      <div class="name">[新タイプ] デュアルシリコンが哺乳瓶に密着☆H&amp;K BABY シリコン 哺乳瓶ブラシ 2種セット ボトルブラシ シリコンブラシ 洗浄 消毒 マイボトル 水筒 哺乳瓶洗い 哺乳瓶グッズ キッチングッズ キッチン小物 キッチンブラシ 出産準備 プレゼント ベビー 出産祝い 韓国</div>
+      <div class="meta-row">
+        <span class="price">¥1,980</span>
+        <span class="stars">★★★★★</span>
+        <span>4.55(363件)</span>
+      </div>
+    </div>
+  </div>
+  <a class="btn-open" href="https://item.rakuten.co.jp/handkbaby/silicon_brush/" target="_blank" rel="noopener">商品ページを開く ↗</a>
+  <div class="url-row">
+    <a href="https://hb.afl.rakuten.co.jp/hgc/g00tqzbn.dg4fi1e3.g00tqzbn.dg4fjd3b/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fhandkbaby%2Fsilicon_brush%2F&amp;m=http%3A%2F%2Fm.rakuten.co.jp%2Fhandkbaby%2Fi%2F10000068%2F&amp;rafcid=wsc_i_is_852e9d1a-8f83-49dc-bc9e-cf56a98e669a" target="_blank" rel="noopener">https://hb.afl.rakuten.co.jp/hgc/g00tqzbn.dg4fi1e3.g00tqzbn.dg4fjd3b/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fhandkbaby%2Fsilicon_brush%2F&amp;m=http%3A%2F%2Fm.rakuten.co.jp%2Fhandkbaby%2Fi%2F10000068%2F&amp;rafcid=wsc_i_is_852e9d1a-8f83-49dc-bc9e-cf56a98e669a</a>
+    <button class="copy-btn" onclick="copyPlain(this, 'https://hb.afl.rakuten.co.jp/hgc/g00tqzbn.dg4fi1e3.g00tqzbn.dg4fjd3b/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fhandkbaby%2Fsilicon_brush%2F&amp;m=http%3A%2F%2Fm.rakuten.co.jp%2Fhandkbaby%2Fi%2F10000068%2F&amp;rafcid=wsc_i_is_852e9d1a-8f83-49dc-bc9e-cf56a98e669a')" type="button">URLコピー</button>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>楽天ROOM用</span>
+      <button class="copy-btn" onclick="copyText(this, 'room-4')" type="button">コピー</button>
+    </div>
+    <textarea id="room-4" readonly>💡 哺乳瓶のブラシって、密着するかどうかで洗い心地が全然変わるって知ってた?
+
+H&amp;K BABYのシリコンブラシ、「デュアルシリコン」が瓶の曲面にしっかり追随する設計になってる🍼。大小2サイズ入りで、哺乳瓶本体から細い首まで一気に対応。マイボトルや水筒にも使えるから使い回しが利く。
+
+1,980円で2種セット。プラスチックのブラシで「なんかゴシゴシ感が足りない」って感覚があったなら、一度シリコンに変えてみる価値はある。
+
+夜の哺乳瓶洗いって毎日のことだから、小さなストレス解消がじわじわ効いてくるんだよな🌙。
+
+#哺乳瓶ブラシ #HKbaby #シリコンブラシ #ボトルブラシ #哺乳瓶洗い #育児パパ #出産準備 #共働き家庭 #ベビーグッズ</textarea>
+  </div>
+</div>
+</div>
+
+<h2 class="section-title">💬 今日のあるある投稿ネタ(商品リンクなし)</h2>
+<div class="cards">
+<div class="card">
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>あるある投稿 #1</span>
+      <button class="copy-btn" onclick="copyText(this, 'daily-0')" type="button">コピー</button>
+    </div>
+    <textarea id="daily-0" class="short" readonly>子が寝た瞬間だけが自分の時間、なのに何もできないまま自分も落ちる。毎日これ。</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>あるある投稿 #2</span>
+      <button class="copy-btn" onclick="copyText(this, 'daily-1')" type="button">コピー</button>
+    </div>
+    <textarea id="daily-1" class="short" readonly>やっと寝た、そっと下ろす、5秒後に泣く。
+この1ループを昨晩何回やったか数えてないけど、腕はちゃんと覚えてる。 #育児パパ</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>あるある投稿 #3</span>
+      <button class="copy-btn" onclick="copyText(this, 'daily-2')" type="button">コピー</button>
+    </div>
+    <textarea id="daily-2" class="short" readonly>離乳食のメニュー、妻は献立ノート作ってる。俺は「先週と同じでよくない?」って言って普通に怒られた。
+この温度差、どこで生まれるんだろ。 #共働き家庭</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>あるある投稿 #4</span>
+      <button class="copy-btn" onclick="copyText(this, 'daily-3')" type="button">コピー</button>
+    </div>
+    <textarea id="daily-3" class="short" readonly>今日も遅くなって帰ったら、子が玄関まで走ってきた。
+転びそうになりながら「おかえり!」って言う顔見て、今日しんどかったやつ全部帳消しになった。
+ずるいんだよな本当に🥹</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>あるある投稿 #5</span>
+      <button class="copy-btn" onclick="copyText(this, 'daily-4')" type="button">コピー</button>
+    </div>
+    <textarea id="daily-4" class="short" readonly>子どもにイライラしやすい日の法則、自分の場合
+
+・睡眠5時間切ってる
+・朝に想定外のことが起きた
+・仕事でひとつ詰まってる
+
+このうち2個以上重なると、もう夕方には限界になってる。自分のことだから予測できるはずなのに、毎回後から気づく。 #育児パパ</textarea>
+  </div>
+</div>
+</div>
+
+<footer class="note">商品ページを確認し、投稿文をコピーして手動で投稿してください。<br>Threads/Xの商品紹介は1日1件・あるある投稿と織り交ぜてスパム判定を避けてください。<br>価格・レビューは選定時点の実データです。</footer>
+</div>
+<script>
+function flash(btn) {
+  const original = btn.textContent;
+  btn.textContent = 'コピーしました';
+  btn.classList.add('copied');
+  setTimeout(() => { btn.textContent = original; btn.classList.remove('copied'); }, 1500);
+}
+function copyText(btn, id) {
+  const el = document.getElementById(id);
+  el.select();
+  el.setSelectionRange(0, 999999);
+  navigator.clipboard.writeText(el.value).then(() => flash(btn)).catch(() => {
+    try { document.execCommand('copy'); flash(btn); } catch (e) {}
+  });
+}
+function copyPlain(btn, text) {
+  navigator.clipboard.writeText(text).then(() => flash(btn)).catch(() => {
+    const t = document.createElement('textarea');
+    t.value = text; document.body.appendChild(t); t.select();
+    try { document.execCommand('copy'); flash(btn); } catch (e) {}
+    document.body.removeChild(t);
+  });
+}
+</script>
+</body>
+</html>
