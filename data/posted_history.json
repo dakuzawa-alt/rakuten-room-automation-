@@ -2981,6 +2981,53 @@
       "channels": [
         "room"
       ]
+    },
+    {
+      "itemCode": "hirakata-g:10000028",
+      "itemName": "耐震マット 転倒防止 4x4cm 4枚 震度7対応",
+      "date": "2026-10-04",
+      "slot": "morning",
+      "channels": [
+        "room"
+      ]
+    },
+    {
+      "itemCode": "najimihouse:10007423",
+      "itemName": "アンパンマン3 お風呂エンジョイ3点セット",
+      "date": "2026-10-04",
+      "slot": "morning",
+      "channels": [
+        "room"
+      ]
+    },
+    {
+      "itemCode": "lila-q:10000622",
+      "itemName": "貝印 ライト付き耳かき 抗菌 KQ0381",
+      "date": "2026-10-04",
+      "slot": "morning",
+      "channels": [
+        "room"
+      ]
+    },
+    {
+      "itemCode": "auc-tokutoku:10048019",
+      "itemName": "髪の毛くるくるポイ 排水口 抗菌 約1年使用",
+      "date": "2026-10-04",
+      "slot": "morning",
+      "channels": [
+        "room",
+        "threads",
+        "x"
+      ]
+    },
+    {
+      "itemCode": "hismileshop:10000012",
+      "itemName": "低温調理器 真空調理器 スロークッカー 家庭用",
+      "date": "2026-10-04",
+      "slot": "morning",
+      "channels": [
+        "room"
+      ]
     }
   ]
 }
