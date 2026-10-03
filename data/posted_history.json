@@ -2934,6 +2934,53 @@
       "channels": [
         "room"
       ]
+    },
+    {
+      "itemCode": "labonect1:10000002",
+      "itemName": "電動ミル 製粉機「コナッピー」 家庭用 業務用 米粉、コーヒー、お茶などを粉末にできます",
+      "date": "2026-10-03",
+      "slot": "night",
+      "channels": [
+        "room"
+      ]
+    },
+    {
+      "itemCode": "jajan-r:10000067",
+      "itemName": "天井つっぱり書棚 愛書家 究極の本棚至高の使い勝手 奥行17cm 完成品 本棚 薄型本棚 天井突っ張り棚 つっぱり本棚 ",
+      "date": "2026-10-03",
+      "slot": "night",
+      "channels": [
+        "room"
+      ]
+    },
+    {
+      "itemCode": "atlas-online:10000440",
+      "itemName": "アトラス フードポット スープジャー 310ml 保温 保冷 真空断熱 軽量 お手入れ簡単 お弁当 フードポット マット",
+      "date": "2026-10-03",
+      "slot": "night",
+      "channels": [
+        "room",
+        "threads",
+        "x"
+      ]
+    },
+    {
+      "itemCode": "lohas1:10011332",
+      "itemName": "百玉そろばん 子供用そろばん 数字算数 知育学習玩具 おもちゃ 知育学習玩具 小学生 足し算 引き算 掛け算 割り算 算",
+      "date": "2026-10-03",
+      "slot": "night",
+      "channels": [
+        "room"
+      ]
+    },
+    {
+      "itemCode": "kurashi-zakka:10001679",
+      "itemName": "サッシ丸ごと冷気ガードシート 網入りガラス対応 改良版(寒さ対策 窓 結露防止シート サッシ シート 断熱シート 窓 断",
+      "date": "2026-10-03",
+      "slot": "night",
+      "channels": [
+        "room"
+      ]
     }
   ]
 }

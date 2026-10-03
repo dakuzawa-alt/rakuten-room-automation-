@@ -1,0 +1,443 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>2026-10-03 夜 - 楽天ROOM投稿リスト</title>
+<style>
+:root {
+  --bg: #f6f3ee;
+  --surface: #ffffff;
+  --ink: #23211d;
+  --ink-soft: #6b6459;
+  --accent: #a8382c;
+  --accent-ink: #fff6f2;
+  --good: #3f7d58;
+  --border: #e4ddd2;
+  --chip-bg: #efe8db;
+  color-scheme: light dark;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #16140f;
+    --surface: #211f1a;
+    --ink: #ece7dc;
+    --ink-soft: #a89e8d;
+    --accent: #e0685a;
+    --accent-ink: #1c0f0c;
+    --good: #6fb98a;
+    --border: #35322a;
+    --chip-bg: #2a2721;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #16140f; --surface: #211f1a; --ink: #ece7dc; --ink-soft: #a89e8d;
+  --accent: #e0685a; --accent-ink: #1c0f0c; --good: #6fb98a; --border: #35322a; --chip-bg: #2a2721;
+}
+:root[data-theme="light"] {
+  --bg: #f6f3ee; --surface: #ffffff; --ink: #23211d; --ink-soft: #6b6459;
+  --accent: #a8382c; --accent-ink: #fff6f2; --good: #3f7d58; --border: #e4ddd2; --chip-bg: #efe8db;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0; background: var(--bg); color: var(--ink);
+  font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Yu Gothic Medium", "Noto Sans JP", sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+.wrap { max-width: 640px; margin: 0 auto; padding: 0 16px 40px; }
+header.top {
+  position: sticky; top: 0; z-index: 5; background: var(--bg);
+  padding: 18px 16px 12px; border-bottom: 1px solid var(--border);
+  display: flex; align-items: baseline; justify-content: space-between; gap: 12px;
+}
+header.top .eyebrow {
+  font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-soft);
+  font-weight: 600; margin: 0 0 2px;
+}
+header.top h1 { font-size: 1.25rem; margin: 0; font-weight: 700; letter-spacing: -0.01em; }
+header.top .count {
+  background: var(--chip-bg); color: var(--ink-soft); font-size: 0.78rem; font-weight: 600;
+  padding: 5px 10px; border-radius: 999px; white-space: nowrap;
+}
+h2.section-title { font-size: 0.95rem; font-weight: 700; margin: 24px 0 12px; }
+.cards { display: flex; flex-direction: column; gap: 16px; margin-top: 18px; }
+.card {
+  background: var(--surface); border: 1px solid var(--border); border-radius: 16px;
+  padding: 16px; display: flex; flex-direction: column; gap: 12px;
+}
+.card.featured { border-color: var(--accent); border-width: 2px; }
+.featured-badge {
+  align-self: flex-start; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.03em;
+  color: var(--accent-ink); background: var(--accent); padding: 3px 9px; border-radius: 999px;
+}
+.card-head { display: flex; gap: 12px; }
+.card-head img {
+  width: 76px; height: 76px; object-fit: cover; border-radius: 10px;
+  border: 1px solid var(--border); background: var(--chip-bg); flex-shrink: 0;
+}
+.card-head .info { min-width: 0; flex: 1; display: flex; flex-direction: column; gap: 4px; }
+.genre-chip {
+  align-self: flex-start; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.03em;
+  color: var(--accent); background: color-mix(in srgb, var(--accent) 12%, transparent);
+  padding: 2px 8px; border-radius: 999px;
+}
+.name {
+  font-weight: 600; font-size: 0.94rem; line-height: 1.4;
+  display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
+}
+.meta-row { display: flex; align-items: baseline; gap: 8px; font-size: 0.82rem; color: var(--ink-soft); }
+.price { font-variant-numeric: tabular-nums; color: var(--ink); font-weight: 700; font-size: 1.05rem; }
+.stars { letter-spacing: -1px; color: var(--accent); }
+.btn-open {
+  display: flex; align-items: center; justify-content: center; gap: 6px;
+  background: var(--accent); color: var(--accent-ink); border: none; border-radius: 11px;
+  padding: 12px; font-weight: 700; font-size: 0.92rem; text-decoration: none;
+}
+.btn-open:active { opacity: 0.85; }
+.url-row {
+  display: flex; align-items: center; gap: 8px;
+  background: var(--chip-bg); border-radius: 9px; padding: 8px 10px;
+}
+.url-row a {
+  flex: 1; min-width: 0; font-size: 0.76rem; color: var(--accent);
+  word-break: break-all; line-height: 1.45; text-decoration: none;
+}
+.url-row a:active { text-decoration: underline; }
+.reason { font-size: 0.8rem; color: var(--ink-soft); }
+.caption-box { border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }
+.caption-head {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 8px 10px; background: var(--chip-bg);
+}
+.caption-head span {
+  font-size: 0.7rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-soft);
+}
+.copy-btn {
+  background: var(--surface); border: 1px solid var(--border); color: var(--ink);
+  border-radius: 7px; padding: 5px 11px; font-size: 0.76rem; font-weight: 600; cursor: pointer;
+}
+.copy-btn:focus-visible, .btn-open:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.copy-btn.copied { background: var(--good); border-color: var(--good); color: #fff; }
+textarea {
+  width: 100%; display: block; border: none; padding: 10px; font-size: 0.85rem; line-height: 1.55;
+  resize: vertical; min-height: 108px; font-family: inherit; background: var(--surface); color: var(--ink);
+}
+textarea.short { min-height: 60px; }
+textarea:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
+footer.note { margin-top: 22px; font-size: 0.76rem; color: var(--ink-soft); text-align: center; line-height: 1.6; }
+@media (prefers-reduced-motion: no-preference) {
+  .copy-btn { transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease; }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <div>
+    <p class="eyebrow">楽天ROOM 投稿リスト</p>
+    <h1>2026-10-03 夜</h1>
+  </div>
+  <span class="count">5件</span>
+</header>
+
+<h2 class="section-title">📦 商品(ROOM用、全5件)</h2>
+<div class="cards">
+<div class="card">
+  <div class="card-head">
+    <img src="https://thumbnail.image.rakuten.co.jp/@0_mall/labonect1/cabinet/item/konappy/01.jpg?_ex=128x128" alt="[コナッピー konappy] 電動ミル 製粉機「コナッピー」 家庭用 業務用 米粉、コーヒー、お茶などを粉末にできます" loading="lazy">
+    <div class="info">
+      
+      <span class="genre-chip"></span>
+      <div class="name">[コナッピー konappy] 電動ミル 製粉機「コナッピー」 家庭用 業務用 米粉、コーヒー、お茶などを粉末にできます</div>
+      <div class="meta-row">
+        <span class="price">¥42,900</span>
+        <span class="stars">★★★★☆</span>
+        <span>4.42(67件)</span>
+      </div>
+    </div>
+  </div>
+  <a class="btn-open" href="https://item.rakuten.co.jp/labonect1/10000002/" target="_blank" rel="noopener">商品ページを開く ↗</a>
+  <div class="url-row">
+    <a href="https://item.rakuten.co.jp/labonect1/10000002/" target="_blank" rel="noopener">https://item.rakuten.co.jp/labonect1/10000002/</a>
+    <button class="copy-btn" onclick="copyPlain(this, 'https://item.rakuten.co.jp/labonect1/10000002/')" type="button">URLコピー</button>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>楽天ROOM用</span>
+      <button class="copy-btn" onclick="copyText(this, 'room-0')" type="button">コピー</button>
+    </div>
+    <textarea id="room-0" readonly>🤔「電動ミルって必要?」って思ってたけど、実はこれ、ふつうのコーヒーミルとは全然違う話だった。
+
+コナッピーは米・大豆・茶葉など穀物系を細かく粉末にできる製粉機。コーヒー豆専用の刃では無理な食材に対応してる。🌾
+
+米粉パンをよく作るお家や、子どもの離乳食・幼児食で食材の食感を調整したい人には刺さる一台。うちは大豆を粉にしてきな粉代わりに使ってる。
+
+レビュー67件・星4.42と、購入者の評価も安定してる。🔍 お手入れのしやすさを先に確認しておくといい。
+
+#電動ミル #製粉機 #コナッピー #米粉 #時短家電 #育児パパ #共働き家庭 #離乳食 #手作り</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="card-head">
+    <img src="https://thumbnail.image.rakuten.co.jp/@0_mall/jajan-r/cabinet/sina/kai/ch6017-s01.jpg?_ex=128x128" alt="天井つっぱり書棚 愛書家 究極の本棚至高の使い勝手 奥行17cm 完成品 本棚 薄型本棚 天井突っ張り棚 つっぱり本棚 漫画ラック マンガ棚 スリム本棚 ブックシェルフ 組み立て不要 大容量 オシャレ 文庫本 漫画本棚 本 コミック収納 漫画収納 壁面収納 コミックラック 地震" loading="lazy">
+    <div class="info">
+      
+      <span class="genre-chip"></span>
+      <div class="name">天井つっぱり書棚 愛書家 究極の本棚至高の使い勝手 奥行17cm 完成品 本棚 薄型本棚 天井突っ張り棚 つっぱり本棚 漫画ラック マンガ棚 スリム本棚 ブックシェルフ 組み立て不要 大容量 オシャレ 文庫本 漫画本棚 本 コミック収納 漫画収納 壁面収納 コミックラック 地震</div>
+      <div class="meta-row">
+        <span class="price">¥38,500</span>
+        <span class="stars">★★★★★</span>
+        <span>4.67(1922件)</span>
+      </div>
+    </div>
+  </div>
+  <a class="btn-open" href="https://item.rakuten.co.jp/jajan-r/357719/" target="_blank" rel="noopener">商品ページを開く ↗</a>
+  <div class="url-row">
+    <a href="https://item.rakuten.co.jp/jajan-r/357719/" target="_blank" rel="noopener">https://item.rakuten.co.jp/jajan-r/357719/</a>
+    <button class="copy-btn" onclick="copyPlain(this, 'https://item.rakuten.co.jp/jajan-r/357719/')" type="button">URLコピー</button>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>楽天ROOM用</span>
+      <button class="copy-btn" onclick="copyText(this, 'room-1')" type="button">コピー</button>
+    </div>
+    <textarea id="room-1" readonly>📚 本が増えすぎて、ついに床に積み始めた夜があった。
+
+「捨てたくないけど場所もない」というジレンマで何ヶ月か放置してたんだけど、この天井突っ張り書棚を入れてから床が見えるようになった。✨
+
+奥行17cmのスリムさで圧迫感がないし、完成品だから届いて設置するだけ。突っ張り固定で地震の転倒リスクも考慮されてる点は子どもがいる家には正直ありがたい。🏠
+
+レビュー1,922件・星4.67という数字がすべてを語ってる。漫画収納で困ってる人はとりあえず見てみてほしい。
+
+#天井突っ張り本棚 #薄型本棚 #漫画収納 #壁面収納 #収納整理 #育児パパ #共働き家庭 #子どものいる暮らし</textarea>
+  </div>
+</div>
+<div class="card featured">
+  <div class="card-head">
+    <img src="https://thumbnail.image.rakuten.co.jp/@0_mall/atlas-online/cabinet/afp-301/afp-301-thum-zz.jpg?_ex=128x128" alt="アトラス フードポット スープジャー 310ml 保温 保冷 真空断熱 軽量 お手入れ簡単 お弁当 フードポット マットブラック マットシルバー ピンクベージュ アイスグリーン AFP-301" loading="lazy">
+    <div class="info">
+      <span class="featured-badge">🔥 本日のThreads/Xピックアップ</span>
+      <span class="genre-chip"></span>
+      <div class="name">アトラス フードポット スープジャー 310ml 保温 保冷 真空断熱 軽量 お手入れ簡単 お弁当 フードポット マットブラック マットシルバー ピンクベージュ アイスグリーン AFP-301</div>
+      <div class="meta-row">
+        <span class="price">¥1,380</span>
+        <span class="stars">★★★★☆</span>
+        <span>4.14(123件)</span>
+      </div>
+    </div>
+  </div>
+  <a class="btn-open" href="https://item.rakuten.co.jp/atlas-online/afp-301/" target="_blank" rel="noopener">商品ページを開く ↗</a>
+  <div class="url-row">
+    <a href="https://item.rakuten.co.jp/atlas-online/afp-301/" target="_blank" rel="noopener">https://item.rakuten.co.jp/atlas-online/afp-301/</a>
+    <button class="copy-btn" onclick="copyPlain(this, 'https://item.rakuten.co.jp/atlas-online/afp-301/')" type="button">URLコピー</button>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>楽天ROOM用</span>
+      <button class="copy-btn" onclick="copyText(this, 'room-2')" type="button">コピー</button>
+    </div>
+    <textarea id="room-2" readonly>💡 1,380円でスープジャーが買えるんですよ、これ。
+
+「安かろう悪かろうでしょ」と思って長らくスルーしてたんですが、真空断熱・保温保冷・310mlの使いやすいサイズが全部入ってこの値段。🍲
+
+お弁当にスープを持たせたい、子どもの保育園に温かいもの入れてあげたい、というシーンにそのままハマる。軽量設計でお手入れも簡単なのが地味に続けやすいポイント。
+
+カラーが4色(マットブラック・マットシルバー・ピンクベージュ・アイスグリーン)🎨 あるので兄弟で色分けもできる。
+
+注意点は310mlという容量。大人のランチ用には少し小さめなので、子どもや量少なめの人向け。
+
+#スープジャー #フードポット #お弁当 #保温 #キッチン雑貨 #育児パパ #共働き家庭 #子どものお弁当 #時短</textarea>
+  </div>
+  <p class="reason">🔥 今日のピックアップ理由: 1,380円というスープジャーの相場感からかけ離れた価格の意外性が最も強く、「育児パパ×共働き家庭」の子どものお弁当・保育園弁当という具体的な悩みとも直結しており、SNSで「え、この値段で?」の反応を取りやすいと判断した。</p>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>Threads用</span>
+      <button class="copy-btn" onclick="copyText(this, 'threads-0')" type="button">コピー</button>
+    </div>
+    <textarea id="threads-0" readonly>スープジャーって1,380円で買えるんだ、知らんかった
+
+真空断熱・保温保冷・310ml全部入りでこの値段。子どもの保育園弁当にスープ持たせたくてずっと探してたやつ、まさにこれだった。
+
+カラー4色あるから兄弟で色分けできるのもいい。軽くてお手入れ簡単なのが続けやすいポイント。
+
+大人ランチには310mlは少し小さいけど、子ども用・スープ少量持ちには全然ちょうどいい。
+
+#スープジャー #子どものお弁当 #保育園弁当 #PR #楽天アフィリエイト</textarea>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>X用</span>
+      <button class="copy-btn" onclick="copyText(this, 'x-0')" type="button">コピー</button>
+    </div>
+    <textarea id="x-0" readonly>スープジャー1,380円で買えるの知らんかった
+
+真空断熱・保温保冷・310ml全部入り。保育園弁当にスープ持たせたくて探してたやつ、まさにこれ。カラー4色で兄弟色分けできるのもいい
+
+大人ランチには少し小さいけど子ども用にはちょうどいい
+
+#スープジャー #保育園弁当 #PR #楽天アフィリエイト</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="card-head">
+    <img src="https://thumbnail.image.rakuten.co.jp/@0_mall/lohas1/cabinet/10457452/tm-5331-ll04-3.jpg?_ex=128x128" alt="【楽天1位受賞】 百玉そろばん 子供用そろばん 数字算数 知育学習玩具 おもちゃ 知育学習玩具 小学生 足し算 引き算 掛け算 割り算 算盤 九九 計算 算数セット" loading="lazy">
+    <div class="info">
+      
+      <span class="genre-chip"></span>
+      <div class="name">【楽天1位受賞】 百玉そろばん 子供用そろばん 数字算数 知育学習玩具 おもちゃ 知育学習玩具 小学生 足し算 引き算 掛け算 割り算 算盤 九九 計算 算数セット</div>
+      <div class="meta-row">
+        <span class="price">¥1,880</span>
+        <span class="stars">★★★★☆</span>
+        <span>4.37(568件)</span>
+      </div>
+    </div>
+  </div>
+  <a class="btn-open" href="https://item.rakuten.co.jp/lohas1/tm-5331-ll04/" target="_blank" rel="noopener">商品ページを開く ↗</a>
+  <div class="url-row">
+    <a href="https://item.rakuten.co.jp/lohas1/tm-5331-ll04/" target="_blank" rel="noopener">https://item.rakuten.co.jp/lohas1/tm-5331-ll04/</a>
+    <button class="copy-btn" onclick="copyPlain(this, 'https://item.rakuten.co.jp/lohas1/tm-5331-ll04/')" type="button">URLコピー</button>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>楽天ROOM用</span>
+      <button class="copy-btn" onclick="copyText(this, 'room-3')" type="button">コピー</button>
+    </div>
+    <textarea id="room-3" readonly>🧮 「数字に強い子にしたい」と思いつつ、何から始めればいいか迷ってたところで出会った百玉そろばん。
+
+子どもの隣に座って「ここまで動かして」とやるうちに、いつの間にか足し算の概念を遊びながら理解し始めたのが面白かった。😊
+
+画面を使わないアナログな道具なので、スクリーンタイムを増やさずに算数の基礎を触らせられるのが共働き家庭にはありがたい選択肢。
+
+楽天1位受賞・レビュー568件というのも、同じ悩みを持つ親の支持があっての数字だと思う。📊 1,880円というのも試しやすい価格帯。
+
+#百玉そろばん #知育玩具 #算数 #育児グッズ #育児パパ #共働き家庭 #幼児教育 #知育 #子育て</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="card-head">
+    <img src="https://thumbnail.image.rakuten.co.jp/@0_mall/kurashi-zakka/cabinet/h-174_thumb_2511.jpg?_ex=128x128" alt="サッシ丸ごと冷気ガードシート 網入りガラス対応 改良版[200×225cm][185×125cm](寒さ対策 窓 結露防止シート サッシ シート 断熱シート 窓 断熱フィルム 窓ガラス 断熱シート カーテン 窓断熱シート 透明 断熱シート)" loading="lazy">
+    <div class="info">
+      
+      <span class="genre-chip"></span>
+      <div class="name">サッシ丸ごと冷気ガードシート 網入りガラス対応 改良版[200×225cm][185×125cm](寒さ対策 窓 結露防止シート サッシ シート 断熱シート 窓 断熱フィルム 窓ガラス 断熱シート カーテン 窓断熱シート 透明 断熱シート)</div>
+      <div class="meta-row">
+        <span class="price">¥4,990</span>
+        <span class="stars">★★★★☆</span>
+        <span>4.17(246件)</span>
+      </div>
+    </div>
+  </div>
+  <a class="btn-open" href="https://item.rakuten.co.jp/kurashi-zakka/h-174/" target="_blank" rel="noopener">商品ページを開く ↗</a>
+  <div class="url-row">
+    <a href="https://item.rakuten.co.jp/kurashi-zakka/h-174/" target="_blank" rel="noopener">https://item.rakuten.co.jp/kurashi-zakka/h-174/</a>
+    <button class="copy-btn" onclick="copyPlain(this, 'https://item.rakuten.co.jp/kurashi-zakka/h-174/')" type="button">URLコピー</button>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>楽天ROOM用</span>
+      <button class="copy-btn" onclick="copyText(this, 'room-4')" type="button">コピー</button>
+    </div>
+    <textarea id="room-4" readonly>❄️ 「窓って断熱できるの?」を知らずにいると、毎冬の光熱費で損し続けますよ。
+
+この断熱シートは窓ガラスだけじゃなくサッシごと冷気をガードできる設計で、結露対策にもなる。🌡️ 網入りガラス対応の改良版なので、賃貸物件でよくある窓ガラスにも使えるのが助かる点。
+
+サイズは200×225cmと185×125cmの2展開。大きい窓にもしっかり対応できる。
+
+子どもが触れる窓際の冷気・結露は、カビの温床にもなりやすい。🏠 寒くなる前に対処しておくのがおすすめ。レビュー246件・星4.17で一定の支持がある。
+
+#断熱シート #窓断熱 #寒さ対策 #結露防止 #冷気ガード #育児パパ #共働き家庭 #季節もの #冬支度</textarea>
+  </div>
+</div>
+</div>
+
+<h2 class="section-title">💬 今日のあるある投稿ネタ(商品リンクなし)</h2>
+<div class="cards">
+<div class="card">
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>あるある投稿 #1</span>
+      <button class="copy-btn" onclick="copyText(this, 'daily-0')" type="button">コピー</button>
+    </div>
+    <textarea id="daily-0" class="short" readonly>子どもに「パパとママどっちが好き?」って聞いたら「どっちも!」って言ってくれた。
+
+でも5秒後に「ママのごはんの方が好き」って追加された。
+
+それはそう。</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>あるある投稿 #2</span>
+      <button class="copy-btn" onclick="copyText(this, 'daily-1')" type="button">コピー</button>
+    </div>
+    <textarea id="daily-1" class="short" readonly>朝の保育園送り、玄関で靴を履かせるのに5分かかって、靴下を脱がれて最初からやり直しになって、やっと出発したら「おしっこ」って言われる。
+
+このルーティン、何百回目だ。</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>あるある投稿 #3</span>
+      <button class="copy-btn" onclick="copyText(this, 'daily-2')" type="button">コピー</button>
+    </div>
+    <textarea id="daily-2" class="short" readonly>子どもが寝た後の一人時間、何しようかなって思うのに気づいたら自分も寝落ちしてる。
+
+毎回こう。意志の力とか関係なかった。</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>あるある投稿 #4</span>
+      <button class="copy-btn" onclick="copyText(this, 'daily-3')" type="button">コピー</button>
+    </div>
+    <textarea id="daily-3" class="short" readonly>夜泣きで起きた記憶、俺にはあるのにパートナーには「そんなことあったっけ」で終わる。
+
+同じ家で寝てるのに何の差があってそうなるんだ、っていうのをもう3年くらい疑問に思ってる。</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>あるある投稿 #5</span>
+      <button class="copy-btn" onclick="copyText(this, 'daily-4')" type="button">コピー</button>
+    </div>
+    <textarea id="daily-4" class="short" readonly>子どもが「パパ見てて!」って言うタイミング、なぜかいつも手が離せない瞬間に来る
+
+料理中、シャンプー中、電話中
+
+「今すぐ見てあげたい」と「物理的に無理」が毎回戦ってる #育児パパ</textarea>
+  </div>
+</div>
+</div>
+
+<footer class="note">商品ページを確認し、投稿文をコピーして手動で投稿してください。<br>Threads/Xの商品紹介は1日1件・あるある投稿と織り交ぜてスパム判定を避けてください。<br>価格・レビューは選定時点の実データです。</footer>
+</div>
+<script>
+function flash(btn) {
+  const original = btn.textContent;
+  btn.textContent = 'コピーしました';
+  btn.classList.add('copied');
+  setTimeout(() => { btn.textContent = original; btn.classList.remove('copied'); }, 1500);
+}
+function copyText(btn, id) {
+  const el = document.getElementById(id);
+  el.select();
+  el.setSelectionRange(0, 999999);
+  navigator.clipboard.writeText(el.value).then(() => flash(btn)).catch(() => {
+    try { document.execCommand('copy'); flash(btn); } catch (e) {}
+  });
+}
+function copyPlain(btn, text) {
+  navigator.clipboard.writeText(text).then(() => flash(btn)).catch(() => {
+    const t = document.createElement('textarea');
+    t.value = text; document.body.appendChild(t); t.select();
+    try { document.execCommand('copy'); flash(btn); } catch (e) {}
+    document.body.removeChild(t);
+  });
+}
+</script>
+</body>
+</html>
