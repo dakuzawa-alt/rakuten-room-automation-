@@ -65,12 +65,12 @@ def normalize_captions(c):
     f = c.get("featured", {})
     out = {
         "products": [{"itemCode": i["itemCode"], "itemName": i.get("itemName", ""), "price": i.get("itemPrice", i.get("price")),
-                      "roomCaption": i.get("roomPost", i.get("roomCaption", ""))} for i in c.get("items", c.get("products", []))],
+                      "roomCaption": i.get("roomPost", i.get("roomCaption", ""))} for i in c.get("items", c.get("products", c.get("posts", [])))],
         "featured": {"itemCode": f.get("itemCode"), "itemName": f.get("itemName"),
                      "reason": f.get("featuredReason", f.get("reason", "")),
                      "threadsCaption": f.get("threadsPost", f.get("threadsCaption", "")),
                      "xCaption": f.get("xPost", f.get("xCaption", ""))},
-        "dailyLifePosts": c.get("aruaruPosts", c.get("dailyLifePosts", [])),
+        "dailyLifePosts": c.get("aruaruPosts", c.get("dailyLifePosts", c.get("dailyPosts", []))),
     }
     return out, ["投稿文の書式を正規形(products/featured/dailyLifePosts)に変換"]
 

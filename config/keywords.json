@@ -145,11 +145,11 @@
     "コスメ"
   ],
   "price_range": {
-    "min": 1000,
-    "max": 20000
+    "min": 200,
+    "max": 50000
   },
   "quality_bar": {
-    "min_review_average": 4.2,
-    "min_review_count": 100
+    "min_review_average": 3.0,
+    "min_review_count": 20
   }
 }

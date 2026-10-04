@@ -1,0 +1,441 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>2026-10-04 夜 - 楽天ROOM投稿リスト</title>
+<style>
+:root {
+  --bg: #f6f3ee;
+  --surface: #ffffff;
+  --ink: #23211d;
+  --ink-soft: #6b6459;
+  --accent: #a8382c;
+  --accent-ink: #fff6f2;
+  --good: #3f7d58;
+  --border: #e4ddd2;
+  --chip-bg: #efe8db;
+  color-scheme: light dark;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #16140f;
+    --surface: #211f1a;
+    --ink: #ece7dc;
+    --ink-soft: #a89e8d;
+    --accent: #e0685a;
+    --accent-ink: #1c0f0c;
+    --good: #6fb98a;
+    --border: #35322a;
+    --chip-bg: #2a2721;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #16140f; --surface: #211f1a; --ink: #ece7dc; --ink-soft: #a89e8d;
+  --accent: #e0685a; --accent-ink: #1c0f0c; --good: #6fb98a; --border: #35322a; --chip-bg: #2a2721;
+}
+:root[data-theme="light"] {
+  --bg: #f6f3ee; --surface: #ffffff; --ink: #23211d; --ink-soft: #6b6459;
+  --accent: #a8382c; --accent-ink: #fff6f2; --good: #3f7d58; --border: #e4ddd2; --chip-bg: #efe8db;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0; background: var(--bg); color: var(--ink);
+  font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Yu Gothic Medium", "Noto Sans JP", sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+.wrap { max-width: 640px; margin: 0 auto; padding: 0 16px 40px; }
+header.top {
+  position: sticky; top: 0; z-index: 5; background: var(--bg);
+  padding: 18px 16px 12px; border-bottom: 1px solid var(--border);
+  display: flex; align-items: baseline; justify-content: space-between; gap: 12px;
+}
+header.top .eyebrow {
+  font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-soft);
+  font-weight: 600; margin: 0 0 2px;
+}
+header.top h1 { font-size: 1.25rem; margin: 0; font-weight: 700; letter-spacing: -0.01em; }
+header.top .count {
+  background: var(--chip-bg); color: var(--ink-soft); font-size: 0.78rem; font-weight: 600;
+  padding: 5px 10px; border-radius: 999px; white-space: nowrap;
+}
+h2.section-title { font-size: 0.95rem; font-weight: 700; margin: 24px 0 12px; }
+.cards { display: flex; flex-direction: column; gap: 16px; margin-top: 18px; }
+.card {
+  background: var(--surface); border: 1px solid var(--border); border-radius: 16px;
+  padding: 16px; display: flex; flex-direction: column; gap: 12px;
+}
+.card.featured { border-color: var(--accent); border-width: 2px; }
+.featured-badge {
+  align-self: flex-start; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.03em;
+  color: var(--accent-ink); background: var(--accent); padding: 3px 9px; border-radius: 999px;
+}
+.card-head { display: flex; gap: 12px; }
+.card-head img {
+  width: 76px; height: 76px; object-fit: cover; border-radius: 10px;
+  border: 1px solid var(--border); background: var(--chip-bg); flex-shrink: 0;
+}
+.card-head .info { min-width: 0; flex: 1; display: flex; flex-direction: column; gap: 4px; }
+.genre-chip {
+  align-self: flex-start; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.03em;
+  color: var(--accent); background: color-mix(in srgb, var(--accent) 12%, transparent);
+  padding: 2px 8px; border-radius: 999px;
+}
+.name {
+  font-weight: 600; font-size: 0.94rem; line-height: 1.4;
+  display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
+}
+.meta-row { display: flex; align-items: baseline; gap: 8px; font-size: 0.82rem; color: var(--ink-soft); }
+.price { font-variant-numeric: tabular-nums; color: var(--ink); font-weight: 700; font-size: 1.05rem; }
+.stars { letter-spacing: -1px; color: var(--accent); }
+.btn-open {
+  display: flex; align-items: center; justify-content: center; gap: 6px;
+  background: var(--accent); color: var(--accent-ink); border: none; border-radius: 11px;
+  padding: 12px; font-weight: 700; font-size: 0.92rem; text-decoration: none;
+}
+.btn-open:active { opacity: 0.85; }
+.url-row {
+  display: flex; align-items: center; gap: 8px;
+  background: var(--chip-bg); border-radius: 9px; padding: 8px 10px;
+}
+.url-row a {
+  flex: 1; min-width: 0; font-size: 0.76rem; color: var(--accent);
+  word-break: break-all; line-height: 1.45; text-decoration: none;
+}
+.url-row a:active { text-decoration: underline; }
+.reason { font-size: 0.8rem; color: var(--ink-soft); }
+.caption-box { border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }
+.caption-head {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 8px 10px; background: var(--chip-bg);
+}
+.caption-head span {
+  font-size: 0.7rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-soft);
+}
+.copy-btn {
+  background: var(--surface); border: 1px solid var(--border); color: var(--ink);
+  border-radius: 7px; padding: 5px 11px; font-size: 0.76rem; font-weight: 600; cursor: pointer;
+}
+.copy-btn:focus-visible, .btn-open:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.copy-btn.copied { background: var(--good); border-color: var(--good); color: #fff; }
+textarea {
+  width: 100%; display: block; border: none; padding: 10px; font-size: 0.85rem; line-height: 1.55;
+  resize: vertical; min-height: 108px; font-family: inherit; background: var(--surface); color: var(--ink);
+}
+textarea.short { min-height: 60px; }
+textarea:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
+footer.note { margin-top: 22px; font-size: 0.76rem; color: var(--ink-soft); text-align: center; line-height: 1.6; }
+@media (prefers-reduced-motion: no-preference) {
+  .copy-btn { transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease; }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <div>
+    <p class="eyebrow">楽天ROOM 投稿リスト</p>
+    <h1>2026-10-04 夜</h1>
+  </div>
+  <span class="count">5件</span>
+</header>
+
+<h2 class="section-title">📦 商品(ROOM用、全5件)</h2>
+<div class="cards">
+<div class="card">
+  <div class="card-head">
+    <img src="https://thumbnail.image.rakuten.co.jp/@0_mall/gekiyasu-kagu/cabinet/main/10006332.jpg?_ex=128x128" alt="棚付絵本ラック レギュラータイプ 自発心を促す 日本製 絵本棚 収納 木製 絵本ラック カラフル 完成品 絵本収納" loading="lazy">
+    <div class="info">
+      
+      <span class="genre-chip">収納整理</span>
+      <div class="name">棚付絵本ラック レギュラータイプ 自発心を促す 日本製 絵本棚 収納 木製 絵本ラック カラフル 完成品 絵本収納</div>
+      <div class="meta-row">
+        <span class="price">¥26,400</span>
+        <span class="stars">★★★★★</span>
+        <span>4.61(509件)</span>
+      </div>
+    </div>
+  </div>
+  <a class="btn-open" href="https://item.rakuten.co.jp/gekiyasu-kagu/10006332/" target="_blank" rel="noopener">商品ページを開く ↗</a>
+  <div class="url-row">
+    <a href="https://item.rakuten.co.jp/gekiyasu-kagu/10006332/" target="_blank" rel="noopener">https://item.rakuten.co.jp/gekiyasu-kagu/10006332/</a>
+    <button class="copy-btn" onclick="copyPlain(this, 'https://item.rakuten.co.jp/gekiyasu-kagu/10006332/')" type="button">URLコピー</button>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>楽天ROOM用</span>
+      <button class="copy-btn" onclick="copyText(this, 'room-0')" type="button">コピー</button>
+    </div>
+    <textarea id="room-0" readonly>📚 26,400円で日本製・完成品の絵本ラック、レビュー509件★4.61ですよ。
+
+組み立て不要で届いた日からすぐ使えるのと、表紙が正面に見える設計で子どもが自分で本を取り出しやすいのが特徴です🎨
+
+国産ということもあって塗装や仕上げの安心感が違うし、カラフルなデザインは子ども部屋に置いても圧迫感がない。
+
+設置前にサイズを確認しておくのが鉄則で、幅・奥行きだけじゃなく高さも測っておくと失敗しにくいですよ👀
+
+#絵本ラック #日本製 #絵本棚 #子ども収納 #育児パパ #共働き家庭 #完成品 #キッズインテリア</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="card-head">
+    <img src="https://thumbnail.image.rakuten.co.jp/@0_mall/tansu/cabinet/09781997/3050000701_10.jpg?_ex=128x128" alt="【20時~5%引クーポン】 完成品 現役ママが考えた 絵本ラック 幅70 3段 ディスプレイ 絵本棚 天然木 キッズ スリム 本棚 絵本 ラック おもちゃ 収納 子供用 ブックラック ブックシェルフ おもちゃ 収納ラック 木製 おしゃれ 子ども家具 プレゼント 贈り物 ギフト" loading="lazy">
+    <div class="info">
+      
+      <span class="genre-chip">収納整理</span>
+      <div class="name">【20時~5%引クーポン】 完成品 現役ママが考えた 絵本ラック 幅70 3段 ディスプレイ 絵本棚 天然木 キッズ スリム 本棚 絵本 ラック おもちゃ 収納 子供用 ブックラック ブックシェルフ おもちゃ 収納ラック 木製 おしゃれ 子ども家具 プレゼント 贈り物 ギフト</div>
+      <div class="meta-row">
+        <span class="price">¥15,999</span>
+        <span class="stars">★★★★☆</span>
+        <span>4.46(370件)</span>
+      </div>
+    </div>
+  </div>
+  <a class="btn-open" href="https://item.rakuten.co.jp/tansu/3050000701/" target="_blank" rel="noopener">商品ページを開く ↗</a>
+  <div class="url-row">
+    <a href="https://item.rakuten.co.jp/tansu/3050000701/" target="_blank" rel="noopener">https://item.rakuten.co.jp/tansu/3050000701/</a>
+    <button class="copy-btn" onclick="copyPlain(this, 'https://item.rakuten.co.jp/tansu/3050000701/')" type="button">URLコピー</button>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>楽天ROOM用</span>
+      <button class="copy-btn" onclick="copyText(this, 'room-1')" type="button">コピー</button>
+    </div>
+    <textarea id="room-1" readonly>🌿 絵本がどんどん増えて床置きになってたとき、「現役ママが考えた」という言葉が刺さった絵本ラック。
+
+実際に使いながら設計したって説明されると、「ここが不便」が先につぶされてる感じがするんだよな。天然木素材でナチュラルな見た目、幅70cmのスリムサイズだから壁際に収まりやすい。3段あるので冊数が増えても余裕がある📖
+
+レビューは370件以上つい本棚で、評価も悪くない。価格は15,999円。
+
+選ぶときは絵本の今の量より「1〜2年後の量」で選んだほうが後悔しにくいですよ✨
+
+#絵本ラック #天然木 #キッズ家具 #子ども部屋 #スリム収納 #育児パパ #共働き家庭 #絵本棚</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="card-head">
+    <img src="https://thumbnail.image.rakuten.co.jp/@0_mall/dondon/cabinet/ds-058-2p_2.jpg?_ex=128x128" alt="[新商品セール15%クーポン] [即日出荷] ソファー 2人掛け シープボア ソファ コンパクト 二人掛け ふわふわ もこもこ 2.5人掛け 一人暮らし リビングソファ 北欧 ワンルーム ファブリック 2人用 二人用 2人 二人 2P かわいい おしゃれ 小さめ 小さい" loading="lazy">
+    <div class="info">
+      
+      <span class="genre-chip">時短家電</span>
+      <div class="name">[新商品セール15%クーポン] [即日出荷] ソファー 2人掛け シープボア ソファ コンパクト 二人掛け ふわふわ もこもこ 2.5人掛け 一人暮らし リビングソファ 北欧 ワンルーム ファブリック 2人用 二人用 2人 二人 2P かわいい おしゃれ 小さめ 小さい</div>
+      <div class="meta-row">
+        <span class="price">¥29,999</span>
+        <span class="stars">★★★★☆</span>
+        <span>4.33(766件)</span>
+      </div>
+    </div>
+  </div>
+  <a class="btn-open" href="https://item.rakuten.co.jp/dondon/7943/" target="_blank" rel="noopener">商品ページを開く ↗</a>
+  <div class="url-row">
+    <a href="https://item.rakuten.co.jp/dondon/7943/" target="_blank" rel="noopener">https://item.rakuten.co.jp/dondon/7943/</a>
+    <button class="copy-btn" onclick="copyPlain(this, 'https://item.rakuten.co.jp/dondon/7943/')" type="button">URLコピー</button>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>楽天ROOM用</span>
+      <button class="copy-btn" onclick="copyText(this, 'room-2')" type="button">コピー</button>
+    </div>
+    <textarea id="room-2" readonly>🛋️ 知らずに買うと後悔するポイントがひとつあって、もこもこ素材はペットのいる家だと毛が相当つきます。ただそれさえ把握しておけば、このシープボアソファは普通にアリなやつですよ。
+
+触り心地がとにかくふわっとしていて、秋冬の素足で座ったときの感触がちゃんとある。2人掛けでコンパクトなので狭めリビングにも置きやすい🏠
+
+29,999円でレビューが766件あるので、選んでる人の数も参考になります。
+
+北欧テイストが好きな家庭のリビングにはわりと自然に馴染みますよ✨
+
+#ソファ #シープボア #2人掛けソファ #北欧インテリア #リビング家具 #もこもこ #育児パパ #共働き家庭</textarea>
+  </div>
+</div>
+<div class="card featured">
+  <div class="card-head">
+    <img src="https://thumbnail.image.rakuten.co.jp/@0_mall/thanko/cabinet/other22/sttdwadw-rakuten.jpg?_ex=128x128" alt="食洗機 工事不要 タンク式 2人用 3人用 節水 時短 コンパクト 賃貸 小型 温風乾燥 高温洗浄 楽天1位 ギフト プレゼント ホワイト 白 [公式] 水道いらずのタンク式食器洗い乾燥機「ラクア」 STTDWADW" loading="lazy">
+    <div class="info">
+      <span class="featured-badge">🔥 本日のThreads/Xピックアップ</span>
+      <span class="genre-chip">時短家電</span>
+      <div class="name">食洗機 工事不要 タンク式 2人用 3人用 節水 時短 コンパクト 賃貸 小型 温風乾燥 高温洗浄 楽天1位 ギフト プレゼント ホワイト 白 [公式] 水道いらずのタンク式食器洗い乾燥機「ラクア」 STTDWADW</div>
+      <div class="meta-row">
+        <span class="price">¥38,800</span>
+        <span class="stars">★★★★☆</span>
+        <span>4.15(1414件)</span>
+      </div>
+    </div>
+  </div>
+  <a class="btn-open" href="https://item.rakuten.co.jp/thanko/000000003491/" target="_blank" rel="noopener">商品ページを開く ↗</a>
+  <div class="url-row">
+    <a href="https://item.rakuten.co.jp/thanko/000000003491/" target="_blank" rel="noopener">https://item.rakuten.co.jp/thanko/000000003491/</a>
+    <button class="copy-btn" onclick="copyPlain(this, 'https://item.rakuten.co.jp/thanko/000000003491/')" type="button">URLコピー</button>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>楽天ROOM用</span>
+      <button class="copy-btn" onclick="copyText(this, 'room-3')" type="button">コピー</button>
+    </div>
+    <textarea id="room-3" readonly>🍽️ 子どもを寝かしつけた後に、どうしてもシンクの洗い物が残ってる夜が続いてた。
+
+それが食洗機を入れたら、セットして起動ボタン押すだけで終わりになった。これがサンコーのラクア、工事不要でタンクに水を入れるだけで使えるタイプなので賃貸でも使えるのが最大のポイントです🔧
+
+2〜3人用のコンパクトサイズで置き場所の自由度が高い。38,800円で、レビューが1,400件以上ついてる。
+
+節水効果もあるのでランニングコストが気になる人にも使われてる理由はそのへんかも👀
+
+#食洗機 #工事不要 #タンク式食洗機 #ラクア #賃貸対応 #時短家電 #育児パパ #共働き家庭</textarea>
+  </div>
+  <p class="reason">🔥 今日のピックアップ理由: レビュー1,414件と今回5件中最多で、工事不要・タンク式という賃貸家庭の悩みに直撃する訴求ポイントと38,800円という価格インパクトの組み合わせが今日一番刺さると判断した。</p>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>Threads用</span>
+      <button class="copy-btn" onclick="copyText(this, 'threads-0')" type="button">コピー</button>
+    </div>
+    <textarea id="threads-0" readonly>食洗機入れてから、子ども寝かした後のあの「残ってる皿どうするか問題」が消えた
+
+サンコーのラクアってやつ、タンクに水入れるだけで使えるタイプだから工事いらない。賃貸でもそのまま置ける
+
+38,800円で1,400件以上レビューある。値段の話すると高いと思われるんだけど、毎晩の消耗と比べたら俺は全然アリだった
+
+2〜3人用のコンパクトサイズで、置き場所もそんなに取らない
+
+洗い物で毎夜消耗してる共働き家庭、一回見てみて
+
+#PR #食洗機 #タンク式 #工事不要 #時短家電 #共働き家庭 #楽天アフィリエイト</textarea>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>X用</span>
+      <button class="copy-btn" onclick="copyText(this, 'x-0')" type="button">コピー</button>
+    </div>
+    <textarea id="x-0" readonly>食洗機入れてから、子ども寝かした後の「皿どうするか問題」が消えた
+
+サンコーのラクア、タンクに水入れるだけで工事不要。賃貸でもそのまま使える
+
+38,800円、1,400件超のレビューあり
+
+毎夜消耗してる共働き家庭に刺さると思う
+
+#PR #食洗機 #工事不要 #時短家電 #共働き家庭</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="card-head">
+    <img src="https://thumbnail.image.rakuten.co.jp/@0_mall/jukusui/cabinet/yamatoya/norsta/nosta3_chair_sam_01.jpg?_ex=128x128" alt="yamatoya認定店 大和屋 キッズチェア ノスタ3 ローチェア norsta3 ベビチェア 子供向け家具 椅子 5色展開 高さ3段階調整可能 キッズ 送料無料 豆イス かわいい 人気 yamatoya やまとや" loading="lazy">
+    <div class="info">
+      
+      <span class="genre-chip">育児グッズ</span>
+      <div class="name">yamatoya認定店 大和屋 キッズチェア ノスタ3 ローチェア norsta3 ベビチェア 子供向け家具 椅子 5色展開 高さ3段階調整可能 キッズ 送料無料 豆イス かわいい 人気 yamatoya やまとや</div>
+      <div class="meta-row">
+        <span class="price">¥5,500</span>
+        <span class="stars">★★★★★</span>
+        <span>4.75(28件)</span>
+      </div>
+    </div>
+  </div>
+  <a class="btn-open" href="https://item.rakuten.co.jp/jukusui/299-01314/" target="_blank" rel="noopener">商品ページを開く ↗</a>
+  <div class="url-row">
+    <a href="https://item.rakuten.co.jp/jukusui/299-01314/" target="_blank" rel="noopener">https://item.rakuten.co.jp/jukusui/299-01314/</a>
+    <button class="copy-btn" onclick="copyPlain(this, 'https://item.rakuten.co.jp/jukusui/299-01314/')" type="button">URLコピー</button>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>楽天ROOM用</span>
+      <button class="copy-btn" onclick="copyText(this, 'room-4')" type="button">コピー</button>
+    </div>
+    <textarea id="room-4" readonly>🪑 5,500円で星4.75って、キッズチェアの中では結構な評価のやつですよ。
+
+大和屋はキッズ家具で定評のあるブランドで、このノスタ3は高さが3段階で調整できるのが使いやすい理由のひとつ。子どもの成長に合わせて使い続けられるし、5色展開なので部屋の色に合わせて選べるのも地味にポイント🎨
+
+ローチェアタイプなので床座りに近い目線になるのが特徴で、リビングで絵本読んだり遊んだりするときに自然に使えますよ✨
+
+レビュー件数はまだ28件と少なめですが、評価の高さは本物だと思います。
+
+#キッズチェア #大和屋 #ローチェア #子ども椅子 #高さ調整 #育児グッズ #育児パパ #共働き家庭</textarea>
+  </div>
+</div>
+</div>
+
+<h2 class="section-title">💬 今日のあるある投稿ネタ(商品リンクなし)</h2>
+<div class="cards">
+<div class="card">
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>あるある投稿 #1</span>
+      <button class="copy-btn" onclick="copyText(this, 'daily-0')" type="button">コピー</button>
+    </div>
+    <textarea id="daily-0" class="short" readonly>子どものおかず、品数4つ揃えたのに親の夜ごはんがコンビニのおにぎり1個だった夜がある
+
+誰かに話すと笑われるけど、あれは本当にそういう日があるんだよな #共働き家庭</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>あるある投稿 #2</span>
+      <button class="copy-btn" onclick="copyText(this, 'daily-1')" type="button">コピー</button>
+    </div>
+    <textarea id="daily-1" class="short" readonly>寝かしつけ成功して布団から抜け出したとき、廊下が暗いのに電気つけるのが怖くて忍者みたいな動きになる
+
+失敗したことのある人ならわかると思う</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>あるある投稿 #3</span>
+      <button class="copy-btn" onclick="copyText(this, 'daily-2')" type="button">コピー</button>
+    </div>
+    <textarea id="daily-2" class="short" readonly>家事育児で何がしんどいって「中断」よな
+
+料理してたら泣く、掃除してたら呼ばれる、トイレすら完走できない日がある。タスク管理とか関係なく、とにかく完了しない</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>あるある投稿 #4</span>
+      <button class="copy-btn" onclick="copyText(this, 'daily-3')" type="button">コピー</button>
+    </div>
+    <textarea id="daily-3" class="short" readonly>子どもがパパよりママを求める比率、体感で9:1くらいなんだけど
+
+これ我が家だけ? #育児パパ</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>あるある投稿 #5</span>
+      <button class="copy-btn" onclick="copyText(this, 'daily-4')" type="button">コピー</button>
+    </div>
+    <textarea id="daily-4" class="short" readonly>週末に「今日は一緒に遊ぶ日にする」って決めて、実際に3時間くらいは遊んだのに、なんか夕方になると「もっとできたかな」って気持ちになる
+
+この感覚どこから来るんだろうな</textarea>
+  </div>
+</div>
+</div>
+
+<footer class="note">商品ページを確認し、投稿文をコピーして手動で投稿してください。<br>Threads/Xの商品紹介は1日1件・あるある投稿と織り交ぜてスパム判定を避けてください。<br>価格・レビューは選定時点の実データです。</footer>
+</div>
+<script>
+function flash(btn) {
+  const original = btn.textContent;
+  btn.textContent = 'コピーしました';
+  btn.classList.add('copied');
+  setTimeout(() => { btn.textContent = original; btn.classList.remove('copied'); }, 1500);
+}
+function copyText(btn, id) {
+  const el = document.getElementById(id);
+  el.select();
+  el.setSelectionRange(0, 999999);
+  navigator.clipboard.writeText(el.value).then(() => flash(btn)).catch(() => {
+    try { document.execCommand('copy'); flash(btn); } catch (e) {}
+  });
+}
+function copyPlain(btn, text) {
+  navigator.clipboard.writeText(text).then(() => flash(btn)).catch(() => {
+    const t = document.createElement('textarea');
+    t.value = text; document.body.appendChild(t); t.select();
+    try { document.execCommand('copy'); flash(btn); } catch (e) {}
+    document.body.removeChild(t);
+  });
+}
+</script>
+</body>
+</html>

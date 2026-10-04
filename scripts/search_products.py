@@ -79,6 +79,7 @@ _TYPE_WORDS = [
     "簡易トイレ", "防災", "モバイルバッテリー", "ランタン", "電気毛布", "ルームシューズ",
     "こたつ", "湯たんぽ", "換気扇フィルター", "レンジフード", "電動歯ブラシ", "シェーバー",
     "ドライヤー", "マットレス", "ジョイントマット", "枕", "三輪車", "バランスバイク",
+    "傘", "電動爪", "炭八", "衣類カバー", "洋服カバー",
 ]
 
 
@@ -120,6 +121,7 @@ _HARD_BLOCK = [
     "部屋干し", "マイボトル", "水筒", "ハンガーラック", "カラーボックス",
     "突っ張り棒", "食洗機ラック", "換気扇フィルター", "ジョイントマット",
     "マットレス", "簡易トイレ", "非常用トイレ", "携帯トイレ", "三輪車",
+    "傘", "電動爪", "炭八", "衣類カバー", "洋服カバー",
 ]
 
 
@@ -160,6 +162,8 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--count", type=int, default=5)
     parser.add_argument("--out", type=str, required=True)
+    parser.add_argument("--all-keywords", action="store_true",
+                        help="全キーワードを試す(候補不足時のフォールバック用)")
     args = parser.parse_args()
 
     creds = load_json(BASE_DIR / "config" / "credentials.json")
@@ -167,6 +171,8 @@ def main():
     history = load_json(BASE_DIR / "data" / "posted_history.json")
     posted_codes = {p["itemCode"] for p in history.get("posted", [])}
     brand_tokens, type_counts = build_name_filters(history)
+    saturated_path = BASE_DIR / "config" / "saturated_terms.json"
+    saturated_terms = load_json(saturated_path).get("terms", []) if saturated_path.exists() else []
 
     price_min = kw_cfg["price_range"]["min"]
     price_max = kw_cfg["price_range"]["max"]
@@ -175,14 +181,19 @@ def main():
 
     # ジャンルの偏りを防ぐため、グループごとにキーワードを2件までサンプリングして
     # 全グループを横断的に検索する(1グループだけで候補が埋まらないようにする)
+    # --all-keywords 指定時はランダムサンプリングせず全件試す
     kw_to_group = {}
     sampled_keywords = []
     for group_name, kws in kw_cfg["keyword_groups"].items():
-        picked = random.sample(kws, min(2, len(kws)))
+        if args.all_keywords:
+            picked = kws
+        else:
+            picked = random.sample(kws, min(2, len(kws)))
         for kw in picked:
             kw_to_group[kw] = group_name
         sampled_keywords.extend(picked)
-    random.shuffle(sampled_keywords)
+    if not args.all_keywords:
+        random.shuffle(sampled_keywords)
 
     MAX_PER_KEYWORD = 4  # 1キーワードあたりの採用上限(特定ジャンルへの偏り防止)
 
@@ -202,6 +213,9 @@ def main():
             if not code or code in posted_codes or code in candidates:
                 continue
             if is_name_duplicate(item, brand_tokens, type_counts):
+                continue
+            nm = item.get("itemName", "")
+            if any(t in nm for t in saturated_terms):
                 continue
             if item.get("reviewAverage", 0) < min_avg:
                 continue
