@@ -3075,6 +3075,53 @@
       "channels": [
         "room"
       ]
+    },
+    {
+      "itemCode": "moosoo:10000717",
+      "itemName": "食器洗い乾燥機 食洗機 工事不要 5人用 大容量 T60",
+      "date": "2026-10-05",
+      "slot": "morning",
+      "channels": [
+        "room",
+        "threads",
+        "x"
+      ]
+    },
+    {
+      "itemCode": "userlife:10000149",
+      "itemName": "断熱シート 水で貼る 断熱 結露防止シート 225",
+      "date": "2026-10-05",
+      "slot": "morning",
+      "channels": [
+        "room"
+      ]
+    },
+    {
+      "itemCode": "al-eli:10000927",
+      "itemName": "ベビー帽子 麦わら帽子 赤ちゃん 日除け UVカット キッズ帽子",
+      "date": "2026-10-05",
+      "slot": "morning",
+      "channels": [
+        "room"
+      ]
+    },
+    {
+      "itemCode": "firstmarket:10001388",
+      "itemName": "車 日除け サンバイザー カーバイザー 昼夜2パターンセット",
+      "date": "2026-10-05",
+      "slot": "morning",
+      "channels": [
+        "room"
+      ]
+    },
+    {
+      "itemCode": "jmp88:10001363",
+      "itemName": "AINX 食器洗い乾燥機 AX-S3 工事不要型",
+      "date": "2026-10-05",
+      "slot": "morning",
+      "channels": [
+        "room"
+      ]
     }
   ]
 }
