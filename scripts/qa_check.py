@@ -137,8 +137,9 @@ def main():
     for i in items:
         if not re.match(r"https://item\.rakuten\.co\.jp/[^?]*$", i.get("itemUrl", "")):
             fails.append(f"{i['itemCode']} itemUrlが素の商品URLではありません")
-        if not i.get("affiliateUrl", "").startswith("https://hb.afl.rakuten.co.jp/"):
-            fails.append(f"{i['itemCode']} affiliateUrlが不正です")
+        aff = i.get("affiliateUrl", "")
+        if not aff.startswith("https://hb.afl.rakuten.co.jp/") or "placeholder" in aff or "pc=" not in aff:
+            fails.append(f"{i['itemCode']} affiliateUrlが不正です(placeholder・組み立てURLはAPI実データではないため不可)")
 
     th, x = f.get("threadsCaption", ""), f.get("xCaption", "")
     if len(th) > LIMITS["threads"]:
