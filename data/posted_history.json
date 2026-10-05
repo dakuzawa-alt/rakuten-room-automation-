@@ -3122,6 +3122,53 @@
       "channels": [
         "room"
       ]
+    },
+    {
+      "itemCode": "deconail-seisakujo:10000005",
+      "itemName": "パールストーン 定番サイズ18色 大容量 デコレーション パーツ デコ電 ネイルパーツ ストーン ジェルネイル 推し活 ",
+      "date": "2026-10-05",
+      "slot": "night",
+      "channels": [
+        "room"
+      ]
+    },
+    {
+      "itemCode": "mhomestyle:10000085",
+      "itemName": "Litty軽量ランチプレート／ 2つ仕切り 仕切り皿 軽い 深め おしゃれ 美濃焼 朝食 時短 子供食器",
+      "date": "2026-10-05",
+      "slot": "night",
+      "channels": [
+        "room"
+      ]
+    },
+    {
+      "itemCode": "e-kit:10042735",
+      "itemName": "ihマット ih マット ihクッキングヒーター カバー ih カバー 汚れ防止 ガラス コンロ 焦げ防止 汚れ 保護 ",
+      "date": "2026-10-05",
+      "slot": "night",
+      "channels": [
+        "room"
+      ]
+    },
+    {
+      "itemCode": "taniguchi-metal:10000795",
+      "itemName": "★NEWめっちゃ便利な　玉子焼 卵焼器スリム　お弁当用卵焼き器　卵一個で厚焼玉子　たまご1個で　玉子1個で　玉子焼き器",
+      "date": "2026-10-05",
+      "slot": "night",
+      "channels": [
+        "room"
+      ]
+    },
+    {
+      "itemCode": "deconail-seisakujo:10000618",
+      "itemName": "スワロフスキー スワロ ラインストーン SWAROVSKI #2088 #2058 #2028 ジェルネイル レジン パ",
+      "date": "2026-10-05",
+      "slot": "night",
+      "channels": [
+        "room",
+        "threads",
+        "x"
+      ]
     }
   ]
 }
