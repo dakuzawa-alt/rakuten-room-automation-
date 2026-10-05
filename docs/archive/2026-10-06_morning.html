@@ -1,0 +1,429 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>2026-10-06 朝 - 楽天ROOM投稿リスト</title>
+<style>
+:root {
+  --bg: #f6f3ee;
+  --surface: #ffffff;
+  --ink: #23211d;
+  --ink-soft: #6b6459;
+  --accent: #a8382c;
+  --accent-ink: #fff6f2;
+  --good: #3f7d58;
+  --border: #e4ddd2;
+  --chip-bg: #efe8db;
+  color-scheme: light dark;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #16140f;
+    --surface: #211f1a;
+    --ink: #ece7dc;
+    --ink-soft: #a89e8d;
+    --accent: #e0685a;
+    --accent-ink: #1c0f0c;
+    --good: #6fb98a;
+    --border: #35322a;
+    --chip-bg: #2a2721;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #16140f; --surface: #211f1a; --ink: #ece7dc; --ink-soft: #a89e8d;
+  --accent: #e0685a; --accent-ink: #1c0f0c; --good: #6fb98a; --border: #35322a; --chip-bg: #2a2721;
+}
+:root[data-theme="light"] {
+  --bg: #f6f3ee; --surface: #ffffff; --ink: #23211d; --ink-soft: #6b6459;
+  --accent: #a8382c; --accent-ink: #fff6f2; --good: #3f7d58; --border: #e4ddd2; --chip-bg: #efe8db;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0; background: var(--bg); color: var(--ink);
+  font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Yu Gothic Medium", "Noto Sans JP", sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+.wrap { max-width: 640px; margin: 0 auto; padding: 0 16px 40px; }
+header.top {
+  position: sticky; top: 0; z-index: 5; background: var(--bg);
+  padding: 18px 16px 12px; border-bottom: 1px solid var(--border);
+  display: flex; align-items: baseline; justify-content: space-between; gap: 12px;
+}
+header.top .eyebrow {
+  font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-soft);
+  font-weight: 600; margin: 0 0 2px;
+}
+header.top h1 { font-size: 1.25rem; margin: 0; font-weight: 700; letter-spacing: -0.01em; }
+header.top .count {
+  background: var(--chip-bg); color: var(--ink-soft); font-size: 0.78rem; font-weight: 600;
+  padding: 5px 10px; border-radius: 999px; white-space: nowrap;
+}
+h2.section-title { font-size: 0.95rem; font-weight: 700; margin: 24px 0 12px; }
+.cards { display: flex; flex-direction: column; gap: 16px; margin-top: 18px; }
+.card {
+  background: var(--surface); border: 1px solid var(--border); border-radius: 16px;
+  padding: 16px; display: flex; flex-direction: column; gap: 12px;
+}
+.card.featured { border-color: var(--accent); border-width: 2px; }
+.featured-badge {
+  align-self: flex-start; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.03em;
+  color: var(--accent-ink); background: var(--accent); padding: 3px 9px; border-radius: 999px;
+}
+.card-head { display: flex; gap: 12px; }
+.card-head img {
+  width: 76px; height: 76px; object-fit: cover; border-radius: 10px;
+  border: 1px solid var(--border); background: var(--chip-bg); flex-shrink: 0;
+}
+.card-head .info { min-width: 0; flex: 1; display: flex; flex-direction: column; gap: 4px; }
+.genre-chip {
+  align-self: flex-start; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.03em;
+  color: var(--accent); background: color-mix(in srgb, var(--accent) 12%, transparent);
+  padding: 2px 8px; border-radius: 999px;
+}
+.name {
+  font-weight: 600; font-size: 0.94rem; line-height: 1.4;
+  display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
+}
+.meta-row { display: flex; align-items: baseline; gap: 8px; font-size: 0.82rem; color: var(--ink-soft); }
+.price { font-variant-numeric: tabular-nums; color: var(--ink); font-weight: 700; font-size: 1.05rem; }
+.stars { letter-spacing: -1px; color: var(--accent); }
+.btn-open {
+  display: flex; align-items: center; justify-content: center; gap: 6px;
+  background: var(--accent); color: var(--accent-ink); border: none; border-radius: 11px;
+  padding: 12px; font-weight: 700; font-size: 0.92rem; text-decoration: none;
+}
+.btn-open:active { opacity: 0.85; }
+.url-row {
+  display: flex; align-items: center; gap: 8px;
+  background: var(--chip-bg); border-radius: 9px; padding: 8px 10px;
+}
+.url-row a {
+  flex: 1; min-width: 0; font-size: 0.76rem; color: var(--accent);
+  word-break: break-all; line-height: 1.45; text-decoration: none;
+}
+.url-row a:active { text-decoration: underline; }
+.reason { font-size: 0.8rem; color: var(--ink-soft); }
+.caption-box { border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }
+.caption-head {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 8px 10px; background: var(--chip-bg);
+}
+.caption-head span {
+  font-size: 0.7rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-soft);
+}
+.copy-btn {
+  background: var(--surface); border: 1px solid var(--border); color: var(--ink);
+  border-radius: 7px; padding: 5px 11px; font-size: 0.76rem; font-weight: 600; cursor: pointer;
+}
+.copy-btn:focus-visible, .btn-open:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.copy-btn.copied { background: var(--good); border-color: var(--good); color: #fff; }
+textarea {
+  width: 100%; display: block; border: none; padding: 10px; font-size: 0.85rem; line-height: 1.55;
+  resize: vertical; min-height: 108px; font-family: inherit; background: var(--surface); color: var(--ink);
+}
+textarea.short { min-height: 60px; }
+textarea:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
+footer.note { margin-top: 22px; font-size: 0.76rem; color: var(--ink-soft); text-align: center; line-height: 1.6; }
+@media (prefers-reduced-motion: no-preference) {
+  .copy-btn { transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease; }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <div>
+    <p class="eyebrow">楽天ROOM 投稿リスト</p>
+    <h1>2026-10-06 朝</h1>
+  </div>
+  <span class="count">5件</span>
+</header>
+
+<h2 class="section-title">📦 商品(ROOM用、全5件)</h2>
+<div class="cards">
+<div class="card">
+  <div class="card-head">
+    <img src="https://thumbnail.image.rakuten.co.jp/@0_mall/seimina/cabinet/07664787/07761152/1.jpg?_ex=128x128" alt="【顧客満足度100%】 ノートパソコン スタンド 縦置き 2台/4台収納 ホルダー幅調整可能 アルミ合金素材 ラップトップ スタンド ノートPCスタンド 滑り止め iPad スタンド パソコン ラップトップ スタンド 収納スタンド 9〜17インチまでに対応" loading="lazy">
+    <div class="info">
+      
+      <span class="genre-chip">在宅ワーク デスク</span>
+      <div class="name">【顧客満足度100%】 ノートパソコン スタンド 縦置き 2台/4台収納 ホルダー幅調整可能 アルミ合金素材 ラップトップ スタンド ノートPCスタンド 滑り止め iPad スタンド パソコン ラップトップ スタンド 収納スタンド 9〜17インチまでに対応</div>
+      <div class="meta-row">
+        <span class="price">¥3,280</span>
+        <span class="stars">★★★★★</span>
+        <span>4.79(492件)</span>
+      </div>
+    </div>
+  </div>
+  <a class="btn-open" href="https://item.rakuten.co.jp/seimina/pc_ver_stand_po193_195/" target="_blank" rel="noopener">商品ページを開く ↗</a>
+  <div class="url-row">
+    <a href="https://item.rakuten.co.jp/seimina/pc_ver_stand_po193_195/" target="_blank" rel="noopener">https://item.rakuten.co.jp/seimina/pc_ver_stand_po193_195/</a>
+    <button class="copy-btn" onclick="copyPlain(this, 'https://item.rakuten.co.jp/seimina/pc_ver_stand_po193_195/')" type="button">URLコピー</button>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>楽天ROOM用</span>
+      <button class="copy-btn" onclick="copyText(this, 'room-0')" type="button">コピー</button>
+    </div>
+    <textarea id="room-0" readonly>💻 ¥3,280でデスクがここまで変わるんですよ。
+
+在宅ワーク中、ノートPCとモニターが机の上に平置きでごちゃごちゃしてた人いませんか。このスタンドは2台まで縦置きできるアルミ合金製で、ホルダー幅も調整できるのでサイズ違いのPCでも挿しやすい🖥️
+
+起動→会議→資料確認、の動線がすっきりするだけで地味に仕事の効率が違います。レビュー492件・★4.79という実績もあってギリギリまで迷ったあと買った商品なんですが、正直もっと早く買えばよかった😅
+
+注意点は奥行きの狭い机だとスタンド自体が少しはみ出ること。設置前に奥行きを一度確認しておくと安心ですよ。
+
+#ノートパソコンスタンド #在宅ワーク #テレワーク #デスク整理 #デスク環境 #育児パパ #共働き家庭 #楽天ROOM</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="card-head">
+    <img src="https://thumbnail.image.rakuten.co.jp/@0_mall/fcinterior/cabinet/coffee_pg/pg30791.jpg?_ex=128x128" alt="【ポイント5倍】KONO式名門ドリッパー2人用セット ウッドハンドル" loading="lazy">
+    <div class="info">
+      
+      <span class="genre-chip">キッチン調理</span>
+      <div class="name">【ポイント5倍】KONO式名門ドリッパー2人用セット ウッドハンドル</div>
+      <div class="meta-row">
+        <span class="price">¥8,008</span>
+        <span class="stars">★★★★★</span>
+        <span>4.78(237件)</span>
+      </div>
+    </div>
+  </div>
+  <a class="btn-open" href="https://item.rakuten.co.jp/fcinterior/30791-11148/" target="_blank" rel="noopener">商品ページを開く ↗</a>
+  <div class="url-row">
+    <a href="https://item.rakuten.co.jp/fcinterior/30791-11148/" target="_blank" rel="noopener">https://item.rakuten.co.jp/fcinterior/30791-11148/</a>
+    <button class="copy-btn" onclick="copyPlain(this, 'https://item.rakuten.co.jp/fcinterior/30791-11148/')" type="button">URLコピー</button>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>楽天ROOM用</span>
+      <button class="copy-btn" onclick="copyText(this, 'room-1')" type="button">コピー</button>
+    </div>
+    <textarea id="room-1" readonly>子どもが起きる前の10分だけ、コーヒーを淹れる時間を作るようにした☕
+
+正直そこまでこだわりがなかったけど、KONO式ドリッパーを使い始めてから「あ、これちゃんと違う✨」ってなった。下部の穴だけから抽出するリブ設計のおかげで、ゆっくり湿らせてからじわっと落ちる感覚が手で分かる。
+
+2人用セットでウッドハンドルつき。道具として机に出しておきたくなるデザインで、眺めるだけでも少し豊かな気分になれる🌿
+
+¥8,008なので「えっ」と思うかもしれないけど、毎日使うものだし長く付き合える品質。コーヒー好きな人には悪くないです☕
+
+#KONO式 #コーヒードリッパー #ドリップコーヒー #コーヒー好き #手淹れコーヒー #育児パパ #共働き家庭 #楽天ROOM</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="card-head">
+    <img src="https://thumbnail.image.rakuten.co.jp/@0_mall/pole/cabinet/stretchpole/exseries01navy.jpg?_ex=128x128" alt="LPN ストレッチポールEX(ネイビー)　スタートBOOK、エクササイズDVD付き 1年保証" loading="lazy">
+    <div class="info">
+      
+      <span class="genre-chip">健康 ボディケア</span>
+      <div class="name">LPN ストレッチポールEX(ネイビー)　スタートBOOK、エクササイズDVD付き 1年保証</div>
+      <div class="meta-row">
+        <span class="price">¥11,979</span>
+        <span class="stars">★★★★★</span>
+        <span>4.69(935件)</span>
+      </div>
+    </div>
+  </div>
+  <a class="btn-open" href="https://item.rakuten.co.jp/pole/ex00001/" target="_blank" rel="noopener">商品ページを開く ↗</a>
+  <div class="url-row">
+    <a href="https://item.rakuten.co.jp/pole/ex00001/" target="_blank" rel="noopener">https://item.rakuten.co.jp/pole/ex00001/</a>
+    <button class="copy-btn" onclick="copyPlain(this, 'https://item.rakuten.co.jp/pole/ex00001/')" type="button">URLコピー</button>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>楽天ROOM用</span>
+      <button class="copy-btn" onclick="copyText(this, 'room-2')" type="button">コピー</button>
+    </div>
+    <textarea id="room-2" readonly>🔥 在宅ワーク&amp;育児で毎晩肩と腰が悲鳴あげてる、そんな日々です。
+
+デスクワーク+抱っこ+前かがみの繰り返しで、体の前面がガチガチになってませんか。ストレッチポールEXはその上に仰向けで寝るだけで背中が伸びる仕組みで、LPN社の純正品は硬さと反発が絶妙です💪
+
+スタートBOOK・エクササイズDVD付きで、初めてでも使い方で迷わないのが嬉しいポイント。レビュー935件・★4.69という実績は、継続できてる人が多い証拠でもあります。
+
+¥11,979は一瞬躊躇する価格ですが、マッサージ1回と比べると…という話です。類似品との違いは長さと硬さなので、必ず純正品を選んでください。
+
+#ストレッチポール #LPN #ストレッチ #肩こり解消 #腰痛対策 #在宅ワーク #育児パパ #共働き家庭 #楽天ROOM</textarea>
+  </div>
+</div>
+<div class="card featured">
+  <div class="card-head">
+    <img src="https://thumbnail.image.rakuten.co.jp/@0_mall/sinkatec/cabinet/sale/sm_p5_261004.jpg?_ex=128x128" alt="10/9 1:59までエントリーでP5倍！【待望のスモールサイズ新登場！】《楽天1位》【 HUBATH 洗面台 ヘアーキャッチャー 】 排水口 ゴミ受け 排水溝 掃除 排水溝ネット ごみ受け 洗面所 makuake 送料無料 磁石 極排水 SM64 ヒューバス ステンレス 36mm 32mm" loading="lazy">
+    <div class="info">
+      <span class="featured-badge">🔥 本日のThreads/Xピックアップ</span>
+      <span class="genre-chip">掃除洗濯</span>
+      <div class="name">10/9 1:59までエントリーでP5倍！【待望のスモールサイズ新登場！】《楽天1位》【 HUBATH 洗面台 ヘアーキャッチャー 】 排水口 ゴミ受け 排水溝 掃除 排水溝ネット ごみ受け 洗面所 makuake 送料無料 磁石 極排水 SM64 ヒューバス ステンレス 36mm 32mm</div>
+      <div class="meta-row">
+        <span class="price">¥1,980</span>
+        <span class="stars">★★★★★</span>
+        <span>4.68(11576件)</span>
+      </div>
+    </div>
+  </div>
+  <a class="btn-open" href="https://item.rakuten.co.jp/sinkatec/hu_shair_catcher/" target="_blank" rel="noopener">商品ページを開く ↗</a>
+  <div class="url-row">
+    <a href="https://item.rakuten.co.jp/sinkatec/hu_shair_catcher/" target="_blank" rel="noopener">https://item.rakuten.co.jp/sinkatec/hu_shair_catcher/</a>
+    <button class="copy-btn" onclick="copyPlain(this, 'https://item.rakuten.co.jp/sinkatec/hu_shair_catcher/')" type="button">URLコピー</button>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>楽天ROOM用</span>
+      <button class="copy-btn" onclick="copyText(this, 'room-3')" type="button">コピー</button>
+    </div>
+    <textarea id="room-3" readonly>洗面台の排水口ってさ、気づいたらえぐいことになってるんですよ💦
+
+毎朝ドライヤーして、毎晩シャワーして、その分だけ髪の毛が流れていく。で、週末に気合い入れて掃除しようとするとすでに遅い。HUBATHのヘアキャッチャーにしてから、その「気づいたら手遅れ」が本当になくなった🙌
+
+スモールサイズで洗面台の排水口にちょうど収まる設計で、¥1,980💡。レビューが11,576件あるの、ちょっと笑うくらい多いんですが、それだけ刺さった人が多いってことだと思う。
+
+購入前に洗面台の排水口径と合うかだけ確認してから。
+
+#ヘアキャッチャー #HUBATH #排水口 #洗面台掃除 #掃除 #時短家事 #育児パパ #共働き家庭 #楽天ROOM</textarea>
+  </div>
+  <p class="reason">🔥 今日のピックアップ理由: レビュー11,576件という圧倒的な実績と¥1,980の価格意外性の組み合わせが刺さりやすく、「排水口の髪の毛」という共働き家庭で誰でも経験する具体的な悩みに直結するため。</p>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>Threads用</span>
+      <button class="copy-btn" onclick="copyText(this, 'threads-0')" type="button">コピー</button>
+    </div>
+    <textarea id="threads-0" readonly>1,980円なんだけど、ちょっと聞いてほしい。
+
+洗面台の排水口、毎週掃除してるのに追いつかない時期があって。ヘアキャッチャーって地味だから後回しにしがちじゃないですか。
+
+HUBATHのに変えてから、「あの詰まりは何だったんだろう」ってなってる。受け皿の形が絶妙で、髪の毛がそこで止まってそのまま捨てられる。洗面台のストレスが思ってた以上に減った。
+
+共働きで二人ともシャワーとドライヤー毎日だから、量が出るんですよね。それがそのまま流れてたと思うと…
+
+掃除が嫌いなら道具を変えるのが一番早い。
+
+#楽天アフィリエイト #時短家事 #共働き家庭 #掃除グッズ</textarea>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>X用</span>
+      <button class="copy-btn" onclick="copyText(this, 'x-0')" type="button">コピー</button>
+    </div>
+    <textarea id="x-0" readonly>排水口の詰まり、ずっとそういうものだと思ってた。
+
+HUBATHのヘアキャッチャーに変えたら受け皿に全部集まってそのまま捨てるだけになった。¥1,980でこの解放感。
+
+掃除が嫌いなら道具を変えるのが一番早いって最近思う。
+
+#楽天アフィリエイト #時短家事 #共働き家庭</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="card-head">
+    <img src="https://thumbnail.image.rakuten.co.jp/@0_mall/namosee/cabinet/06149715/06224559/compass1700622661.jpg?_ex=128x128" alt="【ポイント5倍】 積み木 柔らか積み木 赤ちゃん おもちゃ つみき 6か月 0歳 1歳 音が鳴る積み木 柔らかい 知育 知育玩具 赤ちゃん ベビー 孫 かわいい 出産祝い ギフト プレゼント 誕生日 誕生日プレゼント クリスマス クリスマスプレゼント ラッピング無料" loading="lazy">
+    <div class="info">
+      
+      <span class="genre-chip">子供 知育</span>
+      <div class="name">【ポイント5倍】 積み木 柔らか積み木 赤ちゃん おもちゃ つみき 6か月 0歳 1歳 音が鳴る積み木 柔らかい 知育 知育玩具 赤ちゃん ベビー 孫 かわいい 出産祝い ギフト プレゼント 誕生日 誕生日プレゼント クリスマス クリスマスプレゼント ラッピング無料</div>
+      <div class="meta-row">
+        <span class="price">¥3,480</span>
+        <span class="stars">★★★★☆</span>
+        <span>4.49(389件)</span>
+      </div>
+    </div>
+  </div>
+  <a class="btn-open" href="https://item.rakuten.co.jp/namosee/compass1532498172/" target="_blank" rel="noopener">商品ページを開く ↗</a>
+  <div class="url-row">
+    <a href="https://item.rakuten.co.jp/namosee/compass1532498172/" target="_blank" rel="noopener">https://item.rakuten.co.jp/namosee/compass1532498172/</a>
+    <button class="copy-btn" onclick="copyPlain(this, 'https://item.rakuten.co.jp/namosee/compass1532498172/')" type="button">URLコピー</button>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>楽天ROOM用</span>
+      <button class="copy-btn" onclick="copyText(this, 'room-4')" type="button">コピー</button>
+    </div>
+    <textarea id="room-4" readonly>🧸 硬い積み木より「柔らか積み木」の方が赤ちゃんには向いてること、知ってましたか?
+
+6か月〜使えるこの積み木、素材が柔らかいので舐めても安全で、角が当たっても痛くない。音が鳴る仕掛けもあって、持って振るだけで赤ちゃんが反応するのが見ていて楽しい🎵
+
+レビュー389件・★4.49で、「プレゼントでもらって初めて知った」という声が多い印象の商品です。¥3,480という価格も出産祝いにちょうどいいゾーンで、自分用にも贈り物にも使いやすい🎁
+
+注意点は対象月齢の目安を確認してから使い始めること。発達に合わせた使い方の方が楽しめます。
+
+#柔らか積み木 #積み木 #知育玩具 #赤ちゃんおもちゃ #出産祝い #育児パパ #共働き家庭 #楽天ROOM</textarea>
+  </div>
+</div>
+</div>
+
+<h2 class="section-title">💬 今日のあるある投稿ネタ(商品リンクなし)</h2>
+<div class="cards">
+<div class="card">
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>あるある投稿 #1</span>
+      <button class="copy-btn" onclick="copyText(this, 'daily-0')" type="button">コピー</button>
+    </div>
+    <textarea id="daily-0" class="short" readonly>ご飯の時間になると「いらない」って言って、片付けた瞬間に「食べる」って言うやつ、うちだけじゃないよな</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>あるある投稿 #2</span>
+      <button class="copy-btn" onclick="copyText(this, 'daily-1')" type="button">コピー</button>
+    </div>
+    <textarea id="daily-1" class="short" readonly>洗い物してたら泣く。トイレ入ったら泣く。存在消えたら泣く。どうしろと😂</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>あるある投稿 #3</span>
+      <button class="copy-btn" onclick="copyText(this, 'daily-2')" type="button">コピー</button>
+    </div>
+    <textarea id="daily-2" class="short" readonly>絵本読んでてこっちが眠くなって途中で止まったら「続き読んで」ってちゃんと目が覚めてるんだよな、子ども</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>あるある投稿 #4</span>
+      <button class="copy-btn" onclick="copyText(this, 'daily-3')" type="button">コピー</button>
+    </div>
+    <textarea id="daily-3" class="short" readonly>子どもに言い過ぎた日の翌朝、「パパ」って甘えてくるのほんと止めてほしい。反省がもたない</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>あるある投稿 #5</span>
+      <button class="copy-btn" onclick="copyText(this, 'daily-4')" type="button">コピー</button>
+    </div>
+    <textarea id="daily-4" class="short" readonly>共働きで二人とも残業した日の夕飯、誰が作るかの5秒くらいの間があるの、毎回ちゃんと緊張する。相手が折れるの待ってるあの時間</textarea>
+  </div>
+</div>
+</div>
+
+<footer class="note">商品ページを確認し、投稿文をコピーして手動で投稿してください。<br>Threads/Xの商品紹介は1日1件・あるある投稿と織り交ぜてスパム判定を避けてください。<br>価格・レビューは選定時点の実データです。</footer>
+</div>
+<script>
+function flash(btn) {
+  const original = btn.textContent;
+  btn.textContent = 'コピーしました';
+  btn.classList.add('copied');
+  setTimeout(() => { btn.textContent = original; btn.classList.remove('copied'); }, 1500);
+}
+function copyText(btn, id) {
+  const el = document.getElementById(id);
+  el.select();
+  el.setSelectionRange(0, 999999);
+  navigator.clipboard.writeText(el.value).then(() => flash(btn)).catch(() => {
+    try { document.execCommand('copy'); flash(btn); } catch (e) {}
+  });
+}
+function copyPlain(btn, text) {
+  navigator.clipboard.writeText(text).then(() => flash(btn)).catch(() => {
+    const t = document.createElement('textarea');
+    t.value = text; document.body.appendChild(t); t.select();
+    try { document.execCommand('copy'); flash(btn); } catch (e) {}
+    document.body.removeChild(t);
+  });
+}
+</script>
+</body>
+</html>

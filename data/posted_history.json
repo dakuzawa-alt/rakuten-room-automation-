@@ -3169,6 +3169,53 @@
         "threads",
         "x"
       ]
+    },
+    {
+      "itemCode": "seimina:10000121",
+      "itemName": "ノートパソコン スタンド 縦置き 2台/4台収納 ホルダー幅調整可能 アルミ合金素材 ラップトップ スタンド ノートPC",
+      "date": "2026-10-06",
+      "slot": "morning",
+      "channels": [
+        "room"
+      ]
+    },
+    {
+      "itemCode": "fcinterior:10001947",
+      "itemName": "KONO式名門ドリッパー2人用セット ウッドハンドル",
+      "date": "2026-10-06",
+      "slot": "morning",
+      "channels": [
+        "room"
+      ]
+    },
+    {
+      "itemCode": "pole:10000044",
+      "itemName": "LPN ストレッチポールEX(ネイビー)　スタートBOOK、エクササイズDVD付き 1年保証",
+      "date": "2026-10-06",
+      "slot": "morning",
+      "channels": [
+        "room"
+      ]
+    },
+    {
+      "itemCode": "sinkatec:10000425",
+      "itemName": "10/9 1:59までエントリーでP5倍！《楽天1位》 排水口 ゴミ受け 排水溝 掃除 排水溝ネット ごみ受け 洗面所 ",
+      "date": "2026-10-06",
+      "slot": "morning",
+      "channels": [
+        "room",
+        "threads",
+        "x"
+      ]
+    },
+    {
+      "itemCode": "namosee:10000003",
+      "itemName": "積み木 柔らか積み木 赤ちゃん おもちゃ つみき 6か月 0歳 1歳 音が鳴る積み木 柔らかい 知育 知育玩具 赤ちゃん",
+      "date": "2026-10-06",
+      "slot": "morning",
+      "channels": [
+        "room"
+      ]
     }
   ]
 }
