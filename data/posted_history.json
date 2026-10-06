@@ -3216,6 +3216,53 @@
       "channels": [
         "room"
       ]
+    },
+    {
+      "itemCode": "yamegoma:10000000",
+      "itemName": "まあるいかたちのはいったつみき",
+      "date": "2026-10-06",
+      "slot": "night",
+      "channels": [
+        "room"
+      ]
+    },
+    {
+      "itemCode": "e-kitchen:10046413",
+      "itemName": "貝印 ピーラー セレクト100 T型ピーラー 皮むき器 T型 ステンレス 野菜切り スライサー じゃがいも にんじん 一",
+      "date": "2026-10-06",
+      "slot": "night",
+      "channels": [
+        "room",
+        "threads",
+        "x"
+      ]
+    },
+    {
+      "itemCode": "kirara-pla:10001036",
+      "itemName": "スリム 隙間収納 ワゴン 6段 キャスター付き スキマ17.6cm すきま 収納",
+      "date": "2026-10-06",
+      "slot": "night",
+      "channels": [
+        "room"
+      ]
+    },
+    {
+      "itemCode": "mygear:10000299",
+      "itemName": "クーポン配布中！サエギリ アイマスク 睡眠グッズ 6層 遮光率99,99％ 洗える 調節可能 3D 睡眠 シルク調 アイ",
+      "date": "2026-10-06",
+      "slot": "night",
+      "channels": [
+        "room"
+      ]
+    },
+    {
+      "itemCode": "ufit-shop:10000024",
+      "itemName": "uFit Performance pole ストレッチ ポール 98cm カバー付き 痛くない EPE ロング ブラック",
+      "date": "2026-10-06",
+      "slot": "night",
+      "channels": [
+        "room"
+      ]
     }
   ]
 }

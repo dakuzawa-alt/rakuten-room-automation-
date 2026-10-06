@@ -1,0 +1,415 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>2026-10-06 夜 - 楽天ROOM投稿リスト</title>
+<style>
+:root {
+  --bg: #f6f3ee;
+  --surface: #ffffff;
+  --ink: #23211d;
+  --ink-soft: #6b6459;
+  --accent: #a8382c;
+  --accent-ink: #fff6f2;
+  --good: #3f7d58;
+  --border: #e4ddd2;
+  --chip-bg: #efe8db;
+  color-scheme: light dark;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #16140f;
+    --surface: #211f1a;
+    --ink: #ece7dc;
+    --ink-soft: #a89e8d;
+    --accent: #e0685a;
+    --accent-ink: #1c0f0c;
+    --good: #6fb98a;
+    --border: #35322a;
+    --chip-bg: #2a2721;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #16140f; --surface: #211f1a; --ink: #ece7dc; --ink-soft: #a89e8d;
+  --accent: #e0685a; --accent-ink: #1c0f0c; --good: #6fb98a; --border: #35322a; --chip-bg: #2a2721;
+}
+:root[data-theme="light"] {
+  --bg: #f6f3ee; --surface: #ffffff; --ink: #23211d; --ink-soft: #6b6459;
+  --accent: #a8382c; --accent-ink: #fff6f2; --good: #3f7d58; --border: #e4ddd2; --chip-bg: #efe8db;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0; background: var(--bg); color: var(--ink);
+  font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Yu Gothic Medium", "Noto Sans JP", sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+.wrap { max-width: 640px; margin: 0 auto; padding: 0 16px 40px; }
+header.top {
+  position: sticky; top: 0; z-index: 5; background: var(--bg);
+  padding: 18px 16px 12px; border-bottom: 1px solid var(--border);
+  display: flex; align-items: baseline; justify-content: space-between; gap: 12px;
+}
+header.top .eyebrow {
+  font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-soft);
+  font-weight: 600; margin: 0 0 2px;
+}
+header.top h1 { font-size: 1.25rem; margin: 0; font-weight: 700; letter-spacing: -0.01em; }
+header.top .count {
+  background: var(--chip-bg); color: var(--ink-soft); font-size: 0.78rem; font-weight: 600;
+  padding: 5px 10px; border-radius: 999px; white-space: nowrap;
+}
+h2.section-title { font-size: 0.95rem; font-weight: 700; margin: 24px 0 12px; }
+.cards { display: flex; flex-direction: column; gap: 16px; margin-top: 18px; }
+.card {
+  background: var(--surface); border: 1px solid var(--border); border-radius: 16px;
+  padding: 16px; display: flex; flex-direction: column; gap: 12px;
+}
+.card.featured { border-color: var(--accent); border-width: 2px; }
+.featured-badge {
+  align-self: flex-start; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.03em;
+  color: var(--accent-ink); background: var(--accent); padding: 3px 9px; border-radius: 999px;
+}
+.card-head { display: flex; gap: 12px; }
+.card-head img {
+  width: 76px; height: 76px; object-fit: cover; border-radius: 10px;
+  border: 1px solid var(--border); background: var(--chip-bg); flex-shrink: 0;
+}
+.card-head .info { min-width: 0; flex: 1; display: flex; flex-direction: column; gap: 4px; }
+.genre-chip {
+  align-self: flex-start; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.03em;
+  color: var(--accent); background: color-mix(in srgb, var(--accent) 12%, transparent);
+  padding: 2px 8px; border-radius: 999px;
+}
+.name {
+  font-weight: 600; font-size: 0.94rem; line-height: 1.4;
+  display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
+}
+.meta-row { display: flex; align-items: baseline; gap: 8px; font-size: 0.82rem; color: var(--ink-soft); }
+.price { font-variant-numeric: tabular-nums; color: var(--ink); font-weight: 700; font-size: 1.05rem; }
+.stars { letter-spacing: -1px; color: var(--accent); }
+.btn-open {
+  display: flex; align-items: center; justify-content: center; gap: 6px;
+  background: var(--accent); color: var(--accent-ink); border: none; border-radius: 11px;
+  padding: 12px; font-weight: 700; font-size: 0.92rem; text-decoration: none;
+}
+.btn-open:active { opacity: 0.85; }
+.url-row {
+  display: flex; align-items: center; gap: 8px;
+  background: var(--chip-bg); border-radius: 9px; padding: 8px 10px;
+}
+.url-row a {
+  flex: 1; min-width: 0; font-size: 0.76rem; color: var(--accent);
+  word-break: break-all; line-height: 1.45; text-decoration: none;
+}
+.url-row a:active { text-decoration: underline; }
+.reason { font-size: 0.8rem; color: var(--ink-soft); }
+.caption-box { border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }
+.caption-head {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 8px 10px; background: var(--chip-bg);
+}
+.caption-head span {
+  font-size: 0.7rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-soft);
+}
+.copy-btn {
+  background: var(--surface); border: 1px solid var(--border); color: var(--ink);
+  border-radius: 7px; padding: 5px 11px; font-size: 0.76rem; font-weight: 600; cursor: pointer;
+}
+.copy-btn:focus-visible, .btn-open:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.copy-btn.copied { background: var(--good); border-color: var(--good); color: #fff; }
+textarea {
+  width: 100%; display: block; border: none; padding: 10px; font-size: 0.85rem; line-height: 1.55;
+  resize: vertical; min-height: 108px; font-family: inherit; background: var(--surface); color: var(--ink);
+}
+textarea.short { min-height: 60px; }
+textarea:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
+footer.note { margin-top: 22px; font-size: 0.76rem; color: var(--ink-soft); text-align: center; line-height: 1.6; }
+@media (prefers-reduced-motion: no-preference) {
+  .copy-btn { transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease; }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <div>
+    <p class="eyebrow">楽天ROOM 投稿リスト</p>
+    <h1>2026-10-06 夜</h1>
+  </div>
+  <span class="count">5件</span>
+</header>
+
+<h2 class="section-title">📦 商品(ROOM用、全5件)</h2>
+<div class="cards">
+<div class="card">
+  <div class="card-head">
+    <img src="https://thumbnail.image.rakuten.co.jp/@0_mall/yamegoma/cabinet/mht01/01.jpg?_ex=128x128" alt="まあるいかたちのはいったつみき【名入れ・ラッピング無料】【6P/16P/32P】" loading="lazy">
+    <div class="info">
+      
+      <span class="genre-chip">子供 知育</span>
+      <div class="name">まあるいかたちのはいったつみき【名入れ・ラッピング無料】【6P/16P/32P】</div>
+      <div class="meta-row">
+        <span class="price">¥4,950</span>
+        <span class="stars">★★★★★</span>
+        <span>4.88(203件)</span>
+      </div>
+    </div>
+  </div>
+  <a class="btn-open" href="https://item.rakuten.co.jp/yamegoma/mht-2/" target="_blank" rel="noopener">商品ページを開く ↗</a>
+  <div class="url-row">
+    <a href="https://item.rakuten.co.jp/yamegoma/mht-2/" target="_blank" rel="noopener">https://item.rakuten.co.jp/yamegoma/mht-2/</a>
+    <button class="copy-btn" onclick="copyPlain(this, 'https://item.rakuten.co.jp/yamegoma/mht-2/')" type="button">URLコピー</button>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>楽天ROOM用</span>
+      <button class="copy-btn" onclick="copyText(this, 'room-0')" type="button">コピー</button>
+    </div>
+    <textarea id="room-0" readonly>🌲 積み木ってなぜこんなに高いんだろう、と思ってたのに気づいたら我が家にも来てた。
+
+九州産木材のまあるい積み木、触った瞬間に素材の違いが分かる。プラスチックおもちゃが多めの部屋に木の温もりが一個あるのが妙に落ち着く。まあるい形だから角で転んでも安心だし、口に入れる月齢でも気にならない。
+
+6Pから32Pまで選べて成長に合わせて買い足せる。🎁 名入れとラッピングが無料なのでお祝いプレゼントにも使いやすい。レビュー203件・★4.88。
+
+#積み木 #木のおもちゃ #知育玩具 #名入れプレゼント #育児パパ #共働き家庭 #赤ちゃんおもちゃ #出産祝い</textarea>
+  </div>
+</div>
+<div class="card featured">
+  <div class="card-head">
+    <img src="https://thumbnail.image.rakuten.co.jp/@0_mall/e-kitchen/cabinet/10535310/12057113/imgrc0139842441.jpg?_ex=128x128" alt="【1,000円ポッキリ】貝印 ピーラー セレクト100 T型ピーラー 皮むき器 T型 ステンレス 野菜切り スライサー じゃがいも にんじん 一人暮らし キッチンツール 時短 皮むき 新生活 DH3000 【メール便】【代金引換不可・日時指定不可】" loading="lazy">
+    <div class="info">
+      <span class="featured-badge">🔥 本日のThreads/Xピックアップ</span>
+      <span class="genre-chip">キッチン調理</span>
+      <div class="name">【1,000円ポッキリ】貝印 ピーラー セレクト100 T型ピーラー 皮むき器 T型 ステンレス 野菜切り スライサー じゃがいも にんじん 一人暮らし キッチンツール 時短 皮むき 新生活 DH3000 【メール便】【代金引換不可・日時指定不可】</div>
+      <div class="meta-row">
+        <span class="price">¥1,000</span>
+        <span class="stars">★★★★★</span>
+        <span>4.71(1731件)</span>
+      </div>
+    </div>
+  </div>
+  <a class="btn-open" href="https://item.rakuten.co.jp/e-kitchen/9179781/" target="_blank" rel="noopener">商品ページを開く ↗</a>
+  <div class="url-row">
+    <a href="https://item.rakuten.co.jp/e-kitchen/9179781/" target="_blank" rel="noopener">https://item.rakuten.co.jp/e-kitchen/9179781/</a>
+    <button class="copy-btn" onclick="copyPlain(this, 'https://item.rakuten.co.jp/e-kitchen/9179781/')" type="button">URLコピー</button>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>楽天ROOM用</span>
+      <button class="copy-btn" onclick="copyText(this, 'room-1')" type="button">コピー</button>
+    </div>
+    <textarea id="room-1" readonly>🥕 1,000円なのにレビュー1,731件・★4.71って、もはや定番確定の一品。
+
+貝印のT型ピーラー、50mmのワイド刃で一回でたくさんむけるし、斜め10度の刃が最初の引っかかりをなくしてくれる。料理のプロが監修しただけあって切り離れがスムーズ。ステンレス製の芽取りも付いてる。🍎
+
+ピーラーって買い替えのタイミングを見逃しがちだけど、1,000円ならすぐ試せるのが◎ ワンオペ夕飯の野菜の皮むきが少しだけラクになる。
+
+#貝印 #ピーラー #キッチングッズ #時短料理 #育児パパ #共働き家庭 #ワンオペ料理 #台所道具</textarea>
+  </div>
+  <p class="reason">🔥 今日のピックアップ理由: 1,000円という価格の意外性と、レビュー1,731件という圧倒的な実績数の組み合わせが最も訴求力が高く、共働き家庭の夕飯準備という具体的な悩みに直結する商品のため。</p>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>Threads用</span>
+      <button class="copy-btn" onclick="copyText(this, 'threads-0')" type="button">コピー</button>
+    </div>
+    <textarea id="threads-0" readonly>1,000円でレビュー1,731件の貝印ピーラー、なんで今まで使ってなかったんだろうな。
+
+前の安物ピーラー、大根とかの硬い野菜で毎回力入れてたのが馬鹿馬鹿しくなるくらい切れ味が違う。50mmワイド刃×斜め刃の組み合わせで、一回引くだけでスパッと取れる。芽取りもついてる。
+
+仕事終わりのバタバタ夕飯準備の、小さなストレスが一個減った感じ。これ1,000円って普通におかしい。
+
+#貝印ピーラー #時短料理 #キッチングッズ #共働き家庭 #PR</textarea>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>X用</span>
+      <button class="copy-btn" onclick="copyText(this, 'x-0')" type="button">コピー</button>
+    </div>
+    <textarea id="x-0" readonly>1,000円でレビュー1,731件の貝印ピーラー、前のやつとの切れ味の差がヤバすぎた。
+
+硬い大根でも力入れずにスパッといく。50mmワイド刃×斜め刃の設計、ちゃんと理由があった。
+
+仕事帰りのバタバタ夕飯準備、小さなストレスが一個消えた。
+
+#貝印 #時短料理 #共働き家庭 #PR</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="card-head">
+    <img src="https://thumbnail.image.rakuten.co.jp/@0_mall/kirara-pla/cabinet/04212276/imgrc0079792435.jpg?_ex=128x128" alt="【ポイント最大10倍】スリム 隙間収納 ワゴン 6段 キャスター付き スキマ17.6cm すきま 収納" loading="lazy">
+    <div class="info">
+      
+      <span class="genre-chip">収納整理</span>
+      <div class="name">【ポイント最大10倍】スリム 隙間収納 ワゴン 6段 キャスター付き スキマ17.6cm すきま 収納</div>
+      <div class="meta-row">
+        <span class="price">¥2,750</span>
+        <span class="stars">★★★★★</span>
+        <span>4.68(287件)</span>
+      </div>
+    </div>
+  </div>
+  <a class="btn-open" href="https://item.rakuten.co.jp/kirara-pla/10000991/" target="_blank" rel="noopener">商品ページを開く ↗</a>
+  <div class="url-row">
+    <a href="https://item.rakuten.co.jp/kirara-pla/10000991/" target="_blank" rel="noopener">https://item.rakuten.co.jp/kirara-pla/10000991/</a>
+    <button class="copy-btn" onclick="copyPlain(this, 'https://item.rakuten.co.jp/kirara-pla/10000991/')" type="button">URLコピー</button>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>楽天ROOM用</span>
+      <button class="copy-btn" onclick="copyText(this, 'room-2')" type="button">コピー</button>
+    </div>
+    <textarea id="room-2" readonly>🚿 洗面所の例の隙間、ずっと見て見ぬふりしてた。
+
+ドラム式洗濯機と壁の間に18cm弱の隙間があって、毎回ストック品を出すのが面倒でそのまま放置。このワゴンが幅17.6cmでちょうど入って、ストック品を全部そこに突っ込んだら動線がかなりスッキリした。6段でキャスター付きなので取り出しもラク。🛁
+
+耐荷重22kgあるし、2,750円で生活動線がこれだけ変わるのは想定外だった。レビュー287件・★4.68。
+
+#隙間収納 #洗面所収納 #すきま収納 #洗面台 #収納グッズ #育児パパ #共働き家庭 #ランドリー収納</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="card-head">
+    <img src="https://thumbnail.image.rakuten.co.jp/@0_mall/mygear/cabinet/item/mycomfort/saegiri/banner_03.jpg?_ex=128x128" alt="★スペシャルセール★クーポン配布中！【シリーズ累計80万個突破！】サエギリ アイマスク 睡眠グッズ 6層 遮光率99,99％ 洗える 調節可能 3D 睡眠 シルク調 アイメイク マツエク 3色 まつエク 立体 構造 洗濯OK 旅行 昼寝 仮眠 飛行機 夜行バス 快眠" loading="lazy">
+    <div class="info">
+      
+      <span class="genre-chip">寝具 睡眠</span>
+      <div class="name">★スペシャルセール★クーポン配布中！【シリーズ累計80万個突破！】サエギリ アイマスク 睡眠グッズ 6層 遮光率99,99％ 洗える 調節可能 3D 睡眠 シルク調 アイメイク マツエク 3色 まつエク 立体 構造 洗濯OK 旅行 昼寝 仮眠 飛行機 夜行バス 快眠</div>
+      <div class="meta-row">
+        <span class="price">¥1,480</span>
+        <span class="stars">★★★★★</span>
+        <span>4.64(560件)</span>
+      </div>
+    </div>
+  </div>
+  <a class="btn-open" href="https://item.rakuten.co.jp/mygear/saegiri/" target="_blank" rel="noopener">商品ページを開く ↗</a>
+  <div class="url-row">
+    <a href="https://item.rakuten.co.jp/mygear/saegiri/" target="_blank" rel="noopener">https://item.rakuten.co.jp/mygear/saegiri/</a>
+    <button class="copy-btn" onclick="copyPlain(this, 'https://item.rakuten.co.jp/mygear/saegiri/')" type="button">URLコピー</button>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>楽天ROOM用</span>
+      <button class="copy-btn" onclick="copyText(this, 'room-3')" type="button">コピー</button>
+    </div>
+    <textarea id="room-3" readonly>😴 シリーズ累計80万個突破のアイマスク、1,480円。
+
+遮光率99.99%の6層構造で、3D立体構造だから目に圧迫感がなくて済む。薄型のやつを使ったことある人は分かると思うけど、まぶたに直接あたる感じが嫌でやめた経験ない? これはその不快感がない。🌙
+
+洗えるし、調節できるし、旅行・夜行バス・職場の仮眠でも出番が多い。1年品質保証つき。✨ 子どもに週5で夜明け前に起こされるパパへの自衛グッズとして真剣におすすめ。
+
+#アイマスク #睡眠グッズ #快眠グッズ #遮光アイマスク #睡眠 #育児パパ #共働き家庭 #仮眠</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="card-head">
+    <img src="https://thumbnail.image.rakuten.co.jp/@0_mall/ufit-shop/cabinet/09629871/image_2026_2_25.jpg?_ex=128x128" alt="【プロアスリート愛用】uFit Performance pole ストレッチ ポール 98cm カバー付き 痛くない EPE ロング ブラック アイボリー ベージュ ブルー ピンク 使い方動画 日本ブランド ヨガポール ピラティスポール マッサージポール 筋膜リリース 筋肉ほぐし 肩甲骨 背中 腰 足" loading="lazy">
+    <div class="info">
+      
+      <span class="genre-chip">健康 ボディケア</span>
+      <div class="name">【プロアスリート愛用】uFit Performance pole ストレッチ ポール 98cm カバー付き 痛くない EPE ロング ブラック アイボリー ベージュ ブルー ピンク 使い方動画 日本ブランド ヨガポール ピラティスポール マッサージポール 筋膜リリース 筋肉ほぐし 肩甲骨 背中 腰 足</div>
+      <div class="meta-row">
+        <span class="price">¥6,980</span>
+        <span class="stars">★★★★★</span>
+        <span>4.6(473件)</span>
+      </div>
+    </div>
+  </div>
+  <a class="btn-open" href="https://item.rakuten.co.jp/ufit-shop/performance-pole/" target="_blank" rel="noopener">商品ページを開く ↗</a>
+  <div class="url-row">
+    <a href="https://item.rakuten.co.jp/ufit-shop/performance-pole/" target="_blank" rel="noopener">https://item.rakuten.co.jp/ufit-shop/performance-pole/</a>
+    <button class="copy-btn" onclick="copyPlain(this, 'https://item.rakuten.co.jp/ufit-shop/performance-pole/')" type="button">URLコピー</button>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>楽天ROOM用</span>
+      <button class="copy-btn" onclick="copyText(this, 'room-4')" type="button">コピー</button>
+    </div>
+    <textarea id="room-4" readonly>💪 肩と背中が毎日なんとなくしんどい、を放置し続けてたら首まで来た話。
+
+ストレッチポールを買うまで「乗るだけで何が変わるの」と思ってたんだけど、98cmのロングに背中で寝ると肩甲骨が開く感覚が全然違った。プロアスリートが使うというのも、実際に乗ってみると「あ、そういうことか」ってなる。🙌
+
+使い方動画付き・カバー付きで届いたその日から始められる。🧘 デスクワーク→帰宅→子どもの世話で固まった体を、一本で何とかしてる。
+
+#ストレッチポール #筋膜リリース #肩甲骨 #ヨガポール #ボディケア #育児パパ #共働き家庭 #デスクワーク疲れ</textarea>
+  </div>
+</div>
+</div>
+
+<h2 class="section-title">💬 今日のあるある投稿ネタ(商品リンクなし)</h2>
+<div class="cards">
+<div class="card">
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>あるある投稿 #1</span>
+      <button class="copy-btn" onclick="copyText(this, 'daily-0')" type="button">コピー</button>
+    </div>
+    <textarea id="daily-0" class="short" readonly>子どもが寝た瞬間に「静かだ…」ってなるやつ、喜びと寂しさが同時に来てよく分からなくなる。</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>あるある投稿 #2</span>
+      <button class="copy-btn" onclick="copyText(this, 'daily-1')" type="button">コピー</button>
+    </div>
+    <textarea id="daily-1" class="short" readonly>夜泣きの記憶、俺はほぼ覚えてないのに妻はこと細かく覚えてる。この非対称性はなに。 #育児パパ</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>あるある投稿 #3</span>
+      <button class="copy-btn" onclick="copyText(this, 'daily-2')" type="button">コピー</button>
+    </div>
+    <textarea id="daily-2" class="short" readonly>子どもの朝ごはんは卵と野菜とフルーツ揃えてるのに、自分の朝ごはんは前日の残り汁だけ、みたいな日がある。</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>あるある投稿 #4</span>
+      <button class="copy-btn" onclick="copyText(this, 'daily-3')" type="button">コピー</button>
+    </div>
+    <textarea id="daily-3" class="short" readonly>保育園の連絡帳に『今日も元気でした』以外を書こうとして毎回5分くらい固まる。</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>あるある投稿 #5</span>
+      <button class="copy-btn" onclick="copyText(this, 'daily-4')" type="button">コピー</button>
+    </div>
+    <textarea id="daily-4" class="short" readonly>帰宅したら玄関からリビングまでおもちゃの地雷原になってて、踏まないように進んでたら子どもに「パパ何してんの」って言われた。 #育児 #育児パパ</textarea>
+  </div>
+</div>
+</div>
+
+<footer class="note">商品ページを確認し、投稿文をコピーして手動で投稿してください。<br>Threads/Xの商品紹介は1日1件・あるある投稿と織り交ぜてスパム判定を避けてください。<br>価格・レビューは選定時点の実データです。</footer>
+</div>
+<script>
+function flash(btn) {
+  const original = btn.textContent;
+  btn.textContent = 'コピーしました';
+  btn.classList.add('copied');
+  setTimeout(() => { btn.textContent = original; btn.classList.remove('copied'); }, 1500);
+}
+function copyText(btn, id) {
+  const el = document.getElementById(id);
+  el.select();
+  el.setSelectionRange(0, 999999);
+  navigator.clipboard.writeText(el.value).then(() => flash(btn)).catch(() => {
+    try { document.execCommand('copy'); flash(btn); } catch (e) {}
+  });
+}
+function copyPlain(btn, text) {
+  navigator.clipboard.writeText(text).then(() => flash(btn)).catch(() => {
+    const t = document.createElement('textarea');
+    t.value = text; document.body.appendChild(t); t.select();
+    try { document.execCommand('copy'); flash(btn); } catch (e) {}
+    document.body.removeChild(t);
+  });
+}
+</script>
+</body>
+</html>
