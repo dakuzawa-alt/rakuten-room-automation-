@@ -1,0 +1,446 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>2026-10-07 朝 - 楽天ROOM投稿リスト</title>
+<style>
+:root {
+  --bg: #f6f3ee;
+  --surface: #ffffff;
+  --ink: #23211d;
+  --ink-soft: #6b6459;
+  --accent: #a8382c;
+  --accent-ink: #fff6f2;
+  --good: #3f7d58;
+  --border: #e4ddd2;
+  --chip-bg: #efe8db;
+  color-scheme: light dark;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #16140f;
+    --surface: #211f1a;
+    --ink: #ece7dc;
+    --ink-soft: #a89e8d;
+    --accent: #e0685a;
+    --accent-ink: #1c0f0c;
+    --good: #6fb98a;
+    --border: #35322a;
+    --chip-bg: #2a2721;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #16140f; --surface: #211f1a; --ink: #ece7dc; --ink-soft: #a89e8d;
+  --accent: #e0685a; --accent-ink: #1c0f0c; --good: #6fb98a; --border: #35322a; --chip-bg: #2a2721;
+}
+:root[data-theme="light"] {
+  --bg: #f6f3ee; --surface: #ffffff; --ink: #23211d; --ink-soft: #6b6459;
+  --accent: #a8382c; --accent-ink: #fff6f2; --good: #3f7d58; --border: #e4ddd2; --chip-bg: #efe8db;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0; background: var(--bg); color: var(--ink);
+  font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Yu Gothic Medium", "Noto Sans JP", sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+.wrap { max-width: 640px; margin: 0 auto; padding: 0 16px 40px; }
+header.top {
+  position: sticky; top: 0; z-index: 5; background: var(--bg);
+  padding: 18px 16px 12px; border-bottom: 1px solid var(--border);
+  display: flex; align-items: baseline; justify-content: space-between; gap: 12px;
+}
+header.top .eyebrow {
+  font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-soft);
+  font-weight: 600; margin: 0 0 2px;
+}
+header.top h1 { font-size: 1.25rem; margin: 0; font-weight: 700; letter-spacing: -0.01em; }
+header.top .count {
+  background: var(--chip-bg); color: var(--ink-soft); font-size: 0.78rem; font-weight: 600;
+  padding: 5px 10px; border-radius: 999px; white-space: nowrap;
+}
+h2.section-title { font-size: 0.95rem; font-weight: 700; margin: 24px 0 12px; }
+.cards { display: flex; flex-direction: column; gap: 16px; margin-top: 18px; }
+.card {
+  background: var(--surface); border: 1px solid var(--border); border-radius: 16px;
+  padding: 16px; display: flex; flex-direction: column; gap: 12px;
+}
+.card.featured { border-color: var(--accent); border-width: 2px; }
+.featured-badge {
+  align-self: flex-start; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.03em;
+  color: var(--accent-ink); background: var(--accent); padding: 3px 9px; border-radius: 999px;
+}
+.card-head { display: flex; gap: 12px; }
+.card-head img {
+  width: 76px; height: 76px; object-fit: cover; border-radius: 10px;
+  border: 1px solid var(--border); background: var(--chip-bg); flex-shrink: 0;
+}
+.card-head .info { min-width: 0; flex: 1; display: flex; flex-direction: column; gap: 4px; }
+.genre-chip {
+  align-self: flex-start; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.03em;
+  color: var(--accent); background: color-mix(in srgb, var(--accent) 12%, transparent);
+  padding: 2px 8px; border-radius: 999px;
+}
+.name {
+  font-weight: 600; font-size: 0.94rem; line-height: 1.4;
+  display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
+}
+.meta-row { display: flex; align-items: baseline; gap: 8px; font-size: 0.82rem; color: var(--ink-soft); }
+.price { font-variant-numeric: tabular-nums; color: var(--ink); font-weight: 700; font-size: 1.05rem; }
+.stars { letter-spacing: -1px; color: var(--accent); }
+.btn-open {
+  display: flex; align-items: center; justify-content: center; gap: 6px;
+  background: var(--accent); color: var(--accent-ink); border: none; border-radius: 11px;
+  padding: 12px; font-weight: 700; font-size: 0.92rem; text-decoration: none;
+}
+.btn-open:active { opacity: 0.85; }
+.url-row {
+  display: flex; align-items: center; gap: 8px;
+  background: var(--chip-bg); border-radius: 9px; padding: 8px 10px;
+}
+.url-row a {
+  flex: 1; min-width: 0; font-size: 0.76rem; color: var(--accent);
+  word-break: break-all; line-height: 1.45; text-decoration: none;
+}
+.url-row a:active { text-decoration: underline; }
+.reason { font-size: 0.8rem; color: var(--ink-soft); }
+.caption-box { border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }
+.caption-head {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 8px 10px; background: var(--chip-bg);
+}
+.caption-head span {
+  font-size: 0.7rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-soft);
+}
+.copy-btn {
+  background: var(--surface); border: 1px solid var(--border); color: var(--ink);
+  border-radius: 7px; padding: 5px 11px; font-size: 0.76rem; font-weight: 600; cursor: pointer;
+}
+.copy-btn:focus-visible, .btn-open:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.copy-btn.copied { background: var(--good); border-color: var(--good); color: #fff; }
+textarea {
+  width: 100%; display: block; border: none; padding: 10px; font-size: 0.85rem; line-height: 1.55;
+  resize: vertical; min-height: 108px; font-family: inherit; background: var(--surface); color: var(--ink);
+}
+textarea.short { min-height: 60px; }
+textarea:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
+footer.note { margin-top: 22px; font-size: 0.76rem; color: var(--ink-soft); text-align: center; line-height: 1.6; }
+@media (prefers-reduced-motion: no-preference) {
+  .copy-btn { transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease; }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <div>
+    <p class="eyebrow">楽天ROOM 投稿リスト</p>
+    <h1>2026-10-07 朝</h1>
+  </div>
+  <span class="count">5件</span>
+</header>
+
+<h2 class="section-title">📦 商品(ROOM用、全5件)</h2>
+<div class="cards">
+<div class="card">
+  <div class="card-head">
+    <img src="https://thumbnail.image.rakuten.co.jp/@0_mall/thanko/cabinet/other21/tkdwwdhwh-rakuten.jpg?_ex=128x128" alt="食洗機 工事不要 タンク式 4人用 5人用 大容量 フライパンも入る 節水 時短 家族 賃貸 除菌 温風乾燥 卓上 新生活 ギフト 贈り物 プレゼント [公式] タンク式食器洗い乾燥機 ラクア ファミリーワイド TKDWWDHWH" loading="lazy">
+    <div class="info">
+      
+      <span class="genre-chip">時短家電</span>
+      <div class="name">食洗機 工事不要 タンク式 4人用 5人用 大容量 フライパンも入る 節水 時短 家族 賃貸 除菌 温風乾燥 卓上 新生活 ギフト 贈り物 プレゼント [公式] タンク式食器洗い乾燥機 ラクア ファミリーワイド TKDWWDHWH</div>
+      <div class="meta-row">
+        <span class="price">¥41,800</span>
+        <span class="stars">★★★★★</span>
+        <span>4.57(35件)</span>
+      </div>
+    </div>
+  </div>
+  <a class="btn-open" href="https://item.rakuten.co.jp/thanko/000000004557/" target="_blank" rel="noopener">商品ページを開く ↗</a>
+  <div class="url-row">
+    <a href="https://item.rakuten.co.jp/thanko/000000004557/" target="_blank" rel="noopener">https://item.rakuten.co.jp/thanko/000000004557/</a>
+    <button class="copy-btn" onclick="copyPlain(this, 'https://item.rakuten.co.jp/thanko/000000004557/')" type="button">URLコピー</button>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>楽天ROOM用</span>
+      <button class="copy-btn" onclick="copyText(this, 'room-0')" type="button">コピー</button>
+    </div>
+    <textarea id="room-0" readonly>💡工事不要で41,800円、タンクに水を入れるだけで食洗機が使えるって知ってました？
+
+サンコーの「ラクア ファミリーワイド」は水道への接続もドア工事も不要で、置いた日からすぐ使える本当に扱いやすいモデル。
+
+ファミリーサイズだけあって庫内が広めで、4人分の食器もまとめて洗えます🍽️。毎晩の手洗いにかかる時間が体感で20〜30分は違うはず。
+
+使い始めてからレビューでも「こんなに楽になるとは」という声が多い。現時点ではレビュー35件・星4.57とまだ口コミは少なめですが、星評価は高水準を維持してますよ✨。
+
+注意点はタンクへの給水を忘れないこと。慣れれば習慣になりますが最初だけ意識が必要です。
+
+工事不要の手軽さで時短したい共働き家庭に、試してみてほしい一台です🏠
+
+#時短家電 #食器洗い乾燥機 #食洗機 #タンク式食洗機 #工事不要 #共働き家庭 #育児パパ #時短育児 #楽天ROOM</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="card-head">
+    <img src="https://thumbnail.image.rakuten.co.jp/@0_mall/toy-daiwa/cabinet/00143591/45700/45700r.jpg?_ex=128x128" alt="[おもちゃ 誕生日 祝い]リスの森の音つみき《自然塗料》(プレゼント 木製 ギフト 出産 子供 玩具 クリスマス ベビー 知育玩具 セット ヶ月 ままごと 1歳 幼児 2歳 クリスマスプレゼント 無料 女の子 知育 こども 男の子 赤ちゃん 積み木)【木製おもちゃのだいわ直営店】" loading="lazy">
+    <div class="info">
+      
+      <span class="genre-chip">子供 知育</span>
+      <div class="name">[おもちゃ 誕生日 祝い]リスの森の音つみき《自然塗料》(プレゼント 木製 ギフト 出産 子供 玩具 クリスマス ベビー 知育玩具 セット ヶ月 ままごと 1歳 幼児 2歳 クリスマスプレゼント 無料 女の子 知育 こども 男の子 赤ちゃん 積み木)【木製おもちゃのだいわ直営店】</div>
+      <div class="meta-row">
+        <span class="price">¥12,100</span>
+        <span class="stars">★★★★★</span>
+        <span>4.82(173件)</span>
+      </div>
+    </div>
+  </div>
+  <a class="btn-open" href="https://item.rakuten.co.jp/toy-daiwa/97782/" target="_blank" rel="noopener">商品ページを開く ↗</a>
+  <div class="url-row">
+    <a href="https://item.rakuten.co.jp/toy-daiwa/97782/" target="_blank" rel="noopener">https://item.rakuten.co.jp/toy-daiwa/97782/</a>
+    <button class="copy-btn" onclick="copyPlain(this, 'https://item.rakuten.co.jp/toy-daiwa/97782/')" type="button">URLコピー</button>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>楽天ROOM用</span>
+      <button class="copy-btn" onclick="copyText(this, 'room-1')" type="button">コピー</button>
+    </div>
+    <textarea id="room-1" readonly>🌿子どもが初めてこの積み木を鳴らしたとき、しばらくぼーっとその音を聞いてた。
+
+「リスの森の音つみき」は木のぬくもりと音が一緒に楽しめる知育玩具。積んで崩す遊び方に加えて、振るとコロコロ・シャカシャカと柔らかい音がするので、手の動きと耳の刺激が自然に組み合わさる🎵。
+
+木の素材は口に入れても安心感があるし、何より質感がいい。173件レビューで星4.82というのは玩具ジャンルでもかなり高い水準で、長く使われている理由がわかります🌟。
+
+選ぶときは対象月齢の確認を。小さいパーツもあるので1歳前後のお子さんには見守りながら遊ぶのがおすすめです👀。
+
+12,100円という価格はプレゼントにも贈りやすい。長く使える知育玩具を探している方にぜひ。
+
+#知育玩具 #積み木 #木のおもちゃ #音のおもちゃ #リスの森の音つみき #育児パパ #0歳育児 #1歳 #楽天ROOM</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="card-head">
+    <img src="https://thumbnail.image.rakuten.co.jp/@0_mall/gajumarunoki/cabinet/rrm/sq/330_sq_1.jpg?_ex=128x128" alt="【名入れ無料木玉おまけ付】 グリムス レビュー特典あり アーチレインボー 虹色トンネル ラージ 特大 名入れ無料 名入れ無料 木製 積み木 知育玩具 木のおもちゃ 出産祝い 誕生日プレゼント 1歳 2歳 3歳 男の子 女の子 正規輸入品 送料無料 ギフト対応 名前入り" loading="lazy">
+    <div class="info">
+      
+      <span class="genre-chip">子供 知育</span>
+      <div class="name">【名入れ無料木玉おまけ付】 グリムス レビュー特典あり アーチレインボー 虹色トンネル ラージ 特大 名入れ無料 名入れ無料 木製 積み木 知育玩具 木のおもちゃ 出産祝い 誕生日プレゼント 1歳 2歳 3歳 男の子 女の子 正規輸入品 送料無料 ギフト対応 名前入り</div>
+      <div class="meta-row">
+        <span class="price">¥17,600</span>
+        <span class="stars">★★★★★</span>
+        <span>4.77(182件)</span>
+      </div>
+    </div>
+  </div>
+  <a class="btn-open" href="https://item.rakuten.co.jp/gajumarunoki/sh10670/" target="_blank" rel="noopener">商品ページを開く ↗</a>
+  <div class="url-row">
+    <a href="https://item.rakuten.co.jp/gajumarunoki/sh10670/" target="_blank" rel="noopener">https://item.rakuten.co.jp/gajumarunoki/sh10670/</a>
+    <button class="copy-btn" onclick="copyPlain(this, 'https://item.rakuten.co.jp/gajumarunoki/sh10670/')" type="button">URLコピー</button>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>楽天ROOM用</span>
+      <button class="copy-btn" onclick="copyText(this, 'room-2')" type="button">コピー</button>
+    </div>
+    <textarea id="room-2" readonly>🌈レビュー182件・星4.77。グリムスのアーチレインボー、ここまで評価が集まる木のおもちゃって珍しいですよ。
+
+虹の形に積んだり並べたりと、子どもの想像力次第で遊び方が無限に広がるのが特徴🎨。色を並べる・大きさを比較する・積み上げるという動作が、知育的な要素と自然に結びついてます。
+
+素材はドイツの水性塗料を使った安全な木製で、口に入れても安心。「ラージ」サイズは手で掴みやすく小さい子にも扱いやすい✋。
+
+注意点は価格が17,600円と高めなこと。ただしデザイン性が高くインテリアとしても馴染みやすい🌟。
+
+出産祝いや誕生日プレゼントにも定番の人気商品。知育+見た目にこだわりたい方におすすめです。
+
+#グリムス #アーチレインボー #虹色トンネル #木のおもちゃ #知育玩具 #育児パパ #共働き家庭 #出産祝い #楽天ROOM</textarea>
+  </div>
+</div>
+<div class="card featured">
+  <div class="card-head">
+    <img src="https://thumbnail.image.rakuten.co.jp/@0_mall/kurashikenkou/cabinet/tasyakura/imgrc0094203675.jpg?_ex=128x128" alt="パストリーゼ 5L 詰め替え 単品 2個 セット 5リットル アルコールスプレー アルコール除菌 業務用 除菌 防カビ 防臭 抗菌 保湿 食品保存 酒造用純水使用 食品 お弁当 除菌剤 掃除 ドーバー パストリーゼ77 ドーバー洋酒貿易 *" loading="lazy">
+    <div class="info">
+      <span class="featured-badge">🔥 本日のThreads/Xピックアップ</span>
+      <span class="genre-chip">日用品 衛生</span>
+      <div class="name">パストリーゼ 5L 詰め替え 単品 2個 セット 5リットル アルコールスプレー アルコール除菌 業務用 除菌 防カビ 防臭 抗菌 保湿 食品保存 酒造用純水使用 食品 お弁当 除菌剤 掃除 ドーバー パストリーゼ77 ドーバー洋酒貿易 *</div>
+      <div class="meta-row">
+        <span class="price">¥7,478</span>
+        <span class="stars">★★★★★</span>
+        <span>4.77(831件)</span>
+      </div>
+    </div>
+  </div>
+  <a class="btn-open" href="https://item.rakuten.co.jp/kurashikenkou/7143183/" target="_blank" rel="noopener">商品ページを開く ↗</a>
+  <div class="url-row">
+    <a href="https://item.rakuten.co.jp/kurashikenkou/7143183/" target="_blank" rel="noopener">https://item.rakuten.co.jp/kurashikenkou/7143183/</a>
+    <button class="copy-btn" onclick="copyPlain(this, 'https://item.rakuten.co.jp/kurashikenkou/7143183/')" type="button">URLコピー</button>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>楽天ROOM用</span>
+      <button class="copy-btn" onclick="copyText(this, 'room-3')" type="button">コピー</button>
+    </div>
+    <textarea id="room-3" readonly>🧴ドラッグストアでパストリーゼを探すのが面倒になって、まとめ買いに切り替えた。
+
+5L詰め替え2個セットで7,478円。一本あたりの計算をしたら、小分けのボトルを何回も買い足すよりずっと割安で、それ以来ずっとこのペースで補充してる。
+
+食材への直接使用OKというのが、子どもがいる家庭でアルコール除菌剤を選ぶときの大事な基準になってる🍴。調理台・まな板・離乳食の器にもそのまま使えるのは安心感が違う。
+
+レビュー831件で星4.77。ここまで口コミが集まるのも、リピーター率の高さがそのまま反映されてる気がする✨。
+
+大容量なので収納スペースは必要。ストック場所さえ確保できれば、買い忘れのストレスがなくなるのが一番ありがたいです🏠。
+
+#パストリーゼ #アルコール除菌 #詰め替え #食品用アルコール #衛生管理 #育児パパ #共働き家庭 #日用品まとめ買い #楽天ROOM</textarea>
+  </div>
+  <p class="reason">🔥 今日のピックアップ理由: レビュー831件という圧倒的な口コミ実績が社会的証明として最も強く、かつ「子どもがいる家庭の食品用除菌」という悩み解決度が共働き育児パパのフォロワー層に直撃するため選定。</p>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>Threads用</span>
+      <button class="copy-btn" onclick="copyText(this, 'threads-0')" type="button">コピー</button>
+    </div>
+    <textarea id="threads-0" readonly>パストリーゼ、5Lの詰め替えをまとめ買いにしてから買い忘れのストレスがなくなった。
+
+7,478円で2個セット。計算したらスーパーで小さいの都度買うより断然安くて、しかも食材に直接かけてOKという安心感がある🍴
+
+子どもがいると「これ食品に使っていいやつ?」って毎回ラベル確認するの地味に面倒で、それならはじめからそういう用途前提のものをまとめて持っといたほうがいいなって。
+
+レビューめちゃくちゃ多いし、リピーターばかりなのが評価の高さに出てる感じ。使い続けてる人が多いってことは、それだけ定番品ってことよな。
+
+#PR #パストリーゼ #共働き家庭 #育児パパ #楽天アフィリエイト</textarea>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>X用</span>
+      <button class="copy-btn" onclick="copyText(this, 'x-0')" type="button">コピー</button>
+    </div>
+    <textarea id="x-0" readonly>パストリーゼ5L詰め替え2個セットに切り替えてから買い忘れがなくなった🧴
+
+食材直接OKのアルコール除菌、子のいる家ではそれだけで選ぶ理由になる。小分けより安くてストックの安心感が違う。
+
+#PR #パストリーゼ #育児パパ #楽天アフィリエイト</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="card-head">
+    <img src="https://thumbnail.image.rakuten.co.jp/@0_mall/rumay-sz/cabinet/13859592/13911878/1-1.jpg?_ex=128x128" alt="★クーポン配布中★【楽天1位＆即納】ミニ 筋膜リリースガン ハンディガン 電動 小型 軽量 約160g ポケットサイズ 3段階振動 Type-C充電 コンパクト 携帯便利 3種アタッチメント付き ストラップ付き ボディケア セルフケア トレーニング スポーツ 母の日ギフト 誕生日" loading="lazy">
+    <div class="info">
+      
+      <span class="genre-chip">健康 ボディケア</span>
+      <div class="name">★クーポン配布中★【楽天1位＆即納】ミニ 筋膜リリースガン ハンディガン 電動 小型 軽量 約160g ポケットサイズ 3段階振動 Type-C充電 コンパクト 携帯便利 3種アタッチメント付き ストラップ付き ボディケア セルフケア トレーニング スポーツ 母の日ギフト 誕生日</div>
+      <div class="meta-row">
+        <span class="price">¥5,360</span>
+        <span class="stars">★★★★★</span>
+        <span>4.58(291件)</span>
+      </div>
+    </div>
+  </div>
+  <a class="btn-open" href="https://item.rakuten.co.jp/rumay-sz/1000000012/" target="_blank" rel="noopener">商品ページを開く ↗</a>
+  <div class="url-row">
+    <a href="https://item.rakuten.co.jp/rumay-sz/1000000012/" target="_blank" rel="noopener">https://item.rakuten.co.jp/rumay-sz/1000000012/</a>
+    <button class="copy-btn" onclick="copyPlain(this, 'https://item.rakuten.co.jp/rumay-sz/1000000012/')" type="button">URLコピー</button>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>楽天ROOM用</span>
+      <button class="copy-btn" onclick="copyText(this, 'room-4')" type="button">コピー</button>
+    </div>
+    <textarea id="room-4" readonly>💪5,360円でここまで使えるの、正直ちょっと驚いた。
+
+Rumayのミニ筋膜リリースガンは、仕事終わりや子どもを寝かしつけた後のちょっとした時間にサっと使えるサイズ感が特徴。大きくないのでリビングに出しっぱなしにしても邪魔にならないし、使いたいと思ったときにすぐ手が届く🖐️。
+
+振動で筋膜をほぐす仕組みで、肩・腰・ふくらはぎなど疲れが溜まりやすいところに当てるだけでOK。レビュー291件で星4.58と評価も安定してます✨。
+
+注意点は骨に近い部位や患部には当てないこと🔍。
+
+本格的なマッサージ器は値段も大きくなりがち。試してみたいならこの価格帯がちょうどいい入り口です。
+
+#筋膜リリース #マッサージガン #ハンディマッサージャー #疲労回復 #時短ケア #育児パパ #共働き家庭 #セルフケア #楽天ROOM</textarea>
+  </div>
+</div>
+</div>
+
+<h2 class="section-title">💬 今日のあるある投稿ネタ(商品リンクなし)</h2>
+<div class="cards">
+<div class="card">
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>あるある投稿 #1</span>
+      <button class="copy-btn" onclick="copyText(this, 'daily-0')" type="button">コピー</button>
+    </div>
+    <textarea id="daily-0" class="short" readonly>子どもが寝たあとにやっと自分の時間、と思って腰下ろした瞬間に泣き声。
+あの絶妙なタイミング、毎回うますぎて逆に才能だと思ってる。
+#育児パパ</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>あるある投稿 #2</span>
+      <button class="copy-btn" onclick="copyText(this, 'daily-1')" type="button">コピー</button>
+    </div>
+    <textarea id="daily-1" class="short" readonly>離乳食を食べてくれた日に写真撮ろうとしたら背景にゴミ袋と乾いてないタオルが写り込んでた。かわいい顔だけ切り抜いて送ったけど、家の状態は一切触れなかった。</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>あるある投稿 #3</span>
+      <button class="copy-btn" onclick="copyText(this, 'daily-2')" type="button">コピー</button>
+    </div>
+    <textarea id="daily-2" class="short" readonly>夜泣きで起きたのおれだけで、次の日パートナーに言っても「えそんなあった?」って言われた。同じ部屋で寝てるのに記憶の非対称がすごい。
+これ我が家だけ？</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>あるある投稿 #4</span>
+      <button class="copy-btn" onclick="copyText(this, 'daily-3')" type="button">コピー</button>
+    </div>
+    <textarea id="daily-3" class="short" readonly>子どもに言いすぎる日の共通点、だいたい同じ
+・前日寝不足
+・自分の昼ごはん食べてない
+・次の予定が詰まってる
+
+子どもの問題じゃなくてこっちのコンディション管理の話だったな、って後から気づく繰り返し。</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>あるある投稿 #5</span>
+      <button class="copy-btn" onclick="copyText(this, 'daily-4')" type="button">コピー</button>
+    </div>
+    <textarea id="daily-4" class="short" readonly>土曜の朝、子ども用に卵焼き・ミニトマト・ごはんと味噌汁ちゃんと作ったのに、自分の朝ごはんは昨日の残りカレーだった。
+なんか、うん、まあいいけど。</textarea>
+  </div>
+</div>
+</div>
+
+<footer class="note">商品ページを確認し、投稿文をコピーして手動で投稿してください。<br>Threads/Xの商品紹介は1日1件・あるある投稿と織り交ぜてスパム判定を避けてください。<br>価格・レビューは選定時点の実データです。</footer>
+</div>
+<script>
+function flash(btn) {
+  const original = btn.textContent;
+  btn.textContent = 'コピーしました';
+  btn.classList.add('copied');
+  setTimeout(() => { btn.textContent = original; btn.classList.remove('copied'); }, 1500);
+}
+function copyText(btn, id) {
+  const el = document.getElementById(id);
+  el.select();
+  el.setSelectionRange(0, 999999);
+  navigator.clipboard.writeText(el.value).then(() => flash(btn)).catch(() => {
+    try { document.execCommand('copy'); flash(btn); } catch (e) {}
+  });
+}
+function copyPlain(btn, text) {
+  navigator.clipboard.writeText(text).then(() => flash(btn)).catch(() => {
+    const t = document.createElement('textarea');
+    t.value = text; document.body.appendChild(t); t.select();
+    try { document.execCommand('copy'); flash(btn); } catch (e) {}
+    document.body.removeChild(t);
+  });
+}
+</script>
+</body>
+</html>

@@ -3263,6 +3263,53 @@
       "channels": [
         "room"
       ]
+    },
+    {
+      "itemCode": "thanko:10005331",
+      "itemName": "食洗機 工事不要 タンク式 4人用 5人用 大容量 フライパンも入る 節水 時短 家族 賃貸 除菌 温風乾燥 卓上 新生",
+      "date": "2026-10-07",
+      "slot": "morning",
+      "channels": [
+        "room"
+      ]
+    },
+    {
+      "itemCode": "toy-daiwa:10003996",
+      "itemName": "リスの森の音つみき《自然塗料》(プレゼント 木製 ギフト 出産 子供 玩具 クリスマス ベビー 知育玩具 セット ヶ月 ",
+      "date": "2026-10-07",
+      "slot": "morning",
+      "channels": [
+        "room"
+      ]
+    },
+    {
+      "itemCode": "gajumarunoki:10000433",
+      "itemName": "グリムス レビュー特典あり アーチレインボー 虹色トンネル ラージ 特大 名入れ無料 名入れ無料 木製 積み木 知育玩具",
+      "date": "2026-10-07",
+      "slot": "morning",
+      "channels": [
+        "room"
+      ]
+    },
+    {
+      "itemCode": "kurashikenkou:10172516",
+      "itemName": "パストリーゼ 5L 詰め替え 単品 2個 セット 5リットル アルコールスプレー アルコール除菌 業務用 除菌 防カビ ",
+      "date": "2026-10-07",
+      "slot": "morning",
+      "channels": [
+        "room",
+        "threads",
+        "x"
+      ]
+    },
+    {
+      "itemCode": "rumay-sz:10000035",
+      "itemName": "ミニ 筋膜リリースガン ハンディガン 電動 小型 軽量 約160g ポケットサイズ 3段階振動 Type-C充電 コンパ",
+      "date": "2026-10-07",
+      "slot": "morning",
+      "channels": [
+        "room"
+      ]
     }
   ]
 }
