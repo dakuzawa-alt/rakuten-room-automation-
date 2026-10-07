@@ -3357,6 +3357,53 @@
       "channels": [
         "room"
       ]
+    },
+    {
+      "itemCode": "strawfarm:10000002",
+      "itemName": "お風呂 おもちゃ 型はめ パズル 積み木 海 動物 生き物 赤ちゃん ベビー 幼児 男の子 女の子 誕生日 出産祝い 知",
+      "date": "2026-10-08",
+      "slot": "morning",
+      "channels": [
+        "room"
+      ]
+    },
+    {
+      "itemCode": "kweg:10000238",
+      "itemName": "\\楽天ランキング 1位受賞／ お風呂 排水溝 排水口 ゴミ受け  送料無料 日本製 ヘア キャッチャー 排水溝カバー ス",
+      "date": "2026-10-08",
+      "slot": "morning",
+      "channels": [
+        "room"
+      ]
+    },
+    {
+      "itemCode": "sugibou:10000043",
+      "itemName": "2年保証付き　電気敷毛布　日本製　送料無料　タイマー付き　洗える　自動オフ　切り忘れ防止　洗える　タイマー　ダニ退治　電",
+      "date": "2026-10-08",
+      "slot": "morning",
+      "channels": [
+        "room"
+      ]
+    },
+    {
+      "itemCode": "seimina:10000246",
+      "itemName": "「 12in1」 ネイルマシン ネイルケア 電動 コードレス 角質除去 爪切り ネイルマシーン 電動ネイルマシン 多機能",
+      "date": "2026-10-08",
+      "slot": "morning",
+      "channels": [
+        "room",
+        "threads",
+        "x"
+      ]
+    },
+    {
+      "itemCode": "toysrus:10433228",
+      "itemName": "ミルトン Milton CP 60錠 赤ちゃん 衛生グッズ 日用品 哺乳瓶 消毒",
+      "date": "2026-10-08",
+      "slot": "morning",
+      "channels": [
+        "room"
+      ]
     }
   ]
 }
