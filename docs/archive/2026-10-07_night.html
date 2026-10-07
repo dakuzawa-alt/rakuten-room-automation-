@@ -1,0 +1,451 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>10/7 夜の選定 - 楽天ROOM投稿リスト</title>
+<style>
+:root {
+  --bg: #f6f3ee;
+  --surface: #ffffff;
+  --ink: #23211d;
+  --ink-soft: #6b6459;
+  --accent: #a8382c;
+  --accent-ink: #fff6f2;
+  --good: #3f7d58;
+  --border: #e4ddd2;
+  --chip-bg: #efe8db;
+  color-scheme: light dark;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #16140f;
+    --surface: #211f1a;
+    --ink: #ece7dc;
+    --ink-soft: #a89e8d;
+    --accent: #e0685a;
+    --accent-ink: #1c0f0c;
+    --good: #6fb98a;
+    --border: #35322a;
+    --chip-bg: #2a2721;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #16140f; --surface: #211f1a; --ink: #ece7dc; --ink-soft: #a89e8d;
+  --accent: #e0685a; --accent-ink: #1c0f0c; --good: #6fb98a; --border: #35322a; --chip-bg: #2a2721;
+}
+:root[data-theme="light"] {
+  --bg: #f6f3ee; --surface: #ffffff; --ink: #23211d; --ink-soft: #6b6459;
+  --accent: #a8382c; --accent-ink: #fff6f2; --good: #3f7d58; --border: #e4ddd2; --chip-bg: #efe8db;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0; background: var(--bg); color: var(--ink);
+  font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Yu Gothic Medium", "Noto Sans JP", sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+.wrap { max-width: 640px; margin: 0 auto; padding: 0 16px 40px; }
+header.top {
+  position: sticky; top: 0; z-index: 5; background: var(--bg);
+  padding: 18px 16px 12px; border-bottom: 1px solid var(--border);
+  display: flex; align-items: baseline; justify-content: space-between; gap: 12px;
+}
+header.top .eyebrow {
+  font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-soft);
+  font-weight: 600; margin: 0 0 2px;
+}
+header.top h1 { font-size: 1.25rem; margin: 0; font-weight: 700; letter-spacing: -0.01em; }
+header.top .count {
+  background: var(--chip-bg); color: var(--ink-soft); font-size: 0.78rem; font-weight: 600;
+  padding: 5px 10px; border-radius: 999px; white-space: nowrap;
+}
+h2.section-title { font-size: 0.95rem; font-weight: 700; margin: 24px 0 12px; }
+.cards { display: flex; flex-direction: column; gap: 16px; margin-top: 18px; }
+.card {
+  background: var(--surface); border: 1px solid var(--border); border-radius: 16px;
+  padding: 16px; display: flex; flex-direction: column; gap: 12px;
+}
+.card.featured { border-color: var(--accent); border-width: 2px; }
+.featured-badge {
+  align-self: flex-start; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.03em;
+  color: var(--accent-ink); background: var(--accent); padding: 3px 9px; border-radius: 999px;
+}
+.card-head { display: flex; gap: 12px; }
+.card-head img {
+  width: 76px; height: 76px; object-fit: cover; border-radius: 10px;
+  border: 1px solid var(--border); background: var(--chip-bg); flex-shrink: 0;
+}
+.card-head .info { min-width: 0; flex: 1; display: flex; flex-direction: column; gap: 4px; }
+.genre-chip {
+  align-self: flex-start; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.03em;
+  color: var(--accent); background: color-mix(in srgb, var(--accent) 12%, transparent);
+  padding: 2px 8px; border-radius: 999px;
+}
+.name {
+  font-weight: 600; font-size: 0.94rem; line-height: 1.4;
+  display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
+}
+.meta-row { display: flex; align-items: baseline; gap: 8px; font-size: 0.82rem; color: var(--ink-soft); }
+.price { font-variant-numeric: tabular-nums; color: var(--ink); font-weight: 700; font-size: 1.05rem; }
+.stars { letter-spacing: -1px; color: var(--accent); }
+.btn-open {
+  display: flex; align-items: center; justify-content: center; gap: 6px;
+  background: var(--accent); color: var(--accent-ink); border: none; border-radius: 11px;
+  padding: 12px; font-weight: 700; font-size: 0.92rem; text-decoration: none;
+}
+.btn-open:active { opacity: 0.85; }
+.url-row {
+  display: flex; align-items: center; gap: 8px;
+  background: var(--chip-bg); border-radius: 9px; padding: 8px 10px;
+}
+.url-row a {
+  flex: 1; min-width: 0; font-size: 0.76rem; color: var(--accent);
+  word-break: break-all; line-height: 1.45; text-decoration: none;
+}
+.url-row a:active { text-decoration: underline; }
+.reason { font-size: 0.8rem; color: var(--ink-soft); }
+.caption-box { border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }
+.caption-head {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 8px 10px; background: var(--chip-bg);
+}
+.caption-head span {
+  font-size: 0.7rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-soft);
+}
+.copy-btn {
+  background: var(--surface); border: 1px solid var(--border); color: var(--ink);
+  border-radius: 7px; padding: 5px 11px; font-size: 0.76rem; font-weight: 600; cursor: pointer;
+}
+.copy-btn:focus-visible, .btn-open:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.copy-btn.copied { background: var(--good); border-color: var(--good); color: #fff; }
+textarea {
+  width: 100%; display: block; border: none; padding: 10px; font-size: 0.85rem; line-height: 1.55;
+  resize: vertical; min-height: 108px; font-family: inherit; background: var(--surface); color: var(--ink);
+}
+textarea.short { min-height: 60px; }
+textarea:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
+footer.note { margin-top: 22px; font-size: 0.76rem; color: var(--ink-soft); text-align: center; line-height: 1.6; }
+@media (prefers-reduced-motion: no-preference) {
+  .copy-btn { transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease; }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <div>
+    <p class="eyebrow">楽天ROOM 投稿リスト</p>
+    <h1>10/7 夜の選定</h1>
+  </div>
+  <span class="count">5件</span>
+</header>
+
+<h2 class="section-title">📦 商品(ROOM用、全5件)</h2>
+<div class="cards">
+<div class="card featured">
+  <div class="card-head">
+    <img src="https://thumbnail.image.rakuten.co.jp/@0_mall/hakka/cabinet/product/06682779/ra_mint009.jpg?_ex=128x128" alt="ハッカ油 スプレー詰め替えセット（スプレー20ml＋詰め替え20ml）食品添加物 日本製天然 虫よけ 消臭 除菌効果 ハッカ油スプレー アロマオイル マスク ミント カメムシ対策" loading="lazy">
+    <div class="info">
+      <span class="featured-badge">🔥 本日のThreads/Xピックアップ</span>
+      <span class="genre-chip"></span>
+      <div class="name">ハッカ油 スプレー詰め替えセット（スプレー20ml＋詰め替え20ml）食品添加物 日本製天然 虫よけ 消臭 除菌効果 ハッカ油スプレー アロマオイル マスク ミント カメムシ対策</div>
+      <div class="meta-row">
+        <span class="price">¥1,350</span>
+        <span class="stars">★★★★★</span>
+        <span>4.78(910件)</span>
+      </div>
+    </div>
+  </div>
+  <a class="btn-open" href="https://item.rakuten.co.jp/hakka/hakka29/" target="_blank" rel="noopener">商品ページを開く ↗</a>
+  <div class="url-row">
+    <a href="https://item.rakuten.co.jp/hakka/hakka29/" target="_blank" rel="noopener">https://item.rakuten.co.jp/hakka/hakka29/</a>
+    <button class="copy-btn" onclick="copyPlain(this, 'https://item.rakuten.co.jp/hakka/hakka29/')" type="button">URLコピー</button>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>楽天ROOM用</span>
+      <button class="copy-btn" onclick="copyText(this, 'room-0')" type="button">コピー</button>
+    </div>
+    <textarea id="room-0" readonly>💡1,350円でこれだけ使えるの、知ってました？
+
+ハッカ油スプレー＋詰め替えのセットで、虫よけ・消臭・除菌・マスクのスースー感まで全部カバー。食品添加物グレードの日本製だから子どもがいる家でも安心して使えるのが最高。
+
+この時期、窓開けるとカメムシが入ってくる問題、ハッカ油1本で対策できてから「なんで早く知らなかった」ってなった🌿
+
+スプレータイプだから玄関まわりや網戸にシュッと一吹きするだけ。詰め替えがセットになってるのも助かる。
+
+レビューは910件・星4.78。継続購入のリピーターが多い商品なのも納得できる完成度。
+
+⚠️原液は刺激が強いので希釈して使うこと。猫のいる家は注意が必要です。
+
+#ハッカ油 #虫よけ #カメムシ対策 #日本製 #食品添加物 #育児パパ #共働き家庭 #時短 #日用品 #楽天ROOM</textarea>
+  </div>
+  <p class="reason">🔥 今日のピックアップ理由: 1,350円という価格の意外性、910件・星4.78という高レビュー実績に加え、カメムシが本格的に出る秋口という季節性が三拍子揃っており、今日一番スクロールを止める力があると判断した。</p>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>Threads用</span>
+      <button class="copy-btn" onclick="copyText(this, 'threads-0')" type="button">コピー</button>
+    </div>
+    <textarea id="threads-0" readonly>ハッカ油1本で虫よけ・消臭・除菌・マスクのスースー感、全部できるの知ってた？
+
+1,350円のスプレー+詰め替えセットなんだけど、食品添加物グレードの日本製だから子どもいても気にせず使えるのが一番の決め手。
+
+この時期カメムシが家に入ってくる季節で、玄関や網戸にシュッとひと吹きしてから遭遇率が激減した。あの臭いを家の中で炸裂させた日のことを思い出すと今でも震える🫠
+
+リピーター多めの商品で、910件レビューで星4.78。
+
+#ハッカ油 #カメムシ対策 #虫よけ #育児パパ #PR</textarea>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>X用</span>
+      <button class="copy-btn" onclick="copyText(this, 'x-0')" type="button">コピー</button>
+    </div>
+    <textarea id="x-0" readonly>ハッカ油1本で虫よけ・消臭・除菌・マスクのスースー、全部いける。
+
+1,350円で詰め替えセット付き。食品添加物グレードの日本製だから子どもいても安心。
+
+カメムシが家で炸裂した日の絶望、二度と味わいたくないやつ🫠
+
+910件・★4.78のリピーター多数。
+
+#ハッカ油 #カメムシ対策 #育児パパ #PR</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="card-head">
+    <img src="https://thumbnail.image.rakuten.co.jp/@0_mall/sleepybed/cabinet/kids/kidswb-icon.jpg?_ex=128x128" alt="★実用新案出願中★日本製 木製 「きっずほわいとぼーど」 ホワイトボード 子供 こども お絵かきボード お絵描きボード 磁石 マグネット クリスマスプレゼント 誕生日プレゼント プレゼント 知育玩具 モンテッソーリ 石崎家具" loading="lazy">
+    <div class="info">
+      
+      <span class="genre-chip"></span>
+      <div class="name">★実用新案出願中★日本製 木製 「きっずほわいとぼーど」 ホワイトボード 子供 こども お絵かきボード お絵描きボード 磁石 マグネット クリスマスプレゼント 誕生日プレゼント プレゼント 知育玩具 モンテッソーリ 石崎家具</div>
+      <div class="meta-row">
+        <span class="price">¥8,990</span>
+        <span class="stars">★★★★★</span>
+        <span>4.75(719件)</span>
+      </div>
+    </div>
+  </div>
+  <a class="btn-open" href="https://item.rakuten.co.jp/sleepybed/kidswb-l/" target="_blank" rel="noopener">商品ページを開く ↗</a>
+  <div class="url-row">
+    <a href="https://item.rakuten.co.jp/sleepybed/kidswb-l/" target="_blank" rel="noopener">https://item.rakuten.co.jp/sleepybed/kidswb-l/</a>
+    <button class="copy-btn" onclick="copyPlain(this, 'https://item.rakuten.co.jp/sleepybed/kidswb-l/')" type="button">URLコピー</button>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>楽天ROOM用</span>
+      <button class="copy-btn" onclick="copyText(this, 'room-1')" type="button">コピー</button>
+    </div>
+    <textarea id="room-1" readonly>🎨休日の昼、子どもが「かいて！かいて！」って持ってきたのがこのボード。
+
+リビングの床に置いてやると、気づいたら1時間黙って絵を描いてた。こんなに集中するの初めて見た😂
+
+木製だから倒しても音がうるさくないし、インテリアに浮かない。磁石もくっつくからマグネット遊びにも使える2WAY仕様。日本製で実用新案出願中というのも信頼感ある。
+
+モンテッソーリ教育の考え方が好きで知育玩具を選んでる家庭にはドンピシャだと思う✏️
+
+レビューは719件・星4.75。誕生日やクリスマスのプレゼントにも定番になってる人気商品。
+
+選ぶポイントは「サイズ」。大きめを選んだ方が子どもが全身使って描けるのでおすすめ。
+
+#ホワイトボード #知育玩具 #モンテッソーリ #木製 #日本製 #育児パパ #共働き家庭 #誕生日プレゼント #クリスマスプレゼント #楽天ROOM</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="card-head">
+    <img src="https://thumbnail.image.rakuten.co.jp/@0_mall/cybermall/cabinet/mem_item/kujira/main_winter.jpg?_ex=128x128" alt="＼トイオブザイヤー2026受賞／お風呂【モンテッソーリ講師推薦】 水遊び 大増量47ピース【保育専門誌掲載×幼稚園導入】知育玩具 子供 3歳 4歳 5歳 男の子 女の子 幼児 子供 誕生日 プレゼント 入園祝い スクイーズ 吸盤 おもちゃ 指先 くっつき虫 室内遊び お風呂おもちゃ" loading="lazy">
+    <div class="info">
+      
+      <span class="genre-chip"></span>
+      <div class="name">＼トイオブザイヤー2026受賞／お風呂【モンテッソーリ講師推薦】 水遊び 大増量47ピース【保育専門誌掲載×幼稚園導入】知育玩具 子供 3歳 4歳 5歳 男の子 女の子 幼児 子供 誕生日 プレゼント 入園祝い スクイーズ 吸盤 おもちゃ 指先 くっつき虫 室内遊び お風呂おもちゃ</div>
+      <div class="meta-row">
+        <span class="price">¥2,999</span>
+        <span class="stars">★★★★★</span>
+        <span>4.56(702件)</span>
+      </div>
+    </div>
+  </div>
+  <a class="btn-open" href="https://item.rakuten.co.jp/cybermall/stickingbug/" target="_blank" rel="noopener">商品ページを開く ↗</a>
+  <div class="url-row">
+    <a href="https://item.rakuten.co.jp/cybermall/stickingbug/" target="_blank" rel="noopener">https://item.rakuten.co.jp/cybermall/stickingbug/</a>
+    <button class="copy-btn" onclick="copyPlain(this, 'https://item.rakuten.co.jp/cybermall/stickingbug/')" type="button">URLコピー</button>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>楽天ROOM用</span>
+      <button class="copy-btn" onclick="copyText(this, 'room-2')" type="button">コピー</button>
+    </div>
+    <textarea id="room-2" readonly>🛁「お風呂いや！」って毎日言う子に悩んでる親、これ試してほしい。
+
+お風呂に貼ってくっつく吸盤ピース47個入り。タイルや浴槽にペタペタくっつけて遊べるから、嫌がってた子が自分から入りたがるようになった家庭のレビューが多数。
+
+2,999円で47ピース入りはボリュームある💡 モンテッソーリ講師推薦・幼稚園導入・保育専門誌掲載とお墨付きも多い。トイオブザイヤー2026受賞もしてる。
+
+指先を動かす遊びは脳の発達にいいとよく言われていて、お風呂が知育の時間になるのはシンプルにいいと思う。
+
+レビューは702件・星4.56。対象年齢は3〜5歳くらいが中心の様子。
+
+⚠️小さいパーツあり。誤飲には注意してください。
+
+#お風呂おもちゃ #知育玩具 #水遊び #モンテッソーリ #育児パパ #共働き家庭 #3歳 #4歳 #お風呂嫌い #楽天ROOM</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="card-head">
+    <img src="https://thumbnail.image.rakuten.co.jp/@0_mall/relief10/cabinet/260626_top.jpg?_ex=128x128" alt="レビュー件数1000件突破！！【楽天2冠獲得】 体重計 体脂肪計 ＼めざましテレビで紹介／【最強配送対応】 インスマート デジタル 260H 体組成計 スマホ連動 アプリ 自動同期 FG260" loading="lazy">
+    <div class="info">
+      
+      <span class="genre-chip"></span>
+      <div class="name">レビュー件数1000件突破！！【楽天2冠獲得】 体重計 体脂肪計 ＼めざましテレビで紹介／【最強配送対応】 インスマート デジタル 260H 体組成計 スマホ連動 アプリ 自動同期 FG260</div>
+      <div class="meta-row">
+        <span class="price">¥2,680</span>
+        <span class="stars">★★★★☆</span>
+        <span>4.49(1084件)</span>
+      </div>
+    </div>
+  </div>
+  <a class="btn-open" href="https://item.rakuten.co.jp/relief10/b082sqx6td/" target="_blank" rel="noopener">商品ページを開く ↗</a>
+  <div class="url-row">
+    <a href="https://item.rakuten.co.jp/relief10/b082sqx6td/" target="_blank" rel="noopener">https://item.rakuten.co.jp/relief10/b082sqx6td/</a>
+    <button class="copy-btn" onclick="copyPlain(this, 'https://item.rakuten.co.jp/relief10/b082sqx6td/')" type="button">URLコピー</button>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>楽天ROOM用</span>
+      <button class="copy-btn" onclick="copyText(this, 'room-3')" type="button">コピー</button>
+    </div>
+    <textarea id="room-3" readonly>⚖️体重計を買い替えたのは「数字しか出ない」ことへの限界から、だった気がする。
+
+このインスマートFG260、乗るだけでスマホアプリに体重・体脂肪・筋肉量まで自動同期してくれる📱 グラフで変化が見えるから「今週微妙に増えた」「先月比でちょっと変わった」みたいな実感が持てる。
+
+めざましテレビで紹介されたやつで、2,680円なのにスマホ連動かよ、というのが正直な感想🙄
+
+ひとつだけ言うと、家族で共有するとき誰のデータか管理するのが多少面倒。アプリ内でアカウント分ける設定を先にしておいた方がいい。
+
+レビューは1,084件・星4.49。これだけ集まると信頼感は本物。
+
+#体組成計 #体重計 #スマホ連動 #ダイエット #ヘルスケア #育児パパ #共働き家庭 #時短 #健康管理 #楽天ROOM</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="card-head">
+    <img src="https://thumbnail.image.rakuten.co.jp/@0_mall/lecdirect/cabinet/img/a/a00146.jpg?_ex=128x128" alt="【送料無料】特許取得 3WAY ベビー 便利グッズ 赤ちゃん 哺乳瓶消毒器 出産祝い 哺乳瓶ケース 哺乳瓶消毒 哺乳瓶 保管ケース 消毒 レンジ ケース 哺乳瓶洗い ベビー用品 沸騰消毒 薬液消毒 洗浄機 哺乳びん 洗浄 授乳用品 熱処理 実用的 ママへ レック" loading="lazy">
+    <div class="info">
+      
+      <span class="genre-chip"></span>
+      <div class="name">【送料無料】特許取得 3WAY ベビー 便利グッズ 赤ちゃん 哺乳瓶消毒器 出産祝い 哺乳瓶ケース 哺乳瓶消毒 哺乳瓶 保管ケース 消毒 レンジ ケース 哺乳瓶洗い ベビー用品 沸騰消毒 薬液消毒 洗浄機 哺乳びん 洗浄 授乳用品 熱処理 実用的 ママへ レック</div>
+      <div class="meta-row">
+        <span class="price">¥3,058</span>
+        <span class="stars">★★★★☆</span>
+        <span>4.47(204件)</span>
+      </div>
+    </div>
+  </div>
+  <a class="btn-open" href="https://item.rakuten.co.jp/lecdirect/4903320047921/" target="_blank" rel="noopener">商品ページを開く ↗</a>
+  <div class="url-row">
+    <a href="https://item.rakuten.co.jp/lecdirect/4903320047921/" target="_blank" rel="noopener">https://item.rakuten.co.jp/lecdirect/4903320047921/</a>
+    <button class="copy-btn" onclick="copyPlain(this, 'https://item.rakuten.co.jp/lecdirect/4903320047921/')" type="button">URLコピー</button>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>楽天ROOM用</span>
+      <button class="copy-btn" onclick="copyText(this, 'room-4')" type="button">コピー</button>
+    </div>
+    <textarea id="room-4" readonly>🍼消毒方法を選べる哺乳瓶ケース、知ってる？
+
+レックの3WAYは「薬液消毒・沸騰消毒・レンジ消毒」を1つのケースで対応できるのが特許取得の肝。生活スタイルや外出先によって方法を変えられるのはストック量が少ない新生児期に本当に助かる仕様。
+
+よくある失敗が「消毒器を買ったけど方法が一種類しか使えなくて不便だった」というもの💡 その点このモデルは外出時は薬液、家では沸騰かレンジ、という柔軟な使い方ができる。
+
+消毒したまま保管できるケース一体型なのも衛生的で地味にありがたい。
+
+レビューは204件・星4.47。出産祝いに選ぶ方も多いみたい。
+
+⚠️消毒時間・水量はしっかり取扱説明書を確認してください。
+
+#哺乳瓶消毒 #ベビー用品 #出産祝い #新生児 #育児グッズ #育児パパ #共働き家庭 #時短 #レック #楽天ROOM</textarea>
+  </div>
+</div>
+</div>
+
+<h2 class="section-title">💬 今日のあるある投稿ネタ(商品リンクなし)</h2>
+<div class="cards">
+<div class="card">
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>あるある投稿 #1</span>
+      <button class="copy-btn" onclick="copyText(this, 'daily-0')" type="button">コピー</button>
+    </div>
+    <textarea id="daily-0" class="short" readonly>子どもを寝かしつけてソファに戻ってきたとき、リモコンがどこにもない。さっきまで手に持ってたのに。家の中で消えるってどういうことなんだ🫠</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>あるある投稿 #2</span>
+      <button class="copy-btn" onclick="copyText(this, 'daily-1')" type="button">コピー</button>
+    </div>
+    <textarea id="daily-1" class="short" readonly>朝の支度、子どもの準備が終わる頃には自分の頭が整ってない。ハーフアップが片方だけ崩れたまま家出た日があって、会社のトイレで気づいた。
+
+#共働き家庭</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>あるある投稿 #3</span>
+      <button class="copy-btn" onclick="copyText(this, 'daily-2')" type="button">コピー</button>
+    </div>
+    <textarea id="daily-2" class="short" readonly>公園で「パパこっちきて」って呼ばれてダッシュで行ったら、呼んだ理由が「ダンゴムシいた」だった
+
+すごく大事なことだった #育児パパ</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>あるある投稿 #4</span>
+      <button class="copy-btn" onclick="copyText(this, 'daily-3')" type="button">コピー</button>
+    </div>
+    <textarea id="daily-3" class="short" readonly>週末の夕方5時くらい、子どもが昼寝してる30分だけ家が静かになる瞬間がある。何もしないで座ってるだけで回復する感じ、あれが唯一の充電タイムになってる。</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>あるある投稿 #5</span>
+      <button class="copy-btn" onclick="copyText(this, 'daily-4')" type="button">コピー</button>
+    </div>
+    <textarea id="daily-4" class="short" readonly>離乳食の写真を見返すと、食べさせてる手が映り込んでてぶれてるやつばっかり。ちゃんと撮ろうとすると食べてくれなくて、諦めたら食べはじめる。なんかこれが全部を表してる気がする。</textarea>
+  </div>
+</div>
+</div>
+
+<footer class="note">商品ページを確認し、投稿文をコピーして手動で投稿してください。<br>Threads/Xの商品紹介は1日1件・あるある投稿と織り交ぜてスパム判定を避けてください。<br>価格・レビューは選定時点の実データです。</footer>
+</div>
+<script>
+function flash(btn) {
+  const original = btn.textContent;
+  btn.textContent = 'コピーしました';
+  btn.classList.add('copied');
+  setTimeout(() => { btn.textContent = original; btn.classList.remove('copied'); }, 1500);
+}
+function copyText(btn, id) {
+  const el = document.getElementById(id);
+  el.select();
+  el.setSelectionRange(0, 999999);
+  navigator.clipboard.writeText(el.value).then(() => flash(btn)).catch(() => {
+    try { document.execCommand('copy'); flash(btn); } catch (e) {}
+  });
+}
+function copyPlain(btn, text) {
+  navigator.clipboard.writeText(text).then(() => flash(btn)).catch(() => {
+    const t = document.createElement('textarea');
+    t.value = text; document.body.appendChild(t); t.select();
+    try { document.execCommand('copy'); flash(btn); } catch (e) {}
+    document.body.removeChild(t);
+  });
+}
+</script>
+</body>
+</html>

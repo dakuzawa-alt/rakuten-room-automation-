@@ -3310,6 +3310,53 @@
       "channels": [
         "room"
       ]
+    },
+    {
+      "itemCode": "hakka:10000034",
+      "itemName": "ハッカ油 スプレー詰め替えセット（スプレー20ml＋詰め替え20ml）食品添加物 日本製天然 虫よけ 消臭 除菌効果 ハ",
+      "date": "2026-10-07",
+      "slot": "night",
+      "channels": [
+        "room",
+        "threads",
+        "x"
+      ]
+    },
+    {
+      "itemCode": "sleepybed:10002387",
+      "itemName": "日本製 木製 「きっずほわいとぼーど」 ホワイトボード 子供 こども お絵かきボード お絵描きボード 磁石 マグネット ",
+      "date": "2026-10-07",
+      "slot": "night",
+      "channels": [
+        "room"
+      ]
+    },
+    {
+      "itemCode": "cybermall:10000539",
+      "itemName": "お風呂 水遊び 大増量47ピース知育玩具 子供 3歳 4歳 5歳 男の子 女の子 幼児 子供 誕生日 プレゼント 入園祝",
+      "date": "2026-10-07",
+      "slot": "night",
+      "channels": [
+        "room"
+      ]
+    },
+    {
+      "itemCode": "relief10:10001226",
+      "itemName": "レビュー件数1000件突破！！ 体重計 体脂肪計  インスマート デジタル 260H 体組成計 スマホ連動 アプリ 自動",
+      "date": "2026-10-07",
+      "slot": "night",
+      "channels": [
+        "room"
+      ]
+    },
+    {
+      "itemCode": "lecdirect:10002205",
+      "itemName": "特許取得 3WAY ベビー 便利グッズ 赤ちゃん 哺乳瓶消毒器 出産祝い 哺乳瓶ケース 哺乳瓶消毒 哺乳瓶 保管ケース ",
+      "date": "2026-10-07",
+      "slot": "night",
+      "channels": [
+        "room"
+      ]
     }
   ]
 }
