@@ -3404,6 +3404,53 @@
       "channels": [
         "room"
       ]
+    },
+    {
+      "itemCode": "t-pro:10000053",
+      "itemName": "アイマッサージャー ラルーナ LaLuna コードレス 充電式 安眠 エアーアイマスク プレゼント アイウォーマー 目 ",
+      "date": "2026-10-08",
+      "slot": "night",
+      "channels": [
+        "room",
+        "threads",
+        "x"
+      ]
+    },
+    {
+      "itemCode": "aurora77:10000564",
+      "itemName": "特価 900円 楽天1位 キッチンスケール はかり 計量器 計測 単位 0.1g デジタルスケール 3kg はかり 電子",
+      "date": "2026-10-08",
+      "slot": "night",
+      "channels": [
+        "room"
+      ]
+    },
+    {
+      "itemCode": "auc-risecreation:10003276",
+      "itemName": "強力6枚刃 毛玉取り器 充電式 コードレス 毛玉取り機 電動 2026年モデル けだまとり 3段階調整 替刃付",
+      "date": "2026-10-08",
+      "slot": "night",
+      "channels": [
+        "room"
+      ]
+    },
+    {
+      "itemCode": "natural-living:10009816",
+      "itemName": "バンキンス Bumkins スーパービブ 3枚パック 6ヶ月～2歳 ディズニー お得 洗い替え 洗濯機で洗える 入園準備",
+      "date": "2026-10-08",
+      "slot": "night",
+      "channels": [
+        "room"
+      ]
+    },
+    {
+      "itemCode": "nanobig:10000862",
+      "itemName": "回転モップクリーナー 電動モップ Orage M200 S 軽量 自立 自走式 回転モップ 水拭き コードレス 床拭き ",
+      "date": "2026-10-08",
+      "slot": "night",
+      "channels": [
+        "room"
+      ]
     }
   ]
 }

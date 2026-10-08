@@ -1,0 +1,449 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>本日の選定 - 楽天ROOM投稿リスト</title>
+<style>
+:root {
+  --bg: #f6f3ee;
+  --surface: #ffffff;
+  --ink: #23211d;
+  --ink-soft: #6b6459;
+  --accent: #a8382c;
+  --accent-ink: #fff6f2;
+  --good: #3f7d58;
+  --border: #e4ddd2;
+  --chip-bg: #efe8db;
+  color-scheme: light dark;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #16140f;
+    --surface: #211f1a;
+    --ink: #ece7dc;
+    --ink-soft: #a89e8d;
+    --accent: #e0685a;
+    --accent-ink: #1c0f0c;
+    --good: #6fb98a;
+    --border: #35322a;
+    --chip-bg: #2a2721;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #16140f; --surface: #211f1a; --ink: #ece7dc; --ink-soft: #a89e8d;
+  --accent: #e0685a; --accent-ink: #1c0f0c; --good: #6fb98a; --border: #35322a; --chip-bg: #2a2721;
+}
+:root[data-theme="light"] {
+  --bg: #f6f3ee; --surface: #ffffff; --ink: #23211d; --ink-soft: #6b6459;
+  --accent: #a8382c; --accent-ink: #fff6f2; --good: #3f7d58; --border: #e4ddd2; --chip-bg: #efe8db;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0; background: var(--bg); color: var(--ink);
+  font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Yu Gothic Medium", "Noto Sans JP", sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+.wrap { max-width: 640px; margin: 0 auto; padding: 0 16px 40px; }
+header.top {
+  position: sticky; top: 0; z-index: 5; background: var(--bg);
+  padding: 18px 16px 12px; border-bottom: 1px solid var(--border);
+  display: flex; align-items: baseline; justify-content: space-between; gap: 12px;
+}
+header.top .eyebrow {
+  font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-soft);
+  font-weight: 600; margin: 0 0 2px;
+}
+header.top h1 { font-size: 1.25rem; margin: 0; font-weight: 700; letter-spacing: -0.01em; }
+header.top .count {
+  background: var(--chip-bg); color: var(--ink-soft); font-size: 0.78rem; font-weight: 600;
+  padding: 5px 10px; border-radius: 999px; white-space: nowrap;
+}
+h2.section-title { font-size: 0.95rem; font-weight: 700; margin: 24px 0 12px; }
+.cards { display: flex; flex-direction: column; gap: 16px; margin-top: 18px; }
+.card {
+  background: var(--surface); border: 1px solid var(--border); border-radius: 16px;
+  padding: 16px; display: flex; flex-direction: column; gap: 12px;
+}
+.card.featured { border-color: var(--accent); border-width: 2px; }
+.featured-badge {
+  align-self: flex-start; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.03em;
+  color: var(--accent-ink); background: var(--accent); padding: 3px 9px; border-radius: 999px;
+}
+.card-head { display: flex; gap: 12px; }
+.card-head img {
+  width: 76px; height: 76px; object-fit: cover; border-radius: 10px;
+  border: 1px solid var(--border); background: var(--chip-bg); flex-shrink: 0;
+}
+.card-head .info { min-width: 0; flex: 1; display: flex; flex-direction: column; gap: 4px; }
+.genre-chip {
+  align-self: flex-start; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.03em;
+  color: var(--accent); background: color-mix(in srgb, var(--accent) 12%, transparent);
+  padding: 2px 8px; border-radius: 999px;
+}
+.name {
+  font-weight: 600; font-size: 0.94rem; line-height: 1.4;
+  display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
+}
+.meta-row { display: flex; align-items: baseline; gap: 8px; font-size: 0.82rem; color: var(--ink-soft); }
+.price { font-variant-numeric: tabular-nums; color: var(--ink); font-weight: 700; font-size: 1.05rem; }
+.stars { letter-spacing: -1px; color: var(--accent); }
+.btn-open {
+  display: flex; align-items: center; justify-content: center; gap: 6px;
+  background: var(--accent); color: var(--accent-ink); border: none; border-radius: 11px;
+  padding: 12px; font-weight: 700; font-size: 0.92rem; text-decoration: none;
+}
+.btn-open:active { opacity: 0.85; }
+.url-row {
+  display: flex; align-items: center; gap: 8px;
+  background: var(--chip-bg); border-radius: 9px; padding: 8px 10px;
+}
+.url-row a {
+  flex: 1; min-width: 0; font-size: 0.76rem; color: var(--accent);
+  word-break: break-all; line-height: 1.45; text-decoration: none;
+}
+.url-row a:active { text-decoration: underline; }
+.reason { font-size: 0.8rem; color: var(--ink-soft); }
+.caption-box { border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }
+.caption-head {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 8px 10px; background: var(--chip-bg);
+}
+.caption-head span {
+  font-size: 0.7rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-soft);
+}
+.copy-btn {
+  background: var(--surface); border: 1px solid var(--border); color: var(--ink);
+  border-radius: 7px; padding: 5px 11px; font-size: 0.76rem; font-weight: 600; cursor: pointer;
+}
+.copy-btn:focus-visible, .btn-open:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.copy-btn.copied { background: var(--good); border-color: var(--good); color: #fff; }
+textarea {
+  width: 100%; display: block; border: none; padding: 10px; font-size: 0.85rem; line-height: 1.55;
+  resize: vertical; min-height: 108px; font-family: inherit; background: var(--surface); color: var(--ink);
+}
+textarea.short { min-height: 60px; }
+textarea:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
+footer.note { margin-top: 22px; font-size: 0.76rem; color: var(--ink-soft); text-align: center; line-height: 1.6; }
+@media (prefers-reduced-motion: no-preference) {
+  .copy-btn { transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease; }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <div>
+    <p class="eyebrow">楽天ROOM 投稿リスト</p>
+    <h1>本日の選定</h1>
+  </div>
+  <span class="count">5件</span>
+</header>
+
+<h2 class="section-title">📦 商品(ROOM用、全5件)</h2>
+<div class="cards">
+<div class="card featured">
+  <div class="card-head">
+    <img src="https://thumbnail.image.rakuten.co.jp/@0_mall/t-pro/cabinet/07050441/imgrc0154721156.jpg?_ex=128x128" alt="アイマッサージャー ラルーナ LaLuna コードレス 充電式 安眠 エアーアイマスク プレゼント アイウォーマー 目 温熱 目元エステ 自宅 ケア 眼 ギフト 睡眠 グッズ ホットアイマスク 目元ケア 敬老" loading="lazy">
+    <div class="info">
+      <span class="featured-badge">🔥 本日のThreads/Xピックアップ</span>
+      <span class="genre-chip">健康 ボディケア</span>
+      <div class="name">アイマッサージャー ラルーナ LaLuna コードレス 充電式 安眠 エアーアイマスク プレゼント アイウォーマー 目 温熱 目元エステ 自宅 ケア 眼 ギフト 睡眠 グッズ ホットアイマスク 目元ケア 敬老</div>
+      <div class="meta-row">
+        <span class="price">¥9,980</span>
+        <span class="stars">★★★★★</span>
+        <span>4.54(6616件)</span>
+      </div>
+    </div>
+  </div>
+  <a class="btn-open" href="https://item.rakuten.co.jp/t-pro/la_luna_wh/" target="_blank" rel="noopener">商品ページを開く ↗</a>
+  <div class="url-row">
+    <a href="https://item.rakuten.co.jp/t-pro/la_luna_wh/" target="_blank" rel="noopener">https://item.rakuten.co.jp/t-pro/la_luna_wh/</a>
+    <button class="copy-btn" onclick="copyPlain(this, 'https://item.rakuten.co.jp/t-pro/la_luna_wh/')" type="button">URLコピー</button>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>楽天ROOM用</span>
+      <button class="copy-btn" onclick="copyText(this, 'room-0')" type="button">コピー</button>
+    </div>
+    <textarea id="room-0" readonly>😮‍💨 子どもを寝かしつけた後、目が痛いのか疲れてるのかわからなくなることが増えてきた。
+
+仕事でPC画面を何時間も見て、帰ってきたら育児で全力消耗して、夜9時には目がショボショボになってる。そのままソファで寝落ちするのが「うちの夜」になってた。
+
+アイマッサージャー ラルーナを使い始めてから、就寝前の10分が変わった👁️。温め×エアバッグ加圧×振動の3パターンが選べて、その日の疲れ具合に合わせて使い分けできる。コードレスだから場所も選ばない。
+
+気になる点は1つ。メガネ・コンタクトは外して使うこと。そこだけ守れば快適。
+
+レビュー6,616件・星4.54。この数字が全部語ってると思う。
+
+#アイマッサージャー #目の疲れ #ラルーナ #LaLuna #育児パパ #共働き家庭 #時短ケア #睡眠改善</textarea>
+  </div>
+  <p class="reason">🔥 今日のピックアップ理由: レビュー6,616件という5件中ダントツの実績に加え、「仕事×育児で目が疲れた夜」という育児パパペルソナに直撃する悩み解決度の高さ、9,980円という手が届く価格帯の三拍子が揃っており、今夜最もスクロールを止める力があると判断した。</p>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>Threads用</span>
+      <button class="copy-btn" onclick="copyText(this, 'threads-0')" type="button">コピー</button>
+    </div>
+    <textarea id="threads-0" readonly>育児してる夜、目が終わってる。
+
+仕事でPC画面8時間、帰ってきたら子どもの相手で気づいたら夜9時。目の奥がズキズキするのか疲れてるだけなのか判断もつかなくなってる。
+
+アイマッサージャー ラルーナ、使ってみたら本当によかった。温め×加圧×振動を切り替えられて、その日の疲れ方に合わせて使える。コードレスだからソファでそのまま使える。
+
+その日もらったレビューの数が6,000件を超えてるやつで、みんな同じ夜を過ごしてるんだなと思ったら少し楽になった。
+
+9,980円。高いか安いかで言うと、毎日使うなら全然安い。
+
+#PR #アイマッサージャー #ラルーナ #育児パパ #楽天アフィリエイト</textarea>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>X用</span>
+      <button class="copy-btn" onclick="copyText(this, 'x-0')" type="button">コピー</button>
+    </div>
+    <textarea id="x-0" readonly>育児×仕事で毎夜、目が死んでる。
+
+アイマッサージャー ラルーナ、9,980円。温め×加圧×振動を切り替えられるコードレス。レビュー6,616件超。
+
+子ども寝かした後の10分、就寝前が変わった。
+
+#PR #アイマッサージャー #育児パパ #楽天アフィリエイト</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="card-head">
+    <img src="https://thumbnail.image.rakuten.co.jp/@0_mall/aurora77/cabinet/08760150/09823901/hakari111.jpg?_ex=128x128" alt="特価 900円 楽天1位 キッチンスケール はかり 計量器 計測 単位 0.1g デジタルスケール 3kg はかり 電子スケール クッキングスケール 計り 測り 量り 計量器 小型 電子天秤 0.5~3.0kgまで コンパクト 多用途超小型 軽量 送料無料" loading="lazy">
+    <div class="info">
+      
+      <span class="genre-chip">キッチン調理</span>
+      <div class="name">特価 900円 楽天1位 キッチンスケール はかり 計量器 計測 単位 0.1g デジタルスケール 3kg はかり 電子スケール クッキングスケール 計り 測り 量り 計量器 小型 電子天秤 0.5~3.0kgまで コンパクト 多用途超小型 軽量 送料無料</div>
+      <div class="meta-row">
+        <span class="price">¥900</span>
+        <span class="stars">★★★★☆</span>
+        <span>4.45(1767件)</span>
+      </div>
+    </div>
+  </div>
+  <a class="btn-open" href="https://item.rakuten.co.jp/aurora77/ktchenscale/" target="_blank" rel="noopener">商品ページを開く ↗</a>
+  <div class="url-row">
+    <a href="https://item.rakuten.co.jp/aurora77/ktchenscale/" target="_blank" rel="noopener">https://item.rakuten.co.jp/aurora77/ktchenscale/</a>
+    <button class="copy-btn" onclick="copyPlain(this, 'https://item.rakuten.co.jp/aurora77/ktchenscale/')" type="button">URLコピー</button>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>楽天ROOM用</span>
+      <button class="copy-btn" onclick="copyText(this, 'room-1')" type="button">コピー</button>
+    </div>
+    <textarea id="room-1" readonly>💡900円でここまで使えるのか、というのが正直な感想。
+
+キッチンスケール、0.1g単位で3kgまで計れるデジタル式⚖️。離乳食づくりや粉ミルクの計量をアナログの目盛りでやってたとき、毎回「これで合ってる？」ってなってたのがなくなった。
+
+コンパクトで引き出しにそのまま収まるサイズ感も使いやすい。電池式だからコンセントの場所も気にしない。
+
+普段の料理でもレシピ通りに計りたいとき、目盛りより数字で見えた方が圧倒的に早い。時短の積み重ねって、意外とこういう小さい道具のアップデートからくる気がする🔢
+
+レビューは1,767件・星4.45。900円でこの実績は本物。
+
+購入前のポイントは電池交換のしやすさを確認すること。
+
+#キッチンスケール #デジタルスケール #離乳食 #料理 #共働き家庭 #育児パパ #時短 #キッチン家電</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="card-head">
+    <img src="https://thumbnail.image.rakuten.co.jp/@0_mall/auc-risecreation/cabinet/product/top-2/r0916_01d.jpg?_ex=128x128" alt="【300枚限定★クーポン使用で1,968円 10/10 23:59迄】 強力6枚刃 毛玉取り器 充電式 コードレス 毛玉取り機 電動 2026年モデル けだまとり 3段階調整 替刃付" loading="lazy">
+    <div class="info">
+      
+      <span class="genre-chip">掃除洗濯</span>
+      <div class="name">【300枚限定★クーポン使用で1,968円 10/10 23:59迄】 強力6枚刃 毛玉取り器 充電式 コードレス 毛玉取り機 電動 2026年モデル けだまとり 3段階調整 替刃付</div>
+      <div class="meta-row">
+        <span class="price">¥3,280</span>
+        <span class="stars">★★★★☆</span>
+        <span>4.37(1902件)</span>
+      </div>
+    </div>
+  </div>
+  <a class="btn-open" href="https://item.rakuten.co.jp/auc-risecreation/y0530/" target="_blank" rel="noopener">商品ページを開く ↗</a>
+  <div class="url-row">
+    <a href="https://item.rakuten.co.jp/auc-risecreation/y0530/" target="_blank" rel="noopener">https://item.rakuten.co.jp/auc-risecreation/y0530/</a>
+    <button class="copy-btn" onclick="copyPlain(this, 'https://item.rakuten.co.jp/auc-risecreation/y0530/')" type="button">URLコピー</button>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>楽天ROOM用</span>
+      <button class="copy-btn" onclick="copyText(this, 'room-2')" type="button">コピー</button>
+    </div>
+    <textarea id="room-2" readonly>🧥 冬前に出してきたニットを広げたら、全体が毛玉だらけで着れないやつになってた。
+
+毎年これで1枚か2枚は「もう着れないか」と思いながらしまうことを繰り返してた。毛玉取り器を持ってなかったわけじゃないけど、吸引が弱くて逆にケバ立ちが増える感じのやつだった。
+
+2026年モデルの6枚刃に買い替えたら、刈り取りのスピードが全然違う✂️ 充電式でコードレスになったから、ソファに座りながら服をかけてサクサク処理できる。USB充電対応なのも地味にありがたい。
+
+ニットだけじゃなくてソファのファブリック部分にも使えるのが想定外の便利さだった。
+
+レビュー1,902件・星4.37。
+
+⚠️素材によっては強さ調整が必要。最初は弱めから試すこと。
+
+#毛玉取り器 #毛玉取り #充電式 #ニットケア #衣類ケア #育児パパ #共働き家庭 #秋冬準備</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="card-head">
+    <img src="https://thumbnail.image.rakuten.co.jp/@0_mall/natural-living/cabinet/spr/3/4/340414189441_5.jpg?_ex=128x128" alt="【正規品】 バンキンス Bumkins スーパービブ 3枚パック 6ヶ月～2歳 ディズニー お得 洗い替え 洗濯機で洗える 入園準備 お食事エプロン よだれかけ スタイ 防水 撥水 男の子 女の子 食べこぼし防止 洗濯可 乾燥可 ベビー キッズ 保育園 入園準備 園児" loading="lazy">
+    <div class="info">
+      
+      <span class="genre-chip">子供 知育</span>
+      <div class="name">【正規品】 バンキンス Bumkins スーパービブ 3枚パック 6ヶ月～2歳 ディズニー お得 洗い替え 洗濯機で洗える 入園準備 お食事エプロン よだれかけ スタイ 防水 撥水 男の子 女の子 食べこぼし防止 洗濯可 乾燥可 ベビー キッズ 保育園 入園準備 園児</div>
+      <div class="meta-row">
+        <span class="price">¥2,970</span>
+        <span class="stars">★★★★★</span>
+        <span>4.62(1140件)</span>
+      </div>
+    </div>
+  </div>
+  <a class="btn-open" href="https://item.rakuten.co.jp/natural-living/u603041/" target="_blank" rel="noopener">商品ページを開く ↗</a>
+  <div class="url-row">
+    <a href="https://item.rakuten.co.jp/natural-living/u603041/" target="_blank" rel="noopener">https://item.rakuten.co.jp/natural-living/u603041/</a>
+    <button class="copy-btn" onclick="copyPlain(this, 'https://item.rakuten.co.jp/natural-living/u603041/')" type="button">URLコピー</button>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>楽天ROOM用</span>
+      <button class="copy-btn" onclick="copyText(this, 'room-3')" type="button">コピー</button>
+    </div>
+    <textarea id="room-3" readonly>🍜 お食事エプロンって、洗いやすさで全部が決まると思ってる。
+
+バンキンス スーパービブ、シリコン製じゃなくてポリエステル+コーティングのしなやかな素材で、洗濯機でそのまま洗える🌀。子どもがカレーを盛大にこぼしても、洗ったらシミが残らないのが本当に助かってる。
+
+3枚セット2,970円。食事のたびに毎回使うものだから、2〜3枚をローテーションするのが現実的👌。使う頻度を考えると1枚あたりの値段がすごく納得できる。
+
+軽くてコンパクトに丸まるから、外食やお出かけのポーチにそのまま入れられる持ち運びやすさも◎。
+
+レビュー1,140件・星4.62と評価が高い。離乳食期から長く使える定番アイテム。
+
+#バンキンス #お食事エプロン #離乳食 #ベビー用品 #育児パパ #共働き家庭 #赤ちゃんグッズ #BLW</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="card-head">
+    <img src="https://thumbnail.image.rakuten.co.jp/@0_mall/nanobig/cabinet/02988222/oragem200/oragem200_main.jpg?_ex=128x128" alt="【クーポンで400円オフ】回転モップクリーナー 電動モップ Orage M200 S 軽量 自立 自走式 回転モップ 水拭き コードレス 床拭き 掃除機 網戸 モップ 高速回転 充電式 ジェネリック家電 Orage M200S【1年保証】 ギフトにも" loading="lazy">
+    <div class="info">
+      
+      <span class="genre-chip">掃除洗濯</span>
+      <div class="name">【クーポンで400円オフ】回転モップクリーナー 電動モップ Orage M200 S 軽量 自立 自走式 回転モップ 水拭き コードレス 床拭き 掃除機 網戸 モップ 高速回転 充電式 ジェネリック家電 Orage M200S【1年保証】 ギフトにも</div>
+      <div class="meta-row">
+        <span class="price">¥5,980</span>
+        <span class="stars">★★★★★</span>
+        <span>4.57(3650件)</span>
+      </div>
+    </div>
+  </div>
+  <a class="btn-open" href="https://item.rakuten.co.jp/nanobig/mop-cleaner-m200/" target="_blank" rel="noopener">商品ページを開く ↗</a>
+  <div class="url-row">
+    <a href="https://item.rakuten.co.jp/nanobig/mop-cleaner-m200/" target="_blank" rel="noopener">https://item.rakuten.co.jp/nanobig/mop-cleaner-m200/</a>
+    <button class="copy-btn" onclick="copyPlain(this, 'https://item.rakuten.co.jp/nanobig/mop-cleaner-m200/')" type="button">URLコピー</button>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>楽天ROOM用</span>
+      <button class="copy-btn" onclick="copyText(this, 'room-4')" type="button">コピー</button>
+    </div>
+    <textarea id="room-4" readonly>🪣 フローリングの水拭き、どのくらいの頻度でやってる？
+
+子どもが歩きはじめてから「床が汚い」の定義が変わった。ベタつきとかシミが気になるのに、雑巾がけって継続できないんよな。腰が痛くなるし、水に浸けて絞ってを繰り返すのが面倒で結局サボってしまう😓。
+
+回転モップ Orage M200Sに変えてから、床拭きが5分で終わるようになった🌀。バケツの中でモップが自動で回転脱水されるから、絞る手間がゼロ。手が濡れない。柄が長いから腰も曲げない。
+
+子どもが食べこぼした後のリビングに、すぐ対応できるのがでかい。「あとでやろう」がなくなった。
+
+レビュー3,650件・星4.57と実績も安心の数字。
+
+#回転モップ #フローリング掃除 #水拭き #Orage #育児パパ #共働き家庭 #掃除時短 #時短家事</textarea>
+  </div>
+</div>
+</div>
+
+<h2 class="section-title">💬 今日のあるある投稿ネタ(商品リンクなし)</h2>
+<div class="cards">
+<div class="card">
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>あるある投稿 #1</span>
+      <button class="copy-btn" onclick="copyText(this, 'daily-0')" type="button">コピー</button>
+    </div>
+    <textarea id="daily-0" class="short" readonly>保育園のお迎え、急いで走ってきたのに先生から「今日はすごくいい子でしたよ〜」って言われる。家で毎晩あんなにやかましいのに、なんで？ってなる。二面性が強すぎる。 #育児パパ</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>あるある投稿 #2</span>
+      <button class="copy-btn" onclick="copyText(this, 'daily-1')" type="button">コピー</button>
+    </div>
+    <textarea id="daily-1" class="short" readonly>休日の朝、子どもが6時に起きてくる。平日より早い。なんで平日は7時でも起きないのに土日は6時に目が覚めるんだ。体内時計がうちの都合に合ってない。</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>あるある投稿 #3</span>
+      <button class="copy-btn" onclick="copyText(this, 'daily-2')" type="button">コピー</button>
+    </div>
+    <textarea id="daily-2" class="short" readonly>子どもに「なんで？」って聞かれると、だいたい2回目か3回目で詰まる。「空はなんで青いの」を真剣に答えようとして途中から「そういうものだから」になってしまった。大人ってそういうもんだよな、たぶん。 #育児パパ</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>あるある投稿 #4</span>
+      <button class="copy-btn" onclick="copyText(this, 'daily-3')" type="button">コピー</button>
+    </div>
+    <textarea id="daily-3" class="short" readonly>共働きの時短術として「夕食は週3回だけ作る」に辿り着いた家庭、うちだけじゃないと思う。
+
+・月水金：ちゃんと作る
+・火木：冷凍か買ってくる
+・週末：作る余裕があれば
+
+この設計にしてから罪悪感が減った。毎日作ろうとしてたのが無理だっただけで、この頻度なら続いてる。 #共働き家庭</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>あるある投稿 #5</span>
+      <button class="copy-btn" onclick="copyText(this, 'daily-4')" type="button">コピー</button>
+    </div>
+    <textarea id="daily-4" class="short" readonly>子どもが熱で保育園から呼び出しがかかるとき、なんでいつも午後2時なんだろ。午前中にかかってくれたら仕事の切りもいいのに、中途半端な時間に電話くる。子どもは悪くないけど、タイミングだけ恨む🫠</textarea>
+  </div>
+</div>
+</div>
+
+<footer class="note">商品ページを確認し、投稿文をコピーして手動で投稿してください。<br>Threads/Xの商品紹介は1日1件・あるある投稿と織り交ぜてスパム判定を避けてください。<br>価格・レビューは選定時点の実データです。</footer>
+</div>
+<script>
+function flash(btn) {
+  const original = btn.textContent;
+  btn.textContent = 'コピーしました';
+  btn.classList.add('copied');
+  setTimeout(() => { btn.textContent = original; btn.classList.remove('copied'); }, 1500);
+}
+function copyText(btn, id) {
+  const el = document.getElementById(id);
+  el.select();
+  el.setSelectionRange(0, 999999);
+  navigator.clipboard.writeText(el.value).then(() => flash(btn)).catch(() => {
+    try { document.execCommand('copy'); flash(btn); } catch (e) {}
+  });
+}
+function copyPlain(btn, text) {
+  navigator.clipboard.writeText(text).then(() => flash(btn)).catch(() => {
+    const t = document.createElement('textarea');
+    t.value = text; document.body.appendChild(t); t.select();
+    try { document.execCommand('copy'); flash(btn); } catch (e) {}
+    document.body.removeChild(t);
+  });
+}
+</script>
+</body>
+</html>
