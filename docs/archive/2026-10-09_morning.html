@@ -1,0 +1,429 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>2026-10-09 朝 - 楽天ROOM投稿リスト</title>
+<style>
+:root {
+  --bg: #f6f3ee;
+  --surface: #ffffff;
+  --ink: #23211d;
+  --ink-soft: #6b6459;
+  --accent: #a8382c;
+  --accent-ink: #fff6f2;
+  --good: #3f7d58;
+  --border: #e4ddd2;
+  --chip-bg: #efe8db;
+  color-scheme: light dark;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #16140f;
+    --surface: #211f1a;
+    --ink: #ece7dc;
+    --ink-soft: #a89e8d;
+    --accent: #e0685a;
+    --accent-ink: #1c0f0c;
+    --good: #6fb98a;
+    --border: #35322a;
+    --chip-bg: #2a2721;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #16140f; --surface: #211f1a; --ink: #ece7dc; --ink-soft: #a89e8d;
+  --accent: #e0685a; --accent-ink: #1c0f0c; --good: #6fb98a; --border: #35322a; --chip-bg: #2a2721;
+}
+:root[data-theme="light"] {
+  --bg: #f6f3ee; --surface: #ffffff; --ink: #23211d; --ink-soft: #6b6459;
+  --accent: #a8382c; --accent-ink: #fff6f2; --good: #3f7d58; --border: #e4ddd2; --chip-bg: #efe8db;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0; background: var(--bg); color: var(--ink);
+  font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Yu Gothic Medium", "Noto Sans JP", sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+.wrap { max-width: 640px; margin: 0 auto; padding: 0 16px 40px; }
+header.top {
+  position: sticky; top: 0; z-index: 5; background: var(--bg);
+  padding: 18px 16px 12px; border-bottom: 1px solid var(--border);
+  display: flex; align-items: baseline; justify-content: space-between; gap: 12px;
+}
+header.top .eyebrow {
+  font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-soft);
+  font-weight: 600; margin: 0 0 2px;
+}
+header.top h1 { font-size: 1.25rem; margin: 0; font-weight: 700; letter-spacing: -0.01em; }
+header.top .count {
+  background: var(--chip-bg); color: var(--ink-soft); font-size: 0.78rem; font-weight: 600;
+  padding: 5px 10px; border-radius: 999px; white-space: nowrap;
+}
+h2.section-title { font-size: 0.95rem; font-weight: 700; margin: 24px 0 12px; }
+.cards { display: flex; flex-direction: column; gap: 16px; margin-top: 18px; }
+.card {
+  background: var(--surface); border: 1px solid var(--border); border-radius: 16px;
+  padding: 16px; display: flex; flex-direction: column; gap: 12px;
+}
+.card.featured { border-color: var(--accent); border-width: 2px; }
+.featured-badge {
+  align-self: flex-start; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.03em;
+  color: var(--accent-ink); background: var(--accent); padding: 3px 9px; border-radius: 999px;
+}
+.card-head { display: flex; gap: 12px; }
+.card-head img {
+  width: 76px; height: 76px; object-fit: cover; border-radius: 10px;
+  border: 1px solid var(--border); background: var(--chip-bg); flex-shrink: 0;
+}
+.card-head .info { min-width: 0; flex: 1; display: flex; flex-direction: column; gap: 4px; }
+.genre-chip {
+  align-self: flex-start; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.03em;
+  color: var(--accent); background: color-mix(in srgb, var(--accent) 12%, transparent);
+  padding: 2px 8px; border-radius: 999px;
+}
+.name {
+  font-weight: 600; font-size: 0.94rem; line-height: 1.4;
+  display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
+}
+.meta-row { display: flex; align-items: baseline; gap: 8px; font-size: 0.82rem; color: var(--ink-soft); }
+.price { font-variant-numeric: tabular-nums; color: var(--ink); font-weight: 700; font-size: 1.05rem; }
+.stars { letter-spacing: -1px; color: var(--accent); }
+.btn-open {
+  display: flex; align-items: center; justify-content: center; gap: 6px;
+  background: var(--accent); color: var(--accent-ink); border: none; border-radius: 11px;
+  padding: 12px; font-weight: 700; font-size: 0.92rem; text-decoration: none;
+}
+.btn-open:active { opacity: 0.85; }
+.url-row {
+  display: flex; align-items: center; gap: 8px;
+  background: var(--chip-bg); border-radius: 9px; padding: 8px 10px;
+}
+.url-row a {
+  flex: 1; min-width: 0; font-size: 0.76rem; color: var(--accent);
+  word-break: break-all; line-height: 1.45; text-decoration: none;
+}
+.url-row a:active { text-decoration: underline; }
+.reason { font-size: 0.8rem; color: var(--ink-soft); }
+.caption-box { border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }
+.caption-head {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 8px 10px; background: var(--chip-bg);
+}
+.caption-head span {
+  font-size: 0.7rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-soft);
+}
+.copy-btn {
+  background: var(--surface); border: 1px solid var(--border); color: var(--ink);
+  border-radius: 7px; padding: 5px 11px; font-size: 0.76rem; font-weight: 600; cursor: pointer;
+}
+.copy-btn:focus-visible, .btn-open:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.copy-btn.copied { background: var(--good); border-color: var(--good); color: #fff; }
+textarea {
+  width: 100%; display: block; border: none; padding: 10px; font-size: 0.85rem; line-height: 1.55;
+  resize: vertical; min-height: 108px; font-family: inherit; background: var(--surface); color: var(--ink);
+}
+textarea.short { min-height: 60px; }
+textarea:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
+footer.note { margin-top: 22px; font-size: 0.76rem; color: var(--ink-soft); text-align: center; line-height: 1.6; }
+@media (prefers-reduced-motion: no-preference) {
+  .copy-btn { transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease; }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <div>
+    <p class="eyebrow">楽天ROOM 投稿リスト</p>
+    <h1>2026-10-09 朝</h1>
+  </div>
+  <span class="count">5件</span>
+</header>
+
+<h2 class="section-title">📦 商品(ROOM用、全5件)</h2>
+<div class="cards">
+<div class="card featured">
+  <div class="card-head">
+    <img src="https://thumbnail.image.rakuten.co.jp/@0_mall/marine-blue/cabinet/07513343/imgrc0086426051.jpg?_ex=128x128" alt="スタイ 男の子 シンプル おしゃれ 出産祝い セット 360度 よだれかけ 女の子 お 宮参り ベビー フリル エプロン 防水 360 度 裏地 速乾 出産祝 6枚セット 防水スタイ よだれカバー 大きめ 綿 100 可愛い 前掛け ビブ" loading="lazy">
+    <div class="info">
+      <span class="featured-badge">🔥 本日のThreads/Xピックアップ</span>
+      <span class="genre-chip">子供 知育</span>
+      <div class="name">スタイ 男の子 シンプル おしゃれ 出産祝い セット 360度 よだれかけ 女の子 お 宮参り ベビー フリル エプロン 防水 360 度 裏地 速乾 出産祝 6枚セット 防水スタイ よだれカバー 大きめ 綿 100 可愛い 前掛け ビブ</div>
+      <div class="meta-row">
+        <span class="price">¥1,880</span>
+        <span class="stars">★★★★★</span>
+        <span>4.6(3174件)</span>
+      </div>
+    </div>
+  </div>
+  <a class="btn-open" href="https://item.rakuten.co.jp/marine-blue/babys082/" target="_blank" rel="noopener">商品ページを開く ↗</a>
+  <div class="url-row">
+    <a href="https://item.rakuten.co.jp/marine-blue/babys082/" target="_blank" rel="noopener">https://item.rakuten.co.jp/marine-blue/babys082/</a>
+    <button class="copy-btn" onclick="copyPlain(this, 'https://item.rakuten.co.jp/marine-blue/babys082/')" type="button">URLコピー</button>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>楽天ROOM用</span>
+      <button class="copy-btn" onclick="copyText(this, 'room-0')" type="button">コピー</button>
+    </div>
+    <textarea id="room-0" readonly>🍼レビュー3,174件・星4.6、これだけ選ばれてる防水スタイを見てみたら確かに納得でした。
+
+6枚セットで1,880円、360度タイプで前後ろを気にしなくていいのが地味にありがたい。裏地ありで防水なのにさらっとした感触で、洗ったあとの速乾性もいい。よだれ多めの時期に洗い替えが足りなくなりがちですが、6枚あれば回せます👶
+
+綿素材なので敏感肌のお子さんにも。大きめサイズで首まわりのカバー範囲も広い。
+
+出産祝いに贈っても喜ばれる一品です✨
+
+#防水スタイ #よだれかけ #出産祝い #ベビー用品 #スタイ6枚セット #育児パパ #共働き家庭 #楽天育児 #赤ちゃんグッズ</textarea>
+  </div>
+  <p class="reason">🔥 今日のピックアップ理由: レビュー3,174件・1,880円という価格と圧倒的な実績数の組み合わせが最も刺さりやすく、育児中の親なら全員が通る「スタイ不足」という悩みへの解決度も高いため。</p>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>Threads用</span>
+      <button class="copy-btn" onclick="copyText(this, 'threads-0')" type="button">コピー</button>
+    </div>
+    <textarea id="threads-0" readonly>スタイって地味に足りなくなるんだよな。
+
+よだれ多い時期は1日3〜4枚消費するから、少ない枚数だと洗っても乾かないまま「またか」ってなる。
+
+360度タイプで前後ろ関係ないやつが6枚入って1,880円。レビュー3,174件ついてるやつ見つけて試したら普通によかった。防水で速乾、肌にやさしい綿素材。出産祝いにも使える。
+
+スタイの枚数に悩んでる人はとりあえずこれでいい気がする。
+
+#育児パパ #共働き家庭 #ベビーグッズ #楽天アフィリエイト</textarea>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>X用</span>
+      <button class="copy-btn" onclick="copyText(this, 'x-0')" type="button">コピー</button>
+    </div>
+    <textarea id="x-0" readonly>スタイって気づいたら全然足りなくなるやつ。
+
+1日3〜4枚消費する時期があって、洗いが追いつかなくなるのがしんどかった。
+
+360度タイプ6枚セット1,880円、レビュー3,174件。防水・速乾・綿素材で普通にいい。
+
+枚数に悩んでる人に。
+
+#育児パパ #楽天アフィリエイト #PR</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="card-head">
+    <img src="https://thumbnail.image.rakuten.co.jp/@0_mall/gudeza/cabinet/main/sale/con-bbew2.jpg?_ex=128x128" alt="お食事エプロン 袖なし マジックテープ Bibetta ビベッタ ウルトラビブ 2枚セット 【正規品】 ベビー スタイ 防水 吸水 エプロン おしゃれ かわいい 食事用エプロン くるま 保育園 子供 食事エプロン 乾燥機 保育園 子ども 赤ちゃん" loading="lazy">
+    <div class="info">
+      
+      <span class="genre-chip">子供 知育</span>
+      <div class="name">お食事エプロン 袖なし マジックテープ Bibetta ビベッタ ウルトラビブ 2枚セット 【正規品】 ベビー スタイ 防水 吸水 エプロン おしゃれ かわいい 食事用エプロン くるま 保育園 子供 食事エプロン 乾燥機 保育園 子ども 赤ちゃん</div>
+      <div class="meta-row">
+        <span class="price">¥3,190</span>
+        <span class="stars">★★★★★</span>
+        <span>4.67(686件)</span>
+      </div>
+    </div>
+  </div>
+  <a class="btn-open" href="https://item.rakuten.co.jp/gudeza/con-bbew2-/" target="_blank" rel="noopener">商品ページを開く ↗</a>
+  <div class="url-row">
+    <a href="https://item.rakuten.co.jp/gudeza/con-bbew2-/" target="_blank" rel="noopener">https://item.rakuten.co.jp/gudeza/con-bbew2-/</a>
+    <button class="copy-btn" onclick="copyPlain(this, 'https://item.rakuten.co.jp/gudeza/con-bbew2-/')" type="button">URLコピー</button>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>楽天ROOM用</span>
+      <button class="copy-btn" onclick="copyText(this, 'room-1')" type="button">コピー</button>
+    </div>
+    <textarea id="room-1" readonly>🍽️保育園の持ち物リストに「乾燥機対応のエプロン」と書いてあって、軽く途方に暮れた時期があった。
+
+普通の布エプロンは乾燥機NG、シリコンは嵩張る、正規品は高い——そこで辿り着いたのがBibetta(ビベッタ)のウルトラビブ✨ 防水・吸水で汚れがさっと落ちて、乾燥機も使える。素材が柔らかいので首まわりのゴワつきもなし。
+
+2枚セット3,190円。毎日使うものだから多少の値段は気にならなくなってきた頃に出会えてよかった。
+
+マジックテープ留めで着脱もらく、保育園のロッカーにもすっきり収まる💛🎒
+
+#お食事エプロン #ビベッタ #保育園グッズ #離乳食 #乾燥機対応 #育児パパ #共働き家庭 #ベビーエプロン #楽天育児</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="card-head">
+    <img src="https://thumbnail.image.rakuten.co.jp/@0_mall/mizumori/cabinet/byebye/bb2500_p01-500-spb.jpg?_ex=128x128" alt="次亜塩素酸水 高濃度500ppm強 次亜塩素酸 ペット 消臭スプレー 除菌 ペット 消臭 ウイルス カビ 細菌 10倍希釈で 皮膚刺激 吸入経口毒性試験済 電気分解 微酸性次亜塩素酸水 食品添加物規格試験済 バイバイ菌 3L（2.5L+500ml) or 2.5L or 2.5L+空スプレー 選択式" loading="lazy">
+    <div class="info">
+      
+      <span class="genre-chip">日用品 衛生</span>
+      <div class="name">次亜塩素酸水 高濃度500ppm強 次亜塩素酸 ペット 消臭スプレー 除菌 ペット 消臭 ウイルス カビ 細菌 10倍希釈で 皮膚刺激 吸入経口毒性試験済 電気分解 微酸性次亜塩素酸水 食品添加物規格試験済 バイバイ菌 3L（2.5L+500ml) or 2.5L or 2.5L+空スプレー 選択式</div>
+      <div class="meta-row">
+        <span class="price">¥1,480</span>
+        <span class="stars">★★★★★</span>
+        <span>4.69(681件)</span>
+      </div>
+    </div>
+  </div>
+  <a class="btn-open" href="https://item.rakuten.co.jp/mizumori/byebye-02/" target="_blank" rel="noopener">商品ページを開く ↗</a>
+  <div class="url-row">
+    <a href="https://item.rakuten.co.jp/mizumori/byebye-02/" target="_blank" rel="noopener">https://item.rakuten.co.jp/mizumori/byebye-02/</a>
+    <button class="copy-btn" onclick="copyPlain(this, 'https://item.rakuten.co.jp/mizumori/byebye-02/')" type="button">URLコピー</button>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>楽天ROOM用</span>
+      <button class="copy-btn" onclick="copyText(this, 'room-2')" type="button">コピー</button>
+    </div>
+    <textarea id="room-2" readonly>💧1,480円でウイルス・カビ・細菌に対応できる除菌スプレーを探してたら、これに行き着きました。
+
+高濃度500ppmの微酸性次亜塩素酸水で、皮膚刺激試験・吸入経口毒性試験済みなのが選んだ理由☝️ 子どものいる家で使うなら安全性のデータがある商品を選びたくて。10倍希釈で使うので3Lセットでかなり長持ちします。
+
+ペット・赤ちゃん・食品が触れる場所にも使えて、食品添加物規格の試験もクリア済み。空スプレー付きのセットを選べば届いてすぐ使えます。
+
+レビュー681件・星4.69、使い続けてる人が多いのも納得🧴
+
+#次亜塩素酸水 #除菌スプレー #赤ちゃんにも安全 #ペット除菌 #育児パパ #共働き家庭 #日用品 #消臭除菌 #楽天日用品</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="card-head">
+    <img src="https://thumbnail.image.rakuten.co.jp/@0_mall/nissoplus/cabinet/item/eye_relax_s/main/imgrc0101533754.jpg?_ex=128x128" alt="【楽天週間1位】ホットアイマスク NIPLUX EYE RELAX S 最新モデル アイリラックスエス 充電式 アイマスク アイケア 目元ケア プレゼント 女性 にわか にわかせんぺい" loading="lazy">
+    <div class="info">
+      
+      <span class="genre-chip">健康 ボディケア</span>
+      <div class="name">【楽天週間1位】ホットアイマスク NIPLUX EYE RELAX S 最新モデル アイリラックスエス 充電式 アイマスク アイケア 目元ケア プレゼント 女性 にわか にわかせんぺい</div>
+      <div class="meta-row">
+        <span class="price">¥10,890</span>
+        <span class="stars">★★★★☆</span>
+        <span>4.38(466件)</span>
+      </div>
+    </div>
+  </div>
+  <a class="btn-open" href="https://item.rakuten.co.jp/nissoplus/red-02/" target="_blank" rel="noopener">商品ページを開く ↗</a>
+  <div class="url-row">
+    <a href="https://item.rakuten.co.jp/nissoplus/red-02/" target="_blank" rel="noopener">https://item.rakuten.co.jp/nissoplus/red-02/</a>
+    <button class="copy-btn" onclick="copyPlain(this, 'https://item.rakuten.co.jp/nissoplus/red-02/')" type="button">URLコピー</button>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>楽天ROOM用</span>
+      <button class="copy-btn" onclick="copyText(this, 'room-3')" type="button">コピー</button>
+    </div>
+    <textarea id="room-3" readonly>😪子どもが寝てからスマホをぼーっと眺めて、気づいたら目がかすんで涙が出そうになってた夜が続いてた。
+
+そのタイミングで試したのがNIPLUXのEYE RELAX S。充電式で繰り返し使えて、スイッチひとつで目元がじんわり温まる感覚が「あ、これかな」という感じ✨ 10,890円と決して安くはないけど、使い捨てのアイマスクをちょこちょこ買い続けることを考えると長い目で見て悪くなかった。
+
+仕事終わりや子どもを寝かしつけた後の15分、自分だけのリセット時間に使ってる。プレゼントにも選ばれてるらしく、レビューも466件ついてる。
+
+目が疲れやすい共働きパパに届いてほしい一品👁️
+
+#ホットアイマスク #アイケア #目元ケア #NIPLUX #充電式アイマスク #育児パパ #共働き家庭 #疲れ目 #楽天健康</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="card-head">
+    <img src="https://thumbnail.image.rakuten.co.jp/@0_mall/112store/cabinet/11765377/1.jpg?_ex=128x128" alt="\楽天1位獲得／コップホルダー 洗面所 洗面台 マグネット 歯磨き 歯磨きコップ スタンド ホルダー収納 おしゃれ 浮かせる 家族分 カビない 水切り コップスタンド 逆さ" loading="lazy">
+    <div class="info">
+      
+      <span class="genre-chip">浴室 洗面</span>
+      <div class="name">\楽天1位獲得／コップホルダー 洗面所 洗面台 マグネット 歯磨き 歯磨きコップ スタンド ホルダー収納 おしゃれ 浮かせる 家族分 カビない 水切り コップスタンド 逆さ</div>
+      <div class="meta-row">
+        <span class="price">¥1,280</span>
+        <span class="stars">★★★★★</span>
+        <span>4.57(74件)</span>
+      </div>
+    </div>
+  </div>
+  <a class="btn-open" href="https://item.rakuten.co.jp/112store/297/" target="_blank" rel="noopener">商品ページを開く ↗</a>
+  <div class="url-row">
+    <a href="https://item.rakuten.co.jp/112store/297/" target="_blank" rel="noopener">https://item.rakuten.co.jp/112store/297/</a>
+    <button class="copy-btn" onclick="copyPlain(this, 'https://item.rakuten.co.jp/112store/297/')" type="button">URLコピー</button>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>楽天ROOM用</span>
+      <button class="copy-btn" onclick="copyText(this, 'room-4')" type="button">コピー</button>
+    </div>
+    <textarea id="room-4" readonly>🪥コップを「逆さ」に浮かせて収納する、というのを初めて見たときは「そういう発想があったか」と思った。
+
+洗面台の鏡部分にマグネットで貼るだけ🙌 コップが台に置かれないから底に水が溜まらず、カビが生えるあの憂鬱から解放されます。家族分を並べても場所を取らないのが共働き家庭には助かる。
+
+1,280円でこの清潔さが手に入るなら早く導入すればよかったと思ってる。歯磨き前後のプチストレスが地味に減った。
+
+対応する鏡・壁面かどうかだけ先に確認を🧲
+
+#コップホルダー #洗面台収納 #マグネット収納 #浮かせる収納 #カビ対策 #育児パパ #共働き家庭 #洗面所 #楽天インテリア</textarea>
+  </div>
+</div>
+</div>
+
+<h2 class="section-title">💬 今日のあるある投稿ネタ(商品リンクなし)</h2>
+<div class="cards">
+<div class="card">
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>あるある投稿 #1</span>
+      <button class="copy-btn" onclick="copyText(this, 'daily-0')" type="button">コピー</button>
+    </div>
+    <textarea id="daily-0" class="short" readonly>子が朝「きょうようちえんいきたくない」って言い出して、その理由が「くつしたのしわがきになるから」だった。しわ。くつしたのしわ。朝7時に俺はしわと戦うことになった。</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>あるある投稿 #2</span>
+      <button class="copy-btn" onclick="copyText(this, 'daily-1')" type="button">コピー</button>
+    </div>
+    <textarea id="daily-1" class="short" readonly>夜泣きの記憶、妻はちゃんと覚えてて回数まで言えるのに俺はほぼ覚えてない。同じ部屋で寝てたはずなのに。これ我が家だけじゃないと思いたい。</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>あるある投稿 #3</span>
+      <button class="copy-btn" onclick="copyText(this, 'daily-2')" type="button">コピー</button>
+    </div>
+    <textarea id="daily-2" class="short" readonly>パパ育休中に覚えたこと。「今すぐ」が通用しないということ。子どもの準備は10分前から始めないと間に合わない。これを身体で覚えるのに2週間かかった。</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>あるある投稿 #4</span>
+      <button class="copy-btn" onclick="copyText(this, 'daily-3')" type="button">コピー</button>
+    </div>
+    <textarea id="daily-3" class="short" readonly>かわいい寝顔撮ろうとしたら背景にオムツと脱ぎ散らかした服が写り込んでて、トリミングしたら顔しか残らなかった。</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>あるある投稿 #5</span>
+      <button class="copy-btn" onclick="copyText(this, 'daily-4')" type="button">コピー</button>
+    </div>
+    <textarea id="daily-4" class="short" readonly>子が熱で保育園お迎え要請。夫婦でLINE飛ばし合って「どっちが行ける?」の返信がほぼ同時で来た時、なんか少し誇らしかった。 #共働き家庭</textarea>
+  </div>
+</div>
+</div>
+
+<footer class="note">商品ページを確認し、投稿文をコピーして手動で投稿してください。<br>Threads/Xの商品紹介は1日1件・あるある投稿と織り交ぜてスパム判定を避けてください。<br>価格・レビューは選定時点の実データです。</footer>
+</div>
+<script>
+function flash(btn) {
+  const original = btn.textContent;
+  btn.textContent = 'コピーしました';
+  btn.classList.add('copied');
+  setTimeout(() => { btn.textContent = original; btn.classList.remove('copied'); }, 1500);
+}
+function copyText(btn, id) {
+  const el = document.getElementById(id);
+  el.select();
+  el.setSelectionRange(0, 999999);
+  navigator.clipboard.writeText(el.value).then(() => flash(btn)).catch(() => {
+    try { document.execCommand('copy'); flash(btn); } catch (e) {}
+  });
+}
+function copyPlain(btn, text) {
+  navigator.clipboard.writeText(text).then(() => flash(btn)).catch(() => {
+    const t = document.createElement('textarea');
+    t.value = text; document.body.appendChild(t); t.select();
+    try { document.execCommand('copy'); flash(btn); } catch (e) {}
+    document.body.removeChild(t);
+  });
+}
+</script>
+</body>
+</html>

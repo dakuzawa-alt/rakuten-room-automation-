@@ -3451,6 +3451,53 @@
       "channels": [
         "room"
       ]
+    },
+    {
+      "itemCode": "marine-blue:10000539",
+      "itemName": "スタイ 男の子 シンプル おしゃれ 出産祝い セット 360度 よだれかけ 女の子 お 宮参り ベビー フリル エプロン",
+      "date": "2026-10-09",
+      "slot": "morning",
+      "channels": [
+        "room",
+        "threads",
+        "x"
+      ]
+    },
+    {
+      "itemCode": "gudeza:10002105",
+      "itemName": "お食事エプロン 袖なし マジックテープ Bibetta ビベッタ ウルトラビブ 2枚セット  ベビー スタイ 防水 吸水",
+      "date": "2026-10-09",
+      "slot": "morning",
+      "channels": [
+        "room"
+      ]
+    },
+    {
+      "itemCode": "mizumori:10000007",
+      "itemName": "次亜塩素酸水 高濃度500ppm強 次亜塩素酸 ペット 消臭スプレー 除菌 ペット 消臭 ウイルス カビ 細菌 10倍希",
+      "date": "2026-10-09",
+      "slot": "morning",
+      "channels": [
+        "room"
+      ]
+    },
+    {
+      "itemCode": "nissoplus:10000022",
+      "itemName": "ホットアイマスク NIPLUX EYE RELAX S 最新モデル アイリラックスエス 充電式 アイマスク アイケア 目",
+      "date": "2026-10-09",
+      "slot": "morning",
+      "channels": [
+        "room"
+      ]
+    },
+    {
+      "itemCode": "112store:10000195",
+      "itemName": "\\楽天1位獲得／コップホルダー 洗面所 洗面台 マグネット 歯磨き 歯磨きコップ スタンド ホルダー収納 おしゃれ 浮か",
+      "date": "2026-10-09",
+      "slot": "morning",
+      "channels": [
+        "room"
+      ]
     }
   ]
 }
