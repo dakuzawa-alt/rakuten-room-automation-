@@ -1,0 +1,423 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>2026-10-10 朝 - 楽天ROOM投稿リスト</title>
+<style>
+:root {
+  --bg: #f6f3ee;
+  --surface: #ffffff;
+  --ink: #23211d;
+  --ink-soft: #6b6459;
+  --accent: #a8382c;
+  --accent-ink: #fff6f2;
+  --good: #3f7d58;
+  --border: #e4ddd2;
+  --chip-bg: #efe8db;
+  color-scheme: light dark;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #16140f;
+    --surface: #211f1a;
+    --ink: #ece7dc;
+    --ink-soft: #a89e8d;
+    --accent: #e0685a;
+    --accent-ink: #1c0f0c;
+    --good: #6fb98a;
+    --border: #35322a;
+    --chip-bg: #2a2721;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #16140f; --surface: #211f1a; --ink: #ece7dc; --ink-soft: #a89e8d;
+  --accent: #e0685a; --accent-ink: #1c0f0c; --good: #6fb98a; --border: #35322a; --chip-bg: #2a2721;
+}
+:root[data-theme="light"] {
+  --bg: #f6f3ee; --surface: #ffffff; --ink: #23211d; --ink-soft: #6b6459;
+  --accent: #a8382c; --accent-ink: #fff6f2; --good: #3f7d58; --border: #e4ddd2; --chip-bg: #efe8db;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0; background: var(--bg); color: var(--ink);
+  font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Yu Gothic Medium", "Noto Sans JP", sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+.wrap { max-width: 640px; margin: 0 auto; padding: 0 16px 40px; }
+header.top {
+  position: sticky; top: 0; z-index: 5; background: var(--bg);
+  padding: 18px 16px 12px; border-bottom: 1px solid var(--border);
+  display: flex; align-items: baseline; justify-content: space-between; gap: 12px;
+}
+header.top .eyebrow {
+  font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-soft);
+  font-weight: 600; margin: 0 0 2px;
+}
+header.top h1 { font-size: 1.25rem; margin: 0; font-weight: 700; letter-spacing: -0.01em; }
+header.top .count {
+  background: var(--chip-bg); color: var(--ink-soft); font-size: 0.78rem; font-weight: 600;
+  padding: 5px 10px; border-radius: 999px; white-space: nowrap;
+}
+h2.section-title { font-size: 0.95rem; font-weight: 700; margin: 24px 0 12px; }
+.cards { display: flex; flex-direction: column; gap: 16px; margin-top: 18px; }
+.card {
+  background: var(--surface); border: 1px solid var(--border); border-radius: 16px;
+  padding: 16px; display: flex; flex-direction: column; gap: 12px;
+}
+.card.featured { border-color: var(--accent); border-width: 2px; }
+.featured-badge {
+  align-self: flex-start; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.03em;
+  color: var(--accent-ink); background: var(--accent); padding: 3px 9px; border-radius: 999px;
+}
+.card-head { display: flex; gap: 12px; }
+.card-head img {
+  width: 76px; height: 76px; object-fit: cover; border-radius: 10px;
+  border: 1px solid var(--border); background: var(--chip-bg); flex-shrink: 0;
+}
+.card-head .info { min-width: 0; flex: 1; display: flex; flex-direction: column; gap: 4px; }
+.genre-chip {
+  align-self: flex-start; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.03em;
+  color: var(--accent); background: color-mix(in srgb, var(--accent) 12%, transparent);
+  padding: 2px 8px; border-radius: 999px;
+}
+.name {
+  font-weight: 600; font-size: 0.94rem; line-height: 1.4;
+  display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
+}
+.meta-row { display: flex; align-items: baseline; gap: 8px; font-size: 0.82rem; color: var(--ink-soft); }
+.price { font-variant-numeric: tabular-nums; color: var(--ink); font-weight: 700; font-size: 1.05rem; }
+.stars { letter-spacing: -1px; color: var(--accent); }
+.btn-open {
+  display: flex; align-items: center; justify-content: center; gap: 6px;
+  background: var(--accent); color: var(--accent-ink); border: none; border-radius: 11px;
+  padding: 12px; font-weight: 700; font-size: 0.92rem; text-decoration: none;
+}
+.btn-open:active { opacity: 0.85; }
+.url-row {
+  display: flex; align-items: center; gap: 8px;
+  background: var(--chip-bg); border-radius: 9px; padding: 8px 10px;
+}
+.url-row a {
+  flex: 1; min-width: 0; font-size: 0.76rem; color: var(--accent);
+  word-break: break-all; line-height: 1.45; text-decoration: none;
+}
+.url-row a:active { text-decoration: underline; }
+.reason { font-size: 0.8rem; color: var(--ink-soft); }
+.caption-box { border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }
+.caption-head {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 8px 10px; background: var(--chip-bg);
+}
+.caption-head span {
+  font-size: 0.7rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-soft);
+}
+.copy-btn {
+  background: var(--surface); border: 1px solid var(--border); color: var(--ink);
+  border-radius: 7px; padding: 5px 11px; font-size: 0.76rem; font-weight: 600; cursor: pointer;
+}
+.copy-btn:focus-visible, .btn-open:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.copy-btn.copied { background: var(--good); border-color: var(--good); color: #fff; }
+textarea {
+  width: 100%; display: block; border: none; padding: 10px; font-size: 0.85rem; line-height: 1.55;
+  resize: vertical; min-height: 108px; font-family: inherit; background: var(--surface); color: var(--ink);
+}
+textarea.short { min-height: 60px; }
+textarea:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
+footer.note { margin-top: 22px; font-size: 0.76rem; color: var(--ink-soft); text-align: center; line-height: 1.6; }
+@media (prefers-reduced-motion: no-preference) {
+  .copy-btn { transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease; }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <div>
+    <p class="eyebrow">楽天ROOM 投稿リスト</p>
+    <h1>2026-10-10 朝</h1>
+  </div>
+  <span class="count">5件</span>
+</header>
+
+<h2 class="section-title">📦 商品(ROOM用、全5件)</h2>
+<div class="cards">
+<div class="card">
+  <div class="card-head">
+    <img src="https://thumbnail.image.rakuten.co.jp/@0_mall/kzon-mart/cabinet/mimikaki/compass1699197973.jpg?_ex=128x128" alt="耳かき ライト付き耳かき 耳かきライト 光る耳かき ピンセット みみそうじ みみかき 耳掃除 耳掃除ピンセット ライト付きピンセット 赤ちゃん 子供用 プレゼント 楽天1位 電池 1000円ポッキリ 送料無料 ED SS" loading="lazy">
+    <div class="info">
+      
+      <span class="genre-chip">身だしなみ</span>
+      <div class="name">耳かき ライト付き耳かき 耳かきライト 光る耳かき ピンセット みみそうじ みみかき 耳掃除 耳掃除ピンセット ライト付きピンセット 赤ちゃん 子供用 プレゼント 楽天1位 電池 1000円ポッキリ 送料無料 ED SS</div>
+      <div class="meta-row">
+        <span class="price">¥1,000</span>
+        <span class="stars">★★★★☆</span>
+        <span>4.41(304件)</span>
+      </div>
+    </div>
+  </div>
+  <a class="btn-open" href="https://item.rakuten.co.jp/kzon-mart/compass1654511505/" target="_blank" rel="noopener">商品ページを開く ↗</a>
+  <div class="url-row">
+    <a href="https://item.rakuten.co.jp/kzon-mart/compass1654511505/" target="_blank" rel="noopener">https://item.rakuten.co.jp/kzon-mart/compass1654511505/</a>
+    <button class="copy-btn" onclick="copyPlain(this, 'https://item.rakuten.co.jp/kzon-mart/compass1654511505/')" type="button">URLコピー</button>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>楽天ROOM用</span>
+      <button class="copy-btn" onclick="copyText(this, 'room-0')" type="button">コピー</button>
+    </div>
+    <textarea id="room-0" readonly>💡1,000円で耳かきがここまで変わるとは正直思ってなかった。
+
+赤ちゃんの耳掃除って怖くないですか。暗くて見えない、動く、怖い。ライト付きのピンセット耳かきにしてから、照らしながら確認して掃除できるのでずいぶん安心感が違う🔦
+
+大人でも耳の奥が確認できるのは普通にいい。「もう少し奥かな」が目で見て判断できるので加減を誤りにくい。
+
+1,000円ポッキリ・送料無料で楽天1位実績あり。レビュー304件・星4.41。赤ちゃんのいる家庭にも、プレゼントにも選ばれてる✨
+
+#耳かき #ライト付き耳かき #耳掃除 #赤ちゃんグッズ #子供用 #育児パパ #共働き家庭 #楽天1位 #1000円ポッキリ</textarea>
+  </div>
+</div>
+<div class="card featured">
+  <div class="card-head">
+    <img src="https://thumbnail.image.rakuten.co.jp/@0_mall/asia-kobo/cabinet/item042/vn50563sku.jpg?_ex=128x128" alt="【最大500円クーポン】 収納バスケット かご シーグラス製 M/Lサイズ 大容量 天然素材 おもちゃ入れ・脱衣かご・ランドリー収納に [vn50563]" loading="lazy">
+    <div class="info">
+      <span class="featured-badge">🔥 本日のThreads/Xピックアップ</span>
+      <span class="genre-chip">収納整理</span>
+      <div class="name">【最大500円クーポン】 収納バスケット かご シーグラス製 M/Lサイズ 大容量 天然素材 おもちゃ入れ・脱衣かご・ランドリー収納に [vn50563]</div>
+      <div class="meta-row">
+        <span class="price">¥1,680</span>
+        <span class="stars">★★★★☆</span>
+        <span>4.39(939件)</span>
+      </div>
+    </div>
+  </div>
+  <a class="btn-open" href="https://item.rakuten.co.jp/asia-kobo/vn50563/" target="_blank" rel="noopener">商品ページを開く ↗</a>
+  <div class="url-row">
+    <a href="https://item.rakuten.co.jp/asia-kobo/vn50563/" target="_blank" rel="noopener">https://item.rakuten.co.jp/asia-kobo/vn50563/</a>
+    <button class="copy-btn" onclick="copyPlain(this, 'https://item.rakuten.co.jp/asia-kobo/vn50563/')" type="button">URLコピー</button>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>楽天ROOM用</span>
+      <button class="copy-btn" onclick="copyText(this, 'room-1')" type="button">コピー</button>
+    </div>
+    <textarea id="room-1" readonly>🧺おもちゃの片付け、正直ハードル高かった。箱に突っ込むだけなのに、その箱が安っぽいとリビングが一気に生活感まみれになる。
+
+シーグラス製の収納バスケットに変えてから、おもちゃが散らかっていてもなんか様になる気がしてる。天然素材の編み目が「ゆるく整ってる」感じを出してくれる。脱衣かごにもランドリー収納にも使えて、置き場所を選ばない。
+
+MサイズとLサイズがあるので、用途ごとに使い分けられるのもいい💡
+
+1,680円。レビュー939件・星4.39でこの価格帯は正直かなり優秀✨
+
+#収納バスケット #シーグラス #天然素材 #おもちゃ収納 #ランドリー収納 #育児パパ #共働き家庭 #インテリア収納 #楽天インテリア</textarea>
+  </div>
+  <p class="reason">🔥 今日のピックアップ理由: レビュー939件は5件中最多であり、1,680円という価格帯とのギャップが最も強い社会的証明になっているため。おもちゃ収納・脱衣かごという育児家庭の具体的な悩みへの刺さり度も高い。</p>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>Threads用</span>
+      <button class="copy-btn" onclick="copyText(this, 'threads-0')" type="button">コピー</button>
+    </div>
+    <textarea id="threads-0" readonly>リビングのおもちゃ問題、安いプラスチックケースで解決しようとすると逆に生活感が増すやつ。
+
+シーグラス製の収納バスケット、1,680円。天然素材の編み目が「散らかってる途中でもなんか様になる」感じを出してくれてる。おもちゃ入れにも脱衣かごにもランドリーにも使えて、置き場を選ばない。
+
+MとLの2サイズある。939件レビューがついてる。なんでこの価格なのかはよくわからん。
+
+#育児パパ #共働き家庭 #楽天アフィリエイト</textarea>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>X用</span>
+      <button class="copy-btn" onclick="copyText(this, 'x-0')" type="button">コピー</button>
+    </div>
+    <textarea id="x-0" readonly>リビングのおもちゃ問題、安いプラケース買うと逆に生活感が増すやつ。
+
+シーグラス収納バスケット1,680円。天然素材の編み目が散らかってても様になる感じを出してくれる。脱衣かご・ランドリーにも使えてレビュー939件。MとLの2サイズあり。
+
+#PR #育児パパ #楽天アフィリエイト</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="card-head">
+    <img src="https://thumbnail.image.rakuten.co.jp/@0_mall/yamayuu/cabinet/01023319/04410742/yj-3530_sam01.jpg?_ex=128x128" alt="【 山崎実業 片手でカットマグネットキッチンペーパーホルダー トスカ 】tosca ストッパー 片手 切れる ロール ペーパータオル マグネット 木製 木目 ウッド 収納 壁面 磁石 ホーローキッチン 冷蔵庫 料理 手抜き 掃除 ナチュラル 公式 ホワイト 白 3530 北欧 YAMAZAKI" loading="lazy">
+    <div class="info">
+      
+      <span class="genre-chip">日用品 衛生</span>
+      <div class="name">【 山崎実業 片手でカットマグネットキッチンペーパーホルダー トスカ 】tosca ストッパー 片手 切れる ロール ペーパータオル マグネット 木製 木目 ウッド 収納 壁面 磁石 ホーローキッチン 冷蔵庫 料理 手抜き 掃除 ナチュラル 公式 ホワイト 白 3530 北欧 YAMAZAKI</div>
+      <div class="meta-row">
+        <span class="price">¥2,970</span>
+        <span class="stars">★★★★★</span>
+        <span>4.7(66件)</span>
+      </div>
+    </div>
+  </div>
+  <a class="btn-open" href="https://item.rakuten.co.jp/yamayuu/yj-3530/" target="_blank" rel="noopener">商品ページを開く ↗</a>
+  <div class="url-row">
+    <a href="https://item.rakuten.co.jp/yamayuu/yj-3530/" target="_blank" rel="noopener">https://item.rakuten.co.jp/yamayuu/yj-3530/</a>
+    <button class="copy-btn" onclick="copyPlain(this, 'https://item.rakuten.co.jp/yamayuu/yj-3530/')" type="button">URLコピー</button>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>楽天ROOM用</span>
+      <button class="copy-btn" onclick="copyText(this, 'room-2')" type="button">コピー</button>
+    </div>
+    <textarea id="room-2" readonly>✂️キッチンペーパーって、片手がふさがってる瞬間に使いたくなるものなんですよ。なのに両手で押さえて引っ張って切る、というのをずっと繰り返してた。
+
+山崎実業のトスカ、ストッパー機能で片手でひっぱるだけきれいに切れる🍳 マグネット式で冷蔵庫やホーロー壁に取りつけられて、木製ウッドのナチュラルな見た目もキッチンに浮かない。
+
+機能と見た目のバランスは山崎実業らしい仕上がり。
+
+2,970円。レビュー66件で星4.7、使った人の評価がまとまって高い✨
+
+#山崎実業 #キッチンペーパーホルダー #マグネット #tosca #トスカ #北欧インテリア #育児パパ #共働き家庭 #キッチン収納 #楽天キッチン</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="card-head">
+    <img src="https://thumbnail.image.rakuten.co.jp/@0_mall/strade-web/cabinet/sonota/543385.jpg?_ex=128x128" alt="【2160円以上送料無料】　パール金属 スタイルピュア バススツール40cm ホワイト H-4338 お風呂 椅子 イス 浴室 介護 180° チェア 楽々 立つ 座る 軽減 プレゼント 贈り物 ご年配 怪我 子ども 大人 家庭 職場 施設" loading="lazy">
+    <div class="info">
+      
+      <span class="genre-chip">浴室 洗面</span>
+      <div class="name">【2160円以上送料無料】　パール金属 スタイルピュア バススツール40cm ホワイト H-4338 お風呂 椅子 イス 浴室 介護 180° チェア 楽々 立つ 座る 軽減 プレゼント 贈り物 ご年配 怪我 子ども 大人 家庭 職場 施設</div>
+      <div class="meta-row">
+        <span class="price">¥1,680</span>
+        <span class="stars">★★★★☆</span>
+        <span>4.46(82件)</span>
+      </div>
+    </div>
+  </div>
+  <a class="btn-open" href="https://item.rakuten.co.jp/strade-web/k11068/" target="_blank" rel="noopener">商品ページを開く ↗</a>
+  <div class="url-row">
+    <a href="https://item.rakuten.co.jp/strade-web/k11068/" target="_blank" rel="noopener">https://item.rakuten.co.jp/strade-web/k11068/</a>
+    <button class="copy-btn" onclick="copyPlain(this, 'https://item.rakuten.co.jp/strade-web/k11068/')" type="button">URLコピー</button>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>楽天ROOM用</span>
+      <button class="copy-btn" onclick="copyText(this, 'room-3')" type="button">コピー</button>
+    </div>
+    <textarea id="room-3" readonly>🛁子どものお風呂ってなぜか立ったりしゃがんだりが多い。洗う→立ってシャワー→またしゃがんで流す→湯船から出す。腰に来るのは時間の問題だった。
+
+バススツール40cmを使いはじめてから、低くしゃがむ頻度が減った。180度回転するので向きを変えながら体を洗えて、立ち座りが楽になる。介護用としても設計されてるので耐久性の信頼感もある💪
+
+1,680円。子育て中の腰への先行投資と思えばそんなに高くない✨
+
+レビュー82件・星4.46。介護やリハビリ目的にも選ばれてるアイテム。
+
+#バススツール #お風呂椅子 #浴室 #腰痛対策 #子育てグッズ #育児パパ #共働き家庭 #楽天日用品 #介護用品</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="card-head">
+    <img src="https://thumbnail.image.rakuten.co.jp/@0_mall/store-marufuku/cabinet/shohin/tanaka24/atae-a86032_1.jpg?_ex=128x128" alt="哺乳瓶消毒ケース | 哺乳瓶 消毒 レック LEC 水切りかご 付き レンジ 電子レンジ 電子レンジ消毒 ほ乳びん 洗浄 洗う 洗浄ケース 除菌 時短グッズ ベビー 赤ちゃん 子供 子ども 男の子 女の子 新生児 消毒器 薬液消毒 洗浄機 哺乳びん 授乳用品 熱処理 熱湯消毒 水切りかご" loading="lazy">
+    <div class="info">
+      
+      <span class="genre-chip">子供 知育</span>
+      <div class="name">哺乳瓶消毒ケース | 哺乳瓶 消毒 レック LEC 水切りかご 付き レンジ 電子レンジ 電子レンジ消毒 ほ乳びん 洗浄 洗う 洗浄ケース 除菌 時短グッズ ベビー 赤ちゃん 子供 子ども 男の子 女の子 新生児 消毒器 薬液消毒 洗浄機 哺乳びん 授乳用品 熱処理 熱湯消毒 水切りかご</div>
+      <div class="meta-row">
+        <span class="price">¥2,200</span>
+        <span class="stars">★★★★☆</span>
+        <span>4.31(29件)</span>
+      </div>
+    </div>
+  </div>
+  <a class="btn-open" href="https://item.rakuten.co.jp/store-marufuku/atae-a86032/" target="_blank" rel="noopener">商品ページを開く ↗</a>
+  <div class="url-row">
+    <a href="https://item.rakuten.co.jp/store-marufuku/atae-a86032/" target="_blank" rel="noopener">https://item.rakuten.co.jp/store-marufuku/atae-a86032/</a>
+    <button class="copy-btn" onclick="copyPlain(this, 'https://item.rakuten.co.jp/store-marufuku/atae-a86032/')" type="button">URLコピー</button>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>楽天ROOM用</span>
+      <button class="copy-btn" onclick="copyText(this, 'room-4')" type="button">コピー</button>
+    </div>
+    <textarea id="room-4" readonly>🍼哺乳瓶の消毒、レンジで2〜3分で終わるのに消毒後の水切りのために別のかごを用意して二度手間になってる家庭は多いと思う。
+
+LEC(レック)の哺乳瓶消毒ケース、レンジ消毒と水切りが1つのケースで完結するので、道具の出し入れが減る💡 水切りかごが付属してるのは本当に助かる。薬液消毒にも対応してるので、レンジが使えない場面でも使える。
+
+新生児期の消毒回数はかなり多い。その期間のストレスを道具で少し楽にするのは合理的だと思う✨
+
+2,200円。レビュー29件・星4.31。
+
+#哺乳瓶消毒 #レック #電子レンジ消毒 #赤ちゃん #時短グッズ #新生児 #育児パパ #共働き家庭 #楽天ベビー</textarea>
+  </div>
+</div>
+</div>
+
+<h2 class="section-title">💬 今日のあるある投稿ネタ(商品リンクなし)</h2>
+<div class="cards">
+<div class="card">
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>あるある投稿 #1</span>
+      <button class="copy-btn" onclick="copyText(this, 'daily-0')" type="button">コピー</button>
+    </div>
+    <textarea id="daily-0" class="short" readonly>子どもの耳掃除しようとしたら全力で頭を動かしてきて、結局「今日は無理」で終わった。道具より先に静止させる方法が必要だった。 #育児パパ</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>あるある投稿 #2</span>
+      <button class="copy-btn" onclick="copyText(this, 'daily-1')" type="button">コピー</button>
+    </div>
+    <textarea id="daily-1" class="short" readonly>寝かしつけ成功した直後に自分も落ちてる。「やっと自由時間」と思ってたのに気づいたら朝。やりたいことリスト、全部昨日に持ち越された。</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>あるある投稿 #3</span>
+      <button class="copy-btn" onclick="copyText(this, 'daily-2')" type="button">コピー</button>
+    </div>
+    <textarea id="daily-2" class="short" readonly>離乳食、昨日食べてたやつを今日出したら全拒否。食べさせた時と同じ食材、同じ形、同じ温度のつもり。何が変わったのか今も分かってない。 #育児パパ</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>あるある投稿 #4</span>
+      <button class="copy-btn" onclick="copyText(this, 'daily-3')" type="button">コピー</button>
+    </div>
+    <textarea id="daily-3" class="short" readonly>保育園の登園前、玄関で「きょうはおやすみ」って静かに言ってきた。泣くわけじゃない、叫ぶわけじゃない。ただ静かに言ってくる。これがいちばんこたえる。</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>あるある投稿 #5</span>
+      <button class="copy-btn" onclick="copyText(this, 'daily-4')" type="button">コピー</button>
+    </div>
+    <textarea id="daily-4" class="short" readonly>育休中に気づいたんだけど、子どもの好きな食べ物・嫌いな食べ物・最近ハマってること、俺、全部答えられなかった。妻はぜんぶ即答してた。知らなかったのは俺だけだった。 #育児パパ #共働き家庭</textarea>
+  </div>
+</div>
+</div>
+
+<footer class="note">商品ページを確認し、投稿文をコピーして手動で投稿してください。<br>Threads/Xの商品紹介は1日1件・あるある投稿と織り交ぜてスパム判定を避けてください。<br>価格・レビューは選定時点の実データです。</footer>
+</div>
+<script>
+function flash(btn) {
+  const original = btn.textContent;
+  btn.textContent = 'コピーしました';
+  btn.classList.add('copied');
+  setTimeout(() => { btn.textContent = original; btn.classList.remove('copied'); }, 1500);
+}
+function copyText(btn, id) {
+  const el = document.getElementById(id);
+  el.select();
+  el.setSelectionRange(0, 999999);
+  navigator.clipboard.writeText(el.value).then(() => flash(btn)).catch(() => {
+    try { document.execCommand('copy'); flash(btn); } catch (e) {}
+  });
+}
+function copyPlain(btn, text) {
+  navigator.clipboard.writeText(text).then(() => flash(btn)).catch(() => {
+    const t = document.createElement('textarea');
+    t.value = text; document.body.appendChild(t); t.select();
+    try { document.execCommand('copy'); flash(btn); } catch (e) {}
+    document.body.removeChild(t);
+  });
+}
+</script>
+</body>
+</html>

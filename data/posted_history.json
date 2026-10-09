@@ -3545,6 +3545,53 @@
       "channels": [
         "room"
       ]
+    },
+    {
+      "itemCode": "kzon-mart:10000000",
+      "itemName": "耳かき ライト付き耳かき 耳かきライト 光る耳かき ピンセット みみそうじ みみかき 耳掃除 耳掃除ピンセット ライト付",
+      "date": "2026-10-10",
+      "slot": "morning",
+      "channels": [
+        "room"
+      ]
+    },
+    {
+      "itemCode": "asia-kobo:10016531",
+      "itemName": "収納バスケット かご シーグラス製 M/Lサイズ 大容量 天然素材 おもちゃ入れ・脱衣かご・ランドリー収納に",
+      "date": "2026-10-10",
+      "slot": "morning",
+      "channels": [
+        "room",
+        "threads",
+        "x"
+      ]
+    },
+    {
+      "itemCode": "yamayuu:10016795",
+      "itemName": "tosca ストッパー 片手 切れる ロール ペーパータオル マグネット 木製 木目 ウッド 収納 壁面 磁石 ホーロー",
+      "date": "2026-10-10",
+      "slot": "morning",
+      "channels": [
+        "room"
+      ]
+    },
+    {
+      "itemCode": "strade-web:10013607",
+      "itemName": "パール金属 スタイルピュア バススツール40cm ホワイト H-4338 お風呂 椅子 イス 浴室 介護 180° チェ",
+      "date": "2026-10-10",
+      "slot": "morning",
+      "channels": [
+        "room"
+      ]
+    },
+    {
+      "itemCode": "store-marufuku:10009267",
+      "itemName": "哺乳瓶消毒ケース | 哺乳瓶 消毒 レック LEC 水切りかご 付き レンジ 電子レンジ 電子レンジ消毒 ほ乳びん 洗浄",
+      "date": "2026-10-10",
+      "slot": "morning",
+      "channels": [
+        "room"
+      ]
     }
   ]
 }
