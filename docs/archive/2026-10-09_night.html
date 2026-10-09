@@ -1,0 +1,441 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>本日の選定 - 楽天ROOM投稿リスト</title>
+<style>
+:root {
+  --bg: #f6f3ee;
+  --surface: #ffffff;
+  --ink: #23211d;
+  --ink-soft: #6b6459;
+  --accent: #a8382c;
+  --accent-ink: #fff6f2;
+  --good: #3f7d58;
+  --border: #e4ddd2;
+  --chip-bg: #efe8db;
+  color-scheme: light dark;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #16140f;
+    --surface: #211f1a;
+    --ink: #ece7dc;
+    --ink-soft: #a89e8d;
+    --accent: #e0685a;
+    --accent-ink: #1c0f0c;
+    --good: #6fb98a;
+    --border: #35322a;
+    --chip-bg: #2a2721;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #16140f; --surface: #211f1a; --ink: #ece7dc; --ink-soft: #a89e8d;
+  --accent: #e0685a; --accent-ink: #1c0f0c; --good: #6fb98a; --border: #35322a; --chip-bg: #2a2721;
+}
+:root[data-theme="light"] {
+  --bg: #f6f3ee; --surface: #ffffff; --ink: #23211d; --ink-soft: #6b6459;
+  --accent: #a8382c; --accent-ink: #fff6f2; --good: #3f7d58; --border: #e4ddd2; --chip-bg: #efe8db;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0; background: var(--bg); color: var(--ink);
+  font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Yu Gothic Medium", "Noto Sans JP", sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+.wrap { max-width: 640px; margin: 0 auto; padding: 0 16px 40px; }
+header.top {
+  position: sticky; top: 0; z-index: 5; background: var(--bg);
+  padding: 18px 16px 12px; border-bottom: 1px solid var(--border);
+  display: flex; align-items: baseline; justify-content: space-between; gap: 12px;
+}
+header.top .eyebrow {
+  font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-soft);
+  font-weight: 600; margin: 0 0 2px;
+}
+header.top h1 { font-size: 1.25rem; margin: 0; font-weight: 700; letter-spacing: -0.01em; }
+header.top .count {
+  background: var(--chip-bg); color: var(--ink-soft); font-size: 0.78rem; font-weight: 600;
+  padding: 5px 10px; border-radius: 999px; white-space: nowrap;
+}
+h2.section-title { font-size: 0.95rem; font-weight: 700; margin: 24px 0 12px; }
+.cards { display: flex; flex-direction: column; gap: 16px; margin-top: 18px; }
+.card {
+  background: var(--surface); border: 1px solid var(--border); border-radius: 16px;
+  padding: 16px; display: flex; flex-direction: column; gap: 12px;
+}
+.card.featured { border-color: var(--accent); border-width: 2px; }
+.featured-badge {
+  align-self: flex-start; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.03em;
+  color: var(--accent-ink); background: var(--accent); padding: 3px 9px; border-radius: 999px;
+}
+.card-head { display: flex; gap: 12px; }
+.card-head img {
+  width: 76px; height: 76px; object-fit: cover; border-radius: 10px;
+  border: 1px solid var(--border); background: var(--chip-bg); flex-shrink: 0;
+}
+.card-head .info { min-width: 0; flex: 1; display: flex; flex-direction: column; gap: 4px; }
+.genre-chip {
+  align-self: flex-start; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.03em;
+  color: var(--accent); background: color-mix(in srgb, var(--accent) 12%, transparent);
+  padding: 2px 8px; border-radius: 999px;
+}
+.name {
+  font-weight: 600; font-size: 0.94rem; line-height: 1.4;
+  display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
+}
+.meta-row { display: flex; align-items: baseline; gap: 8px; font-size: 0.82rem; color: var(--ink-soft); }
+.price { font-variant-numeric: tabular-nums; color: var(--ink); font-weight: 700; font-size: 1.05rem; }
+.stars { letter-spacing: -1px; color: var(--accent); }
+.btn-open {
+  display: flex; align-items: center; justify-content: center; gap: 6px;
+  background: var(--accent); color: var(--accent-ink); border: none; border-radius: 11px;
+  padding: 12px; font-weight: 700; font-size: 0.92rem; text-decoration: none;
+}
+.btn-open:active { opacity: 0.85; }
+.url-row {
+  display: flex; align-items: center; gap: 8px;
+  background: var(--chip-bg); border-radius: 9px; padding: 8px 10px;
+}
+.url-row a {
+  flex: 1; min-width: 0; font-size: 0.76rem; color: var(--accent);
+  word-break: break-all; line-height: 1.45; text-decoration: none;
+}
+.url-row a:active { text-decoration: underline; }
+.reason { font-size: 0.8rem; color: var(--ink-soft); }
+.caption-box { border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }
+.caption-head {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 8px 10px; background: var(--chip-bg);
+}
+.caption-head span {
+  font-size: 0.7rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-soft);
+}
+.copy-btn {
+  background: var(--surface); border: 1px solid var(--border); color: var(--ink);
+  border-radius: 7px; padding: 5px 11px; font-size: 0.76rem; font-weight: 600; cursor: pointer;
+}
+.copy-btn:focus-visible, .btn-open:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.copy-btn.copied { background: var(--good); border-color: var(--good); color: #fff; }
+textarea {
+  width: 100%; display: block; border: none; padding: 10px; font-size: 0.85rem; line-height: 1.55;
+  resize: vertical; min-height: 108px; font-family: inherit; background: var(--surface); color: var(--ink);
+}
+textarea.short { min-height: 60px; }
+textarea:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
+footer.note { margin-top: 22px; font-size: 0.76rem; color: var(--ink-soft); text-align: center; line-height: 1.6; }
+@media (prefers-reduced-motion: no-preference) {
+  .copy-btn { transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease; }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <div>
+    <p class="eyebrow">楽天ROOM 投稿リスト</p>
+    <h1>本日の選定</h1>
+  </div>
+  <span class="count">5件</span>
+</header>
+
+<h2 class="section-title">📦 商品(ROOM用、全5件)</h2>
+<div class="cards">
+<div class="card featured">
+  <div class="card-head">
+    <img src="https://thumbnail.image.rakuten.co.jp/@0_mall/e-kit/cabinet/description/ek-hg001s/ek-hg001s_1.jpg?_ex=128x128" alt="水流でゴミが集まる 排水口 ゴミ受け 排水溝 ステンレス 洗面所 お風呂 浅型 髪の毛 キャッチ 洗面台 ユニットバス カビ 防止 水回り 風呂 引っ越し 新生活 パンチング ハート型 持ち手 [ゼロキーパー] [外径5.2cm/10.2cm]" loading="lazy">
+    <div class="info">
+      <span class="featured-badge">🔥 本日のThreads/Xピックアップ</span>
+      <span class="genre-chip"></span>
+      <div class="name">水流でゴミが集まる 排水口 ゴミ受け 排水溝 ステンレス 洗面所 お風呂 浅型 髪の毛 キャッチ 洗面台 ユニットバス カビ 防止 水回り 風呂 引っ越し 新生活 パンチング ハート型 持ち手 [ゼロキーパー] [外径5.2cm/10.2cm]</div>
+      <div class="meta-row">
+        <span class="price">¥1,180</span>
+        <span class="stars">★★★★☆</span>
+        <span>4.49(2997件)</span>
+      </div>
+    </div>
+  </div>
+  <a class="btn-open" href="https://item.rakuten.co.jp/e-kit/ek-hg001s/" target="_blank" rel="noopener">商品ページを開く ↗</a>
+  <div class="url-row">
+    <a href="https://item.rakuten.co.jp/e-kit/ek-hg001s/" target="_blank" rel="noopener">https://item.rakuten.co.jp/e-kit/ek-hg001s/</a>
+    <button class="copy-btn" onclick="copyPlain(this, 'https://item.rakuten.co.jp/e-kit/ek-hg001s/')" type="button">URLコピー</button>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>楽天ROOM用</span>
+      <button class="copy-btn" onclick="copyText(this, 'room-0')" type="button">コピー</button>
+    </div>
+    <textarea id="room-0" readonly>💡1,180円でお風呂や洗面台の「髪の毛問題」がここまで解決できるとは思ってなかった。
+
+ゼロキーパーのステンレス排水口ゴミ受け、パンチング構造で水流がゴミを中央に集めてくれるので、ストレスだった掃除の頻度がぐっと減る。持ち手付きで引き上げやすく、ステンレスだからカビの心配もしにくい🙌
+
+ハート型のデザインもさりげなくかわいいので、見えない場所に機能美を忍ばせたい人にちょうどいい✨
+
+外径5.2cmと10.2cmの2サイズあり。購入前にドレンのサイズを計っておくこと。
+
+レビュー2,997件・星4.49。これだけの数が支持してるのは納得できる。
+
+#排水口ゴミ受け #ステンレス排水口 #水回り掃除 #カビ対策 #引っ越し準備 #育児パパ #共働き家庭 #楽天日用品</textarea>
+  </div>
+  <p class="reason">🔥 今日のピックアップ理由: 1,180円という低単価にレビュー2,997件という圧倒的実績数の組み合わせが価格の意外性として最も強く、「お風呂の排水口の髪の毛」という万人が持つ小さなストレスへの解決度が高いため。</p>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>Threads用</span>
+      <button class="copy-btn" onclick="copyText(this, 'threads-0')" type="button">コピー</button>
+    </div>
+    <textarea id="threads-0" readonly>お風呂の排水口の髪の毛、週何回見て見ぬふりしてる？
+
+俺はかなりしてた。取るのが嫌で、結局詰まってから大事になるやつ。
+
+ゼロキーパーのステンレスゴミ受け、1,180円。水流で髪の毛が中央に集まる構造で、持ち手が付いてるから直接触らずに捨てられる。ステンレスだからカビも生えにくい。
+
+2,997件レビューがついてるのにこの値段。なんでこんなに安いんだろって思うけどまあいいか。
+
+サイズが5.2cmと10.2cmの2種あるから、排水口のサイズ確認してから買って。
+
+#育児パパ #共働き家庭 #水回り #楽天アフィリエイト</textarea>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>X用</span>
+      <button class="copy-btn" onclick="copyText(this, 'x-0')" type="button">コピー</button>
+    </div>
+    <textarea id="x-0" readonly>お風呂の排水口の髪の毛、毎回見て見ぬふりして詰まってから後悔するやつ。
+
+ゼロキーパーのステンレスゴミ受け1,180円、水流で髪の毛が中央に集まり直接触らず捨てられる。
+
+レビュー2,997件でこの値段はすごい。
+
+サイズ2種あるから排水口のサイズ確認してから。
+
+#PR #育児パパ #楽天アフィリエイト</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="card-head">
+    <img src="https://thumbnail.image.rakuten.co.jp/@0_mall/roomy/cabinet/500cart_all/500cart_11g/p5-7/ymz1003-sr053-0_gt01.jpg?_ex=128x128" alt="ウォールペーパータオルディスペンサー リン 石こうボード壁対応 山崎実業 RIN ペーパーホルダー ペーパータオルホルダー 壁掛け ペーパータオルケース 北欧 おしゃれ 木目 yamazaki 公式 ブラウン ナチュラル 10114 10115" loading="lazy">
+    <div class="info">
+      
+      <span class="genre-chip"></span>
+      <div class="name">ウォールペーパータオルディスペンサー リン 石こうボード壁対応 山崎実業 RIN ペーパーホルダー ペーパータオルホルダー 壁掛け ペーパータオルケース 北欧 おしゃれ 木目 yamazaki 公式 ブラウン ナチュラル 10114 10115</div>
+      <div class="meta-row">
+        <span class="price">¥5,830</span>
+        <span class="stars">★★★★★</span>
+        <span>4.72(69件)</span>
+      </div>
+    </div>
+  </div>
+  <a class="btn-open" href="https://item.rakuten.co.jp/roomy/ymz25apr25h03/" target="_blank" rel="noopener">商品ページを開く ↗</a>
+  <div class="url-row">
+    <a href="https://item.rakuten.co.jp/roomy/ymz25apr25h03/" target="_blank" rel="noopener">https://item.rakuten.co.jp/roomy/ymz25apr25h03/</a>
+    <button class="copy-btn" onclick="copyPlain(this, 'https://item.rakuten.co.jp/roomy/ymz25apr25h03/')" type="button">URLコピー</button>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>楽天ROOM用</span>
+      <button class="copy-btn" onclick="copyText(this, 'room-1')" type="button">コピー</button>
+    </div>
+    <textarea id="room-1" readonly>🧻洗面台のペーパータオル、ずっとカウンターに直置きしてた。使うたびに台がびしょびしょになるのをずっと「しょうがないな」と思いながらやり過ごしてた。
+
+山崎実業のウォールペーパータオルディスペンサー リン、石こうボード壁に直接つけられるのが決め手だった🏠。ネジ穴不要のウォールピン式で賃貸でも使えて、木目調のブラウン/ナチュラルどちらも洗面所に自然になじむ。
+
+出しっぱなしになるものだから、見た目が整ってるのは日々のテンションにじわっと効いてくる✨
+
+5,830円。レビュー69件ながら星4.72、使った人の満足度が高い。
+
+#ペーパータオルホルダー #山崎実業 #壁掛け収納 #洗面所インテリア #北欧インテリア #育児パパ #共働き家庭 #楽天インテリア</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="card-head">
+    <img src="https://thumbnail.image.rakuten.co.jp/@0_mall/safetymania/cabinet/compass1697785959.jpg?_ex=128x128" alt="かわいい ドラネコ搭載 肉球 面白い ドラレコ ステッカー マグネット 煽り運転対策 あおり運転防止 犬 猫 ドライブレコーダーシール 送料無料 録画中 撮影中 前後 車載 磁石 強磁力 屋外 耐水 耐候 軽自動車 初心者 女性 ペット ギフト 贈り物 防犯" loading="lazy">
+    <div class="info">
+      
+      <span class="genre-chip"></span>
+      <div class="name">かわいい ドラネコ搭載 肉球 面白い ドラレコ ステッカー マグネット 煽り運転対策 あおり運転防止 犬 猫 ドライブレコーダーシール 送料無料 録画中 撮影中 前後 車載 磁石 強磁力 屋外 耐水 耐候 軽自動車 初心者 女性 ペット ギフト 贈り物 防犯</div>
+      <div class="meta-row">
+        <span class="price">¥750</span>
+        <span class="stars">★★★★★</span>
+        <span>4.58(180件)</span>
+      </div>
+    </div>
+  </div>
+  <a class="btn-open" href="https://item.rakuten.co.jp/safetymania/b07rjxsxp4/" target="_blank" rel="noopener">商品ページを開く ↗</a>
+  <div class="url-row">
+    <a href="https://item.rakuten.co.jp/safetymania/b07rjxsxp4/" target="_blank" rel="noopener">https://item.rakuten.co.jp/safetymania/b07rjxsxp4/</a>
+    <button class="copy-btn" onclick="copyPlain(this, 'https://item.rakuten.co.jp/safetymania/b07rjxsxp4/')" type="button">URLコピー</button>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>楽天ROOM用</span>
+      <button class="copy-btn" onclick="copyText(this, 'room-2')" type="button">コピー</button>
+    </div>
+    <textarea id="room-2" readonly>🐱750円でドラレコ搭載のアピールができる、という発想がなかった。
+
+煽り運転対策のマグネットステッカー「ドラネコ」。猫のイラストに「録画中」の文字が入ったデザインで、抑止効果を持ちながら主張が強すぎない🚗
+
+マグネット式だから傷なし・剥がし跡なし、車を乗り換えてもそのまま使い回せる。屋外耐水・耐候仕様で雨風にも強く、軽自動車にも馴染みやすいサイズ感✨
+
+ドラレコを積んでるのに周囲に伝わらないのはもったいない。貼るだけで牽制になるなら1枚持っておいて損はないと思う。
+
+レビュー180件・星4.58。
+
+#ドラレコステッカー #煽り運転対策 #ドライブレコーダー #マグネットステッカー #育児パパ #共働き家庭 #ドライブ #楽天カー用品 #防犯</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="card-head">
+    <img src="https://thumbnail.image.rakuten.co.jp/@0_mall/d-dish/cabinet/13267656/sc300_s1_260713jpg.jpg?_ex=128x128" alt="sology スプーンスケール 計量スプーン デジタル 300g 0.1g単位 ペットフード 塩分管理 パン作り スケール アイボリー SC300" loading="lazy">
+    <div class="info">
+      
+      <span class="genre-chip"></span>
+      <div class="name">sology スプーンスケール 計量スプーン デジタル 300g 0.1g単位 ペットフード 塩分管理 パン作り スケール アイボリー SC300</div>
+      <div class="meta-row">
+        <span class="price">¥2,280</span>
+        <span class="stars">★★★★☆</span>
+        <span>4.37(213件)</span>
+      </div>
+    </div>
+  </div>
+  <a class="btn-open" href="https://item.rakuten.co.jp/d-dish/ps-032/" target="_blank" rel="noopener">商品ページを開く ↗</a>
+  <div class="url-row">
+    <a href="https://item.rakuten.co.jp/d-dish/ps-032/" target="_blank" rel="noopener">https://item.rakuten.co.jp/d-dish/ps-032/</a>
+    <button class="copy-btn" onclick="copyPlain(this, 'https://item.rakuten.co.jp/d-dish/ps-032/')" type="button">URLコピー</button>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>楽天ROOM用</span>
+      <button class="copy-btn" onclick="copyText(this, 'room-3')" type="button">コピー</button>
+    </div>
+    <textarea id="room-3" readonly>⚖️離乳食をはじめた頃、計量スプーンとスケールを両手に持って「これ同時に使うの無理じゃない？」ってなってた。
+
+スプーンが計量器になってるsologyのスプーンスケール SC300、0.1g単位で300gまで計れてスプーンそのものに数字が出る🍼 スケールとスプーンを別々に出す手間がなくなるだけで、キッチン周りのプチイライラが減った。
+
+ペットフードの塩分管理にも使えるので犬や猫がいる家にも合う。アイボリーでシンプルなデザイン感も◎
+
+2,280円。計量スプーンを持っていて「毎回確認が面倒」と思ってる人にこそ試してほしい✨
+
+#スプーンスケール #計量スプーン #デジタルスケール #離乳食 #育児パパ #共働き家庭 #キッチン用品 #楽天キッチン</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="card-head">
+    <img src="https://thumbnail.image.rakuten.co.jp/@0_mall/bialettishop/cabinet/09873977/tm_0004430_jpfb.jpg?_ex=128x128" alt="公式 ビアレッティ カプチナトーレ 電動ミルクフローサー ミルク泡立て器 電動 カプチーノ ラテ ミルクフォーマー 洗いやすい フォーム フォームミルク 泡だて器 おすすめ カフェラテ ホットコーヒーミルク お祝い プレゼント ギフト 贈り物" loading="lazy">
+    <div class="info">
+      
+      <span class="genre-chip"></span>
+      <div class="name">公式 ビアレッティ カプチナトーレ 電動ミルクフローサー ミルク泡立て器 電動 カプチーノ ラテ ミルクフォーマー 洗いやすい フォーム フォームミルク 泡だて器 おすすめ カフェラテ ホットコーヒーミルク お祝い プレゼント ギフト 贈り物</div>
+      <div class="meta-row">
+        <span class="price">¥13,100</span>
+        <span class="stars">★★★★★</span>
+        <span>4.75(40件)</span>
+      </div>
+    </div>
+  </div>
+  <a class="btn-open" href="https://item.rakuten.co.jp/bialettishop/0004430_jpfb/" target="_blank" rel="noopener">商品ページを開く ↗</a>
+  <div class="url-row">
+    <a href="https://item.rakuten.co.jp/bialettishop/0004430_jpfb/" target="_blank" rel="noopener">https://item.rakuten.co.jp/bialettishop/0004430_jpfb/</a>
+    <button class="copy-btn" onclick="copyPlain(this, 'https://item.rakuten.co.jp/bialettishop/0004430_jpfb/')" type="button">URLコピー</button>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>楽天ROOM用</span>
+      <button class="copy-btn" onclick="copyText(this, 'room-4')" type="button">コピー</button>
+    </div>
+    <textarea id="room-4" readonly>☕カプチーノの泡を自分で作れるようになるとは思ってなかった。
+
+ビアレッティ公式の電動ミルクフローサー カプチナトーレ、ボタン一つで本格的なフォームミルクができる🥛 洗いやすい構造で、使うたびに分解して面倒な思いをしなくていいのが続けられるポイント。ホットでもコールドでも対応できる。
+
+13,100円は確かに安くない。ただ毎日カフェラテを外で頼むと1杯600〜700円、週5で月1.2万円超。続けて使うなら2ヶ月目から元が取れる計算になる💡
+
+星評価4.75と高水準。子どもを寝かせた後の1杯を変えたい人にも、プレゼントにも選ばれてる。
+
+#ビアレッティ #カプチナトーレ #ミルクフォーマー #電動 #カフェラテ #育児パパ #共働き家庭 #コーヒー #楽天家電</textarea>
+  </div>
+</div>
+</div>
+
+<h2 class="section-title">💬 今日のあるある投稿ネタ(商品リンクなし)</h2>
+<div class="cards">
+<div class="card">
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>あるある投稿 #1</span>
+      <button class="copy-btn" onclick="copyText(this, 'daily-0')" type="button">コピー</button>
+    </div>
+    <textarea id="daily-0" class="short" readonly>子どもの「じぶんでやる」、なぜか必ず急いでる朝だけ発動する。靴を自分で履くのに3分、チャックを自分で締めるのに4分、俺の余裕が削られていく。 #育児パパ</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>あるある投稿 #2</span>
+      <button class="copy-btn" onclick="copyText(this, 'daily-1')" type="button">コピー</button>
+    </div>
+    <textarea id="daily-1" class="short" readonly>保育園のお便りプリント、バッグの底から出てくる時にはもう期日が過ぎてることがある。写真撮影は「〇日まで」、誕生日会の持ち物は「前日まで」。なんで俺は毎回前日夜に気づくんだろうな。 #育児パパ #共働き家庭</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>あるある投稿 #3</span>
+      <button class="copy-btn" onclick="copyText(this, 'daily-2')" type="button">コピー</button>
+    </div>
+    <textarea id="daily-2" class="short" readonly>子どもがおもちゃの電話を耳に当てて「もしもし〜、はい〜、わかりました〜」ってやってた。動画撮ったら、俺が普段電話してる時の口調と完全に同じだった。完コピされてた。</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>あるある投稿 #4</span>
+      <button class="copy-btn" onclick="copyText(this, 'daily-3')" type="button">コピー</button>
+    </div>
+    <textarea id="daily-3" class="short" readonly>夕ご飯、大人が食べ終わって片付けようとした瞬間に「おかわり」って言う。さっきまで食べないって言ってたのに。あのタイミングで言ってくる子どもの時計、本当によくわからない。 #育児パパ</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>あるある投稿 #5</span>
+      <button class="copy-btn" onclick="copyText(this, 'daily-4')" type="button">コピー</button>
+    </div>
+    <textarea id="daily-4" class="short" readonly>子どもに言い過ぎてしまう日の共通点、考えてみたらだいたい同じだった。
+
+・自分が眠い
+・自分がお腹空いてる
+・仕事のことを引きずってる
+
+子どもは何も悪くないやつ。 #育児パパ #共働き家庭</textarea>
+  </div>
+</div>
+</div>
+
+<footer class="note">商品ページを確認し、投稿文をコピーして手動で投稿してください。<br>Threads/Xの商品紹介は1日1件・あるある投稿と織り交ぜてスパム判定を避けてください。<br>価格・レビューは選定時点の実データです。</footer>
+</div>
+<script>
+function flash(btn) {
+  const original = btn.textContent;
+  btn.textContent = 'コピーしました';
+  btn.classList.add('copied');
+  setTimeout(() => { btn.textContent = original; btn.classList.remove('copied'); }, 1500);
+}
+function copyText(btn, id) {
+  const el = document.getElementById(id);
+  el.select();
+  el.setSelectionRange(0, 999999);
+  navigator.clipboard.writeText(el.value).then(() => flash(btn)).catch(() => {
+    try { document.execCommand('copy'); flash(btn); } catch (e) {}
+  });
+}
+function copyPlain(btn, text) {
+  navigator.clipboard.writeText(text).then(() => flash(btn)).catch(() => {
+    const t = document.createElement('textarea');
+    t.value = text; document.body.appendChild(t); t.select();
+    try { document.execCommand('copy'); flash(btn); } catch (e) {}
+    document.body.removeChild(t);
+  });
+}
+</script>
+</body>
+</html>

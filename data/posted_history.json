@@ -3498,6 +3498,53 @@
       "channels": [
         "room"
       ]
+    },
+    {
+      "itemCode": "e-kit:10042681",
+      "itemName": "水流でゴミが集まる 排水口 ゴミ受け 排水溝 ステンレス 洗面所 お風呂 浅型 髪の毛 キャッチ 洗面台 ユニットバス ",
+      "date": "2026-10-09",
+      "slot": "night",
+      "channels": [
+        "room",
+        "threads",
+        "x"
+      ]
+    },
+    {
+      "itemCode": "roomy:10017514",
+      "itemName": "ウォールペーパータオルディスペンサー リン 石こうボード壁対応 山崎実業 RIN ペーパーホルダー ペーパータオルホルダ",
+      "date": "2026-10-09",
+      "slot": "night",
+      "channels": [
+        "room"
+      ]
+    },
+    {
+      "itemCode": "safetymania:10000044",
+      "itemName": "かわいい ドラネコ搭載 肉球 面白い ドラレコ ステッカー マグネット 煽り運転対策 あおり運転防止 犬 猫 ドライブレ",
+      "date": "2026-10-09",
+      "slot": "night",
+      "channels": [
+        "room"
+      ]
+    },
+    {
+      "itemCode": "d-dish:10000600",
+      "itemName": "sology スプーンスケール 計量スプーン デジタル 300g 0.1g単位 ペットフード 塩分管理 パン作り スケー",
+      "date": "2026-10-09",
+      "slot": "night",
+      "channels": [
+        "room"
+      ]
+    },
+    {
+      "itemCode": "bialettishop:10000042",
+      "itemName": "公式 ビアレッティ カプチナトーレ 電動ミルクフローサー ミルク泡立て器 電動 カプチーノ ラテ ミルクフォーマー 洗い",
+      "date": "2026-10-09",
+      "slot": "night",
+      "channels": [
+        "room"
+      ]
     }
   ]
 }
