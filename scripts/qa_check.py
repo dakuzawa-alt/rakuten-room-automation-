@@ -62,7 +62,7 @@ def normalize_captions(c):
     """copywriter/自動実行が別書式で出した投稿文を、generate_page.pyの書式に直す。"""
     if "products" in c and "dailyLifePosts" in c:
         return c, []
-    f = c.get("featured", {})
+    f = c.get("featuredProduct", c.get("featured", {}))
     out = {
         "products": [{"itemCode": i["itemCode"], "itemName": i.get("itemName", ""), "price": i.get("itemPrice", i.get("price")),
                       "roomCaption": i.get("roomPost", i.get("roomCaption", ""))} for i in c.get("items", c.get("products", c.get("posts", [])))],

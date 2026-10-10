@@ -3592,6 +3592,53 @@
       "channels": [
         "room"
       ]
+    },
+    {
+      "itemCode": "orange-baby:10008055",
+      "itemName": "コンビ クイックウォーマー　 combi おしりふきウォーマー おしりふき あたため器 温め 保温 ケース ベビー 赤ち",
+      "date": "2026-10-11",
+      "slot": "morning",
+      "channels": [
+        "room"
+      ]
+    },
+    {
+      "itemCode": "mixshop2:10000013",
+      "itemName": "ダイソン スタンド SV18 V15 V12 V11 V10 V8 V7 V6 slim スリム スチール製 ダイソン掃",
+      "date": "2026-10-11",
+      "slot": "morning",
+      "channels": [
+        "room",
+        "threads",
+        "x"
+      ]
+    },
+    {
+      "itemCode": "noco-m:10000054",
+      "itemName": "キッチンカウンター キャスター付き コンパクト 幅80cm 鍵付き キャビネット 間仕切り 収納 レンジ台 スリム キッ",
+      "date": "2026-10-11",
+      "slot": "morning",
+      "channels": [
+        "room"
+      ]
+    },
+    {
+      "itemCode": "shima-shima-wood:10000002",
+      "itemName": "積み木 日本製 名入れ可能 20ピース 1歳誕生日プレゼント 積み木 ラッピング 無料 出産祝い 木製 知育 玩具 木育",
+      "date": "2026-10-11",
+      "slot": "morning",
+      "channels": [
+        "room"
+      ]
+    },
+    {
+      "itemCode": "kazamidori:10022812",
+      "itemName": "キッチンタイマー 防水タイマー 洗える マグネット 時計表示 T-611 シャボン6 dretec ドリテック 学習タイ",
+      "date": "2026-10-11",
+      "slot": "morning",
+      "channels": [
+        "room"
+      ]
     }
   ]
 }
