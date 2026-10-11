@@ -1,0 +1,427 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>2026-10-11 夜 - 楽天ROOM投稿リスト</title>
+<style>
+:root {
+  --bg: #f6f3ee;
+  --surface: #ffffff;
+  --ink: #23211d;
+  --ink-soft: #6b6459;
+  --accent: #a8382c;
+  --accent-ink: #fff6f2;
+  --good: #3f7d58;
+  --border: #e4ddd2;
+  --chip-bg: #efe8db;
+  color-scheme: light dark;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #16140f;
+    --surface: #211f1a;
+    --ink: #ece7dc;
+    --ink-soft: #a89e8d;
+    --accent: #e0685a;
+    --accent-ink: #1c0f0c;
+    --good: #6fb98a;
+    --border: #35322a;
+    --chip-bg: #2a2721;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #16140f; --surface: #211f1a; --ink: #ece7dc; --ink-soft: #a89e8d;
+  --accent: #e0685a; --accent-ink: #1c0f0c; --good: #6fb98a; --border: #35322a; --chip-bg: #2a2721;
+}
+:root[data-theme="light"] {
+  --bg: #f6f3ee; --surface: #ffffff; --ink: #23211d; --ink-soft: #6b6459;
+  --accent: #a8382c; --accent-ink: #fff6f2; --good: #3f7d58; --border: #e4ddd2; --chip-bg: #efe8db;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0; background: var(--bg); color: var(--ink);
+  font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Yu Gothic Medium", "Noto Sans JP", sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+.wrap { max-width: 640px; margin: 0 auto; padding: 0 16px 40px; }
+header.top {
+  position: sticky; top: 0; z-index: 5; background: var(--bg);
+  padding: 18px 16px 12px; border-bottom: 1px solid var(--border);
+  display: flex; align-items: baseline; justify-content: space-between; gap: 12px;
+}
+header.top .eyebrow {
+  font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-soft);
+  font-weight: 600; margin: 0 0 2px;
+}
+header.top h1 { font-size: 1.25rem; margin: 0; font-weight: 700; letter-spacing: -0.01em; }
+header.top .count {
+  background: var(--chip-bg); color: var(--ink-soft); font-size: 0.78rem; font-weight: 600;
+  padding: 5px 10px; border-radius: 999px; white-space: nowrap;
+}
+h2.section-title { font-size: 0.95rem; font-weight: 700; margin: 24px 0 12px; }
+.cards { display: flex; flex-direction: column; gap: 16px; margin-top: 18px; }
+.card {
+  background: var(--surface); border: 1px solid var(--border); border-radius: 16px;
+  padding: 16px; display: flex; flex-direction: column; gap: 12px;
+}
+.card.featured { border-color: var(--accent); border-width: 2px; }
+.featured-badge {
+  align-self: flex-start; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.03em;
+  color: var(--accent-ink); background: var(--accent); padding: 3px 9px; border-radius: 999px;
+}
+.card-head { display: flex; gap: 12px; }
+.card-head img {
+  width: 76px; height: 76px; object-fit: cover; border-radius: 10px;
+  border: 1px solid var(--border); background: var(--chip-bg); flex-shrink: 0;
+}
+.card-head .info { min-width: 0; flex: 1; display: flex; flex-direction: column; gap: 4px; }
+.genre-chip {
+  align-self: flex-start; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.03em;
+  color: var(--accent); background: color-mix(in srgb, var(--accent) 12%, transparent);
+  padding: 2px 8px; border-radius: 999px;
+}
+.name {
+  font-weight: 600; font-size: 0.94rem; line-height: 1.4;
+  display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
+}
+.meta-row { display: flex; align-items: baseline; gap: 8px; font-size: 0.82rem; color: var(--ink-soft); }
+.price { font-variant-numeric: tabular-nums; color: var(--ink); font-weight: 700; font-size: 1.05rem; }
+.stars { letter-spacing: -1px; color: var(--accent); }
+.btn-open {
+  display: flex; align-items: center; justify-content: center; gap: 6px;
+  background: var(--accent); color: var(--accent-ink); border: none; border-radius: 11px;
+  padding: 12px; font-weight: 700; font-size: 0.92rem; text-decoration: none;
+}
+.btn-open:active { opacity: 0.85; }
+.url-row {
+  display: flex; align-items: center; gap: 8px;
+  background: var(--chip-bg); border-radius: 9px; padding: 8px 10px;
+}
+.url-row a {
+  flex: 1; min-width: 0; font-size: 0.76rem; color: var(--accent);
+  word-break: break-all; line-height: 1.45; text-decoration: none;
+}
+.url-row a:active { text-decoration: underline; }
+.reason { font-size: 0.8rem; color: var(--ink-soft); }
+.caption-box { border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }
+.caption-head {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 8px 10px; background: var(--chip-bg);
+}
+.caption-head span {
+  font-size: 0.7rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-soft);
+}
+.copy-btn {
+  background: var(--surface); border: 1px solid var(--border); color: var(--ink);
+  border-radius: 7px; padding: 5px 11px; font-size: 0.76rem; font-weight: 600; cursor: pointer;
+}
+.copy-btn:focus-visible, .btn-open:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.copy-btn.copied { background: var(--good); border-color: var(--good); color: #fff; }
+textarea {
+  width: 100%; display: block; border: none; padding: 10px; font-size: 0.85rem; line-height: 1.55;
+  resize: vertical; min-height: 108px; font-family: inherit; background: var(--surface); color: var(--ink);
+}
+textarea.short { min-height: 60px; }
+textarea:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
+footer.note { margin-top: 22px; font-size: 0.76rem; color: var(--ink-soft); text-align: center; line-height: 1.6; }
+@media (prefers-reduced-motion: no-preference) {
+  .copy-btn { transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease; }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <div>
+    <p class="eyebrow">楽天ROOM 投稿リスト</p>
+    <h1>2026-10-11 夜</h1>
+  </div>
+  <span class="count">5件</span>
+</header>
+
+<h2 class="section-title">📦 商品(ROOM用、全5件)</h2>
+<div class="cards">
+<div class="card">
+  <div class="card-head">
+    <img src="https://thumbnail.image.rakuten.co.jp/@0_mall/minami-plus/cabinet/4954267157617.jpg?_ex=128x128" alt="曙産業 トライタン樹脂製 割れにくい コーヒーサーバーストロン 400 コンパクトドリッパーセット 日本製（ 割れない 丈夫 珈琲 ポット 軽量 クリア ガラスのように透明 電子レンジ可 食器洗い乾燥機可 ）" loading="lazy">
+    <div class="info">
+      
+      <span class="genre-chip">キッチン調理</span>
+      <div class="name">曙産業 トライタン樹脂製 割れにくい コーヒーサーバーストロン 400 コンパクトドリッパーセット 日本製（ 割れない 丈夫 珈琲 ポット 軽量 クリア ガラスのように透明 電子レンジ可 食器洗い乾燥機可 ）</div>
+      <div class="meta-row">
+        <span class="price">¥1,840</span>
+        <span class="stars">★★★★★</span>
+        <span>4.66(38件)</span>
+      </div>
+    </div>
+  </div>
+  <a class="btn-open" href="https://item.rakuten.co.jp/minami-plus/4954267157617/" target="_blank" rel="noopener">商品ページを開く ↗</a>
+  <div class="url-row">
+    <a href="https://item.rakuten.co.jp/minami-plus/4954267157617/" target="_blank" rel="noopener">https://item.rakuten.co.jp/minami-plus/4954267157617/</a>
+    <button class="copy-btn" onclick="copyPlain(this, 'https://item.rakuten.co.jp/minami-plus/4954267157617/')" type="button">URLコピー</button>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>楽天ROOM用</span>
+      <button class="copy-btn" onclick="copyText(this, 'room-0')" type="button">コピー</button>
+    </div>
+    <textarea id="room-0" readonly>☕1,840円で割れないコーヒーサーバーがここまで使いやすいとは思ってなかった。
+
+ガラス製のコーヒーサーバー、棚から落として粉砕したことある家庭、うちだけじゃないはず。トライタン樹脂製のこれは割れにくく、食洗機対応で洗い方を選ばない🍃
+
+コンパクトドリッパーとのセット売りなのでこれ1つで揃う。日本製🇯🇵。容量400mlで1〜2杯分にちょうどいいサイズ感。
+
+レビュー38件・星4.66。口コミ集まりはじめの段階でこの評価は信頼できる数字。
+
+#コーヒーサーバー #ドリッパー #トライタン #割れにくい #コーヒーグッズ #育児パパ #共働き家庭 #日本製 #楽天キッチン</textarea>
+  </div>
+</div>
+<div class="card featured">
+  <div class="card-head">
+    <img src="https://thumbnail.image.rakuten.co.jp/@0_mall/harezoratbp/cabinet/09304170/09722428/1-1000.jpg?_ex=128x128" alt="★＼遊びながら育つ／★ 赤ちゃん おもちゃ ハンドスピナー ｜楽天1位受賞｜【ハレゾラTBP公式店】 指先の知育 新生児 ベビー おもちゃ 風車おもちゃ お風呂 おもちゃ 赤ちゃん 男の子 女の子 誕生日 出産祝い プレゼント ギフト●" loading="lazy">
+    <div class="info">
+      <span class="featured-badge">🔥 本日のThreads/Xピックアップ</span>
+      <span class="genre-chip">子供 知育</span>
+      <div class="name">★＼遊びながら育つ／★ 赤ちゃん おもちゃ ハンドスピナー ｜楽天1位受賞｜【ハレゾラTBP公式店】 指先の知育 新生児 ベビー おもちゃ 風車おもちゃ お風呂 おもちゃ 赤ちゃん 男の子 女の子 誕生日 出産祝い プレゼント ギフト●</div>
+      <div class="meta-row">
+        <span class="price">¥2,490</span>
+        <span class="stars">★★★★★</span>
+        <span>4.55(726件)</span>
+      </div>
+    </div>
+  </div>
+  <a class="btn-open" href="https://item.rakuten.co.jp/harezoratbp/pf45-1/" target="_blank" rel="noopener">商品ページを開く ↗</a>
+  <div class="url-row">
+    <a href="https://item.rakuten.co.jp/harezoratbp/pf45-1/" target="_blank" rel="noopener">https://item.rakuten.co.jp/harezoratbp/pf45-1/</a>
+    <button class="copy-btn" onclick="copyPlain(this, 'https://item.rakuten.co.jp/harezoratbp/pf45-1/')" type="button">URLコピー</button>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>楽天ROOM用</span>
+      <button class="copy-btn" onclick="copyText(this, 'room-1')" type="button">コピー</button>
+    </div>
+    <textarea id="room-1" readonly>👶赤ちゃんって、手に何か持たせると急に落ち着く瞬間があって。何度かその感じを経験してから、指先に働きかけるおもちゃを意識して選ぶようになった。
+
+このハンドスピナー、新生児から使えるベビー向け。カラフルなくるくるが回るやつじゃなくて、指先で感触を確かめる系の知育おもちゃ。楽天1位受賞で、みんな評価めちゃ高い✨
+
+2,490円。これだけのレビューが集まってる商品をこの価格で買えるのは素直にありがたい。
+
+指先の発達が気になってきたころに選んでみてほしい👶
+
+#赤ちゃんおもちゃ #ハンドスピナー #知育玩具 #新生児 #ベビーおもちゃ #育児パパ #共働き家庭 #楽天1位 #楽天ベビー</textarea>
+  </div>
+  <p class="reason">🔥 今日のピックアップ理由: 楽天1位受賞・レビュー726件という購買実績が5件中最大で、育児パパのペルソナに最も刺さる「赤ちゃんの指先発達」という具体的な悩みに直結しているため。</p>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>Threads用</span>
+      <button class="copy-btn" onclick="copyText(this, 'threads-0')" type="button">コピー</button>
+    </div>
+    <textarea id="threads-0" readonly>授乳中に静かにしてほしいとき、手に何か持たせると落ち着いたりする。
+
+それを何度か経験してから、指先に働きかけるおもちゃを意識して探すようになった。
+
+ベビー向けハンドスピナー、2,490円。楽天1位取ってて、レビューが726件ある。指先の知育で新生児から使えるやつ。
+
+「高額なおもちゃ買わないといけないのかな」と思い始めた時期に、この価格で選択肢が増えるのはわりとありがたかった。
+
+#PR #育児パパ #共働き家庭 #赤ちゃんおもちゃ #知育玩具 #楽天アフィリエイト</textarea>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>X用</span>
+      <button class="copy-btn" onclick="copyText(this, 'x-0')" type="button">コピー</button>
+    </div>
+    <textarea id="x-0" readonly>授乳中に手に何か持たせると落ち着いたりする、あれ。
+
+ベビー向けハンドスピナー、2,490円。楽天1位受賞・指先の知育で新生児から使える。おもちゃ選びに迷ってた時期にこれを知りたかった。
+
+レビューが726件ある。価格のわりに評価が高い。
+
+#PR #育児パパ #赤ちゃんおもちゃ #楽天アフィリエイト</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="card-head">
+    <img src="https://thumbnail.image.rakuten.co.jp/@0_mall/allecore/cabinet/default/08315432/stasherezm-1_sn.jpg?_ex=128x128" alt="【10/10(土)20〜24時限定 ポイント2倍+LINEクーポン+0の日】 スタッシャー シリコンバッグ ezシリーズ 2022新モデル stasher 日本正規品 EZサンドイッチ Mサイズ 15色 全国送料無料 シリコーンバッグ 電子レンジ オーブン 食洗機 エコ ギフト 新生活" loading="lazy">
+    <div class="info">
+      
+      <span class="genre-chip">時短家電</span>
+      <div class="name">【10/10(土)20〜24時限定 ポイント2倍+LINEクーポン+0の日】 スタッシャー シリコンバッグ ezシリーズ 2022新モデル stasher 日本正規品 EZサンドイッチ Mサイズ 15色 全国送料無料 シリコーンバッグ 電子レンジ オーブン 食洗機 エコ ギフト 新生活</div>
+      <div class="meta-row">
+        <span class="price">¥1,760</span>
+        <span class="stars">★★★★☆</span>
+        <span>4.5(50件)</span>
+      </div>
+    </div>
+  </div>
+  <a class="btn-open" href="https://item.rakuten.co.jp/allecore/stasherezm-1/" target="_blank" rel="noopener">商品ページを開く ↗</a>
+  <div class="url-row">
+    <a href="https://item.rakuten.co.jp/allecore/stasherezm-1/" target="_blank" rel="noopener">https://item.rakuten.co.jp/allecore/stasherezm-1/</a>
+    <button class="copy-btn" onclick="copyPlain(this, 'https://item.rakuten.co.jp/allecore/stasherezm-1/')" type="button">URLコピー</button>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>楽天ROOM用</span>
+      <button class="copy-btn" onclick="copyText(this, 'room-2')" type="button">コピー</button>
+    </div>
+    <textarea id="room-2" readonly>🧊ジップ袋のプラスチックを繰り返し使うのが何となく気になってた人、スタッシャーに変えるタイミングかもしれない。
+
+シリコン製だから繰り返し洗って何度でも使える。電子レンジ・食洗機・冷凍対応で、用途の幅が広い。EZシリーズのMサイズはサンドイッチがぴったり入る形で、お弁当・離乳食保存・下ごしらえなど用途が多い💡
+
+日本正規品♻️。2022年モデルで改良済み。
+
+1,760円。使い捨て袋を何週間分もまとめ買いする前に、一度シリコン製に切り替えてみる価値はあると思う。
+
+#スタッシャー #シリコンバッグ #stasher #エコ #繰り返し使える #離乳食 #育児パパ #共働き家庭 #楽天キッチン</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="card-head">
+    <img src="https://thumbnail.image.rakuten.co.jp/@0_mall/livlan/cabinet/ranking/1004-000162_logo.jpg?_ex=128x128" alt="【楽天1位&amp;8冠】高評価★4.6 セキセイ セパル マグラック A4 ヨコ 横 ホワイト SEL-2820 ライトグレー クリア 透明 ほぼ1000円ポッキリ 冷蔵庫 マグネット ポケットタイプ マグネットタイプ 白 マグネット付 プリント収納 ピタッと メモ 伝言 書類 献立表 整理 ファイル" loading="lazy">
+    <div class="info">
+      
+      <span class="genre-chip">収納整理</span>
+      <div class="name">【楽天1位&amp;8冠】高評価★4.6 セキセイ セパル マグラック A4 ヨコ 横 ホワイト SEL-2820 ライトグレー クリア 透明 ほぼ1000円ポッキリ 冷蔵庫 マグネット ポケットタイプ マグネットタイプ 白 マグネット付 プリント収納 ピタッと メモ 伝言 書類 献立表 整理 ファイル</div>
+      <div class="meta-row">
+        <span class="price">¥1,100</span>
+        <span class="stars">★★★★★</span>
+        <span>4.67(147件)</span>
+      </div>
+    </div>
+  </div>
+  <a class="btn-open" href="https://item.rakuten.co.jp/livlan/1004-000162/" target="_blank" rel="noopener">商品ページを開く ↗</a>
+  <div class="url-row">
+    <a href="https://item.rakuten.co.jp/livlan/1004-000162/" target="_blank" rel="noopener">https://item.rakuten.co.jp/livlan/1004-000162/</a>
+    <button class="copy-btn" onclick="copyPlain(this, 'https://item.rakuten.co.jp/livlan/1004-000162/')" type="button">URLコピー</button>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>楽天ROOM用</span>
+      <button class="copy-btn" onclick="copyText(this, 'room-3')" type="button">コピー</button>
+    </div>
+    <textarea id="room-3" readonly>🧲冷蔵庫の側面に貼られていく紙、だんだん整理する気力もなくなってくる。病院の領収書、保育園のお知らせ、子どもの絵。
+
+マグネットポケットに入れると「貼る」から「収納する」に変わった気がする🗂️ セキセイのマグラック、A4ヨコサイズで書類がそのまま入る。外から中身が見えるポケットタイプなので取り出しもスムーズ。冷蔵庫に直接マグネットで付けられる📌。
+
+1,100円。この値段でこの使い勝手はあっぱれだと思う。
+
+レビュー147件で星4.67。普段使いのものでこれだけ評価が揃ってるのは素直に買い替えの判断材料になる。
+
+#マグラック #冷蔵庫収納 #マグネット #書類収納 #セキセイ #育児パパ #共働き家庭 #収納グッズ #楽天収納</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="card-head">
+    <img src="https://thumbnail.image.rakuten.co.jp/@0_mall/jimo/cabinet/13854150/imgrc0119710767.jpg?_ex=128x128" alt="【10/11 本日限定セール★過去最安値⇒29,990円】SAMKYO 工事不要 食洗機 1~3人用 食器洗い乾燥機 18点 乾燥のみ機能対応 熱風送風乾燥 食洗器 食器洗浄機 給水バケツ付き T40" loading="lazy">
+    <div class="info">
+      
+      <span class="genre-chip">時短家電</span>
+      <div class="name">【10/11 本日限定セール★過去最安値⇒29,990円】SAMKYO 工事不要 食洗機 1~3人用 食器洗い乾燥機 18点 乾燥のみ機能対応 熱風送風乾燥 食洗器 食器洗浄機 給水バケツ付き T40</div>
+      <div class="meta-row">
+        <span class="price">¥29,990</span>
+        <span class="stars">★★★★★</span>
+        <span>4.52(735件)</span>
+      </div>
+    </div>
+  </div>
+  <a class="btn-open" href="https://item.rakuten.co.jp/jimo/skdwt40-plus/" target="_blank" rel="noopener">商品ページを開く ↗</a>
+  <div class="url-row">
+    <a href="https://item.rakuten.co.jp/jimo/skdwt40-plus/" target="_blank" rel="noopener">https://item.rakuten.co.jp/jimo/skdwt40-plus/</a>
+    <button class="copy-btn" onclick="copyPlain(this, 'https://item.rakuten.co.jp/jimo/skdwt40-plus/')" type="button">URLコピー</button>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>楽天ROOM用</span>
+      <button class="copy-btn" onclick="copyText(this, 'room-4')" type="button">コピー</button>
+    </div>
+    <textarea id="room-4" readonly>🍽️工事不要でここまでの機能がついてくるのか、というのが食洗機SAMKYOを調べたときの第一印象。
+
+給水バケツ付きで水道工事なし。設置場所さえあればすぐ使える✅。18点の食器が一度に入り、熱風乾燥まで対応。1〜3人用なので、ファミリーの普段使いにちょうどいいサイズ感。
+
+29,990円。食洗機を「高い家電」と敬遠してた時期もあったけど、皿洗いを毎日10〜15分やり続けることを考えると、だいぶ印象が変わってきた💪
+
+レビュー735件で星4.52。購入者の規模を見ると「食洗機デビューの最初の1台」に選ばれてるのが分かる。
+
+#食洗機 #工事不要 #食器洗い乾燥機 #SAMKYO #時短家電 #育児パパ #共働き家庭 #家電 #楽天時短</textarea>
+  </div>
+</div>
+</div>
+
+<h2 class="section-title">💬 今日のあるある投稿ネタ(商品リンクなし)</h2>
+<div class="cards">
+<div class="card">
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>あるある投稿 #1</span>
+      <button class="copy-btn" onclick="copyText(this, 'daily-0')" type="button">コピー</button>
+    </div>
+    <textarea id="daily-0" class="short" readonly>寝かしつけのあと洗い物しようと立ち上がった瞬間、隣の部屋から泣き声。この距離、どうにかなんないのかな。 #育児パパ</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>あるある投稿 #2</span>
+      <button class="copy-btn" onclick="copyText(this, 'daily-1')" type="button">コピー</button>
+    </div>
+    <textarea id="daily-1" class="short" readonly>子どもと一緒に写真撮ろうとスマホ向けたら、子どもが笑う瞬間に必ずピントが別の場所に合う。730枚撮って使えたのが3枚。カメラマンの気持ちが少し分かった気がする。</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>あるある投稿 #3</span>
+      <button class="copy-btn" onclick="copyText(this, 'daily-2')" type="button">コピー</button>
+    </div>
+    <textarea id="daily-2" class="short" readonly>保育園から帰ってきたあと「きょうね」って話しかけてくる。ご飯の準備してて手が離せなくて「うん、うん」ってうわの空で聞いてたら、急に「ちゃんと聞いて」って怒られた。ちゃんと聞いてた体のつもりだったけど、バレてた。 #育児パパ</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>あるある投稿 #4</span>
+      <button class="copy-btn" onclick="copyText(this, 'daily-3')" type="button">コピー</button>
+    </div>
+    <textarea id="daily-3" class="short" readonly>妻が1週間出張でワンオペしてみたら、子どものスケジュール・好きな食べ物・機嫌のよくなる対処法、何も分かってなかった。全部「妻に聞いて」で乗り切ってきたのが丸裸になった3日間だった。 #共働き家庭</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>あるある投稿 #5</span>
+      <button class="copy-btn" onclick="copyText(this, 'daily-4')" type="button">コピー</button>
+    </div>
+    <textarea id="daily-4" class="short" readonly>お昼寝したのが遅くて夜全然寝ない。夜遅く寝たから朝も遅く起きる。生活リズムが崩れる、という言葉の重さ、子どもを持ってから初めて分かった。</textarea>
+  </div>
+</div>
+</div>
+
+<footer class="note">商品ページを確認し、投稿文をコピーして手動で投稿してください。<br>Threads/Xの商品紹介は1日1件・あるある投稿と織り交ぜてスパム判定を避けてください。<br>価格・レビューは選定時点の実データです。</footer>
+</div>
+<script>
+function flash(btn) {
+  const original = btn.textContent;
+  btn.textContent = 'コピーしました';
+  btn.classList.add('copied');
+  setTimeout(() => { btn.textContent = original; btn.classList.remove('copied'); }, 1500);
+}
+function copyText(btn, id) {
+  const el = document.getElementById(id);
+  el.select();
+  el.setSelectionRange(0, 999999);
+  navigator.clipboard.writeText(el.value).then(() => flash(btn)).catch(() => {
+    try { document.execCommand('copy'); flash(btn); } catch (e) {}
+  });
+}
+function copyPlain(btn, text) {
+  navigator.clipboard.writeText(text).then(() => flash(btn)).catch(() => {
+    const t = document.createElement('textarea');
+    t.value = text; document.body.appendChild(t); t.select();
+    try { document.execCommand('copy'); flash(btn); } catch (e) {}
+    document.body.removeChild(t);
+  });
+}
+</script>
+</body>
+</html>
