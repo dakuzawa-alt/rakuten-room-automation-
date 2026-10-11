@@ -1,0 +1,429 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>本日の選定 - 楽天ROOM投稿リスト</title>
+<style>
+:root {
+  --bg: #f6f3ee;
+  --surface: #ffffff;
+  --ink: #23211d;
+  --ink-soft: #6b6459;
+  --accent: #a8382c;
+  --accent-ink: #fff6f2;
+  --good: #3f7d58;
+  --border: #e4ddd2;
+  --chip-bg: #efe8db;
+  color-scheme: light dark;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #16140f;
+    --surface: #211f1a;
+    --ink: #ece7dc;
+    --ink-soft: #a89e8d;
+    --accent: #e0685a;
+    --accent-ink: #1c0f0c;
+    --good: #6fb98a;
+    --border: #35322a;
+    --chip-bg: #2a2721;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #16140f; --surface: #211f1a; --ink: #ece7dc; --ink-soft: #a89e8d;
+  --accent: #e0685a; --accent-ink: #1c0f0c; --good: #6fb98a; --border: #35322a; --chip-bg: #2a2721;
+}
+:root[data-theme="light"] {
+  --bg: #f6f3ee; --surface: #ffffff; --ink: #23211d; --ink-soft: #6b6459;
+  --accent: #a8382c; --accent-ink: #fff6f2; --good: #3f7d58; --border: #e4ddd2; --chip-bg: #efe8db;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0; background: var(--bg); color: var(--ink);
+  font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Yu Gothic Medium", "Noto Sans JP", sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+.wrap { max-width: 640px; margin: 0 auto; padding: 0 16px 40px; }
+header.top {
+  position: sticky; top: 0; z-index: 5; background: var(--bg);
+  padding: 18px 16px 12px; border-bottom: 1px solid var(--border);
+  display: flex; align-items: baseline; justify-content: space-between; gap: 12px;
+}
+header.top .eyebrow {
+  font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-soft);
+  font-weight: 600; margin: 0 0 2px;
+}
+header.top h1 { font-size: 1.25rem; margin: 0; font-weight: 700; letter-spacing: -0.01em; }
+header.top .count {
+  background: var(--chip-bg); color: var(--ink-soft); font-size: 0.78rem; font-weight: 600;
+  padding: 5px 10px; border-radius: 999px; white-space: nowrap;
+}
+h2.section-title { font-size: 0.95rem; font-weight: 700; margin: 24px 0 12px; }
+.cards { display: flex; flex-direction: column; gap: 16px; margin-top: 18px; }
+.card {
+  background: var(--surface); border: 1px solid var(--border); border-radius: 16px;
+  padding: 16px; display: flex; flex-direction: column; gap: 12px;
+}
+.card.featured { border-color: var(--accent); border-width: 2px; }
+.featured-badge {
+  align-self: flex-start; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.03em;
+  color: var(--accent-ink); background: var(--accent); padding: 3px 9px; border-radius: 999px;
+}
+.card-head { display: flex; gap: 12px; }
+.card-head img {
+  width: 76px; height: 76px; object-fit: cover; border-radius: 10px;
+  border: 1px solid var(--border); background: var(--chip-bg); flex-shrink: 0;
+}
+.card-head .info { min-width: 0; flex: 1; display: flex; flex-direction: column; gap: 4px; }
+.genre-chip {
+  align-self: flex-start; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.03em;
+  color: var(--accent); background: color-mix(in srgb, var(--accent) 12%, transparent);
+  padding: 2px 8px; border-radius: 999px;
+}
+.name {
+  font-weight: 600; font-size: 0.94rem; line-height: 1.4;
+  display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
+}
+.meta-row { display: flex; align-items: baseline; gap: 8px; font-size: 0.82rem; color: var(--ink-soft); }
+.price { font-variant-numeric: tabular-nums; color: var(--ink); font-weight: 700; font-size: 1.05rem; }
+.stars { letter-spacing: -1px; color: var(--accent); }
+.btn-open {
+  display: flex; align-items: center; justify-content: center; gap: 6px;
+  background: var(--accent); color: var(--accent-ink); border: none; border-radius: 11px;
+  padding: 12px; font-weight: 700; font-size: 0.92rem; text-decoration: none;
+}
+.btn-open:active { opacity: 0.85; }
+.url-row {
+  display: flex; align-items: center; gap: 8px;
+  background: var(--chip-bg); border-radius: 9px; padding: 8px 10px;
+}
+.url-row a {
+  flex: 1; min-width: 0; font-size: 0.76rem; color: var(--accent);
+  word-break: break-all; line-height: 1.45; text-decoration: none;
+}
+.url-row a:active { text-decoration: underline; }
+.reason { font-size: 0.8rem; color: var(--ink-soft); }
+.caption-box { border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }
+.caption-head {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 8px 10px; background: var(--chip-bg);
+}
+.caption-head span {
+  font-size: 0.7rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-soft);
+}
+.copy-btn {
+  background: var(--surface); border: 1px solid var(--border); color: var(--ink);
+  border-radius: 7px; padding: 5px 11px; font-size: 0.76rem; font-weight: 600; cursor: pointer;
+}
+.copy-btn:focus-visible, .btn-open:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.copy-btn.copied { background: var(--good); border-color: var(--good); color: #fff; }
+textarea {
+  width: 100%; display: block; border: none; padding: 10px; font-size: 0.85rem; line-height: 1.55;
+  resize: vertical; min-height: 108px; font-family: inherit; background: var(--surface); color: var(--ink);
+}
+textarea.short { min-height: 60px; }
+textarea:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
+footer.note { margin-top: 22px; font-size: 0.76rem; color: var(--ink-soft); text-align: center; line-height: 1.6; }
+@media (prefers-reduced-motion: no-preference) {
+  .copy-btn { transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease; }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <div>
+    <p class="eyebrow">楽天ROOM 投稿リスト</p>
+    <h1>本日の選定</h1>
+  </div>
+  <span class="count">5件</span>
+</header>
+
+<h2 class="section-title">📦 商品(ROOM用、全5件)</h2>
+<div class="cards">
+<div class="card">
+  <div class="card-head">
+    <img src="https://thumbnail.image.rakuten.co.jp/@0_mall/prokitchen/cabinet/kd/kd41216_img1r.jpg?_ex=128x128" alt="家事問屋　横口ボウルザルセット　20" loading="lazy">
+    <div class="info">
+      
+      <span class="genre-chip">キッチン調理</span>
+      <div class="name">家事問屋　横口ボウルザルセット　20</div>
+      <div class="meta-row">
+        <span class="price">¥5,500</span>
+        <span class="stars">★★★★★</span>
+        <span>4.83(70件)</span>
+      </div>
+    </div>
+  </div>
+  <a class="btn-open" href="https://item.rakuten.co.jp/prokitchen/kd41216/" target="_blank" rel="noopener">商品ページを開く ↗</a>
+  <div class="url-row">
+    <a href="https://item.rakuten.co.jp/prokitchen/kd41216/" target="_blank" rel="noopener">https://item.rakuten.co.jp/prokitchen/kd41216/</a>
+    <button class="copy-btn" onclick="copyPlain(this, 'https://item.rakuten.co.jp/prokitchen/kd41216/')" type="button">URLコピー</button>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>楽天ROOM用</span>
+      <button class="copy-btn" onclick="copyText(this, 'room-0')" type="button">コピー</button>
+    </div>
+    <textarea id="room-0" readonly>🌟レビュー70件・4.83★、いまのところ見た中でぶっちぎりの高評価なボウルザルセット🍳
+
+燕三条製のステンレスで、パッと見ただけでわかる質感の違い。横口設計なので湯切りが片手でスパッと決まる。ざるとボウルを重ねたままシンクに置けて、洗い物の動線もかなりすっきりする✨
+
+食洗機対応なのも共働き家庭には外せないポイント。汚れが落ちやすいのでつけ置きの手間もほぼゼロ。
+
+ひとつ注意するとしたら、20cmサイズなので大量調理には小さく感じる場面があるかも。普段使いの炒め物下ごしらえ・野菜洗いには十分な大きさ。
+
+#家事問屋 #ボウルザル #燕三条 #キッチンツール #食洗機対応 #時短家事 #共働き家庭 #育児パパ #楽天ROOM</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="card-head">
+    <img src="https://thumbnail.image.rakuten.co.jp/@0_mall/mujirushi-ryohin/cabinet/item54/4934761434957_03.jpg?_ex=128x128" alt="ポリプロピレンアルバム L判・264枚用【無印良品 公式】" loading="lazy">
+    <div class="info">
+      
+      <span class="genre-chip">収納整理</span>
+      <div class="name">ポリプロピレンアルバム L判・264枚用【無印良品 公式】</div>
+      <div class="meta-row">
+        <span class="price">¥590</span>
+        <span class="stars">★★★★★</span>
+        <span>4.73(94件)</span>
+      </div>
+    </div>
+  </div>
+  <a class="btn-open" href="https://item.rakuten.co.jp/mujirushi-ryohin/4934761434957/" target="_blank" rel="noopener">商品ページを開く ↗</a>
+  <div class="url-row">
+    <a href="https://item.rakuten.co.jp/mujirushi-ryohin/4934761434957/" target="_blank" rel="noopener">https://item.rakuten.co.jp/mujirushi-ryohin/4934761434957/</a>
+    <button class="copy-btn" onclick="copyPlain(this, 'https://item.rakuten.co.jp/mujirushi-ryohin/4934761434957/')" type="button">URLコピー</button>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>楽天ROOM用</span>
+      <button class="copy-btn" onclick="copyText(this, 'room-1')" type="button">コピー</button>
+    </div>
+    <textarea id="room-1" readonly>📷子どもの写真、スマホの中だけで1万枚超えてた。
+
+「いつか整理しよう」がずっと積み重なって、気づいたら去年の運動会の写真もまだ眠ってるやつ🌸 そのまま放置するのが怖くなって、まず1冊だけ買ってみた無印のアルバム。
+
+590円でL判264枚収納できるシンプルな一冊📁 無駄な装飾がないから写真そのものに目がいく。家に届いた日の夜、子どもが寝た後にちょっとずつ入れ始めたら止まらなくなって気づいたら2時間経ってた。
+
+一度アルバムにしてしまうと子どもが自分でパラパラめくって「これ誰?」「ここどこ?」って聞いてくるようになって、それが意外とうれしかった。
+
+#無印良品 #写真整理 #子供アルバム #ポリプロピレンアルバム #収納整理 #育児パパ #共働き家庭 #楽天ROOM</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="card-head">
+    <img src="https://thumbnail.image.rakuten.co.jp/@0_mall/mamimamihome/cabinet/compass1697443244.jpg?_ex=128x128" alt="Mamimami Home 木のおもちゃ 型はめパズルボックス キャッスル" loading="lazy">
+    <div class="info">
+      
+      <span class="genre-chip">子供 知育</span>
+      <div class="name">Mamimami Home 木のおもちゃ 型はめパズルボックス キャッスル</div>
+      <div class="meta-row">
+        <span class="price">¥3,980</span>
+        <span class="stars">★★★★★</span>
+        <span>4.52(136件)</span>
+      </div>
+    </div>
+  </div>
+  <a class="btn-open" href="https://item.rakuten.co.jp/mamimamihome/pmz1332/" target="_blank" rel="noopener">商品ページを開く ↗</a>
+  <div class="url-row">
+    <a href="https://item.rakuten.co.jp/mamimamihome/pmz1332/" target="_blank" rel="noopener">https://item.rakuten.co.jp/mamimamihome/pmz1332/</a>
+    <button class="copy-btn" onclick="copyPlain(this, 'https://item.rakuten.co.jp/mamimamihome/pmz1332/')" type="button">URLコピー</button>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>楽天ROOM用</span>
+      <button class="copy-btn" onclick="copyText(this, 'room-2')" type="button">コピー</button>
+    </div>
+    <textarea id="room-2" readonly>🧩木製おもちゃって実は「インテリアを選ぶ問題」があって、部屋に置いたとき色がうるさいと気になってた。
+
+このキャッスル型はめパズル🌳 形が独特でリビングにそのまま出しておいても浮かない。3,980円で12ヶ月から3歳ごろまで長く遊べるのも助かる。
+
+型はめで手先の発達を促しながら、形の認識・集中力の土台にもなる👶 小さい子が「入った！」って顔をする瞬間がこのおもちゃは特に分かりやすい。
+
+レビュー136件で評価も安定しているので、プレゼントにも選びやすい。木のおもちゃのデビューとしてちょうどいい価格帯。
+
+#木のおもちゃ #知育玩具 #型はめパズル #MamimamiHome #1歳おもちゃ #育児パパ #共働き家庭 #楽天ROOM</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="card-head">
+    <img src="https://thumbnail.image.rakuten.co.jp/@0_mall/romanrose/cabinet/moe1/moe1-s_2312.jpg?_ex=128x128" alt="アイマスク 遮光率100% 3Dスリープリカバリーウエア" loading="lazy">
+    <div class="info">
+      
+      <span class="genre-chip">寝具 睡眠</span>
+      <div class="name">アイマスク 遮光率100% 3Dスリープリカバリーウエア</div>
+      <div class="meta-row">
+        <span class="price">¥1,680</span>
+        <span class="stars">★★★★★</span>
+        <span>4.6(275件)</span>
+      </div>
+    </div>
+  </div>
+  <a class="btn-open" href="https://item.rakuten.co.jp/romanrose/moe1/" target="_blank" rel="noopener">商品ページを開く ↗</a>
+  <div class="url-row">
+    <a href="https://item.rakuten.co.jp/romanrose/moe1/" target="_blank" rel="noopener">https://item.rakuten.co.jp/romanrose/moe1/</a>
+    <button class="copy-btn" onclick="copyPlain(this, 'https://item.rakuten.co.jp/romanrose/moe1/')" type="button">URLコピー</button>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>楽天ROOM用</span>
+      <button class="copy-btn" onclick="copyText(this, 'room-3')" type="button">コピー</button>
+    </div>
+    <textarea id="room-3" readonly>😴夜泣きの対応で起きた後、もう一度寝付けなくて朝を迎えたことが何回あったかわからない。
+
+光が気になる、目のあたりが圧迫されてる、って感覚で眠れない夜が続いて試してみたのがこれ💤 3D立体構造でまつ毛に当たらない設計で、遮光率がかなり高い(ほぼ完全遮光)。1,680円なので「まあ失敗しても」って気持ちで買えた。
+
+つけた瞬間の暗さがしっかりしてて、目のあたりに圧迫感がない🌙 洗濯OKなのも衛生的にありがたい。
+
+夜中に何度か起きる生活が続いてる人、睡眠の質を上げたいなら先に試してみる価値はある一品。
+
+#アイマスク #遮光アイマスク #3D立体 #睡眠グッズ #育児疲れ #夜泣き対応 #育児パパ #共働き家庭 #楽天ROOM</textarea>
+  </div>
+</div>
+<div class="card featured">
+  <div class="card-head">
+    <img src="https://thumbnail.image.rakuten.co.jp/@0_mall/la-kurasu/cabinet/item/maker_kankyo-daizen/imgrc0101954451.jpg?_ex=128x128" alt="きえーる 環境ダイゼン ペット用 消臭液 4L 詰替用" loading="lazy">
+    <div class="info">
+      <span class="featured-badge">🔥 本日のThreads/Xピックアップ</span>
+      <span class="genre-chip">日用品 衛生</span>
+      <div class="name">きえーる 環境ダイゼン ペット用 消臭液 4L 詰替用</div>
+      <div class="meta-row">
+        <span class="price">¥6,580</span>
+        <span class="stars">★★★★★</span>
+        <span>4.74(398件)</span>
+      </div>
+    </div>
+  </div>
+  <a class="btn-open" href="https://item.rakuten.co.jp/la-kurasu/ny-ss-381110/" target="_blank" rel="noopener">商品ページを開く ↗</a>
+  <div class="url-row">
+    <a href="https://item.rakuten.co.jp/la-kurasu/ny-ss-381110/" target="_blank" rel="noopener">https://item.rakuten.co.jp/la-kurasu/ny-ss-381110/</a>
+    <button class="copy-btn" onclick="copyPlain(this, 'https://item.rakuten.co.jp/la-kurasu/ny-ss-381110/')" type="button">URLコピー</button>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>楽天ROOM用</span>
+      <button class="copy-btn" onclick="copyText(this, 'room-4')" type="button">コピー</button>
+    </div>
+    <textarea id="room-4" readonly>🐾レビュー398件・★4.74。ペット用消臭剤でここまで評価が集まってるのは、それだけリピーターがいる証拠だと思う。
+
+天然成分のみの処方で、ペットが直接なめても安全な設計🌿 子どもが床を這い回る家庭でもスプレーを気にせず使えるのが一番大きい。
+
+4L詰め替え用なのでコスパもいい✅ ケージや布製品の消臭、粗相後のケアにも使えて汎用性が高い。香りでごまかす系とは違って、においの素にはたらきかける仕組みなのでぶり返しにくいのが特徴。
+
+ペットも子どももいる家庭向けとしては、成分面で一番気軽に選べる消臭剤の一つ。
+
+#きえーる #ペット消臭 #天然成分 #消臭液 #ペットと暮らす #育児パパ #共働き家庭 #楽天ROOM</textarea>
+  </div>
+  <p class="reason">🔥 今日のピックアップ理由: レビュー398件・4.74★と今回5件の中で実績ダントツ、かつ「天然成分のみの処方でペットが舐めても安全」という安心感訴求がペット×育児家庭に刺さりやすく、4L大容量という具体的なコスパ感も訴求力が高いため。</p>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>Threads用</span>
+      <button class="copy-btn" onclick="copyText(this, 'threads-0')" type="button">コピー</button>
+    </div>
+    <textarea id="threads-0" readonly>ペットいる家庭で子育てもしてると、消臭剤の成分がずっと気になってた。
+
+スプレーした床を子どもが舐めたり触ったりするわけじゃん。それが嫌で市販品を使うたびにちょっとモヤモヤしてたんだよね。
+
+これ、天然成分のみの処方でペットが直接なめても安全なやつ。4Lの詰め替えで6,580円だから、コスパも普通に悪くない。
+
+香りでごまかす系じゃなくにおいの素を分解する系で、ケージも布製品も使えるのがとにかく便利。
+
+ペット持ちの人、成分気になったことある人はチェックしてみて。 #PR #楽天アフィリエイト #ペット消臭 #育児パパ</textarea>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>X用</span>
+      <button class="copy-btn" onclick="copyText(this, 'x-0')" type="button">コピー</button>
+    </div>
+    <textarea id="x-0" readonly>ペットいる家って消臭剤の成分、気になるよな。
+
+天然成分のみでペットが舐めても安全なやつ見つけた。4Lで6,580円。床を這い回る子どもがいる家庭でも気にせず使えるのが一番の決め手。 #PR #楽天アフィリエイト #ペット消臭 #育児パパ</textarea>
+  </div>
+</div>
+</div>
+
+<h2 class="section-title">💬 今日のあるある投稿ネタ(商品リンクなし)</h2>
+<div class="cards">
+<div class="card">
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>あるある投稿 #1</span>
+      <button class="copy-btn" onclick="copyText(this, 'daily-0')" type="button">コピー</button>
+    </div>
+    <textarea id="daily-0" class="short" readonly>子どもの写真整理しようとスマホ開いたら、いつの間にか動画ばっかり見て30分経ってた。整理は来週でいい。</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>あるある投稿 #2</span>
+      <button class="copy-btn" onclick="copyText(this, 'daily-1')" type="button">コピー</button>
+    </div>
+    <textarea id="daily-1" class="short" readonly>保育園のお迎えって毎回「ギリギリ間に合った」か「ちょっと遅れた」のどっちかで、余裕を持って行けたことがここ数ヶ月ない気がする。何がそんなに詰まってるんだろうな。 #育児パパ #共働き家庭</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>あるある投稿 #3</span>
+      <button class="copy-btn" onclick="copyText(this, 'daily-2')" type="button">コピー</button>
+    </div>
+    <textarea id="daily-2" class="short" readonly>子が初めて「パパ」って呼んだの、嫁はちゃんと覚えてて、俺は覚えてない。そういうのが積み重なってる気がして、なんかちょっと悔しかった。</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>あるある投稿 #4</span>
+      <button class="copy-btn" onclick="copyText(this, 'daily-3')" type="button">コピー</button>
+    </div>
+    <textarea id="daily-3" class="short" readonly>育児で一番しんどいのって「作業」じゃなくて「中断」だと思ってる。
+
+・飯作りかけで泣く
+・シャワー入りかけで泣く
+・寝かしつけ終わって部屋出た瞬間に泣く
+
+疲れの正体はこれ。 #育児パパ</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>あるある投稿 #5</span>
+      <button class="copy-btn" onclick="copyText(this, 'daily-4')" type="button">コピー</button>
+    </div>
+    <textarea id="daily-4" class="short" readonly>抱っこしながら寝落ちして、起きたら子どもも起きてた。顔見て「あ、このままでもよかったな」って思った夜もある。 🌙</textarea>
+  </div>
+</div>
+</div>
+
+<footer class="note">商品ページを確認し、投稿文をコピーして手動で投稿してください。<br>Threads/Xの商品紹介は1日1件・あるある投稿と織り交ぜてスパム判定を避けてください。<br>価格・レビューは選定時点の実データです。</footer>
+</div>
+<script>
+function flash(btn) {
+  const original = btn.textContent;
+  btn.textContent = 'コピーしました';
+  btn.classList.add('copied');
+  setTimeout(() => { btn.textContent = original; btn.classList.remove('copied'); }, 1500);
+}
+function copyText(btn, id) {
+  const el = document.getElementById(id);
+  el.select();
+  el.setSelectionRange(0, 999999);
+  navigator.clipboard.writeText(el.value).then(() => flash(btn)).catch(() => {
+    try { document.execCommand('copy'); flash(btn); } catch (e) {}
+  });
+}
+function copyPlain(btn, text) {
+  navigator.clipboard.writeText(text).then(() => flash(btn)).catch(() => {
+    const t = document.createElement('textarea');
+    t.value = text; document.body.appendChild(t); t.select();
+    try { document.execCommand('copy'); flash(btn); } catch (e) {}
+    document.body.removeChild(t);
+  });
+}
+</script>
+</body>
+</html>
