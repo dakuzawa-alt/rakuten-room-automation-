@@ -1,0 +1,426 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>10/12 夜の選定 - 楽天ROOM投稿リスト</title>
+<style>
+:root {
+  --bg: #f6f3ee;
+  --surface: #ffffff;
+  --ink: #23211d;
+  --ink-soft: #6b6459;
+  --accent: #a8382c;
+  --accent-ink: #fff6f2;
+  --good: #3f7d58;
+  --border: #e4ddd2;
+  --chip-bg: #efe8db;
+  color-scheme: light dark;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #16140f;
+    --surface: #211f1a;
+    --ink: #ece7dc;
+    --ink-soft: #a89e8d;
+    --accent: #e0685a;
+    --accent-ink: #1c0f0c;
+    --good: #6fb98a;
+    --border: #35322a;
+    --chip-bg: #2a2721;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #16140f; --surface: #211f1a; --ink: #ece7dc; --ink-soft: #a89e8d;
+  --accent: #e0685a; --accent-ink: #1c0f0c; --good: #6fb98a; --border: #35322a; --chip-bg: #2a2721;
+}
+:root[data-theme="light"] {
+  --bg: #f6f3ee; --surface: #ffffff; --ink: #23211d; --ink-soft: #6b6459;
+  --accent: #a8382c; --accent-ink: #fff6f2; --good: #3f7d58; --border: #e4ddd2; --chip-bg: #efe8db;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0; background: var(--bg); color: var(--ink);
+  font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Yu Gothic Medium", "Noto Sans JP", sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+.wrap { max-width: 640px; margin: 0 auto; padding: 0 16px 40px; }
+header.top {
+  position: sticky; top: 0; z-index: 5; background: var(--bg);
+  padding: 18px 16px 12px; border-bottom: 1px solid var(--border);
+  display: flex; align-items: baseline; justify-content: space-between; gap: 12px;
+}
+header.top .eyebrow {
+  font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-soft);
+  font-weight: 600; margin: 0 0 2px;
+}
+header.top h1 { font-size: 1.25rem; margin: 0; font-weight: 700; letter-spacing: -0.01em; }
+header.top .count {
+  background: var(--chip-bg); color: var(--ink-soft); font-size: 0.78rem; font-weight: 600;
+  padding: 5px 10px; border-radius: 999px; white-space: nowrap;
+}
+h2.section-title { font-size: 0.95rem; font-weight: 700; margin: 24px 0 12px; }
+.cards { display: flex; flex-direction: column; gap: 16px; margin-top: 18px; }
+.card {
+  background: var(--surface); border: 1px solid var(--border); border-radius: 16px;
+  padding: 16px; display: flex; flex-direction: column; gap: 12px;
+}
+.card.featured { border-color: var(--accent); border-width: 2px; }
+.featured-badge {
+  align-self: flex-start; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.03em;
+  color: var(--accent-ink); background: var(--accent); padding: 3px 9px; border-radius: 999px;
+}
+.card-head { display: flex; gap: 12px; }
+.card-head img {
+  width: 76px; height: 76px; object-fit: cover; border-radius: 10px;
+  border: 1px solid var(--border); background: var(--chip-bg); flex-shrink: 0;
+}
+.card-head .info { min-width: 0; flex: 1; display: flex; flex-direction: column; gap: 4px; }
+.genre-chip {
+  align-self: flex-start; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.03em;
+  color: var(--accent); background: color-mix(in srgb, var(--accent) 12%, transparent);
+  padding: 2px 8px; border-radius: 999px;
+}
+.name {
+  font-weight: 600; font-size: 0.94rem; line-height: 1.4;
+  display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
+}
+.meta-row { display: flex; align-items: baseline; gap: 8px; font-size: 0.82rem; color: var(--ink-soft); }
+.price { font-variant-numeric: tabular-nums; color: var(--ink); font-weight: 700; font-size: 1.05rem; }
+.stars { letter-spacing: -1px; color: var(--accent); }
+.btn-open {
+  display: flex; align-items: center; justify-content: center; gap: 6px;
+  background: var(--accent); color: var(--accent-ink); border: none; border-radius: 11px;
+  padding: 12px; font-weight: 700; font-size: 0.92rem; text-decoration: none;
+}
+.btn-open:active { opacity: 0.85; }
+.url-row {
+  display: flex; align-items: center; gap: 8px;
+  background: var(--chip-bg); border-radius: 9px; padding: 8px 10px;
+}
+.url-row a {
+  flex: 1; min-width: 0; font-size: 0.76rem; color: var(--accent);
+  word-break: break-all; line-height: 1.45; text-decoration: none;
+}
+.url-row a:active { text-decoration: underline; }
+.reason { font-size: 0.8rem; color: var(--ink-soft); }
+.caption-box { border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }
+.caption-head {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 8px 10px; background: var(--chip-bg);
+}
+.caption-head span {
+  font-size: 0.7rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-soft);
+}
+.copy-btn {
+  background: var(--surface); border: 1px solid var(--border); color: var(--ink);
+  border-radius: 7px; padding: 5px 11px; font-size: 0.76rem; font-weight: 600; cursor: pointer;
+}
+.copy-btn:focus-visible, .btn-open:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.copy-btn.copied { background: var(--good); border-color: var(--good); color: #fff; }
+textarea {
+  width: 100%; display: block; border: none; padding: 10px; font-size: 0.85rem; line-height: 1.55;
+  resize: vertical; min-height: 108px; font-family: inherit; background: var(--surface); color: var(--ink);
+}
+textarea.short { min-height: 60px; }
+textarea:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
+footer.note { margin-top: 22px; font-size: 0.76rem; color: var(--ink-soft); text-align: center; line-height: 1.6; }
+@media (prefers-reduced-motion: no-preference) {
+  .copy-btn { transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease; }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <div>
+    <p class="eyebrow">楽天ROOM 投稿リスト</p>
+    <h1>10/12 夜の選定</h1>
+  </div>
+  <span class="count">5件</span>
+</header>
+
+<h2 class="section-title">📦 商品(ROOM用、全5件)</h2>
+<div class="cards">
+<div class="card">
+  <div class="card-head">
+    <img src="https://thumbnail.image.rakuten.co.jp/@0_mall/babygoodsfactory/cabinet/04874539/w029_top.jpg?_ex=128x128" alt="＼レビュー投稿で選べるプレゼント／木のおもちゃ 森のパズルバス 手押し車 赤ちゃん 型はめパズル 日本製 国産天然木 無塗装 無着色 平和工業 プレゼント 子供 お祝い 誕生日 乗用玩具 乗り物 知育 木製 出産祝い 誕生日プレゼント クリスマスプレゼント" loading="lazy">
+    <div class="info">
+      
+      <span class="genre-chip">子供 知育</span>
+      <div class="name">＼レビュー投稿で選べるプレゼント／木のおもちゃ 森のパズルバス 手押し車 赤ちゃん 型はめパズル 日本製 国産天然木 無塗装 無着色 平和工業 プレゼント 子供 お祝い 誕生日 乗用玩具 乗り物 知育 木製 出産祝い 誕生日プレゼント クリスマスプレゼント</div>
+      <div class="meta-row">
+        <span class="price">¥20,166</span>
+        <span class="stars">★★★★★</span>
+        <span>4.69(167件)</span>
+      </div>
+    </div>
+  </div>
+  <a class="btn-open" href="https://item.rakuten.co.jp/babygoodsfactory/4977693220182/" target="_blank" rel="noopener">商品ページを開く ↗</a>
+  <div class="url-row">
+    <a href="https://item.rakuten.co.jp/babygoodsfactory/4977693220182/" target="_blank" rel="noopener">https://item.rakuten.co.jp/babygoodsfactory/4977693220182/</a>
+    <button class="copy-btn" onclick="copyPlain(this, 'https://item.rakuten.co.jp/babygoodsfactory/4977693220182/')" type="button">URLコピー</button>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>楽天ROOM用</span>
+      <button class="copy-btn" onclick="copyText(this, 'room-0')" type="button">コピー</button>
+    </div>
+    <textarea id="room-0" readonly>🌲子どもに触れさせる素材って、気になりますよね。
+国産天然木を無塗装・無着色で仕上げた手押し車のパズルバス。平和工業の日本製で、塗料や着色料の心配がないのが最大のポイントですよ。
+
+乗り物に乗りながら型はめパズルもできる2in1設計で、1歳から手押し車として、2〜3歳ではパズルとして長く遊べます🧩 遊び方が変わっていくのがいいですよね。
+
+レビュー167件・★4.69と、安心できる評価がついてます。
+
+ひとつ確認したいのは対象年齢。手押し車として使うには安定して立ち上がれてからが安心です。出産祝いにも喜ばれやすいですよ🌿
+
+#木のおもちゃ #知育玩具 #日本製 #無塗装 #手押し車 #型はめパズル #出産祝い #育児パパ #共働き家庭</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="card-head">
+    <img src="https://thumbnail.image.rakuten.co.jp/@0_mall/shojiki-official/cabinet/sh-j001/vacuum_cleaner/main/thumnail_black2.jpg?_ex=128x128" alt="高評価★4.55【最高クラスの吸引力】SHOJIKI®正規品【強力吸引x1.8kgの軽量性x自走式】 自立式 コンパクト収納 【急速充電2.5時間x着脱式】 コードレス掃除機 掃除機 軽量 【ダブルサイクロンx吸引持続力99%】 静音 高耐久【お試し返品可能】SH-J001" loading="lazy">
+    <div class="info">
+      
+      <span class="genre-chip">掃除洗濯</span>
+      <div class="name">高評価★4.55【最高クラスの吸引力】SHOJIKI®正規品【強力吸引x1.8kgの軽量性x自走式】 自立式 コンパクト収納 【急速充電2.5時間x着脱式】 コードレス掃除機 掃除機 軽量 【ダブルサイクロンx吸引持続力99%】 静音 高耐久【お試し返品可能】SH-J001</div>
+      <div class="meta-row">
+        <span class="price">¥19,800</span>
+        <span class="stars">★★★★★</span>
+        <span>4.56(1842件)</span>
+      </div>
+    </div>
+  </div>
+  <a class="btn-open" href="https://item.rakuten.co.jp/shojiki-official/sh-j001/" target="_blank" rel="noopener">商品ページを開く ↗</a>
+  <div class="url-row">
+    <a href="https://item.rakuten.co.jp/shojiki-official/sh-j001/" target="_blank" rel="noopener">https://item.rakuten.co.jp/shojiki-official/sh-j001/</a>
+    <button class="copy-btn" onclick="copyPlain(this, 'https://item.rakuten.co.jp/shojiki-official/sh-j001/')" type="button">URLコピー</button>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>楽天ROOM用</span>
+      <button class="copy-btn" onclick="copyText(this, 'room-1')" type="button">コピー</button>
+    </div>
+    <textarea id="room-1" readonly>子どもができてから、床の掃除が変わった🧹
+
+離乳食の食べこぼし、ハイハイで拾ってくる謎のゴミ。前のコード付きは出し入れが面倒で、結果「今日はいっか」が増えてた。
+
+このSHOJIKIの掃除機にしてから、気になったときにパッと出してサッと終われるようになった。1.8kgの軽さ、ダブルサイクロンで吸引が落ちにくいのも地味に助かる。自走式なので引っ張る力がいらないのも◎
+
+レビューめっちゃ多くて評価も高い。お試し返品可能ってのも購入の後押しになった🙌 コードレスを探してる方、一度見てみてください💡
+
+#コードレス掃除機 #時短家電 #育児パパ #共働き家庭 #掃除 #軽量掃除機 #子育てグッズ</textarea>
+  </div>
+</div>
+<div class="card featured">
+  <div class="card-head">
+    <img src="https://thumbnail.image.rakuten.co.jp/@0_mall/ena-jimo/cabinet/09853251/imgrc0152698601.jpg?_ex=128x128" alt="【秋の大感謝★19,999円⇒8,999円】掃除機 コードレス コードレス掃除機 サイクロン式 吸引力 超軽量 ハンディ 小型 コンパクト 充電式 スティッククリーナー サイクロンクリーナー ハンディークリーナー ハンドそうじき ハンディそうじ機 H10 ホワイト" loading="lazy">
+    <div class="info">
+      <span class="featured-badge">🔥 本日のThreads/Xピックアップ</span>
+      <span class="genre-chip">掃除洗濯</span>
+      <div class="name">【秋の大感謝★19,999円⇒8,999円】掃除機 コードレス コードレス掃除機 サイクロン式 吸引力 超軽量 ハンディ 小型 コンパクト 充電式 スティッククリーナー サイクロンクリーナー ハンディークリーナー ハンドそうじき ハンディそうじ機 H10 ホワイト</div>
+      <div class="meta-row">
+        <span class="price">¥8,999</span>
+        <span class="stars">★★★★☆</span>
+        <span>4.37(2793件)</span>
+      </div>
+    </div>
+  </div>
+  <a class="btn-open" href="https://item.rakuten.co.jp/ena-jimo/h10/" target="_blank" rel="noopener">商品ページを開く ↗</a>
+  <div class="url-row">
+    <a href="https://item.rakuten.co.jp/ena-jimo/h10/" target="_blank" rel="noopener">https://item.rakuten.co.jp/ena-jimo/h10/</a>
+    <button class="copy-btn" onclick="copyPlain(this, 'https://item.rakuten.co.jp/ena-jimo/h10/')" type="button">URLコピー</button>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>楽天ROOM用</span>
+      <button class="copy-btn" onclick="copyText(this, 'room-2')" type="button">コピー</button>
+    </div>
+    <textarea id="room-2" readonly>💡19,999円→8,999円。この価格差、見逃したくないですよね。
+
+サイクロン式コードレス掃除機のH10、今セール中で約55%オフの8,999円ですよ。スティックからハンディに切り替え可能な2WAYタイプで、食後のテーブル掃除から部屋のフロアまで1台でカバーできます🧹
+
+レビュー2,793件・★4.37と、実績がしっかりついてる点も安心材料。超軽量コンパクトなので収納場所を選ばないのがいいですね。
+
+セール価格はいつ終わるか分からないので、気になってる方は早めにチェックを。充電時間や吸引持続時間は商品ページでご確認ください⚡
+
+#コードレス掃除機 #サイクロン式 #時短家電 #スティッククリーナー #育児パパ #共働き家庭 #掃除機 #セール</textarea>
+  </div>
+  <p class="reason">🔥 今日のピックアップ理由: レビュー件数2,793件(5件中最多)かつ元値19,999円→8,999円という約55%オフの価格インパクトが最も強く、「今すぐ確認したい」という行動を引き出しやすいと判断した。</p>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>Threads用</span>
+      <button class="copy-btn" onclick="copyText(this, 'threads-0')" type="button">コピー</button>
+    </div>
+    <textarea id="threads-0" readonly>19,999円のコードレス掃除機が8,999円になってた
+
+値引き額1万円越えはさすがに気になって調べたら、レビュー2793件・★4.37。スティックとハンディの2WAYで、テーブルも床も1台でいける。
+
+軽量でコンパクトだから収納場所に困らないし、2台持ちしなくて済むのがいい。
+
+セール終わる前にチェックしてほしい
+
+#コードレス掃除機 #時短家電 #楽天セール #育児パパ #PR</textarea>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>X用</span>
+      <button class="copy-btn" onclick="copyText(this, 'x-0')" type="button">コピー</button>
+    </div>
+    <textarea id="x-0" readonly>19,999円の掃除機が8,999円になってた
+
+レビュー2793件・★4.37。スティックとハンディの2WAYで1台完結。軽量コンパクトで収納も楽。値引き1万円越えはさすがに気になる
+
+#コードレス掃除機 #時短家電 #楽天セール #PR</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="card-head">
+    <img src="https://thumbnail.image.rakuten.co.jp/@0_mall/nicoly/cabinet/t0581.jpg?_ex=128x128" alt="アイムトイ アクティブ消防車 1歳 2歳 3歳 幼児 ベビー 大工さん 木のおもちゃ 木製 男の子 知育玩具 誕生日プレゼント 車 出産祝い 男 女 パズル 赤ちゃん 子供 誕生日 プルトイ 型はめパズル 車のおもちゃ 室内 乗り物 クリスマスプレゼント" loading="lazy">
+    <div class="info">
+      
+      <span class="genre-chip">子供 知育</span>
+      <div class="name">アイムトイ アクティブ消防車 1歳 2歳 3歳 幼児 ベビー 大工さん 木のおもちゃ 木製 男の子 知育玩具 誕生日プレゼント 車 出産祝い 男 女 パズル 赤ちゃん 子供 誕生日 プルトイ 型はめパズル 車のおもちゃ 室内 乗り物 クリスマスプレゼント</div>
+      <div class="meta-row">
+        <span class="price">¥9,900</span>
+        <span class="stars">★★★★☆</span>
+        <span>4.43(87件)</span>
+      </div>
+    </div>
+  </div>
+  <a class="btn-open" href="https://item.rakuten.co.jp/nicoly/t0581/" target="_blank" rel="noopener">商品ページを開く ↗</a>
+  <div class="url-row">
+    <a href="https://item.rakuten.co.jp/nicoly/t0581/" target="_blank" rel="noopener">https://item.rakuten.co.jp/nicoly/t0581/</a>
+    <button class="copy-btn" onclick="copyPlain(this, 'https://item.rakuten.co.jp/nicoly/t0581/')" type="button">URLコピー</button>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>楽天ROOM用</span>
+      <button class="copy-btn" onclick="copyText(this, 'room-3')" type="button">コピー</button>
+    </div>
+    <textarea id="room-3" readonly>🚒「消防車って木製でもあるんだ」と思ったのがこれ。
+
+aim(アイムトイ)のアクティブ消防車は、引っ張って遊ぶプルトイと型はめパズルが合わさった知育玩具ですよ。車体のパーツを外してはめ直す遊び方で、1〜3歳の指先トレーニングにちょうどいい設計です🪵
+
+税込9,900円で、出産祝いや1〜2歳の誕生日プレゼントに選ばれやすい価格帯。男女どちらにも渡しやすいのがいいですよね。
+
+派手な色よりも木の温もりを好む方、スクリーンより手で触れて遊んでほしいという方にぴったりです。レビューも4.43で安定してます🌟
+
+#木のおもちゃ #知育玩具 #プルトイ #消防車 #型はめパズル #1歳 #2歳 #出産祝い #育児パパ #誕生日プレゼント</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="card-head">
+    <img src="https://thumbnail.image.rakuten.co.jp/@0_mall/nicoly/cabinet/t2903.jpg?_ex=128x128" alt="知育玩具 2歳 3歳 4歳 パズル 幼児 DJECO クク ジャングル 木のおもちゃ 木製 赤ちゃん ベビー 誕生日プレゼント 誕生日 男の子 男 女の子 女 マグネット 子供 キッズ ギフト 動物パズル 磁石 木製パズル 木のパズル 出産祝い クリスマスプレゼント" loading="lazy">
+    <div class="info">
+      
+      <span class="genre-chip">子供 知育</span>
+      <div class="name">知育玩具 2歳 3歳 4歳 パズル 幼児 DJECO クク ジャングル 木のおもちゃ 木製 赤ちゃん ベビー 誕生日プレゼント 誕生日 男の子 男 女の子 女 マグネット 子供 キッズ ギフト 動物パズル 磁石 木製パズル 木のパズル 出産祝い クリスマスプレゼント</div>
+      <div class="meta-row">
+        <span class="price">¥3,960</span>
+        <span class="stars">★★★★★</span>
+        <span>4.61(23件)</span>
+      </div>
+    </div>
+  </div>
+  <a class="btn-open" href="https://item.rakuten.co.jp/nicoly/t2903/" target="_blank" rel="noopener">商品ページを開く ↗</a>
+  <div class="url-row">
+    <a href="https://item.rakuten.co.jp/nicoly/t2903/" target="_blank" rel="noopener">https://item.rakuten.co.jp/nicoly/t2903/</a>
+    <button class="copy-btn" onclick="copyPlain(this, 'https://item.rakuten.co.jp/nicoly/t2903/')" type="button">URLコピー</button>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>楽天ROOM用</span>
+      <button class="copy-btn" onclick="copyText(this, 'room-4')" type="button">コピー</button>
+    </div>
+    <textarea id="room-4" readonly>プレゼント、3,960円でこのクオリティはずるい🧲
+
+DJECOのクク ジャングルは、動物のシルエットをマグネットで合わせる木製パズル。フランス発の知育ブランドで、デザインがかわいいのに知育としてもちゃんと機能してる。
+
+磁石だから2〜3歳の子でも自分でピタッとはめられる達成感があるし、見た目がおしゃれで部屋に出しっぱなしにしても気にならない。レビューも★4.61と、件数は少ないけど評価はしっかり高い。
+
+Giftとして渡す場合は木箱入りなど確認してみてください。インテリアに馴染むものを探してる方にはかなりおすすめですよ🌿
+
+#知育玩具 #木のおもちゃ #DJECO #マグネット #動物パズル #2歳 #3歳 #育児パパ #誕生日プレゼント #共働き家庭</textarea>
+  </div>
+</div>
+</div>
+
+<h2 class="section-title">💬 今日のあるある投稿ネタ(商品リンクなし)</h2>
+<div class="cards">
+<div class="card">
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>あるある投稿 #1</span>
+      <button class="copy-btn" onclick="copyText(this, 'daily-0')" type="button">コピー</button>
+    </div>
+    <textarea id="daily-0" class="short" readonly>寝かしつけ終わって、そーっとベッドを抜け出すあの瞬間。息を止めながらドアを閉める。廊下に出た瞬間だけ、一人の時間が戻ってくる気がする。</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>あるある投稿 #2</span>
+      <button class="copy-btn" onclick="copyText(this, 'daily-1')" type="button">コピー</button>
+    </div>
+    <textarea id="daily-1" class="short" readonly>子どものご飯、彩り考えてそこそこ品数出したのに、自分の夕飯が昨日のカレーをラップもしないで冷蔵庫に突っ込んでたやつだった🥲</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>あるある投稿 #3</span>
+      <button class="copy-btn" onclick="copyText(this, 'daily-2')" type="button">コピー</button>
+    </div>
+    <textarea id="daily-2" class="short" readonly>育休取るまで「家事ってすぐ終わるじゃん」と思ってた過去の自分に一回あって話したい</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>あるある投稿 #4</span>
+      <button class="copy-btn" onclick="copyText(this, 'daily-3')" type="button">コピー</button>
+    </div>
+    <textarea id="daily-3" class="short" readonly>子どもが「パパだっこー」って言ってくる日、たまにある。で、その瞬間にLINEの通知が来る。なんで毎回このタイミングなんだ😂 #育児パパ</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>あるある投稿 #5</span>
+      <button class="copy-btn" onclick="copyText(this, 'daily-4')" type="button">コピー</button>
+    </div>
+    <textarea id="daily-4" class="short" readonly>「今日はイライラしない」って決めた日の朝8時に、牛乳こぼされた</textarea>
+  </div>
+</div>
+</div>
+
+<footer class="note">商品ページを確認し、投稿文をコピーして手動で投稿してください。<br>Threads/Xの商品紹介は1日1件・あるある投稿と織り交ぜてスパム判定を避けてください。<br>価格・レビューは選定時点の実データです。</footer>
+</div>
+<script>
+function flash(btn) {
+  const original = btn.textContent;
+  btn.textContent = 'コピーしました';
+  btn.classList.add('copied');
+  setTimeout(() => { btn.textContent = original; btn.classList.remove('copied'); }, 1500);
+}
+function copyText(btn, id) {
+  const el = document.getElementById(id);
+  el.select();
+  el.setSelectionRange(0, 999999);
+  navigator.clipboard.writeText(el.value).then(() => flash(btn)).catch(() => {
+    try { document.execCommand('copy'); flash(btn); } catch (e) {}
+  });
+}
+function copyPlain(btn, text) {
+  navigator.clipboard.writeText(text).then(() => flash(btn)).catch(() => {
+    const t = document.createElement('textarea');
+    t.value = text; document.body.appendChild(t); t.select();
+    try { document.execCommand('copy'); flash(btn); } catch (e) {}
+    document.body.removeChild(t);
+  });
+}
+</script>
+</body>
+</html>

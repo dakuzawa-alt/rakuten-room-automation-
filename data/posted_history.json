@@ -3733,6 +3733,53 @@
         "threads",
         "x"
       ]
+    },
+    {
+      "itemCode": "babygoodsfactory:10000035",
+      "itemName": "木のおもちゃ 森のパズルバス 手押し車 赤ちゃん 型はめパズル 日本製 国産天然木 無塗装 無着色 平和工業 プレゼント",
+      "date": "2026-10-12",
+      "slot": "night",
+      "channels": [
+        "room"
+      ]
+    },
+    {
+      "itemCode": "shojiki-official:10000000",
+      "itemName": "高評価★4.55SHOJIKI®正規品 自立式 コンパクト収納  コードレス掃除機 掃除機 軽量  静音 高耐久SH-J",
+      "date": "2026-10-12",
+      "slot": "night",
+      "channels": [
+        "room"
+      ]
+    },
+    {
+      "itemCode": "ena-jimo:10000070",
+      "itemName": "掃除機 コードレス コードレス掃除機 サイクロン式 吸引力 超軽量 ハンディ 小型 コンパクト 充電式 スティッククリー",
+      "date": "2026-10-12",
+      "slot": "night",
+      "channels": [
+        "room",
+        "threads",
+        "x"
+      ]
+    },
+    {
+      "itemCode": "nicoly:10002364",
+      "itemName": "アイムトイ アクティブ消防車 1歳 2歳 3歳 幼児 ベビー 大工さん 木のおもちゃ 木製 男の子 知育玩具 誕生日プレ",
+      "date": "2026-10-12",
+      "slot": "night",
+      "channels": [
+        "room"
+      ]
+    },
+    {
+      "itemCode": "nicoly:10004642",
+      "itemName": "知育玩具 2歳 3歳 4歳 パズル 幼児 DJECO クク ジャングル 木のおもちゃ 木製 赤ちゃん ベビー 誕生日プレ",
+      "date": "2026-10-12",
+      "slot": "night",
+      "channels": [
+        "room"
+      ]
     }
   ]
 }
