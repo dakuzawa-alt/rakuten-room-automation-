@@ -3780,6 +3780,53 @@
       "channels": [
         "room"
       ]
+    },
+    {
+      "itemCode": "a2care-official:10000006",
+      "itemName": "A2Care マイクロミストスプレー 空ボトル + 詰替え用 300mL 2個セット 化粧箱 除菌消臭スプレー 安全安心",
+      "date": "2026-10-13",
+      "slot": "morning",
+      "channels": [
+        "room"
+      ]
+    },
+    {
+      "itemCode": "shizenshop:10000129",
+      "itemName": "アイマスク 遮光 シルク100% アイマスク睡眠 シルク 100％ アイ マスク かわいい 柔らかい 調節 男女兼用 安",
+      "date": "2026-10-13",
+      "slot": "morning",
+      "channels": [
+        "room"
+      ]
+    },
+    {
+      "itemCode": "usakids:10001269",
+      "itemName": "（おまかせ便で送料無料）おふろでペタペタ！ トミカ集合Bセット　059300　お風呂のおもちゃ バストイ",
+      "date": "2026-10-13",
+      "slot": "morning",
+      "channels": [
+        "room",
+        "threads",
+        "x"
+      ]
+    },
+    {
+      "itemCode": "usakids:10001268",
+      "itemName": "（おまかせ便で送料無料）おふろでペタペタ！ トミカ集合Aセット 059294 お風呂のおもちゃ おふろグッズ",
+      "date": "2026-10-13",
+      "slot": "morning",
+      "channels": [
+        "room"
+      ]
+    },
+    {
+      "itemCode": "marcyflower:10000147",
+      "itemName": "☆最大1年間保証☆育児中のママさんへ！哺乳瓶スタンド 哺乳瓶ラック 水切り 哺乳瓶立て 哺乳瓶ホルダー 乾燥 乾燥ラック",
+      "date": "2026-10-13",
+      "slot": "morning",
+      "channels": [
+        "room"
+      ]
     }
   ]
 }

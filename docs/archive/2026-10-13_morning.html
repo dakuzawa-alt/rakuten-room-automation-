@@ -1,0 +1,441 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>本日の選定 - 楽天ROOM投稿リスト</title>
+<style>
+:root {
+  --bg: #f6f3ee;
+  --surface: #ffffff;
+  --ink: #23211d;
+  --ink-soft: #6b6459;
+  --accent: #a8382c;
+  --accent-ink: #fff6f2;
+  --good: #3f7d58;
+  --border: #e4ddd2;
+  --chip-bg: #efe8db;
+  color-scheme: light dark;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #16140f;
+    --surface: #211f1a;
+    --ink: #ece7dc;
+    --ink-soft: #a89e8d;
+    --accent: #e0685a;
+    --accent-ink: #1c0f0c;
+    --good: #6fb98a;
+    --border: #35322a;
+    --chip-bg: #2a2721;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #16140f; --surface: #211f1a; --ink: #ece7dc; --ink-soft: #a89e8d;
+  --accent: #e0685a; --accent-ink: #1c0f0c; --good: #6fb98a; --border: #35322a; --chip-bg: #2a2721;
+}
+:root[data-theme="light"] {
+  --bg: #f6f3ee; --surface: #ffffff; --ink: #23211d; --ink-soft: #6b6459;
+  --accent: #a8382c; --accent-ink: #fff6f2; --good: #3f7d58; --border: #e4ddd2; --chip-bg: #efe8db;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0; background: var(--bg); color: var(--ink);
+  font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Yu Gothic Medium", "Noto Sans JP", sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+.wrap { max-width: 640px; margin: 0 auto; padding: 0 16px 40px; }
+header.top {
+  position: sticky; top: 0; z-index: 5; background: var(--bg);
+  padding: 18px 16px 12px; border-bottom: 1px solid var(--border);
+  display: flex; align-items: baseline; justify-content: space-between; gap: 12px;
+}
+header.top .eyebrow {
+  font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-soft);
+  font-weight: 600; margin: 0 0 2px;
+}
+header.top h1 { font-size: 1.25rem; margin: 0; font-weight: 700; letter-spacing: -0.01em; }
+header.top .count {
+  background: var(--chip-bg); color: var(--ink-soft); font-size: 0.78rem; font-weight: 600;
+  padding: 5px 10px; border-radius: 999px; white-space: nowrap;
+}
+h2.section-title { font-size: 0.95rem; font-weight: 700; margin: 24px 0 12px; }
+.cards { display: flex; flex-direction: column; gap: 16px; margin-top: 18px; }
+.card {
+  background: var(--surface); border: 1px solid var(--border); border-radius: 16px;
+  padding: 16px; display: flex; flex-direction: column; gap: 12px;
+}
+.card.featured { border-color: var(--accent); border-width: 2px; }
+.featured-badge {
+  align-self: flex-start; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.03em;
+  color: var(--accent-ink); background: var(--accent); padding: 3px 9px; border-radius: 999px;
+}
+.card-head { display: flex; gap: 12px; }
+.card-head img {
+  width: 76px; height: 76px; object-fit: cover; border-radius: 10px;
+  border: 1px solid var(--border); background: var(--chip-bg); flex-shrink: 0;
+}
+.card-head .info { min-width: 0; flex: 1; display: flex; flex-direction: column; gap: 4px; }
+.genre-chip {
+  align-self: flex-start; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.03em;
+  color: var(--accent); background: color-mix(in srgb, var(--accent) 12%, transparent);
+  padding: 2px 8px; border-radius: 999px;
+}
+.name {
+  font-weight: 600; font-size: 0.94rem; line-height: 1.4;
+  display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
+}
+.meta-row { display: flex; align-items: baseline; gap: 8px; font-size: 0.82rem; color: var(--ink-soft); }
+.price { font-variant-numeric: tabular-nums; color: var(--ink); font-weight: 700; font-size: 1.05rem; }
+.stars { letter-spacing: -1px; color: var(--accent); }
+.btn-open {
+  display: flex; align-items: center; justify-content: center; gap: 6px;
+  background: var(--accent); color: var(--accent-ink); border: none; border-radius: 11px;
+  padding: 12px; font-weight: 700; font-size: 0.92rem; text-decoration: none;
+}
+.btn-open:active { opacity: 0.85; }
+.url-row {
+  display: flex; align-items: center; gap: 8px;
+  background: var(--chip-bg); border-radius: 9px; padding: 8px 10px;
+}
+.url-row a {
+  flex: 1; min-width: 0; font-size: 0.76rem; color: var(--accent);
+  word-break: break-all; line-height: 1.45; text-decoration: none;
+}
+.url-row a:active { text-decoration: underline; }
+.reason { font-size: 0.8rem; color: var(--ink-soft); }
+.caption-box { border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }
+.caption-head {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 8px 10px; background: var(--chip-bg);
+}
+.caption-head span {
+  font-size: 0.7rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-soft);
+}
+.copy-btn {
+  background: var(--surface); border: 1px solid var(--border); color: var(--ink);
+  border-radius: 7px; padding: 5px 11px; font-size: 0.76rem; font-weight: 600; cursor: pointer;
+}
+.copy-btn:focus-visible, .btn-open:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.copy-btn.copied { background: var(--good); border-color: var(--good); color: #fff; }
+textarea {
+  width: 100%; display: block; border: none; padding: 10px; font-size: 0.85rem; line-height: 1.55;
+  resize: vertical; min-height: 108px; font-family: inherit; background: var(--surface); color: var(--ink);
+}
+textarea.short { min-height: 60px; }
+textarea:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
+footer.note { margin-top: 22px; font-size: 0.76rem; color: var(--ink-soft); text-align: center; line-height: 1.6; }
+@media (prefers-reduced-motion: no-preference) {
+  .copy-btn { transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease; }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <div>
+    <p class="eyebrow">楽天ROOM 投稿リスト</p>
+    <h1>本日の選定</h1>
+  </div>
+  <span class="count">5件</span>
+</header>
+
+<h2 class="section-title">📦 商品(ROOM用、全5件)</h2>
+<div class="cards">
+<div class="card">
+  <div class="card-head">
+    <img src="" alt="A2Care マイクロミストスプレー 空ボトル + 詰替え用 300mL 2個セット 化粧箱 除菌消臭スプレー 安全安心 日本製 MA-T 採用 アルコールフリー 無香料 ANA 採用 除菌消臭剤 ギフト プレゼント 敬老の日" loading="lazy">
+    <div class="info">
+      
+      <span class="genre-chip">日用品 衛生</span>
+      <div class="name">A2Care マイクロミストスプレー 空ボトル + 詰替え用 300mL 2個セット 化粧箱 除菌消臭スプレー 安全安心 日本製 MA-T 採用 アルコールフリー 無香料 ANA 採用 除菌消臭剤 ギフト プレゼント 敬老の日</div>
+      <div class="meta-row">
+        <span class="price">¥4,070</span>
+        <span class="stars">★★★★★</span>
+        <span>4.75(241件)</span>
+      </div>
+    </div>
+  </div>
+  <a class="btn-open" href="https://item.rakuten.co.jp/a2care-official/10000006/" target="_blank" rel="noopener">商品ページを開く ↗</a>
+  <div class="url-row">
+    <a href="https://item.rakuten.co.jp/a2care-official/10000006/" target="_blank" rel="noopener">https://item.rakuten.co.jp/a2care-official/10000006/</a>
+    <button class="copy-btn" onclick="copyPlain(this, 'https://item.rakuten.co.jp/a2care-official/10000006/')" type="button">URLコピー</button>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>楽天ROOM用</span>
+      <button class="copy-btn" onclick="copyText(this, 'room-0')" type="button">コピー</button>
+    </div>
+    <textarea id="room-0" readonly>✈️ ANAが機内で使ってる除菌スプレー、実は市販で買えますよ。
+
+A2Careのマイクロミストスプレー。アルコールフリーなのに除菌・消臭ができる日本製🇯🇵 MA-T技術採用で、赤ちゃんのいる家庭でも使いやすいのが◎
+
+詰替え300mL×2本セットだから、毎日使っても長持ちします。レビュー241件・星4.75という高評価ぶりも納得の品質。
+
+ひとつ注意するなら、スプレー本体は空ボトル付きのセット内容なので、開封してそのまま詰め替えてから使う形です🧴
+
+#除菌スプレー #アルコールフリー #日本製 #育児パパ #共働き家庭 #MA-T #除菌消臭 #ギフト #日用品</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="card-head">
+    <img src="" alt="＼新色ブラック登場／ 【楽天1位】アイマスク 遮光 シルク100% アイマスク【COCOSILK アイマスク シルク】睡眠 シルク 100％ アイ マスク かわいい 柔らかい 調節 男女兼用 安眠 快眠 グッズ アイ マスク 洗える" loading="lazy">
+    <div class="info">
+      
+      <span class="genre-chip">寝具 睡眠</span>
+      <div class="name">＼新色ブラック登場／ 【楽天1位】アイマスク 遮光 シルク100% アイマスク【COCOSILK アイマスク シルク】睡眠 シルク 100％ アイ マスク かわいい 柔らかい 調節 男女兼用 安眠 快眠 グッズ アイ マスク 洗える</div>
+      <div class="meta-row">
+        <span class="price">¥4,280</span>
+        <span class="stars">★★★★☆</span>
+        <span>4.49(198件)</span>
+      </div>
+    </div>
+  </div>
+  <a class="btn-open" href="https://item.rakuten.co.jp/shizenshop/silk_eyemask/" target="_blank" rel="noopener">商品ページを開く ↗</a>
+  <div class="url-row">
+    <a href="https://item.rakuten.co.jp/shizenshop/silk_eyemask/" target="_blank" rel="noopener">https://item.rakuten.co.jp/shizenshop/silk_eyemask/</a>
+    <button class="copy-btn" onclick="copyPlain(this, 'https://item.rakuten.co.jp/shizenshop/silk_eyemask/')" type="button">URLコピー</button>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>楽天ROOM用</span>
+      <button class="copy-btn" onclick="copyText(this, 'room-1')" type="button">コピー</button>
+    </div>
+    <textarea id="room-1" readonly>😪 子どもが寝た後に自分が眠れない、という時期があった。
+
+夜中に何度か起こされるのが続くと、寝ても疲れが取れない感覚が抜けなくて。そのタイミングで試したのが天然シルク素材のアイマスク✨
+
+光を遮るだけでこんなに変わるんだと正直びっくりした。素材が柔らかいから、横向きで寝ても耳が痛くなりにくい。洗えるのも地味にありがたい🌙
+
+楽天1位取ってて、男女兼用・サイズ調節できるので夫婦で使い回せるのもいい。
+
+選ぶなら締め付け感が弱めかどうかを必ず確認してみて。
+
+#アイマスク #シルク #快眠 #睡眠グッズ #育児パパ #共働き家庭 #安眠 #楽天1位</textarea>
+  </div>
+</div>
+<div class="card featured">
+  <div class="card-head">
+    <img src="" alt="（おまかせ便で送料無料）おふろでペタペタ！ トミカ集合Bセット　059300　お風呂のおもちゃ バストイ" loading="lazy">
+    <div class="info">
+      <span class="featured-badge">🔥 本日のThreads/Xピックアップ</span>
+      <span class="genre-chip">子供 知育</span>
+      <div class="name">（おまかせ便で送料無料）おふろでペタペタ！ トミカ集合Bセット　059300　お風呂のおもちゃ バストイ</div>
+      <div class="meta-row">
+        <span class="price">¥990</span>
+        <span class="stars">★★★★★</span>
+        <span>4.58(97件)</span>
+      </div>
+    </div>
+  </div>
+  <a class="btn-open" href="https://item.rakuten.co.jp/usakids/10001269/" target="_blank" rel="noopener">商品ページを開く ↗</a>
+  <div class="url-row">
+    <a href="https://item.rakuten.co.jp/usakids/10001269/" target="_blank" rel="noopener">https://item.rakuten.co.jp/usakids/10001269/</a>
+    <button class="copy-btn" onclick="copyPlain(this, 'https://item.rakuten.co.jp/usakids/10001269/')" type="button">URLコピー</button>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>楽天ROOM用</span>
+      <button class="copy-btn" onclick="copyText(this, 'room-2')" type="button">コピー</button>
+    </div>
+    <textarea id="room-2" readonly>🚗 990円で、お風呂ギライの子どもの機嫌が変わりましたよ。
+
+トミカのお風呂ペタペタシリーズ、Bセット。濡れた浴室の壁にくっつくタイプのバストイで、トミカキャラクターがまとまって入ってます🎉
+
+おまかせ便なら送料無料になるので実質990円以下。レビュー97件・星4.58と、小さいお子さんのいる家庭で支持されてる実績があります。
+
+AセットとBセットで絵柄が違うので、両方買ってもキャラが被らないのが良いところ🛁
+
+#お風呂おもちゃ #トミカ #バストイ #育児パパ #共働き家庭 #子育てグッズ #お風呂嫌い #入浴</textarea>
+  </div>
+  <p class="reason">🔥 今日のピックアップ理由: 990円という価格の意外性と「お風呂嫌い」という多くの育児家庭が抱える悩みへの解決力が今回の5件の中で突出しており、育児パパ×共働き家庭ペルソナに最も刺さると判断した。</p>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>Threads用</span>
+      <button class="copy-btn" onclick="copyText(this, 'threads-0')" type="button">コピー</button>
+    </div>
+    <textarea id="threads-0" readonly>お風呂嫌いの子って手こずるよな。
+
+毎晩「いや!」からのバトル、体力削られる。
+
+トミカのお風呂ペタペタシリーズ試してみたら、こっちが何も言う前に自分でお風呂に向かい始めた。正直そこまで変わると思ってなかったからびっくりした。
+
+濡れた壁に貼れる仕組みで、子が自分で並べ替えて遊ぶ。親は待つだけ。
+
+990円でおまかせ便なら送料無料。AとBでキャラが違うから被らない。
+
+これは試して損なかった。
+
+#育児パパ #共働き家庭 #お風呂おもちゃ #PR</textarea>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>X用</span>
+      <button class="copy-btn" onclick="copyText(this, 'x-0')" type="button">コピー</button>
+    </div>
+    <textarea id="x-0" readonly>お風呂嫌いの子ってほんと手こずる。
+
+トミカのお風呂ペタペタ試したら、こっちが何も言う前に自分で向かい始めた。びっくりした。
+
+濡れた壁に貼れるやつで、子が自分で並べて遊ぶ。990円でおまかせ便なら送料無料。
+
+親の体力削られる前に試す価値ある。
+
+#育児パパ #お風呂おもちゃ #PR</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="card-head">
+    <img src="" alt="（おまかせ便で送料無料）おふろでペタペタ！ トミカ集合Aセット 059294 お風呂のおもちゃ おふろグッズ" loading="lazy">
+    <div class="info">
+      
+      <span class="genre-chip">子供 知育</span>
+      <div class="name">（おまかせ便で送料無料）おふろでペタペタ！ トミカ集合Aセット 059294 お風呂のおもちゃ おふろグッズ</div>
+      <div class="meta-row">
+        <span class="price">¥990</span>
+        <span class="stars">★★★★★</span>
+        <span>4.51(75件)</span>
+      </div>
+    </div>
+  </div>
+  <a class="btn-open" href="https://item.rakuten.co.jp/usakids/10001268/" target="_blank" rel="noopener">商品ページを開く ↗</a>
+  <div class="url-row">
+    <a href="https://item.rakuten.co.jp/usakids/10001268/" target="_blank" rel="noopener">https://item.rakuten.co.jp/usakids/10001268/</a>
+    <button class="copy-btn" onclick="copyPlain(this, 'https://item.rakuten.co.jp/usakids/10001268/')" type="button">URLコピー</button>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>楽天ROOM用</span>
+      <button class="copy-btn" onclick="copyText(this, 'room-3')" type="button">コピー</button>
+    </div>
+    <textarea id="room-3" readonly>🛁 お風呂を嫌がって毎晩格闘してた時期がある。
+
+おもちゃを変えただけで、あっさり自分から入るようになった日があって、ちょっと拍子抜けした記憶が。
+
+トミカのお風呂ペタペタAセット。壁に貼れるやつで、子どもが自分で並べて遊び始める🚗 大人が何かしなくてもいい時間ができるのが本当にありがたい✨
+
+990円でおまかせ便なら送料無料。試してみる価格としては十分だと思う。
+
+絵柄はBセットと異なるので、まずAから試してみて気に入ったら揃えるのもあり。
+
+#お風呂おもちゃ #トミカ #育児パパ #共働き家庭 #バストイ #お風呂タイム #子育て</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="card-head">
+    <img src="" alt="【保育士監修】☆最大1年間保証☆育児中のママさんへ！【送料無料】哺乳瓶スタンド 哺乳瓶ラック 水切り 哺乳瓶立て 哺乳瓶ホルダー 乾燥 乾燥ラック 食器 ボトル スタンド 瓶立て グラススタンド コップスタンド 哺乳瓶乾燥台 ボトルスタンド 洗浄 消毒 哺乳瓶洗い" loading="lazy">
+    <div class="info">
+      
+      <span class="genre-chip">子供 知育</span>
+      <div class="name">【保育士監修】☆最大1年間保証☆育児中のママさんへ！【送料無料】哺乳瓶スタンド 哺乳瓶ラック 水切り 哺乳瓶立て 哺乳瓶ホルダー 乾燥 乾燥ラック 食器 ボトル スタンド 瓶立て グラススタンド コップスタンド 哺乳瓶乾燥台 ボトルスタンド 洗浄 消毒 哺乳瓶洗い</div>
+      <div class="meta-row">
+        <span class="price">¥1,980</span>
+        <span class="stars">★★★★☆</span>
+        <span>4.5(22件)</span>
+      </div>
+    </div>
+  </div>
+  <a class="btn-open" href="https://item.rakuten.co.jp/marcyflower/hnbs/" target="_blank" rel="noopener">商品ページを開く ↗</a>
+  <div class="url-row">
+    <a href="https://item.rakuten.co.jp/marcyflower/hnbs/" target="_blank" rel="noopener">https://item.rakuten.co.jp/marcyflower/hnbs/</a>
+    <button class="copy-btn" onclick="copyPlain(this, 'https://item.rakuten.co.jp/marcyflower/hnbs/')" type="button">URLコピー</button>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>楽天ROOM用</span>
+      <button class="copy-btn" onclick="copyText(this, 'room-4')" type="button">コピー</button>
+    </div>
+    <textarea id="room-4" readonly>🍼 1,980円で哺乳瓶の乾燥置き場に悩まなくなりましたよ。
+
+哺乳瓶スタンド、保育士監修のモデルです。洗浄・消毒後に立てて乾燥できるので、シンク周りがスッキリします✨ 哺乳瓶だけじゃなくコップやボトルにも使えるのが地味に便利。
+
+最大1年間保証つきで、送料無料。まだレビューは22件ですが星4.5の評価です。
+
+注意点は、哺乳瓶のサイズによっては安定感が変わる場合があるので、口コミを事前にチェックしてから購入するのがおすすめ🫙
+
+#哺乳瓶スタンド #乾燥ラック #育児グッズ #育児パパ #共働き家庭 #赤ちゃんグッズ #新生児 #保育士監修</textarea>
+  </div>
+</div>
+</div>
+
+<h2 class="section-title">💬 今日のあるある投稿ネタ(商品リンクなし)</h2>
+<div class="cards">
+<div class="card">
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>あるある投稿 #1</span>
+      <button class="copy-btn" onclick="copyText(this, 'daily-0')" type="button">コピー</button>
+    </div>
+    <textarea id="daily-0" class="short" readonly>子どもの寝顔の写真、背景に畳まれてない洗濯物がしっかり映り込んでる。かわいい瞬間なのに投稿できない。#育児パパ</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>あるある投稿 #2</span>
+      <button class="copy-btn" onclick="copyText(this, 'daily-1')" type="button">コピー</button>
+    </div>
+    <textarea id="daily-1" class="short" readonly>朝ごはんに子どもには卵焼きと野菜とご飯と味噌汁を用意したのに、自分の朝ごはんは前日の残りのおかず一品だった。なんか違う気がするけど時間がないからまあいいかってなる。#共働き家庭</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>あるある投稿 #3</span>
+      <button class="copy-btn" onclick="copyText(this, 'daily-2')" type="button">コピー</button>
+    </div>
+    <textarea id="daily-2" class="short" readonly>夜中に子どもが泣いて、ぼーっとしながら抱っこしてたら急に「とうちゃん」って言った。疲れてたけどそのひと言で全部持ってかれた。</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>あるある投稿 #4</span>
+      <button class="copy-btn" onclick="copyText(this, 'daily-3')" type="button">コピー</button>
+    </div>
+    <textarea id="daily-3" class="short" readonly>育休取ってわかったこと。
+・「家事の量」を完全に把握してなかった
+・「中断」がこんなにしんどいとは思ってなかった
+・子どもと二人きりは楽しいけど孤独でもある
+なんで育休前の俺はあんなに他人事だったんだろうな。#育児パパ</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>あるある投稿 #5</span>
+      <button class="copy-btn" onclick="copyText(this, 'daily-4')" type="button">コピー</button>
+    </div>
+    <textarea id="daily-4" class="short" readonly>夜泣き対応した回数、妻と俺の記憶が全然違う。お互いがんばったと思ってるのは確かなんだけど、何回やったかの記憶はズレてる。これ我が家だけ?</textarea>
+  </div>
+</div>
+</div>
+
+<footer class="note">商品ページを確認し、投稿文をコピーして手動で投稿してください。<br>Threads/Xの商品紹介は1日1件・あるある投稿と織り交ぜてスパム判定を避けてください。<br>価格・レビューは選定時点の実データです。</footer>
+</div>
+<script>
+function flash(btn) {
+  const original = btn.textContent;
+  btn.textContent = 'コピーしました';
+  btn.classList.add('copied');
+  setTimeout(() => { btn.textContent = original; btn.classList.remove('copied'); }, 1500);
+}
+function copyText(btn, id) {
+  const el = document.getElementById(id);
+  el.select();
+  el.setSelectionRange(0, 999999);
+  navigator.clipboard.writeText(el.value).then(() => flash(btn)).catch(() => {
+    try { document.execCommand('copy'); flash(btn); } catch (e) {}
+  });
+}
+function copyPlain(btn, text) {
+  navigator.clipboard.writeText(text).then(() => flash(btn)).catch(() => {
+    const t = document.createElement('textarea');
+    t.value = text; document.body.appendChild(t); t.select();
+    try { document.execCommand('copy'); flash(btn); } catch (e) {}
+    document.body.removeChild(t);
+  });
+}
+</script>
+</body>
+</html>
