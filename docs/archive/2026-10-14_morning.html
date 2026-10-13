@@ -1,0 +1,414 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>本日の選定 - 楽天ROOM投稿リスト</title>
+<style>
+:root {
+  --bg: #f6f3ee;
+  --surface: #ffffff;
+  --ink: #23211d;
+  --ink-soft: #6b6459;
+  --accent: #a8382c;
+  --accent-ink: #fff6f2;
+  --good: #3f7d58;
+  --border: #e4ddd2;
+  --chip-bg: #efe8db;
+  color-scheme: light dark;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #16140f;
+    --surface: #211f1a;
+    --ink: #ece7dc;
+    --ink-soft: #a89e8d;
+    --accent: #e0685a;
+    --accent-ink: #1c0f0c;
+    --good: #6fb98a;
+    --border: #35322a;
+    --chip-bg: #2a2721;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #16140f; --surface: #211f1a; --ink: #ece7dc; --ink-soft: #a89e8d;
+  --accent: #e0685a; --accent-ink: #1c0f0c; --good: #6fb98a; --border: #35322a; --chip-bg: #2a2721;
+}
+:root[data-theme="light"] {
+  --bg: #f6f3ee; --surface: #ffffff; --ink: #23211d; --ink-soft: #6b6459;
+  --accent: #a8382c; --accent-ink: #fff6f2; --good: #3f7d58; --border: #e4ddd2; --chip-bg: #efe8db;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0; background: var(--bg); color: var(--ink);
+  font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Yu Gothic Medium", "Noto Sans JP", sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+.wrap { max-width: 640px; margin: 0 auto; padding: 0 16px 40px; }
+header.top {
+  position: sticky; top: 0; z-index: 5; background: var(--bg);
+  padding: 18px 16px 12px; border-bottom: 1px solid var(--border);
+  display: flex; align-items: baseline; justify-content: space-between; gap: 12px;
+}
+header.top .eyebrow {
+  font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-soft);
+  font-weight: 600; margin: 0 0 2px;
+}
+header.top h1 { font-size: 1.25rem; margin: 0; font-weight: 700; letter-spacing: -0.01em; }
+header.top .count {
+  background: var(--chip-bg); color: var(--ink-soft); font-size: 0.78rem; font-weight: 600;
+  padding: 5px 10px; border-radius: 999px; white-space: nowrap;
+}
+h2.section-title { font-size: 0.95rem; font-weight: 700; margin: 24px 0 12px; }
+.cards { display: flex; flex-direction: column; gap: 16px; margin-top: 18px; }
+.card {
+  background: var(--surface); border: 1px solid var(--border); border-radius: 16px;
+  padding: 16px; display: flex; flex-direction: column; gap: 12px;
+}
+.card.featured { border-color: var(--accent); border-width: 2px; }
+.featured-badge {
+  align-self: flex-start; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.03em;
+  color: var(--accent-ink); background: var(--accent); padding: 3px 9px; border-radius: 999px;
+}
+.card-head { display: flex; gap: 12px; }
+.card-head img {
+  width: 76px; height: 76px; object-fit: cover; border-radius: 10px;
+  border: 1px solid var(--border); background: var(--chip-bg); flex-shrink: 0;
+}
+.card-head .info { min-width: 0; flex: 1; display: flex; flex-direction: column; gap: 4px; }
+.genre-chip {
+  align-self: flex-start; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.03em;
+  color: var(--accent); background: color-mix(in srgb, var(--accent) 12%, transparent);
+  padding: 2px 8px; border-radius: 999px;
+}
+.name {
+  font-weight: 600; font-size: 0.94rem; line-height: 1.4;
+  display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
+}
+.meta-row { display: flex; align-items: baseline; gap: 8px; font-size: 0.82rem; color: var(--ink-soft); }
+.price { font-variant-numeric: tabular-nums; color: var(--ink); font-weight: 700; font-size: 1.05rem; }
+.stars { letter-spacing: -1px; color: var(--accent); }
+.btn-open {
+  display: flex; align-items: center; justify-content: center; gap: 6px;
+  background: var(--accent); color: var(--accent-ink); border: none; border-radius: 11px;
+  padding: 12px; font-weight: 700; font-size: 0.92rem; text-decoration: none;
+}
+.btn-open:active { opacity: 0.85; }
+.url-row {
+  display: flex; align-items: center; gap: 8px;
+  background: var(--chip-bg); border-radius: 9px; padding: 8px 10px;
+}
+.url-row a {
+  flex: 1; min-width: 0; font-size: 0.76rem; color: var(--accent);
+  word-break: break-all; line-height: 1.45; text-decoration: none;
+}
+.url-row a:active { text-decoration: underline; }
+.reason { font-size: 0.8rem; color: var(--ink-soft); }
+.caption-box { border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }
+.caption-head {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 8px 10px; background: var(--chip-bg);
+}
+.caption-head span {
+  font-size: 0.7rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-soft);
+}
+.copy-btn {
+  background: var(--surface); border: 1px solid var(--border); color: var(--ink);
+  border-radius: 7px; padding: 5px 11px; font-size: 0.76rem; font-weight: 600; cursor: pointer;
+}
+.copy-btn:focus-visible, .btn-open:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.copy-btn.copied { background: var(--good); border-color: var(--good); color: #fff; }
+textarea {
+  width: 100%; display: block; border: none; padding: 10px; font-size: 0.85rem; line-height: 1.55;
+  resize: vertical; min-height: 108px; font-family: inherit; background: var(--surface); color: var(--ink);
+}
+textarea.short { min-height: 60px; }
+textarea:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
+footer.note { margin-top: 22px; font-size: 0.76rem; color: var(--ink-soft); text-align: center; line-height: 1.6; }
+@media (prefers-reduced-motion: no-preference) {
+  .copy-btn { transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease; }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <div>
+    <p class="eyebrow">楽天ROOM 投稿リスト</p>
+    <h1>本日の選定</h1>
+  </div>
+  <span class="count">5件</span>
+</header>
+
+<h2 class="section-title">📦 商品(ROOM用、全5件)</h2>
+<div class="cards">
+<div class="card featured">
+  <div class="card-head">
+    <img src="https://thumbnail.image.rakuten.co.jp/@0_mall/life-mart/cabinet/13854796/imgrc0122005360.jpg?_ex=128x128" alt="【楽天1位】アイマスク 遮光 3D 立体 安眠 睡眠 まつ毛に触れにくい 鼻クッション サイズ調整 夜勤 昼寝 朝日対策 飛行機 旅行 夜行バス 仮眠 軽量 男女兼用 洗える 30日保証" loading="lazy">
+    <div class="info">
+      <span class="featured-badge">🔥 本日のThreads/Xピックアップ</span>
+      <span class="genre-chip">寝具 睡眠</span>
+      <div class="name">【楽天1位】アイマスク 遮光 3D 立体 安眠 睡眠 まつ毛に触れにくい 鼻クッション サイズ調整 夜勤 昼寝 朝日対策 飛行機 旅行 夜行バス 仮眠 軽量 男女兼用 洗える 30日保証</div>
+      <div class="meta-row">
+        <span class="price">¥1,280</span>
+        <span class="stars">★★★★☆</span>
+        <span>4.45(343件)</span>
+      </div>
+    </div>
+  </div>
+  <a class="btn-open" href="https://item.rakuten.co.jp/life-mart/10000579/" target="_blank" rel="noopener">商品ページを開く ↗</a>
+  <div class="url-row">
+    <a href="https://item.rakuten.co.jp/life-mart/10000579/" target="_blank" rel="noopener">https://item.rakuten.co.jp/life-mart/10000579/</a>
+    <button class="copy-btn" onclick="copyPlain(this, 'https://item.rakuten.co.jp/life-mart/10000579/')" type="button">URLコピー</button>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>楽天ROOM用</span>
+      <button class="copy-btn" onclick="copyText(this, 'room-0')" type="button">コピー</button>
+    </div>
+    <textarea id="room-0" readonly>😴 1,280円でここまで変わるの?って正直思った。
+夜勤明けや朝日で目が覚めてしまう問題、アイマスク選びで失敗してる人多いんだけど——これはちゃんとしてる。
+まつ毛に触れない3D立体設計で、鼻クッション付きだから光漏れもほぼゼロ。✨ サイズ調整できるから頭の大きさ問わずフィットする。洗えるのも衛生的でいい。
+レビュー343件・星4.45。30日保証付きなのも安心感ある。🛡️
+夜行バスや飛行機の移動中にも使えて汎用性高め。育児中の仮眠にも重宝してる。
+#PR #アイマスク #睡眠グッズ #安眠グッズ #育児パパ #共働き家庭 #時短育児 #楽天購入品</textarea>
+  </div>
+  <p class="reason">🔥 今日のピックアップ理由: 1,280円という価格の意外性と、レビュー343件・星4.45という実績の厚さが共働き育児パパ層に刺さりやすい。睡眠不足は共働き育児家庭の最大の悩みの一つであり、「睡眠の質を改善したい」という欲求に直撃する悩み解決度が5件中最も高い。</p>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>Threads用</span>
+      <button class="copy-btn" onclick="copyText(this, 'threads-0')" type="button">コピー</button>
+    </div>
+    <textarea id="threads-0" readonly>1,280円のアイマスクが想像以上だった話。
+
+まつ毛に当たらない3D立体設計で、鼻クッション付きで光漏れをシャットアウトしてくれる。サイズ調整もできるからフィット感がちゃんとある。
+
+育児してると「まとまった睡眠」が取れない日が続くから、せめて質だけはと思って試してみた——レビューが高評価なのも使ってみて納得した。
+
+洗えて30日保証付き。夜行バスの移動中にも使えて汎用性○。
+
+#PR #楽天アフィリエイト #アイマスク #睡眠グッズ #育児パパ</textarea>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>X用</span>
+      <button class="copy-btn" onclick="copyText(this, 'x-0')" type="button">コピー</button>
+    </div>
+    <textarea id="x-0" readonly>1,280円のアイマスク、思ってたより全然いい。
+
+まつ毛に当たらない3D立体で、鼻クッション付きで光漏れほぼゼロ。育児の疲れが抜けない夜に試したら普通に快適だった。洗えて30日保証付き。
+
+#PR #楽天アフィリエイト #アイマスク #育児パパ</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="card-head">
+    <img src="https://thumbnail.image.rakuten.co.jp/@0_mall/al-eli/cabinet/c4/ab-01.jpg?_ex=128x128" alt="ベビー 帽子 キッズ 帽子 赤ちゃん 新生児 キャップ 46cm 48 50 cm 春 夏 秋 冬 男の子 女の子 1歳 誕生日 日除け 日よけ uvカット メッシュ ハット サンハット つば くま耳 子供 保育園 かわいい 韓国 ベビー服 おくるみ ガーゼ 出産祝い プレゼント 【楽ギフ_○○】 【-】" loading="lazy">
+    <div class="info">
+      
+      <span class="genre-chip">育児グッズ</span>
+      <div class="name">ベビー 帽子 キッズ 帽子 赤ちゃん 新生児 キャップ 46cm 48 50 cm 春 夏 秋 冬 男の子 女の子 1歳 誕生日 日除け 日よけ uvカット メッシュ ハット サンハット つば くま耳 子供 保育園 かわいい 韓国 ベビー服 おくるみ ガーゼ 出産祝い プレゼント 【楽ギフ_○○】 【-】</div>
+      <div class="meta-row">
+        <span class="price">¥870</span>
+        <span class="stars">★★★★☆</span>
+        <span>4.34(257件)</span>
+      </div>
+    </div>
+  </div>
+  <a class="btn-open" href="https://item.rakuten.co.jp/al-eli/cap-04/" target="_blank" rel="noopener">商品ページを開く ↗</a>
+  <div class="url-row">
+    <a href="https://item.rakuten.co.jp/al-eli/cap-04/" target="_blank" rel="noopener">https://item.rakuten.co.jp/al-eli/cap-04/</a>
+    <button class="copy-btn" onclick="copyPlain(this, 'https://item.rakuten.co.jp/al-eli/cap-04/')" type="button">URLコピー</button>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>楽天ROOM用</span>
+      <button class="copy-btn" onclick="copyText(this, 'room-1')" type="button">コピー</button>
+    </div>
+    <textarea id="room-1" readonly>🧢 お散歩に出ようとしたら「帽子どこやったっけ」ってなる。
+日差しが強くなってきた頃、サイズが合わなくてベビー帽子選びに手こずった話は我が家だけじゃないはず。
+くま耳がかわいいこのベビーハット、46〜50cmまで対応してて頭周り違っても使いやすい。メッシュ素材で蒸れにくく、☀️ UVカット仕様。👒 春夏秋冬ずっと使えるのはありがたい。
+870円というコストもいい。出産祝いのプレゼント候補にも入れやすい。
+レビューの評価も高めで、みんな気に入ってる様子。
+#PR #ベビー帽子 #育児グッズ #出産祝い #UVカット #育児パパ #共働き家庭 #楽天購入品</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="card-head">
+    <img src="https://thumbnail.image.rakuten.co.jp/@0_mall/oobikiyaking/cabinet/ir4/4550010002144_01_r.jpg?_ex=128x128" alt="【レビュー500件 mitas公式】パイプクリーナー ワイヤーブラシ 水槽 ブラシ ホースクリーナー パイプブラシ ホースブラシ フレシキブル ワイヤー ステンレス 柔軟 長い 水槽用品 掃除 排水管 排水口 配管詰まり 水回り 曲がる アクアリウム 配管洗浄" loading="lazy">
+    <div class="info">
+      
+      <span class="genre-chip">掃除洗濯</span>
+      <div class="name">【レビュー500件 mitas公式】パイプクリーナー ワイヤーブラシ 水槽 ブラシ ホースクリーナー パイプブラシ ホースブラシ フレシキブル ワイヤー ステンレス 柔軟 長い 水槽用品 掃除 排水管 排水口 配管詰まり 水回り 曲がる アクアリウム 配管洗浄</div>
+      <div class="meta-row">
+        <span class="price">¥1,000</span>
+        <span class="stars">★★★★☆</span>
+        <span>4.18(528件)</span>
+      </div>
+    </div>
+  </div>
+  <a class="btn-open" href="https://item.rakuten.co.jp/oobikiyaking/4550010002144e/" target="_blank" rel="noopener">商品ページを開く ↗</a>
+  <div class="url-row">
+    <a href="https://item.rakuten.co.jp/oobikiyaking/4550010002144e/" target="_blank" rel="noopener">https://item.rakuten.co.jp/oobikiyaking/4550010002144e/</a>
+    <button class="copy-btn" onclick="copyPlain(this, 'https://item.rakuten.co.jp/oobikiyaking/4550010002144e/')" type="button">URLコピー</button>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>楽天ROOM用</span>
+      <button class="copy-btn" onclick="copyText(this, 'room-2')" type="button">コピー</button>
+    </div>
+    <textarea id="room-2" readonly>🔧 レビュー528件・星4.18。ここまで使われてるの、ちゃんと理由があった。
+排水口・水槽・細いホースの奥……手が届かない場所の詰まりって放置しがちだけど、柔軟なワイヤーブラシなら奥まで届く。ステンレス製でサビに強く、曲がるから複雑な配管にも対応。💪
+1,000円でこの水回り問題に向き合えるのは正直助かる。
+アクアリウム用品としても使えるし、キッチン・お風呂どちらにも対応。汎用性が高い一本。
+ずっと放置してた詰まり、これで一発だった。✨
+#PR #パイプクリーナー #掃除グッズ #水回り掃除 #育児パパ #共働き家庭 #時短掃除 #楽天購入品</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="card-head">
+    <img src="https://thumbnail.image.rakuten.co.jp/@0_mall/baby-street/cabinet/05878646/05878650/06923360/20231102-19.jpg?_ex=128x128" alt="【リニューアル版】【特典付き】使い捨て哺乳瓶　ステリボトル　5個入りパック×2パック　10個セット　クロスカット穴　旅行　レジャー　災害　帰省　おでかけ" loading="lazy">
+    <div class="info">
+      
+      <span class="genre-chip">子供 知育</span>
+      <div class="name">【リニューアル版】【特典付き】使い捨て哺乳瓶　ステリボトル　5個入りパック×2パック　10個セット　クロスカット穴　旅行　レジャー　災害　帰省　おでかけ</div>
+      <div class="meta-row">
+        <span class="price">¥3,520</span>
+        <span class="stars">★★★★☆</span>
+        <span>3.9(42件)</span>
+      </div>
+    </div>
+  </div>
+  <a class="btn-open" href="https://item.rakuten.co.jp/baby-street/202s00108-2/" target="_blank" rel="noopener">商品ページを開く ↗</a>
+  <div class="url-row">
+    <a href="https://item.rakuten.co.jp/baby-street/202s00108-2/" target="_blank" rel="noopener">https://item.rakuten.co.jp/baby-street/202s00108-2/</a>
+    <button class="copy-btn" onclick="copyPlain(this, 'https://item.rakuten.co.jp/baby-street/202s00108-2/')" type="button">URLコピー</button>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>楽天ROOM用</span>
+      <button class="copy-btn" onclick="copyText(this, 'room-3')" type="button">コピー</button>
+    </div>
+    <textarea id="room-3" readonly>🍼 旅行先で哺乳瓶の洗浄・消毒どうしてる問題、これで解決した。
+帰省や旅行でミルク育児してると、哺乳瓶+消毒グッズ+洗剤と荷物がどんどん増えていく。🎒外出先で水場を探して洗う手間も地味にしんどい。
+使い捨て哺乳瓶なら開封してそのまま使えて、使い終わったら捨てるだけ。✈️ 10個セットで3,520円。旅行・帰省・災害備蓄として一箱あると安心感がちがう。
+日常的に使うものじゃないけど、持ってないと困る場面がある——そういう備えの一つ。
+#PR #使い捨て哺乳瓶 #育児グッズ #旅行育児 #帰省準備 #育児パパ #共働き家庭 #楽天購入品</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="card-head">
+    <img src="https://thumbnail.image.rakuten.co.jp/@0_mall/at-life/cabinet/pic4902/4902424422764_1.jpg?_ex=128x128" alt="【春夏限定】フマキラー　どこでもベープ蚊取り 120日 取替え用　1個入 ( 4902424422764 )※無くなり次第終了" loading="lazy">
+    <div class="info">
+      
+      <span class="genre-chip">育児グッズ</span>
+      <div class="name">【春夏限定】フマキラー　どこでもベープ蚊取り 120日 取替え用　1個入 ( 4902424422764 )※無くなり次第終了</div>
+      <div class="meta-row">
+        <span class="price">¥998</span>
+        <span class="stars">★★★★☆</span>
+        <span>4.43(21件)</span>
+      </div>
+    </div>
+  </div>
+  <a class="btn-open" href="https://item.rakuten.co.jp/at-life/4902424422764/" target="_blank" rel="noopener">商品ページを開く ↗</a>
+  <div class="url-row">
+    <a href="https://item.rakuten.co.jp/at-life/4902424422764/" target="_blank" rel="noopener">https://item.rakuten.co.jp/at-life/4902424422764/</a>
+    <button class="copy-btn" onclick="copyPlain(this, 'https://item.rakuten.co.jp/at-life/4902424422764/')" type="button">URLコピー</button>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>楽天ROOM用</span>
+      <button class="copy-btn" onclick="copyText(this, 'room-4')" type="button">コピー</button>
+    </div>
+    <textarea id="room-4" readonly>🦟 「120日取替え不要」って聞いて最初は半信半疑だった。
+赤ちゃんがいると、蚊に刺されないかがずっと気になる季節がある。煙が出ないから室内でも使いやすく、コンセントに挿すだけで動く。🔌 取替え用なので本体持ってる人はすぐ使える。
+998円という手頃さで、在庫があるうちに追加しておくのはありだと思う。春夏限定品。
+星4.43と評価も高め。🌿
+ベランダ・室内・外出先と場所を問わず使えるのがフマキラーの強み。
+#PR #蚊取り #フマキラー #虫対策 #育児グッズ #育児パパ #共働き家庭 #楽天購入品</textarea>
+  </div>
+</div>
+</div>
+
+<h2 class="section-title">💬 今日のあるある投稿ネタ(商品リンクなし)</h2>
+<div class="cards">
+<div class="card">
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>あるある投稿 #1</span>
+      <button class="copy-btn" onclick="copyText(this, 'daily-0')" type="button">コピー</button>
+    </div>
+    <textarea id="daily-0" class="short" readonly>やっと寝たと思ってそっとベッドに置いた瞬間、また泣き出す。この精度どこで学んだんだろ。#育児パパ</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>あるある投稿 #2</span>
+      <button class="copy-btn" onclick="copyText(this, 'daily-1')" type="button">コピー</button>
+    </div>
+    <textarea id="daily-1" class="short" readonly>家事育児でいちばんしんどいの、「途中で止められること」なんだよな。ご飯作ってる最中に泣く、洗濯畳んでる最中に散らかされる、風呂入ってる最中に呼ばれる。終わりが見えない感じが地味に体力を削ってくる。#共働き家庭</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>あるある投稿 #3</span>
+      <button class="copy-btn" onclick="copyText(this, 'daily-2')" type="button">コピー</button>
+    </div>
+    <textarea id="daily-2" class="short" readonly>子の寝顔をスマホで撮るとき、いつも背景に洗濯物が入り込んでる。どんなにかわいい顔してても背景がダメなやつ。</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>あるある投稿 #4</span>
+      <button class="copy-btn" onclick="copyText(this, 'daily-3')" type="button">コピー</button>
+    </div>
+    <textarea id="daily-3" class="short" readonly>夕方に「もう限界」ってなってたのに、子どもが「とーちゃん」って呼んできた瞬間リセットされた。これが沼なのわかってる。😂</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>あるある投稿 #5</span>
+      <button class="copy-btn" onclick="copyText(this, 'daily-4')" type="button">コピー</button>
+    </div>
+    <textarea id="daily-4" class="short" readonly>子どもにイライラしやすい日のパターン、書き出したら毎回同じだった。
+・睡眠4時間以下の翌日
+・昼食を立ったまま食べた日
+・パートナーとまともに話せてない日
+
+全部自分の問題だった。#育児パパ #共働き家庭</textarea>
+  </div>
+</div>
+</div>
+
+<footer class="note">商品ページを確認し、投稿文をコピーして手動で投稿してください。<br>Threads/Xの商品紹介は1日1件・あるある投稿と織り交ぜてスパム判定を避けてください。<br>価格・レビューは選定時点の実データです。</footer>
+</div>
+<script>
+function flash(btn) {
+  const original = btn.textContent;
+  btn.textContent = 'コピーしました';
+  btn.classList.add('copied');
+  setTimeout(() => { btn.textContent = original; btn.classList.remove('copied'); }, 1500);
+}
+function copyText(btn, id) {
+  const el = document.getElementById(id);
+  el.select();
+  el.setSelectionRange(0, 999999);
+  navigator.clipboard.writeText(el.value).then(() => flash(btn)).catch(() => {
+    try { document.execCommand('copy'); flash(btn); } catch (e) {}
+  });
+}
+function copyPlain(btn, text) {
+  navigator.clipboard.writeText(text).then(() => flash(btn)).catch(() => {
+    const t = document.createElement('textarea');
+    t.value = text; document.body.appendChild(t); t.select();
+    try { document.execCommand('copy'); flash(btn); } catch (e) {}
+    document.body.removeChild(t);
+  });
+}
+</script>
+</body>
+</html>

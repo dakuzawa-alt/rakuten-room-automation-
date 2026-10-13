@@ -3874,6 +3874,53 @@
       "channels": [
         "room"
       ]
+    },
+    {
+      "itemCode": "life-mart:10000579",
+      "itemName": "アイマスク 遮光 3D 立体 安眠 睡眠 まつ毛に触れにくい 鼻クッション サイズ調整 夜勤 昼寝 朝日対策 飛行機 旅",
+      "date": "2026-10-14",
+      "slot": "morning",
+      "channels": [
+        "room",
+        "threads",
+        "x"
+      ]
+    },
+    {
+      "itemCode": "al-eli:10000916",
+      "itemName": "ベビー 帽子 キッズ 帽子 赤ちゃん 新生児 キャップ 46cm 48 50 cm 春 夏 秋 冬 男の子 女の子 1歳",
+      "date": "2026-10-14",
+      "slot": "morning",
+      "channels": [
+        "room"
+      ]
+    },
+    {
+      "itemCode": "oobikiyaking:10054836",
+      "itemName": "パイプクリーナー ワイヤーブラシ 水槽 ブラシ ホースクリーナー パイプブラシ ホースブラシ フレシキブル ワイヤー ス",
+      "date": "2026-10-14",
+      "slot": "morning",
+      "channels": [
+        "room"
+      ]
+    },
+    {
+      "itemCode": "baby-street:10011490",
+      "itemName": "使い捨て哺乳瓶　ステリボトル　5個入りパック×2パック　10個セット　クロスカット穴　旅行　レジャー　災害　帰省　おでか",
+      "date": "2026-10-14",
+      "slot": "morning",
+      "channels": [
+        "room"
+      ]
+    },
+    {
+      "itemCode": "at-life:10002659",
+      "itemName": "フマキラー　どこでもベープ蚊取り 120日 取替え用　1個入 ( 4902424422764 )※無くなり次第終了",
+      "date": "2026-10-14",
+      "slot": "morning",
+      "channels": [
+        "room"
+      ]
     }
   ]
 }
