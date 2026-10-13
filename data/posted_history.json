@@ -3827,6 +3827,53 @@
       "channels": [
         "room"
       ]
+    },
+    {
+      "itemCode": "mystic-r:10000127",
+      "itemName": "アトマイザー 改良版 香水 5ml 10ml おしゃれ かわいい 高級感 詰め替え ボトル スプレー コンパクト ミニ ",
+      "date": "2026-10-13",
+      "slot": "night",
+      "channels": [
+        "room"
+      ]
+    },
+    {
+      "itemCode": "fukuryusen:10000013",
+      "itemName": "ペット 消臭 詰め替え「ペレッティー」おしっこ・トイレ臭に 詰替用1L スプレー約2本分 Peletty 犬 猫 部屋 ",
+      "date": "2026-10-13",
+      "slot": "night",
+      "channels": [
+        "room"
+      ]
+    },
+    {
+      "itemCode": "majimaya:10002005",
+      "itemName": "計量カップセット 3個セット（プラスチック）",
+      "date": "2026-10-13",
+      "slot": "night",
+      "channels": [
+        "room"
+      ]
+    },
+    {
+      "itemCode": "look-it:10545929",
+      "itemName": "デスクワゴン 3段 鍵付き キャスター付き サイドワゴン サイドテーブル 袖机 ファイルワゴン デスク下 収納 ワゴン ",
+      "date": "2026-10-13",
+      "slot": "night",
+      "channels": [
+        "room",
+        "threads",
+        "x"
+      ]
+    },
+    {
+      "itemCode": "stst:10241692",
+      "itemName": "ボウル ステンレス 取っ手付き セット 調理器具 おしゃれ 計量カップ 耐熱 目盛り 付き カップ キッチンツール 燕三",
+      "date": "2026-10-13",
+      "slot": "night",
+      "channels": [
+        "room"
+      ]
     }
   ]
 }

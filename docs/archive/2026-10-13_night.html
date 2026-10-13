@@ -1,0 +1,421 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>2026-10-13 夜 - 楽天ROOM投稿リスト</title>
+<style>
+:root {
+  --bg: #f6f3ee;
+  --surface: #ffffff;
+  --ink: #23211d;
+  --ink-soft: #6b6459;
+  --accent: #a8382c;
+  --accent-ink: #fff6f2;
+  --good: #3f7d58;
+  --border: #e4ddd2;
+  --chip-bg: #efe8db;
+  color-scheme: light dark;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #16140f;
+    --surface: #211f1a;
+    --ink: #ece7dc;
+    --ink-soft: #a89e8d;
+    --accent: #e0685a;
+    --accent-ink: #1c0f0c;
+    --good: #6fb98a;
+    --border: #35322a;
+    --chip-bg: #2a2721;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #16140f; --surface: #211f1a; --ink: #ece7dc; --ink-soft: #a89e8d;
+  --accent: #e0685a; --accent-ink: #1c0f0c; --good: #6fb98a; --border: #35322a; --chip-bg: #2a2721;
+}
+:root[data-theme="light"] {
+  --bg: #f6f3ee; --surface: #ffffff; --ink: #23211d; --ink-soft: #6b6459;
+  --accent: #a8382c; --accent-ink: #fff6f2; --good: #3f7d58; --border: #e4ddd2; --chip-bg: #efe8db;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0; background: var(--bg); color: var(--ink);
+  font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Yu Gothic Medium", "Noto Sans JP", sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+.wrap { max-width: 640px; margin: 0 auto; padding: 0 16px 40px; }
+header.top {
+  position: sticky; top: 0; z-index: 5; background: var(--bg);
+  padding: 18px 16px 12px; border-bottom: 1px solid var(--border);
+  display: flex; align-items: baseline; justify-content: space-between; gap: 12px;
+}
+header.top .eyebrow {
+  font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-soft);
+  font-weight: 600; margin: 0 0 2px;
+}
+header.top h1 { font-size: 1.25rem; margin: 0; font-weight: 700; letter-spacing: -0.01em; }
+header.top .count {
+  background: var(--chip-bg); color: var(--ink-soft); font-size: 0.78rem; font-weight: 600;
+  padding: 5px 10px; border-radius: 999px; white-space: nowrap;
+}
+h2.section-title { font-size: 0.95rem; font-weight: 700; margin: 24px 0 12px; }
+.cards { display: flex; flex-direction: column; gap: 16px; margin-top: 18px; }
+.card {
+  background: var(--surface); border: 1px solid var(--border); border-radius: 16px;
+  padding: 16px; display: flex; flex-direction: column; gap: 12px;
+}
+.card.featured { border-color: var(--accent); border-width: 2px; }
+.featured-badge {
+  align-self: flex-start; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.03em;
+  color: var(--accent-ink); background: var(--accent); padding: 3px 9px; border-radius: 999px;
+}
+.card-head { display: flex; gap: 12px; }
+.card-head img {
+  width: 76px; height: 76px; object-fit: cover; border-radius: 10px;
+  border: 1px solid var(--border); background: var(--chip-bg); flex-shrink: 0;
+}
+.card-head .info { min-width: 0; flex: 1; display: flex; flex-direction: column; gap: 4px; }
+.genre-chip {
+  align-self: flex-start; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.03em;
+  color: var(--accent); background: color-mix(in srgb, var(--accent) 12%, transparent);
+  padding: 2px 8px; border-radius: 999px;
+}
+.name {
+  font-weight: 600; font-size: 0.94rem; line-height: 1.4;
+  display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
+}
+.meta-row { display: flex; align-items: baseline; gap: 8px; font-size: 0.82rem; color: var(--ink-soft); }
+.price { font-variant-numeric: tabular-nums; color: var(--ink); font-weight: 700; font-size: 1.05rem; }
+.stars { letter-spacing: -1px; color: var(--accent); }
+.btn-open {
+  display: flex; align-items: center; justify-content: center; gap: 6px;
+  background: var(--accent); color: var(--accent-ink); border: none; border-radius: 11px;
+  padding: 12px; font-weight: 700; font-size: 0.92rem; text-decoration: none;
+}
+.btn-open:active { opacity: 0.85; }
+.url-row {
+  display: flex; align-items: center; gap: 8px;
+  background: var(--chip-bg); border-radius: 9px; padding: 8px 10px;
+}
+.url-row a {
+  flex: 1; min-width: 0; font-size: 0.76rem; color: var(--accent);
+  word-break: break-all; line-height: 1.45; text-decoration: none;
+}
+.url-row a:active { text-decoration: underline; }
+.reason { font-size: 0.8rem; color: var(--ink-soft); }
+.caption-box { border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }
+.caption-head {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 8px 10px; background: var(--chip-bg);
+}
+.caption-head span {
+  font-size: 0.7rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-soft);
+}
+.copy-btn {
+  background: var(--surface); border: 1px solid var(--border); color: var(--ink);
+  border-radius: 7px; padding: 5px 11px; font-size: 0.76rem; font-weight: 600; cursor: pointer;
+}
+.copy-btn:focus-visible, .btn-open:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.copy-btn.copied { background: var(--good); border-color: var(--good); color: #fff; }
+textarea {
+  width: 100%; display: block; border: none; padding: 10px; font-size: 0.85rem; line-height: 1.55;
+  resize: vertical; min-height: 108px; font-family: inherit; background: var(--surface); color: var(--ink);
+}
+textarea.short { min-height: 60px; }
+textarea:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
+footer.note { margin-top: 22px; font-size: 0.76rem; color: var(--ink-soft); text-align: center; line-height: 1.6; }
+@media (prefers-reduced-motion: no-preference) {
+  .copy-btn { transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease; }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <div>
+    <p class="eyebrow">楽天ROOM 投稿リスト</p>
+    <h1>2026-10-13 夜</h1>
+  </div>
+  <span class="count">5件</span>
+</header>
+
+<h2 class="section-title">📦 商品(ROOM用、全5件)</h2>
+<div class="cards">
+<div class="card">
+  <div class="card-head">
+    <img src="https://thumbnail.image.rakuten.co.jp/@0_mall/mystic-r/cabinet/item/atomizer1/atomizer-r34.jpg?_ex=128x128" alt="【適合数No,1 レビュー1700件超！40週連続1位★3万本突破】 アトマイザー 改良版 香水 5ml 10ml おしゃれ かわいい 高級感 詰め替え ボトル スプレー コンパクト ミニ 軽量 携帯 簡単 持ち運び クイックアトマイザー ワンプッシュ パフューム" loading="lazy">
+    <div class="info">
+      
+      <span class="genre-chip">日用品 衛生</span>
+      <div class="name">【適合数No,1 レビュー1700件超！40週連続1位★3万本突破】 アトマイザー 改良版 香水 5ml 10ml おしゃれ かわいい 高級感 詰め替え ボトル スプレー コンパクト ミニ 軽量 携帯 簡単 持ち運び クイックアトマイザー ワンプッシュ パフューム</div>
+      <div class="meta-row">
+        <span class="price">¥1,480</span>
+        <span class="stars">★★★★★</span>
+        <span>4.74(1702件)</span>
+      </div>
+    </div>
+  </div>
+  <a class="btn-open" href="https://item.rakuten.co.jp/mystic-r/atomizer1/" target="_blank" rel="noopener">商品ページを開く ↗</a>
+  <div class="url-row">
+    <a href="https://item.rakuten.co.jp/mystic-r/atomizer1/" target="_blank" rel="noopener">https://item.rakuten.co.jp/mystic-r/atomizer1/</a>
+    <button class="copy-btn" onclick="copyPlain(this, 'https://item.rakuten.co.jp/mystic-r/atomizer1/')" type="button">URLコピー</button>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>楽天ROOM用</span>
+      <button class="copy-btn" onclick="copyText(this, 'room-0')" type="button">コピー</button>
+    </div>
+    <textarea id="room-0" readonly>✨1,480円なのにレビュー1,702件・星4.74。このアトマイザー、外出が多い共働き家庭にじわじわ広まってますよ。
+
+好きな香水を5mlまたは10mlだけ移して持ち歩けるコンパクトなスプレーボトル。ハンドバッグの端に忍ばせておけば、ランチ後も仕事終わりの移動中もサッとひと吹きできます🌸。
+
+揮発しにくい透明ボトルなので量の残りが一目でわかり、液漏れも気になりにくい。旅行・出張でメインボトルを持ち歩かなくていい手軽さが地味に便利ですよ✨✈カバンをよく替える人にこそ試してほしい一品。
+
+#アトマイザー #香水 #携帯用香水 #旅行グッズ #出張グッズ #共働き家庭 #時短グッズ #楽天 #PR</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="card-head">
+    <img src="https://thumbnail.image.rakuten.co.jp/@0_mall/fukuryusen/cabinet/09576462/imgrc0089525903.jpg?_ex=128x128" alt="ペット 消臭 詰め替え「ペレッティー」おしっこ・トイレ臭に 詰替用1L スプレー約2本分 Peletty 犬 猫 部屋 壁紙 獣臭 無香料 除菌 リピーター定番" loading="lazy">
+    <div class="info">
+      
+      <span class="genre-chip">日用品 衛生</span>
+      <div class="name">ペット 消臭 詰め替え「ペレッティー」おしっこ・トイレ臭に 詰替用1L スプレー約2本分 Peletty 犬 猫 部屋 壁紙 獣臭 無香料 除菌 リピーター定番</div>
+      <div class="meta-row">
+        <span class="price">¥3,055</span>
+        <span class="stars">★★★★★</span>
+        <span>4.69(425件)</span>
+      </div>
+    </div>
+  </div>
+  <a class="btn-open" href="https://item.rakuten.co.jp/fukuryusen/pele-002/" target="_blank" rel="noopener">商品ページを開く ↗</a>
+  <div class="url-row">
+    <a href="https://item.rakuten.co.jp/fukuryusen/pele-002/" target="_blank" rel="noopener">https://item.rakuten.co.jp/fukuryusen/pele-002/</a>
+    <button class="copy-btn" onclick="copyPlain(this, 'https://item.rakuten.co.jp/fukuryusen/pele-002/')" type="button">URLコピー</button>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>楽天ROOM用</span>
+      <button class="copy-btn" onclick="copyText(this, 'room-1')" type="button">コピー</button>
+    </div>
+    <textarea id="room-1" readonly>🐶赤ちゃんが床をハイハイするようになってから、ペットのにおいが急に気になりはじめた。
+
+トイレ周りを掃除してもどこかに残るあの獣臭。消臭スプレーをいくつか試したけど、なんとなく誤魔化してる感じがずっとあった。
+
+このペレッティーは東名阪エリアの動物病院で使われているプロ用の消臭・除菌剤✅。無香料なのに翌朝のにおいの残り方が全然違う。詰め替えパック(1L)でスプレーボトル約2本分、コスパよく使い続けられるのも助かってる。
+
+子どもとペットが一緒にいる家庭には本当に試してほしい一品🏠✨
+
+#ペット消臭 #消臭 #除菌 #ペレッティー #犬のいる暮らし #猫のいる暮らし #育児パパ #共働き家庭 #PR</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="card-head">
+    <img src="https://thumbnail.image.rakuten.co.jp/@0_mall/majimaya/cabinet/ikou_20090622/img10012339709.jpg?_ex=128x128" alt="計量カップセット 3個セット（プラスチック）" loading="lazy">
+    <div class="info">
+      
+      <span class="genre-chip">キッチン調理</span>
+      <div class="name">計量カップセット 3個セット（プラスチック）</div>
+      <div class="meta-row">
+        <span class="price">¥968</span>
+        <span class="stars">★★★★★</span>
+        <span>4.65(99件)</span>
+      </div>
+    </div>
+  </div>
+  <a class="btn-open" href="https://item.rakuten.co.jp/majimaya/883104/" target="_blank" rel="noopener">商品ページを開く ↗</a>
+  <div class="url-row">
+    <a href="https://item.rakuten.co.jp/majimaya/883104/" target="_blank" rel="noopener">https://item.rakuten.co.jp/majimaya/883104/</a>
+    <button class="copy-btn" onclick="copyPlain(this, 'https://item.rakuten.co.jp/majimaya/883104/')" type="button">URLコピー</button>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>楽天ROOM用</span>
+      <button class="copy-btn" onclick="copyText(this, 'room-2')" type="button">コピー</button>
+    </div>
+    <textarea id="room-2" readonly>🍰たった968円なのに、10ml・30ml・50mlの3サイズがセットで揃うの、これは便利ですよ。
+
+お菓子作りをしていると、普通の計量カップでは量れない少量を正確に量りたい場面が意外と多い。バニラエッセンス、油、リキュール……ちょっとした量をティースプーンや感覚でごまかしていた方は多いはず📏。
+
+メタクリル樹脂製で目盛りが読みやすく、3個重ねてコンパクトに収納できるのも◎。レビュー99件・星4.65と、使った人の評価もしっかり高い⭐。製菓道具を一から揃えたい方にも、今あるセットをちょっとアップデートしたい方にもおすすめの一品ですよ。
+
+#計量カップ #製菓道具 #お菓子作り #キッチングッズ #時短料理 #育児パパ #共働き家庭 #楽天 #PR</textarea>
+  </div>
+</div>
+<div class="card featured">
+  <div class="card-head">
+    <img src="https://thumbnail.image.rakuten.co.jp/@0_mall/look-it/cabinet/nf-001/nf-014/nf-wg-s_thum.jpg?_ex=128x128" alt="【P5倍10/15 13-15時&amp;最大1万円クーポン10/14-16】 デスクワゴン 3段 鍵付き キャスター付き サイドワゴン サイドテーブル 袖机 ファイルワゴン デスク下 収納 ワゴン サイドチェスト A4 おしゃれ 完成品 WG-S" loading="lazy">
+    <div class="info">
+      <span class="featured-badge">🔥 本日のThreads/Xピックアップ</span>
+      <span class="genre-chip">収納整理</span>
+      <div class="name">【P5倍10/15 13-15時&amp;最大1万円クーポン10/14-16】 デスクワゴン 3段 鍵付き キャスター付き サイドワゴン サイドテーブル 袖机 ファイルワゴン デスク下 収納 ワゴン サイドチェスト A4 おしゃれ 完成品 WG-S</div>
+      <div class="meta-row">
+        <span class="price">¥11,880</span>
+        <span class="stars">★★★★☆</span>
+        <span>4.46(351件)</span>
+      </div>
+    </div>
+  </div>
+  <a class="btn-open" href="https://item.rakuten.co.jp/look-it/efg-s3/" target="_blank" rel="noopener">商品ページを開く ↗</a>
+  <div class="url-row">
+    <a href="https://item.rakuten.co.jp/look-it/efg-s3/" target="_blank" rel="noopener">https://item.rakuten.co.jp/look-it/efg-s3/</a>
+    <button class="copy-btn" onclick="copyPlain(this, 'https://item.rakuten.co.jp/look-it/efg-s3/')" type="button">URLコピー</button>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>楽天ROOM用</span>
+      <button class="copy-btn" onclick="copyText(this, 'room-3')" type="button">コピー</button>
+    </div>
+    <textarea id="room-3" readonly>💼在宅ワーク中に子どもが引き出しを開けてぐちゃぐちゃにしたとき、鍵付きのワゴンを買えばよかったと思った。
+
+このデスクワゴンは完成品で届いて組み立て不要。キャスター付きでデスク下にすっきり収まり、上段の鍵で全段ロックできるオールロック式なので大事な書類もしまっておける。
+
+A4ファイルが縦に入るサイズで、フルオープンできる引き出しはものが取り出しやすい📁。「完成品でこの価格はありがたい」というレビューが多くて351件・星4.46の評価もうなずける。
+
+テレワーク中の作業スペースを整えたい共働き家庭にはかなり刺さる収納だと思います🔑✨
+
+#デスクワゴン #テレワーク #在宅ワーク #収納家具 #サイドワゴン #育児パパ #共働き家庭 #楽天 #PR</textarea>
+  </div>
+  <p class="reason">🔥 今日のピックアップ理由: 11,880円という価格帯ながら「完成品・鍵付き・キャスター付き」の三拍子が在宅ワーク育児パパの具体的な悩み(子どもに荒らされる書類、組み立ての手間)を直撃しており、レビュー351件・4.46の実績も説得力を後押しするため。</p>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>Threads用</span>
+      <button class="copy-btn" onclick="copyText(this, 'threads-0')" type="button">コピー</button>
+    </div>
+    <textarea id="threads-0" readonly>在宅ワーク中、子どもに引き出し開けられて書類ぐちゃぐちゃにされたことある人〜
+
+鍵付きのデスクワゴン、これ正解だった。キャスター付きでデスク下にすっと入るし、届いたときに完成品だから組み立て不要。鍵は上段だけかけると全段まとめてロックできるオールロック式。
+
+A4ファイルも縦に入るから仕事書類まとめて入れてる。「完成品でこの価格は助かる」って声が多くてレビュー351件・4.46。テレワーク家庭には刺さると思う。
+
+#デスクワゴン #テレワーク #在宅ワーク #育児パパ #収納 #PR</textarea>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>X用</span>
+      <button class="copy-btn" onclick="copyText(this, 'x-0')" type="button">コピー</button>
+    </div>
+    <textarea id="x-0" readonly>在宅中に子どもが引き出しぐちゃぐちゃにしてから、鍵付きワゴン探してた。
+
+完成品で届く・キャスター付き・上段鍵で全段ロック。デスク下にすっきり収まる。書類守れる安心感ある。
+
+#デスクワゴン #テレワーク #在宅ワーク #育児パパ #PR</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="card-head">
+    <img src="https://thumbnail.image.rakuten.co.jp/@0_mall/stst/cabinet/item/2041/161859/p_161859_1.jpg?_ex=128x128" alt="ボウル ステンレス 取っ手付き セット 調理器具 おしゃれ 計量カップ 耐熱 目盛り 付き カップ キッチンツール 燕三条／ Three Snow 新越ワークス/藤井器物製作所の計量カップセット" loading="lazy">
+    <div class="info">
+      
+      <span class="genre-chip">キッチン調理</span>
+      <div class="name">ボウル ステンレス 取っ手付き セット 調理器具 おしゃれ 計量カップ 耐熱 目盛り 付き カップ キッチンツール 燕三条／ Three Snow 新越ワークス/藤井器物製作所の計量カップセット</div>
+      <div class="meta-row">
+        <span class="price">¥2,948</span>
+        <span class="stars">★★★★★</span>
+        <span>4.84(55件)</span>
+      </div>
+    </div>
+  </div>
+  <a class="btn-open" href="https://item.rakuten.co.jp/stst/ej286-00-0000-b657/" target="_blank" rel="noopener">商品ページを開く ↗</a>
+  <div class="url-row">
+    <a href="https://item.rakuten.co.jp/stst/ej286-00-0000-b657/" target="_blank" rel="noopener">https://item.rakuten.co.jp/stst/ej286-00-0000-b657/</a>
+    <button class="copy-btn" onclick="copyPlain(this, 'https://item.rakuten.co.jp/stst/ej286-00-0000-b657/')" type="button">URLコピー</button>
+  </div>
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>楽天ROOM用</span>
+      <button class="copy-btn" onclick="copyText(this, 'room-4')" type="button">コピー</button>
+    </div>
+    <textarea id="room-4" readonly>🍳燕三条製のボウルが2,948円で、星評価が4.84というのは正直かなりすごい数字ですよ。
+
+「燕三条」は新潟県の金属加工産地で品質のブランドとして知られているもの。この取っ手付きステンレスボウルは18-8ステンレス使用で、大(850ml)・小(300ml)の2サイズセット。
+
+取っ手があるだけで、熱々の状態でもチルドの材料を扱うときも安定して持てるのが想像以上に便利。直火対応・食洗機対応なので日常使いできる耐久性があります💪。目盛り付きなので計量カップとしても使えて、キッチンでの出番が多い一品ですよ⭐。
+
+#燕三条 #ステンレスボウル #調理器具 #キッチングッズ #時短料理 #取っ手付き #育児パパ #共働き家庭 #楽天 #PR</textarea>
+  </div>
+</div>
+</div>
+
+<h2 class="section-title">💬 今日のあるある投稿ネタ(商品リンクなし)</h2>
+<div class="cards">
+<div class="card">
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>あるある投稿 #1</span>
+      <button class="copy-btn" onclick="copyText(this, 'daily-0')" type="button">コピー</button>
+    </div>
+    <textarea id="daily-0" class="short" readonly>子どもを寝かしつけた後にやっと自分の時間が来たと思ったら、もう23時だった。</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>あるある投稿 #2</span>
+      <button class="copy-btn" onclick="copyText(this, 'daily-1')" type="button">コピー</button>
+    </div>
+    <textarea id="daily-1" class="short" readonly>子どものかわいい寝顔の写真、撮るたびに背景に脱いだままの服とか開けっぱなしの引き出しが映り込む。加工で消せないこともないけど、これはこれでリアルな記録な気がして消してない。 #育児パパ</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>あるある投稿 #3</span>
+      <button class="copy-btn" onclick="copyText(this, 'daily-2')" type="button">コピー</button>
+    </div>
+    <textarea id="daily-2" class="short" readonly>夜泣きで何回起きたかの記憶、夫婦で全然違うやつ。俺は「2回起きた」って思ってるのに妻は「4回だよ」って言う。お互い本気でそう思ってるやつで、どっちも嘘じゃない。どういう仕組みなんだろうな。</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>あるある投稿 #4</span>
+      <button class="copy-btn" onclick="copyText(this, 'daily-3')" type="button">コピー</button>
+    </div>
+    <textarea id="daily-3" class="short" readonly>子どもがぐずる時間帯、うちはだいたい決まってる。
+・夕方17〜18時（腹へりピーク）
+・寝る前20〜21時（眠いのに寝たくない）
+・保育園の支度中（急かすと逆効果）
+わかってても対処できないんだけどな。 #育児パパ #共働き家庭</textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="caption-box">
+    <div class="caption-head">
+      <span>あるある投稿 #5</span>
+      <button class="copy-btn" onclick="copyText(this, 'daily-4')" type="button">コピー</button>
+    </div>
+    <textarea id="daily-4" class="short" readonly>👶朝の「早く〜」が口癖になって、気づいたら子どもも「早く早く」って言うようになってた。</textarea>
+  </div>
+</div>
+</div>
+
+<footer class="note">商品ページを確認し、投稿文をコピーして手動で投稿してください。<br>Threads/Xの商品紹介は1日1件・あるある投稿と織り交ぜてスパム判定を避けてください。<br>価格・レビューは選定時点の実データです。</footer>
+</div>
+<script>
+function flash(btn) {
+  const original = btn.textContent;
+  btn.textContent = 'コピーしました';
+  btn.classList.add('copied');
+  setTimeout(() => { btn.textContent = original; btn.classList.remove('copied'); }, 1500);
+}
+function copyText(btn, id) {
+  const el = document.getElementById(id);
+  el.select();
+  el.setSelectionRange(0, 999999);
+  navigator.clipboard.writeText(el.value).then(() => flash(btn)).catch(() => {
+    try { document.execCommand('copy'); flash(btn); } catch (e) {}
+  });
+}
+function copyPlain(btn, text) {
+  navigator.clipboard.writeText(text).then(() => flash(btn)).catch(() => {
+    const t = document.createElement('textarea');
+    t.value = text; document.body.appendChild(t); t.select();
+    try { document.execCommand('copy'); flash(btn); } catch (e) {}
+    document.body.removeChild(t);
+  });
+}
+</script>
+</body>
+</html>
